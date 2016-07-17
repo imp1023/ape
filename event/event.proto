@@ -1,0 +1,55 @@
+//start import 开始到结束部分为为自动生成
+import "RseAuthState.proto"; 
+import "RseBroadcast.proto"; 
+//end import
+
+//该文件中event数据结构手写的部分，必须在*****start Event auto*******的上面，否则将被覆盖掉！！！
+
+message Forward
+{
+    optional int32 serveridFrom = 1;
+    optional int32 serveridTo   = 2;
+    optional int32 serverfdFrom = 3;
+    optional int32 serverfdTo   = 4;
+    optional int32 worldfd      = 5;
+}
+
+message WorkingStatusData
+{
+	required int32 gid   = 1;
+	required bool finish = 2;
+}
+
+message UserLeave
+{
+	required int32 fd	  = 1;	
+}
+
+message UserAuthData
+{
+	required int64 uid    = 1;
+	required int64 secret = 2;
+	required int32 sockfd = 3;
+}
+
+message Event {
+	required int32 cmd       = 1;
+	required int32 state     = 2;
+	required int64 time      = 3;
+	
+	optional int64 uid       = 4;
+	optional Forward forward = 5;
+	optional string content  = 6;
+
+	optional WorkingStatusData	workingStatus = 64;
+	optional UserAuthData 		userAuthData  = 65;
+	optional UserLeave   		userleave 	  = 68;
+
+	//auto start key = 192; //注：key的值必须填写，系统会根据key的值自动+1
+	//start Event auto 从start开始自动生成，
+
+
+
+	optional RseBroadcast se_RseBroadcast = 192;
+	optional RseAuthState se_RseAuthState = 193;
+}
