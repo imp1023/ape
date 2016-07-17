@@ -1,0 +1,59 @@
+# Server Configuration File
+# server.cfg for ape
+
+version	= "1";
+app: {
+	admin = [];
+	test = [];
+	client_idle_sec = 300;
+	
+	physics_game_num   = 2;	//game cnt for one physics region
+	physics_region_num = 1;			
+	logic_region_num   = 3;
+	region: 
+	(//if (groupid != -1) means combination this region to another
+		{ id = 0; groupid=-1; physics_region=0; }
+		,{id = 1; groupid=-1; physics_region=0; }
+		,{id = 2; groupid=-1; physics_region=0; }
+	);
+	
+	worldd_num =1;
+	worldd: (
+		{id = 1;	world_web_server_port = 2000;	world_gamed_port = 2100;	world_server_address = "192.168.4.207";	world_bind_ip = "192.168.4.207";}
+	);
+	
+	proxy_num =0;
+	proxy: (
+	);
+	
+	countryd_num = 2;
+	country: (
+		{id = 1;	addr = "192.168.4.207";	port = 7000; bind_addr = "192.168.4.207";}
+	 	,{id = 2;	addr = "192.168.4.207";	port = 7001; bind_addr = "192.168.4.207";}
+	);
+
+	gamed_num = 2;
+	gamed: (
+		{id = 1;	addr = "192.168.4.207";	port = 400; port1=400; bind_addr = "192.168.4.207";	server_port = 400;	admin_port = 4000;	policy_port = 4100;}
+	 	,{id = 2;	addr = "192.168.4.207";	port = 401;	port1=401; bind_addr = "192.168.4.207";	server_port = 401;	admin_port = 4001;	policy_port = 4101;}	 
+	);
+	
+	db_num = 1;
+	database: (
+		{	id = 1;	addr_user_1 = "127.0.0.1";	port_user_1 = 6041;	addr_plat_1 = "127.0.0.1";	port_plat_1 = 7041;	addr_user_2 = "127.0.0.1";	port_user_2 = 6042;	addr_plat_2 = "127.0.0.1";	port_plat_2 = 7042;}
+	);
+	
+	countrydb_num = 1;
+	countrydb: (
+		{	id = 1;	addr = "127.0.0.1";	port = 6041;}
+	);
+	
+	web_num = 5;
+	webserver: (
+		{	id = 1;	addr = "183.60.115.88";	port = 8090;}
+	,	{	id = 2;	addr = "183.60.115.88";	port = 8090;}
+	,	{	id = 3;	addr = "183.60.115.88";	port = 8090;}
+	,	{	id = 4;	addr = "183.60.115.88";	port = 8090;}
+	,	{	id = 5;	addr = "183.60.115.88";	port = 8090;}
+	);
+};
