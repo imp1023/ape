@@ -1,0 +1,138 @@
+
+/////////////////////////////////////////////////////////////////////////
+//   基础结构                                                          //
+/////////////////////////////////////////////////////////////////////////
+
+//位缓存
+message DB_BitCache
+{
+	repeated int32 			 bit 					= 1;
+}
+
+/////////////////////////////////////////////////////////////////////////
+//   玩家数据                                                          //
+/////////////////////////////////////////////////////////////////////////
+
+message DB_Model
+{
+    optional int32           level                  = 1;  //等级
+    optional int64           coins                  = 2;  //金币
+    optional int64           minerals               = 3;  //矿石
+    optional int64           coinsTotal             = 4;  //总金币
+    optional int64           mineralsTotal          = 5;  //总矿石
+    optional int32           score                  = 6;  //战斗力或者得分
+    optional int32           exp                    = 7;  //当前经验值
+    optional int32           cash                   = 8;  //国际货币
+}
+
+message DB_State
+{
+    optional int32          tutorialCompleted       = 1;  //新手流程是否完成
+    optional int32          dmgProtectionTimeLeft   = 2;  //剩余伤害保护时间、伤害保护起效时间点
+    optional int32          dmgProtectionTimeTotal  = 3;  //总的伤害保护时间
+}
+
+message DB_PlanetLiteInfo
+{
+    optional int64          uid                     = 1;
+    optional int64          planetId                = 2;        
+}
+
+message DB_Star
+{
+    optional int32          id                      = 1;
+    optional int32          type                    = 2;
+    optional int32          name                    = 3;
+    optional int32          x                       = 4;
+    optional int32          y                       = 5;
+    repeated DB_PlanetLiteInfo lite                 = 6;
+}
+
+message DB_Item
+{
+    optional int32          sid                     = 1;
+    optional int32          sku                     = 2;
+    optional int32          type                    = 3;
+    optional int32          upgradeId               = 4;
+    optional int32          isFlipped               = 5;
+    optional int32          energyPercent           = 6;
+    optional int32          energy                  = 7;
+    optional int32          x                       = 8;
+    optional int32          y                       = 9;
+    optional int32          state                   = 10;
+    optional int32          time                    = 11;
+    optional int32          incomeToRestore         = 12;
+    optional int32          repairing               = 13;
+    optional int64          repairStart             = 14;
+    optional int64          updateAt                = 15;
+}
+
+message DB_Hangar
+{
+    optional int32          sid                     = 1;
+    optional int32          sku                     = 2;
+    optional int32          num                     = 3;
+}
+
+message DB_GameUnit
+{
+    optional int32          sku                     = 1;
+    optional int32          unlock                  = 2;
+    optional int32          upgradeId               = 3;
+    optional int32          timeLeft                = 4;
+    optional int64          updateAt                = 5;    
+}
+
+message DB_Planet
+{
+    optional int32          id                      = 1; 
+    optional int32          type                    = 2;
+    optional int32          HQLevel                 = 3;
+    optional int32          Droids                  = 4;
+    optional int32          DroidInUse              = 5;
+    optional int32          Capital                 = 6;
+    optional int64          CoinsLimit              = 7;
+    optional int64          MineralLimit            = 8;
+    optional int32          star                    = 9;
+    repeated DB_Item        items                   = 10;
+    repeated DB_Hangar      hangars                 = 11;
+    repeated DB_GameUnit    units                   = 12;
+
+}
+
+message DB_NPC
+{
+    optional int32          sku                     = 1;
+    optional int32          exp                     = 2;
+    optional int32          HQLevel                 = 3;
+    optional int32          npcId                   = 4;
+    repeated DB_Item        items                   = 5;
+}
+
+message DB_Player
+{
+    optional DB_Model        model                  = 1; //玩家模型
+    optional DB_State        state                  = 2; //玩家状态
+    repeated DB_Planet       planets                = 3; //猩球数据
+    repeated DB_NPC          npcs                   = 4; //npc(A/B/C/D)
+}
+
+message DB_User
+{
+    required int64           id              	 	= 1;  //id
+    required string          openid          	 	= 2;  //openid
+    optional string          name            	 	= 3;  //名字
+    optional int32           head            	 	= 4;  //头像
+    optional int64           last_login_time 	 	= 5;  //上次登录时间
+    optional int64           regist_time     	 	= 6;  //注册时间
+    optional int32           unbreakLogin    	 	= 7;  //连续登录天数
+    optional int32           isValid                = 8;  //账号是否有效
+    optional int32           orgin                  = 9;  //玩家来源
+    optional int64     		 last_logout_time	 	= 10; //上次退出时间
+    required DB_Player       player          	 	= 11; 
+}
+
+message DB_GlobalStarInfo
+{
+    repeated DB_Star         stars                  = 1;
+}
