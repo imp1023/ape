@@ -1,0 +1,11 @@
+//package core.io.protocol;
+//返回认证通过状态
+
+message RseAuthState 
+{
+    required bool   pass  	= 1; //是否认证通过
+    required int32  type 	= 2; //未通过原因(1.checkSecret; 2.封停)
+    required int32  leftMin = 3; //封停剩余时间
+    required int32  time 	= 4; //当前时间
+    required int32  zone 	= 5; //当前时区
+}
