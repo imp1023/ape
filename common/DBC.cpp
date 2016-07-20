@@ -4,9 +4,6 @@
 #include "DBC.h"
 #include <exception>
 
-#pragma warning(disable : 4996)
-
-
 INT	DBCFile::_ConvertStringToVector(const CHAR* strStrINTgSource, vector< std::string >& vRet, const CHAR* szKey, BOOL bOneOfKey, BOOL bIgnoreEmpty)
 {
 	vRet.clear();
@@ -127,7 +124,7 @@ BOOL DBCFile::OpenFromMemory(const CHAR* pMemory, const CHAR* pDeadEnd, const CH
 	assert(pMemory && pDeadEnd);
 	//----------------------------------------------------
 	//判断是否是二进制格式
-	if(size_t(pDeadEnd - pMemory) >= sizeof(FILE_HEAD) && *((UINT*)pMemory)==0XDDBBCC00)
+	if(pDeadEnd - pMemory >=sizeof(FILE_HEAD) && *((UINT*)pMemory)==0XDDBBCC00)
 	{
 		return OpenFromMemoryImpl_Binary(pMemory, pDeadEnd, szFileName);
 	}
@@ -288,7 +285,7 @@ BOOL DBCFile::OpenFromMemoryImpl_Text(const CHAR* pMemory, const CHAR* pDeadEnd,
 
 		//列数不对
 		if(vRet.empty()) continue;
-        if(static_cast<int>(vRet.size()) != nFieldsNum) 
+        if(vRet.size() != nFieldsNum) 
 		{
 			//补上空格
 			if((INT)vRet.size() < nFieldsNum)
@@ -326,6 +323,7 @@ BOOL DBCFile::OpenFromMemoryImpl_Text(const CHAR* pMemory, const CHAR* pDeadEnd,
 				}
 				else
 				{
+					const CHAR * p = vRet[i].c_str();
 					std::map< std::string, INT >::iterator it = mapStringBuf.find(vRet[i]);
 					if(it == mapStringBuf.end())
 					{
@@ -365,6 +363,7 @@ BOOL DBCFile::OpenFromMemoryImpl_Text(const CHAR* pMemory, const CHAR* pDeadEnd,
 
 	//------------------------------------------------------
 	// Create String Block
+	UCHAR byBlank = '\0';
 	m_pStringBuf[0] = '\0';
 
 	register CHAR* p = m_pStringBuf + 1;
@@ -396,6 +395,77 @@ BOOL DBCFile::OpenFromMemoryImpl_Text(const CHAR* pMemory, const CHAR* pDeadEnd,
 	return TRUE;
 }
 
+BOOL DBCFile::GetFileVarList_Text(vector<vector<std::string> >& vecList,const CHAR* pMemory, const CHAR* pDeadEnd)
+{
+	vecList.clear();
+	//----------------------------------------------------
+	//分析列数和类型
+	CHAR szLine[1024*10] = {0};
+	//读第一行
+	register const char* pMem = pMemory;
+	pMem = _GetLineFromMemory(szLine, 1024*10, pMem, pDeadEnd);
+	if(!pMem)
+	{
+		return FALSE;
+	}
+
+	//分解
+	vector< std::string > vRet;
+	_ConvertStringToVector(szLine, vRet, "\t", TRUE, TRUE);
+	if(vRet.empty())
+	{
+		return FALSE;
+	}
+
+	//--------------------------------------------------------------
+	//初始化
+	INT nFieldsNum	= (INT)vRet.size();
+
+	//--------------------------------------------------------------
+	//开始读取
+
+	//空读一行
+	pMem = _GetLineFromMemory(szLine, 1024*10, pMem, pDeadEnd);
+	if(!pMem) return FALSE;
+
+	INT nStringBufSize = 0;
+	do
+	{
+		//读取一行
+		pMem = _GetLineFromMemory(szLine, 1024*10, pMem, pDeadEnd);
+		if(!pMem) break;;
+
+		//是否是注释行
+		if(szLine[0] == '#') continue;
+
+		//分解
+		_ConvertStringToVector(szLine, vRet, "\t", TRUE, FALSE);
+
+		//列数不对
+		if(vRet.empty()) continue;
+		if(vRet.size() != nFieldsNum) 
+		{
+			//补上空格
+			if((INT)vRet.size() < nFieldsNum)
+			{
+				INT nSubNum = nFieldsNum-(INT)vRet.size();
+				for(INT i=0; i<nSubNum; i++)
+				{
+					vRet.push_back("");
+				}
+			}
+		}
+
+		//第一列不能为空
+		if(vRet[0].empty()) continue;
+
+		vecList.push_back(vRet);
+
+	}while(TRUE);
+
+	return TRUE;
+}
+
 BOOL DBCFile::OpenFromTXT(const CHAR* szFileName)
 {
 	assert(szFileName);
@@ -421,6 +491,32 @@ BOOL DBCFile::OpenFromTXT(const CHAR* szFileName)
 	return bRet;
 }
 
+BOOL DBCFile::GetVarListFromTXT(const CHAR* szFileName,vector<vector<std::string> >& vecList)
+{
+	assert(szFileName);
+
+	//----------------------------------------------------
+	//打开文件
+	FILE* fp = fopen(szFileName, "rb");
+	if(NULL == fp) return FALSE;
+
+	fseek(fp, 0, SEEK_END);
+	int nFileSize = ftell(fp);
+	fseek(fp, 0, SEEK_SET);
+
+	//读入内存
+	char* pMemory = new char[nFileSize+1];
+	fread(pMemory, 1, nFileSize, fp);
+	pMemory[nFileSize] = 0;
+
+	BOOL bRet = GetFileVarList_Text(vecList,pMemory, pMemory+nFileSize+1);
+
+	delete[] pMemory; pMemory = 0;
+	fclose(fp);
+
+	return bRet;
+}
+
 VOID DBCFile::CreateIndex(INT nColum, const CHAR* szFileName)
 {
 	if(nColum <0 || nColum >= m_nFieldsNum || m_nIndexColum==nColum) return;
@@ -435,9 +531,7 @@ VOID DBCFile::CreateIndex(INT nColum, const CHAR* szFileName)
 		if(itFind != m_hashIndex.end())
 		{
 			CHAR szTemp[260];
-			MY_ASSERT();
 			tsnprintf(szTemp, 260, "[%s]Multi index at line %d(SAME:value=%d)", szFileName, i+1, p->iValue);
-			printf(szTemp);
 			throw std::string(szTemp);
 			return;
 		}

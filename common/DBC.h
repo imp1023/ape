@@ -3,14 +3,6 @@
 
 #include <vector>
 #ifdef WIN32
-#include "windows.h"
-#endif
-#ifdef WIN32
-#define MY_ASSERT()	DebugBreak()
-#else
-#define MY_ASSERT()
-#endif
-#ifdef WIN32
 	#define		tsnprintf		_snprintf
 	#include <hash_map>
 #else
@@ -85,11 +77,16 @@ public:
 	BOOL					OpenFromTXT(const CHAR* szFileName);
 	//根据内存中的文件打开
 	BOOL					OpenFromMemory(const CHAR* pMemory, const CHAR* pDeadEnd, const CHAR* szFileName=0);
+	//
+	BOOL					GetVarListFromTXT(const CHAR* szFileName,vector<vector<std::string> >& vecList);
 protected:
 	//读取文本格式内容
 	BOOL					OpenFromMemoryImpl_Text(const CHAR* pMemory, const CHAR* pDeadEnd, const CHAR* szFileName=0);
 	//读取二进制格式内容
 	BOOL					OpenFromMemoryImpl_Binary(const CHAR* pMemory, const CHAR* pDeadEnd, const CHAR* szFileName=0);
+
+	//生成列表
+	BOOL					GetFileVarList_Text(vector<vector<std::string> >& vecList,const CHAR* pMemory, const CHAR* pDeadEnd);
 
 public:
 	//按索引查找(第一列为索引)

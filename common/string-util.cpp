@@ -1,7 +1,6 @@
 #include "string-util.h"
 #include <iostream>
 #include <sstream>
-#include "DateTime.h"
 #ifdef _WIN32
 #include <Windows.h>
 #include <WinNls.h>
@@ -55,7 +54,7 @@ bool safe_atof(const string &str, float &num) {
 	istringstream iss(str);
 	return !(iss>>num).fail();
 }
-bool tokenize(const string& str, vector<string>& tokens,const string &delims) {
+bool tokenize(const string& str, vector<string>& tokens, string &delims) {
 	tokens.clear();
 	string::size_type lastPos = 0;
 	string::size_type pos;
@@ -63,10 +62,7 @@ bool tokenize(const string& str, vector<string>& tokens,const string &delims) {
 		tokens.push_back(str.substr(lastPos, pos-lastPos));
 		lastPos = pos + 1;
 	}
-	if (lastPos < str.length())
-	{
-		tokens.push_back(str.substr(lastPos));
-	}
+	tokens.push_back(str.substr(lastPos));
 	return true;
 }
 
@@ -409,52 +405,4 @@ int gb2312ToUnicode(std::string const& input_str,std::wstring& output_str)
 */
 #endif // _WIN32
 	return 0;
-}
-
-void delString(string& str, const string& findstr)
-{
-	for ( size_t nIndex = str.find(findstr); nIndex!=string::npos; nIndex = str.find(findstr) )
-	{
-		str.erase(nIndex,1);
-	}
-}
-
-long long StringToUid(const string& str)
-{
-	long long id = -1;
-	safe_atoll(str, id);
-	return id;
-}
-
-long long GetTimeVal(const string& date)
-{
-	int y = 0;
-	int ma = 0;
-	int d = 0;
-	int h = 0;
-	int m = 0;
-	int s = 0;
-	sscanf(date.c_str(), "%d-%d-%d-%d:%d:%d", &y, &ma, &d, &h, &m, &s);
-	DateTime tm(y, ma, d, h, m, s);
-	return tm.stdtime();
-}
-
-int setbitforint32(int num, int position)
-{
-	int res = 0;
-	if (position <= 0 || position >= 32 || num < 0)
-	{
-		return num;
-	}
-	res = num | (1<<(position - 1));
-	return res;
-}
-
-bool checkbit(int num, int position)
-{
-	if (num < 0 || position <=0 || position >= 32)
-	{
-		return false;
-	}
-	return (num & (1<<(position-1))) > 0;
 }

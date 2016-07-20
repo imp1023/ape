@@ -1,7 +1,6 @@
 #include "SysLog.h"
 #include "distribution.h"
 #include <time.h>
-#include "string-util.h"
 #ifdef _WIN32
 #include <WinSock2.h>
 #include <Windows.h>
@@ -13,9 +12,6 @@
 
 //#include <log4cxx/logger.h>
 #endif
-
-
-
 
 const char  SZLOG_SYS[]				= "LogSys";	
 
@@ -39,16 +35,7 @@ CSysLog::CSysLog(void)
 
 CSysLog::~CSysLog(void)
 {
-#ifdef WIN32
-	::DeleteCriticalSection(&m_Section);
-#else
-	pthread_mutex_destroy(&m_mutex);
-#endif
-	if(m_pLogSys)
-	{
-		m_pLogSys->close();
-		delete m_pLogSys;	
-	}
+
 }
 CSysLog* CSysLog::GetInstance()
 {
@@ -59,6 +46,18 @@ CSysLog* CSysLog::GetInstance()
 void CSysLog::Quit()
 {
 	m_SysLogNet.Quit();
+
+#ifdef WIN32
+	::DeleteCriticalSection(&m_Section);
+#else
+	pthread_mutex_destroy(&m_mutex);
+#endif
+	if(m_pLogSys)
+	{
+		m_pLogSys->close();
+		delete m_pLogSys;	
+		m_pLogSys = NULL;
+	}
 }
 void CSysLog::SetLogInfo(bool bGameLog,int nSrvID,
 						 string strLogDir,string strLogName,
@@ -134,10 +133,10 @@ bool CSysLog::CreateLog()
 	if(lt-m_lastCheck<300)
 		return true;
 	m_lastCheck = lt;
-	struct tm newtime;
+	struct tm *newtime = NULL;
 	char szTime[128];
-	localtime_r(&lt, &newtime);
-	strftime(szTime, 128-1, "%Y-%m-%d", &newtime);
+	newtime = localtime(&lt);
+	strftime(szTime, 128-1, "%Y-%m-%d", newtime);
 
 	m_strLogDay = szTime;
 	char szFile[512];
@@ -176,12 +175,12 @@ bool CSysLog::CreateLog()
 }
 void CSysLog::WriteCurTime()
 {
-	struct tm newtime;
+	struct tm *newtime = NULL;
 	char szTime[128];
 
 	time_t lt = time(NULL);
-	localtime_r(&lt, &newtime);
-	strftime(szTime, 128-1, "%Y-%m-%d %H:%M:%S", &newtime);
+	newtime = localtime(&lt);
+	strftime(szTime, 128-1, "%Y-%m-%d %H:%M:%S", newtime);
 	*this << szTime;
 }
 
@@ -191,12 +190,12 @@ void CSysLog::ChgLogFile()
 		return ;
 	if(!m_bShowLog)
 		return;
-	struct tm newtime;
+	struct tm *newtime = NULL;
 	char szTime[128];
 
 	time_t lt = time(NULL);
-	localtime_r(&lt,&newtime);
-	strftime(szTime, 128-1, "%Y-%m-%d", &newtime);
+	newtime = localtime(&lt);
+	strftime(szTime, 128-1, "%Y-%m-%d", newtime);
 	if(m_strLogDay.compare(szTime)==0)
 		return;
 	//m_strLogDay = szTime;
@@ -217,11 +216,15 @@ void CSysLog::BeginMsg()
 	m_nPos=0;
 }
 
-void CSysLog::EndMsg()
+void CSysLog::EndMsg(LOG_TYPE emType,int nDmd)
 {
 	m_szBuf[m_nPos] = 0;
 	if(m_pLogSys&&m_bShowLog)
 		*m_pLogSys << m_szBuf << std::endl;
+	//if(NeedSend(nUserID,emType,nDmd))
+	//{
+	//	m_SysLogNet.PushSendStr(m_szBuf);
+	//}
 }
 
 void CSysLog::SendMsg()
@@ -235,7 +238,31 @@ bool CSysLog::IsStatUser(int64 nUserID)
 		return false;
 	if(m_nModul==0)
 		return true;
-	return (nUserID%m_nModul)==m_nModulVal;
+	return (getUidHash(nUserID)%m_nModul)==m_nModulVal;
+}
+
+bool CSysLog::NeedSend(int64 nUserID,LOG_TYPE emType,int nDmd)
+{
+	bool bSend = false;
+	if(nDmd!=0)
+		return true;
+	switch(emType)
+	{
+	case LT_LogOn:
+	case LT_LogOut:
+	case LT_Register:
+	case LT_CreditBuy:
+	case LT_ClearData:
+		bSend = true;
+		break;
+	default:
+		{
+			bSend = IsStatUser(nUserID);
+		}
+		break;
+
+	}
+	return bSend;
 }
 
 bool CSysLog::InUse()
@@ -243,48 +270,39 @@ bool CSysLog::InUse()
 	return m_bInUse;
 }
 
-CSysLog& CSysLog::operator << (const int& value)
-{
-	sprintf(m_szBuf+m_nPos,"%d,",value);
-	m_nPos = strlen(m_szBuf);
-	return *this;
-}
 
-CSysLog& CSysLog::operator << (const char& value)
+
+CSysLog& CSysLog::operator << (char value)
 {
 	sprintf(m_szBuf+m_nPos,"%c,",value);
 	m_nPos = strlen(m_szBuf);
+
 	return *this;
 }
 
-CSysLog& CSysLog::operator << (const float& value)
+CSysLog& CSysLog::operator << (float value)
 {
 	sprintf(m_szBuf+m_nPos,"%f,",value);
 	m_nPos = strlen(m_szBuf);
+
 	return *this;	
 }
 
-CSysLog& CSysLog::operator << (const double& value)
+CSysLog& CSysLog::operator << (double value)
 {
 	sprintf(m_szBuf+m_nPos,"%lf,",value);
 	m_nPos = strlen(m_szBuf);
+
 	return *this;	
 }
 
-CSysLog& CSysLog::operator << (const time_t& value)
+CSysLog& CSysLog::operator << (int64 value)
 {
-	sprintf(m_szBuf+m_nPos,"%s,",toString(value).c_str());
+	sprintf(m_szBuf+m_nPos,"%lld,",value);
 	m_nPos = strlen(m_szBuf);
+
 	return *this;
 }
-#ifndef _WIN32
-CSysLog& CSysLog::operator << (const int64& value)
-{
-	sprintf(m_szBuf+m_nPos,"%s,",toString(value).c_str());
-	m_nPos = strlen(m_szBuf);
-	return *this;
-}
-#endif
 CSysLog& CSysLog::operator << (char* szBuf)
 {
 	return *this << (const char*)szBuf;
@@ -293,12 +311,14 @@ CSysLog& CSysLog::operator << (const char* szBuf)
 {
 	sprintf(m_szBuf+m_nPos,"%s,",szBuf);
 	m_nPos = strlen(m_szBuf);
+
 	return *this;
 }
 CSysLog& CSysLog::operator << (string& str)
 {		
 	sprintf(m_szBuf+m_nPos,"%s,",str.c_str());
 	m_nPos = strlen(m_szBuf);
+
 	return *this;
 }
 CSysLog& CSysLog::operator << (const string& str)

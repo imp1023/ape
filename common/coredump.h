@@ -9,5 +9,3 @@
 #endif
 
 void saveBackTrace(int signal);
-typedef void (*FnErrorExit)();
-extern FnErrorExit pErrorExit;

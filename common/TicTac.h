@@ -2,7 +2,7 @@
 #define _TICTAC_H_
 #pragma once
 #include "const_def.h"
-#include "Clock.h"
+#include "../common/Clock.h"
 
 class TicTac 
 {

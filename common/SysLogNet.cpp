@@ -15,7 +15,7 @@
 #endif
 
 #include "../net/NetCache.h"
-#include "Clock.h"
+#include "../common/Clock.h"
 
 CSysLogNet::CSysLogNet(void)
 {
@@ -68,22 +68,47 @@ void* CSysLogNet::ThreadProc(void* lParam)
 void CSysLogNet::Run()
 {
 	// first let's increase the limit of open files
-#ifndef _WIN32
+#ifdef _WIN32
+	
+	m_bRunning = true;
+	//fd_set readset;
+	FD_ZERO(&master);
+	int listenFd = initSockets();
+	if (listenFd < 0)
+	{
+		LOG4CXX_FATAL(logger_, "socket create failed!");
+		return;
+	}
 
-	//struct rlimit srl;
-	//srl.rlim_cur = MAX_CONNECTIONS+10;
-	//srl.rlim_max = MAX_CONNECTIONS+10;
-	//if (setrlimit(RLIMIT_NOFILE, &srl)<0)
-	//{
-	//	LOG4CXX_FATAL(logger_, "Cannot set RLimit!");
-	//	//exit(1);
-	//	return;
-	//}
+
+	//struct timeval timeout;
+	m_LogStat.Status = SLSTAT_ACTIVE;
+	for (; ; )
+	{
+		string str;
+		if(PopSendStr(str))
+		{
+			if(!sendIntSizedFdString(m_LogStat.iFd,str))
+			{
+				doCloseConnection(m_LogStat.iFd);
+				connectFailed(m_LogStat.iFd);
+				connectToStatSrv();
+				m_LogStat.Status = SLSTAT_ACTIVE;
+			}
+		}
+		if (!m_bRunning)
+		{
+			break;
+		}
+		usleep(10000); 
+	}
+#else
+
 	epfd = epoll_create(10);
 	if (epfd<0)
 	{
 		LOG4CXX_FATAL(logger_, "epoll_create error!");
-		//exit(1);
+		exit(1);
 		return;
 	}
 
@@ -97,7 +122,7 @@ void CSysLogNet::Run()
 	}
 
 	if (initSockets()<0) {
-		//exit(1);
+		exit(1);
 		return;
 	}
 
@@ -105,10 +130,6 @@ void CSysLogNet::Run()
 	LOG4CXX_INFO(logger_, "Nethandler started.");
 	for (;;)
 	{
-        if (!m_bRunnig)
-        {
-            break;
-        }
 		int count = epoll_wait(epfd, evs, MAX_EVENTS, 1000);
 		if (count<0)
 		{
@@ -121,31 +142,11 @@ void CSysLogNet::Run()
 		}
 		for (int i=0; i<count; i++)
 		{
+			if (!m_bRunnig)
+			{
+				break;
+			}
 			int fd = evs[i].data.fd;
-			//if (isListenSocket(fd)) 
-			//{
-			//	struct sockaddr_in sa;
-			//	socklen_t slen = sizeof(sa);
-			//	int nfd = 0;
-			//	nfd = accept(fd, (struct sockaddr*)&sa, &slen);
-			//	if (nfd>0)
-			//	{
-			//		ev.events = EPOLLIN | EPOLLHUP; //| EPOLLRDHUP;
-			//		ev.data.fd = nfd;
-			//		if (epoll_ctl(epfd, EPOLL_CTL_ADD, nfd, &ev) < 0)
-			//		{
-			//			LOG4CXX_ERROR(logger_, "epoll_ctl error, cannot add client!");
-			//		}
-			//		else
-			//		{
-			//			size_t rsize = readCacheSize(fd);
-			//			//size_t rsize = (fd==wsfd ? NetCache::WEBSERVER_READ_SIZE : NetCache::DEFAULT_READ_SIZE);
-			//			NetCache *cache = addConnection(nfd, sa, rsize);
-			//			createProtocolHandler(cache, fd);
-			//		}
-			//	}
-			//}
-			//else // data
 			{
 				NetCache *cache = getCacheFromFd(fd);
 				if (cache!=NULL)
@@ -162,14 +163,6 @@ void CSysLogNet::Run()
 							while (cache->assemble(req) && !cache->remove)
 							{
 								LOG4CXX_DEBUG(logger_, "Command Received: \""<<req.c_str()<<"\" from uid:"<<uid<<" fd:"<<fd);
-								//if (cache->ph!=NULL)
-								//{
-								//	cache->ph->handle(uid, req);
-								//}
-								//else
-								//{
-								//	LOG4CXX_WARN(logger_, "Protocol handler is NULL for fd:"<<fd);
-								//}
 							}
 						}
 					}
@@ -191,11 +184,6 @@ void CSysLogNet::Run()
 						(events&EPOLLHUP)>0 || //(events&EPOLLRDHUP)>0 || 
 						(events&EPOLLERR)>0)
 					{
-						//int64 uid = cache->uid;
-						//if (uid>=0 && cache->ph!=NULL)
-						//{
-						//	cache->ph->leave(uid);
-						//}
 						LOG4CXX_DEBUG(logger_, "Client disconnected of fd:" << fd << ", remove: " << cache->remove << ", read error: " << readError << ", hup: " << (events&EPOLLHUP) << //", rdhup: " << (events&EPOLLRDHUP) << 
 							", epoll error: " << (events&EPOLLERR));
 						doCloseConnection(fd);
@@ -220,19 +208,21 @@ void CSysLogNet::Run()
 					sendIntSizedFdString(m_LogStat.iFd,str);
 			}
 		}
+		if (!m_bRunnig)
+		{
+			break;
+		}
 	}
 #endif
 }
 
 void CSysLogNet::Quit()
 {
-
-	if (m_bRunnig)
-	{
-		m_bRunnig = false;
-		pthread_join(m_thSysLogNet, NULL);
-		m_lstStr2Send.clear();
-	}
+	LogLock();
+	m_bRunnig = false;
+	LogUnLock();
+	pthread_join(m_thSysLogNet, NULL);
+	m_lstStr2Send.clear();
 }
 
 int CSysLogNet::initSockets()
@@ -253,7 +243,7 @@ bool CSysLogNet::connectToStatSrv()
 			&& tNow - m_LogStat.tLastTry > 5 )
 		{
 			m_LogStat.tLastTry = tNow; 
-			struct sockaddr sa;
+			struct addrinfo sa;
 			LOG4CXX_DEBUG(logger_, "Connecting to logstat server...");
 			m_LogStat.iFd = createConnectSocket("lsfd",m_LogStat.strAddr,m_LogStat.strPort,sa);
 			if (m_LogStat.iFd<0) 
@@ -263,7 +253,7 @@ bool CSysLogNet::connectToStatSrv()
 			//	continue;
 			}
 			//NetCache *cache = addConnection(m_LogStat.iFd,*(sockaddr_in*)sa.ai_addr,NetCache::WEBSERVER_READ_SIZE);
-			addConnection(m_LogStat.iFd,*(sockaddr_in*)&sa,DEFAULT_SERVER_SIZE);
+			addConnection(m_LogStat.iFd,*(sockaddr_in*)sa.ai_addr,DEFAULT_SERVER_SIZE);
 			m_LogStat.Status = SLSTAT_CONNECTING;
 		}
 	}

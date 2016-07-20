@@ -1,6 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "statistics.h"
-#include <pthread.h>
 #include <sstream>
 #include <fstream>
 
@@ -23,9 +22,8 @@ void StatItem::sample(double value) {
 }
 
 void StatItem::sample(double value, time_t now) {
-	struct tm nowtm;
-	localtime_r(&now, &nowtm);
-	int sample_time[2] = {nowtm.tm_min, nowtm.tm_hour};
+	struct tm *nowtm = localtime(&now);
+	int sample_time[2] = {nowtm->tm_min, nowtm->tm_hour};
 	for (int i=0; i<2; i++) {
 		roll_time(i, sample_time[i]);
 		accumulator_[i] += value;
@@ -36,9 +34,8 @@ void StatItem::sample(double value, time_t now) {
 
 vector<double> StatItem::recentOneHour(time_t now) {
 	vector<double> rec;
-	struct tm nowtm;
-	localtime_r(&now, &nowtm);
-	roll_time(0, nowtm.tm_min);
+	struct tm * nowtm = localtime(&now);
+	roll_time(0, nowtm->tm_min);
 	for (int i=0; i<60; i++) {
 		rec.push_back(record_[0][(indicator_[0]-i+60)%60]);
 	}
@@ -47,9 +44,8 @@ vector<double> StatItem::recentOneHour(time_t now) {
 
 vector<double> StatItem::recentOneDay(time_t now) {
 	vector<double> rec;
-	struct tm nowtm;
-	localtime_r(&now, &nowtm);
-	roll_time(1, nowtm.tm_hour);
+	struct tm * nowtm = localtime(&now);
+	roll_time(1, nowtm->tm_hour);
 	for (int i=0; i<24; i++) {
 		rec.push_back(record_[1][(indicator_[1]-i+24)%24]);
 	}
