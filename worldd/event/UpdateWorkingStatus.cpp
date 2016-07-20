@@ -9,7 +9,7 @@ void UpdateWorkingStatus::addEvent(EventQueue* eq, int state, int gid)
 	e->set_time(-1);
 	e->set_state(state);
 	e->set_uid(-1);
-	WorkingStatusData* req = e->mutable_workingstatus();
+	WorkingStatus_Req* req = e->mutable_workingstatus_req();
 	req->set_gid(gid);
 	req->set_finish(false);
 	eq->safePushEvent(e);
@@ -17,7 +17,7 @@ void UpdateWorkingStatus::addEvent(EventQueue* eq, int state, int gid)
 
 void UpdateWorkingStatus::handle(Event* e)
 {
-	if(!e->has_workingstatus())
+	if(!e->has_workingstatus_req())
 	{
 		return;
 	}
@@ -42,7 +42,7 @@ void UpdateWorkingStatus::handle(Event* e)
 
 void UpdateWorkingStatus::handle_GW_Disconn(Event* e)
 {
-	const WorkingStatusData& req = e->workingstatus();
+	const WorkingStatus_Req& req = e->workingstatus_req();
 	int gid = req.gid();
 	//bool finish = req.finish();
 	WorldDataHandler* dh = eh_->getDataHandler();
@@ -53,7 +53,7 @@ void UpdateWorkingStatus::handle_GW_Disconn(Event* e)
 void UpdateWorkingStatus::handle_GW_Conn(Event* e)
 {
 	WorldDataHandler* dh = eh_->getDataHandler();
-	const WorkingStatusData& req = e->workingstatus();
+	const WorkingStatus_Req& req = e->workingstatus_req();
 	int gid = req.gid();
 	//bool finish = req.finish();
 	dh->setWorkingStatus(gid, NOT_SYNC_USER);
@@ -65,7 +65,7 @@ void UpdateWorkingStatus::handle_GW_Conn(Event* e)
 void UpdateWorkingStatus::handle_GW_Sync(Event* e)
 {
 	WorldDataHandler* dh = eh_->getDataHandler();
-	const WorkingStatusData& req = e->workingstatus();
+	const WorkingStatus_Req& req = e->workingstatus_req();
 	int gid = req.gid();
 	bool finish = req.finish();
 	if (finish) // finish

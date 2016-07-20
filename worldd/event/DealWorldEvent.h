@@ -1,45 +1,22 @@
-#ifndef _DEAL_WORLD_EVENT_H_
-#define _DEAL_WORLD_EVENT_H_
-
+#pragma once
+//该文件及.cpp文件为使用工具创建，可在文件中修改，工具如果发现该文件，将不再重新创建。
 #include "BaseEvent.h"
 #include "../../event/EventDefine.h"
 #include "../WorldEventHandler.h"
 
-/*
-
-自定义EventHandler:
-1，继承自CBaseEvent
-2，使用BIND_1_EVENT/BIND_2_EVENT等注册事件
-3，initialEventProcessors()中创建实例
-
-*/
-
 class DealWorldEvent : public CBaseEvent
 {
 public:
-	DealWorldEvent();
-	~DealWorldEvent();
-
-	InstanceCreator(DealWorldEvent)
+    DealWorldEvent();
+    ~DealWorldEvent();
+    RegistWorldEvent(DealWorldEvent)
 
 private:
-	void regist();
-	void handle(Event* e);
-	void processEventForward(Event* e);
-// 	void processEnterCenterCampBattle(Event* e);
-// 	void processCenterCampBattleData(Event* e);
-// 	void processCenterCampBattleMove(Event* e);
-// 	void processCenterCampBattleResult(Event* e);
-// 	void processClearCenterCampBattleCD(Event* e);
-// 	void processCenterCampBattleRankList(Event* e);
-// 	void processCenterCampBattleCampRank(Event* e);
-// 	void processCenterCampBattleAward(Event* e);
-// 	void processCenterCampBattleBuy(Event* e);
-// 	void processReload(Event* e);	
-//     void processLuckyGoddnessData(Event* e);
-// 	void processSalute(Event* e);
-// 	void processSaluteData(Event* e);
- 	void handleWorldGM(Event* e);
-} ;
+    void registHandler();
+    void handle(Event* e);
 
-#endif
+protected:
+    void processEventForward(Event* e);
+    void processEventForwardByUid(Event* e);
+    void processEventForwardByPlatId(Event* e);
+} ;
