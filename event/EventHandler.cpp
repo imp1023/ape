@@ -22,10 +22,12 @@
 #include "../common/Clock.h"
 #include "../event/EventQueue.h"
 #include "../common/SysLog.h"
+#include "../common/Msg2QQ.h"
 #include "../event/EventDefine.h"
+//#include "../logic/SysBroadcast_T.h"
 EventHandler* global_eh;
 extern int g_processingCmd;
-extern int64 g_processingUID;
+//extern SysBroadcast_Table g_SysBroadcastT;
 
 EventHandler::EventHandler(EventQueue* eq, DataHandler* dh, NetHandler* nh, int nid) 
 {
@@ -33,11 +35,12 @@ EventHandler::EventHandler(EventQueue* eq, DataHandler* dh, NetHandler* nh, int 
 	nid_ = nid;
 	logger_ = log4cxx::Logger::getLogger("EventHandler");
 
+	m_emSrvType = Srv_UnDefine;
 	eq_ = eq;
 	dh_ = dh;
 	nh_ = nh;
 	eq_mutex_ = eq->mutex();
-	m_mutexData = dh->mutex();
+	data_mutex_ = dh->mutex();
 	m_lLastCheckTime = 0;
 	m_ltUpdateTime = 0;
 	status_ = NORMAL;
@@ -46,7 +49,12 @@ EventHandler::EventHandler(EventQueue* eq, DataHandler* dh, NetHandler* nh, int 
 	counter_ = new Counter();
 	urgent_saving_flag_ = false;
 	reversion_ = 0;
+	m_lstEventTime = 0;
 	for (int i=0; i<maxProcessRoutines; i++) processRoutines_[i] = NULL;
+	m_IsSendOnceMsg = true;
+	m_nTimerTick = 0;
+	m_nTimerTickLuckyNum =0;
+	m_emSrvType = Srv_UnDefine;
 }
 
 EventHandler::~EventHandler(void)
@@ -56,8 +64,9 @@ EventHandler::~EventHandler(void)
 	delete event_pf_;
 }
 
-bool EventHandler::start(time_t ltUpdateTime /* = 0 */)
+bool EventHandler::start(ServerEventType emType/* =Srv_UnDefine */,time_t ltUpdateTime /* = 0 */)
 {
+	m_emSrvType = emType;
 	m_ltUpdateTime = ltUpdateTime;
 #ifdef _WIN32
 	DWORD threadid;
@@ -70,11 +79,7 @@ bool EventHandler::start(time_t ltUpdateTime /* = 0 */)
 
 void EventHandler::quit()
 {
-	if (!urgent_saving_flag_)
-	{
-		urgent_saving_flag_ = true;
-		pthread_join(tid_, NULL);
-	}
+	pthread_join(tid_, NULL);
 }
 
 void* EventHandler::thread_fun(void *args) 
@@ -135,11 +140,21 @@ void EventHandler::run()
 		if(dh_ != NULL) {
 			dh_->setRevision(reversion_);
 		}
-		CSysLog::GetInstance()->ChgLogFile();
+		CHG_LOG_FILE();
+
+#ifndef _WIN32
+		int ntime =  reversion_;
+		if (reversion_ - m_lstEventTime>60000)
+		{
+			m_xEventCounter.WriteFirstLine(ntime);
+			m_lstEventTime = reversion_;
+		}
+			
+#endif
 
 		acquireEventLock();
 		for (size_t i=0; i<events.size(); i++) {
-			//events[i]->Clear();
+			events[i]->Clear();
 			eq_->freeEvent(events[i]);
 		}
 		events.clear();
@@ -192,8 +207,6 @@ void EventHandler::run()
 		int elapsed = (int)timer.tac();
 		stat_->capture("event.process-time", (float)elapsed);
 		stat_->capture("user.online", (float)counter_->count("user.online"));
-		if (events.size() > 10)
-			LOG4CXX_INFO(logger_, "one loop process event num: " << events.size()<<",time elapsed :"<<elapsed<<"ms.");
 
 		if (elapsed>=interval) 
 		{
@@ -216,7 +229,7 @@ void EventHandler::run()
 		}
 #endif
 	}
-//	exit(0);
+	exit(0);
 }
 
 void EventHandler::dispatchEvent(Event *e) 
@@ -228,10 +241,8 @@ void EventHandler::dispatchEvent(Event *e)
 	if (e->IsInitialized() && processRoutines_[e->cmd()]!=NULL)
 	{
 		g_processingCmd = e->cmd();
-		g_processingUID = e->uid();
 		(*processRoutines_[e->cmd()])(e);
 		g_processingCmd = 0;
-		g_processingUID = 0;
 	}
 }
 
@@ -252,18 +263,154 @@ void EventHandler::postBackEvent(Event* e)
 
 void EventHandler::tick()
 {
-	if(m_ltUpdateTime > 0)
+	switch(m_emSrvType)
 	{
-		if(reversion_ - m_lLastCheckTime > m_ltUpdateTime)
+	case Srv_UnDefine:
+		break;
+	case Srv_Game:
 		{
-			m_lLastCheckTime = reversion_;
-// 			Event* e = eq_->allocateEvent();
-// 			e->set_cmd(EVENT_TIMER);
-// 			e->set_state(Game_to_Self);
-// 			e->set_time(0);
-// 			eq_->safePushEvent(e);
+			if(m_ltUpdateTime > 0)
+			{
+				if(reversion_ - m_lLastCheckTime > m_ltUpdateTime)
+				{
+					m_lLastCheckTime = reversion_;
+					Event* e = eq_->allocateEvent();
+					e->set_cmd(EVENT_TIMER);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+
+					/*m_nTimerTick ++;
+					if(m_nTimerTick >= 5*60)
+					{
+						Event* e = eq_->allocateEvent();
+						e->set_cmd(EVENT_TIMER_5_TICK);
+						e->set_state(Status_Normal_Game);
+						e->set_time(0);
+						eq_->safePushEvent(e);
+						m_nTimerTick = 0;
+					}
+
+					m_nTimerTickLuckyNum++;
+					if(m_nTimerTickLuckyNum >= 60)
+					{
+						Event* e = eq_->allocateEvent();
+						e->set_cmd(EVENT_LUCKY_NUM);
+						e->set_state(Status_Normal_Game);
+						e->mutable_luckynummsg()->set_type( 1 );//·¢ËÍÊý¾Ý
+						e->set_time(0);
+						eq_->safePushEvent(e);
+						m_nTimerTickLuckyNum = 0;
+					}*/
+				}
+			}
+			/*if (m_IsSendOnceMsg)
+			{
+				m_IsSendOnceMsg = false;
+
+				Event* e = eq_->allocateEvent();
+				if (e)
+				{
+					e->set_cmd(EVENT_USER_HOURMETER_BRAODCAST_START);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+				}
+
+				e = eq_->allocateEvent();
+				if (e)
+				{
+					e->set_cmd(EVENT_UPDATE_BROADCAST_ROBOT);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					e->mutable_updatebroadcastrobot()->set_nype(BROADCAST_ROBOT_MSG_UPDATE);
+					eq_->safePushEvent(e);
+				}
+
+				e = eq_->allocateEvent();
+				e->set_cmd(EVENT_TIMER_5_TICK);
+				e->set_state(Status_Normal_Game);
+				e->set_time(0);
+				eq_->safePushEvent(e);
+			}*/
 		}
+		break;
+	case Srv_Country:
+		{
+			if(m_ltUpdateTime > 0)
+			{
+				if(reversion_ - m_lLastCheckTime > m_ltUpdateTime)
+				{
+					m_lLastCheckTime = reversion_;
+					Event* e = eq_->allocateEvent();
+					e->set_cmd(EVENT_COUNTRY_TIMER);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+				}
+			}
+		}
+		break;
+	/*case Srv_Region:
+		{
+			if(m_ltUpdateTime > 0)
+			{
+				if(reversion_ - m_lLastCheckTime > m_ltUpdateTime)
+				{
+					m_lLastCheckTime = reversion_;
+					Event* e = eq_->allocateEvent();
+					e->set_cmd(EVENT_REGION_TIMER);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+
+					e = eq_->allocateEvent();
+					e->set_cmd(EVENT_REGIONCOUNTRY_TIMER);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+				}
+			}
+		}
+		break;
+	case Srv_Fight:
+		{
+			if(m_ltUpdateTime > 0)
+			{
+				if(reversion_ - m_lLastCheckTime > m_ltUpdateTime)
+				{
+					m_lLastCheckTime = reversion_;
+					Event* e = eq_->allocateEvent();
+					e->set_cmd(EVENT_FIGHT_TIMER);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+
+				}
+			}
+		}
+		break;
+	case Srv_Rank:
+		{
+			if(m_ltUpdateTime > 0)
+			{
+				if(reversion_ - m_lLastCheckTime > m_ltUpdateTime)
+				{
+					m_lLastCheckTime = reversion_;
+					Event* e = eq_->allocateEvent();
+					e->set_cmd(EVENT_RANK_TIMER);
+					e->set_state(Status_Normal_Game);
+					e->set_time(0);
+					eq_->safePushEvent(e);
+
+				}
+			}
+		}
+		break;*/
+	default:
+		break;
 	}
+	
 	if(dh_ != NULL)
 	{
 		dh_->tick();

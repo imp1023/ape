@@ -13,12 +13,12 @@ EventQueue::EventQueue()
 EventQueue::~EventQueue(void)
 {
 	pthread_mutex_destroy(&mutex_);
-// 	while (!event_queue_.empty())
-// 	{
-// 		Event *e = event_queue_.top().second;
-// 		delete e;
-// 		event_queue_.pop();
-// 	}
+	while (!event_queue_.empty())
+	{
+		Event *e = event_queue_.top().second;
+		delete e;
+		event_queue_.pop();
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -29,12 +29,10 @@ void EventQueue::pushStringEvent(const string &req, int worldFD /* = -1  */)
 	Event *e = allocateEvent();
 	if (e->ParseFromString(req)) 
 	{
-		if(worldFD >= 0)
-		{
-			Forward* forward = e->mutable_forward();
-            if (forward)
-                forward->set_worldfd(worldFD);
-		}
+		//if(worldFD >= 0)
+		//{
+		//	e->set_fromworld_fd( worldFD ); 
+		//}
 		safePushEvent(e);
 	}
 	else 

@@ -106,20 +106,6 @@ class RseAuthState : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 leftmin() const;
   inline void set_leftmin(::google::protobuf::int32 value);
   
-  // required int32 time = 4;
-  inline bool has_time() const;
-  inline void clear_time();
-  static const int kTimeFieldNumber = 4;
-  inline ::google::protobuf::int32 time() const;
-  inline void set_time(::google::protobuf::int32 value);
-  
-  // required int32 zone = 5;
-  inline bool has_zone() const;
-  inline void clear_zone();
-  static const int kZoneFieldNumber = 5;
-  inline ::google::protobuf::int32 zone() const;
-  inline void set_zone(::google::protobuf::int32 value);
-  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -127,13 +113,11 @@ class RseAuthState : public ::google::protobuf::Message {
   bool pass_;
   ::google::protobuf::int32 type_;
   ::google::protobuf::int32 leftmin_;
-  ::google::protobuf::int32 time_;
-  ::google::protobuf::int32 zone_;
   friend void  protobuf_AddDesc_RseAuthState_2eproto();
   friend void protobuf_AssignDesc_RseAuthState_2eproto();
   friend void protobuf_ShutdownFile_RseAuthState_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -205,38 +189,6 @@ inline ::google::protobuf::int32 RseAuthState::leftmin() const {
 inline void RseAuthState::set_leftmin(::google::protobuf::int32 value) {
   _set_bit(2);
   leftmin_ = value;
-}
-
-// required int32 time = 4;
-inline bool RseAuthState::has_time() const {
-  return _has_bit(3);
-}
-inline void RseAuthState::clear_time() {
-  time_ = 0;
-  _clear_bit(3);
-}
-inline ::google::protobuf::int32 RseAuthState::time() const {
-  return time_;
-}
-inline void RseAuthState::set_time(::google::protobuf::int32 value) {
-  _set_bit(3);
-  time_ = value;
-}
-
-// required int32 zone = 5;
-inline bool RseAuthState::has_zone() const {
-  return _has_bit(4);
-}
-inline void RseAuthState::clear_zone() {
-  zone_ = 0;
-  _clear_bit(4);
-}
-inline ::google::protobuf::int32 RseAuthState::zone() const {
-  return zone_;
-}
-inline void RseAuthState::set_zone(::google::protobuf::int32 value) {
-  _set_bit(4);
-  zone_ = value;
 }
 
 

@@ -1,7 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "DataHandler.h"
-#include "../common/distribution.h"
-#include "../common/ServerConfig.h"
 
 using namespace std;
 
@@ -18,12 +16,6 @@ DataHandler::~DataHandler(void)
 	pthread_mutex_destroy(&mutex_);
 }
 
-
-void DataHandler::init()
-{
-}
-
-
 void DataHandler::tick()
 {
 }
@@ -35,6 +27,5 @@ void DataHandler::quit()
 void DataHandler::termThreads()
 {
 }
-
 
 

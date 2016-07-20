@@ -11,18 +11,6 @@
 
 namespace {
 
-const ::google::protobuf::Descriptor* Forward_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Forward_reflection_ = NULL;
-const ::google::protobuf::Descriptor* WorkingStatusData_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  WorkingStatusData_reflection_ = NULL;
-const ::google::protobuf::Descriptor* UserLeave_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  UserLeave_reflection_ = NULL;
-const ::google::protobuf::Descriptor* UserAuthData_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  UserAuthData_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Event_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Event_reflection_ = NULL;
@@ -36,86 +24,111 @@ void protobuf_AssignDesc_event_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "event.proto");
   GOOGLE_CHECK(file != NULL);
-  Forward_descriptor_ = file->message_type(0);
-  static const int Forward_offsets_[5] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, serveridfrom_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, serveridto_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, serverfdfrom_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, serverfdto_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, worldfd_),
-  };
-  Forward_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      Forward_descriptor_,
-      Forward::default_instance_,
-      Forward_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Forward, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Forward));
-  WorkingStatusData_descriptor_ = file->message_type(1);
-  static const int WorkingStatusData_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WorkingStatusData, gid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WorkingStatusData, finish_),
-  };
-  WorkingStatusData_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      WorkingStatusData_descriptor_,
-      WorkingStatusData::default_instance_,
-      WorkingStatusData_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WorkingStatusData, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WorkingStatusData, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(WorkingStatusData));
-  UserLeave_descriptor_ = file->message_type(2);
-  static const int UserLeave_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserLeave, fd_),
-  };
-  UserLeave_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      UserLeave_descriptor_,
-      UserLeave::default_instance_,
-      UserLeave_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserLeave, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserLeave, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(UserLeave));
-  UserAuthData_descriptor_ = file->message_type(3);
-  static const int UserAuthData_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserAuthData, uid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserAuthData, secret_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserAuthData, sockfd_),
-  };
-  UserAuthData_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      UserAuthData_descriptor_,
-      UserAuthData::default_instance_,
-      UserAuthData_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserAuthData, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(UserAuthData, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(UserAuthData));
-  Event_descriptor_ = file->message_type(4);
-  static const int Event_offsets_[11] = {
+  Event_descriptor_ = file->message_type(0);
+  static const int Event_offsets_[103] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, cmd_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, state_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, time_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, uid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, forward_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, content_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, workingstatus_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userauthdata_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userleave_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsebroadcast_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseauthstate_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, fromworld_fd_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, workingstatus_req_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userlogin_req_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userlogin_rsp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userauth_req_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userauth_rsp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, sendremoteuser_req_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, wg_userleave_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, friendinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, forwardinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, starsrvid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, transfersrvid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, webgetregion_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, platsrvid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, userplat_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, worldsrvid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, fightsrvid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, countryneed_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, regionneed_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, rankneed_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, statneed_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, httpaskmsg_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, httpanswermsg_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcecustomizedactivity_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcelogin_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainattackerlist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainbattlereplay_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtaincustomizer_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainmessageslist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainneighborslist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainnpclist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainsocialitems_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainsocialuserinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainuniverse_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatealliances_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcedeployunits_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceitemdamaged_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainaskforhelp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainhangarshelp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainpayurlparame_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainrandomtargets_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceobtainvisithelps_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceonlinereward_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequerycheckandlockaccountifpossible_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequerygalaxywindow_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequeryreceivewishitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequeryrefusereceivewishitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequerysendwishitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequerystarinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequerystarsbookmarks_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequeryvisithelpsgiftunitsonbunker_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceunitdamaged_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdategameunits_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdateitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatemisc_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatemissions_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdateprofile_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdateships_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatesocialitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatestarsbookmarks_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatetargets_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatevisithelp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsecustomizedactivity_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rselogin_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainattackerlist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainbattlereplay_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtaincustomizer_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainmessageslist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainneighborslist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainnpclist_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainsocialitems_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainsocialuserinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainuniverse_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdatealliances_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsedeployunits_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseitemdamaged_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainaskforhelp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainhangarshelp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainpayurlparame_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainrandomtargets_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseobtainvisithelps_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequerycheckandlockaccountifpossible_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequerygalaxywindow_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequeryreceivewishitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequeryrefusereceivewishitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequerysendwishitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequerystarinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequerystarsbookmarks_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequeryvisithelpsgiftunitsonbunker_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseunitdamaged_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdategameunits_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdateitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdatemisc_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdatemissions_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdateprofile_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdateships_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdatesocialitem_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdatestarsbookmarks_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseupdatetargets_),
   };
   Event_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -141,28 +154,12 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Forward_descriptor_, &Forward::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    WorkingStatusData_descriptor_, &WorkingStatusData::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    UserLeave_descriptor_, &UserLeave::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    UserAuthData_descriptor_, &UserAuthData::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Event_descriptor_, &Event::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_event_2eproto() {
-  delete Forward::default_instance_;
-  delete Forward_reflection_;
-  delete WorkingStatusData::default_instance_;
-  delete WorkingStatusData_reflection_;
-  delete UserLeave::default_instance_;
-  delete UserLeave_reflection_;
-  delete UserAuthData::default_instance_;
-  delete UserAuthData_reflection_;
   delete Event::default_instance_;
   delete Event_reflection_;
 }
@@ -173,36 +170,267 @@ void protobuf_AddDesc_event_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::protobuf_AddDesc_RseAuthState_2eproto();
-  ::protobuf_AddDesc_RseBroadcast_2eproto();
+  ::protobuf_AddDesc_RceCustomizedActivity_2eproto();
+  ::protobuf_AddDesc_RceDeployUnits_2eproto();
+  ::protobuf_AddDesc_RceItemDamaged_2eproto();
+  ::protobuf_AddDesc_RceLogin_2eproto();
+  ::protobuf_AddDesc_RceObtainAskForHelp_2eproto();
+  ::protobuf_AddDesc_RceObtainAttackerList_2eproto();
+  ::protobuf_AddDesc_RceObtainBattleReplay_2eproto();
+  ::protobuf_AddDesc_RceObtainCustomizer_2eproto();
+  ::protobuf_AddDesc_RceObtainHangarsHelp_2eproto();
+  ::protobuf_AddDesc_RceObtainMessagesList_2eproto();
+  ::protobuf_AddDesc_RceObtainNeighborsList_2eproto();
+  ::protobuf_AddDesc_RceObtainNpcList_2eproto();
+  ::protobuf_AddDesc_RceObtainPayUrlParame_2eproto();
+  ::protobuf_AddDesc_RceObtainRandomTargets_2eproto();
+  ::protobuf_AddDesc_RceObtainSocialItems_2eproto();
+  ::protobuf_AddDesc_RceObtainSocialUserInfo_2eproto();
+  ::protobuf_AddDesc_RceObtainUniverse_2eproto();
+  ::protobuf_AddDesc_RceObtainVisitHelps_2eproto();
+  ::protobuf_AddDesc_RceOnlineReward_2eproto();
+  ::protobuf_AddDesc_RceQueryCheckAndLockAccountIfPossible_2eproto();
+  ::protobuf_AddDesc_RceQueryGalaxyWindow_2eproto();
+  ::protobuf_AddDesc_RceQueryReceiveWishItem_2eproto();
+  ::protobuf_AddDesc_RceQueryRefuseReceiveWishItem_2eproto();
+  ::protobuf_AddDesc_RceQuerySendWishItem_2eproto();
+  ::protobuf_AddDesc_RceQueryStarInfo_2eproto();
+  ::protobuf_AddDesc_RceQueryStarsBookmarks_2eproto();
+  ::protobuf_AddDesc_RceQueryVisitHelpsGiftUnitsOnBunker_2eproto();
+  ::protobuf_AddDesc_RceUnitDamaged_2eproto();
+  ::protobuf_AddDesc_RceUpdateAlliances_2eproto();
+  ::protobuf_AddDesc_RceUpdateGameUnits_2eproto();
+  ::protobuf_AddDesc_RceUpdateItem_2eproto();
+  ::protobuf_AddDesc_RceUpdateMisc_2eproto();
+  ::protobuf_AddDesc_RceUpdateMissions_2eproto();
+  ::protobuf_AddDesc_RceUpdateProfile_2eproto();
+  ::protobuf_AddDesc_RceUpdateShips_2eproto();
+  ::protobuf_AddDesc_RceUpdateSocialItem_2eproto();
+  ::protobuf_AddDesc_RceUpdateStarsBookmarks_2eproto();
+  ::protobuf_AddDesc_RceUpdateTargets_2eproto();
+  ::protobuf_AddDesc_RceUpdateVisitHelp_2eproto();
+  ::protobuf_AddDesc_RseCustomizedActivity_2eproto();
+  ::protobuf_AddDesc_RseDeployUnits_2eproto();
+  ::protobuf_AddDesc_RseItemDamaged_2eproto();
+  ::protobuf_AddDesc_RseLogin_2eproto();
+  ::protobuf_AddDesc_RseObtainAskForHelp_2eproto();
+  ::protobuf_AddDesc_RseObtainAttackerList_2eproto();
+  ::protobuf_AddDesc_RseObtainBattleReplay_2eproto();
+  ::protobuf_AddDesc_RseObtainCustomizer_2eproto();
+  ::protobuf_AddDesc_RseObtainHangarsHelp_2eproto();
+  ::protobuf_AddDesc_RseObtainMessagesList_2eproto();
+  ::protobuf_AddDesc_RseObtainNeighborsList_2eproto();
+  ::protobuf_AddDesc_RseObtainNpcList_2eproto();
+  ::protobuf_AddDesc_RseObtainPayUrlParame_2eproto();
+  ::protobuf_AddDesc_RseObtainRandomTargets_2eproto();
+  ::protobuf_AddDesc_RseObtainSocialItems_2eproto();
+  ::protobuf_AddDesc_RseObtainSocialUserInfo_2eproto();
+  ::protobuf_AddDesc_RseObtainUniverse_2eproto();
+  ::protobuf_AddDesc_RseObtainVisitHelps_2eproto();
+  ::protobuf_AddDesc_RseQueryCheckAndLockAccountIfPossible_2eproto();
+  ::protobuf_AddDesc_RseQueryGalaxyWindow_2eproto();
+  ::protobuf_AddDesc_RseQueryReceiveWishItem_2eproto();
+  ::protobuf_AddDesc_RseQueryRefuseReceiveWishItem_2eproto();
+  ::protobuf_AddDesc_RseQuerySendWishItem_2eproto();
+  ::protobuf_AddDesc_RseQueryStarInfo_2eproto();
+  ::protobuf_AddDesc_RseQueryStarsBookmarks_2eproto();
+  ::protobuf_AddDesc_RseQueryVisitHelpsGiftUnitsOnBunker_2eproto();
+  ::protobuf_AddDesc_RseUnitDamaged_2eproto();
+  ::protobuf_AddDesc_RseUpdateAlliances_2eproto();
+  ::protobuf_AddDesc_RseUpdateGameUnits_2eproto();
+  ::protobuf_AddDesc_RseUpdateItem_2eproto();
+  ::protobuf_AddDesc_RseUpdateMisc_2eproto();
+  ::protobuf_AddDesc_RseUpdateMissions_2eproto();
+  ::protobuf_AddDesc_RseUpdateProfile_2eproto();
+  ::protobuf_AddDesc_RseUpdateShips_2eproto();
+  ::protobuf_AddDesc_RseUpdateSocialItem_2eproto();
+  ::protobuf_AddDesc_RseUpdateStarsBookmarks_2eproto();
+  ::protobuf_AddDesc_RseUpdateTargets_2eproto();
+  ::protobuf_AddDesc_event_5fsub_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\013event.proto\032\022RseAuthState.proto\032\022RseBr"
-    "oadcast.proto\"n\n\007Forward\022\024\n\014serveridFrom"
-    "\030\001 \001(\005\022\022\n\nserveridTo\030\002 \001(\005\022\024\n\014serverfdFr"
-    "om\030\003 \001(\005\022\022\n\nserverfdTo\030\004 \001(\005\022\017\n\007worldfd\030"
-    "\005 \001(\005\"0\n\021WorkingStatusData\022\013\n\003gid\030\001 \002(\005\022"
-    "\016\n\006finish\030\002 \002(\010\"\027\n\tUserLeave\022\n\n\002fd\030\001 \002(\005"
-    "\";\n\014UserAuthData\022\013\n\003uid\030\001 \002(\003\022\016\n\006secret\030"
-    "\002 \002(\003\022\016\n\006sockfd\030\003 \002(\005\"\253\002\n\005Event\022\013\n\003cmd\030\001"
-    " \002(\005\022\r\n\005state\030\002 \002(\005\022\014\n\004time\030\003 \002(\003\022\013\n\003uid"
-    "\030\004 \001(\003\022\031\n\007forward\030\005 \001(\0132\010.Forward\022\017\n\007con"
-    "tent\030\006 \001(\t\022)\n\rworkingStatus\030@ \001(\0132\022.Work"
-    "ingStatusData\022#\n\014userAuthData\030A \001(\0132\r.Us"
-    "erAuthData\022\035\n\tuserleave\030D \001(\0132\n.UserLeav"
-    "e\022\'\n\017se_RseBroadcast\030\300\001 \001(\0132\r.RseBroadca"
-    "st\022\'\n\017se_RseAuthState\030\301\001 \001(\0132\r.RseAuthSt"
-    "ate", 603);
+    "\n\013event.proto\032\033RceCustomizedActivity.pro"
+    "to\032\024RceDeployUnits.proto\032\024RceItemDamaged"
+    ".proto\032\016RceLogin.proto\032\031RceObtainAskForH"
+    "elp.proto\032\033RceObtainAttackerList.proto\032\033"
+    "RceObtainBattleReplay.proto\032\031RceObtainCu"
+    "stomizer.proto\032\032RceObtainHangarsHelp.pro"
+    "to\032\033RceObtainMessagesList.proto\032\034RceObta"
+    "inNeighborsList.proto\032\026RceObtainNpcList."
+    "proto\032\033RceObtainPayUrlParame.proto\032\034RceO"
+    "btainRandomTargets.proto\032\032RceObtainSocia"
+    "lItems.proto\032\035RceObtainSocialUserInfo.pr"
+    "oto\032\027RceObtainUniverse.proto\032\031RceObtainV"
+    "isitHelps.proto\032\025RceOnlineReward.proto\032+"
+    "RceQueryCheckAndLockAccountIfPossible.pr"
+    "oto\032\032RceQueryGalaxyWindow.proto\032\035RceQuer"
+    "yReceiveWishItem.proto\032#RceQueryRefuseRe"
+    "ceiveWishItem.proto\032\032RceQuerySendWishIte"
+    "m.proto\032\026RceQueryStarInfo.proto\032\034RceQuer"
+    "yStarsBookmarks.proto\032)RceQueryVisitHelp"
+    "sGiftUnitsOnBunker.proto\032\024RceUnitDamaged"
+    ".proto\032\030RceUpdateAlliances.proto\032\030RceUpd"
+    "ateGameUnits.proto\032\023RceUpdateItem.proto\032"
+    "\023RceUpdateMisc.proto\032\027RceUpdateMissions."
+    "proto\032\026RceUpdateProfile.proto\032\024RceUpdate"
+    "Ships.proto\032\031RceUpdateSocialItem.proto\032\035"
+    "RceUpdateStarsBookmarks.proto\032\026RceUpdate"
+    "Targets.proto\032\030RceUpdateVisitHelp.proto\032"
+    "\033RseCustomizedActivity.proto\032\024RseDeployU"
+    "nits.proto\032\024RseItemDamaged.proto\032\016RseLog"
+    "in.proto\032\031RseObtainAskForHelp.proto\032\033Rse"
+    "ObtainAttackerList.proto\032\033RseObtainBattl"
+    "eReplay.proto\032\031RseObtainCustomizer.proto"
+    "\032\032RseObtainHangarsHelp.proto\032\033RseObtainM"
+    "essagesList.proto\032\034RseObtainNeighborsLis"
+    "t.proto\032\026RseObtainNpcList.proto\032\033RseObta"
+    "inPayUrlParame.proto\032\034RseObtainRandomTar"
+    "gets.proto\032\032RseObtainSocialItems.proto\032\035"
+    "RseObtainSocialUserInfo.proto\032\027RseObtain"
+    "Universe.proto\032\031RseObtainVisitHelps.prot"
+    "o\032+RseQueryCheckAndLockAccountIfPossible"
+    ".proto\032\032RseQueryGalaxyWindow.proto\032\035RseQ"
+    "ueryReceiveWishItem.proto\032#RseQueryRefus"
+    "eReceiveWishItem.proto\032\032RseQuerySendWish"
+    "Item.proto\032\026RseQueryStarInfo.proto\032\034RseQ"
+    "ueryStarsBookmarks.proto\032)RseQueryVisitH"
+    "elpsGiftUnitsOnBunker.proto\032\024RseUnitDama"
+    "ged.proto\032\030RseUpdateAlliances.proto\032\030Rse"
+    "UpdateGameUnits.proto\032\023RseUpdateItem.pro"
+    "to\032\023RseUpdateMisc.proto\032\027RseUpdateMissio"
+    "ns.proto\032\026RseUpdateProfile.proto\032\024RseUpd"
+    "ateShips.proto\032\031RseUpdateSocialItem.prot"
+    "o\032\035RseUpdateStarsBookmarks.proto\032\026RseUpd"
+    "ateTargets.proto\032\017event_sub.proto\"\300\'\n\005Ev"
+    "ent\022\013\n\003cmd\030\001 \002(\005\022\r\n\005state\030\002 \002(\005\022\014\n\004time\030"
+    "\003 \002(\003\022\013\n\003uid\030\004 \001(\003\022\024\n\014fromworld_fd\030\005 \001(\005"
+    "\022-\n\021workingStatus_req\030\006 \001(\0132\022.WorkingSta"
+    "tus_Req\022%\n\ruserLogin_req\030\007 \001(\0132\016.UserLog"
+    "in_Req\022%\n\ruserLogin_rsp\030\010 \001(\0132\016.UserLogi"
+    "n_Rsp\022#\n\014userAuth_req\030\t \001(\0132\r.UserAuth_R"
+    "eq\022#\n\014userAuth_rsp\030\n \001(\0132\r.UserAuth_Rsp\022"
+    "/\n\022sendRemoteUser_req\030\013 \001(\0132\023.SendRemote"
+    "User_Req\022#\n\014wg_UserLeave\030\014 \001(\0132\r.WG_User"
+    "Leave\022&\n\nfriendinfo\030\r \001(\0132\022.GWG_FriendRe"
+    "quest\022!\n\013forwardinfo\030\016 \001(\0132\014.ForwardInfo"
+    "\022\021\n\tstarSrvID\030\017 \001(\005\022\025\n\rtransferSrvID\030\022 \001"
+    "(\005\022#\n\014webGetRegion\030\023 \001(\0132\r.WebGetRegion\022"
+    "\021\n\tplatSrvID\030\024 \001(\005\022\020\n\010userPlat\030\025 \001(\t\022\022\n\n"
+    "worldSrvID\030\026 \001(\005\022\022\n\nfightSrvID\030\027 \001(\005\022%\n\013"
+    "countryNeed\030\030 \001(\0132\020.GCG_CountryNeed\022#\n\nr"
+    "egionNeed\030\031 \001(\0132\017.GRG_RegionNeed\022\037\n\010rank"
+    "Need\030\032 \001(\0132\r.GRG_RankNeed\022\037\n\010statNeed\030\033 "
+    "\001(\0132\r.GSG_StatNeed\022\037\n\nhttpaskmsg\030r \001(\0132\013"
+    ".HttpAskMsg\022%\n\rhttpanswermsg\030s \001(\0132\016.Htt"
+    "pAnswerMsg\0229\n\030ce_RceCustomizedActivity\030\310"
+    "\001 \001(\0132\026.RceCustomizedActivity\022\037\n\013ce_RceL"
+    "ogin\030\311\001 \001(\0132\t.RceLogin\0229\n\030ce_RceObtainAt"
+    "tackerList\030\312\001 \001(\0132\026.RceObtainAttackerLis"
+    "t\0229\n\030ce_RceObtainBattleReplay\030\313\001 \001(\0132\026.R"
+    "ceObtainBattleReplay\0225\n\026ce_RceObtainCust"
+    "omizer\030\314\001 \001(\0132\024.RceObtainCustomizer\0229\n\030c"
+    "e_RceObtainMessagesList\030\315\001 \001(\0132\026.RceObta"
+    "inMessagesList\022;\n\031ce_RceObtainNeighborsL"
+    "ist\030\316\001 \001(\0132\027.RceObtainNeighborsList\022/\n\023c"
+    "e_RceObtainNpcList\030\317\001 \001(\0132\021.RceObtainNpc"
+    "List\0227\n\027ce_RceObtainSocialItems\030\320\001 \001(\0132\025"
+    ".RceObtainSocialItems\022=\n\032ce_RceObtainSoc"
+    "ialUserInfo\030\321\001 \001(\0132\030.RceObtainSocialUser"
+    "Info\0221\n\024ce_RceObtainUniverse\030\322\001 \001(\0132\022.Rc"
+    "eObtainUniverse\0223\n\025ce_RceUpdateAlliances"
+    "\030\323\001 \001(\0132\023.RceUpdateAlliances\022+\n\021ce_RceDe"
+    "ployUnits\030\324\001 \001(\0132\017.RceDeployUnits\022+\n\021ce_"
+    "RceItemDamaged\030\325\001 \001(\0132\017.RceItemDamaged\0225"
+    "\n\026ce_RceObtainAskForHelp\030\326\001 \001(\0132\024.RceObt"
+    "ainAskForHelp\0227\n\027ce_RceObtainHangarsHelp"
+    "\030\327\001 \001(\0132\025.RceObtainHangarsHelp\0229\n\030ce_Rce"
+    "ObtainPayUrlParame\030\330\001 \001(\0132\026.RceObtainPay"
+    "UrlParame\022;\n\031ce_RceObtainRandomTargets\030\331"
+    "\001 \001(\0132\027.RceObtainRandomTargets\0225\n\026ce_Rce"
+    "ObtainVisitHelps\030\332\001 \001(\0132\024.RceObtainVisit"
+    "Helps\022-\n\022ce_RceOnlineReward\030\333\001 \001(\0132\020.Rce"
+    "OnlineReward\022Y\n(ce_RceQueryCheckAndLockA"
+    "ccountIfPossible\030\334\001 \001(\0132&.RceQueryCheckA"
+    "ndLockAccountIfPossible\0227\n\027ce_RceQueryGa"
+    "laxyWindow\030\335\001 \001(\0132\025.RceQueryGalaxyWindow"
+    "\022=\n\032ce_RceQueryReceiveWishItem\030\336\001 \001(\0132\030."
+    "RceQueryReceiveWishItem\022I\n ce_RceQueryRe"
+    "fuseReceiveWishItem\030\337\001 \001(\0132\036.RceQueryRef"
+    "useReceiveWishItem\0227\n\027ce_RceQuerySendWis"
+    "hItem\030\340\001 \001(\0132\025.RceQuerySendWishItem\022/\n\023c"
+    "e_RceQueryStarInfo\030\341\001 \001(\0132\021.RceQueryStar"
+    "Info\022;\n\031ce_RceQueryStarsBookmarks\030\342\001 \001(\013"
+    "2\027.RceQueryStarsBookmarks\022U\n&ce_RceQuery"
+    "VisitHelpsGiftUnitsOnBunker\030\343\001 \001(\0132$.Rce"
+    "QueryVisitHelpsGiftUnitsOnBunker\022+\n\021ce_R"
+    "ceUnitDamaged\030\344\001 \001(\0132\017.RceUnitDamaged\0223\n"
+    "\025ce_RceUpdateGameUnits\030\345\001 \001(\0132\023.RceUpdat"
+    "eGameUnits\022)\n\020ce_RceUpdateItem\030\346\001 \001(\0132\016."
+    "RceUpdateItem\022)\n\020ce_RceUpdateMisc\030\347\001 \001(\013"
+    "2\016.RceUpdateMisc\0221\n\024ce_RceUpdateMissions"
+    "\030\350\001 \001(\0132\022.RceUpdateMissions\022/\n\023ce_RceUpd"
+    "ateProfile\030\351\001 \001(\0132\021.RceUpdateProfile\022+\n\021"
+    "ce_RceUpdateShips\030\352\001 \001(\0132\017.RceUpdateShip"
+    "s\0225\n\026ce_RceUpdateSocialItem\030\353\001 \001(\0132\024.Rce"
+    "UpdateSocialItem\022=\n\032ce_RceUpdateStarsBoo"
+    "kmarks\030\354\001 \001(\0132\030.RceUpdateStarsBookmarks\022"
+    "/\n\023ce_RceUpdateTargets\030\355\001 \001(\0132\021.RceUpdat"
+    "eTargets\0223\n\025ce_RceUpdateVisitHelp\030\356\001 \001(\013"
+    "2\023.RceUpdateVisitHelp\0229\n\030se_RseCustomize"
+    "dActivity\030\364\003 \001(\0132\026.RseCustomizedActivity"
+    "\022\037\n\013se_RseLogin\030\365\003 \001(\0132\t.RseLogin\0229\n\030se_"
+    "RseObtainAttackerList\030\366\003 \001(\0132\026.RseObtain"
+    "AttackerList\0229\n\030se_RseObtainBattleReplay"
+    "\030\367\003 \001(\0132\026.RseObtainBattleReplay\0225\n\026se_Rs"
+    "eObtainCustomizer\030\370\003 \001(\0132\024.RseObtainCust"
+    "omizer\0229\n\030se_RseObtainMessagesList\030\371\003 \001("
+    "\0132\026.RseObtainMessagesList\022;\n\031se_RseObtai"
+    "nNeighborsList\030\372\003 \001(\0132\027.RseObtainNeighbo"
+    "rsList\022/\n\023se_RseObtainNpcList\030\373\003 \001(\0132\021.R"
+    "seObtainNpcList\0227\n\027se_RseObtainSocialIte"
+    "ms\030\374\003 \001(\0132\025.RseObtainSocialItems\022=\n\032se_R"
+    "seObtainSocialUserInfo\030\375\003 \001(\0132\030.RseObtai"
+    "nSocialUserInfo\0221\n\024se_RseObtainUniverse\030"
+    "\376\003 \001(\0132\022.RseObtainUniverse\0223\n\025se_RseUpda"
+    "teAlliances\030\377\003 \001(\0132\023.RseUpdateAlliances\022"
+    "+\n\021se_RseDeployUnits\030\200\004 \001(\0132\017.RseDeployU"
+    "nits\022+\n\021se_RseItemDamaged\030\201\004 \001(\0132\017.RseIt"
+    "emDamaged\0225\n\026se_RseObtainAskForHelp\030\202\004 \001"
+    "(\0132\024.RseObtainAskForHelp\0227\n\027se_RseObtain"
+    "HangarsHelp\030\203\004 \001(\0132\025.RseObtainHangarsHel"
+    "p\0229\n\030se_RseObtainPayUrlParame\030\204\004 \001(\0132\026.R"
+    "seObtainPayUrlParame\022;\n\031se_RseObtainRand"
+    "omTargets\030\205\004 \001(\0132\027.RseObtainRandomTarget"
+    "s\0225\n\026se_RseObtainVisitHelps\030\206\004 \001(\0132\024.Rse"
+    "ObtainVisitHelps\022Y\n(se_RseQueryCheckAndL"
+    "ockAccountIfPossible\030\207\004 \001(\0132&.RseQueryCh"
+    "eckAndLockAccountIfPossible\0227\n\027se_RseQue"
+    "ryGalaxyWindow\030\210\004 \001(\0132\025.RseQueryGalaxyWi"
+    "ndow\022=\n\032se_RseQueryReceiveWishItem\030\211\004 \001("
+    "\0132\030.RseQueryReceiveWishItem\022I\n se_RseQue"
+    "ryRefuseReceiveWishItem\030\212\004 \001(\0132\036.RseQuer"
+    "yRefuseReceiveWishItem\0227\n\027se_RseQuerySen"
+    "dWishItem\030\213\004 \001(\0132\025.RseQuerySendWishItem\022"
+    "/\n\023se_RseQueryStarInfo\030\214\004 \001(\0132\021.RseQuery"
+    "StarInfo\022;\n\031se_RseQueryStarsBookmarks\030\215\004"
+    " \001(\0132\027.RseQueryStarsBookmarks\022U\n&se_RseQ"
+    "ueryVisitHelpsGiftUnitsOnBunker\030\216\004 \001(\0132$"
+    ".RseQueryVisitHelpsGiftUnitsOnBunker\022+\n\021"
+    "se_RseUnitDamaged\030\217\004 \001(\0132\017.RseUnitDamage"
+    "d\0223\n\025se_RseUpdateGameUnits\030\220\004 \001(\0132\023.RseU"
+    "pdateGameUnits\022)\n\020se_RseUpdateItem\030\221\004 \001("
+    "\0132\016.RseUpdateItem\022)\n\020se_RseUpdateMisc\030\222\004"
+    " \001(\0132\016.RseUpdateMisc\0221\n\024se_RseUpdateMiss"
+    "ions\030\223\004 \001(\0132\022.RseUpdateMissions\022/\n\023se_Rs"
+    "eUpdateProfile\030\224\004 \001(\0132\021.RseUpdateProfile"
+    "\022+\n\021se_RseUpdateShips\030\225\004 \001(\0132\017.RseUpdate"
+    "Ships\0225\n\026se_RseUpdateSocialItem\030\226\004 \001(\0132\024"
+    ".RseUpdateSocialItem\022=\n\032se_RseUpdateStar"
+    "sBookmarks\030\227\004 \001(\0132\030.RseUpdateStarsBookma"
+    "rks\022/\n\023se_RseUpdateTargets\030\230\004 \001(\0132\021.RseU"
+    "pdateTargets", 7172);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "event.proto", &protobuf_RegisterTypes);
-  Forward::default_instance_ = new Forward();
-  WorkingStatusData::default_instance_ = new WorkingStatusData();
-  UserLeave::default_instance_ = new UserLeave();
-  UserAuthData::default_instance_ = new UserAuthData();
   Event::default_instance_ = new Event();
-  Forward::default_instance_->InitAsDefaultInstance();
-  WorkingStatusData::default_instance_->InitAsDefaultInstance();
-  UserLeave::default_instance_->InitAsDefaultInstance();
-  UserAuthData::default_instance_->InitAsDefaultInstance();
   Event::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_event_2eproto);
 }
@@ -217,1094 +445,111 @@ struct StaticDescriptorInitializer_event_2eproto {
 
 // ===================================================================
 
-#ifndef _MSC_VER
-const int Forward::kServeridFromFieldNumber;
-const int Forward::kServeridToFieldNumber;
-const int Forward::kServerfdFromFieldNumber;
-const int Forward::kServerfdToFieldNumber;
-const int Forward::kWorldfdFieldNumber;
-#endif  // !_MSC_VER
-
-Forward::Forward() {
-  SharedCtor();
-}
-
-void Forward::InitAsDefaultInstance() {
-}
-
-Forward::Forward(const Forward& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void Forward::SharedCtor() {
-  _cached_size_ = 0;
-  serveridfrom_ = 0;
-  serveridto_ = 0;
-  serverfdfrom_ = 0;
-  serverfdto_ = 0;
-  worldfd_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-Forward::~Forward() {
-  SharedDtor();
-}
-
-void Forward::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* Forward::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Forward_descriptor_;
-}
-
-const Forward& Forward::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_event_2eproto();  return *default_instance_;
-}
-
-Forward* Forward::default_instance_ = NULL;
-
-Forward* Forward::New() const {
-  return new Forward;
-}
-
-void Forward::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    serveridfrom_ = 0;
-    serveridto_ = 0;
-    serverfdfrom_ = 0;
-    serverfdto_ = 0;
-    worldfd_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool Forward::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 serveridFrom = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &serveridfrom_));
-        _set_bit(0);
-        if (input->ExpectTag(16)) goto parse_serveridTo;
-        break;
-      }
-      
-      // optional int32 serveridTo = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_serveridTo:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &serveridto_));
-        _set_bit(1);
-        if (input->ExpectTag(24)) goto parse_serverfdFrom;
-        break;
-      }
-      
-      // optional int32 serverfdFrom = 3;
-      case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_serverfdFrom:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &serverfdfrom_));
-        _set_bit(2);
-        if (input->ExpectTag(32)) goto parse_serverfdTo;
-        break;
-      }
-      
-      // optional int32 serverfdTo = 4;
-      case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_serverfdTo:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &serverfdto_));
-        _set_bit(3);
-        if (input->ExpectTag(40)) goto parse_worldfd;
-        break;
-      }
-      
-      // optional int32 worldfd = 5;
-      case 5: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_worldfd:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &worldfd_));
-        _set_bit(4);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void Forward::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    Forward::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // optional int32 serveridFrom = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->serveridfrom(), output);
-  }
-  
-  // optional int32 serveridTo = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->serveridto(), output);
-  }
-  
-  // optional int32 serverfdFrom = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->serverfdfrom(), output);
-  }
-  
-  // optional int32 serverfdTo = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->serverfdto(), output);
-  }
-  
-  // optional int32 worldfd = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->worldfd(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* Forward::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional int32 serveridFrom = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->serveridfrom(), target);
-  }
-  
-  // optional int32 serveridTo = 2;
-  if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->serveridto(), target);
-  }
-  
-  // optional int32 serverfdFrom = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->serverfdfrom(), target);
-  }
-  
-  // optional int32 serverfdTo = 4;
-  if (_has_bit(3)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->serverfdto(), target);
-  }
-  
-  // optional int32 worldfd = 5;
-  if (_has_bit(4)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->worldfd(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int Forward::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 serveridFrom = 1;
-    if (has_serveridfrom()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->serveridfrom());
-    }
-    
-    // optional int32 serveridTo = 2;
-    if (has_serveridto()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->serveridto());
-    }
-    
-    // optional int32 serverfdFrom = 3;
-    if (has_serverfdfrom()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->serverfdfrom());
-    }
-    
-    // optional int32 serverfdTo = 4;
-    if (has_serverfdto()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->serverfdto());
-    }
-    
-    // optional int32 worldfd = 5;
-    if (has_worldfd()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->worldfd());
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void Forward::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const Forward* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Forward*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void Forward::MergeFrom(const Forward& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_serveridfrom(from.serveridfrom());
-    }
-    if (from._has_bit(1)) {
-      set_serveridto(from.serveridto());
-    }
-    if (from._has_bit(2)) {
-      set_serverfdfrom(from.serverfdfrom());
-    }
-    if (from._has_bit(3)) {
-      set_serverfdto(from.serverfdto());
-    }
-    if (from._has_bit(4)) {
-      set_worldfd(from.worldfd());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void Forward::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void Forward::CopyFrom(const Forward& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Forward::IsInitialized() const {
-  
-  return true;
-}
-
-void Forward::Swap(Forward* other) {
-  if (other != this) {
-    std::swap(serveridfrom_, other->serveridfrom_);
-    std::swap(serveridto_, other->serveridto_);
-    std::swap(serverfdfrom_, other->serverfdfrom_);
-    std::swap(serverfdto_, other->serverfdto_);
-    std::swap(worldfd_, other->worldfd_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata Forward::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Forward_descriptor_;
-  metadata.reflection = Forward_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int WorkingStatusData::kGidFieldNumber;
-const int WorkingStatusData::kFinishFieldNumber;
-#endif  // !_MSC_VER
-
-WorkingStatusData::WorkingStatusData() {
-  SharedCtor();
-}
-
-void WorkingStatusData::InitAsDefaultInstance() {
-}
-
-WorkingStatusData::WorkingStatusData(const WorkingStatusData& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void WorkingStatusData::SharedCtor() {
-  _cached_size_ = 0;
-  gid_ = 0;
-  finish_ = false;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-WorkingStatusData::~WorkingStatusData() {
-  SharedDtor();
-}
-
-void WorkingStatusData::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* WorkingStatusData::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return WorkingStatusData_descriptor_;
-}
-
-const WorkingStatusData& WorkingStatusData::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_event_2eproto();  return *default_instance_;
-}
-
-WorkingStatusData* WorkingStatusData::default_instance_ = NULL;
-
-WorkingStatusData* WorkingStatusData::New() const {
-  return new WorkingStatusData;
-}
-
-void WorkingStatusData::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    gid_ = 0;
-    finish_ = false;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool WorkingStatusData::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 gid = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &gid_));
-        _set_bit(0);
-        if (input->ExpectTag(16)) goto parse_finish;
-        break;
-      }
-      
-      // required bool finish = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_finish:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
-              input, &finish_));
-        _set_bit(1);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void WorkingStatusData::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    WorkingStatusData::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // required int32 gid = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->gid(), output);
-  }
-  
-  // required bool finish = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->finish(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* WorkingStatusData::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // required int32 gid = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->gid(), target);
-  }
-  
-  // required bool finish = 2;
-  if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->finish(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int WorkingStatusData::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required int32 gid = 1;
-    if (has_gid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->gid());
-    }
-    
-    // required bool finish = 2;
-    if (has_finish()) {
-      total_size += 1 + 1;
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void WorkingStatusData::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const WorkingStatusData* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const WorkingStatusData*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void WorkingStatusData::MergeFrom(const WorkingStatusData& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_gid(from.gid());
-    }
-    if (from._has_bit(1)) {
-      set_finish(from.finish());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void WorkingStatusData::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void WorkingStatusData::CopyFrom(const WorkingStatusData& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool WorkingStatusData::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
-  
-  return true;
-}
-
-void WorkingStatusData::Swap(WorkingStatusData* other) {
-  if (other != this) {
-    std::swap(gid_, other->gid_);
-    std::swap(finish_, other->finish_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata WorkingStatusData::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = WorkingStatusData_descriptor_;
-  metadata.reflection = WorkingStatusData_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int UserLeave::kFdFieldNumber;
-#endif  // !_MSC_VER
-
-UserLeave::UserLeave() {
-  SharedCtor();
-}
-
-void UserLeave::InitAsDefaultInstance() {
-}
-
-UserLeave::UserLeave(const UserLeave& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void UserLeave::SharedCtor() {
-  _cached_size_ = 0;
-  fd_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-UserLeave::~UserLeave() {
-  SharedDtor();
-}
-
-void UserLeave::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* UserLeave::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return UserLeave_descriptor_;
-}
-
-const UserLeave& UserLeave::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_event_2eproto();  return *default_instance_;
-}
-
-UserLeave* UserLeave::default_instance_ = NULL;
-
-UserLeave* UserLeave::New() const {
-  return new UserLeave;
-}
-
-void UserLeave::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    fd_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool UserLeave::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int32 fd = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &fd_));
-        _set_bit(0);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void UserLeave::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    UserLeave::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // required int32 fd = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->fd(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* UserLeave::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // required int32 fd = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->fd(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int UserLeave::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required int32 fd = 1;
-    if (has_fd()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->fd());
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void UserLeave::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const UserLeave* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const UserLeave*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void UserLeave::MergeFrom(const UserLeave& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_fd(from.fd());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void UserLeave::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void UserLeave::CopyFrom(const UserLeave& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool UserLeave::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
-  
-  return true;
-}
-
-void UserLeave::Swap(UserLeave* other) {
-  if (other != this) {
-    std::swap(fd_, other->fd_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata UserLeave::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = UserLeave_descriptor_;
-  metadata.reflection = UserLeave_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int UserAuthData::kUidFieldNumber;
-const int UserAuthData::kSecretFieldNumber;
-const int UserAuthData::kSockfdFieldNumber;
-#endif  // !_MSC_VER
-
-UserAuthData::UserAuthData() {
-  SharedCtor();
-}
-
-void UserAuthData::InitAsDefaultInstance() {
-}
-
-UserAuthData::UserAuthData(const UserAuthData& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void UserAuthData::SharedCtor() {
-  _cached_size_ = 0;
-  uid_ = GOOGLE_LONGLONG(0);
-  secret_ = GOOGLE_LONGLONG(0);
-  sockfd_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-UserAuthData::~UserAuthData() {
-  SharedDtor();
-}
-
-void UserAuthData::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* UserAuthData::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return UserAuthData_descriptor_;
-}
-
-const UserAuthData& UserAuthData::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_event_2eproto();  return *default_instance_;
-}
-
-UserAuthData* UserAuthData::default_instance_ = NULL;
-
-UserAuthData* UserAuthData::New() const {
-  return new UserAuthData;
-}
-
-void UserAuthData::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    uid_ = GOOGLE_LONGLONG(0);
-    secret_ = GOOGLE_LONGLONG(0);
-    sockfd_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool UserAuthData::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required int64 uid = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
-              input, &uid_));
-        _set_bit(0);
-        if (input->ExpectTag(16)) goto parse_secret;
-        break;
-      }
-      
-      // required int64 secret = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_secret:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
-              input, &secret_));
-        _set_bit(1);
-        if (input->ExpectTag(24)) goto parse_sockfd;
-        break;
-      }
-      
-      // required int32 sockfd = 3;
-      case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_sockfd:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &sockfd_));
-        _set_bit(2);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void UserAuthData::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    UserAuthData::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // required int64 uid = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->uid(), output);
-  }
-  
-  // required int64 secret = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->secret(), output);
-  }
-  
-  // required int32 sockfd = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->sockfd(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* UserAuthData::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // required int64 uid = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->uid(), target);
-  }
-  
-  // required int64 secret = 2;
-  if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->secret(), target);
-  }
-  
-  // required int32 sockfd = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->sockfd(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int UserAuthData::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // required int64 uid = 1;
-    if (has_uid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->uid());
-    }
-    
-    // required int64 secret = 2;
-    if (has_secret()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->secret());
-    }
-    
-    // required int32 sockfd = 3;
-    if (has_sockfd()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->sockfd());
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void UserAuthData::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const UserAuthData* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const UserAuthData*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void UserAuthData::MergeFrom(const UserAuthData& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_uid(from.uid());
-    }
-    if (from._has_bit(1)) {
-      set_secret(from.secret());
-    }
-    if (from._has_bit(2)) {
-      set_sockfd(from.sockfd());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void UserAuthData::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void UserAuthData::CopyFrom(const UserAuthData& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool UserAuthData::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
-  
-  return true;
-}
-
-void UserAuthData::Swap(UserAuthData* other) {
-  if (other != this) {
-    std::swap(uid_, other->uid_);
-    std::swap(secret_, other->secret_);
-    std::swap(sockfd_, other->sockfd_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata UserAuthData::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = UserAuthData_descriptor_;
-  metadata.reflection = UserAuthData_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-const ::std::string Event::_default_content_;
+const ::std::string Event::_default_userplat_;
 #ifndef _MSC_VER
 const int Event::kCmdFieldNumber;
 const int Event::kStateFieldNumber;
 const int Event::kTimeFieldNumber;
 const int Event::kUidFieldNumber;
-const int Event::kForwardFieldNumber;
-const int Event::kContentFieldNumber;
-const int Event::kWorkingStatusFieldNumber;
-const int Event::kUserAuthDataFieldNumber;
-const int Event::kUserleaveFieldNumber;
-const int Event::kSeRseBroadcastFieldNumber;
-const int Event::kSeRseAuthStateFieldNumber;
+const int Event::kFromworldFdFieldNumber;
+const int Event::kWorkingStatusReqFieldNumber;
+const int Event::kUserLoginReqFieldNumber;
+const int Event::kUserLoginRspFieldNumber;
+const int Event::kUserAuthReqFieldNumber;
+const int Event::kUserAuthRspFieldNumber;
+const int Event::kSendRemoteUserReqFieldNumber;
+const int Event::kWgUserLeaveFieldNumber;
+const int Event::kFriendinfoFieldNumber;
+const int Event::kForwardinfoFieldNumber;
+const int Event::kStarSrvIDFieldNumber;
+const int Event::kTransferSrvIDFieldNumber;
+const int Event::kWebGetRegionFieldNumber;
+const int Event::kPlatSrvIDFieldNumber;
+const int Event::kUserPlatFieldNumber;
+const int Event::kWorldSrvIDFieldNumber;
+const int Event::kFightSrvIDFieldNumber;
+const int Event::kCountryNeedFieldNumber;
+const int Event::kRegionNeedFieldNumber;
+const int Event::kRankNeedFieldNumber;
+const int Event::kStatNeedFieldNumber;
+const int Event::kHttpaskmsgFieldNumber;
+const int Event::kHttpanswermsgFieldNumber;
+const int Event::kCeRceCustomizedActivityFieldNumber;
+const int Event::kCeRceLoginFieldNumber;
+const int Event::kCeRceObtainAttackerListFieldNumber;
+const int Event::kCeRceObtainBattleReplayFieldNumber;
+const int Event::kCeRceObtainCustomizerFieldNumber;
+const int Event::kCeRceObtainMessagesListFieldNumber;
+const int Event::kCeRceObtainNeighborsListFieldNumber;
+const int Event::kCeRceObtainNpcListFieldNumber;
+const int Event::kCeRceObtainSocialItemsFieldNumber;
+const int Event::kCeRceObtainSocialUserInfoFieldNumber;
+const int Event::kCeRceObtainUniverseFieldNumber;
+const int Event::kCeRceUpdateAlliancesFieldNumber;
+const int Event::kCeRceDeployUnitsFieldNumber;
+const int Event::kCeRceItemDamagedFieldNumber;
+const int Event::kCeRceObtainAskForHelpFieldNumber;
+const int Event::kCeRceObtainHangarsHelpFieldNumber;
+const int Event::kCeRceObtainPayUrlParameFieldNumber;
+const int Event::kCeRceObtainRandomTargetsFieldNumber;
+const int Event::kCeRceObtainVisitHelpsFieldNumber;
+const int Event::kCeRceOnlineRewardFieldNumber;
+const int Event::kCeRceQueryCheckAndLockAccountIfPossibleFieldNumber;
+const int Event::kCeRceQueryGalaxyWindowFieldNumber;
+const int Event::kCeRceQueryReceiveWishItemFieldNumber;
+const int Event::kCeRceQueryRefuseReceiveWishItemFieldNumber;
+const int Event::kCeRceQuerySendWishItemFieldNumber;
+const int Event::kCeRceQueryStarInfoFieldNumber;
+const int Event::kCeRceQueryStarsBookmarksFieldNumber;
+const int Event::kCeRceQueryVisitHelpsGiftUnitsOnBunkerFieldNumber;
+const int Event::kCeRceUnitDamagedFieldNumber;
+const int Event::kCeRceUpdateGameUnitsFieldNumber;
+const int Event::kCeRceUpdateItemFieldNumber;
+const int Event::kCeRceUpdateMiscFieldNumber;
+const int Event::kCeRceUpdateMissionsFieldNumber;
+const int Event::kCeRceUpdateProfileFieldNumber;
+const int Event::kCeRceUpdateShipsFieldNumber;
+const int Event::kCeRceUpdateSocialItemFieldNumber;
+const int Event::kCeRceUpdateStarsBookmarksFieldNumber;
+const int Event::kCeRceUpdateTargetsFieldNumber;
+const int Event::kCeRceUpdateVisitHelpFieldNumber;
+const int Event::kSeRseCustomizedActivityFieldNumber;
+const int Event::kSeRseLoginFieldNumber;
+const int Event::kSeRseObtainAttackerListFieldNumber;
+const int Event::kSeRseObtainBattleReplayFieldNumber;
+const int Event::kSeRseObtainCustomizerFieldNumber;
+const int Event::kSeRseObtainMessagesListFieldNumber;
+const int Event::kSeRseObtainNeighborsListFieldNumber;
+const int Event::kSeRseObtainNpcListFieldNumber;
+const int Event::kSeRseObtainSocialItemsFieldNumber;
+const int Event::kSeRseObtainSocialUserInfoFieldNumber;
+const int Event::kSeRseObtainUniverseFieldNumber;
+const int Event::kSeRseUpdateAlliancesFieldNumber;
+const int Event::kSeRseDeployUnitsFieldNumber;
+const int Event::kSeRseItemDamagedFieldNumber;
+const int Event::kSeRseObtainAskForHelpFieldNumber;
+const int Event::kSeRseObtainHangarsHelpFieldNumber;
+const int Event::kSeRseObtainPayUrlParameFieldNumber;
+const int Event::kSeRseObtainRandomTargetsFieldNumber;
+const int Event::kSeRseObtainVisitHelpsFieldNumber;
+const int Event::kSeRseQueryCheckAndLockAccountIfPossibleFieldNumber;
+const int Event::kSeRseQueryGalaxyWindowFieldNumber;
+const int Event::kSeRseQueryReceiveWishItemFieldNumber;
+const int Event::kSeRseQueryRefuseReceiveWishItemFieldNumber;
+const int Event::kSeRseQuerySendWishItemFieldNumber;
+const int Event::kSeRseQueryStarInfoFieldNumber;
+const int Event::kSeRseQueryStarsBookmarksFieldNumber;
+const int Event::kSeRseQueryVisitHelpsGiftUnitsOnBunkerFieldNumber;
+const int Event::kSeRseUnitDamagedFieldNumber;
+const int Event::kSeRseUpdateGameUnitsFieldNumber;
+const int Event::kSeRseUpdateItemFieldNumber;
+const int Event::kSeRseUpdateMiscFieldNumber;
+const int Event::kSeRseUpdateMissionsFieldNumber;
+const int Event::kSeRseUpdateProfileFieldNumber;
+const int Event::kSeRseUpdateShipsFieldNumber;
+const int Event::kSeRseUpdateSocialItemFieldNumber;
+const int Event::kSeRseUpdateStarsBookmarksFieldNumber;
+const int Event::kSeRseUpdateTargetsFieldNumber;
 #endif  // !_MSC_VER
 
 Event::Event() {
@@ -1312,12 +557,98 @@ Event::Event() {
 }
 
 void Event::InitAsDefaultInstance() {
-  forward_ = const_cast< ::Forward*>(&::Forward::default_instance());
-  workingstatus_ = const_cast< ::WorkingStatusData*>(&::WorkingStatusData::default_instance());
-  userauthdata_ = const_cast< ::UserAuthData*>(&::UserAuthData::default_instance());
-  userleave_ = const_cast< ::UserLeave*>(&::UserLeave::default_instance());
-  se_rsebroadcast_ = const_cast< ::RseBroadcast*>(&::RseBroadcast::default_instance());
-  se_rseauthstate_ = const_cast< ::RseAuthState*>(&::RseAuthState::default_instance());
+  workingstatus_req_ = const_cast< ::WorkingStatus_Req*>(&::WorkingStatus_Req::default_instance());
+  userlogin_req_ = const_cast< ::UserLogin_Req*>(&::UserLogin_Req::default_instance());
+  userlogin_rsp_ = const_cast< ::UserLogin_Rsp*>(&::UserLogin_Rsp::default_instance());
+  userauth_req_ = const_cast< ::UserAuth_Req*>(&::UserAuth_Req::default_instance());
+  userauth_rsp_ = const_cast< ::UserAuth_Rsp*>(&::UserAuth_Rsp::default_instance());
+  sendremoteuser_req_ = const_cast< ::SendRemoteUser_Req*>(&::SendRemoteUser_Req::default_instance());
+  wg_userleave_ = const_cast< ::WG_UserLeave*>(&::WG_UserLeave::default_instance());
+  friendinfo_ = const_cast< ::GWG_FriendRequest*>(&::GWG_FriendRequest::default_instance());
+  forwardinfo_ = const_cast< ::ForwardInfo*>(&::ForwardInfo::default_instance());
+  webgetregion_ = const_cast< ::WebGetRegion*>(&::WebGetRegion::default_instance());
+  countryneed_ = const_cast< ::GCG_CountryNeed*>(&::GCG_CountryNeed::default_instance());
+  regionneed_ = const_cast< ::GRG_RegionNeed*>(&::GRG_RegionNeed::default_instance());
+  rankneed_ = const_cast< ::GRG_RankNeed*>(&::GRG_RankNeed::default_instance());
+  statneed_ = const_cast< ::GSG_StatNeed*>(&::GSG_StatNeed::default_instance());
+  httpaskmsg_ = const_cast< ::HttpAskMsg*>(&::HttpAskMsg::default_instance());
+  httpanswermsg_ = const_cast< ::HttpAnswerMsg*>(&::HttpAnswerMsg::default_instance());
+  ce_rcecustomizedactivity_ = const_cast< ::RceCustomizedActivity*>(&::RceCustomizedActivity::default_instance());
+  ce_rcelogin_ = const_cast< ::RceLogin*>(&::RceLogin::default_instance());
+  ce_rceobtainattackerlist_ = const_cast< ::RceObtainAttackerList*>(&::RceObtainAttackerList::default_instance());
+  ce_rceobtainbattlereplay_ = const_cast< ::RceObtainBattleReplay*>(&::RceObtainBattleReplay::default_instance());
+  ce_rceobtaincustomizer_ = const_cast< ::RceObtainCustomizer*>(&::RceObtainCustomizer::default_instance());
+  ce_rceobtainmessageslist_ = const_cast< ::RceObtainMessagesList*>(&::RceObtainMessagesList::default_instance());
+  ce_rceobtainneighborslist_ = const_cast< ::RceObtainNeighborsList*>(&::RceObtainNeighborsList::default_instance());
+  ce_rceobtainnpclist_ = const_cast< ::RceObtainNpcList*>(&::RceObtainNpcList::default_instance());
+  ce_rceobtainsocialitems_ = const_cast< ::RceObtainSocialItems*>(&::RceObtainSocialItems::default_instance());
+  ce_rceobtainsocialuserinfo_ = const_cast< ::RceObtainSocialUserInfo*>(&::RceObtainSocialUserInfo::default_instance());
+  ce_rceobtainuniverse_ = const_cast< ::RceObtainUniverse*>(&::RceObtainUniverse::default_instance());
+  ce_rceupdatealliances_ = const_cast< ::RceUpdateAlliances*>(&::RceUpdateAlliances::default_instance());
+  ce_rcedeployunits_ = const_cast< ::RceDeployUnits*>(&::RceDeployUnits::default_instance());
+  ce_rceitemdamaged_ = const_cast< ::RceItemDamaged*>(&::RceItemDamaged::default_instance());
+  ce_rceobtainaskforhelp_ = const_cast< ::RceObtainAskForHelp*>(&::RceObtainAskForHelp::default_instance());
+  ce_rceobtainhangarshelp_ = const_cast< ::RceObtainHangarsHelp*>(&::RceObtainHangarsHelp::default_instance());
+  ce_rceobtainpayurlparame_ = const_cast< ::RceObtainPayUrlParame*>(&::RceObtainPayUrlParame::default_instance());
+  ce_rceobtainrandomtargets_ = const_cast< ::RceObtainRandomTargets*>(&::RceObtainRandomTargets::default_instance());
+  ce_rceobtainvisithelps_ = const_cast< ::RceObtainVisitHelps*>(&::RceObtainVisitHelps::default_instance());
+  ce_rceonlinereward_ = const_cast< ::RceOnlineReward*>(&::RceOnlineReward::default_instance());
+  ce_rcequerycheckandlockaccountifpossible_ = const_cast< ::RceQueryCheckAndLockAccountIfPossible*>(&::RceQueryCheckAndLockAccountIfPossible::default_instance());
+  ce_rcequerygalaxywindow_ = const_cast< ::RceQueryGalaxyWindow*>(&::RceQueryGalaxyWindow::default_instance());
+  ce_rcequeryreceivewishitem_ = const_cast< ::RceQueryReceiveWishItem*>(&::RceQueryReceiveWishItem::default_instance());
+  ce_rcequeryrefusereceivewishitem_ = const_cast< ::RceQueryRefuseReceiveWishItem*>(&::RceQueryRefuseReceiveWishItem::default_instance());
+  ce_rcequerysendwishitem_ = const_cast< ::RceQuerySendWishItem*>(&::RceQuerySendWishItem::default_instance());
+  ce_rcequerystarinfo_ = const_cast< ::RceQueryStarInfo*>(&::RceQueryStarInfo::default_instance());
+  ce_rcequerystarsbookmarks_ = const_cast< ::RceQueryStarsBookmarks*>(&::RceQueryStarsBookmarks::default_instance());
+  ce_rcequeryvisithelpsgiftunitsonbunker_ = const_cast< ::RceQueryVisitHelpsGiftUnitsOnBunker*>(&::RceQueryVisitHelpsGiftUnitsOnBunker::default_instance());
+  ce_rceunitdamaged_ = const_cast< ::RceUnitDamaged*>(&::RceUnitDamaged::default_instance());
+  ce_rceupdategameunits_ = const_cast< ::RceUpdateGameUnits*>(&::RceUpdateGameUnits::default_instance());
+  ce_rceupdateitem_ = const_cast< ::RceUpdateItem*>(&::RceUpdateItem::default_instance());
+  ce_rceupdatemisc_ = const_cast< ::RceUpdateMisc*>(&::RceUpdateMisc::default_instance());
+  ce_rceupdatemissions_ = const_cast< ::RceUpdateMissions*>(&::RceUpdateMissions::default_instance());
+  ce_rceupdateprofile_ = const_cast< ::RceUpdateProfile*>(&::RceUpdateProfile::default_instance());
+  ce_rceupdateships_ = const_cast< ::RceUpdateShips*>(&::RceUpdateShips::default_instance());
+  ce_rceupdatesocialitem_ = const_cast< ::RceUpdateSocialItem*>(&::RceUpdateSocialItem::default_instance());
+  ce_rceupdatestarsbookmarks_ = const_cast< ::RceUpdateStarsBookmarks*>(&::RceUpdateStarsBookmarks::default_instance());
+  ce_rceupdatetargets_ = const_cast< ::RceUpdateTargets*>(&::RceUpdateTargets::default_instance());
+  ce_rceupdatevisithelp_ = const_cast< ::RceUpdateVisitHelp*>(&::RceUpdateVisitHelp::default_instance());
+  se_rsecustomizedactivity_ = const_cast< ::RseCustomizedActivity*>(&::RseCustomizedActivity::default_instance());
+  se_rselogin_ = const_cast< ::RseLogin*>(&::RseLogin::default_instance());
+  se_rseobtainattackerlist_ = const_cast< ::RseObtainAttackerList*>(&::RseObtainAttackerList::default_instance());
+  se_rseobtainbattlereplay_ = const_cast< ::RseObtainBattleReplay*>(&::RseObtainBattleReplay::default_instance());
+  se_rseobtaincustomizer_ = const_cast< ::RseObtainCustomizer*>(&::RseObtainCustomizer::default_instance());
+  se_rseobtainmessageslist_ = const_cast< ::RseObtainMessagesList*>(&::RseObtainMessagesList::default_instance());
+  se_rseobtainneighborslist_ = const_cast< ::RseObtainNeighborsList*>(&::RseObtainNeighborsList::default_instance());
+  se_rseobtainnpclist_ = const_cast< ::RseObtainNpcList*>(&::RseObtainNpcList::default_instance());
+  se_rseobtainsocialitems_ = const_cast< ::RseObtainSocialItems*>(&::RseObtainSocialItems::default_instance());
+  se_rseobtainsocialuserinfo_ = const_cast< ::RseObtainSocialUserInfo*>(&::RseObtainSocialUserInfo::default_instance());
+  se_rseobtainuniverse_ = const_cast< ::RseObtainUniverse*>(&::RseObtainUniverse::default_instance());
+  se_rseupdatealliances_ = const_cast< ::RseUpdateAlliances*>(&::RseUpdateAlliances::default_instance());
+  se_rsedeployunits_ = const_cast< ::RseDeployUnits*>(&::RseDeployUnits::default_instance());
+  se_rseitemdamaged_ = const_cast< ::RseItemDamaged*>(&::RseItemDamaged::default_instance());
+  se_rseobtainaskforhelp_ = const_cast< ::RseObtainAskForHelp*>(&::RseObtainAskForHelp::default_instance());
+  se_rseobtainhangarshelp_ = const_cast< ::RseObtainHangarsHelp*>(&::RseObtainHangarsHelp::default_instance());
+  se_rseobtainpayurlparame_ = const_cast< ::RseObtainPayUrlParame*>(&::RseObtainPayUrlParame::default_instance());
+  se_rseobtainrandomtargets_ = const_cast< ::RseObtainRandomTargets*>(&::RseObtainRandomTargets::default_instance());
+  se_rseobtainvisithelps_ = const_cast< ::RseObtainVisitHelps*>(&::RseObtainVisitHelps::default_instance());
+  se_rsequerycheckandlockaccountifpossible_ = const_cast< ::RseQueryCheckAndLockAccountIfPossible*>(&::RseQueryCheckAndLockAccountIfPossible::default_instance());
+  se_rsequerygalaxywindow_ = const_cast< ::RseQueryGalaxyWindow*>(&::RseQueryGalaxyWindow::default_instance());
+  se_rsequeryreceivewishitem_ = const_cast< ::RseQueryReceiveWishItem*>(&::RseQueryReceiveWishItem::default_instance());
+  se_rsequeryrefusereceivewishitem_ = const_cast< ::RseQueryRefuseReceiveWishItem*>(&::RseQueryRefuseReceiveWishItem::default_instance());
+  se_rsequerysendwishitem_ = const_cast< ::RseQuerySendWishItem*>(&::RseQuerySendWishItem::default_instance());
+  se_rsequerystarinfo_ = const_cast< ::RseQueryStarInfo*>(&::RseQueryStarInfo::default_instance());
+  se_rsequerystarsbookmarks_ = const_cast< ::RseQueryStarsBookmarks*>(&::RseQueryStarsBookmarks::default_instance());
+  se_rsequeryvisithelpsgiftunitsonbunker_ = const_cast< ::RseQueryVisitHelpsGiftUnitsOnBunker*>(&::RseQueryVisitHelpsGiftUnitsOnBunker::default_instance());
+  se_rseunitdamaged_ = const_cast< ::RseUnitDamaged*>(&::RseUnitDamaged::default_instance());
+  se_rseupdategameunits_ = const_cast< ::RseUpdateGameUnits*>(&::RseUpdateGameUnits::default_instance());
+  se_rseupdateitem_ = const_cast< ::RseUpdateItem*>(&::RseUpdateItem::default_instance());
+  se_rseupdatemisc_ = const_cast< ::RseUpdateMisc*>(&::RseUpdateMisc::default_instance());
+  se_rseupdatemissions_ = const_cast< ::RseUpdateMissions*>(&::RseUpdateMissions::default_instance());
+  se_rseupdateprofile_ = const_cast< ::RseUpdateProfile*>(&::RseUpdateProfile::default_instance());
+  se_rseupdateships_ = const_cast< ::RseUpdateShips*>(&::RseUpdateShips::default_instance());
+  se_rseupdatesocialitem_ = const_cast< ::RseUpdateSocialItem*>(&::RseUpdateSocialItem::default_instance());
+  se_rseupdatestarsbookmarks_ = const_cast< ::RseUpdateStarsBookmarks*>(&::RseUpdateStarsBookmarks::default_instance());
+  se_rseupdatetargets_ = const_cast< ::RseUpdateTargets*>(&::RseUpdateTargets::default_instance());
 }
 
 Event::Event(const Event& from) {
@@ -1331,13 +662,105 @@ void Event::SharedCtor() {
   state_ = 0;
   time_ = GOOGLE_LONGLONG(0);
   uid_ = GOOGLE_LONGLONG(0);
-  forward_ = NULL;
-  content_ = const_cast< ::std::string*>(&_default_content_);
-  workingstatus_ = NULL;
-  userauthdata_ = NULL;
-  userleave_ = NULL;
-  se_rsebroadcast_ = NULL;
-  se_rseauthstate_ = NULL;
+  fromworld_fd_ = 0;
+  workingstatus_req_ = NULL;
+  userlogin_req_ = NULL;
+  userlogin_rsp_ = NULL;
+  userauth_req_ = NULL;
+  userauth_rsp_ = NULL;
+  sendremoteuser_req_ = NULL;
+  wg_userleave_ = NULL;
+  friendinfo_ = NULL;
+  forwardinfo_ = NULL;
+  starsrvid_ = 0;
+  transfersrvid_ = 0;
+  webgetregion_ = NULL;
+  platsrvid_ = 0;
+  userplat_ = const_cast< ::std::string*>(&_default_userplat_);
+  worldsrvid_ = 0;
+  fightsrvid_ = 0;
+  countryneed_ = NULL;
+  regionneed_ = NULL;
+  rankneed_ = NULL;
+  statneed_ = NULL;
+  httpaskmsg_ = NULL;
+  httpanswermsg_ = NULL;
+  ce_rcecustomizedactivity_ = NULL;
+  ce_rcelogin_ = NULL;
+  ce_rceobtainattackerlist_ = NULL;
+  ce_rceobtainbattlereplay_ = NULL;
+  ce_rceobtaincustomizer_ = NULL;
+  ce_rceobtainmessageslist_ = NULL;
+  ce_rceobtainneighborslist_ = NULL;
+  ce_rceobtainnpclist_ = NULL;
+  ce_rceobtainsocialitems_ = NULL;
+  ce_rceobtainsocialuserinfo_ = NULL;
+  ce_rceobtainuniverse_ = NULL;
+  ce_rceupdatealliances_ = NULL;
+  ce_rcedeployunits_ = NULL;
+  ce_rceitemdamaged_ = NULL;
+  ce_rceobtainaskforhelp_ = NULL;
+  ce_rceobtainhangarshelp_ = NULL;
+  ce_rceobtainpayurlparame_ = NULL;
+  ce_rceobtainrandomtargets_ = NULL;
+  ce_rceobtainvisithelps_ = NULL;
+  ce_rceonlinereward_ = NULL;
+  ce_rcequerycheckandlockaccountifpossible_ = NULL;
+  ce_rcequerygalaxywindow_ = NULL;
+  ce_rcequeryreceivewishitem_ = NULL;
+  ce_rcequeryrefusereceivewishitem_ = NULL;
+  ce_rcequerysendwishitem_ = NULL;
+  ce_rcequerystarinfo_ = NULL;
+  ce_rcequerystarsbookmarks_ = NULL;
+  ce_rcequeryvisithelpsgiftunitsonbunker_ = NULL;
+  ce_rceunitdamaged_ = NULL;
+  ce_rceupdategameunits_ = NULL;
+  ce_rceupdateitem_ = NULL;
+  ce_rceupdatemisc_ = NULL;
+  ce_rceupdatemissions_ = NULL;
+  ce_rceupdateprofile_ = NULL;
+  ce_rceupdateships_ = NULL;
+  ce_rceupdatesocialitem_ = NULL;
+  ce_rceupdatestarsbookmarks_ = NULL;
+  ce_rceupdatetargets_ = NULL;
+  ce_rceupdatevisithelp_ = NULL;
+  se_rsecustomizedactivity_ = NULL;
+  se_rselogin_ = NULL;
+  se_rseobtainattackerlist_ = NULL;
+  se_rseobtainbattlereplay_ = NULL;
+  se_rseobtaincustomizer_ = NULL;
+  se_rseobtainmessageslist_ = NULL;
+  se_rseobtainneighborslist_ = NULL;
+  se_rseobtainnpclist_ = NULL;
+  se_rseobtainsocialitems_ = NULL;
+  se_rseobtainsocialuserinfo_ = NULL;
+  se_rseobtainuniverse_ = NULL;
+  se_rseupdatealliances_ = NULL;
+  se_rsedeployunits_ = NULL;
+  se_rseitemdamaged_ = NULL;
+  se_rseobtainaskforhelp_ = NULL;
+  se_rseobtainhangarshelp_ = NULL;
+  se_rseobtainpayurlparame_ = NULL;
+  se_rseobtainrandomtargets_ = NULL;
+  se_rseobtainvisithelps_ = NULL;
+  se_rsequerycheckandlockaccountifpossible_ = NULL;
+  se_rsequerygalaxywindow_ = NULL;
+  se_rsequeryreceivewishitem_ = NULL;
+  se_rsequeryrefusereceivewishitem_ = NULL;
+  se_rsequerysendwishitem_ = NULL;
+  se_rsequerystarinfo_ = NULL;
+  se_rsequerystarsbookmarks_ = NULL;
+  se_rsequeryvisithelpsgiftunitsonbunker_ = NULL;
+  se_rseunitdamaged_ = NULL;
+  se_rseupdategameunits_ = NULL;
+  se_rseupdateitem_ = NULL;
+  se_rseupdatemisc_ = NULL;
+  se_rseupdatemissions_ = NULL;
+  se_rseupdateprofile_ = NULL;
+  se_rseupdateships_ = NULL;
+  se_rseupdatesocialitem_ = NULL;
+  se_rseupdatestarsbookmarks_ = NULL;
+  se_rseupdatetargets_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1346,16 +769,102 @@ Event::~Event() {
 }
 
 void Event::SharedDtor() {
-  if (content_ != &_default_content_) {
-    delete content_;
+  if (userplat_ != &_default_userplat_) {
+    delete userplat_;
   }
   if (this != default_instance_) {
-    delete forward_;
-    delete workingstatus_;
-    delete userauthdata_;
-    delete userleave_;
-    delete se_rsebroadcast_;
-    delete se_rseauthstate_;
+    delete workingstatus_req_;
+    delete userlogin_req_;
+    delete userlogin_rsp_;
+    delete userauth_req_;
+    delete userauth_rsp_;
+    delete sendremoteuser_req_;
+    delete wg_userleave_;
+    delete friendinfo_;
+    delete forwardinfo_;
+    delete webgetregion_;
+    delete countryneed_;
+    delete regionneed_;
+    delete rankneed_;
+    delete statneed_;
+    delete httpaskmsg_;
+    delete httpanswermsg_;
+    delete ce_rcecustomizedactivity_;
+    delete ce_rcelogin_;
+    delete ce_rceobtainattackerlist_;
+    delete ce_rceobtainbattlereplay_;
+    delete ce_rceobtaincustomizer_;
+    delete ce_rceobtainmessageslist_;
+    delete ce_rceobtainneighborslist_;
+    delete ce_rceobtainnpclist_;
+    delete ce_rceobtainsocialitems_;
+    delete ce_rceobtainsocialuserinfo_;
+    delete ce_rceobtainuniverse_;
+    delete ce_rceupdatealliances_;
+    delete ce_rcedeployunits_;
+    delete ce_rceitemdamaged_;
+    delete ce_rceobtainaskforhelp_;
+    delete ce_rceobtainhangarshelp_;
+    delete ce_rceobtainpayurlparame_;
+    delete ce_rceobtainrandomtargets_;
+    delete ce_rceobtainvisithelps_;
+    delete ce_rceonlinereward_;
+    delete ce_rcequerycheckandlockaccountifpossible_;
+    delete ce_rcequerygalaxywindow_;
+    delete ce_rcequeryreceivewishitem_;
+    delete ce_rcequeryrefusereceivewishitem_;
+    delete ce_rcequerysendwishitem_;
+    delete ce_rcequerystarinfo_;
+    delete ce_rcequerystarsbookmarks_;
+    delete ce_rcequeryvisithelpsgiftunitsonbunker_;
+    delete ce_rceunitdamaged_;
+    delete ce_rceupdategameunits_;
+    delete ce_rceupdateitem_;
+    delete ce_rceupdatemisc_;
+    delete ce_rceupdatemissions_;
+    delete ce_rceupdateprofile_;
+    delete ce_rceupdateships_;
+    delete ce_rceupdatesocialitem_;
+    delete ce_rceupdatestarsbookmarks_;
+    delete ce_rceupdatetargets_;
+    delete ce_rceupdatevisithelp_;
+    delete se_rsecustomizedactivity_;
+    delete se_rselogin_;
+    delete se_rseobtainattackerlist_;
+    delete se_rseobtainbattlereplay_;
+    delete se_rseobtaincustomizer_;
+    delete se_rseobtainmessageslist_;
+    delete se_rseobtainneighborslist_;
+    delete se_rseobtainnpclist_;
+    delete se_rseobtainsocialitems_;
+    delete se_rseobtainsocialuserinfo_;
+    delete se_rseobtainuniverse_;
+    delete se_rseupdatealliances_;
+    delete se_rsedeployunits_;
+    delete se_rseitemdamaged_;
+    delete se_rseobtainaskforhelp_;
+    delete se_rseobtainhangarshelp_;
+    delete se_rseobtainpayurlparame_;
+    delete se_rseobtainrandomtargets_;
+    delete se_rseobtainvisithelps_;
+    delete se_rsequerycheckandlockaccountifpossible_;
+    delete se_rsequerygalaxywindow_;
+    delete se_rsequeryreceivewishitem_;
+    delete se_rsequeryrefusereceivewishitem_;
+    delete se_rsequerysendwishitem_;
+    delete se_rsequerystarinfo_;
+    delete se_rsequerystarsbookmarks_;
+    delete se_rsequeryvisithelpsgiftunitsonbunker_;
+    delete se_rseunitdamaged_;
+    delete se_rseupdategameunits_;
+    delete se_rseupdateitem_;
+    delete se_rseupdatemisc_;
+    delete se_rseupdatemissions_;
+    delete se_rseupdateprofile_;
+    delete se_rseupdateships_;
+    delete se_rseupdatesocialitem_;
+    delete se_rseupdatestarsbookmarks_;
+    delete se_rseupdatetargets_;
   }
 }
 
@@ -1380,30 +889,316 @@ void Event::Clear() {
     state_ = 0;
     time_ = GOOGLE_LONGLONG(0);
     uid_ = GOOGLE_LONGLONG(0);
-    if (_has_bit(4)) {
-      if (forward_ != NULL) forward_->::Forward::Clear();
-    }
+    fromworld_fd_ = 0;
     if (_has_bit(5)) {
-      if (content_ != &_default_content_) {
-        content_->clear();
-      }
+      if (workingstatus_req_ != NULL) workingstatus_req_->::WorkingStatus_Req::Clear();
     }
     if (_has_bit(6)) {
-      if (workingstatus_ != NULL) workingstatus_->::WorkingStatusData::Clear();
+      if (userlogin_req_ != NULL) userlogin_req_->::UserLogin_Req::Clear();
     }
     if (_has_bit(7)) {
-      if (userauthdata_ != NULL) userauthdata_->::UserAuthData::Clear();
+      if (userlogin_rsp_ != NULL) userlogin_rsp_->::UserLogin_Rsp::Clear();
     }
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     if (_has_bit(8)) {
-      if (userleave_ != NULL) userleave_->::UserLeave::Clear();
+      if (userauth_req_ != NULL) userauth_req_->::UserAuth_Req::Clear();
     }
     if (_has_bit(9)) {
-      if (se_rsebroadcast_ != NULL) se_rsebroadcast_->::RseBroadcast::Clear();
+      if (userauth_rsp_ != NULL) userauth_rsp_->::UserAuth_Rsp::Clear();
     }
     if (_has_bit(10)) {
-      if (se_rseauthstate_ != NULL) se_rseauthstate_->::RseAuthState::Clear();
+      if (sendremoteuser_req_ != NULL) sendremoteuser_req_->::SendRemoteUser_Req::Clear();
+    }
+    if (_has_bit(11)) {
+      if (wg_userleave_ != NULL) wg_userleave_->::WG_UserLeave::Clear();
+    }
+    if (_has_bit(12)) {
+      if (friendinfo_ != NULL) friendinfo_->::GWG_FriendRequest::Clear();
+    }
+    if (_has_bit(13)) {
+      if (forwardinfo_ != NULL) forwardinfo_->::ForwardInfo::Clear();
+    }
+    starsrvid_ = 0;
+    transfersrvid_ = 0;
+  }
+  if (_has_bits_[16 / 32] & (0xffu << (16 % 32))) {
+    if (_has_bit(16)) {
+      if (webgetregion_ != NULL) webgetregion_->::WebGetRegion::Clear();
+    }
+    platsrvid_ = 0;
+    if (_has_bit(18)) {
+      if (userplat_ != &_default_userplat_) {
+        userplat_->clear();
+      }
+    }
+    worldsrvid_ = 0;
+    fightsrvid_ = 0;
+    if (_has_bit(21)) {
+      if (countryneed_ != NULL) countryneed_->::GCG_CountryNeed::Clear();
+    }
+    if (_has_bit(22)) {
+      if (regionneed_ != NULL) regionneed_->::GRG_RegionNeed::Clear();
+    }
+    if (_has_bit(23)) {
+      if (rankneed_ != NULL) rankneed_->::GRG_RankNeed::Clear();
+    }
+  }
+  if (_has_bits_[24 / 32] & (0xffu << (24 % 32))) {
+    if (_has_bit(24)) {
+      if (statneed_ != NULL) statneed_->::GSG_StatNeed::Clear();
+    }
+    if (_has_bit(25)) {
+      if (httpaskmsg_ != NULL) httpaskmsg_->::HttpAskMsg::Clear();
+    }
+    if (_has_bit(26)) {
+      if (httpanswermsg_ != NULL) httpanswermsg_->::HttpAnswerMsg::Clear();
+    }
+    if (_has_bit(27)) {
+      if (ce_rcecustomizedactivity_ != NULL) ce_rcecustomizedactivity_->::RceCustomizedActivity::Clear();
+    }
+    if (_has_bit(28)) {
+      if (ce_rcelogin_ != NULL) ce_rcelogin_->::RceLogin::Clear();
+    }
+    if (_has_bit(29)) {
+      if (ce_rceobtainattackerlist_ != NULL) ce_rceobtainattackerlist_->::RceObtainAttackerList::Clear();
+    }
+    if (_has_bit(30)) {
+      if (ce_rceobtainbattlereplay_ != NULL) ce_rceobtainbattlereplay_->::RceObtainBattleReplay::Clear();
+    }
+    if (_has_bit(31)) {
+      if (ce_rceobtaincustomizer_ != NULL) ce_rceobtaincustomizer_->::RceObtainCustomizer::Clear();
+    }
+  }
+  if (_has_bits_[32 / 32] & (0xffu << (32 % 32))) {
+    if (_has_bit(32)) {
+      if (ce_rceobtainmessageslist_ != NULL) ce_rceobtainmessageslist_->::RceObtainMessagesList::Clear();
+    }
+    if (_has_bit(33)) {
+      if (ce_rceobtainneighborslist_ != NULL) ce_rceobtainneighborslist_->::RceObtainNeighborsList::Clear();
+    }
+    if (_has_bit(34)) {
+      if (ce_rceobtainnpclist_ != NULL) ce_rceobtainnpclist_->::RceObtainNpcList::Clear();
+    }
+    if (_has_bit(35)) {
+      if (ce_rceobtainsocialitems_ != NULL) ce_rceobtainsocialitems_->::RceObtainSocialItems::Clear();
+    }
+    if (_has_bit(36)) {
+      if (ce_rceobtainsocialuserinfo_ != NULL) ce_rceobtainsocialuserinfo_->::RceObtainSocialUserInfo::Clear();
+    }
+    if (_has_bit(37)) {
+      if (ce_rceobtainuniverse_ != NULL) ce_rceobtainuniverse_->::RceObtainUniverse::Clear();
+    }
+    if (_has_bit(38)) {
+      if (ce_rceupdatealliances_ != NULL) ce_rceupdatealliances_->::RceUpdateAlliances::Clear();
+    }
+    if (_has_bit(39)) {
+      if (ce_rcedeployunits_ != NULL) ce_rcedeployunits_->::RceDeployUnits::Clear();
+    }
+  }
+  if (_has_bits_[40 / 32] & (0xffu << (40 % 32))) {
+    if (_has_bit(40)) {
+      if (ce_rceitemdamaged_ != NULL) ce_rceitemdamaged_->::RceItemDamaged::Clear();
+    }
+    if (_has_bit(41)) {
+      if (ce_rceobtainaskforhelp_ != NULL) ce_rceobtainaskforhelp_->::RceObtainAskForHelp::Clear();
+    }
+    if (_has_bit(42)) {
+      if (ce_rceobtainhangarshelp_ != NULL) ce_rceobtainhangarshelp_->::RceObtainHangarsHelp::Clear();
+    }
+    if (_has_bit(43)) {
+      if (ce_rceobtainpayurlparame_ != NULL) ce_rceobtainpayurlparame_->::RceObtainPayUrlParame::Clear();
+    }
+    if (_has_bit(44)) {
+      if (ce_rceobtainrandomtargets_ != NULL) ce_rceobtainrandomtargets_->::RceObtainRandomTargets::Clear();
+    }
+    if (_has_bit(45)) {
+      if (ce_rceobtainvisithelps_ != NULL) ce_rceobtainvisithelps_->::RceObtainVisitHelps::Clear();
+    }
+    if (_has_bit(46)) {
+      if (ce_rceonlinereward_ != NULL) ce_rceonlinereward_->::RceOnlineReward::Clear();
+    }
+    if (_has_bit(47)) {
+      if (ce_rcequerycheckandlockaccountifpossible_ != NULL) ce_rcequerycheckandlockaccountifpossible_->::RceQueryCheckAndLockAccountIfPossible::Clear();
+    }
+  }
+  if (_has_bits_[48 / 32] & (0xffu << (48 % 32))) {
+    if (_has_bit(48)) {
+      if (ce_rcequerygalaxywindow_ != NULL) ce_rcequerygalaxywindow_->::RceQueryGalaxyWindow::Clear();
+    }
+    if (_has_bit(49)) {
+      if (ce_rcequeryreceivewishitem_ != NULL) ce_rcequeryreceivewishitem_->::RceQueryReceiveWishItem::Clear();
+    }
+    if (_has_bit(50)) {
+      if (ce_rcequeryrefusereceivewishitem_ != NULL) ce_rcequeryrefusereceivewishitem_->::RceQueryRefuseReceiveWishItem::Clear();
+    }
+    if (_has_bit(51)) {
+      if (ce_rcequerysendwishitem_ != NULL) ce_rcequerysendwishitem_->::RceQuerySendWishItem::Clear();
+    }
+    if (_has_bit(52)) {
+      if (ce_rcequerystarinfo_ != NULL) ce_rcequerystarinfo_->::RceQueryStarInfo::Clear();
+    }
+    if (_has_bit(53)) {
+      if (ce_rcequerystarsbookmarks_ != NULL) ce_rcequerystarsbookmarks_->::RceQueryStarsBookmarks::Clear();
+    }
+    if (_has_bit(54)) {
+      if (ce_rcequeryvisithelpsgiftunitsonbunker_ != NULL) ce_rcequeryvisithelpsgiftunitsonbunker_->::RceQueryVisitHelpsGiftUnitsOnBunker::Clear();
+    }
+    if (_has_bit(55)) {
+      if (ce_rceunitdamaged_ != NULL) ce_rceunitdamaged_->::RceUnitDamaged::Clear();
+    }
+  }
+  if (_has_bits_[56 / 32] & (0xffu << (56 % 32))) {
+    if (_has_bit(56)) {
+      if (ce_rceupdategameunits_ != NULL) ce_rceupdategameunits_->::RceUpdateGameUnits::Clear();
+    }
+    if (_has_bit(57)) {
+      if (ce_rceupdateitem_ != NULL) ce_rceupdateitem_->::RceUpdateItem::Clear();
+    }
+    if (_has_bit(58)) {
+      if (ce_rceupdatemisc_ != NULL) ce_rceupdatemisc_->::RceUpdateMisc::Clear();
+    }
+    if (_has_bit(59)) {
+      if (ce_rceupdatemissions_ != NULL) ce_rceupdatemissions_->::RceUpdateMissions::Clear();
+    }
+    if (_has_bit(60)) {
+      if (ce_rceupdateprofile_ != NULL) ce_rceupdateprofile_->::RceUpdateProfile::Clear();
+    }
+    if (_has_bit(61)) {
+      if (ce_rceupdateships_ != NULL) ce_rceupdateships_->::RceUpdateShips::Clear();
+    }
+    if (_has_bit(62)) {
+      if (ce_rceupdatesocialitem_ != NULL) ce_rceupdatesocialitem_->::RceUpdateSocialItem::Clear();
+    }
+    if (_has_bit(63)) {
+      if (ce_rceupdatestarsbookmarks_ != NULL) ce_rceupdatestarsbookmarks_->::RceUpdateStarsBookmarks::Clear();
+    }
+  }
+  if (_has_bits_[64 / 32] & (0xffu << (64 % 32))) {
+    if (_has_bit(64)) {
+      if (ce_rceupdatetargets_ != NULL) ce_rceupdatetargets_->::RceUpdateTargets::Clear();
+    }
+    if (_has_bit(65)) {
+      if (ce_rceupdatevisithelp_ != NULL) ce_rceupdatevisithelp_->::RceUpdateVisitHelp::Clear();
+    }
+    if (_has_bit(66)) {
+      if (se_rsecustomizedactivity_ != NULL) se_rsecustomizedactivity_->::RseCustomizedActivity::Clear();
+    }
+    if (_has_bit(67)) {
+      if (se_rselogin_ != NULL) se_rselogin_->::RseLogin::Clear();
+    }
+    if (_has_bit(68)) {
+      if (se_rseobtainattackerlist_ != NULL) se_rseobtainattackerlist_->::RseObtainAttackerList::Clear();
+    }
+    if (_has_bit(69)) {
+      if (se_rseobtainbattlereplay_ != NULL) se_rseobtainbattlereplay_->::RseObtainBattleReplay::Clear();
+    }
+    if (_has_bit(70)) {
+      if (se_rseobtaincustomizer_ != NULL) se_rseobtaincustomizer_->::RseObtainCustomizer::Clear();
+    }
+    if (_has_bit(71)) {
+      if (se_rseobtainmessageslist_ != NULL) se_rseobtainmessageslist_->::RseObtainMessagesList::Clear();
+    }
+  }
+  if (_has_bits_[72 / 32] & (0xffu << (72 % 32))) {
+    if (_has_bit(72)) {
+      if (se_rseobtainneighborslist_ != NULL) se_rseobtainneighborslist_->::RseObtainNeighborsList::Clear();
+    }
+    if (_has_bit(73)) {
+      if (se_rseobtainnpclist_ != NULL) se_rseobtainnpclist_->::RseObtainNpcList::Clear();
+    }
+    if (_has_bit(74)) {
+      if (se_rseobtainsocialitems_ != NULL) se_rseobtainsocialitems_->::RseObtainSocialItems::Clear();
+    }
+    if (_has_bit(75)) {
+      if (se_rseobtainsocialuserinfo_ != NULL) se_rseobtainsocialuserinfo_->::RseObtainSocialUserInfo::Clear();
+    }
+    if (_has_bit(76)) {
+      if (se_rseobtainuniverse_ != NULL) se_rseobtainuniverse_->::RseObtainUniverse::Clear();
+    }
+    if (_has_bit(77)) {
+      if (se_rseupdatealliances_ != NULL) se_rseupdatealliances_->::RseUpdateAlliances::Clear();
+    }
+    if (_has_bit(78)) {
+      if (se_rsedeployunits_ != NULL) se_rsedeployunits_->::RseDeployUnits::Clear();
+    }
+    if (_has_bit(79)) {
+      if (se_rseitemdamaged_ != NULL) se_rseitemdamaged_->::RseItemDamaged::Clear();
+    }
+  }
+  if (_has_bits_[80 / 32] & (0xffu << (80 % 32))) {
+    if (_has_bit(80)) {
+      if (se_rseobtainaskforhelp_ != NULL) se_rseobtainaskforhelp_->::RseObtainAskForHelp::Clear();
+    }
+    if (_has_bit(81)) {
+      if (se_rseobtainhangarshelp_ != NULL) se_rseobtainhangarshelp_->::RseObtainHangarsHelp::Clear();
+    }
+    if (_has_bit(82)) {
+      if (se_rseobtainpayurlparame_ != NULL) se_rseobtainpayurlparame_->::RseObtainPayUrlParame::Clear();
+    }
+    if (_has_bit(83)) {
+      if (se_rseobtainrandomtargets_ != NULL) se_rseobtainrandomtargets_->::RseObtainRandomTargets::Clear();
+    }
+    if (_has_bit(84)) {
+      if (se_rseobtainvisithelps_ != NULL) se_rseobtainvisithelps_->::RseObtainVisitHelps::Clear();
+    }
+    if (_has_bit(85)) {
+      if (se_rsequerycheckandlockaccountifpossible_ != NULL) se_rsequerycheckandlockaccountifpossible_->::RseQueryCheckAndLockAccountIfPossible::Clear();
+    }
+    if (_has_bit(86)) {
+      if (se_rsequerygalaxywindow_ != NULL) se_rsequerygalaxywindow_->::RseQueryGalaxyWindow::Clear();
+    }
+    if (_has_bit(87)) {
+      if (se_rsequeryreceivewishitem_ != NULL) se_rsequeryreceivewishitem_->::RseQueryReceiveWishItem::Clear();
+    }
+  }
+  if (_has_bits_[88 / 32] & (0xffu << (88 % 32))) {
+    if (_has_bit(88)) {
+      if (se_rsequeryrefusereceivewishitem_ != NULL) se_rsequeryrefusereceivewishitem_->::RseQueryRefuseReceiveWishItem::Clear();
+    }
+    if (_has_bit(89)) {
+      if (se_rsequerysendwishitem_ != NULL) se_rsequerysendwishitem_->::RseQuerySendWishItem::Clear();
+    }
+    if (_has_bit(90)) {
+      if (se_rsequerystarinfo_ != NULL) se_rsequerystarinfo_->::RseQueryStarInfo::Clear();
+    }
+    if (_has_bit(91)) {
+      if (se_rsequerystarsbookmarks_ != NULL) se_rsequerystarsbookmarks_->::RseQueryStarsBookmarks::Clear();
+    }
+    if (_has_bit(92)) {
+      if (se_rsequeryvisithelpsgiftunitsonbunker_ != NULL) se_rsequeryvisithelpsgiftunitsonbunker_->::RseQueryVisitHelpsGiftUnitsOnBunker::Clear();
+    }
+    if (_has_bit(93)) {
+      if (se_rseunitdamaged_ != NULL) se_rseunitdamaged_->::RseUnitDamaged::Clear();
+    }
+    if (_has_bit(94)) {
+      if (se_rseupdategameunits_ != NULL) se_rseupdategameunits_->::RseUpdateGameUnits::Clear();
+    }
+    if (_has_bit(95)) {
+      if (se_rseupdateitem_ != NULL) se_rseupdateitem_->::RseUpdateItem::Clear();
+    }
+  }
+  if (_has_bits_[96 / 32] & (0xffu << (96 % 32))) {
+    if (_has_bit(96)) {
+      if (se_rseupdatemisc_ != NULL) se_rseupdatemisc_->::RseUpdateMisc::Clear();
+    }
+    if (_has_bit(97)) {
+      if (se_rseupdatemissions_ != NULL) se_rseupdatemissions_->::RseUpdateMissions::Clear();
+    }
+    if (_has_bit(98)) {
+      if (se_rseupdateprofile_ != NULL) se_rseupdateprofile_->::RseUpdateProfile::Clear();
+    }
+    if (_has_bit(99)) {
+      if (se_rseupdateships_ != NULL) se_rseupdateships_->::RseUpdateShips::Clear();
+    }
+    if (_has_bit(100)) {
+      if (se_rseupdatesocialitem_ != NULL) se_rseupdatesocialitem_->::RseUpdateSocialItem::Clear();
+    }
+    if (_has_bit(101)) {
+      if (se_rseupdatestarsbookmarks_ != NULL) se_rseupdatestarsbookmarks_->::RseUpdateStarsBookmarks::Clear();
+    }
+    if (_has_bit(102)) {
+      if (se_rseupdatetargets_ != NULL) se_rseupdatetargets_->::RseUpdateTargets::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1467,100 +1262,1302 @@ bool Event::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
               input, &uid_));
         _set_bit(3);
-        if (input->ExpectTag(42)) goto parse_forward;
+        if (input->ExpectTag(40)) goto parse_fromworld_fd;
         break;
       }
       
-      // optional .Forward forward = 5;
+      // optional int32 fromworld_fd = 5;
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-       parse_forward:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_forward()));
-        if (input->ExpectTag(50)) goto parse_content;
+       parse_fromworld_fd:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &fromworld_fd_));
+        _set_bit(4);
+        if (input->ExpectTag(50)) goto parse_workingStatus_req;
         break;
       }
       
-      // optional string content = 6;
+      // optional .WorkingStatus_Req workingStatus_req = 6;
       case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_content:
+       parse_workingStatus_req:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_workingstatus_req()));
+        if (input->ExpectTag(58)) goto parse_userLogin_req;
+        break;
+      }
+      
+      // optional .UserLogin_Req userLogin_req = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_userLogin_req:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_userlogin_req()));
+        if (input->ExpectTag(66)) goto parse_userLogin_rsp;
+        break;
+      }
+      
+      // optional .UserLogin_Rsp userLogin_rsp = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_userLogin_rsp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_userlogin_rsp()));
+        if (input->ExpectTag(74)) goto parse_userAuth_req;
+        break;
+      }
+      
+      // optional .UserAuth_Req userAuth_req = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_userAuth_req:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_userauth_req()));
+        if (input->ExpectTag(82)) goto parse_userAuth_rsp;
+        break;
+      }
+      
+      // optional .UserAuth_Rsp userAuth_rsp = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_userAuth_rsp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_userauth_rsp()));
+        if (input->ExpectTag(90)) goto parse_sendRemoteUser_req;
+        break;
+      }
+      
+      // optional .SendRemoteUser_Req sendRemoteUser_req = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_sendRemoteUser_req:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_sendremoteuser_req()));
+        if (input->ExpectTag(98)) goto parse_wg_UserLeave;
+        break;
+      }
+      
+      // optional .WG_UserLeave wg_UserLeave = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_wg_UserLeave:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_wg_userleave()));
+        if (input->ExpectTag(106)) goto parse_friendinfo;
+        break;
+      }
+      
+      // optional .GWG_FriendRequest friendinfo = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_friendinfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_friendinfo()));
+        if (input->ExpectTag(114)) goto parse_forwardinfo;
+        break;
+      }
+      
+      // optional .ForwardInfo forwardinfo = 14;
+      case 14: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_forwardinfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_forwardinfo()));
+        if (input->ExpectTag(120)) goto parse_starSrvID;
+        break;
+      }
+      
+      // optional int32 starSrvID = 15;
+      case 15: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_starSrvID:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &starsrvid_));
+        _set_bit(14);
+        if (input->ExpectTag(144)) goto parse_transferSrvID;
+        break;
+      }
+      
+      // optional int32 transferSrvID = 18;
+      case 18: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_transferSrvID:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &transfersrvid_));
+        _set_bit(15);
+        if (input->ExpectTag(154)) goto parse_webGetRegion;
+        break;
+      }
+      
+      // optional .WebGetRegion webGetRegion = 19;
+      case 19: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_webGetRegion:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_webgetregion()));
+        if (input->ExpectTag(160)) goto parse_platSrvID;
+        break;
+      }
+      
+      // optional int32 platSrvID = 20;
+      case 20: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_platSrvID:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &platsrvid_));
+        _set_bit(17);
+        if (input->ExpectTag(170)) goto parse_userPlat;
+        break;
+      }
+      
+      // optional string userPlat = 21;
+      case 21: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_userPlat:
         DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_content()));
+              input, this->mutable_userplat()));
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->content().data(), this->content().length(),
+          this->userplat().data(), this->userplat().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(514)) goto parse_workingStatus;
+        if (input->ExpectTag(176)) goto parse_worldSrvID;
         break;
       }
       
-      // optional .WorkingStatusData workingStatus = 64;
-      case 64: {
+      // optional int32 worldSrvID = 22;
+      case 22: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_worldSrvID:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &worldsrvid_));
+        _set_bit(19);
+        if (input->ExpectTag(184)) goto parse_fightSrvID;
+        break;
+      }
+      
+      // optional int32 fightSrvID = 23;
+      case 23: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_fightSrvID:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &fightsrvid_));
+        _set_bit(20);
+        if (input->ExpectTag(194)) goto parse_countryNeed;
+        break;
+      }
+      
+      // optional .GCG_CountryNeed countryNeed = 24;
+      case 24: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_workingStatus:
+       parse_countryNeed:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_workingstatus()));
-        if (input->ExpectTag(522)) goto parse_userAuthData;
+             input, mutable_countryneed()));
+        if (input->ExpectTag(202)) goto parse_regionNeed;
         break;
       }
       
-      // optional .UserAuthData userAuthData = 65;
-      case 65: {
+      // optional .GRG_RegionNeed regionNeed = 25;
+      case 25: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_userAuthData:
+       parse_regionNeed:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_userauthdata()));
-        if (input->ExpectTag(546)) goto parse_userleave;
+             input, mutable_regionneed()));
+        if (input->ExpectTag(210)) goto parse_rankNeed;
         break;
       }
       
-      // optional .UserLeave userleave = 68;
-      case 68: {
+      // optional .GRG_RankNeed rankNeed = 26;
+      case 26: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_userleave:
+       parse_rankNeed:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_userleave()));
-        if (input->ExpectTag(1538)) goto parse_se_RseBroadcast;
+             input, mutable_rankneed()));
+        if (input->ExpectTag(218)) goto parse_statNeed;
         break;
       }
       
-      // optional .RseBroadcast se_RseBroadcast = 192;
-      case 192: {
+      // optional .GSG_StatNeed statNeed = 27;
+      case 27: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_se_RseBroadcast:
+       parse_statNeed:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_se_rsebroadcast()));
-        if (input->ExpectTag(1546)) goto parse_se_RseAuthState;
+             input, mutable_statneed()));
+        if (input->ExpectTag(914)) goto parse_httpaskmsg;
         break;
       }
       
-      // optional .RseAuthState se_RseAuthState = 193;
-      case 193: {
+      // optional .HttpAskMsg httpaskmsg = 114;
+      case 114: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_se_RseAuthState:
+       parse_httpaskmsg:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_se_rseauthstate()));
+             input, mutable_httpaskmsg()));
+        if (input->ExpectTag(922)) goto parse_httpanswermsg;
+        break;
+      }
+      
+      // optional .HttpAnswerMsg httpanswermsg = 115;
+      case 115: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_httpanswermsg:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_httpanswermsg()));
+        if (input->ExpectTag(1602)) goto parse_ce_RceCustomizedActivity;
+        break;
+      }
+      
+      // optional .RceCustomizedActivity ce_RceCustomizedActivity = 200;
+      case 200: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceCustomizedActivity:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcecustomizedactivity()));
+        if (input->ExpectTag(1610)) goto parse_ce_RceLogin;
+        break;
+      }
+      
+      // optional .RceLogin ce_RceLogin = 201;
+      case 201: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceLogin:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcelogin()));
+        if (input->ExpectTag(1618)) goto parse_ce_RceObtainAttackerList;
+        break;
+      }
+      
+      // optional .RceObtainAttackerList ce_RceObtainAttackerList = 202;
+      case 202: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainAttackerList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainattackerlist()));
+        if (input->ExpectTag(1626)) goto parse_ce_RceObtainBattleReplay;
+        break;
+      }
+      
+      // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
+      case 203: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainBattleReplay:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainbattlereplay()));
+        if (input->ExpectTag(1634)) goto parse_ce_RceObtainCustomizer;
+        break;
+      }
+      
+      // optional .RceObtainCustomizer ce_RceObtainCustomizer = 204;
+      case 204: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainCustomizer:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtaincustomizer()));
+        if (input->ExpectTag(1642)) goto parse_ce_RceObtainMessagesList;
+        break;
+      }
+      
+      // optional .RceObtainMessagesList ce_RceObtainMessagesList = 205;
+      case 205: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainMessagesList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainmessageslist()));
+        if (input->ExpectTag(1650)) goto parse_ce_RceObtainNeighborsList;
+        break;
+      }
+      
+      // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
+      case 206: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainNeighborsList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainneighborslist()));
+        if (input->ExpectTag(1658)) goto parse_ce_RceObtainNpcList;
+        break;
+      }
+      
+      // optional .RceObtainNpcList ce_RceObtainNpcList = 207;
+      case 207: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainNpcList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainnpclist()));
+        if (input->ExpectTag(1666)) goto parse_ce_RceObtainSocialItems;
+        break;
+      }
+      
+      // optional .RceObtainSocialItems ce_RceObtainSocialItems = 208;
+      case 208: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainSocialItems:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainsocialitems()));
+        if (input->ExpectTag(1674)) goto parse_ce_RceObtainSocialUserInfo;
+        break;
+      }
+      
+      // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
+      case 209: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainSocialUserInfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainsocialuserinfo()));
+        if (input->ExpectTag(1682)) goto parse_ce_RceObtainUniverse;
+        break;
+      }
+      
+      // optional .RceObtainUniverse ce_RceObtainUniverse = 210;
+      case 210: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainUniverse:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainuniverse()));
+        if (input->ExpectTag(1690)) goto parse_ce_RceUpdateAlliances;
+        break;
+      }
+      
+      // optional .RceUpdateAlliances ce_RceUpdateAlliances = 211;
+      case 211: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateAlliances:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatealliances()));
+        if (input->ExpectTag(1698)) goto parse_ce_RceDeployUnits;
+        break;
+      }
+      
+      // optional .RceDeployUnits ce_RceDeployUnits = 212;
+      case 212: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceDeployUnits:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcedeployunits()));
+        if (input->ExpectTag(1706)) goto parse_ce_RceItemDamaged;
+        break;
+      }
+      
+      // optional .RceItemDamaged ce_RceItemDamaged = 213;
+      case 213: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceItemDamaged:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceitemdamaged()));
+        if (input->ExpectTag(1714)) goto parse_ce_RceObtainAskForHelp;
+        break;
+      }
+      
+      // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+      case 214: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainAskForHelp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainaskforhelp()));
+        if (input->ExpectTag(1722)) goto parse_ce_RceObtainHangarsHelp;
+        break;
+      }
+      
+      // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+      case 215: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainHangarsHelp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainhangarshelp()));
+        if (input->ExpectTag(1730)) goto parse_ce_RceObtainPayUrlParame;
+        break;
+      }
+      
+      // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+      case 216: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainPayUrlParame:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainpayurlparame()));
+        if (input->ExpectTag(1738)) goto parse_ce_RceObtainRandomTargets;
+        break;
+      }
+      
+      // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+      case 217: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainRandomTargets:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainrandomtargets()));
+        if (input->ExpectTag(1746)) goto parse_ce_RceObtainVisitHelps;
+        break;
+      }
+      
+      // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+      case 218: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceObtainVisitHelps:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceobtainvisithelps()));
+        if (input->ExpectTag(1754)) goto parse_ce_RceOnlineReward;
+        break;
+      }
+      
+      // optional .RceOnlineReward ce_RceOnlineReward = 219;
+      case 219: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceOnlineReward:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceonlinereward()));
+        if (input->ExpectTag(1762)) goto parse_ce_RceQueryCheckAndLockAccountIfPossible;
+        break;
+      }
+      
+      // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+      case 220: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryCheckAndLockAccountIfPossible:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequerycheckandlockaccountifpossible()));
+        if (input->ExpectTag(1770)) goto parse_ce_RceQueryGalaxyWindow;
+        break;
+      }
+      
+      // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+      case 221: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryGalaxyWindow:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequerygalaxywindow()));
+        if (input->ExpectTag(1778)) goto parse_ce_RceQueryReceiveWishItem;
+        break;
+      }
+      
+      // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+      case 222: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryReceiveWishItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequeryreceivewishitem()));
+        if (input->ExpectTag(1786)) goto parse_ce_RceQueryRefuseReceiveWishItem;
+        break;
+      }
+      
+      // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+      case 223: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryRefuseReceiveWishItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequeryrefusereceivewishitem()));
+        if (input->ExpectTag(1794)) goto parse_ce_RceQuerySendWishItem;
+        break;
+      }
+      
+      // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+      case 224: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQuerySendWishItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequerysendwishitem()));
+        if (input->ExpectTag(1802)) goto parse_ce_RceQueryStarInfo;
+        break;
+      }
+      
+      // optional .RceQueryStarInfo ce_RceQueryStarInfo = 225;
+      case 225: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryStarInfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequerystarinfo()));
+        if (input->ExpectTag(1810)) goto parse_ce_RceQueryStarsBookmarks;
+        break;
+      }
+      
+      // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+      case 226: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryStarsBookmarks:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequerystarsbookmarks()));
+        if (input->ExpectTag(1818)) goto parse_ce_RceQueryVisitHelpsGiftUnitsOnBunker;
+        break;
+      }
+      
+      // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+      case 227: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryVisitHelpsGiftUnitsOnBunker:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequeryvisithelpsgiftunitsonbunker()));
+        if (input->ExpectTag(1826)) goto parse_ce_RceUnitDamaged;
+        break;
+      }
+      
+      // optional .RceUnitDamaged ce_RceUnitDamaged = 228;
+      case 228: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUnitDamaged:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceunitdamaged()));
+        if (input->ExpectTag(1834)) goto parse_ce_RceUpdateGameUnits;
+        break;
+      }
+      
+      // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
+      case 229: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateGameUnits:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdategameunits()));
+        if (input->ExpectTag(1842)) goto parse_ce_RceUpdateItem;
+        break;
+      }
+      
+      // optional .RceUpdateItem ce_RceUpdateItem = 230;
+      case 230: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdateitem()));
+        if (input->ExpectTag(1850)) goto parse_ce_RceUpdateMisc;
+        break;
+      }
+      
+      // optional .RceUpdateMisc ce_RceUpdateMisc = 231;
+      case 231: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateMisc:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatemisc()));
+        if (input->ExpectTag(1858)) goto parse_ce_RceUpdateMissions;
+        break;
+      }
+      
+      // optional .RceUpdateMissions ce_RceUpdateMissions = 232;
+      case 232: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateMissions:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatemissions()));
+        if (input->ExpectTag(1866)) goto parse_ce_RceUpdateProfile;
+        break;
+      }
+      
+      // optional .RceUpdateProfile ce_RceUpdateProfile = 233;
+      case 233: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateProfile:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdateprofile()));
+        if (input->ExpectTag(1874)) goto parse_ce_RceUpdateShips;
+        break;
+      }
+      
+      // optional .RceUpdateShips ce_RceUpdateShips = 234;
+      case 234: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateShips:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdateships()));
+        if (input->ExpectTag(1882)) goto parse_ce_RceUpdateSocialItem;
+        break;
+      }
+      
+      // optional .RceUpdateSocialItem ce_RceUpdateSocialItem = 235;
+      case 235: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateSocialItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatesocialitem()));
+        if (input->ExpectTag(1890)) goto parse_ce_RceUpdateStarsBookmarks;
+        break;
+      }
+      
+      // optional .RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 236;
+      case 236: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateStarsBookmarks:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatestarsbookmarks()));
+        if (input->ExpectTag(1898)) goto parse_ce_RceUpdateTargets;
+        break;
+      }
+      
+      // optional .RceUpdateTargets ce_RceUpdateTargets = 237;
+      case 237: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateTargets:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatetargets()));
+        if (input->ExpectTag(1906)) goto parse_ce_RceUpdateVisitHelp;
+        break;
+      }
+      
+      // optional .RceUpdateVisitHelp ce_RceUpdateVisitHelp = 238;
+      case 238: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceUpdateVisitHelp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rceupdatevisithelp()));
+        if (input->ExpectTag(4002)) goto parse_se_RseCustomizedActivity;
+        break;
+      }
+      
+      // optional .RseCustomizedActivity se_RseCustomizedActivity = 500;
+      case 500: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseCustomizedActivity:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsecustomizedactivity()));
+        if (input->ExpectTag(4010)) goto parse_se_RseLogin;
+        break;
+      }
+      
+      // optional .RseLogin se_RseLogin = 501;
+      case 501: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseLogin:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rselogin()));
+        if (input->ExpectTag(4018)) goto parse_se_RseObtainAttackerList;
+        break;
+      }
+      
+      // optional .RseObtainAttackerList se_RseObtainAttackerList = 502;
+      case 502: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainAttackerList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainattackerlist()));
+        if (input->ExpectTag(4026)) goto parse_se_RseObtainBattleReplay;
+        break;
+      }
+      
+      // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 503;
+      case 503: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainBattleReplay:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainbattlereplay()));
+        if (input->ExpectTag(4034)) goto parse_se_RseObtainCustomizer;
+        break;
+      }
+      
+      // optional .RseObtainCustomizer se_RseObtainCustomizer = 504;
+      case 504: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainCustomizer:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtaincustomizer()));
+        if (input->ExpectTag(4042)) goto parse_se_RseObtainMessagesList;
+        break;
+      }
+      
+      // optional .RseObtainMessagesList se_RseObtainMessagesList = 505;
+      case 505: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainMessagesList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainmessageslist()));
+        if (input->ExpectTag(4050)) goto parse_se_RseObtainNeighborsList;
+        break;
+      }
+      
+      // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 506;
+      case 506: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainNeighborsList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainneighborslist()));
+        if (input->ExpectTag(4058)) goto parse_se_RseObtainNpcList;
+        break;
+      }
+      
+      // optional .RseObtainNpcList se_RseObtainNpcList = 507;
+      case 507: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainNpcList:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainnpclist()));
+        if (input->ExpectTag(4066)) goto parse_se_RseObtainSocialItems;
+        break;
+      }
+      
+      // optional .RseObtainSocialItems se_RseObtainSocialItems = 508;
+      case 508: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainSocialItems:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainsocialitems()));
+        if (input->ExpectTag(4074)) goto parse_se_RseObtainSocialUserInfo;
+        break;
+      }
+      
+      // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
+      case 509: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainSocialUserInfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainsocialuserinfo()));
+        if (input->ExpectTag(4082)) goto parse_se_RseObtainUniverse;
+        break;
+      }
+      
+      // optional .RseObtainUniverse se_RseObtainUniverse = 510;
+      case 510: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainUniverse:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainuniverse()));
+        if (input->ExpectTag(4090)) goto parse_se_RseUpdateAlliances;
+        break;
+      }
+      
+      // optional .RseUpdateAlliances se_RseUpdateAlliances = 511;
+      case 511: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateAlliances:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdatealliances()));
+        if (input->ExpectTag(4098)) goto parse_se_RseDeployUnits;
+        break;
+      }
+      
+      // optional .RseDeployUnits se_RseDeployUnits = 512;
+      case 512: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseDeployUnits:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsedeployunits()));
+        if (input->ExpectTag(4106)) goto parse_se_RseItemDamaged;
+        break;
+      }
+      
+      // optional .RseItemDamaged se_RseItemDamaged = 513;
+      case 513: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseItemDamaged:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseitemdamaged()));
+        if (input->ExpectTag(4114)) goto parse_se_RseObtainAskForHelp;
+        break;
+      }
+      
+      // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+      case 514: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainAskForHelp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainaskforhelp()));
+        if (input->ExpectTag(4122)) goto parse_se_RseObtainHangarsHelp;
+        break;
+      }
+      
+      // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+      case 515: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainHangarsHelp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainhangarshelp()));
+        if (input->ExpectTag(4130)) goto parse_se_RseObtainPayUrlParame;
+        break;
+      }
+      
+      // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+      case 516: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainPayUrlParame:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainpayurlparame()));
+        if (input->ExpectTag(4138)) goto parse_se_RseObtainRandomTargets;
+        break;
+      }
+      
+      // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+      case 517: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainRandomTargets:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainrandomtargets()));
+        if (input->ExpectTag(4146)) goto parse_se_RseObtainVisitHelps;
+        break;
+      }
+      
+      // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 518;
+      case 518: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseObtainVisitHelps:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseobtainvisithelps()));
+        if (input->ExpectTag(4154)) goto parse_se_RseQueryCheckAndLockAccountIfPossible;
+        break;
+      }
+      
+      // optional .RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 519;
+      case 519: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryCheckAndLockAccountIfPossible:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequerycheckandlockaccountifpossible()));
+        if (input->ExpectTag(4162)) goto parse_se_RseQueryGalaxyWindow;
+        break;
+      }
+      
+      // optional .RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 520;
+      case 520: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryGalaxyWindow:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequerygalaxywindow()));
+        if (input->ExpectTag(4170)) goto parse_se_RseQueryReceiveWishItem;
+        break;
+      }
+      
+      // optional .RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 521;
+      case 521: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryReceiveWishItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequeryreceivewishitem()));
+        if (input->ExpectTag(4178)) goto parse_se_RseQueryRefuseReceiveWishItem;
+        break;
+      }
+      
+      // optional .RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 522;
+      case 522: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryRefuseReceiveWishItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequeryrefusereceivewishitem()));
+        if (input->ExpectTag(4186)) goto parse_se_RseQuerySendWishItem;
+        break;
+      }
+      
+      // optional .RseQuerySendWishItem se_RseQuerySendWishItem = 523;
+      case 523: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQuerySendWishItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequerysendwishitem()));
+        if (input->ExpectTag(4194)) goto parse_se_RseQueryStarInfo;
+        break;
+      }
+      
+      // optional .RseQueryStarInfo se_RseQueryStarInfo = 524;
+      case 524: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryStarInfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequerystarinfo()));
+        if (input->ExpectTag(4202)) goto parse_se_RseQueryStarsBookmarks;
+        break;
+      }
+      
+      // optional .RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 525;
+      case 525: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryStarsBookmarks:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequerystarsbookmarks()));
+        if (input->ExpectTag(4210)) goto parse_se_RseQueryVisitHelpsGiftUnitsOnBunker;
+        break;
+      }
+      
+      // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 526;
+      case 526: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryVisitHelpsGiftUnitsOnBunker:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequeryvisithelpsgiftunitsonbunker()));
+        if (input->ExpectTag(4218)) goto parse_se_RseUnitDamaged;
+        break;
+      }
+      
+      // optional .RseUnitDamaged se_RseUnitDamaged = 527;
+      case 527: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUnitDamaged:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseunitdamaged()));
+        if (input->ExpectTag(4226)) goto parse_se_RseUpdateGameUnits;
+        break;
+      }
+      
+      // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 528;
+      case 528: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateGameUnits:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdategameunits()));
+        if (input->ExpectTag(4234)) goto parse_se_RseUpdateItem;
+        break;
+      }
+      
+      // optional .RseUpdateItem se_RseUpdateItem = 529;
+      case 529: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdateitem()));
+        if (input->ExpectTag(4242)) goto parse_se_RseUpdateMisc;
+        break;
+      }
+      
+      // optional .RseUpdateMisc se_RseUpdateMisc = 530;
+      case 530: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateMisc:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdatemisc()));
+        if (input->ExpectTag(4250)) goto parse_se_RseUpdateMissions;
+        break;
+      }
+      
+      // optional .RseUpdateMissions se_RseUpdateMissions = 531;
+      case 531: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateMissions:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdatemissions()));
+        if (input->ExpectTag(4258)) goto parse_se_RseUpdateProfile;
+        break;
+      }
+      
+      // optional .RseUpdateProfile se_RseUpdateProfile = 532;
+      case 532: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateProfile:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdateprofile()));
+        if (input->ExpectTag(4266)) goto parse_se_RseUpdateShips;
+        break;
+      }
+      
+      // optional .RseUpdateShips se_RseUpdateShips = 533;
+      case 533: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateShips:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdateships()));
+        if (input->ExpectTag(4274)) goto parse_se_RseUpdateSocialItem;
+        break;
+      }
+      
+      // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+      case 534: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateSocialItem:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdatesocialitem()));
+        if (input->ExpectTag(4282)) goto parse_se_RseUpdateStarsBookmarks;
+        break;
+      }
+      
+      // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+      case 535: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateStarsBookmarks:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdatestarsbookmarks()));
+        if (input->ExpectTag(4290)) goto parse_se_RseUpdateTargets;
+        break;
+      }
+      
+      // optional .RseUpdateTargets se_RseUpdateTargets = 536;
+      case 536: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseUpdateTargets:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rseupdatetargets()));
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -1609,49 +2606,595 @@ void Event::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->uid(), output);
   }
   
-  // optional .Forward forward = 5;
+  // optional int32 fromworld_fd = 5;
   if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      5, this->forward(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->fromworld_fd(), output);
   }
   
-  // optional string content = 6;
+  // optional .WorkingStatus_Req workingStatus_req = 6;
   if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->content().data(), this->content().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      6, this->content(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      6, this->workingstatus_req(), output);
   }
   
-  // optional .WorkingStatusData workingStatus = 64;
+  // optional .UserLogin_Req userLogin_req = 7;
   if (_has_bit(6)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      64, this->workingstatus(), output);
+      7, this->userlogin_req(), output);
   }
   
-  // optional .UserAuthData userAuthData = 65;
+  // optional .UserLogin_Rsp userLogin_rsp = 8;
   if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      65, this->userauthdata(), output);
+      8, this->userlogin_rsp(), output);
   }
   
-  // optional .UserLeave userleave = 68;
+  // optional .UserAuth_Req userAuth_req = 9;
   if (_has_bit(8)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      68, this->userleave(), output);
+      9, this->userauth_req(), output);
   }
   
-  // optional .RseBroadcast se_RseBroadcast = 192;
+  // optional .UserAuth_Rsp userAuth_rsp = 10;
   if (_has_bit(9)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      192, this->se_rsebroadcast(), output);
+      10, this->userauth_rsp(), output);
   }
   
-  // optional .RseAuthState se_RseAuthState = 193;
+  // optional .SendRemoteUser_Req sendRemoteUser_req = 11;
   if (_has_bit(10)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      193, this->se_rseauthstate(), output);
+      11, this->sendremoteuser_req(), output);
+  }
+  
+  // optional .WG_UserLeave wg_UserLeave = 12;
+  if (_has_bit(11)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      12, this->wg_userleave(), output);
+  }
+  
+  // optional .GWG_FriendRequest friendinfo = 13;
+  if (_has_bit(12)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      13, this->friendinfo(), output);
+  }
+  
+  // optional .ForwardInfo forwardinfo = 14;
+  if (_has_bit(13)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      14, this->forwardinfo(), output);
+  }
+  
+  // optional int32 starSrvID = 15;
+  if (_has_bit(14)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(15, this->starsrvid(), output);
+  }
+  
+  // optional int32 transferSrvID = 18;
+  if (_has_bit(15)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(18, this->transfersrvid(), output);
+  }
+  
+  // optional .WebGetRegion webGetRegion = 19;
+  if (_has_bit(16)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      19, this->webgetregion(), output);
+  }
+  
+  // optional int32 platSrvID = 20;
+  if (_has_bit(17)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(20, this->platsrvid(), output);
+  }
+  
+  // optional string userPlat = 21;
+  if (_has_bit(18)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->userplat().data(), this->userplat().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      21, this->userplat(), output);
+  }
+  
+  // optional int32 worldSrvID = 22;
+  if (_has_bit(19)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(22, this->worldsrvid(), output);
+  }
+  
+  // optional int32 fightSrvID = 23;
+  if (_has_bit(20)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(23, this->fightsrvid(), output);
+  }
+  
+  // optional .GCG_CountryNeed countryNeed = 24;
+  if (_has_bit(21)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      24, this->countryneed(), output);
+  }
+  
+  // optional .GRG_RegionNeed regionNeed = 25;
+  if (_has_bit(22)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      25, this->regionneed(), output);
+  }
+  
+  // optional .GRG_RankNeed rankNeed = 26;
+  if (_has_bit(23)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      26, this->rankneed(), output);
+  }
+  
+  // optional .GSG_StatNeed statNeed = 27;
+  if (_has_bit(24)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      27, this->statneed(), output);
+  }
+  
+  // optional .HttpAskMsg httpaskmsg = 114;
+  if (_has_bit(25)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      114, this->httpaskmsg(), output);
+  }
+  
+  // optional .HttpAnswerMsg httpanswermsg = 115;
+  if (_has_bit(26)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      115, this->httpanswermsg(), output);
+  }
+  
+  // optional .RceCustomizedActivity ce_RceCustomizedActivity = 200;
+  if (_has_bit(27)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      200, this->ce_rcecustomizedactivity(), output);
+  }
+  
+  // optional .RceLogin ce_RceLogin = 201;
+  if (_has_bit(28)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      201, this->ce_rcelogin(), output);
+  }
+  
+  // optional .RceObtainAttackerList ce_RceObtainAttackerList = 202;
+  if (_has_bit(29)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      202, this->ce_rceobtainattackerlist(), output);
+  }
+  
+  // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
+  if (_has_bit(30)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      203, this->ce_rceobtainbattlereplay(), output);
+  }
+  
+  // optional .RceObtainCustomizer ce_RceObtainCustomizer = 204;
+  if (_has_bit(31)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      204, this->ce_rceobtaincustomizer(), output);
+  }
+  
+  // optional .RceObtainMessagesList ce_RceObtainMessagesList = 205;
+  if (_has_bit(32)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      205, this->ce_rceobtainmessageslist(), output);
+  }
+  
+  // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
+  if (_has_bit(33)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      206, this->ce_rceobtainneighborslist(), output);
+  }
+  
+  // optional .RceObtainNpcList ce_RceObtainNpcList = 207;
+  if (_has_bit(34)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      207, this->ce_rceobtainnpclist(), output);
+  }
+  
+  // optional .RceObtainSocialItems ce_RceObtainSocialItems = 208;
+  if (_has_bit(35)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      208, this->ce_rceobtainsocialitems(), output);
+  }
+  
+  // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
+  if (_has_bit(36)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      209, this->ce_rceobtainsocialuserinfo(), output);
+  }
+  
+  // optional .RceObtainUniverse ce_RceObtainUniverse = 210;
+  if (_has_bit(37)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      210, this->ce_rceobtainuniverse(), output);
+  }
+  
+  // optional .RceUpdateAlliances ce_RceUpdateAlliances = 211;
+  if (_has_bit(38)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      211, this->ce_rceupdatealliances(), output);
+  }
+  
+  // optional .RceDeployUnits ce_RceDeployUnits = 212;
+  if (_has_bit(39)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      212, this->ce_rcedeployunits(), output);
+  }
+  
+  // optional .RceItemDamaged ce_RceItemDamaged = 213;
+  if (_has_bit(40)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      213, this->ce_rceitemdamaged(), output);
+  }
+  
+  // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+  if (_has_bit(41)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      214, this->ce_rceobtainaskforhelp(), output);
+  }
+  
+  // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+  if (_has_bit(42)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      215, this->ce_rceobtainhangarshelp(), output);
+  }
+  
+  // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+  if (_has_bit(43)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      216, this->ce_rceobtainpayurlparame(), output);
+  }
+  
+  // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+  if (_has_bit(44)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      217, this->ce_rceobtainrandomtargets(), output);
+  }
+  
+  // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+  if (_has_bit(45)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      218, this->ce_rceobtainvisithelps(), output);
+  }
+  
+  // optional .RceOnlineReward ce_RceOnlineReward = 219;
+  if (_has_bit(46)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      219, this->ce_rceonlinereward(), output);
+  }
+  
+  // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+  if (_has_bit(47)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      220, this->ce_rcequerycheckandlockaccountifpossible(), output);
+  }
+  
+  // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+  if (_has_bit(48)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      221, this->ce_rcequerygalaxywindow(), output);
+  }
+  
+  // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+  if (_has_bit(49)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      222, this->ce_rcequeryreceivewishitem(), output);
+  }
+  
+  // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+  if (_has_bit(50)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      223, this->ce_rcequeryrefusereceivewishitem(), output);
+  }
+  
+  // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+  if (_has_bit(51)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      224, this->ce_rcequerysendwishitem(), output);
+  }
+  
+  // optional .RceQueryStarInfo ce_RceQueryStarInfo = 225;
+  if (_has_bit(52)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      225, this->ce_rcequerystarinfo(), output);
+  }
+  
+  // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+  if (_has_bit(53)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      226, this->ce_rcequerystarsbookmarks(), output);
+  }
+  
+  // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+  if (_has_bit(54)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      227, this->ce_rcequeryvisithelpsgiftunitsonbunker(), output);
+  }
+  
+  // optional .RceUnitDamaged ce_RceUnitDamaged = 228;
+  if (_has_bit(55)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      228, this->ce_rceunitdamaged(), output);
+  }
+  
+  // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
+  if (_has_bit(56)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      229, this->ce_rceupdategameunits(), output);
+  }
+  
+  // optional .RceUpdateItem ce_RceUpdateItem = 230;
+  if (_has_bit(57)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      230, this->ce_rceupdateitem(), output);
+  }
+  
+  // optional .RceUpdateMisc ce_RceUpdateMisc = 231;
+  if (_has_bit(58)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      231, this->ce_rceupdatemisc(), output);
+  }
+  
+  // optional .RceUpdateMissions ce_RceUpdateMissions = 232;
+  if (_has_bit(59)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      232, this->ce_rceupdatemissions(), output);
+  }
+  
+  // optional .RceUpdateProfile ce_RceUpdateProfile = 233;
+  if (_has_bit(60)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      233, this->ce_rceupdateprofile(), output);
+  }
+  
+  // optional .RceUpdateShips ce_RceUpdateShips = 234;
+  if (_has_bit(61)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      234, this->ce_rceupdateships(), output);
+  }
+  
+  // optional .RceUpdateSocialItem ce_RceUpdateSocialItem = 235;
+  if (_has_bit(62)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      235, this->ce_rceupdatesocialitem(), output);
+  }
+  
+  // optional .RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 236;
+  if (_has_bit(63)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      236, this->ce_rceupdatestarsbookmarks(), output);
+  }
+  
+  // optional .RceUpdateTargets ce_RceUpdateTargets = 237;
+  if (_has_bit(64)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      237, this->ce_rceupdatetargets(), output);
+  }
+  
+  // optional .RceUpdateVisitHelp ce_RceUpdateVisitHelp = 238;
+  if (_has_bit(65)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      238, this->ce_rceupdatevisithelp(), output);
+  }
+  
+  // optional .RseCustomizedActivity se_RseCustomizedActivity = 500;
+  if (_has_bit(66)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      500, this->se_rsecustomizedactivity(), output);
+  }
+  
+  // optional .RseLogin se_RseLogin = 501;
+  if (_has_bit(67)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      501, this->se_rselogin(), output);
+  }
+  
+  // optional .RseObtainAttackerList se_RseObtainAttackerList = 502;
+  if (_has_bit(68)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      502, this->se_rseobtainattackerlist(), output);
+  }
+  
+  // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 503;
+  if (_has_bit(69)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      503, this->se_rseobtainbattlereplay(), output);
+  }
+  
+  // optional .RseObtainCustomizer se_RseObtainCustomizer = 504;
+  if (_has_bit(70)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      504, this->se_rseobtaincustomizer(), output);
+  }
+  
+  // optional .RseObtainMessagesList se_RseObtainMessagesList = 505;
+  if (_has_bit(71)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      505, this->se_rseobtainmessageslist(), output);
+  }
+  
+  // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 506;
+  if (_has_bit(72)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      506, this->se_rseobtainneighborslist(), output);
+  }
+  
+  // optional .RseObtainNpcList se_RseObtainNpcList = 507;
+  if (_has_bit(73)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      507, this->se_rseobtainnpclist(), output);
+  }
+  
+  // optional .RseObtainSocialItems se_RseObtainSocialItems = 508;
+  if (_has_bit(74)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      508, this->se_rseobtainsocialitems(), output);
+  }
+  
+  // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
+  if (_has_bit(75)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      509, this->se_rseobtainsocialuserinfo(), output);
+  }
+  
+  // optional .RseObtainUniverse se_RseObtainUniverse = 510;
+  if (_has_bit(76)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      510, this->se_rseobtainuniverse(), output);
+  }
+  
+  // optional .RseUpdateAlliances se_RseUpdateAlliances = 511;
+  if (_has_bit(77)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      511, this->se_rseupdatealliances(), output);
+  }
+  
+  // optional .RseDeployUnits se_RseDeployUnits = 512;
+  if (_has_bit(78)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      512, this->se_rsedeployunits(), output);
+  }
+  
+  // optional .RseItemDamaged se_RseItemDamaged = 513;
+  if (_has_bit(79)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      513, this->se_rseitemdamaged(), output);
+  }
+  
+  // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+  if (_has_bit(80)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      514, this->se_rseobtainaskforhelp(), output);
+  }
+  
+  // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+  if (_has_bit(81)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      515, this->se_rseobtainhangarshelp(), output);
+  }
+  
+  // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+  if (_has_bit(82)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      516, this->se_rseobtainpayurlparame(), output);
+  }
+  
+  // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+  if (_has_bit(83)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      517, this->se_rseobtainrandomtargets(), output);
+  }
+  
+  // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 518;
+  if (_has_bit(84)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      518, this->se_rseobtainvisithelps(), output);
+  }
+  
+  // optional .RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 519;
+  if (_has_bit(85)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      519, this->se_rsequerycheckandlockaccountifpossible(), output);
+  }
+  
+  // optional .RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 520;
+  if (_has_bit(86)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      520, this->se_rsequerygalaxywindow(), output);
+  }
+  
+  // optional .RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 521;
+  if (_has_bit(87)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      521, this->se_rsequeryreceivewishitem(), output);
+  }
+  
+  // optional .RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 522;
+  if (_has_bit(88)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      522, this->se_rsequeryrefusereceivewishitem(), output);
+  }
+  
+  // optional .RseQuerySendWishItem se_RseQuerySendWishItem = 523;
+  if (_has_bit(89)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      523, this->se_rsequerysendwishitem(), output);
+  }
+  
+  // optional .RseQueryStarInfo se_RseQueryStarInfo = 524;
+  if (_has_bit(90)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      524, this->se_rsequerystarinfo(), output);
+  }
+  
+  // optional .RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 525;
+  if (_has_bit(91)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      525, this->se_rsequerystarsbookmarks(), output);
+  }
+  
+  // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 526;
+  if (_has_bit(92)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      526, this->se_rsequeryvisithelpsgiftunitsonbunker(), output);
+  }
+  
+  // optional .RseUnitDamaged se_RseUnitDamaged = 527;
+  if (_has_bit(93)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      527, this->se_rseunitdamaged(), output);
+  }
+  
+  // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 528;
+  if (_has_bit(94)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      528, this->se_rseupdategameunits(), output);
+  }
+  
+  // optional .RseUpdateItem se_RseUpdateItem = 529;
+  if (_has_bit(95)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      529, this->se_rseupdateitem(), output);
+  }
+  
+  // optional .RseUpdateMisc se_RseUpdateMisc = 530;
+  if (_has_bit(96)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      530, this->se_rseupdatemisc(), output);
+  }
+  
+  // optional .RseUpdateMissions se_RseUpdateMissions = 531;
+  if (_has_bit(97)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      531, this->se_rseupdatemissions(), output);
+  }
+  
+  // optional .RseUpdateProfile se_RseUpdateProfile = 532;
+  if (_has_bit(98)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      532, this->se_rseupdateprofile(), output);
+  }
+  
+  // optional .RseUpdateShips se_RseUpdateShips = 533;
+  if (_has_bit(99)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      533, this->se_rseupdateships(), output);
+  }
+  
+  // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+  if (_has_bit(100)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      534, this->se_rseupdatesocialitem(), output);
+  }
+  
+  // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+  if (_has_bit(101)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      535, this->se_rseupdatestarsbookmarks(), output);
+  }
+  
+  // optional .RseUpdateTargets se_RseUpdateTargets = 536;
+  if (_has_bit(102)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      536, this->se_rseupdatetargets(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1682,56 +3225,688 @@ void Event::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->uid(), target);
   }
   
-  // optional .Forward forward = 5;
+  // optional int32 fromworld_fd = 5;
   if (_has_bit(4)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->fromworld_fd(), target);
+  }
+  
+  // optional .WorkingStatus_Req workingStatus_req = 6;
+  if (_has_bit(5)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        5, this->forward(), target);
+        6, this->workingstatus_req(), target);
   }
   
-  // optional string content = 6;
-  if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->content().data(), this->content().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        6, this->content(), target);
-  }
-  
-  // optional .WorkingStatusData workingStatus = 64;
+  // optional .UserLogin_Req userLogin_req = 7;
   if (_has_bit(6)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        64, this->workingstatus(), target);
+        7, this->userlogin_req(), target);
   }
   
-  // optional .UserAuthData userAuthData = 65;
+  // optional .UserLogin_Rsp userLogin_rsp = 8;
   if (_has_bit(7)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        65, this->userauthdata(), target);
+        8, this->userlogin_rsp(), target);
   }
   
-  // optional .UserLeave userleave = 68;
+  // optional .UserAuth_Req userAuth_req = 9;
   if (_has_bit(8)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        68, this->userleave(), target);
+        9, this->userauth_req(), target);
   }
   
-  // optional .RseBroadcast se_RseBroadcast = 192;
+  // optional .UserAuth_Rsp userAuth_rsp = 10;
   if (_has_bit(9)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        192, this->se_rsebroadcast(), target);
+        10, this->userauth_rsp(), target);
   }
   
-  // optional .RseAuthState se_RseAuthState = 193;
+  // optional .SendRemoteUser_Req sendRemoteUser_req = 11;
   if (_has_bit(10)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        193, this->se_rseauthstate(), target);
+        11, this->sendremoteuser_req(), target);
+  }
+  
+  // optional .WG_UserLeave wg_UserLeave = 12;
+  if (_has_bit(11)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        12, this->wg_userleave(), target);
+  }
+  
+  // optional .GWG_FriendRequest friendinfo = 13;
+  if (_has_bit(12)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        13, this->friendinfo(), target);
+  }
+  
+  // optional .ForwardInfo forwardinfo = 14;
+  if (_has_bit(13)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        14, this->forwardinfo(), target);
+  }
+  
+  // optional int32 starSrvID = 15;
+  if (_has_bit(14)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(15, this->starsrvid(), target);
+  }
+  
+  // optional int32 transferSrvID = 18;
+  if (_has_bit(15)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(18, this->transfersrvid(), target);
+  }
+  
+  // optional .WebGetRegion webGetRegion = 19;
+  if (_has_bit(16)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        19, this->webgetregion(), target);
+  }
+  
+  // optional int32 platSrvID = 20;
+  if (_has_bit(17)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(20, this->platsrvid(), target);
+  }
+  
+  // optional string userPlat = 21;
+  if (_has_bit(18)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->userplat().data(), this->userplat().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        21, this->userplat(), target);
+  }
+  
+  // optional int32 worldSrvID = 22;
+  if (_has_bit(19)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(22, this->worldsrvid(), target);
+  }
+  
+  // optional int32 fightSrvID = 23;
+  if (_has_bit(20)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(23, this->fightsrvid(), target);
+  }
+  
+  // optional .GCG_CountryNeed countryNeed = 24;
+  if (_has_bit(21)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        24, this->countryneed(), target);
+  }
+  
+  // optional .GRG_RegionNeed regionNeed = 25;
+  if (_has_bit(22)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        25, this->regionneed(), target);
+  }
+  
+  // optional .GRG_RankNeed rankNeed = 26;
+  if (_has_bit(23)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        26, this->rankneed(), target);
+  }
+  
+  // optional .GSG_StatNeed statNeed = 27;
+  if (_has_bit(24)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        27, this->statneed(), target);
+  }
+  
+  // optional .HttpAskMsg httpaskmsg = 114;
+  if (_has_bit(25)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        114, this->httpaskmsg(), target);
+  }
+  
+  // optional .HttpAnswerMsg httpanswermsg = 115;
+  if (_has_bit(26)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        115, this->httpanswermsg(), target);
+  }
+  
+  // optional .RceCustomizedActivity ce_RceCustomizedActivity = 200;
+  if (_has_bit(27)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        200, this->ce_rcecustomizedactivity(), target);
+  }
+  
+  // optional .RceLogin ce_RceLogin = 201;
+  if (_has_bit(28)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        201, this->ce_rcelogin(), target);
+  }
+  
+  // optional .RceObtainAttackerList ce_RceObtainAttackerList = 202;
+  if (_has_bit(29)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        202, this->ce_rceobtainattackerlist(), target);
+  }
+  
+  // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
+  if (_has_bit(30)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        203, this->ce_rceobtainbattlereplay(), target);
+  }
+  
+  // optional .RceObtainCustomizer ce_RceObtainCustomizer = 204;
+  if (_has_bit(31)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        204, this->ce_rceobtaincustomizer(), target);
+  }
+  
+  // optional .RceObtainMessagesList ce_RceObtainMessagesList = 205;
+  if (_has_bit(32)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        205, this->ce_rceobtainmessageslist(), target);
+  }
+  
+  // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
+  if (_has_bit(33)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        206, this->ce_rceobtainneighborslist(), target);
+  }
+  
+  // optional .RceObtainNpcList ce_RceObtainNpcList = 207;
+  if (_has_bit(34)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        207, this->ce_rceobtainnpclist(), target);
+  }
+  
+  // optional .RceObtainSocialItems ce_RceObtainSocialItems = 208;
+  if (_has_bit(35)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        208, this->ce_rceobtainsocialitems(), target);
+  }
+  
+  // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
+  if (_has_bit(36)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        209, this->ce_rceobtainsocialuserinfo(), target);
+  }
+  
+  // optional .RceObtainUniverse ce_RceObtainUniverse = 210;
+  if (_has_bit(37)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        210, this->ce_rceobtainuniverse(), target);
+  }
+  
+  // optional .RceUpdateAlliances ce_RceUpdateAlliances = 211;
+  if (_has_bit(38)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        211, this->ce_rceupdatealliances(), target);
+  }
+  
+  // optional .RceDeployUnits ce_RceDeployUnits = 212;
+  if (_has_bit(39)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        212, this->ce_rcedeployunits(), target);
+  }
+  
+  // optional .RceItemDamaged ce_RceItemDamaged = 213;
+  if (_has_bit(40)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        213, this->ce_rceitemdamaged(), target);
+  }
+  
+  // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+  if (_has_bit(41)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        214, this->ce_rceobtainaskforhelp(), target);
+  }
+  
+  // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+  if (_has_bit(42)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        215, this->ce_rceobtainhangarshelp(), target);
+  }
+  
+  // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+  if (_has_bit(43)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        216, this->ce_rceobtainpayurlparame(), target);
+  }
+  
+  // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+  if (_has_bit(44)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        217, this->ce_rceobtainrandomtargets(), target);
+  }
+  
+  // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+  if (_has_bit(45)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        218, this->ce_rceobtainvisithelps(), target);
+  }
+  
+  // optional .RceOnlineReward ce_RceOnlineReward = 219;
+  if (_has_bit(46)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        219, this->ce_rceonlinereward(), target);
+  }
+  
+  // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+  if (_has_bit(47)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        220, this->ce_rcequerycheckandlockaccountifpossible(), target);
+  }
+  
+  // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+  if (_has_bit(48)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        221, this->ce_rcequerygalaxywindow(), target);
+  }
+  
+  // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+  if (_has_bit(49)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        222, this->ce_rcequeryreceivewishitem(), target);
+  }
+  
+  // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+  if (_has_bit(50)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        223, this->ce_rcequeryrefusereceivewishitem(), target);
+  }
+  
+  // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+  if (_has_bit(51)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        224, this->ce_rcequerysendwishitem(), target);
+  }
+  
+  // optional .RceQueryStarInfo ce_RceQueryStarInfo = 225;
+  if (_has_bit(52)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        225, this->ce_rcequerystarinfo(), target);
+  }
+  
+  // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+  if (_has_bit(53)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        226, this->ce_rcequerystarsbookmarks(), target);
+  }
+  
+  // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+  if (_has_bit(54)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        227, this->ce_rcequeryvisithelpsgiftunitsonbunker(), target);
+  }
+  
+  // optional .RceUnitDamaged ce_RceUnitDamaged = 228;
+  if (_has_bit(55)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        228, this->ce_rceunitdamaged(), target);
+  }
+  
+  // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
+  if (_has_bit(56)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        229, this->ce_rceupdategameunits(), target);
+  }
+  
+  // optional .RceUpdateItem ce_RceUpdateItem = 230;
+  if (_has_bit(57)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        230, this->ce_rceupdateitem(), target);
+  }
+  
+  // optional .RceUpdateMisc ce_RceUpdateMisc = 231;
+  if (_has_bit(58)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        231, this->ce_rceupdatemisc(), target);
+  }
+  
+  // optional .RceUpdateMissions ce_RceUpdateMissions = 232;
+  if (_has_bit(59)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        232, this->ce_rceupdatemissions(), target);
+  }
+  
+  // optional .RceUpdateProfile ce_RceUpdateProfile = 233;
+  if (_has_bit(60)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        233, this->ce_rceupdateprofile(), target);
+  }
+  
+  // optional .RceUpdateShips ce_RceUpdateShips = 234;
+  if (_has_bit(61)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        234, this->ce_rceupdateships(), target);
+  }
+  
+  // optional .RceUpdateSocialItem ce_RceUpdateSocialItem = 235;
+  if (_has_bit(62)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        235, this->ce_rceupdatesocialitem(), target);
+  }
+  
+  // optional .RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 236;
+  if (_has_bit(63)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        236, this->ce_rceupdatestarsbookmarks(), target);
+  }
+  
+  // optional .RceUpdateTargets ce_RceUpdateTargets = 237;
+  if (_has_bit(64)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        237, this->ce_rceupdatetargets(), target);
+  }
+  
+  // optional .RceUpdateVisitHelp ce_RceUpdateVisitHelp = 238;
+  if (_has_bit(65)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        238, this->ce_rceupdatevisithelp(), target);
+  }
+  
+  // optional .RseCustomizedActivity se_RseCustomizedActivity = 500;
+  if (_has_bit(66)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        500, this->se_rsecustomizedactivity(), target);
+  }
+  
+  // optional .RseLogin se_RseLogin = 501;
+  if (_has_bit(67)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        501, this->se_rselogin(), target);
+  }
+  
+  // optional .RseObtainAttackerList se_RseObtainAttackerList = 502;
+  if (_has_bit(68)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        502, this->se_rseobtainattackerlist(), target);
+  }
+  
+  // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 503;
+  if (_has_bit(69)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        503, this->se_rseobtainbattlereplay(), target);
+  }
+  
+  // optional .RseObtainCustomizer se_RseObtainCustomizer = 504;
+  if (_has_bit(70)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        504, this->se_rseobtaincustomizer(), target);
+  }
+  
+  // optional .RseObtainMessagesList se_RseObtainMessagesList = 505;
+  if (_has_bit(71)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        505, this->se_rseobtainmessageslist(), target);
+  }
+  
+  // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 506;
+  if (_has_bit(72)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        506, this->se_rseobtainneighborslist(), target);
+  }
+  
+  // optional .RseObtainNpcList se_RseObtainNpcList = 507;
+  if (_has_bit(73)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        507, this->se_rseobtainnpclist(), target);
+  }
+  
+  // optional .RseObtainSocialItems se_RseObtainSocialItems = 508;
+  if (_has_bit(74)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        508, this->se_rseobtainsocialitems(), target);
+  }
+  
+  // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
+  if (_has_bit(75)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        509, this->se_rseobtainsocialuserinfo(), target);
+  }
+  
+  // optional .RseObtainUniverse se_RseObtainUniverse = 510;
+  if (_has_bit(76)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        510, this->se_rseobtainuniverse(), target);
+  }
+  
+  // optional .RseUpdateAlliances se_RseUpdateAlliances = 511;
+  if (_has_bit(77)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        511, this->se_rseupdatealliances(), target);
+  }
+  
+  // optional .RseDeployUnits se_RseDeployUnits = 512;
+  if (_has_bit(78)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        512, this->se_rsedeployunits(), target);
+  }
+  
+  // optional .RseItemDamaged se_RseItemDamaged = 513;
+  if (_has_bit(79)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        513, this->se_rseitemdamaged(), target);
+  }
+  
+  // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+  if (_has_bit(80)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        514, this->se_rseobtainaskforhelp(), target);
+  }
+  
+  // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+  if (_has_bit(81)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        515, this->se_rseobtainhangarshelp(), target);
+  }
+  
+  // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+  if (_has_bit(82)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        516, this->se_rseobtainpayurlparame(), target);
+  }
+  
+  // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+  if (_has_bit(83)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        517, this->se_rseobtainrandomtargets(), target);
+  }
+  
+  // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 518;
+  if (_has_bit(84)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        518, this->se_rseobtainvisithelps(), target);
+  }
+  
+  // optional .RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 519;
+  if (_has_bit(85)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        519, this->se_rsequerycheckandlockaccountifpossible(), target);
+  }
+  
+  // optional .RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 520;
+  if (_has_bit(86)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        520, this->se_rsequerygalaxywindow(), target);
+  }
+  
+  // optional .RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 521;
+  if (_has_bit(87)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        521, this->se_rsequeryreceivewishitem(), target);
+  }
+  
+  // optional .RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 522;
+  if (_has_bit(88)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        522, this->se_rsequeryrefusereceivewishitem(), target);
+  }
+  
+  // optional .RseQuerySendWishItem se_RseQuerySendWishItem = 523;
+  if (_has_bit(89)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        523, this->se_rsequerysendwishitem(), target);
+  }
+  
+  // optional .RseQueryStarInfo se_RseQueryStarInfo = 524;
+  if (_has_bit(90)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        524, this->se_rsequerystarinfo(), target);
+  }
+  
+  // optional .RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 525;
+  if (_has_bit(91)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        525, this->se_rsequerystarsbookmarks(), target);
+  }
+  
+  // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 526;
+  if (_has_bit(92)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        526, this->se_rsequeryvisithelpsgiftunitsonbunker(), target);
+  }
+  
+  // optional .RseUnitDamaged se_RseUnitDamaged = 527;
+  if (_has_bit(93)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        527, this->se_rseunitdamaged(), target);
+  }
+  
+  // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 528;
+  if (_has_bit(94)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        528, this->se_rseupdategameunits(), target);
+  }
+  
+  // optional .RseUpdateItem se_RseUpdateItem = 529;
+  if (_has_bit(95)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        529, this->se_rseupdateitem(), target);
+  }
+  
+  // optional .RseUpdateMisc se_RseUpdateMisc = 530;
+  if (_has_bit(96)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        530, this->se_rseupdatemisc(), target);
+  }
+  
+  // optional .RseUpdateMissions se_RseUpdateMissions = 531;
+  if (_has_bit(97)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        531, this->se_rseupdatemissions(), target);
+  }
+  
+  // optional .RseUpdateProfile se_RseUpdateProfile = 532;
+  if (_has_bit(98)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        532, this->se_rseupdateprofile(), target);
+  }
+  
+  // optional .RseUpdateShips se_RseUpdateShips = 533;
+  if (_has_bit(99)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        533, this->se_rseupdateships(), target);
+  }
+  
+  // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+  if (_has_bit(100)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        534, this->se_rseupdatesocialitem(), target);
+  }
+  
+  // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+  if (_has_bit(101)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        535, this->se_rseupdatestarsbookmarks(), target);
+  }
+  
+  // optional .RseUpdateTargets se_RseUpdateTargets = 536;
+  if (_has_bit(102)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        536, this->se_rseupdatetargets(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1773,55 +3948,721 @@ int Event::ByteSize() const {
           this->uid());
     }
     
-    // optional .Forward forward = 5;
-    if (has_forward()) {
+    // optional int32 fromworld_fd = 5;
+    if (has_fromworld_fd()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->fromworld_fd());
+    }
+    
+    // optional .WorkingStatus_Req workingStatus_req = 6;
+    if (has_workingstatus_req()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->forward());
+          this->workingstatus_req());
     }
     
-    // optional string content = 6;
-    if (has_content()) {
+    // optional .UserLogin_Req userLogin_req = 7;
+    if (has_userlogin_req()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->content());
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->userlogin_req());
     }
     
-    // optional .WorkingStatusData workingStatus = 64;
-    if (has_workingstatus()) {
-      total_size += 2 +
+    // optional .UserLogin_Rsp userLogin_rsp = 8;
+    if (has_userlogin_rsp()) {
+      total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->workingstatus());
-    }
-    
-    // optional .UserAuthData userAuthData = 65;
-    if (has_userauthdata()) {
-      total_size += 2 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->userauthdata());
+          this->userlogin_rsp());
     }
     
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    // optional .UserLeave userleave = 68;
-    if (has_userleave()) {
-      total_size += 2 +
+    // optional .UserAuth_Req userAuth_req = 9;
+    if (has_userauth_req()) {
+      total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->userleave());
+          this->userauth_req());
     }
     
-    // optional .RseBroadcast se_RseBroadcast = 192;
-    if (has_se_rsebroadcast()) {
-      total_size += 2 +
+    // optional .UserAuth_Rsp userAuth_rsp = 10;
+    if (has_userauth_rsp()) {
+      total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->se_rsebroadcast());
+          this->userauth_rsp());
     }
     
-    // optional .RseAuthState se_RseAuthState = 193;
-    if (has_se_rseauthstate()) {
+    // optional .SendRemoteUser_Req sendRemoteUser_req = 11;
+    if (has_sendremoteuser_req()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->sendremoteuser_req());
+    }
+    
+    // optional .WG_UserLeave wg_UserLeave = 12;
+    if (has_wg_userleave()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->wg_userleave());
+    }
+    
+    // optional .GWG_FriendRequest friendinfo = 13;
+    if (has_friendinfo()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->friendinfo());
+    }
+    
+    // optional .ForwardInfo forwardinfo = 14;
+    if (has_forwardinfo()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->forwardinfo());
+    }
+    
+    // optional int32 starSrvID = 15;
+    if (has_starsrvid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->starsrvid());
+    }
+    
+    // optional int32 transferSrvID = 18;
+    if (has_transfersrvid()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->transfersrvid());
+    }
+    
+  }
+  if (_has_bits_[16 / 32] & (0xffu << (16 % 32))) {
+    // optional .WebGetRegion webGetRegion = 19;
+    if (has_webgetregion()) {
       total_size += 2 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->se_rseauthstate());
+          this->webgetregion());
+    }
+    
+    // optional int32 platSrvID = 20;
+    if (has_platsrvid()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->platsrvid());
+    }
+    
+    // optional string userPlat = 21;
+    if (has_userplat()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->userplat());
+    }
+    
+    // optional int32 worldSrvID = 22;
+    if (has_worldsrvid()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->worldsrvid());
+    }
+    
+    // optional int32 fightSrvID = 23;
+    if (has_fightsrvid()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->fightsrvid());
+    }
+    
+    // optional .GCG_CountryNeed countryNeed = 24;
+    if (has_countryneed()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->countryneed());
+    }
+    
+    // optional .GRG_RegionNeed regionNeed = 25;
+    if (has_regionneed()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->regionneed());
+    }
+    
+    // optional .GRG_RankNeed rankNeed = 26;
+    if (has_rankneed()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->rankneed());
+    }
+    
+  }
+  if (_has_bits_[24 / 32] & (0xffu << (24 % 32))) {
+    // optional .GSG_StatNeed statNeed = 27;
+    if (has_statneed()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->statneed());
+    }
+    
+    // optional .HttpAskMsg httpaskmsg = 114;
+    if (has_httpaskmsg()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->httpaskmsg());
+    }
+    
+    // optional .HttpAnswerMsg httpanswermsg = 115;
+    if (has_httpanswermsg()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->httpanswermsg());
+    }
+    
+    // optional .RceCustomizedActivity ce_RceCustomizedActivity = 200;
+    if (has_ce_rcecustomizedactivity()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcecustomizedactivity());
+    }
+    
+    // optional .RceLogin ce_RceLogin = 201;
+    if (has_ce_rcelogin()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcelogin());
+    }
+    
+    // optional .RceObtainAttackerList ce_RceObtainAttackerList = 202;
+    if (has_ce_rceobtainattackerlist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainattackerlist());
+    }
+    
+    // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
+    if (has_ce_rceobtainbattlereplay()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainbattlereplay());
+    }
+    
+    // optional .RceObtainCustomizer ce_RceObtainCustomizer = 204;
+    if (has_ce_rceobtaincustomizer()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtaincustomizer());
+    }
+    
+  }
+  if (_has_bits_[32 / 32] & (0xffu << (32 % 32))) {
+    // optional .RceObtainMessagesList ce_RceObtainMessagesList = 205;
+    if (has_ce_rceobtainmessageslist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainmessageslist());
+    }
+    
+    // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
+    if (has_ce_rceobtainneighborslist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainneighborslist());
+    }
+    
+    // optional .RceObtainNpcList ce_RceObtainNpcList = 207;
+    if (has_ce_rceobtainnpclist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainnpclist());
+    }
+    
+    // optional .RceObtainSocialItems ce_RceObtainSocialItems = 208;
+    if (has_ce_rceobtainsocialitems()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainsocialitems());
+    }
+    
+    // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
+    if (has_ce_rceobtainsocialuserinfo()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainsocialuserinfo());
+    }
+    
+    // optional .RceObtainUniverse ce_RceObtainUniverse = 210;
+    if (has_ce_rceobtainuniverse()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainuniverse());
+    }
+    
+    // optional .RceUpdateAlliances ce_RceUpdateAlliances = 211;
+    if (has_ce_rceupdatealliances()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatealliances());
+    }
+    
+    // optional .RceDeployUnits ce_RceDeployUnits = 212;
+    if (has_ce_rcedeployunits()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcedeployunits());
+    }
+    
+  }
+  if (_has_bits_[40 / 32] & (0xffu << (40 % 32))) {
+    // optional .RceItemDamaged ce_RceItemDamaged = 213;
+    if (has_ce_rceitemdamaged()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceitemdamaged());
+    }
+    
+    // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+    if (has_ce_rceobtainaskforhelp()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainaskforhelp());
+    }
+    
+    // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+    if (has_ce_rceobtainhangarshelp()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainhangarshelp());
+    }
+    
+    // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+    if (has_ce_rceobtainpayurlparame()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainpayurlparame());
+    }
+    
+    // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+    if (has_ce_rceobtainrandomtargets()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainrandomtargets());
+    }
+    
+    // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+    if (has_ce_rceobtainvisithelps()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceobtainvisithelps());
+    }
+    
+    // optional .RceOnlineReward ce_RceOnlineReward = 219;
+    if (has_ce_rceonlinereward()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceonlinereward());
+    }
+    
+    // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+    if (has_ce_rcequerycheckandlockaccountifpossible()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequerycheckandlockaccountifpossible());
+    }
+    
+  }
+  if (_has_bits_[48 / 32] & (0xffu << (48 % 32))) {
+    // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+    if (has_ce_rcequerygalaxywindow()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequerygalaxywindow());
+    }
+    
+    // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+    if (has_ce_rcequeryreceivewishitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequeryreceivewishitem());
+    }
+    
+    // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+    if (has_ce_rcequeryrefusereceivewishitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequeryrefusereceivewishitem());
+    }
+    
+    // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+    if (has_ce_rcequerysendwishitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequerysendwishitem());
+    }
+    
+    // optional .RceQueryStarInfo ce_RceQueryStarInfo = 225;
+    if (has_ce_rcequerystarinfo()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequerystarinfo());
+    }
+    
+    // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+    if (has_ce_rcequerystarsbookmarks()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequerystarsbookmarks());
+    }
+    
+    // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+    if (has_ce_rcequeryvisithelpsgiftunitsonbunker()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequeryvisithelpsgiftunitsonbunker());
+    }
+    
+    // optional .RceUnitDamaged ce_RceUnitDamaged = 228;
+    if (has_ce_rceunitdamaged()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceunitdamaged());
+    }
+    
+  }
+  if (_has_bits_[56 / 32] & (0xffu << (56 % 32))) {
+    // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
+    if (has_ce_rceupdategameunits()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdategameunits());
+    }
+    
+    // optional .RceUpdateItem ce_RceUpdateItem = 230;
+    if (has_ce_rceupdateitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdateitem());
+    }
+    
+    // optional .RceUpdateMisc ce_RceUpdateMisc = 231;
+    if (has_ce_rceupdatemisc()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatemisc());
+    }
+    
+    // optional .RceUpdateMissions ce_RceUpdateMissions = 232;
+    if (has_ce_rceupdatemissions()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatemissions());
+    }
+    
+    // optional .RceUpdateProfile ce_RceUpdateProfile = 233;
+    if (has_ce_rceupdateprofile()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdateprofile());
+    }
+    
+    // optional .RceUpdateShips ce_RceUpdateShips = 234;
+    if (has_ce_rceupdateships()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdateships());
+    }
+    
+    // optional .RceUpdateSocialItem ce_RceUpdateSocialItem = 235;
+    if (has_ce_rceupdatesocialitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatesocialitem());
+    }
+    
+    // optional .RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 236;
+    if (has_ce_rceupdatestarsbookmarks()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatestarsbookmarks());
+    }
+    
+  }
+  if (_has_bits_[64 / 32] & (0xffu << (64 % 32))) {
+    // optional .RceUpdateTargets ce_RceUpdateTargets = 237;
+    if (has_ce_rceupdatetargets()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatetargets());
+    }
+    
+    // optional .RceUpdateVisitHelp ce_RceUpdateVisitHelp = 238;
+    if (has_ce_rceupdatevisithelp()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rceupdatevisithelp());
+    }
+    
+    // optional .RseCustomizedActivity se_RseCustomizedActivity = 500;
+    if (has_se_rsecustomizedactivity()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsecustomizedactivity());
+    }
+    
+    // optional .RseLogin se_RseLogin = 501;
+    if (has_se_rselogin()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rselogin());
+    }
+    
+    // optional .RseObtainAttackerList se_RseObtainAttackerList = 502;
+    if (has_se_rseobtainattackerlist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainattackerlist());
+    }
+    
+    // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 503;
+    if (has_se_rseobtainbattlereplay()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainbattlereplay());
+    }
+    
+    // optional .RseObtainCustomizer se_RseObtainCustomizer = 504;
+    if (has_se_rseobtaincustomizer()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtaincustomizer());
+    }
+    
+    // optional .RseObtainMessagesList se_RseObtainMessagesList = 505;
+    if (has_se_rseobtainmessageslist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainmessageslist());
+    }
+    
+  }
+  if (_has_bits_[72 / 32] & (0xffu << (72 % 32))) {
+    // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 506;
+    if (has_se_rseobtainneighborslist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainneighborslist());
+    }
+    
+    // optional .RseObtainNpcList se_RseObtainNpcList = 507;
+    if (has_se_rseobtainnpclist()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainnpclist());
+    }
+    
+    // optional .RseObtainSocialItems se_RseObtainSocialItems = 508;
+    if (has_se_rseobtainsocialitems()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainsocialitems());
+    }
+    
+    // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
+    if (has_se_rseobtainsocialuserinfo()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainsocialuserinfo());
+    }
+    
+    // optional .RseObtainUniverse se_RseObtainUniverse = 510;
+    if (has_se_rseobtainuniverse()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainuniverse());
+    }
+    
+    // optional .RseUpdateAlliances se_RseUpdateAlliances = 511;
+    if (has_se_rseupdatealliances()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdatealliances());
+    }
+    
+    // optional .RseDeployUnits se_RseDeployUnits = 512;
+    if (has_se_rsedeployunits()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsedeployunits());
+    }
+    
+    // optional .RseItemDamaged se_RseItemDamaged = 513;
+    if (has_se_rseitemdamaged()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseitemdamaged());
+    }
+    
+  }
+  if (_has_bits_[80 / 32] & (0xffu << (80 % 32))) {
+    // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+    if (has_se_rseobtainaskforhelp()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainaskforhelp());
+    }
+    
+    // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+    if (has_se_rseobtainhangarshelp()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainhangarshelp());
+    }
+    
+    // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+    if (has_se_rseobtainpayurlparame()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainpayurlparame());
+    }
+    
+    // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+    if (has_se_rseobtainrandomtargets()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainrandomtargets());
+    }
+    
+    // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 518;
+    if (has_se_rseobtainvisithelps()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseobtainvisithelps());
+    }
+    
+    // optional .RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 519;
+    if (has_se_rsequerycheckandlockaccountifpossible()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequerycheckandlockaccountifpossible());
+    }
+    
+    // optional .RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 520;
+    if (has_se_rsequerygalaxywindow()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequerygalaxywindow());
+    }
+    
+    // optional .RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 521;
+    if (has_se_rsequeryreceivewishitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequeryreceivewishitem());
+    }
+    
+  }
+  if (_has_bits_[88 / 32] & (0xffu << (88 % 32))) {
+    // optional .RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 522;
+    if (has_se_rsequeryrefusereceivewishitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequeryrefusereceivewishitem());
+    }
+    
+    // optional .RseQuerySendWishItem se_RseQuerySendWishItem = 523;
+    if (has_se_rsequerysendwishitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequerysendwishitem());
+    }
+    
+    // optional .RseQueryStarInfo se_RseQueryStarInfo = 524;
+    if (has_se_rsequerystarinfo()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequerystarinfo());
+    }
+    
+    // optional .RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 525;
+    if (has_se_rsequerystarsbookmarks()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequerystarsbookmarks());
+    }
+    
+    // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 526;
+    if (has_se_rsequeryvisithelpsgiftunitsonbunker()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequeryvisithelpsgiftunitsonbunker());
+    }
+    
+    // optional .RseUnitDamaged se_RseUnitDamaged = 527;
+    if (has_se_rseunitdamaged()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseunitdamaged());
+    }
+    
+    // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 528;
+    if (has_se_rseupdategameunits()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdategameunits());
+    }
+    
+    // optional .RseUpdateItem se_RseUpdateItem = 529;
+    if (has_se_rseupdateitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdateitem());
+    }
+    
+  }
+  if (_has_bits_[96 / 32] & (0xffu << (96 % 32))) {
+    // optional .RseUpdateMisc se_RseUpdateMisc = 530;
+    if (has_se_rseupdatemisc()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdatemisc());
+    }
+    
+    // optional .RseUpdateMissions se_RseUpdateMissions = 531;
+    if (has_se_rseupdatemissions()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdatemissions());
+    }
+    
+    // optional .RseUpdateProfile se_RseUpdateProfile = 532;
+    if (has_se_rseupdateprofile()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdateprofile());
+    }
+    
+    // optional .RseUpdateShips se_RseUpdateShips = 533;
+    if (has_se_rseupdateships()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdateships());
+    }
+    
+    // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+    if (has_se_rseupdatesocialitem()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdatesocialitem());
+    }
+    
+    // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+    if (has_se_rseupdatestarsbookmarks()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdatestarsbookmarks());
+    }
+    
+    // optional .RseUpdateTargets se_RseUpdateTargets = 536;
+    if (has_se_rseupdatetargets()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rseupdatetargets());
     }
     
   }
@@ -1862,27 +4703,325 @@ void Event::MergeFrom(const Event& from) {
       set_uid(from.uid());
     }
     if (from._has_bit(4)) {
-      mutable_forward()->::Forward::MergeFrom(from.forward());
+      set_fromworld_fd(from.fromworld_fd());
     }
     if (from._has_bit(5)) {
-      set_content(from.content());
+      mutable_workingstatus_req()->::WorkingStatus_Req::MergeFrom(from.workingstatus_req());
     }
     if (from._has_bit(6)) {
-      mutable_workingstatus()->::WorkingStatusData::MergeFrom(from.workingstatus());
+      mutable_userlogin_req()->::UserLogin_Req::MergeFrom(from.userlogin_req());
     }
     if (from._has_bit(7)) {
-      mutable_userauthdata()->::UserAuthData::MergeFrom(from.userauthdata());
+      mutable_userlogin_rsp()->::UserLogin_Rsp::MergeFrom(from.userlogin_rsp());
     }
   }
   if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     if (from._has_bit(8)) {
-      mutable_userleave()->::UserLeave::MergeFrom(from.userleave());
+      mutable_userauth_req()->::UserAuth_Req::MergeFrom(from.userauth_req());
     }
     if (from._has_bit(9)) {
-      mutable_se_rsebroadcast()->::RseBroadcast::MergeFrom(from.se_rsebroadcast());
+      mutable_userauth_rsp()->::UserAuth_Rsp::MergeFrom(from.userauth_rsp());
     }
     if (from._has_bit(10)) {
-      mutable_se_rseauthstate()->::RseAuthState::MergeFrom(from.se_rseauthstate());
+      mutable_sendremoteuser_req()->::SendRemoteUser_Req::MergeFrom(from.sendremoteuser_req());
+    }
+    if (from._has_bit(11)) {
+      mutable_wg_userleave()->::WG_UserLeave::MergeFrom(from.wg_userleave());
+    }
+    if (from._has_bit(12)) {
+      mutable_friendinfo()->::GWG_FriendRequest::MergeFrom(from.friendinfo());
+    }
+    if (from._has_bit(13)) {
+      mutable_forwardinfo()->::ForwardInfo::MergeFrom(from.forwardinfo());
+    }
+    if (from._has_bit(14)) {
+      set_starsrvid(from.starsrvid());
+    }
+    if (from._has_bit(15)) {
+      set_transfersrvid(from.transfersrvid());
+    }
+  }
+  if (from._has_bits_[16 / 32] & (0xffu << (16 % 32))) {
+    if (from._has_bit(16)) {
+      mutable_webgetregion()->::WebGetRegion::MergeFrom(from.webgetregion());
+    }
+    if (from._has_bit(17)) {
+      set_platsrvid(from.platsrvid());
+    }
+    if (from._has_bit(18)) {
+      set_userplat(from.userplat());
+    }
+    if (from._has_bit(19)) {
+      set_worldsrvid(from.worldsrvid());
+    }
+    if (from._has_bit(20)) {
+      set_fightsrvid(from.fightsrvid());
+    }
+    if (from._has_bit(21)) {
+      mutable_countryneed()->::GCG_CountryNeed::MergeFrom(from.countryneed());
+    }
+    if (from._has_bit(22)) {
+      mutable_regionneed()->::GRG_RegionNeed::MergeFrom(from.regionneed());
+    }
+    if (from._has_bit(23)) {
+      mutable_rankneed()->::GRG_RankNeed::MergeFrom(from.rankneed());
+    }
+  }
+  if (from._has_bits_[24 / 32] & (0xffu << (24 % 32))) {
+    if (from._has_bit(24)) {
+      mutable_statneed()->::GSG_StatNeed::MergeFrom(from.statneed());
+    }
+    if (from._has_bit(25)) {
+      mutable_httpaskmsg()->::HttpAskMsg::MergeFrom(from.httpaskmsg());
+    }
+    if (from._has_bit(26)) {
+      mutable_httpanswermsg()->::HttpAnswerMsg::MergeFrom(from.httpanswermsg());
+    }
+    if (from._has_bit(27)) {
+      mutable_ce_rcecustomizedactivity()->::RceCustomizedActivity::MergeFrom(from.ce_rcecustomizedactivity());
+    }
+    if (from._has_bit(28)) {
+      mutable_ce_rcelogin()->::RceLogin::MergeFrom(from.ce_rcelogin());
+    }
+    if (from._has_bit(29)) {
+      mutable_ce_rceobtainattackerlist()->::RceObtainAttackerList::MergeFrom(from.ce_rceobtainattackerlist());
+    }
+    if (from._has_bit(30)) {
+      mutable_ce_rceobtainbattlereplay()->::RceObtainBattleReplay::MergeFrom(from.ce_rceobtainbattlereplay());
+    }
+    if (from._has_bit(31)) {
+      mutable_ce_rceobtaincustomizer()->::RceObtainCustomizer::MergeFrom(from.ce_rceobtaincustomizer());
+    }
+  }
+  if (from._has_bits_[32 / 32] & (0xffu << (32 % 32))) {
+    if (from._has_bit(32)) {
+      mutable_ce_rceobtainmessageslist()->::RceObtainMessagesList::MergeFrom(from.ce_rceobtainmessageslist());
+    }
+    if (from._has_bit(33)) {
+      mutable_ce_rceobtainneighborslist()->::RceObtainNeighborsList::MergeFrom(from.ce_rceobtainneighborslist());
+    }
+    if (from._has_bit(34)) {
+      mutable_ce_rceobtainnpclist()->::RceObtainNpcList::MergeFrom(from.ce_rceobtainnpclist());
+    }
+    if (from._has_bit(35)) {
+      mutable_ce_rceobtainsocialitems()->::RceObtainSocialItems::MergeFrom(from.ce_rceobtainsocialitems());
+    }
+    if (from._has_bit(36)) {
+      mutable_ce_rceobtainsocialuserinfo()->::RceObtainSocialUserInfo::MergeFrom(from.ce_rceobtainsocialuserinfo());
+    }
+    if (from._has_bit(37)) {
+      mutable_ce_rceobtainuniverse()->::RceObtainUniverse::MergeFrom(from.ce_rceobtainuniverse());
+    }
+    if (from._has_bit(38)) {
+      mutable_ce_rceupdatealliances()->::RceUpdateAlliances::MergeFrom(from.ce_rceupdatealliances());
+    }
+    if (from._has_bit(39)) {
+      mutable_ce_rcedeployunits()->::RceDeployUnits::MergeFrom(from.ce_rcedeployunits());
+    }
+  }
+  if (from._has_bits_[40 / 32] & (0xffu << (40 % 32))) {
+    if (from._has_bit(40)) {
+      mutable_ce_rceitemdamaged()->::RceItemDamaged::MergeFrom(from.ce_rceitemdamaged());
+    }
+    if (from._has_bit(41)) {
+      mutable_ce_rceobtainaskforhelp()->::RceObtainAskForHelp::MergeFrom(from.ce_rceobtainaskforhelp());
+    }
+    if (from._has_bit(42)) {
+      mutable_ce_rceobtainhangarshelp()->::RceObtainHangarsHelp::MergeFrom(from.ce_rceobtainhangarshelp());
+    }
+    if (from._has_bit(43)) {
+      mutable_ce_rceobtainpayurlparame()->::RceObtainPayUrlParame::MergeFrom(from.ce_rceobtainpayurlparame());
+    }
+    if (from._has_bit(44)) {
+      mutable_ce_rceobtainrandomtargets()->::RceObtainRandomTargets::MergeFrom(from.ce_rceobtainrandomtargets());
+    }
+    if (from._has_bit(45)) {
+      mutable_ce_rceobtainvisithelps()->::RceObtainVisitHelps::MergeFrom(from.ce_rceobtainvisithelps());
+    }
+    if (from._has_bit(46)) {
+      mutable_ce_rceonlinereward()->::RceOnlineReward::MergeFrom(from.ce_rceonlinereward());
+    }
+    if (from._has_bit(47)) {
+      mutable_ce_rcequerycheckandlockaccountifpossible()->::RceQueryCheckAndLockAccountIfPossible::MergeFrom(from.ce_rcequerycheckandlockaccountifpossible());
+    }
+  }
+  if (from._has_bits_[48 / 32] & (0xffu << (48 % 32))) {
+    if (from._has_bit(48)) {
+      mutable_ce_rcequerygalaxywindow()->::RceQueryGalaxyWindow::MergeFrom(from.ce_rcequerygalaxywindow());
+    }
+    if (from._has_bit(49)) {
+      mutable_ce_rcequeryreceivewishitem()->::RceQueryReceiveWishItem::MergeFrom(from.ce_rcequeryreceivewishitem());
+    }
+    if (from._has_bit(50)) {
+      mutable_ce_rcequeryrefusereceivewishitem()->::RceQueryRefuseReceiveWishItem::MergeFrom(from.ce_rcequeryrefusereceivewishitem());
+    }
+    if (from._has_bit(51)) {
+      mutable_ce_rcequerysendwishitem()->::RceQuerySendWishItem::MergeFrom(from.ce_rcequerysendwishitem());
+    }
+    if (from._has_bit(52)) {
+      mutable_ce_rcequerystarinfo()->::RceQueryStarInfo::MergeFrom(from.ce_rcequerystarinfo());
+    }
+    if (from._has_bit(53)) {
+      mutable_ce_rcequerystarsbookmarks()->::RceQueryStarsBookmarks::MergeFrom(from.ce_rcequerystarsbookmarks());
+    }
+    if (from._has_bit(54)) {
+      mutable_ce_rcequeryvisithelpsgiftunitsonbunker()->::RceQueryVisitHelpsGiftUnitsOnBunker::MergeFrom(from.ce_rcequeryvisithelpsgiftunitsonbunker());
+    }
+    if (from._has_bit(55)) {
+      mutable_ce_rceunitdamaged()->::RceUnitDamaged::MergeFrom(from.ce_rceunitdamaged());
+    }
+  }
+  if (from._has_bits_[56 / 32] & (0xffu << (56 % 32))) {
+    if (from._has_bit(56)) {
+      mutable_ce_rceupdategameunits()->::RceUpdateGameUnits::MergeFrom(from.ce_rceupdategameunits());
+    }
+    if (from._has_bit(57)) {
+      mutable_ce_rceupdateitem()->::RceUpdateItem::MergeFrom(from.ce_rceupdateitem());
+    }
+    if (from._has_bit(58)) {
+      mutable_ce_rceupdatemisc()->::RceUpdateMisc::MergeFrom(from.ce_rceupdatemisc());
+    }
+    if (from._has_bit(59)) {
+      mutable_ce_rceupdatemissions()->::RceUpdateMissions::MergeFrom(from.ce_rceupdatemissions());
+    }
+    if (from._has_bit(60)) {
+      mutable_ce_rceupdateprofile()->::RceUpdateProfile::MergeFrom(from.ce_rceupdateprofile());
+    }
+    if (from._has_bit(61)) {
+      mutable_ce_rceupdateships()->::RceUpdateShips::MergeFrom(from.ce_rceupdateships());
+    }
+    if (from._has_bit(62)) {
+      mutable_ce_rceupdatesocialitem()->::RceUpdateSocialItem::MergeFrom(from.ce_rceupdatesocialitem());
+    }
+    if (from._has_bit(63)) {
+      mutable_ce_rceupdatestarsbookmarks()->::RceUpdateStarsBookmarks::MergeFrom(from.ce_rceupdatestarsbookmarks());
+    }
+  }
+  if (from._has_bits_[64 / 32] & (0xffu << (64 % 32))) {
+    if (from._has_bit(64)) {
+      mutable_ce_rceupdatetargets()->::RceUpdateTargets::MergeFrom(from.ce_rceupdatetargets());
+    }
+    if (from._has_bit(65)) {
+      mutable_ce_rceupdatevisithelp()->::RceUpdateVisitHelp::MergeFrom(from.ce_rceupdatevisithelp());
+    }
+    if (from._has_bit(66)) {
+      mutable_se_rsecustomizedactivity()->::RseCustomizedActivity::MergeFrom(from.se_rsecustomizedactivity());
+    }
+    if (from._has_bit(67)) {
+      mutable_se_rselogin()->::RseLogin::MergeFrom(from.se_rselogin());
+    }
+    if (from._has_bit(68)) {
+      mutable_se_rseobtainattackerlist()->::RseObtainAttackerList::MergeFrom(from.se_rseobtainattackerlist());
+    }
+    if (from._has_bit(69)) {
+      mutable_se_rseobtainbattlereplay()->::RseObtainBattleReplay::MergeFrom(from.se_rseobtainbattlereplay());
+    }
+    if (from._has_bit(70)) {
+      mutable_se_rseobtaincustomizer()->::RseObtainCustomizer::MergeFrom(from.se_rseobtaincustomizer());
+    }
+    if (from._has_bit(71)) {
+      mutable_se_rseobtainmessageslist()->::RseObtainMessagesList::MergeFrom(from.se_rseobtainmessageslist());
+    }
+  }
+  if (from._has_bits_[72 / 32] & (0xffu << (72 % 32))) {
+    if (from._has_bit(72)) {
+      mutable_se_rseobtainneighborslist()->::RseObtainNeighborsList::MergeFrom(from.se_rseobtainneighborslist());
+    }
+    if (from._has_bit(73)) {
+      mutable_se_rseobtainnpclist()->::RseObtainNpcList::MergeFrom(from.se_rseobtainnpclist());
+    }
+    if (from._has_bit(74)) {
+      mutable_se_rseobtainsocialitems()->::RseObtainSocialItems::MergeFrom(from.se_rseobtainsocialitems());
+    }
+    if (from._has_bit(75)) {
+      mutable_se_rseobtainsocialuserinfo()->::RseObtainSocialUserInfo::MergeFrom(from.se_rseobtainsocialuserinfo());
+    }
+    if (from._has_bit(76)) {
+      mutable_se_rseobtainuniverse()->::RseObtainUniverse::MergeFrom(from.se_rseobtainuniverse());
+    }
+    if (from._has_bit(77)) {
+      mutable_se_rseupdatealliances()->::RseUpdateAlliances::MergeFrom(from.se_rseupdatealliances());
+    }
+    if (from._has_bit(78)) {
+      mutable_se_rsedeployunits()->::RseDeployUnits::MergeFrom(from.se_rsedeployunits());
+    }
+    if (from._has_bit(79)) {
+      mutable_se_rseitemdamaged()->::RseItemDamaged::MergeFrom(from.se_rseitemdamaged());
+    }
+  }
+  if (from._has_bits_[80 / 32] & (0xffu << (80 % 32))) {
+    if (from._has_bit(80)) {
+      mutable_se_rseobtainaskforhelp()->::RseObtainAskForHelp::MergeFrom(from.se_rseobtainaskforhelp());
+    }
+    if (from._has_bit(81)) {
+      mutable_se_rseobtainhangarshelp()->::RseObtainHangarsHelp::MergeFrom(from.se_rseobtainhangarshelp());
+    }
+    if (from._has_bit(82)) {
+      mutable_se_rseobtainpayurlparame()->::RseObtainPayUrlParame::MergeFrom(from.se_rseobtainpayurlparame());
+    }
+    if (from._has_bit(83)) {
+      mutable_se_rseobtainrandomtargets()->::RseObtainRandomTargets::MergeFrom(from.se_rseobtainrandomtargets());
+    }
+    if (from._has_bit(84)) {
+      mutable_se_rseobtainvisithelps()->::RseObtainVisitHelps::MergeFrom(from.se_rseobtainvisithelps());
+    }
+    if (from._has_bit(85)) {
+      mutable_se_rsequerycheckandlockaccountifpossible()->::RseQueryCheckAndLockAccountIfPossible::MergeFrom(from.se_rsequerycheckandlockaccountifpossible());
+    }
+    if (from._has_bit(86)) {
+      mutable_se_rsequerygalaxywindow()->::RseQueryGalaxyWindow::MergeFrom(from.se_rsequerygalaxywindow());
+    }
+    if (from._has_bit(87)) {
+      mutable_se_rsequeryreceivewishitem()->::RseQueryReceiveWishItem::MergeFrom(from.se_rsequeryreceivewishitem());
+    }
+  }
+  if (from._has_bits_[88 / 32] & (0xffu << (88 % 32))) {
+    if (from._has_bit(88)) {
+      mutable_se_rsequeryrefusereceivewishitem()->::RseQueryRefuseReceiveWishItem::MergeFrom(from.se_rsequeryrefusereceivewishitem());
+    }
+    if (from._has_bit(89)) {
+      mutable_se_rsequerysendwishitem()->::RseQuerySendWishItem::MergeFrom(from.se_rsequerysendwishitem());
+    }
+    if (from._has_bit(90)) {
+      mutable_se_rsequerystarinfo()->::RseQueryStarInfo::MergeFrom(from.se_rsequerystarinfo());
+    }
+    if (from._has_bit(91)) {
+      mutable_se_rsequerystarsbookmarks()->::RseQueryStarsBookmarks::MergeFrom(from.se_rsequerystarsbookmarks());
+    }
+    if (from._has_bit(92)) {
+      mutable_se_rsequeryvisithelpsgiftunitsonbunker()->::RseQueryVisitHelpsGiftUnitsOnBunker::MergeFrom(from.se_rsequeryvisithelpsgiftunitsonbunker());
+    }
+    if (from._has_bit(93)) {
+      mutable_se_rseunitdamaged()->::RseUnitDamaged::MergeFrom(from.se_rseunitdamaged());
+    }
+    if (from._has_bit(94)) {
+      mutable_se_rseupdategameunits()->::RseUpdateGameUnits::MergeFrom(from.se_rseupdategameunits());
+    }
+    if (from._has_bit(95)) {
+      mutable_se_rseupdateitem()->::RseUpdateItem::MergeFrom(from.se_rseupdateitem());
+    }
+  }
+  if (from._has_bits_[96 / 32] & (0xffu << (96 % 32))) {
+    if (from._has_bit(96)) {
+      mutable_se_rseupdatemisc()->::RseUpdateMisc::MergeFrom(from.se_rseupdatemisc());
+    }
+    if (from._has_bit(97)) {
+      mutable_se_rseupdatemissions()->::RseUpdateMissions::MergeFrom(from.se_rseupdatemissions());
+    }
+    if (from._has_bit(98)) {
+      mutable_se_rseupdateprofile()->::RseUpdateProfile::MergeFrom(from.se_rseupdateprofile());
+    }
+    if (from._has_bit(99)) {
+      mutable_se_rseupdateships()->::RseUpdateShips::MergeFrom(from.se_rseupdateships());
+    }
+    if (from._has_bit(100)) {
+      mutable_se_rseupdatesocialitem()->::RseUpdateSocialItem::MergeFrom(from.se_rseupdatesocialitem());
+    }
+    if (from._has_bit(101)) {
+      mutable_se_rseupdatestarsbookmarks()->::RseUpdateStarsBookmarks::MergeFrom(from.se_rseupdatestarsbookmarks());
+    }
+    if (from._has_bit(102)) {
+      mutable_se_rseupdatetargets()->::RseUpdateTargets::MergeFrom(from.se_rseupdatetargets());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1903,17 +5042,32 @@ void Event::CopyFrom(const Event& from) {
 bool Event::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
   
-  if (has_workingstatus()) {
-    if (!this->workingstatus().IsInitialized()) return false;
+  if (has_workingstatus_req()) {
+    if (!this->workingstatus_req().IsInitialized()) return false;
   }
-  if (has_userauthdata()) {
-    if (!this->userauthdata().IsInitialized()) return false;
+  if (has_userlogin_req()) {
+    if (!this->userlogin_req().IsInitialized()) return false;
   }
-  if (has_userleave()) {
-    if (!this->userleave().IsInitialized()) return false;
+  if (has_userlogin_rsp()) {
+    if (!this->userlogin_rsp().IsInitialized()) return false;
   }
-  if (has_se_rseauthstate()) {
-    if (!this->se_rseauthstate().IsInitialized()) return false;
+  if (has_userauth_req()) {
+    if (!this->userauth_req().IsInitialized()) return false;
+  }
+  if (has_userauth_rsp()) {
+    if (!this->userauth_rsp().IsInitialized()) return false;
+  }
+  if (has_sendremoteuser_req()) {
+    if (!this->sendremoteuser_req().IsInitialized()) return false;
+  }
+  if (has_wg_userleave()) {
+    if (!this->wg_userleave().IsInitialized()) return false;
+  }
+  if (has_friendinfo()) {
+    if (!this->friendinfo().IsInitialized()) return false;
+  }
+  if (has_webgetregion()) {
+    if (!this->webgetregion().IsInitialized()) return false;
   }
   return true;
 }
@@ -1924,14 +5078,109 @@ void Event::Swap(Event* other) {
     std::swap(state_, other->state_);
     std::swap(time_, other->time_);
     std::swap(uid_, other->uid_);
-    std::swap(forward_, other->forward_);
-    std::swap(content_, other->content_);
-    std::swap(workingstatus_, other->workingstatus_);
-    std::swap(userauthdata_, other->userauthdata_);
-    std::swap(userleave_, other->userleave_);
-    std::swap(se_rsebroadcast_, other->se_rsebroadcast_);
-    std::swap(se_rseauthstate_, other->se_rseauthstate_);
+    std::swap(fromworld_fd_, other->fromworld_fd_);
+    std::swap(workingstatus_req_, other->workingstatus_req_);
+    std::swap(userlogin_req_, other->userlogin_req_);
+    std::swap(userlogin_rsp_, other->userlogin_rsp_);
+    std::swap(userauth_req_, other->userauth_req_);
+    std::swap(userauth_rsp_, other->userauth_rsp_);
+    std::swap(sendremoteuser_req_, other->sendremoteuser_req_);
+    std::swap(wg_userleave_, other->wg_userleave_);
+    std::swap(friendinfo_, other->friendinfo_);
+    std::swap(forwardinfo_, other->forwardinfo_);
+    std::swap(starsrvid_, other->starsrvid_);
+    std::swap(transfersrvid_, other->transfersrvid_);
+    std::swap(webgetregion_, other->webgetregion_);
+    std::swap(platsrvid_, other->platsrvid_);
+    std::swap(userplat_, other->userplat_);
+    std::swap(worldsrvid_, other->worldsrvid_);
+    std::swap(fightsrvid_, other->fightsrvid_);
+    std::swap(countryneed_, other->countryneed_);
+    std::swap(regionneed_, other->regionneed_);
+    std::swap(rankneed_, other->rankneed_);
+    std::swap(statneed_, other->statneed_);
+    std::swap(httpaskmsg_, other->httpaskmsg_);
+    std::swap(httpanswermsg_, other->httpanswermsg_);
+    std::swap(ce_rcecustomizedactivity_, other->ce_rcecustomizedactivity_);
+    std::swap(ce_rcelogin_, other->ce_rcelogin_);
+    std::swap(ce_rceobtainattackerlist_, other->ce_rceobtainattackerlist_);
+    std::swap(ce_rceobtainbattlereplay_, other->ce_rceobtainbattlereplay_);
+    std::swap(ce_rceobtaincustomizer_, other->ce_rceobtaincustomizer_);
+    std::swap(ce_rceobtainmessageslist_, other->ce_rceobtainmessageslist_);
+    std::swap(ce_rceobtainneighborslist_, other->ce_rceobtainneighborslist_);
+    std::swap(ce_rceobtainnpclist_, other->ce_rceobtainnpclist_);
+    std::swap(ce_rceobtainsocialitems_, other->ce_rceobtainsocialitems_);
+    std::swap(ce_rceobtainsocialuserinfo_, other->ce_rceobtainsocialuserinfo_);
+    std::swap(ce_rceobtainuniverse_, other->ce_rceobtainuniverse_);
+    std::swap(ce_rceupdatealliances_, other->ce_rceupdatealliances_);
+    std::swap(ce_rcedeployunits_, other->ce_rcedeployunits_);
+    std::swap(ce_rceitemdamaged_, other->ce_rceitemdamaged_);
+    std::swap(ce_rceobtainaskforhelp_, other->ce_rceobtainaskforhelp_);
+    std::swap(ce_rceobtainhangarshelp_, other->ce_rceobtainhangarshelp_);
+    std::swap(ce_rceobtainpayurlparame_, other->ce_rceobtainpayurlparame_);
+    std::swap(ce_rceobtainrandomtargets_, other->ce_rceobtainrandomtargets_);
+    std::swap(ce_rceobtainvisithelps_, other->ce_rceobtainvisithelps_);
+    std::swap(ce_rceonlinereward_, other->ce_rceonlinereward_);
+    std::swap(ce_rcequerycheckandlockaccountifpossible_, other->ce_rcequerycheckandlockaccountifpossible_);
+    std::swap(ce_rcequerygalaxywindow_, other->ce_rcequerygalaxywindow_);
+    std::swap(ce_rcequeryreceivewishitem_, other->ce_rcequeryreceivewishitem_);
+    std::swap(ce_rcequeryrefusereceivewishitem_, other->ce_rcequeryrefusereceivewishitem_);
+    std::swap(ce_rcequerysendwishitem_, other->ce_rcequerysendwishitem_);
+    std::swap(ce_rcequerystarinfo_, other->ce_rcequerystarinfo_);
+    std::swap(ce_rcequerystarsbookmarks_, other->ce_rcequerystarsbookmarks_);
+    std::swap(ce_rcequeryvisithelpsgiftunitsonbunker_, other->ce_rcequeryvisithelpsgiftunitsonbunker_);
+    std::swap(ce_rceunitdamaged_, other->ce_rceunitdamaged_);
+    std::swap(ce_rceupdategameunits_, other->ce_rceupdategameunits_);
+    std::swap(ce_rceupdateitem_, other->ce_rceupdateitem_);
+    std::swap(ce_rceupdatemisc_, other->ce_rceupdatemisc_);
+    std::swap(ce_rceupdatemissions_, other->ce_rceupdatemissions_);
+    std::swap(ce_rceupdateprofile_, other->ce_rceupdateprofile_);
+    std::swap(ce_rceupdateships_, other->ce_rceupdateships_);
+    std::swap(ce_rceupdatesocialitem_, other->ce_rceupdatesocialitem_);
+    std::swap(ce_rceupdatestarsbookmarks_, other->ce_rceupdatestarsbookmarks_);
+    std::swap(ce_rceupdatetargets_, other->ce_rceupdatetargets_);
+    std::swap(ce_rceupdatevisithelp_, other->ce_rceupdatevisithelp_);
+    std::swap(se_rsecustomizedactivity_, other->se_rsecustomizedactivity_);
+    std::swap(se_rselogin_, other->se_rselogin_);
+    std::swap(se_rseobtainattackerlist_, other->se_rseobtainattackerlist_);
+    std::swap(se_rseobtainbattlereplay_, other->se_rseobtainbattlereplay_);
+    std::swap(se_rseobtaincustomizer_, other->se_rseobtaincustomizer_);
+    std::swap(se_rseobtainmessageslist_, other->se_rseobtainmessageslist_);
+    std::swap(se_rseobtainneighborslist_, other->se_rseobtainneighborslist_);
+    std::swap(se_rseobtainnpclist_, other->se_rseobtainnpclist_);
+    std::swap(se_rseobtainsocialitems_, other->se_rseobtainsocialitems_);
+    std::swap(se_rseobtainsocialuserinfo_, other->se_rseobtainsocialuserinfo_);
+    std::swap(se_rseobtainuniverse_, other->se_rseobtainuniverse_);
+    std::swap(se_rseupdatealliances_, other->se_rseupdatealliances_);
+    std::swap(se_rsedeployunits_, other->se_rsedeployunits_);
+    std::swap(se_rseitemdamaged_, other->se_rseitemdamaged_);
+    std::swap(se_rseobtainaskforhelp_, other->se_rseobtainaskforhelp_);
+    std::swap(se_rseobtainhangarshelp_, other->se_rseobtainhangarshelp_);
+    std::swap(se_rseobtainpayurlparame_, other->se_rseobtainpayurlparame_);
+    std::swap(se_rseobtainrandomtargets_, other->se_rseobtainrandomtargets_);
+    std::swap(se_rseobtainvisithelps_, other->se_rseobtainvisithelps_);
+    std::swap(se_rsequerycheckandlockaccountifpossible_, other->se_rsequerycheckandlockaccountifpossible_);
+    std::swap(se_rsequerygalaxywindow_, other->se_rsequerygalaxywindow_);
+    std::swap(se_rsequeryreceivewishitem_, other->se_rsequeryreceivewishitem_);
+    std::swap(se_rsequeryrefusereceivewishitem_, other->se_rsequeryrefusereceivewishitem_);
+    std::swap(se_rsequerysendwishitem_, other->se_rsequerysendwishitem_);
+    std::swap(se_rsequerystarinfo_, other->se_rsequerystarinfo_);
+    std::swap(se_rsequerystarsbookmarks_, other->se_rsequerystarsbookmarks_);
+    std::swap(se_rsequeryvisithelpsgiftunitsonbunker_, other->se_rsequeryvisithelpsgiftunitsonbunker_);
+    std::swap(se_rseunitdamaged_, other->se_rseunitdamaged_);
+    std::swap(se_rseupdategameunits_, other->se_rseupdategameunits_);
+    std::swap(se_rseupdateitem_, other->se_rseupdateitem_);
+    std::swap(se_rseupdatemisc_, other->se_rseupdatemisc_);
+    std::swap(se_rseupdatemissions_, other->se_rseupdatemissions_);
+    std::swap(se_rseupdateprofile_, other->se_rseupdateprofile_);
+    std::swap(se_rseupdateships_, other->se_rseupdateships_);
+    std::swap(se_rseupdatesocialitem_, other->se_rseupdatesocialitem_);
+    std::swap(se_rseupdatestarsbookmarks_, other->se_rseupdatestarsbookmarks_);
+    std::swap(se_rseupdatetargets_, other->se_rseupdatetargets_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
+    std::swap(_has_bits_[1], other->_has_bits_[1]);
+    std::swap(_has_bits_[2], other->_has_bits_[2]);
+    std::swap(_has_bits_[3], other->_has_bits_[3]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }

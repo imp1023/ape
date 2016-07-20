@@ -1,55 +1,198 @@
-//start import 开始到结束部分为为自动生成
-import "RseAuthState.proto"; 
-import "RseBroadcast.proto"; 
+//start import 开始到结束部分为为自动生成 
+import "RceCustomizedActivity.proto"; 
+import "RceDeployUnits.proto"; 
+import "RceItemDamaged.proto"; 
+import "RceLogin.proto"; 
+import "RceObtainAskForHelp.proto"; 
+import "RceObtainAttackerList.proto"; 
+import "RceObtainBattleReplay.proto"; 
+import "RceObtainCustomizer.proto"; 
+import "RceObtainHangarsHelp.proto"; 
+import "RceObtainMessagesList.proto"; 
+import "RceObtainNeighborsList.proto"; 
+import "RceObtainNpcList.proto"; 
+import "RceObtainPayUrlParame.proto"; 
+import "RceObtainRandomTargets.proto"; 
+import "RceObtainSocialItems.proto"; 
+import "RceObtainSocialUserInfo.proto"; 
+import "RceObtainUniverse.proto"; 
+import "RceObtainVisitHelps.proto"; 
+import "RceOnlineReward.proto"; 
+import "RceQueryCheckAndLockAccountIfPossible.proto"; 
+import "RceQueryGalaxyWindow.proto"; 
+import "RceQueryReceiveWishItem.proto"; 
+import "RceQueryRefuseReceiveWishItem.proto"; 
+import "RceQuerySendWishItem.proto"; 
+import "RceQueryStarInfo.proto"; 
+import "RceQueryStarsBookmarks.proto"; 
+import "RceQueryVisitHelpsGiftUnitsOnBunker.proto"; 
+import "RceUnitDamaged.proto"; 
+import "RceUpdateAlliances.proto"; 
+import "RceUpdateGameUnits.proto"; 
+import "RceUpdateItem.proto"; 
+import "RceUpdateMisc.proto"; 
+import "RceUpdateMissions.proto"; 
+import "RceUpdateProfile.proto"; 
+import "RceUpdateShips.proto"; 
+import "RceUpdateSocialItem.proto"; 
+import "RceUpdateStarsBookmarks.proto"; 
+import "RceUpdateTargets.proto"; 
+import "RceUpdateVisitHelp.proto"; 
+import "RseCustomizedActivity.proto"; 
+import "RseDeployUnits.proto"; 
+import "RseItemDamaged.proto"; 
+import "RseLogin.proto"; 
+import "RseObtainAskForHelp.proto"; 
+import "RseObtainAttackerList.proto"; 
+import "RseObtainBattleReplay.proto"; 
+import "RseObtainCustomizer.proto"; 
+import "RseObtainHangarsHelp.proto"; 
+import "RseObtainMessagesList.proto"; 
+import "RseObtainNeighborsList.proto"; 
+import "RseObtainNpcList.proto"; 
+import "RseObtainPayUrlParame.proto"; 
+import "RseObtainRandomTargets.proto"; 
+import "RseObtainSocialItems.proto"; 
+import "RseObtainSocialUserInfo.proto"; 
+import "RseObtainUniverse.proto"; 
+import "RseObtainVisitHelps.proto"; 
+import "RseQueryCheckAndLockAccountIfPossible.proto"; 
+import "RseQueryGalaxyWindow.proto"; 
+import "RseQueryReceiveWishItem.proto"; 
+import "RseQueryRefuseReceiveWishItem.proto"; 
+import "RseQuerySendWishItem.proto"; 
+import "RseQueryStarInfo.proto"; 
+import "RseQueryStarsBookmarks.proto"; 
+import "RseQueryVisitHelpsGiftUnitsOnBunker.proto"; 
+import "RseUnitDamaged.proto"; 
+import "RseUpdateAlliances.proto"; 
+import "RseUpdateGameUnits.proto"; 
+import "RseUpdateItem.proto"; 
+import "RseUpdateMisc.proto"; 
+import "RseUpdateMissions.proto"; 
+import "RseUpdateProfile.proto"; 
+import "RseUpdateShips.proto"; 
+import "RseUpdateSocialItem.proto"; 
+import "RseUpdateStarsBookmarks.proto"; 
+import "RseUpdateTargets.proto"; 
 //end import
+import "event_sub.proto";
 
+///////////////////////////////////////////////////////////////////////////////////
 //该文件中event数据结构手写的部分，必须在*****start Event auto*******的上面，否则将被覆盖掉！！！
-
-message Forward
-{
-    optional int32 serveridFrom = 1;
-    optional int32 serveridTo   = 2;
-    optional int32 serverfdFrom = 3;
-    optional int32 serverfdTo   = 4;
-    optional int32 worldfd      = 5;
-}
-
-message WorkingStatusData
-{
-	required int32 gid   = 1;
-	required bool finish = 2;
-}
-
-message UserLeave
-{
-	required int32 fd	  = 1;	
-}
-
-message UserAuthData
-{
-	required int64 uid    = 1;
-	required int64 secret = 2;
-	required int32 sockfd = 3;
-}
-
 message Event {
-	required int32 cmd       = 1;
-	required int32 state     = 2;
-	required int64 time      = 3;
+	required int32 cmd 		= 1;
+	required int32 state 	= 2;
+	required int64 time 	= 3;
+	optional int64 uid 		= 4;
+	optional int32 fromworld_fd = 5;	
+	optional WorkingStatus_Req workingStatus_req 	= 6;
+	optional UserLogin_Req userLogin_req 					= 7;
+	optional UserLogin_Rsp userLogin_rsp 					= 8;
+	optional UserAuth_Req userAuth_req 						= 9;
+	optional UserAuth_Rsp userAuth_rsp 						= 10;
+	optional SendRemoteUser_Req sendRemoteUser_req= 11;
+	optional WG_UserLeave wg_UserLeave 						= 12;
+	optional GWG_FriendRequest friendinfo	 				= 13;
+	optional ForwardInfo forwardinfo 							= 14;
+	optional int32 starSrvID  										= 15;	//该项记录卫星服务器ID，而不是socketID
+	//optional GWG_GameStarRequest gamestarinfo 		= 16;
+	//optional GWG_CheckAttack checkAttack 					= 17;
+	optional int32 transferSrvID  								= 18;	//该项记录老用户数据转换服务器ID，而不是socketID
+	optional WebGetRegion webGetRegion  					= 19;	//获得分区信息
+	optional int32 platSrvID 										 	= 20;		//
+	optional string userPlat  										= 21;		//玩家的openid
+	optional int32 worldSrvID 										= 22;		//
+	optional int32 fightSrvID 										= 23;		//
+	optional GCG_CountryNeed countryNeed					= 24;		//国家服务器需要的参数	
+	optional GRG_RegionNeed  regionNeed					  = 25;		//全区服务器需要的参数	
+	optional GRG_RankNeed  		rankNeed					  = 26;		//排行榜服务器需要的参数	
+	optional GSG_StatNeed  		statNeed					  = 27;		//统计服务器需要的参数	
 	
-	optional int64 uid       = 4;
-	optional Forward forward = 5;
-	optional string content  = 6;
+	optional HttpAskMsg		httpaskmsg		=	114;	//HTTP请求
+	optional HttpAnswerMsg	httpanswermsg	=	115;	//HTTP返回	
 
-	optional WorkingStatusData	workingStatus = 64;
-	optional UserAuthData 		userAuthData  = 65;
-	optional UserLeave   		userleave 	  = 68;
-
-	//auto start key = 192; //注：key的值必须填写，系统会根据key的值自动+1
+	
+	//auto start key = 200,500; //注：key的值必须填写，系统会根据key的值自动+1,逗号前面为Sce起始key，后面为Sse起始key
 	//start Event auto 从start开始自动生成，
+	optional RceCustomizedActivity ce_RceCustomizedActivity = 200;
+	optional RceLogin ce_RceLogin = 201;
+	optional RceObtainAttackerList ce_RceObtainAttackerList = 202;
+	optional RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
+	optional RceObtainCustomizer ce_RceObtainCustomizer = 204;
+	optional RceObtainMessagesList ce_RceObtainMessagesList = 205;
+	optional RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
+	optional RceObtainNpcList ce_RceObtainNpcList = 207;
+	optional RceObtainSocialItems ce_RceObtainSocialItems = 208;
+	optional RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
+	optional RceObtainUniverse ce_RceObtainUniverse = 210;
+	optional RceUpdateAlliances ce_RceUpdateAlliances = 211;
+	optional RceDeployUnits ce_RceDeployUnits = 212;
+	optional RceItemDamaged ce_RceItemDamaged = 213;
+	optional RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+	optional RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+	optional RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+	optional RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+	optional RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+	optional RceOnlineReward ce_RceOnlineReward = 219;
+	optional RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+	optional RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+	optional RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+	optional RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+	optional RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+	optional RceQueryStarInfo ce_RceQueryStarInfo = 225;
+	optional RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+	optional RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+	optional RceUnitDamaged ce_RceUnitDamaged = 228;
+	optional RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
+	optional RceUpdateItem ce_RceUpdateItem = 230;
+	optional RceUpdateMisc ce_RceUpdateMisc = 231;
+	optional RceUpdateMissions ce_RceUpdateMissions = 232;
+	optional RceUpdateProfile ce_RceUpdateProfile = 233;
+	optional RceUpdateShips ce_RceUpdateShips = 234;
+	optional RceUpdateSocialItem ce_RceUpdateSocialItem = 235;
+	optional RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 236;
+	optional RceUpdateTargets ce_RceUpdateTargets = 237;
+	optional RceUpdateVisitHelp ce_RceUpdateVisitHelp = 238;
 
 
 
-	optional RseBroadcast se_RseBroadcast = 192;
-	optional RseAuthState se_RseAuthState = 193;
+	optional RseCustomizedActivity se_RseCustomizedActivity = 500;
+	optional RseLogin se_RseLogin = 501;
+	optional RseObtainAttackerList se_RseObtainAttackerList = 502;
+	optional RseObtainBattleReplay se_RseObtainBattleReplay = 503;
+	optional RseObtainCustomizer se_RseObtainCustomizer = 504;
+	optional RseObtainMessagesList se_RseObtainMessagesList = 505;
+	optional RseObtainNeighborsList se_RseObtainNeighborsList = 506;
+	optional RseObtainNpcList se_RseObtainNpcList = 507;
+	optional RseObtainSocialItems se_RseObtainSocialItems = 508;
+	optional RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
+	optional RseObtainUniverse se_RseObtainUniverse = 510;
+	optional RseUpdateAlliances se_RseUpdateAlliances = 511;
+	optional RseDeployUnits se_RseDeployUnits = 512;
+	optional RseItemDamaged se_RseItemDamaged = 513;
+	optional RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+	optional RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+	optional RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+	optional RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+	optional RseObtainVisitHelps se_RseObtainVisitHelps = 518;
+	optional RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 519;
+	optional RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 520;
+	optional RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 521;
+	optional RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 522;
+	optional RseQuerySendWishItem se_RseQuerySendWishItem = 523;
+	optional RseQueryStarInfo se_RseQueryStarInfo = 524;
+	optional RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 525;
+	optional RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 526;
+	optional RseUnitDamaged se_RseUnitDamaged = 527;
+	optional RseUpdateGameUnits se_RseUpdateGameUnits = 528;
+	optional RseUpdateItem se_RseUpdateItem = 529;
+	optional RseUpdateMisc se_RseUpdateMisc = 530;
+	optional RseUpdateMissions se_RseUpdateMissions = 531;
+	optional RseUpdateProfile se_RseUpdateProfile = 532;
+	optional RseUpdateShips se_RseUpdateShips = 533;
+	optional RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+	optional RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+	optional RseUpdateTargets se_RseUpdateTargets = 536;
+	//optional RseAuthState se_RseAuthState = 537;
 }

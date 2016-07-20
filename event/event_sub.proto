@@ -1,0 +1,184 @@
+import "FriendInfoLite.proto";
+
+message WebCrossPromotion
+{
+	optional string chanle 	= 1;	//渠道
+	optional string date	 	= 2;	//推广日期
+	repeated string cdk			= 3;		
+	optional bool	  canuse	= 4[default = false];
+}
+
+message UserLogin_Req {
+	required int32 siteid 				= 1;
+	required string platform_id 	= 2;
+	required string name 					= 3;
+	required string profile_link 	= 4;
+	required int32 gender 				= 5;
+	required bool is_yellow_dmd 	= 6;
+	required bool is_yellow_dmd_year = 7;
+	required int32 yellow_dmd_lv 	= 8;
+	repeated string friends_platid = 9; // plat_id
+	required int32 webfd 					= 10;
+	required string sid					 	= 11;
+	optional int32 mydb_ret   		= 12[default = 0];	//已失效读取老用户的返回值，返回值： 0:无此用户 1：查找成功 -1：读取错误
+	optional int32 mydb_oldid 		= 13[default = 0];	//已失效
+	required int32 region 				= 14;	
+	optional int64 uid 						= 15[default = 0];			
+	optional int32 level 					= 16[default = 0];		
+	optional int64 defregion 			= 17[default = 0];		//新玩家进入的分区		
+	optional int32 undealGiftCnt 	= 18[default = 0]; //未处理的礼物数
+	optional int32 inviteFrdCnt 	= 19[default = 0]; //邀请好友数
+	optional uint32 yellowDmdtime = 20 [default = 0]; //黄钻刷新时间
+	optional int64 gettime 				= 21[default = 0];	//用于计算消息运行时间		
+	optional string invitefriendid		= 22 [default = '']; // 邀请自己的玩家OpenID	
+	optional bool isnewplayer = 23[default = false];//是否是新用户
+	optional int32 undealFrdGiftCnt 	= 24[default = 0]; //未处理的礼物数
+	optional int32 city 						= 25[default = 0];		//1北京2上海3广州4深圳 0其他
+	optional string via 						= 26;		//渠道
+	optional bool isrecall				  = 27[default = false];   //是否是被召回玩家
+	optional bool is_high_yellow_dmd = 28[default = false];   //是否是豪华黄钻
+	optional bool isApp51Act 				= 29[default = false];   //是否是51活动用户
+	optional int32	daySendGiftCnt			= 30[default = 0];	//每日赠送的礼物个数
+	optional int32 	inviteFrdCntDay	 	 	= 31[default = 0]; //每日邀请好友数量
+	optional int32	customFlag 				= 32[default = 0]; //回流礼包标记
+	optional string taskMarketId			= 33[default = '']; //任务
+	optional int32  qqTaskStep				= 34[default = 0]; //任务记录
+	optional WebCrossPromotion promotion	= 35;					 			//交叉推广
+	repeated int32	inviteGiftRecord = 36;							 //邀请好友奖励记录
+	optional int32  nBackFlowFlag			= 37[default = 0];		//空间回流礼包，1:顶部应用墙 2：左侧应用列表
+	optional int32  nAdultFlag        = 38[default = 100];		//是否通过实名认证
+	optional bool		is_high_dmd_year	= 39[default = false];	//是否豪华蓝钻年费版
+	optional uint32 bluedmdtime				= 40[default = 0];			//蓝钻刷新时间
+	optional int32 bluetime		= 41[default = 0];			//到期时间
+	optional int32 blueyeartime			= 42[default = 0];
+	optional int32 highbluetime			= 43[default = 0];
+	optional int32 highblueyeartime	= 44[default = 0];
+}
+
+
+message UserLogin_Rsp {
+	required int64 uid 				= 1;
+	required string secret 		= 2;
+	required string server 		= 3;
+	required int32 port 			= 4;
+	required int32 port1 			= 5;
+	required int32 webfd 			= 6;
+	required string sid 			= 7;
+	required string mainload 	= 8;	//flash mainloader版本号
+	required string version  	= 9;		//flash 游戏配置文件版本号
+	required int32 region 		= 10;		
+	optional int64 gettime 		= 11[default = 0];	//用于计算消息运行时间		
+	optional string platform_id = 12;
+	optional int32 logintimes = 13;		//每天第几次登陆
+	optional int32 playerlvl = 14;		//每天玩家等级
+	optional bool isnewplayer = 15[default = false];//是否是新用户
+	optional int32	customFlag 	= 16[default = 0]; //回流礼包标记
+	optional string channel			= 17[default = '']; //交叉推广渠道
+} 
+
+message WorkingStatus_Req {
+	required int32 gid = 1;
+	required bool finish = 2;
+}
+
+message UserAuth_Req {
+	required int64 uid = 1;
+	required int64 secret = 2;
+	required int32 sockfd = 3;
+}
+
+message UserAuth_Rsp {
+	required bool pass = 1;
+}
+
+message SendRemoteUser_Req {
+	required int64 uid = 1;
+	required int32 cmd = 2;
+	required string text = 3;
+}
+
+message WG_UserLeave {
+	required int32 fd = 1;
+}
+
+message GWG_FriendRequest
+{
+    optional int64          tuid = 1 [default = -1];
+    optional bool           ret  = 2 [default = false];
+    optional FriendInfoLite info = 3 ;
+    optional int32          plat_type = 4 [default = 0];
+    optional string         platid = 5 [default = ""];
+    optional bool           is_plat_friend = 6 [default = true];
+    optional int32          region = 7;
+}
+
+message ForwardInfo
+{
+    optional int64 uid = 1     [default = -1];
+    optional string platid = 2 [default = "0"];
+}
+
+message WebGetRegion
+{
+    required string         openid          = 1;
+    required int32          fd              = 2;
+    repeated int32          srvRegion       = 3;  //服务器列表
+    optional int32          lastregion      = 4; //最后一次登录的服务器
+    required string         sid             = 5;
+}
+
+
+message GCG_CountryNeed
+{
+	optional int32 countrySrvID = 1;
+	optional int32 region	 			= 2;
+	optional int32 gameSrvID 		= 3;
+}
+
+message GRG_RegionNeed
+{
+	optional int32 regionSrvID = 1;
+	optional int32 region	 			= 2;
+	optional int32 gameSrvID 		= 3;
+}
+
+message GRG_RankNeed
+{
+	optional int32 rankSrvID 		= 1;
+	optional int32 region	 			= 2;
+	optional int32 gameSrvID 		= 3;
+}
+
+
+message GSG_StatNeed
+{
+	optional int32 statSrvID 		= 1;
+	optional int32 region	 			= 2;
+	optional int32 gameSrvID 		= 3;
+}
+
+//Http请求
+message HttpAskMsg
+{
+	optional	string			szOpenid			=	1;		//OpenID
+	optional	int64			nUid				=	2;		//UID
+	optional	int32			nRegion				=	3;		//分区
+	optional	int32			nType				=	4;		//第一类别
+	optional	int32			nTypeSec			=	5;		//第二类别
+	optional	string			szArgvs				=	6;		//参数
+	optional  bool			bToQQ				= 7[default = false]; 	//是否是发往QQ的消息
+	optional  int32			nUserIP			= 8[default = 0];
+	optional  int32			nModifyfee  = 9[default = 0];
+	optional  int32     nTime				= 10[default = 0];
+}
+
+//Http回复
+message HttpAnswerMsg
+{
+	optional	string			szOpenid			=	1;		//OpenID
+	optional	int64			nUid				=	2;		//UID
+	optional	int32			nRegion				=	3;		//分区
+	optional	int32			nType				=	4;		//第一类别
+	optional	int32			nTypeSec			=	5;		//第二类别
+	optional	string			szAnswer			=	6;		//结果
+}

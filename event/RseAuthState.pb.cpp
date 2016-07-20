@@ -25,12 +25,10 @@ void protobuf_AssignDesc_RseAuthState_2eproto() {
       "RseAuthState.proto");
   GOOGLE_CHECK(file != NULL);
   RseAuthState_descriptor_ = file->message_type(0);
-  static const int RseAuthState_offsets_[5] = {
+  static const int RseAuthState_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseAuthState, pass_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseAuthState, type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseAuthState, leftmin_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseAuthState, time_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseAuthState, zone_),
   };
   RseAuthState_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -73,9 +71,9 @@ void protobuf_AddDesc_RseAuthState_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\022RseAuthState.proto\"W\n\014RseAuthState\022\014\n\004"
+    "\n\022RseAuthState.proto\";\n\014RseAuthState\022\014\n\004"
     "pass\030\001 \002(\010\022\014\n\004type\030\002 \002(\005\022\017\n\007leftMin\030\003 \002("
-    "\005\022\014\n\004time\030\004 \002(\005\022\014\n\004zone\030\005 \002(\005", 109);
+    "\005", 81);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseAuthState.proto", &protobuf_RegisterTypes);
   RseAuthState::default_instance_ = new RseAuthState();
@@ -97,8 +95,6 @@ struct StaticDescriptorInitializer_RseAuthState_2eproto {
 const int RseAuthState::kPassFieldNumber;
 const int RseAuthState::kTypeFieldNumber;
 const int RseAuthState::kLeftMinFieldNumber;
-const int RseAuthState::kTimeFieldNumber;
-const int RseAuthState::kZoneFieldNumber;
 #endif  // !_MSC_VER
 
 RseAuthState::RseAuthState() {
@@ -118,8 +114,6 @@ void RseAuthState::SharedCtor() {
   pass_ = false;
   type_ = 0;
   leftmin_ = 0;
-  time_ = 0;
-  zone_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -152,8 +146,6 @@ void RseAuthState::Clear() {
     pass_ = false;
     type_ = 0;
     leftmin_ = 0;
-    time_ = 0;
-    zone_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -202,34 +194,6 @@ bool RseAuthState::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &leftmin_));
         _set_bit(2);
-        if (input->ExpectTag(32)) goto parse_time;
-        break;
-      }
-      
-      // required int32 time = 4;
-      case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_time:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &time_));
-        _set_bit(3);
-        if (input->ExpectTag(40)) goto parse_zone;
-        break;
-      }
-      
-      // required int32 zone = 5;
-      case 5: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_zone:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &zone_));
-        _set_bit(4);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -273,16 +237,6 @@ void RseAuthState::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->leftmin(), output);
   }
   
-  // required int32 time = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->time(), output);
-  }
-  
-  // required int32 zone = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->zone(), output);
-  }
-  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -304,16 +258,6 @@ void RseAuthState::SerializeWithCachedSizes(
   // required int32 leftMin = 3;
   if (_has_bit(2)) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->leftmin(), target);
-  }
-  
-  // required int32 time = 4;
-  if (_has_bit(3)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->time(), target);
-  }
-  
-  // required int32 zone = 5;
-  if (_has_bit(4)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->zone(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -344,20 +288,6 @@ int RseAuthState::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->leftmin());
-    }
-    
-    // required int32 time = 4;
-    if (has_time()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->time());
-    }
-    
-    // required int32 zone = 5;
-    if (has_zone()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->zone());
     }
     
   }
@@ -394,12 +324,6 @@ void RseAuthState::MergeFrom(const RseAuthState& from) {
     if (from._has_bit(2)) {
       set_leftmin(from.leftmin());
     }
-    if (from._has_bit(3)) {
-      set_time(from.time());
-    }
-    if (from._has_bit(4)) {
-      set_zone(from.zone());
-    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -417,7 +341,7 @@ void RseAuthState::CopyFrom(const RseAuthState& from) {
 }
 
 bool RseAuthState::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
   
   return true;
 }
@@ -427,8 +351,6 @@ void RseAuthState::Swap(RseAuthState* other) {
     std::swap(pass_, other->pass_);
     std::swap(type_, other->type_);
     std::swap(leftmin_, other->leftmin_);
-    std::swap(time_, other->time_);
-    std::swap(zone_, other->zone_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

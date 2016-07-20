@@ -2,14 +2,12 @@
 #define _EVENTQUEUE_H_
 
 #pragma once
-
-#include "../common/const_def.h"
 #include <log4cxx/logger.h>
-#include <pthread.h>
+#include <string>
 #include <queue>
-
+#include "../common/const_def.h"
 #include "event.pb.h"
-
+#include <pthread.h>
 
 using namespace std;
 
@@ -30,7 +28,7 @@ public:
 	inline pthread_mutex_t* mutex();
 	inline time_t	topTime();
 	inline Event*	popEvent();
-	inline void		freeEvent(Event*& e);
+	inline void		freeEvent(Event *e);
 	inline Event*	allocateEvent();
 	inline bool		isEmpty();
 	inline void		safePushEvent(Event *e);
@@ -65,13 +63,9 @@ inline Event* EventQueue::popEvent()
 	return e;
 }
 
-inline void EventQueue::freeEvent(Event*& e)	
+inline void EventQueue::freeEvent(Event *e)	
 {
-	if (e != NULL)
-	{
-		delete e;
-	}
-	e = NULL;
+	delete e;
 }
 
 inline Event* EventQueue::allocateEvent() 

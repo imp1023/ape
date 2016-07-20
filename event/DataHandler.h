@@ -3,10 +3,8 @@
 
 #pragma once
 
-
 #include <log4cxx/logger.h>
 #include <pthread.h>
-#include "../common/const_def.h"
 
 class DataHandler
 {
@@ -18,7 +16,6 @@ public:
 	inline time_t Revision() { return revision_; }
 	inline void setRevision(time_t revision) { revision_ = revision; }
 
-    virtual void init();
 	virtual void tick();
 	virtual void quit();
 	virtual	void termThreads();
