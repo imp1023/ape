@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "../common/Clock.h"
 #include "../common/SysLog.h"
+#include "../../logic/GameConstantSetCfg.h"
 //#include "../event/EventDefine.h"
 
 extern ServerConfig serverConfig;
@@ -10,11 +11,63 @@ User::User()
 	Init();
 }
 
-User::User(int64 id, const string& openid)
+User::User(int64 id, const string& pid, const string &name,
+		   const string &profile_link, int gender, PLAT_TYPE plat_type,
+		   bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv,
+		   const vector<string> &friends_platid,int nRegion,int nCity,bool bIsHighYellowDmd , bool bIsHighDmdYear, int nBlueTime, int nBlueYearTime,int nHighBlueTime,
+		   int nHighBlueYearTime)
 {
 	Init();
+
 	m_dbUser.set_id(id);
-	m_dbUser.set_openid(openid);
+	m_dbUser.set_platform_id(pid);
+	m_dbUser.set_name(plat_type, name);
+	m_dbUser.set_profile_link(plat_type, profile_link);
+	m_dbUser.set_region(nRegion);
+	m_dbUser.set_city(nCity);
+	//关联player数据库
+	m_pPlayer->InitDB(m_dbUser.mutable_player());
+	//m_pPlayer->InitNpcDB(&m_dbNPCList);
+	m_pPlayer->InitNewUserFromCfg();
+
+	//SetProfileLink(profile_link,plat_type);
+	SetName(name,plat_type);
+// 	plat_type_			= plat_type;
+// 	if (plat_type == PLAT_QHALL)
+// 	{
+// 		SetQHallDmd(bIsYellowDmd);
+// 		SetQHallDmdYear(bIsYellowDmdYear);
+// 		SetHighQHallDmd(bIsHighYellowDmd);
+// 		SetHighQHallDmdYear(bIsHighDmdYear);
+// 		SetQHallDmdLvl(i4YellowDmdLv);
+// 		m_dbUser.set_bluetime(nBlueTime);
+// 		m_dbUser.set_blueyeartime(nBlueYearTime);
+// 		m_dbUser.set_highbluetime(nHighBlueTime);
+// 		m_dbUser.set_highblueyeartime(nHighBlueYearTime);
+// 	}
+// 	else{
+// 		if(plat_type != PLAT_QAdd)
+// 		{
+// 			m_dbUser.set_isyellowdmd(bIsYellowDmd);
+// 			m_dbUser.set_isyellowdmdyear(bIsYellowDmdYear);
+// 			m_dbUser.set_yellowdmdlvl(i4YellowDmdLv);
+// 		}
+// 		else
+// 		{
+// 			m_dbUser.set_isqqdmd(bIsYellowDmd);
+// 			m_dbUser.set_isqqdmdyear(bIsYellowDmdYear);
+// 			m_dbUser.set_qqdmdlvl(i4YellowDmdLv);
+// 		}
+// 		m_dbUser.set_ishighyellowdmd(bIsHighYellowDmd);
+// 	}
+// 	m_dbUser.set_gender(gender);
+// 	SetGender(gender);
+
+	// 注册时间为空才设置
+	if (m_dbUser.regist_time() <= 0)
+	{
+		m_dbUser.set_regist_time(time(NULL));
+	}
 }
 
 User::~User(void)
@@ -36,33 +89,45 @@ void User::Init()
 	mem_revision_		= 0;
     bOnline_			= false;
     m_pPlayer			= NULL;
+	rmrevision_			= 0;
 
     InitDBUser();
 }
 
 void User::InitDBUser()
 {
-    m_dbUser.Clear();
-    m_dbUser.set_id(0);
+	m_dbUser.Clear();
+	m_dbUser.set_id(0);
 
-    m_dbUser.set_last_login_time(0);
-    m_dbUser.set_openid("");
-    m_dbUser.set_regist_time(0);
+	m_dbUser.set_last_login_ip("");
+	m_dbUser.set_last_login_time(0);
+	m_dbUser.set_platform_id("");
+	m_dbUser.set_regist_time(0);
 
-    OnSetDbPlayer();
+	for (int i = 0; i < PLAT_TYPE_MAX; i++)
+	{
+		m_dbUser.add_name("");
+		m_dbUser.add_profile_link("");
+	}
+    OnSetDbUser();
 }
 
-void User::OnSetDbPlayer()
+void User::OnSetDbUser()
 {
-    if (m_pPlayer != NULL)
-    {
-        delete m_pPlayer;
-        m_pPlayer = NULL;
-    }
-    if (m_pPlayer == NULL)
-    {
-        m_pPlayer = new Player(this, m_dbUser.mutable_player());
-    }
+	if (m_pPlayer == NULL)
+	{
+		m_pPlayer = new Player(this, m_dbUser.mutable_player());
+	}
+	m_pPlayer->InitDB(m_dbUser.mutable_player());
+	//m_pPlayer->CacuStat();
+
+	time_t ltNow = time(NULL);
+// 	time_t ltReg = GetRegisterTime();
+// 	if(ltReg>0)
+// 	{
+// 		static int nOneDay = 24*60*60;
+// 		m_nRegDays = (int)((ltNow-ltReg)/nOneDay);
+// 	}
 }
 
 void User::InitNewUser()
@@ -107,12 +172,18 @@ void User::SetDbUser(const DB_User& dbuser)
 {
     m_dbUser.Clear();
     m_dbUser.CopyFrom(dbuser);
-    OnSetDbPlayer();
+    OnSetDbUser();
+	////防止被覆盖
+	for (int i = m_dbUser.name_size(); i < PLAT_TYPE_MAX; i++)
+	{
+		m_dbUser.add_name("");
+		m_dbUser.add_profile_link("");
+	}
 }
 
 bool User::IsNewLoginMonth() const
 {
-	time_t lasttime = lastLoginTime();
+	time_t lasttime = GetLastLoginTime();
 	struct tm lastlogintime;
 	localtime_r(&lasttime,&lastlogintime);
 
@@ -137,7 +208,7 @@ bool User::IsNewLoginMonth() const
 
 bool User::IsNewLoginWeek() const
 {
-	time_t lasttime = lastLoginTime();
+	time_t lasttime = GetLastLoginTime();
 	struct tm lastlogintime;
 	localtime_r(&lasttime,&lastlogintime);
 	lastlogintime.tm_hour=0;
@@ -172,7 +243,7 @@ bool User::IsNewLoginWeek() const
 
 bool User::IsNewLoginDay() const
 {
-    time_t lasttime = lastLoginTime();
+    time_t lasttime = GetLastLoginTime();
     struct tm lastlogintime;
 	localtime_r(&lasttime,&lastlogintime);
 
@@ -188,92 +259,9 @@ bool User::IsNewLoginDay() const
     return false;
 }
 
-bool User::IsContinueLoginDay() const
-{
-    int lasttime = (int)lastLoginTime();
-	return Clock::getLocalDay(lasttime) + 1 == Clock::getLocalDay();
-/*
-    struct tm lastlogintime = *localtime(&lasttime);
-
-    time_t now = time(NULL);
-    struct tm nowtime = *localtime(&now);
-
-    if (lastlogintime.tm_year == nowtime.tm_year
-            && lastlogintime.tm_yday + 1 == nowtime.tm_yday)
-    {
-        return true;
-    }
-    else if (lastlogintime.tm_year + 1 == nowtime.tm_year)
-    {
-        // 闰年
-        if ((lastlogintime.tm_year+1900) % 400 == 0
-                || (lastlogintime.tm_year % 4 == 0 && (lastlogintime.tm_year+1900) % 100 != 0 ))
-        {
-            if (lastlogintime.tm_yday == 365 && nowtime.tm_yday == 0)
-            {
-                return true;
-            }
-        }
-        else
-        {
-            if (lastlogintime.tm_yday == 364 && nowtime.tm_yday == 0)
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
-	*/
-}
-
 void User::OnLogin()
 {
 
-}
-
-int User::GetRegDays()
-{
-	return Clock::getLocalDay() - Clock::getLocalDay((int)registTime());
-}
-
-void User::OnAuth()
-{
-	m_pPlayer->SetEventHandler(Daemon::Instance().GetGameEventHandler());
-}
-
-int User::setRole( const string& name, int head, int camp )
-{
-	if (m_dbUser.has_name() || m_dbUser.has_head())
-		return 1;
-
-	if (camp < 1 || camp > 3)
-		return 3;
-
-	return 0;
-}
-
- string User::GetLogOpenID()
-{
-	string openid = m_dbUser.openid();
-	int len = openid.length();
-	int count = 0;
-	int i = 0;
-	while (i < len && count < 3)
-	{
-		if (openid[i] == '_')
-		{
-			++count;
-		}
-		++i;
-	}
-	return openid.substr(i, openid.find('_', i) - i);
-}
-
-string User::GetLogRegDays()
-{
-	string str = toString(GetRegDays()) + "_" + "here";//getFrom();
-	return str;
 }
 
 int User::Rename( const string& name )
@@ -281,3 +269,55 @@ int User::Rename( const string& name )
 	return 0;
 }
 
+int User::GetUserRegion(bool bCheckGroup/* =false */)
+{
+	if(!bCheckGroup)
+	{
+		return m_dbUser.region();
+	}
+	else
+	{
+		return serverConfig.getmapregion(m_dbUser.region());
+	}
+}
+
+void User::InitRc4Key(int nNum,string szSid)
+{
+	int64 nKey = /*m_dbUser.player().level() * */ 100 + nNum;
+
+	m_strRc4Send = toString(m_dbUser.id()) + toString(nKey) + szSid;
+
+	m_strRc4Receive = szSid + toString(m_dbUser.id()) + toString(nKey);
+
+	SYS_LOG(GetUid(),LT_PLAYER_RC4_KEY,0,0,m_strRc4Send<<m_strRc4Receive);
+}
+
+bool User::CheckPlayerAdult()
+{//一刀切防沉迷
+	ConstantSetUnit* pUnit = GameConstantSetCfg::Instance().GetGameConstantSet(E_GAMECONSTANTSET_DEF_CHECK_ADULT);
+	if (pUnit == NULL || pUnit->m_nArgs[0] == 0)
+	{
+		return true;
+	}
+
+// 	if (m_pPlayer->GetTotalPercharge() >= 5000 || m_pPlayer->GetPrivilegeTimeDay(10201) > 0)
+// 	{
+// 		return true;
+// 	}
+
+	return m_dbUser.badult();
+}
+
+/*
+void User::Logon(GameDataHandler* dh)
+{
+
+	if(m_pPlayer&&m_pPlayer->CanUse())
+	{
+		m_pPlayer->_TmpCheckLV();
+
+		m_pPlayer->Logon(dh);
+	}
+
+	m_UpdateSaveTime = 0;
+}*/

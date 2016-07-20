@@ -1,13 +1,8 @@
+import "dbinterface_sub.proto";
 
 /////////////////////////////////////////////////////////////////////////
 //   基础结构                                                          //
 /////////////////////////////////////////////////////////////////////////
-
-//位缓存
-message DB_BitCache
-{
-	repeated int32 			 bit 					= 1;
-}
 
 /////////////////////////////////////////////////////////////////////////
 //   玩家数据                                                          //
@@ -38,7 +33,7 @@ message DB_PlanetLiteInfo
     optional int64          planetId                = 2;        
 }
 
-message DB_Star
+message DB_Galaxy
 {
     optional int32          id                      = 1;
     optional int32          type                    = 2;
@@ -109,30 +104,93 @@ message DB_NPC
     repeated DB_Item        items                   = 5;
 }
 
+message DB_SocialItem
+{
+    optional int32          sku                      = 1;
+    optional int32          amount                   = 2;  
+}
+
 message DB_Player
 {
     optional DB_Model        model                  = 1; //玩家模型
     optional DB_State        state                  = 2; //玩家状态
     repeated DB_Planet       planets                = 3; //猩球数据
     repeated DB_NPC          npcs                   = 4; //npc(A/B/C/D)
+    optional DB_Flag         flag                   = 5;
+    repeated DB_SocialItem   socialItems            = 6;
+}
+
+message DB_DailyLogon
+{
+    optional int32 firstday = 1[default = 0];  // 每日登陆活动的头一天
+    optional int32 daycount = 2[default = 0];  // 每日登陆活动的天数
+}
+
+message DB_ActiveContinueLogon
+{
+    optional int32 logonDays = 1[default = 0];
+    optional bool    hasGet = 2[default = false];
+    optional int32 lastLogonTime = 3[default = 0];
 }
 
 message DB_User
 {
-    required int64           id              	 	= 1;  //id
-    required string          openid          	 	= 2;  //openid
-    optional string          name            	 	= 3;  //名字
-    optional int32           head            	 	= 4;  //头像
-    optional int64           last_login_time 	 	= 5;  //上次登录时间
-    optional int64           regist_time     	 	= 6;  //注册时间
-    optional int32           unbreakLogin    	 	= 7;  //连续登录天数
-    optional int32           isValid                = 8;  //账号是否有效
-    optional int32           orgin                  = 9;  //玩家来源
-    optional int64     		 last_logout_time	 	= 10; //上次退出时间
-    required DB_Player       player          	 	= 11; 
+    required int64          id                      = 1 [default = 0] ;
+    required string         platform_id             = 2 [default = ""] ;
+    repeated string         name                    = 3; //名字和链接，分校友空间
+    repeated string         profile_link            = 4;
+    required int32          gender                  = 5; //性别
+    required int64          last_login_time         = 6 [default = 0] ;
+    required string         last_login_ip           = 7 [default = ""] ;
+    required int64          regist_time             = 8 [default = 0] ;
+    optional int32          yellowDmdLvl            = 9  [default = 0];     //黄钻等级
+    optional bool           isYellowDmd             = 10 [default = false]; //是不是黄钻
+    optional bool           isYellowDmdYear         = 11 [default = false]; //是不是年费黄钻
+    optional int64          getDayYellowGiftDay     = 12[default = 0];  //获得黄钻每日礼包的时间                    
+    optional bool           getNewYellowGift        = 13 [default = false];    //是否领取了黄钻礼包
+    optional int64          last_logout_time        = 14;
+    required DB_Player      player                  = 15;
+    optional DB_BanLogin    banlogin                = 16;  //是否禁止登陆
+    optional bool           transferbymysql         = 17 [default = false]; //是不是从mysq中导入用户
+    optional int32          mysqluserid             = 18 [default = 0];        //mysql中导入用户ID
+    optional int32          ExpiateFlag             = 19 ;//补偿标志   
+    optional int32          sendgiftcount           = 20; // 每天接受腾讯免费礼物的数量
+    optional int32          selfgiftcount           = 21; // 每天送出免费礼物的数量
+    optional int32          giftwincount            = 22; // 每天免费礼物弹窗次数
+    optional int32          destroytime             = 23[default = 0]; // 摧毁对方基地的次数
+    repeated DB_LootReport  fightrecord             = 24; // 战斗记录
+    optional DB_DailyLogon  dailylogin              = 25; // 每日登陆天数
+    optional bool           bannergift              = 26[default = false]; // 是否领过条幅礼物   
+    optional int32          landingdaygiftbit       = 27 [default = 0];     //连续登陆天数奖品是否领取的标志位
+    optional int32          landdaycount            = 28 [default = 0];      //连续登陆奖励的连续登陆天数，这个字段和每日登陆活动的天数的字段重复，
+    optional int64          webOnceFlag             = 29[default = 0];  //web端活动标记，用于web端接口只调用一次
+    optional DB_GiftInfo    giftInfo                = 30;   //礼物信息，已移植到plat上，此项失效   
+    //Q+会员
+    optional int32          QQDmdLvl                = 31 [default = 0];     //QQ会员等级等级
+    optional bool           isQQDmd                 = 32 [default = false]; //是不是QQ会员
+    optional bool           isQQDmdYear             = 33 [default = false]; //是不是年费QQ会员
+    optional int64          getDayQQGiftDay         = 34 [default = 0];     //获得QQ每日礼包的时间                    
+    optional bool           getNewQQGift            = 35 [default = false]; //是否领取了QQ礼包
+
+    optional int32          region                  = 36 [default = 0]; //所属分区  
+    
+    optional int32        logondaycount             = 37 [default = 0];   //登陆天数，战绩系统记录
+    optional int32        city                      = 38 [default = 0]; //所属城市 1北京2上海3深圳4广州 0 其他    
+    optional bool         isHighYellowDmd           = 39 [default = false]; //是不是豪华黄钻
+    optional DB_ActiveContinueLogon activeContinueLogon = 40;
+    optional bool          isActiveLogon            = 41[default = false];
+    optional bool          hasGetRecall             = 42[default = false];//是否已经获得回归宝箱
+    optional int32         lastRepairTime           = 43[default = 0];
+    optional int32         landDayCountEx           = 44[default = 0];
+    optional int32         landDayGiftEx            = 45[default = 0];
+    optional DB_Officer    officer                  = 46;  //国家官员
+    optional int32         destroynpctime           = 47[default = 0]; // 摧毁NPC基地的次数
+    optional bool          bRegisterNum             = 48[default = false];  //是否登记了qq号
+    optional bool          bAdult                   = 51[default = true];   //是否成年
 }
 
 message DB_GlobalStarInfo
 {
-    repeated DB_Star         stars                  = 1;
+    repeated DB_Galaxy     galaxys                  = 1;
 }
+

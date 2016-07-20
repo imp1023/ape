@@ -19,6 +19,9 @@ class Player
 public:
     friend class User;
 
+	void		InitDB(DB_Player* pDBPlaper);
+	void		InitNewUserFromCfg();
+
 private:
     Player(User* pParent, DB_Player* pdbPlayer);
 	Player();
@@ -40,13 +43,11 @@ public:
 	void InitPlayerPlanets();
 	void InitPlayerNPC();
 
-	bool SetNewDayData();
-	void SetNewWeekData();
-
 private:
     DB_Player*           m_pdbPlayer;
     User*                m_pUser;
     GameEventHandler*    eh_;
+	
 };
 
 inline User* Player::GetParent() const
@@ -61,8 +62,8 @@ void SYS_UserStat(User* pUser,int logType,T1 subTp1,V1 val1,V2 nVal2=0,V3 nVal3=
 	Player* pPlayer = pUser->GetPlayer();
 	//SYS_STAT(pUser->uid(),logType,pUser->GetUserLevel(),pUser->GetLogOpenID(),pPlayer->GetTotalPercharge(),pUser->GetLogRegDays(),pPlayer->GetCash(),
 	//	distribution::getRegion(pUser->uid()), pUser->getChannel(),pPlayer->GetVIPLevel(), subTp1,val1,nVal2,nVal3,nVal4,nVal5,nVal6,nVal7);
-	SYS_STAT(pUser->uid(), logType, pUser->GetUserLevel(), pUser->GetLogOpenID(), 0, "", 0,
-		distribution::getRegion(pUser->uid()), 0, 0, subTp1,val1,nVal2,nVal3,nVal4,nVal5,nVal6,nVal7);
+	//SYS_STAT(pUser->uid(), logType, pUser->GetUserLevel(), pUser->GetLogOpenID(), 0, "", 0,
+	//	distribution::getRegion(pUser->uid()), 0, 0, subTp1,val1,nVal2,nVal3,nVal4,nVal5,nVal6,nVal7);
 }
 
 #endif /* PlayerMgr_H */

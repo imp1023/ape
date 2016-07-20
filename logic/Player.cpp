@@ -8,8 +8,6 @@
 #include "../common/Clock.h"
 #include "../common/string-util.h"
 #include "../common/rand_util.h"
-#include "../common/DateTime.h"
-#include "../event/RseBroadcast.pb.h"
 
 //table
 #include "CountryNameTbl.h"
@@ -47,17 +45,139 @@ void Player::SetEventHandler(GameEventHandler* eh)
     eh_ = eh;
 }
 
+void Player::InitDB(DB_Player* pDBPlaper)
+{
+	m_pdbPlayer = pDBPlaper;
+
+#if 0
+	//判断合服
+	//合服标记位，如果该值不为零切与DB值不符，则进行合服操作
+	int nCombineRegionFlag = serverConfig.getRegionResetFlag(m_pUser->GetUserRegion());
+	if(nCombineRegionFlag>0&&m_pdbPlayer->uniteregionflag()!=nCombineRegionFlag)
+	{//合服数据操作
+		if(m_pdbPlayer->base_size()<=0)
+		{//最少1个基地
+			m_pdbPlayer->add_base();
+		}
+		DB_Bases* pDBBase = pDBPlaper->mutable_base(0);
+		DB_Country* pDBCountry = pDBBase->mutable_countrydata();
+		DB_Guild* pDBGuild	= pDBBase->mutable_guilddata();
+		//国家：回首都，清血战，清国家官员
+		if(pDBCountry->countryid()>0)
+		{
+			pDBCountry->set_cityid(CountryInfoCfg::Instance().GetCapital(pDBCountry->countryid()));
+		}
+		m_pUser->GetDbUser().clear_officer();
+		pDBCountry->clear_btlrecord();
+		//公会：清工会战
+		if(pDBGuild->guildid()>0)
+		{
+			DB_GuildBtl* pDBGBtl = pDBGuild->mutable_guildbtlinfo();
+			pDBGBtl->clear_signuptm();
+			pDBGBtl->clear_honorembravecnt();
+			pDBGBtl->clear_addatkpct();
+			pDBGBtl->clear_addbloodpct();
+		}
+		//竞技场：数据全清
+		DB_ArenaInfo* pArenaInfo = pDBBase->mutable_arenainfo();
+		int nScore = pArenaInfo->nintegralscore();
+		pDBBase->clear_arenainfo();
+		if(nScore>0)
+		{
+			pArenaInfo = pDBBase->mutable_arenainfo();
+			pArenaInfo->set_nintegralscore(nScore);//保留总积分
+		}
+
+		pDBBase->clear_worldarenainfo();
+		pDBBase->clear_regionarenainfo();
+
+		pDBBase->clear_resourcemsg();
+
+		m_pdbPlayer->set_uniteregionflag(nCombineRegionFlag);
+
+		SYS_LOG(GetUserID(),LT_UniteRegion,m_pUser->GetUserRegion(),0,nScore);
+	}
+
+
+
+	for(int i=m_pdbPlayer->res_size();i<RC_Cnt;i++)
+	{
+		m_pdbPlayer->add_res(0);
+	}
+	for(int i=m_pdbPlayer->resmax_size();i<RC_Cnt;i++)
+	{
+		m_pdbPlayer->add_resmax(0);
+	}
+	if(m_pdbPlayer->base_size()<=0)
+	{//最少1个基地
+		m_pdbPlayer->add_base();
+	}
+	OldDBInfo2New();
+	InitBagItemDB(m_pdbPlayer->mutable_bag());
+	m_pBaseManager->InitDB(m_pdbPlayer->mutable_base(0));
+	m_pNPCManager->InitDB(pDBPlaper);
+	m_pBattleManager->InitDB(m_pdbPlayer->mutable_base(0));
+	m_pCountryManager->InitDB(m_pdbPlayer->mutable_base(0));
+	m_rPVEFightManager.Init(m_pdbPlayer->mutable_base(0)->mutable_pvefightdata());
+	m_rCountryArenaMgr.Init(this);
+	m_rWorldArenaMgr.Init(this);
+	m_rRegionArenaMgr.Init(this);
+	m_rHeroArenaMgr.Init(this);
+	m_pRegionCountryManager->InitDB(m_pdbPlayer->mutable_base(0));
+	m_pGveMgr->InitDB(m_pdbPlayer->mutable_base(0));
+	m_pResourceMgr->InitDB(m_pdbPlayer->mutable_base(0));
+	m_pWarGameMgr->InitDB(m_pdbPlayer->mutable_base(0));
+	m_pBossBtlMgr->InitDB(m_pdbPlayer->mutable_base(0));
+	CalExtAirArmy();
+	CalExtEarthArmy();
+	CalExtAtkEarthArmy();
+	m_rmapUserTryAttacked.clear();
+	m_rmapUserTryLoad.clear();
+	m_nInviteFrdCnt = 0;
+	m_bGiftGain = false;
+	m_mapServerStat.clear();
+
+	UpdateCombatPowerCheck();
+
+	ProofreadRentParts(false);   //验证租用配件是否过期
+#endif
+}
+
+void Player::InitNewUserFromCfg()
+{
+	/*if(!CanUse())
+		return;
+	const InitUserTbl& userTbl = InitUserCfg::Instance().GetInitUserTbl();
+
+
+	m_pdbPlayer->set_credits(userTbl.m_nCredits);
+	m_pdbPlayer->set_level(1);
+
+	m_pdbPlayer->set_res(RC_Metal,userTbl.m_nMetal);
+	m_pdbPlayer->set_res(RC_Oil,userTbl.m_nOil);
+	m_pdbPlayer->set_res(RC_Electric,userTbl.m_nElectric);
+	m_pdbPlayer->set_res(RC_Human,userTbl.m_nHuman);
+
+	m_pBaseManager->InitNewUBaseFromCfg();
+	m_pNPCManager->InitNewWmstatusFromCfg();
+
+
+	m_pdbPlayer->set_tutorialstat(1);
+
+	SetState(US_NewProtected);*/
+}
+
 void Player::SendBroadCastToSelf(int type, int id, vector<string> param)
 {
-	string text;
-	RseBroadcast data;
-	data.set_type(type);
-	data.set_id(id);
-	for(size_t i = 0; i < param.size(); i++)
-		data.add_param(param[i]);
-	data.SerializeToString(&text);
-	if (m_pUser->Online())
-		eh_->sendDataToUser(m_pUser->fd(), S2C_RseBroadcast, text);
+// 	string text;
+// 	RseBroadcast data;
+// 	data.set_type(type);
+// 	data.set_id(id);
+// 	for(size_t i = 0; i < param.size(); i++)
+// 		data.add_param(param[i]);
+// 	data.SerializeToString(&text);
+// 	if (m_pUser->Online())
+// 		eh_->sendDataToUser(m_pUser->fd(), S2C_RseBroadcast, text);
 }
 
 void Player::InitPlayerData()
@@ -72,20 +192,20 @@ void Player::InitPlayerModel()
 {
 	m_pdbPlayer->mutable_model()->set_exp(0);
 	m_pdbPlayer->mutable_model()->set_level(1);
-	m_pdbPlayer->mutable_model()->set_coins(INIT_PLAYER_COINS);
-	m_pdbPlayer->mutable_model()->set_minerals(INIT_PLAYER_MINERALS);
-	m_pdbPlayer->mutable_model()->set_coinstotal(INIT_PLAYER_TOTALCOINS);
-	m_pdbPlayer->mutable_model()->set_mineralstotal(INIT_PLAYER_TOTALMINERALS);
+// 	m_pdbPlayer->mutable_model()->set_coins(INIT_PLAYER_COINS);
+// 	m_pdbPlayer->mutable_model()->set_minerals(INIT_PLAYER_MINERALS);
+// 	m_pdbPlayer->mutable_model()->set_coinstotal(INIT_PLAYER_TOTALCOINS);
+// 	m_pdbPlayer->mutable_model()->set_mineralstotal(INIT_PLAYER_TOTALMINERALS);
 	m_pdbPlayer->mutable_model()->set_score(0);
 	m_pdbPlayer->mutable_model()->set_exp(0);
-	m_pdbPlayer->mutable_model()->set_cash(INIT_PLAYER_CASH);
+/*	m_pdbPlayer->mutable_model()->set_cash(INIT_PLAYER_CASH);*/
 }
 
 void Player::InitPlayerState()
 {
 	m_pdbPlayer->mutable_state()->set_tutorialcompleted(0);
 	m_pdbPlayer->mutable_state()->set_dmgprotectiontimeleft(time(NULL));
-	m_pdbPlayer->mutable_state()->set_dmgprotectiontimetotal(INIT_PLAYER_DMGPROTECTIONTIMETOTAL);
+/*	m_pdbPlayer->mutable_state()->set_dmgprotectiontimetotal(INIT_PLAYER_DMGPROTECTIONTIMETOTAL);*/
 }
 
 void Player::InitPlayerPlanets()
@@ -94,14 +214,14 @@ void Player::InitPlayerPlanets()
 	DB_Planet *pp = m_pdbPlayer->add_planets();
 	if(!pp){return;}
 	pp->set_id(1);
-	pp->set_type(INIT_PLAYER_PLANETTYPE);
-	pp->set_hqlevel(INIT_PLAYER_HQLEVEL);
-	pp->set_droids(INIT_PLAYER_DROIDS);
+// 	pp->set_type(INIT_PLAYER_PLANETTYPE);
+// 	pp->set_hqlevel(INIT_PLAYER_HQLEVEL);
+// 	pp->set_droids(INIT_PLAYER_DROIDS);
 	pp->set_droidinuse(0);
 	pp->set_capital(1);
-	pp->set_coinslimit(INIT_PLAYER_TOTALCOINS);
-	pp->set_minerallimit(INIT_PLAYER_TOTALMINERALS);
-	int nStarId = StarLogicInst::instance().GetNewPlayerStar(m_pUser->uid());
+// 	pp->set_coinslimit(INIT_PLAYER_TOTALCOINS);
+// 	pp->set_minerallimit(INIT_PLAYER_TOTALMINERALS);
+	int nStarId = StarLogicInst::instance().GetNewPlayerStar(m_pUser->GetUid());
 	pp->set_star(nStarId);
 
 	//init planet item
@@ -269,34 +389,4 @@ void Player::InitPlayerNPC()
 			}
 		}
 	}
-}
-
-bool Player::SetNewDayData()
-{
-	//todo：刷新数据,走客户端请求
-	int nowDay = Clock::getLocalDay();
-// 	if (m_pdbPlayer->dataday() >= nowDay)
-// 		return false;
-// 	m_pdbPlayer->set_dataday(nowDay);
-// 	SYS_UserStat(m_pUser, LT_SetNewDay, "", "", "", "", "", "", "", "");
-
-	return true;
-}
-
-void Player::SetNewWeekData()
-{
-    int64 last = m_pUser->lastLoginTime();
-    if (last == 0)
-    {
-        return;
-    }
-    else
-    {
-        DateTime lastT(last);
-        DateTime now;
-        if (DateTime::isSameWeek(lastT,now))
-        {
-            return;
-        }
-    }
 }

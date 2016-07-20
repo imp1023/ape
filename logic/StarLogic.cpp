@@ -193,7 +193,7 @@ void StarLoigc::serizlize(DB_GlobalStarInfo &db)
 {
 	db.Clear();
 	for(map<int, Star>::iterator iter = m_mGlobalStarInfo.begin(); iter != m_mGlobalStarInfo.end(); iter++){
-		DB_Star *star = db.add_stars();
+		DB_Galaxy *star = db.add_galaxys();
 		if(star){
 			star->set_id(iter->first);
 			star->set_type(iter->second.type);
@@ -213,8 +213,8 @@ void StarLoigc::serizlize(DB_GlobalStarInfo &db)
 
 bool StarLoigc::unserialize(DB_GlobalStarInfo db)
 {
-	for (int i = 0; i < db.stars_size(); i++){
-		const DB_Star dbStar = db.stars(i);
+	for (int i = 0; i < db.galaxys_size(); i++){
+		const DB_Galaxy dbStar = db.galaxys(i);
 		Star star;
 		star.id = dbStar.id();
 		star.type = dbStar.type();

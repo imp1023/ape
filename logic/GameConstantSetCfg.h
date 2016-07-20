@@ -1,0 +1,125 @@
+#pragma once
+#include <map>
+#include <string>
+
+#include "../common/const_def.h"
+#include "GameConstantSetLogic.h"
+
+using namespace std;
+
+#define __GAME_CONSTANTSET_NUM__ 4
+#define __GAME_CONSTANTSET_NUMN__ 6
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+enum E_GAMECONSTANTSET_DEF
+{
+	E_GAMECONSTANTSET_DEF_NONE = 0,					//初始化
+	E_GAMECONSTANTSET_DEF_FIGHTVALUE_FILTER,		//战斗力过滤
+	E_GAMECONSTANTSET_DEF_WAIGUAKICKNUM,			//外挂被踢数字
+	E_GAMECONSTANTSET_DEF_YUANDAN,					//元旦活动道具
+	E_GAMECONSTANTSET_DEF_ADDCREDITYEAR,			//年末充值活动
+	E_GAMECONSTANTSET_DEF_PACKETKICK,				//消息包被踢
+	E_GAMECONSTANTSET_DEF_INVITEGIFTSAVE,			//邀请好友礼物保留天数
+	E_GAMECONSTANTSET_DEF_SHAREGIFT,				//分享游戏奖励
+	E_GAMECONSTANTSET_DEF_CALLBACKFRD_CHUNJIE,		//春节召回好友
+	E_GAMECONSTANTSET_DEF_LUCKY_NUM_COST,			//幸运数字消耗、奖励
+	E_GAMECONSTANTSET_DEF_ADMIRALSCORE_FILTER =10,		        //将领评分过滤
+	E_GAMECONSTANTSET_DEF_ALLUSEADMIRALSCORE_FILTER =11,		//出战将领总评分过滤
+	E_GAMECONSTANTSET_DEF_LUCKY_DRAW_1 =12,		//幸运宝箱时间段第一部分
+	E_GAMECONSTANTSET_DEF_LUCKY_DRAW_2 =13,		//幸运宝箱时间段第二部分
+	E_GAMECONSTANTSET_DEF_STRATEGICPATA,			//爬塔设置
+	E_GAMECONSTANTSET_DEF_STRATEGICGENERAL,		//战略兵营将领带兵
+	E_GAMECONSTANTSET_DEF_LUCKY_NUM =16,		//幸运数字活动
+	E_GAMECONSTANTSET_DEF_PRIVILEGE =17,		//幸运魔盒权限
+	E_GAMECONSTANTSET_DEF_EXPLORE =18,		//基地探宝
+	E_GAMECONSTANTSET_DEF_HIGH_VIP =19,		//豪华黄钻奖励
+	E_GAMECONSTANTSET_DEF_51_ACT =20,		//51
+	E_GAMECONSTANTSET_DEF_DAILY_COST =21,		//每日充值
+	E_GAMECONSTANTSET_DEF_ARENACFG = 22,		//竞技场相关配置
+	E_GAMECONSTANTSET_DEF_PVERANK_FILTER =23,        //PVE排行版过滤
+	E_GAMECONSTANTSET_DEF_REPAIRBASE =24,        //自动修复基地
+	E_GAMECONSTANTSET_DEF_RANK_TIME =25,        //明日之星排行榜
+	E_GAMECONSTANTSET_DEF_HOLIDAY_INVITE =26,        //邀请好友活动
+	E_GAMECONSTANTSET_DEF_WORLDARENACFG = 27,		//世界竞技场相关配置
+	E_GAMECONSTANTSET_DEF_FANGCHENMI = 29,		//防沉迷设置
+	E_GAMECONSTANTSET_DEF_WORLDGRAINDAY = 31,		//世界粮食日活动
+	E_GAMECONSTANTSET_DEF_YELLOWACTIVE = 32,		//新黄钻活动
+	E_GAMECONSTANTSET_DEF_OFFICER = 33,		//新黄钻活动
+	E_GAMECONSTANTSET_DEF_LEVELBUY = 34,    //等级礼包
+	E_GAMECONSTANTSET_DEF_ZHAOMU = 35,		//战友招募
+	E_GAMECONSTANTSET_DEF_EQUIP = 36,		//装备活动
+	E_GAMECONSTANTSET_DEF_REGIONARENACFG = 37,		//跨区竞技场相关配置
+	E_GAMECONSTANTSET_DEF_NPCDEFIENCE = 38, //防守活动开关
+
+	E_GAMECONSTANTSET_DEF_PVE_BATTLE = 39,	//PVE战役相关数据
+	E_GAMECONSTANTSET_DEF_HEROCOMBAT_FILTER =40,		        //将领评分过滤
+	E_GAMECONSTANTSET_DEF_ALLUSEHEROCOMBAT_FILTER =41,		//出战将领总评分过滤
+
+    E_GAMECONSTANTSET_DEF_MONTHCARD = 42,                   //红警月卡
+	E_GAMECONSTANTSET_DEF_HEROARENACFG = 43,		//英雄竞技场相关配置
+    E_GAMECONSTANTSET_DEF_EXPLOREASRENAL = 44,      //探宝军火库
+    E_GAMECONSTANTSET_DEF_ADMIRALVISITFULL = 45,    //将领招募满送
+    E_GAMECONSTANTSET_DEF_ALLPEOPLELOTTERY = 46,    //全民抽奖
+    E_GAMECONSTANTSET_DEF_EXTRAWPCPOSITION = 47,    //额外的配件位置
+    E_GAMECONSTANTSET_DEF_COSTCREDITGIFT = 48,      //你消费 我送礼活动
+    E_GAMECONSTANTSET_DEF_DAILYRECHARGELOTTERY = 49,//每日充值抽奖
+	E_GAMECONSTANTSET_DEF_EXTRAEMBLEMPOSITION = 50,    //额外的徽记位置
+	E_GAMECONSTANTSET_DEF_SECARMSDEALER = 51,//神秘军火商,充值拿好礼
+	E_GAMECONSTANTSET_DEF_REBATE = 52,		 //小充值,大折扣活动
+	E_GAMECONSTANTSET_DEF_DOUBLEELEVENOFFICER_1 = 53,//双十一，空降军需官活动
+	E_GAMECONSTANTSET_DEF_DOUBLEELEVENOFFICER_2 = 54,
+	E_GAMECONSTANTSET_DEF_DOUBLEELEVENOFFICER_3 = 55,
+	E_GAMECONSTANTSET_DEF_HAPPY_CARD			= 56,	//翻翻乐活动
+	E_GAMECONSTANTSET_DEF_GET_ADMIRAL			= 57,   //神将抽不停活动
+    E_GAMECONSTANTSET_DEF_CHECK_ADULT           = 58,   //一刀切防沉迷
+	E_GAMECONSTANTSET_DEF_WEAPON_SEARCH			= 59,	//探囊取物活动
+	E_GAMECONSTANTSET_ADMIRAL_BUFF				= 60,	//名将buff
+	
+	E_GAMECONSTANTSET_DEF_NEW_RECALL				= 61,	//英雄回归宝箱活动
+	E_GAMECONSTANTSET_OPEN_BOX					= 62,   //开箱积分
+    E_GAMECONSTANTSET_DEF_ZHAOCAIJINBAO         = 63,   //招财进宝活动
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+struct ConstantSetUnit
+{
+	string	m_strArgs[__GAME_CONSTANTSET_NUM__];
+	int		m_nArgs[__GAME_CONSTANTSET_NUMN__];
+	GameConstantSetLogic*	m_pLogic;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////
+class GameConstantSetCfg
+{
+	enum
+	{
+		E_GAMECONSTANTSET_LOAD_ID = 0,
+		E_GAMECONSTANTSET_LOAD_DESC,
+		E_GAMECONSTANTSET_LOAD_INUSE,
+		E_GAMECONSTANTSET_LOAD_STRARG,
+		E_GAMECONSTANTSET_LOAD_INTARG = E_GAMECONSTANTSET_LOAD_STRARG + __GAME_CONSTANTSET_NUM__*2,
+	};
+public:
+	GameConstantSetCfg(void);
+	~GameConstantSetCfg(void);
+
+	static GameConstantSetCfg& Instance()
+	{
+		static GameConstantSetCfg inst;
+		return inst;
+	}
+
+	bool			LoadTbl();
+	void			ClearTbl();
+
+	ConstantSetUnit* GetGameConstantSet(int nID);
+	//获取空降军需官对应的信息的对应天数的奖励
+	int GetDoubleElevenOfficerReward(int nShopID, int nDay);
+
+private:
+	static const char*		szGameConstantSet;
+	map<int,ConstantSetUnit*> m_mapGameConstantSet;
+};
+

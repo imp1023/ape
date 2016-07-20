@@ -1,0 +1,1177 @@
+//玩家lite数据,目前用于卫星、国家玩家列表
+message DB_UserLiteBase
+{
+	optional string userid					= 1;  //userid
+ 	repeated string name     				= 2; 	//名字和链接，分校友空间
+	repeated string pic							= 3;
+	optional int32 level						= 4;  //等级
+	optional uint32 combatValue 		= 5; 	//玩家战斗力
+	optional bool  online						= 6;
+	optional int32 savetime					= 7;	//保存时间
+	optional uint32	nIntegralScore	= 8;	//竞技场积分
+	optional int32 countryID				= 9[default = 0];
+	optional int32 lastLogonTm			= 10;	//最后一次登录时间
+	optional int32 officerPosition	= 11;	//官员职位
+	optional int32 arenaRank				= 12;	//竞技场排名
+	optional int32 vipLevel				= 13;	//vip等级
+	optional int32 vipType				= 14;	//vip类型
+	optional int32 heroarenacombat				= 15;	//英雄竞技场战斗力
+	
+}
+
+message DB_CityUserLite
+{//城市玩家lite数据
+	optional int32 morale				= 1[default = 0];	//士气
+}
+
+message DB_RegionCityUserLite
+{//城市玩家lite数据
+	optional int32 morale				= 1[default = 0];	//士气
+	optional int32 region				= 2[default = 0]; //分区
+}
+message DB_GuildUserLite
+{//城市玩家lite数据
+	optional int32 position					= 1;	//职位	
+	optional int32 contribute				= 2;	//历史贡献
+	optional int32 totalContribute 	= 3;	//历史贡献	
+	optional int32 addAtkPct				= 4;	//攻击力加成
+	optional int32 addBloodPct			= 5;	//血量加成
+	repeated int32 daycontribute		= 6;	//7元素数组,7天的工会贡献记录
+	optional int32 lastcontributetm = 7;	//上次贡献时间
+	optional int32 lastcontidx			= 8;	//上次贡献更新的记录索引
+}
+
+message DB_StarUserLite
+{//卫星玩家lite数据
+	optional int32 attacktime			= 1;  //攻击次数
+	optional int32 userstat				= 2;	//玩家状态
+	optional int32 safetime				= 3 ;  //剩余保护时间
+	optional int64 totalpercharge = 4; 	//充值记录
+	optional int32 playeronlinetm = 5; 	//在线时间
+	optional uint32 playerrefreshtm = 6; //上次刷新时间
+	optional int32 finishCaptureTm 	= 7; //结束被占领时间
+	optional int32 logoutsafetime	= 8;
+}
+message DB_UserLite
+{
+	optional DB_UserLiteBase userLite   = 1;
+	optional DB_CityUserLite cityLite		= 2;	//国家所需信息
+	optional DB_StarUserLite starLite		= 3;	//卫星所需信息
+	optional DB_GuildUserLite guildLite	= 4;	//工会所需信息
+	optional DB_RegionCityUserLite regionCityLite = 5; //跨服国战所需信息
+}
+
+//卫星DB数据
+message DB_Star
+{
+	required string userid			= 1 ;  //userid
+ 	repeated string name     		= 2; //名字和链接，分校友空间
+	repeated string profile_link= 3;
+	optional int32 level				= 4 ;  //等级
+	optional int32 safetime			= 5 ;  //剩余保护时间
+	optional int32 attacktime		= 6 ;  //攻击次数
+	optional bool  online				= 7	;
+	optional int32 userstat			= 8;			//玩家状态
+	optional int32 savetime			= 9;			//保存时间
+	optional int64 totalpercharge = 10; 	//充值记录
+	optional int32 playeronlinetm = 11; 	//在线时间
+	optional uint32 playerrefreshtm = 12; //上次刷新时间
+	optional int32 finishCaptureTm = 13; 	//结束被占领时间
+	optional uint32 combatPowerValue = 14; 	//玩家战斗力
+}
+
+//位缓存
+message DB_BitCache
+{
+	repeated int32 bit = 1;
+}
+
+message DB_BanLogin
+{
+	optional bool   banlogin = 1 [default = false] ;
+	optional int64	time     = 2 ;
+}
+
+//任务规则数据,待修改
+message DB_QuestRule
+{
+	  optional int32 blvl 			= 1 ;  //
+    optional int32 brlvl 			= 2 ;
+    optional int32 b1lvl			= 3 ;
+    optional int32 b1count			= 4 ;
+    optional int32 b2lvl			= 5 ;
+    optional int32 b2count			= 6 ;
+    optional int32 b3lvl			= 7 ;
+    optional int32 b4lvl			= 8 ;
+    optional int32 b5lvl			= 9 ;
+    optional int32 b6lvl			= 10;
+    optional int32 b6count			= 11;
+    optional int32 b7lvl			= 12;
+    optional int32 b8lvl			= 13;
+    optional int32 b9lvl			= 14;
+    optional int32 b10lvl			= 15;
+    optional int32 b11lvl			= 16;
+    optional int32 b12lvl			= 17;
+    optional int32 b13lvl			= 18;
+    optional int32 b14lvl			= 19;
+    optional int32 b15lvl			= 20;
+    optional int32 b16lvl			= 21;
+    optional int32 b17lvl			= 22;
+    optional int32 b18lvl			= 23;
+    optional int32 b19lvl			= 24;
+    optional int32 b20lvl			= 25;
+    optional int32 b21lvl			= 26;
+    optional int32 b22lvl			= 27;
+    optional int32 b23lvl			= 28;
+    optional int32 b24lvl			= 29;
+    optional int32 b25lvl			= 30;
+    optional int32 b26lvl			= 31;
+    optional int32 b28lvl			= 32;
+    optional int32 b29lvl			= 33;
+    optional int32 b30lvl			= 34;
+    optional int32 b31lvl			= 35;
+    optional int32 b33lvl			= 36;
+    optional int32 lootpicked		= 37;
+    optional int32 singleclickbank1	= 38;
+    optional int32 singleclickbank2	= 39;
+    optional int32 resourcegather1	= 40;
+    optional int32 resourcegather2	= 41;
+    optional int32 worder_count		= 42;
+    optional int32 invasion_repel	= 43;
+    optional int32 friendInstalls	= 44;
+    optional int32 built			= 45;
+    optional int32 built3			= 46;
+    optional int32 built10			= 47;
+    optional int32 wallcount		= 48;
+    optional int32 artifacts		= 49;
+    optional int32 doodad			= 50;
+    optional int32 bonus_bookmark	= 51;
+    optional int32 bonus_fan		= 52;
+    optional int32 bonus_invites	= 53;
+    optional int32 bonus_gifts		= 54;
+    optional int32 _kills			= 56;
+    optional int32 _killsInAttack	= 57;
+    optional int32 _maxKillsLRS		= 58;
+    optional int32 _maxFlattenLRS	= 59;
+    optional int32 _lrs1			= 60;
+    optional int32 _lrs2			= 61;
+    optional int32 _lrs3			= 62;
+    optional int32 _lrs4			= 63;
+    optional int32 _lrs5			= 64;
+    optional int32 _lrs6			= 65;
+    optional int32 _lrs7			= 66;
+    optional int32 _lrs8			= 67;
+    optional int32 _lrs9			= 68;
+    optional int32 _lrs10			= 69;
+    optional int32 _resLoot			= 70;
+    optional int32 _destroy_base	= 71;
+    optional int32 _attack_enemy	= 72;
+    optional int32 _qzoneActive		= 73;
+}
+
+//任务数据，待修改
+message DB_Quest
+{
+	optional DB_QuestRule g	= 1 ;  //任务规则
+	repeated string c		= 2 ;  //任务完成进度["S3:2","UC2:2",...]
+	repeated string finished_quest 	= 17;  //'已经完成的任务',
+	repeated int32	finishQuest = 3;	//已完成的任务
+	
+	repeated string t1	= 4;
+	repeated string t2	= 5;
+	repeated string t3	= 6;
+	repeated string t4	= 7;
+}
+
+//攻击数据
+message DB_AiAttackQueuedArmyInfo
+{
+	//客户端为数组
+	optional int32 time		= 1 ;  //下次攻击时间间隔
+	optional int32 type		= 2 ;  //单位类型
+	optional int32 count	= 3 ;  //单位数量
+	optional int32 area		= 4 ;  //单位分布参数
+}
+
+
+//攻击数据,待修改
+message DB_AiAttackQueued
+{
+	repeated DB_AiAttackQueuedArmyInfo attack			= 1	;  //攻击数据["C1:34","C3:17",...]
+	optional int32 warned     		= 2 ;  //是否警戒（发现敌人）0=false，1=true 
+	optional int32 startUnits		= 3 ;  //起始单位数量
+}
+
+//攻击数据,待修改
+message DB_AiAttack
+{
+	optional int32 currentid				= 1 ;  //客户端生成的ID
+	optional int32 nextAttack				= 2	;  //下一次攻击时间
+	optional int32 lastattack     	= 3 ;  //上一次攻击时间
+	optional DB_AiAttackQueued queued   		= 4 ;  //攻击数据
+}
+
+//碉堡
+message DB_Troop
+{
+	optional int32 id		= 1;//单位ID
+    optional int32 health	= 2;//单位生命值(已失效)
+    optional int32 stance	= 3;//单位状态(已失效)
+}
+
+//陷阱单位
+message DB_TrapArmy
+{
+	optional int32 armytype		= 1[default = 0];//掉进陷进的单位类型
+	optional int32 armynum		    = 2[default = 0];//掉进陷进的单位数量
+}
+
+//陷阱
+message DB_Trap
+{
+	repeated DB_TrapArmy trapArmy		= 1;//掉进陷进的单位列表
+}
+
+//掉宝数据
+message DB_Loot
+{
+	optional int32 X		= 1 ;  //x
+	optional int32 Y		= 2	;  //y
+	optional int32 f     	= 3 ;  //不明
+	optional int32 st     	= 4 ;  //不明
+}
+
+//装备损失记录
+message DB_LootEquip
+{
+	optional int32 type		= 1 ;  //单位类型
+	optional int32 showtype	= 2 ;  //兵、建筑、进攻
+	optional int32 time		= 3 ;  //时间
+	optional int32 num		= 4 ;  //数量
+	optional int32 level	= 5	;  //等级
+	optional int32 herograde = 6;	//英雄星级	
+}
+//超级武器记录
+message DB_LootSuperWeapon
+{
+	optional int32 	useSuperWeaponNum 	= 1[default = 0]; //攻击方使用超级武器次数
+	optional int32 	useSuperWeaponID	= 2[default = 0]; //攻击方使用超级武器ID
+	optional int32	useTime	= 3[default = 0]; //使用超级武器时间
+}
+//战报
+message DB_LootReport
+{
+	optional int64 attackID 		= 1; //战报发起者
+	optional int64 recoveryID		= 2;	//防御方ID
+	optional string r1 					= 3 ;  //掠夺金属
+	optional string r2 					= 4 ;  //掠夺石油
+	optional string attackName	= 5 ;  //攻击玩家的名字
+	optional string log					= 6; //log(不在使用)	
+	optional string attacPic		= 7; //头像(不在使用)	
+	optional int32	attacktime  = 8;
+
+	optional bool   hasbalance  = 15 [default = false] ;//是否已经结算
+	
+	optional int32  damage      = 16; //伤害比例
+	optional int32  type        = 17; //战报类型，攻击和被攻击
+	optional string defenceName	= 18 ;  //被攻击玩家的名字
+	optional int32  Attacklevel = 19; // 攻击玩家等级
+	optional int32  defencelevel = 20; // 被攻击玩家等级
+	optional string attackpic_square	= 21; //头像
+	optional string defencepic_square	= 22; //头像
+  
+  optional int32  initdamage   = 23; // 初始的伤害百分比
+	
+	repeated DB_LootEquip attackequiploot = 24; //进攻者装备损失记录
+	repeated DB_LootEquip defenceequiploot = 25; //被攻击者装备损失记录
+	optional int32  honor 			= 26[default = 0] ;  //掠夺石的荣誉
+	optional bool   isStrike 		= 27[default = false] ;  //是否被强攻
+	optional int32  feats 			= 28[default = 0] ;  //掠夺的功绩
+	optional bool  destroySlaveRoom 	= 29[default = false] ;  //是否摧毁了战俘营
+	optional int32 	adimralExp	= 30[default = 0];	//将领获得的经验		
+	optional int32 	defAdimralExp	= 31[default = 0];	//防守方将领获得的经验	
+	optional int32	warstage			= 32[default = 0]; //战斗阶段
+	optional DB_LootSuperWeapon superweapon = 33;			//超级武器信息
+	optional bool  isSuperStorm = 34[default = false];//是否是超级强攻
+}
+
+message DB_Mushroom
+{
+	optional int32 s		= 1 ;  //上一次生成时间
+	repeated DB_Loot l			= 2 ;  //掉宝数据（废弃汽车）
+}
+
+//状态以及设置数据（不明）
+message DB_Stats
+{
+  optional int32 mrlsr 		= 1 ;
+	optional int32 mrls 		= 2 ;
+	optional int32 mrlv 		= 3 ;
+	optional int32 mutesfx 		= 4 ; //音效
+  optional int32 mutemusic 	= 5 ; //音乐
+	optional int32 log 			= 6 ; //是否开启log
+  optional int32 s 			= 7 ;
+  optional int32 e_lp 		= 8 ;//客户端没用到
+  optional int32 popuprate 	= 9 ;//客户端没用到
+  optional int32 CM 			= 10;//时间戳
+  optional int32 tip 			= 11;
+  optional int32 updateid		= 12 ;  //商品类型  
+  optional int32 reinforcements					= 13;	//（新版本不再使用）新手引导增援时间
+  optional int32  reinforcements_state	= 14;	//服务器记录数据
+
+  optional int32 savetime		= 15;
+  optional int32  reinforcementsTime		= 16;	//增援部队时间
+  optional int32 settings_vo			= 17[default = 1]; //开启关闭音效
+  optional int32 settings_bodies	= 18[default = 1]; //开启关闭尸体
+  optional int32 settings_vehicles= 19[default = 1]; //开启关闭残骸
+  optional int32 settings_admiral	= 20[default = 1]; //开启关闭将领动画
+  optional bool	 settings_lowfps  = 21[default = false];	//设置低频
+
+}
+
+//兵种升级信息
+message DB_UpgradeArmy
+{
+	optional int32 armyType			= 1 ;  //兵种类型
+	optional int32 level				= 2	;  //升级前等级
+	optional int32 finishTime		= 3[default = 0];  //完成时间
+	optional int32 ExtraBldTime	= 4[default = 0]; //需要的额外时间，用于建筑物被摧毁后
+	optional int32 ExtraUpTime	= 5[default = 0]; //需要的额外时间，建筑物升级的过程中，停止造兵
+}
+
+//兵种解锁信息
+message DB_UnlockArmy
+{
+	optional int32 armyType		= 1 ;  //兵种类型
+	optional int32 level			= 2	;  //科技等级
+}
+
+//兵种解锁数据
+message DB_Academy
+{
+	optional string type		= 1 ;  //科技类型
+	optional int32 l			= 2	;  //科技等级
+	optional int32 t     		= 3 ;  //升级时间
+	
+	optional int32 savetime = 4;
+}
+
+//演习相关
+message DB_Monsterbaiter
+{
+	repeated int32 queue		= 1 ;  //
+	optional int32 musk			= 2	;  //
+	optional int32 angle     	= 3 ;  //
+	optional int32 startTime = 4[default = 0];//开始生成能量时间
+}
+
+
+//解锁数据
+message DB_Locker
+{
+	optional string name	= 1 ;  //解锁编号
+	optional int32 t		= 2 ;  //2：已经解锁，1：正在解锁
+	optional string s		= 3 ;  //解锁开始时间
+	optional string e		= 4 ;  //解锁完成时间
+}
+
+//兵种数据
+message DB_Army
+{
+	optional int32 type		= 1 ;  //单位类型
+	optional int32 X 			= 2 ;  //x
+	optional int32 Y			= 3	;  //y
+	optional int32 angle  = 4 ;  //角度
+	optional int32 health = 5 ;  //血量
+	optional int32 stance = 6 ;  //状态STANCE_NORMAL:int = 0;STANCE_AGGRESSIVE:int = 1;STANCE_STANDGROUND:int = 2;
+	optional int32 id			= 7 [default = 0];  //ID
+	optional int32 delstate		= 8 [default = 0];  //删除状态
+	optional int32 campstate	= 9 [default = 0];  //兵营状态
+	optional int32 grade 	= 10 [default = 0];	//阶级
+}
+
+//书籍
+message DB_Book
+{
+	optional int32 id			= 1 [default = 0];  //
+	optional int32 bookID  = 2 [default = 0];  //书籍ID
+	optional int32 level	= 3 [default = 0];  //
+	optional int32 lock   = 4 [default = 0];  //是否已锁定
+	optional int32 exp		= 5 [default = 0];  //经验
+	optional int32 bagType= 6 [default = 0];  //0:背包中 1：将领
+}
+
+
+
+//徽记，可叠加，无独立ID
+message DB_Emblem
+{
+	optional int32 emblemID  	= 1 [default = 0];  //徽记ID
+	optional int32 count			= 2 [default = 0];  //数量
+}
+//新徽记结构
+message DB_EmblemNew
+{
+	optional int32 id			= 1 [default = 0];  		//
+	optional int32 emblemID  = 2 [default = 0];  	//徽记ID
+	optional int32 lock   = 4 [default = 0];  //是否已锁定
+	optional int32 exp		= 5 [default = 0];  //经验
+	optional int32 bagType= 6 [default = 0];  //0:背包中 1：机枪塔 2：爱国者 3：其他建筑
+	optional int32 useFlag= 7 [default = 0];  //0:正常 2:额外位置
+}
+//武器配件
+message DB_WeaponCom
+{
+	optional int32 id			= 1 [default = 0];  //
+	optional int32 comID  = 2 [default = 0];  //组件ID
+	optional int32 level	= 3 [default = 0];  //
+	optional int32 lock   = 4 [default = 0];  //是否已锁定
+	optional int32 exp		= 5 [default = 0];  //经验
+	optional int32 bagType= 6 [default = 0];  //0:背包中 1：基地配件 2：士兵配件 3：坦克配件 4：飞机配件
+	optional int32 grade		= 7 [default = 0];  //阶级
+	optional int32 extraType = 8 [default = 0];	//0为正常配件 2是额外的配件 
+	
+}
+//武器中心
+message DB_WeaponCenter
+{
+	repeated int32 sceneID		 		= 1; //场景ID
+	repeated int32 freeExploreCnt = 2; //免费探索次数
+	repeated int32 finishExpTime 	= 3; //完成下次免费探索的冷却时间
+	
+	repeated int32 baseCom = 4;	//基地配件，记录的是ID
+	repeated int32 armyCom = 5;	//士兵配件
+	repeated int32 tankCom = 6;	//坦克配件
+	repeated int32 planeCom= 7 ;	//飞机配件
+	
+	repeated DB_WeaponCom wpcCom  = 8;   //配件列表
+	
+	//徽记相关(旧)
+	repeated DB_Emblem	wpcEmblem 	= 9;	//徽记列表
+	repeated int32 earthTowerEmblem = 10;	//机枪塔徽记,记录的是类型ID
+	repeated int32 airTowerEmblem 	= 11;	//爱国者徽记
+	repeated int32 otherEmblem 			= 12;	//其他徽记
+	//徽记相关，2012.12.14
+	repeated DB_EmblemNew wpcEmblemNew 	= 13;	//徽记列表
+	repeated int32 gunTurretEmblem 			= 14;	//机枪塔使用徽记
+	repeated int32 mortarTowerEmblem		= 15;	//爱国者使用徽记
+	repeated int32 otherbldEmblem				= 16;	//其他建筑使用徽记
+	//书籍相关
+	repeated DB_Book	wpcBook 	        = 17;	//书籍列表
+	repeated int32 admiralBook          = 18;	//将领使用书籍
+	
+	repeated int32 laserTowerEmblem 		= 19;	//光棱塔使用徽记
+  repeated int32 heroCom        			= 20;	//英雄配件
+  
+  optional DB_WeaponExtraWpcInfo unlockExtraNum = 21; //额外解锁的数量
+  optional DB_WeaponExtraWpcInfo turnOnNum			= 22; //额外配件装备的数量
+	
+	optional DB_WeaponExtraEmblemInfo unlockEmblemNum = 23;//额外解锁徽记位置的数量
+	repeated int32 giantCanonEmblem 		= 24;	//法国巨炮使用徽记
+	
+	//干扰器相关2015.12.28
+	repeated DB_Jammer wpcJammer			= 25;	//干扰器列表
+	repeated int32 baseJammer					= 26; //基地战使用干扰器
+	repeated int32 armyJammer					= 27; //集团军营使用干扰器
+}
+
+message DB_Jammer
+{
+	optional int32 id			= 1 		[default = 0];
+	optional int32 jammerID  = 2 	[default = 0];  //干扰器ID
+	optional int32 level	= 3 		[default = 0];
+	optional bool	 bLock   = 4 		[default = false];  //是否已锁定
+	optional int32 exp		= 5 		[default = 0];  //经验
+	optional int32 bagType= 6 		[default = 0];  //0:背包 1：基地战 2：集团军营
+}
+
+//额外配件的信息
+message DB_WeaponExtraWpcInfo
+{
+	optional int32 extraBaseComNum			= 1[default = 0]; //基地配件	
+  optional int32 extraArmyComNum			= 2[default = 0]; //士兵配件	
+  optional int32 extraTankComNum			= 3[default = 0]; //坦克配件	
+  optional int32 extraPlaneComNum			= 4[default = 0]; //飞机配件	
+  optional int32 extraHeroComNum			= 5[default = 0]; //英雄配件	
+}
+
+//额外徽记的信息
+message DB_WeaponExtraEmblemInfo
+{
+	optional int32 earthEmblemCnt				= 1[default = 0]; //机枪塔徽记	
+  optional int32 airEmblemCnt					= 2[default = 0]; //导弹塔徽记	
+  optional int32 baseEmblemCnt  			= 3[default = 0]; //基地徽记	
+  optional int32 lasertowerEmblemCnt	= 4[default = 0]; //光棱塔徽记
+  optional int32 giantcanonEmblemCnt = 5[default = 0]; //法国巨炮徽记
+}
+
+//占领玩家基地信息
+message DB_CaptureBase
+{
+	optional int64 baseID				= 1 [default = 0]; //
+	optional string name				= 2 ; 
+	optional string pic					= 3;  //头像
+	optional int32 level				= 4 [default = 0];
+	optional int32 finishCaptureTm	= 5 [default = 0]; //结束被占领时间
+	
+	//下面二项仅对占领玩家有效
+	optional int32 srcType  		= 6 [default = 0]; //资源类型	
+	optional int32 pickResTime	= 7 [default = 0]; //上次收取资源时间
+	
+	optional bool 	lossUser		= 8 [default = false]; //流失玩家
+	
+}
+
+//占领系统
+message DB_SlaveRoom
+{
+	optional int32 dayRescueCnt 		= 1[default = 0];		//日解救次数
+//被占领数据
+	optional int32 dayCapturedCnt		= 2[default = 0];		//日被占领次数
+	optional DB_CaptureBase capturedInfo	= 3; //被占领信息
+//占领其他玩家数据
+	repeated DB_CaptureBase captureBase = 4;	//被占领玩家信息
+
+	optional int32 prcMedal 	= 5[default = 0];	//生产的金属
+	optional int32 prcOil 		= 6[default = 0]; //生产的石油
+	optional int32 prcHonor	 	= 7[default = 0]; //生产的荣誉
+	optional int32 prcFeats	 	= 8[default = 0]; //生产的功勋	
+}
+
+//NPC活动
+message DB_NPCActive
+{
+	repeated int32 dayWinNPCID		= 1;	//挑战胜利的NPCID
+	repeated int32 dayLostNPCID		= 2;	//挑战失败的NPCID
+	repeated int32 dayGetItemID		= 3;	//挑战获得的奖励物品列表
+	
+}
+
+//基地防守活动
+message DB_BaseDefNPC
+{
+	optional int32 bestScore		= 1;	//历史最好成绩（关卡数）
+	optional int32 dayDefCnt 		= 2;	//日防守次数
+	
+	//最后一次活动记录
+	optional int32 leftStakeCnt	= 3; //剩余抽奖次数
+	repeated int32 showItemLst 	= 4; //显示抽奖物品
+	repeated int32 showItemCnt 	= 5; //显示抽奖物品
+
+	repeated int32 stakeItemLst	= 6;	//待抽到物品
+	repeated int32 stakeItemCnt	= 7;	//待抽到物品
+	
+	optional int32 lastNPCID		= 8;  //最后一个NPCID
+}
+
+
+message DB_AdmiralSkill
+{//暂时不再使用，待技能二期的时候可能会使用
+	optional int32 id					= 1[default = 0];
+	optional int32 skillID		= 2[default = 0];
+	optional bool  initSkill	= 3[default = false];	//是否为初始技能
+	optional int32 level			= 4[default = 1];			
+	optional int32 exp				= 5[default = 0];		
+}
+
+
+message DB_AdmiralSkillData
+{
+	optional int32 skillID		= 1[default = 0];
+	optional int32 level			= 2[default = 1];			
+	optional int32 exp				= 3[default = 0];		
+}
+
+//将领培养等级
+message DB_AdmiralTrainLV
+{
+	optional int32 level			= 1[default = 0];	
+	optional int32 cnt				= 2[default = 0];		
+}
+
+//message DB_AdmiralTrainSkill
+//{
+//	optional int32 skillID		= 1[default = 0];
+//	optional int32 level			= 2[default = 0];	
+//	optional int32 cnt				= 3[default = 0];		
+//}
+
+
+//将领系统
+
+//英雄信物
+message DB_AdmiralLetter
+{
+	optional int32 letterID	     = 1 [default = 0];  //信物配表ID
+	optional int32 count         = 2 [default = 0];  //信物数量
+}
+message DB_AdmiralEquip
+{//将领装备
+    repeated int32 equipID 		 = 1;	//装备列表 	
+}
+message DB_Admiral
+{//将领数据
+	optional int32 admiralId= 1[default = 0];			//将领类型ID
+	optional int32 level		= 2[default = 0];			//
+	optional int32 exp  		= 3[default = 0];			//获得的总经验数
+	optional int32 useType	= 4[default = 0];			//类型：0未使用 1：已使用
+	optional int32 addAtk  	= 5[default = 0];			
+	optional int32 addHP  	= 6[default = 0];			
+	optional int32 addDef  	= 7[default = 0];			
+	optional int32 addCrt  	= 8[default = 0];			
+	//下面4个值为将领最后增加的属性比例，每次发生变化会重新计算
+	optional int32 finalAtk  	= 9[default = 0];			
+	optional int32 finalHP  	= 10[default = 0];			
+	optional int32 finalDef  	= 11[default = 0];			
+	optional int32 finalCrt  	= 12[default = 0];		
+	
+	repeated int32 skillID 		= 13;	//技能列表，不再使用，扩展性不好，by sskylin 2013.07.02
+	optional DB_AdmiralTrainLV trainLV = 15;		//培养等级
+	optional int32 useSoulCnt = 16[default = 0];//消耗的将魂数	
+	optional int32 score  		= 17[default = 0];//将领评分		
+	optional DB_AdmiralSkillData initSkill = 18;//初始技能
+
+	optional DB_AdmiralEquip  equip = 19;              //将领装备
+	optional int32 buffTime = 20;
+	repeated int32 medalhonorList = 21;								//将领荣誉勋章 	
+}
+
+
+message DB_AdmiralInfo
+{//将领相关数据
+	repeated DB_Admiral admiral 	= 1; 									//将领数据，此结构内存中有map映射
+	optional int32 soul						= 2[default = 0];			//将魂数量	
+	optional bool hasSendAdmiral	= 3[default = false];	//是否赠送了免费将领
+	repeated int32 sendID					= 4;									//免费赠送将领ID	
+	optional bool hasCreditVisit	= 5[default = false];	//是否有过勋章拜访记录	
+	
+	repeated int32 freeVisitCnt		= 6;									//对应三个场景，可以免费拜访的次数
+	repeated int32 finishVisitTime= 7;									//对应三个场景，可以探索的时间
+	
+	repeated DB_AdmiralSkill skill= 8;									//技能列表，该项已失效，2013.07.02
+	repeated int32 collectLst			= 9; //所有搜集到的将领列表
+	
+	optional int32	shenjiangExchangeCnt = 10[default = 0];//每日神将兑换次数
+	repeated DB_AdmiralLetter admiralletter = 11;//将领信物
+}
+
+//英雄信物
+message DB_HeroLetter
+{
+	optional int32 letterID	     = 1 [default = 0];  //信物配表ID
+	optional int32 count         = 2 [default = 0];  //信物数量
+}
+
+message DB_HeroSkillData
+{
+	optional int32 skillID		    = 1[default = 0];
+	optional int32 level			= 2[default = 1];				
+}
+
+message DB_HeroAtkData
+{//英雄战斗属性
+
+	optional int32 X 			= 2 ;  //x
+	optional int32 Y			= 3	;  //y
+	optional int32 angle  = 4 ;  //角度
+	optional int32 health = 5 ;  //血量
+	optional int32 stance = 6 ;  //状态STANCE_NORMAL:int = 0;STANCE_AGGRESSIVE:int = 1;STANCE_STANDGROUND:int = 2;
+}
+
+//英雄数据
+message DB_Hero
+{
+	optional int32 heroId       = 1[default = 0];//英雄配表ID
+	optional int32 level		= 2[default = 0];//等级
+	optional int32 grade 	    = 3[default = 0];//阶级
+	optional int32 levelexp  	= 4[default = 0];//获得的总经验数
+	optional int32 gradeexp  	= 5[default = 0];//获得的总星值
+
+	optional DB_HeroSkillData initSkill    = 6;//初始技能
+	optional DB_HeroAtkData atkData	= 7; //英雄战斗相关属性
+	optional int32 recoverhptm  	= 8[default = 0]; //血量恢复时间
+}
+
+//英雄升级信息
+message DB_UpgradeHero
+{
+	optional int32 herotype			= 1 ;  //英雄类型
+	optional int32 finishTime		= 2[default = 0];  //完成时间
+}
+
+
+//英雄系统
+message DB_HeroInfo
+{
+	repeated DB_Hero        hero 	         = 1; //英雄数据
+	repeated DB_HeroLetter  heroletter 	     = 2; //英雄信物数据
+
+	repeated int32          freeVisitCnt	  = 3; //对应三个场景，可以免费拜访的次数
+	repeated int32          finishVisitTime   = 4; //对应三个场景，可以探索的时间
+	repeated int32          collectLst		  = 5; //所有搜集到的英雄列表
+	
+	optional bool           hasSendhero	      = 6[default = false];	//是否赠送了免费英雄
+	repeated int32          sendID			  = 7;	//免费赠送将领ID	
+	optional bool           hasCreditVisit	  = 8[default = false];	//是否有过勋章拜访记录	
+	
+	repeated DB_UpgradeHero  heroupgrade 	  = 9; //英雄升级训练位
+	
+	repeated int32 			heroAtkLst		= 10; //攻击阵容列表
+	repeated int32 			heroDefLst		= 11; //防守阵容列表
+	repeated int32 			heroAutoLst		= 12; //集团兵营阵容列表
+	repeated int32 			heroarenaLst	= 13; //英雄竞技场阵容列表
+	optional int32          nAtkPartnerNum	= 14;
+	optional int32          nDefPartnerNum  = 15;
+	optional int32          nAutoPartnerNum = 16;
+}
+
+
+//游戏设置参数
+message DB_Flag
+{
+    optional int32 music = 1;
+    optional int32 effect = 2;
+    optional int32 quality = 3;    
+}
+
+message DB_Storedata
+{
+	optional string type	= 1 ;  //类型
+	optional int32 q		= 2 ;  //数量
+	optional int32 s		= 3 ;  //start
+	optional int32 e		= 4;  //end
+}
+
+message DB_EnemyStar
+{
+	optional int64 enemyID = 1;       //敌人ID
+	optional int64 attactCnt = 2;			//攻击敌人次数
+	optional int64 recoveryCnt = 3;		//防御敌人次数
+	optional int32 attacktime = 4;    // 最后一次战斗时间
+	optional int32 countdown  = 5[default = 0];    // 倒计时时间
+}
+
+
+
+message DB_GiftFrdInfo
+{//获取礼物信息
+		optional int64	friendID	= 1;					//好友ID
+		optional string frdOpenID = 2;					//好友openID
+		optional int32	messageID	= 3;					//ID
+		optional int32  giftID		= 4[default = 0];	//礼物ID
+		optional int64  getTime 	= 5[default = 0];			//最后更新玩家增长时间
+		optional int32  giftType	= 6[default = 0];	//类型：0:赠送 1：索要 2：回赠  10：老友召回 11：系统补偿/奖励
+}
+
+message DB_NewComerGiftList
+{
+	optional int32		newComerGiftID		= 1;	//礼物ID
+	optional int32		newComerGiftGain	= 2;	//领取标记
+}
+
+message DB_GiftInfo
+{//礼物系统
+		//索要和赠送
+	 	repeated string 					daySendFrdIDLst	= 1;	//每日赠送好友礼物列表（此项已无效）
+	 	repeated string						dayAskFrdIDLst	= 2;	//每日索取好友礼物列表
+	 	//礼物处理
+	 	optional int32						dayGetGift2BagCnt		= 3;	//每日获得赠送的礼物个数
+		optional int32						dayAskGift2BagCnt		= 4;	//每日获得索取的礼物个数
+		optional int32						dayGetGiftCnt				= 5;	//每日领取礼物个数
+		optional int32						dayResendGiftCnt		= 6;	//每日回赠礼物个数
+		repeated DB_GiftFrdInfo		getGiftInfo					= 7;	//未处理礼物信息
+		repeated DB_GiftFrdInfo		finishGiftInfo			= 8;	//已处理礼物信息		
+	 	optional int32						msgIdx							= 9[default = 0];
+	 	optional int64     				lastLoginTime 			= 10[default = 0] ;//最后一次登录时间
+	 	optional int32						daySendGiftCnt			= 11;	//每日赠送的礼物个数	 
+	 	//###前面的11项在合区后不再有效###
+	 	
+		repeated DB_NewComerGiftList 		newComerGiftList	= 12;		//新手礼物数据
+}
+
+message DB_DayAtkUser
+{
+	optional int64 dayAtkUserID  = 1[default = 0];	//攻击敌人的ID
+	optional int64 dayAtkUserCnt = 2[default = 0];	//攻击敌人的次数
+}
+
+message DB_UserStar
+{
+	repeated int64 enemyID = 1;				//敌人ID
+	repeated int64 attactCnt = 2;			//攻击敌人次数
+	repeated int64 recoveryCnt = 3;		//防御敌人次数
+	repeated DB_EnemyStar EnemyList = 4; // 仇敌列表
+
+	//每日只能攻击三次
+	repeated DB_DayAtkUser dayAtkInfo  = 5;	
+	optional int32 dayDestroySlaveRoomCnt	= 6[default = 0];	//每日摧毁战俘营的次数
+	optional int32 dayAtkCount				= 7[default = 0];			//每日攻击玩家次数
+	optional int32 dayDefCount				= 8[default = 0];			//每日防守玩家次数
+	optional int32 sprweaponhurtednum	= 9[default = 0];		// 每天被超级武器攻击次数
+	optional int32 sprweaponhurtedtime	= 10[default = 0];		// 上次被超级武器攻击时间	
+}
+
+message DB_DefenseActivityNode
+{
+	optional int32 activityid = 1 [default = 0];	//活动ID
+	optional int32 activitycut = 2 [default = 0];	//当前活动关卡
+	repeated bool  awardlist = 3;					//领奖记录
+	optional int32 lstcustomtime = 4 [default = -1];//上一关完成用时
+}
+
+message DB_DefenseActivity
+{
+	optional DB_DefenseActivityNode activities = 1;	//活动记录(目前不记录数据)
+}
+
+message DB_DefenseHonor
+{
+	optional int64 lastdefencehonorid		= 1 [default = 0]; // 上次防守玩家ID
+	optional int32 gaindefencehornorcnt		= 2 [default = 0]; // 获得防守荣誉次数
+}
+
+message DB_BuffUnit
+{
+	optional int32	bufftype				= 1;	//buff类型
+	optional uint32 buffEndTime				= 2;	//buff结束时间
+}
+
+//buff数据
+message DB_BuffData
+{
+	repeated DB_BuffUnit bufflist			= 1;	//buff列表
+}
+
+//日志系统
+message DB_BagItemLog
+{
+	optional int32 logType		= 1[default = 0];		//类型 0：获得 1：使用 2：消耗 3：销毁
+	optional int32 itemID 		= 2[default = 0];  	//物品ID,对应配表
+	optional int32 count 			= 3[default = 0];  	//物品数量,对于不可堆叠的物品，数量永远为1	
+	optional int32 date				= 4[default = 0];		//操作日期
+	
+	//下面列为使用道具后获得的物品列表 start
+	optional int32 medal			= 5[default = 0];		//操作日期
+	optional int32 oil				= 6[default = 0];		//操作日期
+	optional int32 credit			= 7[default = 0];		//操作日期
+	optional int32 honor			= 8[default = 0];		//操作日期
+	repeated int32 itemType		= 9;
+	repeated int32 itemCnt		= 10;
+	repeated int32 armyType		= 11;
+	repeated int32 armyCnt		= 12;
+	
+	repeated int32 weaponID		= 13;
+	repeated int32 emblemID		= 14;
+	repeated int32 weaponCnt	= 15;
+	repeated int32 emblemCnt	= 16;
+	repeated int32 admiralID	= 17;
+	repeated int32 admiralCnt	= 18;
+	
+	optional int32 feats			= 19;		
+	optional int32 thew				= 20;		
+	optional int32 morale			= 21;		
+	optional int32 zhangong		= 22;	
+	repeated int32 equipID	= 23;
+	repeated int32 equipCnt	= 24;
+	
+	optional int32 gScore			= 25;		//工会贡献值
+	optional int32 admiralsoul			= 26;		//将魂
+	
+	optional int32 cntrScore = 27[default = 0];		//国家争霸战积分
+	repeated int32 admiralLetterID	= 28;
+	repeated int32 admiralLetterCnt	= 29;
+	repeated int32 heroLetterID	= 30;
+	repeated int32 heroLetterCnt	= 31;
+	optional int32 nMilitarySoul = 32;	//军魂点
+	//end
+}
+
+//以后所有的日志请放在DB_Log结构中
+message DB_Log
+{
+	repeated DB_BagItemLog itemLog = 1; //背包物品日志
+}
+
+
+//物品
+message DB_BagItem
+{
+	optional int32 itemID 		= 1[default = 0];  	//物品ID,对应配表
+	optional int32 count 			= 2[default = 0];  	//物品数量,对于不可堆叠的物品，数量永远为1	
+	optional int32 id					= 3[default = 0];		//ID
+	optional int32 getTime		= 4[default = 0];		//获得日期
+}
+
+//背包
+message DB_Bag
+{
+	repeated DB_BagItem bagItem 		= 1;	//背包中的物品
+	optional int32 lastOpenTime 		= 2[default = 0];		//客户端最后一次打开背包时间
+	optional int32 bagLV						= 3[default = 0];	//背包等级
+	optional int32 bagUseCnt				= 4[default = 0];	//背包使用的格子数
+	repeated DB_BagItem tmpBagItem 	= 5;	//临时背包
+	repeated DB_BagItem virtualBagItem 	= 6;	//虚拟背包
+}
+
+//中秋活动
+message DB_MoonCake
+{
+	optional int32 moonCakeCnt		= 1[default = 0];	//每日获得月饼数量
+	optional int32 goldLevel			= 2[default = 0]; //金卡等级	
+	optional int32 silverLevel		= 3[default = 0]; //银卡等级	
+	repeated int64 frdID 					= 4; 							//去拜访的好友
+	repeated int32 visitFrdCnt		= 5;  						//拜访好友次数
+	optional int32 dayAccSucCnt		= 6[default = 0];	//日赏月成功次数
+	repeated int32 getAccRewardCnt= 7;  						//领取了哪些次数的赏月累计奖励
+	optional int64 lastLoginTime 	= 8[default = 0] ;//最后一次登录时间
+	optional int32 accSucMoonCakeCnt	= 9[default = 0];	//累计成功获得月饼数
+	optional int32 maxSucMoonCakeCnt	= 10[default = 0];	//累计成功获得月饼数的最大数
+	
+	//用于万圣节活动等新活动
+	optional int32 activeFlag				= 11[default = 0];	//活动标记
+	
+	optional int32 dayGetFlag1Cnt		= 12[default = 0];	//每日获得标记1数量
+	optional int32 accGetFlag1Cnt		= 13[default = 0];	//累计获得标记1数量
+	
+	optional int32 accGetFlag2Cnt		= 14[default = 0];	//每日获得标记2数量
+	optional int32 dayGetFlag2Cnt		= 15[default = 0];	//累计获得标记2数量
+}
+
+//抽奖活动
+message DB_HolidayDraw
+{
+
+	optional int32 activeFlag			= 1[default = 0];	//活动标记
+	optional int32 goldLevel			= 2[default = 0]; //抽奖等级1	
+	optional int32 silverLevel		= 3[default = 0]; //抽奖等级2(好友家中)	
+	repeated int64 frdID 					= 4; 							//去拜访的好友
+	repeated int32 visitFrdCnt		= 5;  						//拜访好友次数
+	optional int32 dayAccSucCnt		= 6[default = 0];	//日抽奖成功次数
+	repeated int32 getAccRewardCnt= 7;  						//领取了哪些次数的抽奖累计奖励
+	
+	optional int32 dayGetFlag1Cnt		= 8[default = 0];	//每日获得标记1数量
+	optional int32 accGetFlag1Cnt		= 9[default = 0];	//累计获得标记1数量
+	
+	optional int32 accGetFlag2Cnt		= 10[default = 0];	//每日获得标记2数量
+	optional int32 dayGetFlag2Cnt		= 11[default = 0];	//累计获得标记2数量
+
+	optional int64 lastGetTime = 12[default = 0]; //最后一次登陆奖励时间	
+	optional int32 dayFreeCnt				= 16[default = 0];	//每日免费次数
+	
+	optional int32 dayCostCreditTime = 17[default = 0]; //每日可消费次数
+	optional bool	 hasGetRank				 = 18[default = false]; //是否领取排行奖励
+	optional int32 dayAgainCnt				= 19[default = 0];	//每日再来一次次数
+}
+
+//留言
+message DB_LeaveMessage_Unit
+{
+	optional int32 nType	 		= 1[default = 0];  	//留言类型0无效1默认2自定义	
+	optional int32 nID	 			= 2[default = 0];  	//默认留言ID
+	optional string strMsg 			= 3[default = ''];  //自定义留言
+	optional uint32  msgtime		= 4[default = 0];	//留言时间
+	optional string strName 		= 5[default = ''];  //留言玩家名字
+	optional string strUid 			= 6[default = ''];  //留言玩家UID
+}
+
+message DB_LeaveMessage
+{
+	optional int32 nTimes						  = 1[default = 0]; //留言次数
+	optional int64 viewtargetuin				  = 2;				//查看的玩家
+	optional bool  bIsNew						  = 3; 				//留言次数
+	repeated DB_LeaveMessage_Unit leavemessagearr = 4;				//留言数组
+}
+
+message DB_TXMissionData							//腾讯任务
+{
+	optional string missionid					  = 1[default = '']; //任务ID
+	optional int32	missionstate				  = 2[default = -1]; //任务状态
+}
+
+//客户端维护的统计数据，用于每日弹板等，客户端发什么，服务器记录什么
+message DB_ClientNumStat
+{
+	repeated int32 dayStatType = 2;	//统计的类型
+	repeated int32 dayStatNum	= 3;	//统计的数量
+}
+
+//纸牌信息
+message DB_PokerInfo
+{
+	optional int32 pokerNo = 1;			//2-14，A用14表示
+	optional int32 pokerColour = 2; //0黑色，1红色，2梅花，3方片
+}
+
+//当前牌局信息
+message DB_CurrPokerInfo
+{
+	repeated DB_PokerInfo userPokers = 1;
+	repeated DB_PokerInfo npcPokers = 2;
+	optional int32 userType = 3[default = 0];		//玩家的牌型
+	optional int32 NPCType =  4[default = 0];		//NPC的牌型
+}
+
+//纸牌屋兑换物品列表
+message DB_PokerExchanges
+{
+	optional int32 gift0 = 1[default = 0];
+	optional int32 gift1 = 2[default = 0];
+	optional int32 gift2 = 3[default = 0];
+	optional int32 gift3 = 4[default = 0];
+	optional int32 gift4 = 5[default = 0];
+	optional bool	 isGetRarityGift = 6[default = false];
+	optional int32 giftnum0 = 7[default = 0];
+	optional int32 giftnum1 = 8[default = 0];
+	optional int32 giftnum2 = 9[default = 0];
+	optional int32 giftnum3 = 10[default = 0];
+	optional int32 giftnum4 = 11[default = 0];
+	
+	optional int32 refreshExcCnt = 12[default = 0];//刷新兑换列表次数
+}
+
+//世界杯竞猜
+message DB_WorldCupPredictions
+{
+	optional bool isBet = 1[default = false];
+	repeated DB_WCBetInfo betInfo = 2; 
+	optional int32 nReward = 3[default = 0];
+}
+
+//投注信息
+message DB_WCBetInfo
+{
+	optional int32 nType = 1[default = 0];							//投注的类型
+	optional int32 nJettonNum = 2[default = 0];					//筹码的数目
+	optional int32 nOdds = 3[default = 0];							//赔率
+	repeated int32 teamID = 4;													//投注的队伍编号
+}
+
+message DB_CardDuelInfo
+{
+	optional int32 myCardType = 1[default = 0];
+	optional int64 oppID = 2[default = 0];
+	optional bool bNpc = 3[default = false];
+	optional int32 winNum = 4[default = 0];				//连胜场数
+	optional bool	bMatch = 5[default = false];		//是否已经匹配
+	optional int32 addupCredit = 6[default = 0];		//累计充值
+	optional int32 maxwinNum = 7[default = 0];		//当天最大的连胜场数
+}
+
+message DB_MiddleYearGift
+{
+	optional int32 firstGift = 1[default = 0];			//领取的第一档奖励，为0时表示未领取
+	optional int32 secdGift = 2[default = 0];				//领取的第二档奖励，为0时表示未领取
+	optional int32 nTotalCredit = 3[default = 0];		//累计充值
+	optional int32 nFlag	= 4[default = 0];					//活动标记用于清除活动
+}
+
+message DB_OpenSNSGift
+{
+	optional int32 nType = 1[default = -1];		//-1：为没有参与活动，0：参与但没有购买礼包，1：已经购买了礼包
+	optional int32 nFlag = 2[default = 0];		//活动标志，用于标示不同时期的活动
+	optional int64 nTime = 3[default = 0];		//参加活动的时间
+}
+
+message DB_CallBackFriend
+{
+	repeated string frdplatids   = 1; // 召回的好友platid
+}
+
+message DB_AttackCount
+{
+	required int64 uid   = 1; // 攻击者ID
+	optional int32 count = 2; // 攻击次数
+}
+
+message DB_Science
+{
+	optional int32 recruitlandlevel = 1 [default = 0]; 	//地面部队人数
+	optional int32 recruitairlevel  = 2 [default = 0]; 	// 空中部队人数
+	optional int32 attacklandlevel  = 3 [default = 0]; 	// 地面部队部署人数
+	optional int32 extrahonorlevel  = 4 [default = 0]; 	// 额外获得荣誉
+	optional int32 exttimelevel     = 5 [default = 0]; 	// 增加攻击时间
+	optional int32 redtimelevel     = 6 [default = 0]; 	// 减少攻击时间
+	optional int32 extres           = 7 [default = 0]; 	// 增加获得资源的百分比
+	optional int32 redres           = 8 [default = 0]; 	// 减少获得资源的百分比
+	optional int32 addbuildhp		= 9 [default = 0]; 			// 增加建筑最大生命值
+	optional int32 addgunattack		= 10 [default = 0]; 	// 增加机枪塔攻击力
+	optional int32 addmissileatk	= 11 [default = 0]; 	// 增加爱国者导弹攻击力
+	optional int32 minewarfare		= 12 [default = 0]; 	// 地雷战
+}
+
+
+message DB_Effect
+{
+	repeated string       effects					 = 2; 	// '建筑效果',
+}
+
+message DB_Officer
+{
+	optional int32				officerPosition		    = 1[default = 0];  //官员职位
+	optional int32				officerRightUseFlag  	= 2[default = 0];  //官员权限使用标志
+	optional int32				officerRightEffectFlag	= 3[default = 0];  //官员权限效果标志
+	optional int32				updateTime          	= 4[default = 0];  //更新时间
+}
+
+message DB_WpcRank
+{
+	optional int32				rightID = 1[default = 0];  //权限ID
+	optional int32				updateTime = 2[default = 0];  //更新时间
+	optional int32				searchTime = 3[default = 0];
+	optional int32				activeID = 4[default = 0];
+	optional int32				overTimeSearchTime = 5[default = 0]; //结算时间的探索次数记录
+}
+
+message DB_LeagueBtl
+{
+	optional int32				activeID = 1[default = 0];  //活动ID
+	optional int32				leaguePoint = 2[default = 0];  //更新时间
+	optional bool					rewardGet = 3[default = false];
+
+}
+
+message DB_HappylibAward
+{//欢乐实验室奖励,对应活动表中数据
+	optional int32	times		= 1;//活动表中需要的次数
+	repeated int32	awardid = 2;//item id
+	repeated int32	awardnum = 3;//item num
+}
+
+message DB_HappyLib
+{//欢乐实验室
+	optional int32		activeend = 1;	//活动结束时间,存多期结果时,用于区分
+	optional int32		times = 2;				//探索实验室次数
+	optional int32		getaward = 3[default = 0];	//是否领取过奖励,按位运算吧
+	repeated DB_HappylibAward award = 4;	//根据次数可以领取的奖励
+}
+
+message DB_BossBtlMsg
+{
+	optional int32 nBossBtlFlag 		= 1[default = 0];
+	optional int64 totalDmg					= 2[default = 0]; //累计伤害
+	optional int32 honorEmbraveCnt	= 3;	//荣誉鼓舞成功次数
+	optional int32 addAtkPct				= 4;	//攻击力加成
+	optional int32 hasPickReward		= 5;	//是否已领取BOSS战奖励	
+	repeated bool	 upList						= 6;	//点赞列表
+}
+
+//荣誉勋章信息
+message DB_MedalHonorInfo
+{
+	optional int32 freeCastNum = 1[default = 50];		//每日免费铸造的次数
+	optional int32 nTokenNum = 2[default = 0];			//授勋令个数
+	optional int32 decorateType =3[default = 0]; 		//当前授勋类型
+	repeated int32 hallHonorList = 4;								//授勋厅中的荣誉勋章列表 只是保存了配表中的ID
+	repeated DB_MedalHonor medalHonorList = 5;
+}
+
+message DB_MedalHonor
+{
+	optional int32 nID = 1[default = 0];
+	optional int32 medalHonorID = 2[default = 0];	//荣誉勋章配表中的id
+	optional int32 nExp = 3[default = 0];					//当前的经验
+	optional int32 nLV = 4[default = 0];					//当前等级
+	optional int32 nBagType	= 5[default = 0];				//当前状态 0：背包中 1：装配
+	optional int32 nAdmiralID = 6[default = 0];		//将领的ID
+	optional bool  bLock = 7[default = false];				//是否锁定
+}

@@ -1,0 +1,44 @@
+
+
+//好友DB数据
+message DB_FrdRegionInfo
+{
+	optional int64 uid								= 1[default = 0];  //玩家ID
+   	optional int32 region 						= 2[default = 0];  //分区
+   	optional int32 level 							= 3[default = 0];  //等级
+	optional int32 finishCaptureTm 		= 4[default = 0]; // 结束被占领时间   
+	optional int32 lastLogonTime 			= 5[default = 0];	 //最后一次登录时间	
+	optional int32 viplevel    		= 6 [default = 0];       //所在分区的vip等级 
+    optional int32 viptype    		= 7 [default = 0];       //所在分区的vip类型	
+}
+message DB_FrdPlatInfo
+{
+ 		optional string name            	= 1; //名字和链接，分校友空间
+		optional string profile_link    	= 2;
+}
+message DB_FrdInfoLite 
+{
+    required string userid 							= 1; //(已失效)uid，前四项已失效，为兼容旧代码，依旧保留
+ 		repeated string name            		= 2; //(已失效)名字和链接，分校友空间
+		repeated string profile_link    		= 3; //(已失效)
+    optional uint32 level 							= 4; //(已失效)等级
+		optional bool   is_yellow_vip     	= 5 [default = false];//是否是黄钻
+    optional bool   is_yellow_year_vip 	= 6 [default = false];//是否是年费黄钻
+    optional int32  yellow_vip_level    = 7 [default = 0];    //黄钻等级
+    	 	//Q+会员
+		optional int32  QQDmdLvl     				= 8 [default = 0];     //QQ会员等级等级
+		optional bool   isQQDmd      				= 9 [default = false]; //是不是QQ会员
+		optional bool   isQQDmdYear  				= 10 [default = false]; //是不是年费QQ会员
+		
+ 		repeated DB_FrdRegionInfo region		= 11; //分区信息
+ 		repeated DB_FrdPlatInfo   platInfo	= 12; //平台信息
+ 		
+ 		optional int32  is_high_yellow_vip    = 13 [default = 0];    //豪华黄钻等级
+ 		
+ 		optional int32	QHallDmdLvl						= 14[default=0];
+ 		optional bool		isQHallDmd						= 15[default=false];
+ 		optional bool 	isQHallDmdYear				= 16;
+ 		optional bool		isHighQHallDmd				= 17;
+ 		optional bool 	isHighQHallDmdYear		= 18;
+
+}

@@ -6,10 +6,12 @@
 
 #include "../common/const_def.h"
 #include "../common/string-util.h"
+#include "../common/SysLog.h"
 
 #undef signbit
 
 #include "dbinterface.pb.h"
+#include "../event/event.pb.h"
 
 #include "../gamed/GameEventHandler.h"
 #include "../gamed/GameNetHandler.h"
@@ -34,21 +36,14 @@ public:
     
 public:
     User();
-	User(int64 id, const string& openid);
+	User(int64 id, const string &pid, const string &name,
+		const string &profile_link, int gender, PLAT_TYPE plat_type,
+		bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv,
+		const vector<string> &friends_platid,int nRegion,int nCity,bool bIsHighYellowDmd,bool bIsHighDmdYear,int,int,int,int nHighBlueYearTime);
     ~User(void);
 
     void Init();
     void InitDBUser();
-
-    void setUid(int64 uid)
-    {
-        m_dbUser.set_id(uid);
-    }
-
-    int64 uid(void) const
-    {
-        return m_dbUser.id();
-    }
 
     bool checkSecret(int64 secret, time_t now)
     {
@@ -77,12 +72,12 @@ public:
         fd_ = fd;
     }
 
-    time_t lastLoginTime(void) const
-    {
-        if (m_dbUser.has_last_login_time())
-            return m_dbUser.last_login_time();
-        return 0;
-    }
+	time_t	GetLastLoginTime() const
+	{
+		if (m_dbUser.has_last_login_time())
+			return m_dbUser.last_login_time();
+		return 0;
+	}
 
     void setLastLoginTime(time_t login_time)
     {
@@ -113,10 +108,10 @@ public:
         m_dbUser.set_regist_time(regist_time);
     }
 
-    const string& openid()
-    {
-        return m_dbUser.openid();
-    }
+	DB_BanLogin* GetDBBanLogin()
+	{
+		return m_dbUser.mutable_banlogin();
+	}
 
     int64 revision()
     {
@@ -138,6 +133,25 @@ public:
 		mem_revision_ = revision;
 	}
 
+	inline int64 RMRevision()
+	{
+		return rmrevision_;
+	}
+	inline void SetRmRevision(int64 revision)
+	{
+		rmrevision_ = revision;
+	}
+	
+	inline string GetPlatformId() const 
+	{ 
+		return m_dbUser.platform_id(); 
+	}
+
+	inline void SetPlatformId(string val) 
+	{
+		m_dbUser.set_platform_id(val);
+	}
+
     void setOnline(bool bOnline)
     {
         bOnline_ = bOnline;
@@ -148,26 +162,11 @@ public:
         return bOnline_;
     }
 
-	string getName() const
-	{
-		return m_dbUser.name();
-	}
-
-	int getHead() const
-	{
-		return m_dbUser.head();
-	}
-
-	int					setRole(const string& name, int head, int camp);
 	int					Rename(const string& name);
     bool				IsNewLoginDay(void) const;
 	bool				IsNewLoginMonth(void) const;
 	bool				IsNewLoginWeek(void) const;
-	bool				IsContinueLoginDay(void) const;
-
-	int					GetRegDays();
-	string				GetLogOpenID();
-	string				GetLogRegDays();
+	bool				CheckPlayerAdult();
 
 	int					GetUserLevel(void) const;
 	int					GetUserExp(void) const;
@@ -181,13 +180,22 @@ public:
 	void				SetFd(int fd);
 	Player*				GetPlayer(void);
 	const Player*		GetPlayer(void) const;
+	void				SetName(const string &name, enum PLAT_TYPE nPlatType);
+
+	int64				GetUid() const;
+	void				SetUid(int64 val);
 
 	void				OnLogin();
-	void				OnAuth();
 
-    
+    int                 GetUserRegion(bool bCheckGroup=true); //bCheckGroup：true合区后的分区 false:合区前的分区
+	
+	//Rc4加密
+	void					InitRc4Key(int nNum,string szSid);		//获得Key
+	string&					GetRc4Send();
+	string&					GetRc4Receive();
+
 private:
-    void                OnSetDbPlayer();
+    void                OnSetDbUser();
 	
 protected:
     int					fd_;
@@ -197,6 +205,7 @@ protected:
     int64				revision_;
 	int64				mem_revision_;
     bool				bOnline_;
+	int64				rmrevision_;
 
     DB_User        		m_dbUser;
     bool           		m_bDirty;
@@ -204,6 +213,9 @@ protected:
 private:
     Player*        		m_pPlayer;
     int            		m_nFd;
+
+	string				m_strRc4Send;
+	string				m_strRc4Receive;
 } ;
 
 inline void User::SetFd(int fd)
@@ -214,4 +226,44 @@ inline void User::SetFd(int fd)
 inline Player* User::GetPlayer()
 {
     return m_pPlayer;
+}
+
+inline void User::SetName(const string &name, enum PLAT_TYPE nPlatType)
+{
+	if (m_dbUser.name_size() == 0  && nPlatType >= 1)
+	{
+		m_dbUser.set_name(0, "");
+	}
+	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX)
+	{
+		m_dbUser.set_name(nPlatType, name);
+	}
+}
+
+inline string&	User::GetRc4Send()
+{
+	if(m_strRc4Send.length() <= 0)
+	{
+		m_strRc4Send = toString(m_dbUser.id()) /*+ toString(m_dbUser.player().level() * 100)*/;
+	}
+	return m_strRc4Send;
+}
+
+inline string&	User::GetRc4Receive()
+{
+	if(m_strRc4Receive.length() <= 0)
+	{
+		m_strRc4Receive = /*toString(m_dbUser.player().level() * 100) +*/ toString(m_dbUser.id());
+	}
+	return m_strRc4Receive;
+}
+
+inline int64 User::GetUid() const 
+{ 
+	return m_dbUser.id(); 
+}
+
+inline void User::SetUid(int64 val) 
+{ 
+	m_dbUser.set_id(val);
 }
