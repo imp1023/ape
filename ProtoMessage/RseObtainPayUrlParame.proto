@@ -1,0 +1,5 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RseObtainPayUrlParame
+{
+	optional string url_params = 1;
+}

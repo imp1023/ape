@@ -1,0 +1,23 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceUpdateGameUnits
+{
+    optional int64 timeLeft = 1;
+	optional Transaction transaction = 2;
+	optional string sku = 3;
+	optional string planetId = 4;
+	optional string action = 5;//unlockCompleted
+}
+
+message Transaction
+{
+	optional int32 exp = 1;
+	optional int32 minerals = 2;
+	optional string client = 3;
+	optional string event = 4;
+	optional int32 cash = 5;
+	optional double instantOperationMinutesLeft = 6;
+	optional int32 droids = 7;
+	optional int32 coins = 8;
+}

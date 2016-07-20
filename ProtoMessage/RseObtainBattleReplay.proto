@@ -1,0 +1,19 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgBattle
+{
+	optional int32 planetId = 1;
+    repeated int32 Universe = 2;
+    optional int32 accountId = 3;
+    optional string name = 4;
+    optional string url = 5;
+    optional int32 Deploys = 6;
+    optional int32 AttackerGameUnits = 7;
+}
+
+message RseObtainBattleReplay
+{
+	repeated MsgBattle Battle = 1;
+}
+

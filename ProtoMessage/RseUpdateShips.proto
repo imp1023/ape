@@ -1,0 +1,6 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message RseUpdateShips
+{
+	optional int32 ret = 1;
+}

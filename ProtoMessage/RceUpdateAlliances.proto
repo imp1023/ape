@@ -1,0 +1,11 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceUpdateAlliances
+{
+    optional bool paramsOk = 1;
+    optional string action = 2;//": "getMyAlliance",
+    optional int32 planetId = 3;
+    optional string clientCmd = 4;//": "requestMyAlliance"
+}
+

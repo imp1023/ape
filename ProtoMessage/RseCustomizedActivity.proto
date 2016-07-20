@@ -1,0 +1,13 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RseCustomizedActivity
+{
+	optional int32 onlineRewardType = 1;
+	optional int32 onlineRewardSequence = 2;
+	optional int32 nDay = 3;
+	optional bool friendArmyState = 4;
+	optional int64 friendArmyTime = 5;
+	optional int32 firewireSupportStep = 6;
+	optional string firewireSupportProgress = 7;
+	optional bool everyDayFirstLoad = 8;
+	optional string action = 9;//initCA
+}

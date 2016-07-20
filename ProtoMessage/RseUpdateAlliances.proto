@@ -1,0 +1,15 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgProfile
+{
+		
+}
+
+message RseUpdateAlliances
+{
+	optional bool result = 1;//": false,
+    optional int32 error = 2;//": 8,
+    optional MsgProfile profile = 3;//": {}
+}
+

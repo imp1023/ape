@@ -1,0 +1,7 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+ 
+message RceQueryStarsBookmarks
+{
+	optional string planetId = 1;
+}

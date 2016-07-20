@@ -1,0 +1,24 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgTransaction
+{
+    optional int32 exp = 1;//": 0,
+    optional int32 minerals = 2;//": 0,
+    optional string client = 3;//": "0:1291883:12703953:9378890",
+    optional string event = 4;//": "",
+    optional int32 cash = 5;//": 0,
+    optional int32 droids = 6;//": 0,
+    optional int32 coins = 7;//": 0	
+}
+
+message RceItemDamaged
+{
+	optional int32 planetId = 1;//": "1",
+    optional int32 energyBeforeShot = 2;//": 1000,
+    optional MsgTransaction transaction = 3;
+    optional int32 destroyed = 4;//": 0,
+    optional int32 damage = 5;//": 110,
+    optional MsgTransaction transactionTarget= 6;
+    repeated string attackers = 7;//": ["55:u:975","55:u:976"],
+    optional int32 itemSid = 8;//": 587
+}

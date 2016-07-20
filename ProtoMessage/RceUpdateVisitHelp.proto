@@ -1,0 +1,10 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+message RceUpdateVisitHelp
+{
+	optional string planetId = 1;
+	optional string action = 2;//dailyBonusDone
+	optional int32 coins = 3;
+}

@@ -1,0 +1,9 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceLogin
+{
+    optional string pass = 1;
+    optional string nick = 2;
+}
+

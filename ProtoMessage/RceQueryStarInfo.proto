@@ -1,0 +1,19 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+message RceQueryStarInfo
+{
+	optional int32 coordY = 1;
+	optional string planetId = 2;
+	optional Coords coords = 3;
+	optional int32 coordX = 4;
+	optional int32 starId = 5;
+}
+
+message Coords
+{
+	optional int32 x = 1;
+	optional int32 z = 2;
+	optional int32 y = 3;
+}

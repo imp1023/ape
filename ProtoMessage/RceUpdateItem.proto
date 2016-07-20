@@ -1,0 +1,49 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgTmpTransaction
+{
+	optional string clientDebugInfo = 1;
+	optional int32 exp = 2;
+	optional int32 minerals = 3;
+	optional int32 score = 4;
+	optional string client = 5;
+	optional string event = 6;
+	optional int32 cash = 7;
+	optional double instantOperationMinutesLeft = 8;
+	optional int32 droids = 9;
+	optional int32 coins = 10;
+}
+
+message MsgTmpItem
+{
+	optional string sid = 1;
+	optional string type = 2;
+	optional string upgradeId = 3;
+	optional string y = 4;
+	optional string state = 5;
+	optional string energy = 6;
+	optional int64 time = 7;
+	optional string sku = 8;
+	optional string incomeToRestore = 9;
+	optional string repairing = 10;
+	repeated int32 Item = 11;
+	optional string isFlipped = 12;
+}
+
+message RceUpdateItem
+{
+	optional int32 sid = 1;
+	optional int64 time = 2;
+	optional MsgTmpTransaction transaction = 3;
+	optional MsgTmpItem item = 4;
+	optional int32 oldState = 5;
+	optional int64 id = 6;
+	optional string planetId = 7;
+	optional int32 newState = 8;
+	optional string action = 9;//newState newItem rotate
+	optional int64 timePassed = 10;
+	optional int32 x = 11;
+	optional int32 y = 12;
+	optional int32 flip = 13;
+}

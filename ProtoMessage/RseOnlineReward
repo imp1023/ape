@@ -1,0 +1,6 @@
+﻿//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RseOnlineReward
+{
+	optional bool result = 1;
+	optional int32 errorType = 2;
+}

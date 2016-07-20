@@ -1,0 +1,13 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+
+message RceUpdateTargets
+{
+    optional string planetId = 1;
+    optional string sku = 2;
+    optional int32 subTargetIndex = 3;
+    optional string action = 4;
+    optional int32 amount = 5;
+}

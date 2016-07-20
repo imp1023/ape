@@ -1,0 +1,25 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message NonFriendsList
+{
+	optional int32 planetId = 1;
+	optional int64 accountId = 2;
+	optional string planetSku = 3;
+	optional string name = 4;
+	optional int32 score = 5;
+	optional int32 hqLevel = 6;
+	optional int64 xp = 7;
+	optional int32 levelBasedOnScore = 8;
+	repeated int32 user = 9;
+	optional string url = 10;
+	optional int32 damageProtectionTimeLeft = 11;
+	optional int32 tutorialCompleted = 12;
+	optional int32 isOnline = 13;
+}
+
+
+message RseObtainRandomTargets
+{
+	repeated NonFriendsList nonFriendsList = 1;
+}

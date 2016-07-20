@@ -1,0 +1,26 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgAttacker
+{
+    optional int64 id = 1;
+    optional int64 attackDate = 2;
+    optional int64 accountId = 3;
+    optional string planetSku = 4;
+    optional int32 damage = 5;
+    optional int32 planetDamage = 6;
+    repeated int64 attacker = 7;
+    optional int32 mineralsTaken = 8;
+    optional int32 coinsTaken = 9;
+    optional int64 obtainedDamageProtectionTime = 10;
+    optional string name = 11;
+    optional string url = 12;
+}
+
+message RseObtainAttackerList
+{
+	optional int32 idCount = 1;
+    optional int64 damageProtectionAppliedAt = 2;
+    repeated MsgAttacker attackerList = 3;
+}
+

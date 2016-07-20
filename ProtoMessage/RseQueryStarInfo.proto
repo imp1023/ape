@@ -1,0 +1,36 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RseQueryStarInfo
+{
+	repeated SpaceStarInfo spaceStarInfo = 1;
+	optional int32 type = 2;
+	optional string sku = 3;
+	optional int32 starId = 4;
+	
+}
+
+message SpaceStarInfo
+{
+	optional string name = 1;
+	optional string url  = 2;
+	optional int64  xp = 3;
+	optional int32 score = 4;
+	optional string sku = 5;
+	optional int32 planetId = 6;
+	optional int32 HQLevel = 7;
+	optional int32 type = 8;
+	optional int32 capital = 9;
+	repeated Planet Planet = 10;
+	optional int64 damageProtectionTimeLeft = 11;
+	optional int64 tutorialCompleted = 12;
+	optional int32 isOnline = 13;
+	optional int32 accountId = 14;
+	optional int32 levelBasedOnScore = 15;
+
+}
+
+message Planet
+{
+	optional int32 ret = 1;
+}

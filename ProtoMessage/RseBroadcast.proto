@@ -1,9 +1,0 @@
-//package core.io.protocol;
-
-message RseBroadcast
-{
-	optional string content               = 1; //内容
-	optional int32 type                   = 2; //1后台发送2条件触发
-	optional int32 id					  = 3; //配表ID
-	repeated string param				  = 4; //内容参数	
-}

@@ -1,0 +1,14 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceUpdateSocialItem
+{
+	optional string planetId = 1;
+	optional int32 currentSequence = 2;
+	optional int32 currentCount = 3;
+	optional string sku = 4;
+	optional int32 currentQuantity = 5;
+	optional int32 sequence = 6;
+	optional string action = 7;
+	optional int32 postion = 8;
+}

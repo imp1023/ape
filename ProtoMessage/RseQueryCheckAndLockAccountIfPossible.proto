@@ -1,0 +1,11 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+
+message RseQueryCheckAndLockAccountIfPossible
+{
+	optional int32 lockRequested = 1;
+	optional int32 lockApplied = 2;
+	optional int32 lockSuccess = 3;
+}

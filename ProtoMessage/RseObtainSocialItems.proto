@@ -1,0 +1,20 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgItem
+{
+	optional int32 sku = 1;
+	optional int32 position = 2;
+	repeated int32 Item = 3;
+	optional int32 sequence = 4;
+	optional int32 counter = 5;
+	optional int32 quantity = 6;
+	optional int32 timeLeft = 7;
+}
+
+message RseObtainSocialItems
+{
+	optional string wishlist = 1;
+	repeated MsgItem ItemsList = 2;
+}
+

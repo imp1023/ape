@@ -1,0 +1,6 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceObtainHangarsHelp
+{
+	optional string targetAccountId = 1;
+	optional string planetId = 2;
+}

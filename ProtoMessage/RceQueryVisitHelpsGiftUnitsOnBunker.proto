@@ -1,0 +1,15 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceQueryVisitHelpsGiftUnitsOnBunker
+{
+
+	optional string planetId = 1;
+	optional int32 bunkerSid = 2;
+	repeated UnitsArray unitsArray = 3;
+}
+
+message UnitsArray
+{
+	optional int32 hangarSid = 1;
+	optional string sku = 2;
+	optional string amount = 3;
+}

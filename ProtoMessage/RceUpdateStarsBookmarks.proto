@@ -1,0 +1,12 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceUpdateStarsBookmarks
+{              
+	optional string planetId = 1;
+	optional int32 coordX = 2;
+	optional string starName = 3;
+	optional string starNameUserGenerated = 4;
+	optional int32 coordY = 5;
+	optional string starType = 6;
+	optional int32 starId = 7;
+	optional string action = 8;//addBookmark
+}

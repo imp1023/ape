@@ -1,0 +1,7 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message RseUpdateSocialItem
+{
+	optional int32 ret = 1;
+}
+

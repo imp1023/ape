@@ -1,0 +1,9 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RseObtainCustomizer
+{
+    optional int32 ret = 1;
+    
+}
+

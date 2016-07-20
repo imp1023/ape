@@ -1,0 +1,9 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+message RceObtainRandomTargets
+{
+	optional int32 starId = 1;
+	optional string planetId = 2;
+}

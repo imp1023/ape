@@ -1,0 +1,10 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceUpdateMisc
+{
+	optional int32 planetId = 1;
+	optional string action = 2;//ckDr 
+	optional int32 wk = 3;
+	optional int32 chk = 4;
+}

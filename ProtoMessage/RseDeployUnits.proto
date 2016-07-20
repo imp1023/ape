@@ -1,0 +1,8 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RseDeployUnits
+{
+    optional int32 ret = 1;
+}
+

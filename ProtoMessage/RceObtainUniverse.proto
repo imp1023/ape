@@ -1,0 +1,9 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceObtainUniverse
+{
+	optional string targetAccountId = 1;
+    optional bool firstRequest = 2;
+}
+

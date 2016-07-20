@@ -1,0 +1,29 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+message RceUpdateShips
+{
+	optional Transaction4 transaction = 1;
+	optional string planetId = 2;
+	optional string action = 3;//addSlot killUnitFromBunker
+	optional int32 sid = 4;
+	optional int32 sku = 5;
+	optional int32 hangarSid = 6;
+	optional int32 bunkerSid = 7;
+	optional string unitSku = 8;
+	optional int32 amount = 9;
+	optional int32 block  = 10;
+}
+
+message Transaction4
+{
+	optional int32 exp = 1;
+	optional int32 minerals = 2;
+	optional string client = 3;
+	optional string event = 4;
+	optional int32 cash = 5;
+	optional double instantOperationMinutesLeft = 6;
+	optional int32 droids = 7;
+	optional int32 coins = 8;
+}

@@ -1,0 +1,17 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgPlanet
+{
+	optional int32 planetId = 1;//": 1,
+    optional string starName = 2;//": "塌圖嗣嫌",
+    optional int32 planetType = 3;//": 0,
+    optional int32 coinsLimit = 4;//": 9000,
+    optional int32 mineralsLimit = 5;//": 9000,
+    optional int32 starId = 6;//": 2038,
+    optional string sku = 7;//": "4:1:4",
+    optional int32 starType = 8;//": 3,
+    optional int32 HQLevel = 9;//": 0,
+    optional int32 capital = 10;//": 1,
+    repeated int32 Planet = 11;//": []
+}
+

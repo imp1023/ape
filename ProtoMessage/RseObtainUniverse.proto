@@ -1,0 +1,120 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+import "MsgPlanet.proto";
+
+message MsgGameUnit
+{
+    optional int64 updatedAt = 1;
+    optional int32 unlocked = 2;
+    optional int64 timeLeft = 3;
+    repeated int32 GameUnit = 4;
+    optional string sku = 5;
+    optional int32 upgradeId = 6;
+}
+
+message MsgBunker
+{
+
+}
+
+message MsgHangarUnit
+{
+    optional string sku = 1;
+    repeated int32 Unit = 2;
+}
+            
+message MsgHangars
+{
+    optional int32 sid = 1;
+    repeated MsgHangarUnit Hangar = 2;
+}
+
+message MsgSlot
+{
+    repeated int32 Ship = 1;
+    optional int64 timeLeft = 2;
+}
+
+message MsgShipyardSlot
+{
+    repeated MsgSlot Slots = 1;
+    optional string sku = 2;
+}
+
+message MsgShipyard
+{
+    optional int64 updatedAt = 1;
+    optional int32 sid = 2;
+    optional int32 block = 3;
+    repeated MsgShipyardSlot Shipyard = 4;
+}
+
+message MsgBuildingItem
+{
+    optional int32 id = 1;
+    optional int32 sid = 2;
+    optional int32 energyPercent = 3;
+    optional int32 state = 4;
+    optional string sku = 5;
+    optional int32 type = 6;
+    optional int32 upgradeId = 7;
+    optional int32 energy = 8;
+    optional int32 x = 9;
+    optional int32 y = 10;
+    optional int64 updatedAt = 11;
+    //"Item": [],
+    optional int64 time = 13;
+}
+
+message MsgMissionParam
+{
+    repeated string Target = 1;
+    optional int64 endTime = 2;
+    optional string sku = 3;
+    optional string progress = 4;
+}
+
+message MsgMissionState
+{
+    repeated string ReadyToStart = 1;
+    repeated string Available = 2;
+    repeated string Rewarded = 3;
+    repeated string Completed = 4;
+    repeated MsgMissionParam Params = 5;
+}
+
+message RseObtainUniverse
+{
+    optional bool vip = 1;
+    optional bool yearVip = 2;
+    optional int32 vipLevel = 3;
+    optional bool newPlayerGiftBag = 4;
+    optional bool everydayGiftBag = 5;
+    optional int64 spyCapsulesTimeLeft = 6;
+    optional string DCPlayerName = 7;
+    optional string DCWorldName = 8;
+    optional int32 levelBasedOnScore = 9;
+    optional int32 DCPlayerRank = 10;
+    optional int32 DCCoins = 11;
+    optional int32 DCMinerals = 12;
+    optional int32 score = 13;
+    optional int32 exp = 14;
+    optional int32 lastVisitTime = 15;
+    optional int32 lastLevelNotified = 16;
+    optional int32 DCCash = 17;
+    optional int32 DCDroids = 18;
+    optional int32 DCDroidsInUse = 19;
+    optional int64 damageProtectionTimeLeft = 20;
+    optional int64 damageProtectionTimeTotal = 21;
+    optional bool tutorialCompleted = 22;
+    optional string flags = 23;
+    optional MsgMissionState Missions = 24;
+    repeated MsgPlanet Planets = 25;
+    repeated MsgBuildingItem Items = 26;
+    repeated MsgShipyard Shipyards = 27;
+    repeated MsgHangars Hangars = 28;
+    repeated MsgBunker Bunkers = 29;
+    repeated MsgGameUnit GameUnits = 30;
+}
+

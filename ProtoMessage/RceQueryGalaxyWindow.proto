@@ -1,0 +1,13 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+
+message RceQueryGalaxyWindow
+{
+	optional int32 topLeftCoordX = 1;
+	optional int32 bottomRightCoordY = 2;
+	optional string planetId = 3;
+	optional int32 topLeftCoordY = 4;
+	optional int32 bottomRightCoordX = 5;
+}
+

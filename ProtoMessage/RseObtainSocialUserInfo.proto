@@ -1,0 +1,16 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgSocialUserInfo
+{
+	
+}
+
+message RseObtainSocialUserInfo
+{
+	optional string name = 1;
+    optional string photoURL = 2;
+    optional int32 fan = 3;
+    repeated MsgSocialUserInfo SocialUserInfo = 4;
+}
+

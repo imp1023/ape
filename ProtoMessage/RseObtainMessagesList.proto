@@ -1,0 +1,13 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgMessage
+{
+	optional string msg = 1;	
+}
+
+message RseObtainMessagesList
+{
+	repeated MsgMessage messageList = 1;	
+}
+

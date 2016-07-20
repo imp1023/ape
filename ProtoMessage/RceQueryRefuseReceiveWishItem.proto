@@ -1,0 +1,14 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceQueryRefuseReceiveWishItem
+{
+	optional string type = 1;
+	optional string name = 2;
+	optional string playerId = 3;
+	optional string id = 4;
+	optional string guid = 5;
+	optional string planetId = 6;
+	optional string time = 7;
+	optional string msg = 8;
+	optional string url = 9;
+	
+}

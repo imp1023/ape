@@ -1,0 +1,14 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceUnitDamaged
+{
+	optional int32 planetId = 1;
+    optional int32 energyBeforeShot = 2;//": 250,
+    optional int32 unitId = 3;//": 974,
+    optional string unitSku = 4;//": "groundUnits_001_001",
+    optional int32 fromBunkerSid = 5;//": -1,
+    optional int32 damage = 6;//": 300,
+    optional int32 destroyed = 7;//": 1,
+    repeated string attackers = 8;//": ["300:i:332"]
+}

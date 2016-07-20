@@ -1,0 +1,11 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceQuerySendWishItem
+{
+	optional string name = 1;
+	optional string platform = 2;
+	optional string accountId =3;
+	optional string guid = 4;
+	optional string planetId = 5;
+	optional string itemSku = 6;
+	optional string url = 7;
+}

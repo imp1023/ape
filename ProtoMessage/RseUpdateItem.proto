@@ -1,0 +1,8 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RseUpdateItem
+{
+	optional int64 id = 1;
+	optional int32 sid = 2;
+}

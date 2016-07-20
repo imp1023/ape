@@ -1,0 +1,11 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceObtainPayUrlParame
+{
+	optional string openid = 1;
+	optional int32 appmode = 2;
+	optional string platId = 3;
+	optional string planetId = 4;
+	optional string goodsmeta = 5;
+	optional string gdurl = 6;
+	optional string  payitem = 7;
+}

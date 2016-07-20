@@ -1,0 +1,7 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RceOnlineReward
+{
+	optional int32 type = 1;
+	optional string planetId = 2;
+	optional int32 sequence = 3;
+}

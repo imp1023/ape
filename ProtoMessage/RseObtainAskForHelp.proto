@@ -1,0 +1,17 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message RseObtainAskForHelp
+{
+	repeated Items items = 1;
+	repeated Units units = 2;
+}
+
+message Items
+{
+	optional int32 ret = 1;
+}
+
+message Units
+{
+	optional int32 ret = 1;
+}

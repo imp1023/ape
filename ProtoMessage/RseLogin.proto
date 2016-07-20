@@ -1,0 +1,20 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RseLogin
+{
+	optional int64 currentTimeMillis = 1;
+    optional int64 id = 2;
+    optional int32 levelBasedOnScore = 3;
+    optional int32 myAccountIsLocked = 4;
+    optional bool  pop = 5;
+    optional int32 rqId = 6;
+    optional int32 sync = 7;
+    optional int64 timeFromLastLogin = 8;
+    optional int64 timeFromLastUpdate = 9;
+    optional int32 token = 10;
+    optional int64 userId = 11;
+    optional string version = 12;
+    optional int32 vip = 13;
+}
+

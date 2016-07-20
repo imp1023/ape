@@ -1,0 +1,27 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+import "MsgPlanet.proto";
+
+message MsgNeighbor
+{
+    optional string platform = 1;
+    optional int64 accountId = 2;
+    optional int32 score = 3;
+    optional int32 xp = 4;
+    optional string extId = 5;
+    optional string url = 6;
+    optional string name = 7;
+    optional int32 isNeighbor = 8;
+    optional int32 levelBasedOnScore = 9;
+    optional string wishlist = 10;
+    optional int64 damageProtectionTimeLeft = 11;
+    optional int32 tutorialCompleted = 12;
+    optional MsgPlanet neighbor = 13;
+}
+
+message RseObtainNeighborsList
+{
+	repeated MsgNeighbor neighborList = 1;
+}
+

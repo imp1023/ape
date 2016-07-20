@@ -1,0 +1,5 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+message RseQuerySendWishItem
+{
+	optional int32 ret = 1;
+}
