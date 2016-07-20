@@ -28,11 +28,40 @@
 	}\
 }
 
-Player::Player(User* pParent, DB_Player* pdbPlayer)
+Player::Player(User* pParent)//:m_rPVEFightManager(this),m_rCountryArenaMgr(),m_rWorldArenaMgr(),m_rRegionArenaMgr(),m_rHeroArenaMgr()
 {
-	m_pdbPlayer   			= pdbPlayer;
-	m_pUser       			= pParent;
-	eh_           			= NULL;
+#if 0
+	m_bHasSendInfoToStar = false;
+	m_pUser = pParent;
+
+	m_ltRecoveryTime = 0;
+	m_pdbPlayer = NULL;
+	eh_ = NULL;
+	m_emStat = US_CanAttack;
+	m_lstStarIDLst.clear();
+	//	m_mapDayAttUserCnt.clear();
+	m_lstGetStarTime = 0;
+	m_curHonorPerDay = 0;
+	m_nInviteFrdID  = 0;
+	m_bInviteFrdHasLogonToday = false;
+	m_pNPCManager  = new NPCManager(this);
+	m_pBaseManager = new BaseManager(0,this);
+	m_pBattleManager=new BattleManager(0,this);
+	m_pCountryManager=new CountryManager(this);
+	m_pRegionCountryManager = new RegionCountryManager(this);
+	m_pGveMgr = new GveManager(this);
+	m_pResourceMgr = new ResourceManager(this);
+	m_pWarGameMgr = new WarGameManager(this);
+	m_pBossBtlMgr = new BossBtlManager(this);
+	//m_pHomeManager = new HomeManager(this);
+	//m_pStoreManager	= new StoreManager(this);
+	m_rmapUserTryAttacked.clear();
+	m_rmapUserTryLoad.clear();
+	m_nInviteFrdCnt = 0;
+	m_bGiftGain = false;
+	m_emStarGroup	= Star_Group_A;
+	m_mapServerStat.clear();
+#endif
 }
 
 Player::~Player(void)

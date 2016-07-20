@@ -23,7 +23,7 @@ public:
 	void		InitNewUserFromCfg();
 
 private:
-    Player(User* pParent, DB_Player* pdbPlayer);
+    Player(User* pParent);
 	Player();
 	Player(Player&);
     ~Player();

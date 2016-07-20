@@ -90,8 +90,16 @@ void User::Init()
     bOnline_			= false;
     m_pPlayer			= NULL;
 	rmrevision_			= 0;
+	plat_type_			= PLAT_XIAOYOU;
+	m_nRegDays			= 0;
+	friends_id_.clear();
+	friends_platid_.clear();
 
+	m_pPlayer = new Player(this);
     InitDBUser();
+	m_strRc4Send.clear();
+	m_strRc4Receive.clear();
+
 }
 
 void User::InitDBUser()
@@ -116,25 +124,25 @@ void User::OnSetDbUser()
 {
 	if (m_pPlayer == NULL)
 	{
-		m_pPlayer = new Player(this, m_dbUser.mutable_player());
+		m_pPlayer = new Player(this);
 	}
 	m_pPlayer->InitDB(m_dbUser.mutable_player());
 	//m_pPlayer->CacuStat();
 
 	time_t ltNow = time(NULL);
-// 	time_t ltReg = GetRegisterTime();
-// 	if(ltReg>0)
-// 	{
-// 		static int nOneDay = 24*60*60;
-// 		m_nRegDays = (int)((ltNow-ltReg)/nOneDay);
-// 	}
+ 	time_t ltReg = GetRegisterTime();
+ 	if(ltReg>0)
+ 	{
+ 		static int nOneDay = 24*60*60;
+ 		m_nRegDays = (int)((ltNow-ltReg)/nOneDay);
+ 	}
 }
 
 void User::InitNewUser()
 {
 	//m_dbUser.set_name("TestPlayer");
 	//m_dbUser.set_head(0);
-	setRegistTime(time(NULL));
+	SetRegisterTime(time(NULL));
 	m_pPlayer->InitPlayerData();	
 }
 

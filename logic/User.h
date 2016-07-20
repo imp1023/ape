@@ -96,14 +96,14 @@ public:
 		m_dbUser.set_last_logout_time(logout_time);
 	}
 
-    time_t registTime()
+    time_t GetRegisterTime()
     {
         if (m_dbUser.has_regist_time())
             return m_dbUser.regist_time();
         return 0;
     }
 
-    void setRegistTime(time_t regist_time)
+    void SetRegisterTime(time_t regist_time)
     {
         m_dbUser.set_regist_time(regist_time);
     }
@@ -206,6 +206,11 @@ protected:
 	int64				mem_revision_;
     bool				bOnline_;
 	int64				rmrevision_;
+
+	PLAT_TYPE			plat_type_;
+	int					m_nRegDays;
+	vector<int64>		friends_id_;
+	vector<string>		friends_platid_;
 
     DB_User        		m_dbUser;
     bool           		m_bDirty;
