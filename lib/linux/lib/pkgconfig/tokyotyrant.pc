@@ -1,0 +1,14 @@
+prefix=/usr/local/services
+exec_prefix=${prefix}
+datarootdir = ${prefix}/share
+bindir=${exec_prefix}/bin
+libdir=${exec_prefix}/lib
+libexecdir=${exec_prefix}/libexec
+includedir=${prefix}/include
+datadir=${datarootdir}
+
+Name: Tokyo Tyrant
+Description: network interface of Tokyo Cabinet
+Version: 1.1.40
+Libs: -L${libdir} -ltokyotyrant -ltokyocabinet -lbz2 -lz -lresolv -lnsl -ldl -lrt -lpthread -lm -lc 
+Cflags: -I${includedir}
