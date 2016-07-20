@@ -54,7 +54,7 @@ public:
 
     string secret(time_t now)
     {
-        //if (now >= secret_gentime_ + 3600 * 1000) // 1 hour
+        if (now >= secret_gentime_ + 3600 * 1000) // 1 hour
         {
             secret_ = now;
             secret_gentime_ = now;
@@ -147,6 +147,16 @@ public:
 		return m_dbUser.platform_id(); 
 	}
 
+	inline int GetGender() const 
+	{ 
+		return m_dbUser.gender();
+	}
+
+	inline void SetGender(int val)
+	{
+		m_dbUser.set_gender(val);
+	}
+
 	inline void SetPlatformId(string val) 
 	{
 		m_dbUser.set_platform_id(val);
@@ -176,6 +186,10 @@ public:
     const DB_User&      GetDbUser(void) const;
 	DB_Player*			GetDBPlayer();
     void                SetDbUser(const DB_User& dbuser);
+
+	void				SetProfileLink(const string &profile_link, enum PLAT_TYPE nPlatType);
+	string				GetProfileLink(PLAT_TYPE nPlatType) const;
+	string				GetProfileLinkAnyWay(PLAT_TYPE nPlatType) const;
 
 	void				SetFd(int fd);
 	Player*				GetPlayer(void);

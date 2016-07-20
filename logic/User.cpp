@@ -30,11 +30,12 @@ User::User(int64 id, const string& pid, const string &name,
 	//m_pPlayer->InitNpcDB(&m_dbNPCList);
 	m_pPlayer->InitNewUserFromCfg();
 
-	//SetProfileLink(profile_link,plat_type);
+	SetGender(gender);
+	SetProfileLink(profile_link,plat_type);
 	SetName(name,plat_type);
-// 	plat_type_			= plat_type;
-// 	if (plat_type == PLAT_QHALL)
-// 	{
+ 	plat_type_ = plat_type;
+//  	if (plat_type == PLAT_QHALL)
+//  	{
 // 		SetQHallDmd(bIsYellowDmd);
 // 		SetQHallDmdYear(bIsYellowDmdYear);
 // 		SetHighQHallDmd(bIsHighYellowDmd);
@@ -46,22 +47,20 @@ User::User(int64 id, const string& pid, const string &name,
 // 		m_dbUser.set_highblueyeartime(nHighBlueYearTime);
 // 	}
 // 	else{
-// 		if(plat_type != PLAT_QAdd)
-// 		{
-// 			m_dbUser.set_isyellowdmd(bIsYellowDmd);
-// 			m_dbUser.set_isyellowdmdyear(bIsYellowDmdYear);
-// 			m_dbUser.set_yellowdmdlvl(i4YellowDmdLv);
-// 		}
-// 		else
-// 		{
-// 			m_dbUser.set_isqqdmd(bIsYellowDmd);
-// 			m_dbUser.set_isqqdmdyear(bIsYellowDmdYear);
-// 			m_dbUser.set_qqdmdlvl(i4YellowDmdLv);
-// 		}
-// 		m_dbUser.set_ishighyellowdmd(bIsHighYellowDmd);
+		if(plat_type != PLAT_QAdd)
+		{
+			m_dbUser.set_isyellowdmd(bIsYellowDmd);
+			m_dbUser.set_isyellowdmdyear(bIsYellowDmdYear);
+			m_dbUser.set_yellowdmdlvl(i4YellowDmdLv);
+		}
+		else
+		{
+			m_dbUser.set_isqqdmd(bIsYellowDmd);
+			m_dbUser.set_isqqdmdyear(bIsYellowDmdYear);
+			m_dbUser.set_qqdmdlvl(i4YellowDmdLv);
+		}
+		m_dbUser.set_ishighyellowdmd(bIsHighYellowDmd);
 // 	}
-// 	m_dbUser.set_gender(gender);
-// 	SetGender(gender);
 
 	// 注册时间为空才设置
 	if (m_dbUser.regist_time() <= 0)
@@ -329,3 +328,52 @@ void User::Logon(GameDataHandler* dh)
 
 	m_UpdateSaveTime = 0;
 }*/
+
+inline string User::GetProfileLink(PLAT_TYPE nPlatType) const 
+{
+	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX)
+	{
+		return m_dbUser.profile_link(nPlatType);
+	}
+	else
+	{
+		return m_dbUser.profile_link(0);
+	}
+}
+
+inline string User::GetProfileLinkAnyWay(PLAT_TYPE nPlatType) const 
+{
+	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX && nPlatType < m_dbUser.profile_link_size())
+	{
+		string _tmpLink = m_dbUser.profile_link(nPlatType);
+		if (_tmpLink.size() > 0)
+		{
+			return _tmpLink;
+		}
+	}
+
+	for (int i=0;i<PLAT_TYPE_MAX && i < m_dbUser.profile_link_size();i++)
+	{
+		string _tmpLink = m_dbUser.profile_link(i);
+		if (_tmpLink.size() > 0)
+		{
+			return _tmpLink;
+		}
+	}
+	return m_dbUser.profile_link(0);
+}
+
+inline void User::SetProfileLink(const string &profile_link, enum PLAT_TYPE nPlatType) 
+{
+	if(nPlatType < 0 || nPlatType >= PLAT_TYPE_MAX)
+		return;
+
+	if (m_dbUser.profile_link_size() == 0)
+	{
+		m_dbUser.set_profile_link(0, "");
+	}
+	else
+	{
+		m_dbUser.set_profile_link(nPlatType, profile_link);
+	}
+}
