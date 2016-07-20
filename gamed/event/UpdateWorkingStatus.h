@@ -2,22 +2,16 @@
 #define _UPDATEWORKINGSTATUS_H_
 
 #pragma once
+#include "../../event/EventDefine.h"
+#include "../GameEventHandler.h"
 
-#include "BaseEvent.h"
-
-/*
-
-自定义EventHandler:
-1，继承自CBaseEvent
-2，使用BIND_1_EVENT/BIND_2_EVENT等注册事件
-3，initialEventProcessors()中创建实例
-
-*/
-
-class UpdateWorkingStatus : public CBaseEvent
-{
+class UpdateWorkingStatus {
 public:
-	UpdateWorkingStatus() {}
+	UpdateWorkingStatus()
+	{
+		logger_ = log4cxx::Logger::getLogger("EventHelper");
+	}
+
 	~UpdateWorkingStatus() {}
 
 	static void createInstance(GameEventHandler* eh)
@@ -58,6 +52,10 @@ private:
 	void handle_SG_Disconn(Event* e);
 	void handle_SG_Sync(Event* e);
 	void handle_SG_Fin(Event* e);
+
+private:
+	GameEventHandler* eh_;
+	log4cxx::LoggerPtr logger_;
 };
 
 #endif

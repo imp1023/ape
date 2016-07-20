@@ -1,22 +1,26 @@
 #ifndef _USERAUTH_H_
 #define _USERAUTH_H_
 #pragma once
+#include "../../event/EventDefine.h"
+#include "../GameEventHandler.h"
+#include "MessageDef.h"
 
-#include "BaseEvent.h"
+class EventQueue;
 
-class UserAuth : public CBaseEvent
-{
+class UserAuth {
 public:
-	UserAuth(){}
-	~UserAuth(){}
+	UserAuth()
+	{
+		logger_ = log4cxx::Logger::getLogger("EventHelper");
+	}
+
+	~UserAuth() {}
 
 	static void createInstance(GameEventHandler* eh)
 	{
 		getInstance()->eh_ = eh;
 		eh->getEventHandler()->registHandler(EVENT_USER_AUTH,
 			(ProcessRoutine)UserAuth::handle_);
-		eh->getEventHandler()->registHandler(EVENT_USER_DISCONNECT,
-			(ProcessRoutine)UserAuth::handle_);		
 	}
 
 	static UserAuth* getInstance()
@@ -30,12 +34,13 @@ public:
 		UserAuth::getInstance()->handle(e);
 	}
 
-	static void addAuthEvent(EventQueue* eq, int64 uid, int64 secret, int fd);
-
+	static void addEvent(EventQueue* eq, int64 uid, int64 secret, int fd);
 private:
 	void handle(Event* e);
-    void handle_auth(Event* e);
-    void handle_disconnect(Event* e);
+	void handle_CG_Req(Event* e);
+private:
+	GameEventHandler* eh_;
+	log4cxx::LoggerPtr logger_;
 };
 
 #endif

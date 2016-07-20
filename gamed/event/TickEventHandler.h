@@ -11,7 +11,7 @@ public:
 	static void createInstance(GameEventHandler* eh)
 	{
 		getInstance()->eh_ = eh;
-		eh->getEventHandler()->registHandler(EVENT_TICKARENA,
+#if 0   eh->getEventHandler()->registHandler(EVENT_TICKARENA,
 			(ProcessRoutine)TickEventHandler::handle_);
 		eh->getEventHandler()->registHandler(EVENT_TICKQUIZ,
 			(ProcessRoutine)TickEventHandler::handle_);
@@ -67,6 +67,7 @@ public:
 			(ProcessRoutine)TickEventHandler::handle_);
 		eh->getEventHandler()->registHandler(EVENT_TICKGLOBALGUILDBATTLEGAME,
 			(ProcessRoutine)TickEventHandler::handle_);
+#endif
 	}
 
 	static TickEventHandler* getInstance()

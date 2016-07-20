@@ -5,15 +5,15 @@ void TickEventHandler::addEvent_(EVENT_DEFINE eventid)
 {
 	Event* e = eh_->getEventQueue()->allocateEvent();
 	e->set_cmd(eventid);
-	e->set_state(Game_to_Self);
+	//e->set_state(Game_to_Self);
 	e->set_time(0);
 	eh_->getEventQueue()->safePushEvent(e);
 }
 
 void TickEventHandler::handle(Event* e)
 {
-    if (e->state() != Game_to_Self)
-        return;
+//    if (e->state() != Game_to_Self)
+//        return;
 
 //     if (e->cmd() == EVENT_TICKARENA)
 //         handle_arena();
