@@ -2,39 +2,39 @@
 #include "WorldDataHandler.h"
 #include "../common/ServerConfig.h"
 #include "../common/distribution.h"
-#include "../common/DateTime.h"
-#include "worldd.h"
 
+extern ServerConfig serverConfig;
 
 WorldDataHandler::WorldDataHandler(int nid)
 :DataHandler(nid)
 {
-	game_status_.resize(ServerConfig::Instance().gamedNum()+1, NOT_CONNECTED);
+	game_status_.resize(serverConfig.gamedNum()+1, NOT_CONNECTED);
 	game_status_[0] = NORMAL;
 	game_all_ready_ = false;
+}
 
-// 	if (GlobalCampBattleLevelTblInst::instance().IsCenterServer(World::Instance().centerID()))
-// 		CenterCampBattleModuleInst::instance().Load();
-//     GlobalDbData::instance().Load();
-// 	if (globalArenaServerTblInst::instance().IsCenterServer(World::Instance().centerID()))
-// 		GlobalArenaModuleInst::instance().Load();
-// 	int allworldid = globalArenaBaseDataTblInst::instance().getAllGlobalArenaWorld();
-// 	if (World::Instance().worldid() == allworldid)
-// 		AllGlobalArenaModuleInst::instance().Load();
-// 	//StageTowerWorldModuleInst::instance().load();
-// 	CommonSystemMgrInst::instance().Load();
-// 	allworldid = globalGuildBattleBaseDataTblInst::instance().getGlobalGuildBattleWorld();
-// 	if (World::Instance().worldid() == allworldid)
-// 		GlobalGuildBattleModuleInst::instance().Load();
+int WorldDataHandler::getGameIdfromPlatId(string const& platid,int nRegion)
+{
+	int hash = getPlatidHash(platid);
+	int nGameID = hash % serverConfig.physicsGameNum() + 1;
+	int nPhysicsRgn = serverConfig.GetPhysicsRegionByLogicRegion(nRegion);
+	nGameID += nPhysicsRgn * serverConfig.physicsGameNum();
+	return nGameID;
+}
+
+int WorldDataHandler::getGamedIdByUserId(int64 uid)
+{
+	int hash = getUidHash(uid);
+	int nGameID = hash % serverConfig.physicsGameNum() + 1;
+	int nPhysicsRgn = getPhysicsRegion(uid);
+	nGameID += nPhysicsRgn * serverConfig.physicsGameNum();
+	return nGameID;
+
+	//return hash % serverConfig.gamedNum() + 1;
 }
 
 GameWorkingStatus WorldDataHandler::setWorkingStatus(int gid, GameWorkingStatus status)
 {
-    if (gid <= 0 || gid > ServerConfig::Instance().gamedNum())
-    {
-        return NORMAL;
-    }
-
 	GameWorkingStatus old_status = game_status_[gid];
 	if(status == NORMAL)
 	{
@@ -66,40 +66,4 @@ void WorldDataHandler::checkAllWorkingStatus()
 		LOG4CXX_INFO(logger_, "All game server already.");
 	}
 }
-
-void WorldDataHandler::tick()
-{
-// 	if (GlobalCampBattleLevelTblInst::instance().IsCenterServer(World::Instance().centerID()))
-// 		CenterCampBattleModuleInst::instance().Tick();
-//     GlobalDbData::instance().Tick();
-//     ChallengeWorldModuleInst::instance().Tick();
-// 	if (globalArenaServerTblInst::instance().IsCenterServer(World::Instance().centerID()))
-// 		GlobalArenaModuleInst::instance().Tick();
-// 	int allworldid = globalArenaBaseDataTblInst::instance().getAllGlobalArenaWorld();
-// 	if (World::Instance().worldid() == allworldid)
-// 		AllGlobalArenaModuleInst::instance().Tick();
-// 	//StageTowerWorldModuleInst::instance().tick();
-// 	CommonSystemMgrInst::instance().Tick();
-// 	allworldid = globalGuildBattleBaseDataTblInst::instance().getGlobalGuildBattleWorld();
-// 	if (World::Instance().worldid() == allworldid)
-// 		GlobalGuildBattleModuleInst::instance().Tick();
-}
-
-void WorldDataHandler::quit()
-{
-//     GlobalDbData::instance().SaveAll();
-// 	if (globalArenaServerTblInst::instance().IsCenterServer(World::Instance().centerID()))
-// 		GlobalArenaModuleInst::instance().SaveAll();
-// 	int allworldid = globalArenaBaseDataTblInst::instance().getAllGlobalArenaWorld();
-// 	if (World::Instance().worldid() == allworldid)
-// 		AllGlobalArenaModuleInst::instance().SaveAll();
-// 	//StageTowerWorldModuleInst::instance().saveAll();
-// 	CommonSystemMgrInst::instance().SaveAll();
-// 	allworldid = globalGuildBattleBaseDataTblInst::instance().getGlobalGuildBattleWorld();
-// 	if (World::Instance().worldid() == allworldid)
-// 		GlobalGuildBattleModuleInst::instance().SaveAll();
-
-}
-
-
 

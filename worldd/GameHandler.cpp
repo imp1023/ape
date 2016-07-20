@@ -35,4 +35,3 @@ void GameHandler::leave(int64 nid)
 {
 	UpdateWorkingStatus::addEvent(nh_->eq_, UpdateWorkingStatus_GW_Disconn, (int)nid);
 }
-

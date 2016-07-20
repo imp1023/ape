@@ -24,7 +24,7 @@ void WorldHandler::handle(int64 uid, string &req)
 	} 
 	else if (req=="failed") 
 	{ // register failed
-		LOG4CXX_ERROR(logger_, "Register to world failed. Closing connection...");
+		LOG4CXX_INFO(logger_, "Register to world failed. Closing connection...");
 		nh_->closeConnection(fd_);
 	} 
 	else if (req=="ka")

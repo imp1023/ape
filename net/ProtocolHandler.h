@@ -9,7 +9,7 @@
 using namespace std;
 
 struct event_header;
-
+class NetCache;
 class ProtocolHandler
 {
 public:
@@ -25,6 +25,8 @@ public:
 	virtual void	handle(int64 uid, string &cmd) = 0;
 	virtual int		handlerType() = 0;
 	virtual void	leave(int64 uid);
+
+	NetCache*		m_Parent;
 	
 protected:
 	inline bool checkCmd(string &cmd, const char *cmdstr, vector<string> &tokens, int count) 

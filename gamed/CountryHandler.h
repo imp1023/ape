@@ -1,10 +1,5 @@
 #pragma once
-#ifdef _WIN32
-#include "../common/Logger_win.h"
-#else
 #include <log4cxx/logger.h>
-#endif
-
 #include "../net/ProtocolHandler.h"
 #include <string>
 using namespace std;

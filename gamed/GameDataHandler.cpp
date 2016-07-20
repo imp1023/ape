@@ -1,111 +1,242 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "../gamed/MemCacheServerHandler.h"
 #include "../event/DataHandler.h"
+
 #include "GameDataHandler.h"
 #include "GameDataSaver.h"
+#include "GameEventHandler.h"
+
+#include <algorithm>
+
+#include <math.h>
 #include "../logic/dbinterface.pb.h"
 #include "../common/Clock.h"
-#include "../logic/GameServerConfig.h"
 #include "../common/distribution.h"
 #include "../common/SysLog.h"
-#include "../logic/User.h"
+#include "../common/Msg2QQ.h"
 #include "../logic/Player.h"
-#include "GameCacheModule.h"
-#include "Daemon.h"
-
+#include "../logic/GameSrvCfg.h"
 using namespace std;
+//====================================================================================
+GameFriendInfo::GameFriendInfo()
+{
+	m_pFrdInfo = new FriendInfoLite();
+	Clear();
+}
+GameFriendInfo::~GameFriendInfo()
+{
+	Clear();
+	SafeDelete(m_pFrdInfo);
+}
+void GameFriendInfo::Clear()
+{
+	for(int i=0;i<PLAT_TYPE_MAX;i++)
+	{
+		m_strName[i] = "";
+		m_strProfileLink[i] = "";
+		m_bLoad[i] = false;
+	}
+	m_mapRegionLV.clear();
+	m_mapRegionUID.clear();
+	//timestamp = 0;
+	//fid		  = 0;
+	m_pFrdInfo->Clear();
+}
 
+//====================================================================================
 GameDataHandler::GameDataHandler(int nid) : DataHandler(nid)
 {
-    nid_ = nid;
-    m_pDataSaver = new GameDataSaver(nid);
-    m_mapUsers.clear();
-    revision_ = 1;
-    logger_ = log4cxx::Logger::getLogger("GameDataHandler");
+	eh_ = NULL;
+	nid_ = nid;
+	ds_ = new GameDataSaver(nid);
+	users_.clear();
+	onlineUsersID_.clear();
+	revision_ = 1;
+	logger_ = log4cxx::Logger::getLogger("GameDataHandler");
 
-    next_user_id_ = 1;
-    next_item_id_ = 1;
+	//m_ltGetUserRankTime = 0;
+	m_ltStart = time(NULL);
+	next_user_id_ = 10000000;
+	next_item_id_ = 1;	
+	m_bAdFlag	  = false;
 
-    loadAllocateSetting();
-	LoadGlobalStarInfo();
+	m_nRemoveKey = 0;
+	m_bandUser = 0;
 
-    m_mapPlatId2Uid.clear();
-    pthread_mutex_init(&m_mutexData, NULL);
-    timeUpdate = time(NULL);
-    m_timeRemoveUpdate = Clock::getCurrentSystemTime();
+	for(int i=0;i<serverConfig.region_num();i++)
+	{
+		GameRgnDataHandler* pRgnHD = new GameRgnDataHandler(this,i);
+		pRgnHD->Init();
+		m_mapRgnDataHandler[i] = pRgnHD;
+	}
 
+	pthread_mutex_init(&data_mutex_, NULL);
+	timeUpdate			= time(NULL);
+	m_timeRemoveUpdate	= Clock::getCurrentSystemTime();
+	m_ltStart4RM		= Clock::getCurrentSystemTime();
+	m_listRemove.clear();
+	m_mapRemove.clear();
+
+	for(int i=RC_CountryStart;i<RC_End;i++)
+	{
+		CLiteCountry* pCountry = new CLiteCountry(0,i);
+		m_mapLiteRegionCountry[i] = pCountry;
+	}
 }
 
 GameDataHandler::~GameDataHandler(void)
 {
+	m_listRemove.clear();
+	m_mapRemove.clear();
     hash_map<int64, User*>::iterator iter;
-    for (iter = m_mapUsers.begin(); iter != m_mapUsers.end(); ++iter)
+    for (iter = users_.begin(); iter != users_.end(); ++iter)
     {
         delete iter->second;
     }
-
+	onlineUsersID_.clear();
 	map<int64, User*>::iterator iter1;
     acquireDataLock();
-    for (iter1 = m_mapLoadedUser.begin(); iter1 != m_mapLoadedUser.end(); ++iter1)
+    for (iter1 = loaded_user_.begin(); iter1 != loaded_user_.end(); ++iter1)
     {
         delete iter1->second;
     }
+
     releaseDataLock();
 
-    delete m_pDataSaver;
+    delete ds_;
 
-	pthread_mutex_destroy(&m_mutexData);
+	for (int i = 0; i < PLAT_TYPE_MAX; i++)
+	{
+		hash_map<string, GameFriendInfo*>::iterator iterFriend;
+		for (iterFriend = platid_friendinfo_.begin(); iterFriend != platid_friendinfo_.end(); ++iterFriend)
+		{
+			delete iterFriend->second;
+		}
+		platid_friendinfo_.clear();
+	}
+	
+	map<int,GameRgnDataHandler*>::iterator itRgn;
+	for(itRgn = m_mapRgnDataHandler.begin();itRgn!=m_mapRgnDataHandler.end();itRgn++)
+	{
+		delete itRgn->second;
+	}
+	m_mapRgnDataHandler.clear();
 
-	m_listRemove.clear();
+	pthread_mutex_destroy(&data_mutex_);
+
+	map<int,CLiteCountry*>::iterator itCntr;
+	for(itCntr = m_mapLiteRegionCountry.begin();itCntr!=m_mapLiteRegionCountry.end();itCntr++)
+	{
+		delete itCntr->second;
+	}
+	m_mapLiteRegionCountry.clear();
 }
 
-void GameDataHandler::loadAllocateSetting()
-{
-    m_pDataSaver->loadAllocateSetting(next_user_id_, next_item_id_);
-    int step = 1000;
-    if (next_user_id_ > 1)
-    {
-        next_user_id_ += step;
-    }
-    if (next_item_id_ > 1)
-    {
-        next_item_id_ += step;
-    }
-    m_pDataSaver->saveAllocateSetting(next_user_id_, next_item_id_);
-}
+//void GameDataHandler::loadAllocateSetting()
+//{
+//    ds_->loadAllocateSetting(next_user_id_, next_item_id_);
+//    int step = 10000;
+//    if (next_user_id_ > 1)
+//    {
+//        next_user_id_ += step;
+//    }
+//    if (next_item_id_ > 1)
+//    {
+//        next_item_id_ += step;
+//    }
+//    ds_->saveAllocateSetting(next_user_id_, next_item_id_);
+//}
+//
+//void GameDataHandler::saveAllocateSetting()
+//{
+//    ds_->saveAllocateSetting(next_user_id_, next_item_id_);
+//}
 
-void GameDataHandler::LoadGlobalStarInfo()
-{
-	m_pDataSaver->LoadGlobalStarInfo();
-}
+//int64 GameDataHandler::allocateUserID(const string& platid)
+//{
+//    int hash = getPlatidHash(platid);
+//    int64 uid = next_user_id_;
+//    next_user_id_ ++;
+//	int nSrvID = nid_%1024;
+//	int nPhysicsRegionID = getPhysicsRegion(uid);
+//    //uid |= (((int64) (nSrvID & 0xffff)) << 48) | (((int64) (hash & 0xffff)) << 32);
+//
+//	uid |= (((int64) (nPhysicsRegionID & 0xffff)) << 58) |(((int64) (nSrvID & 0xffff)) << 48) | (((int64) (hash & 0xffff)) << 32);
+//
+//	return uid;
+//}
 
-void GameDataHandler::SaveGlobalStarInfo()
-{
-	m_pDataSaver->SaveGlobalStarInfo();
-}
+//int64 GameDataHandler::allocateItemID(int num)
+//{
+//    int64 iid = next_item_id_;
+//    next_item_id_ += num;
+//    iid |= ((int64) (nid_ & 0xffff)) << 48;
+//    //iid |= ((int64)(nid_ &0x7f)) << 24;
+//    return iid;
+//}
 
-void GameDataHandler::saveAllocateSetting()
-{
-    m_pDataSaver->saveAllocateSetting(next_user_id_, next_item_id_);
-}
+//void GameDataHandler::loadBulltin()
+//{
+//	char pBulltin[409600]={0};
+//	ds_->loadBulltin(pBulltin);
+//
+//	string s(pBulltin);
+//	string delim("###");
+//	size_t last = 0;
+//	size_t index=s.find(delim,last);
+//	while (index!=std::string::npos)
+//	{
+//		m_bulltin.push_back(s.substr(last,index-last));
+//		last=index+3;
+//		index=s.find(delim,last);
+//	}
+//}
 
-int64 GameDataHandler::allocateItemID(int num)
-{
-    int64 iid = next_item_id_;
-    next_item_id_ += num;
-    iid |= ((int64) (nid_ & 0xffff)) << 48;
-    return iid;
-}
+//void GameDataHandler::saveBulltin()
+//{
+//	string s("");
+//	for (deque<string>::iterator iter=m_bulltin.begin(); iter!=m_bulltin.end(); ++iter)
+//	{
+//		s += *iter;
+//		s += "###";
+//	}
+//
+//	ds_->saveBulltin(s);
+//}
+//
+//#define MAX_BULLTIN_SIZE 10
+//void GameDataHandler::addBulltin(const string& info)
+//{
+//	if (m_bulltin.size() == MAX_BULLTIN_SIZE)
+//	{
+//		m_bulltin.pop_front();
+//	}
+//	m_bulltin.push_back(info);
+//
+//	saveBulltin();
+//}
+//
+//void GameDataHandler::delBulltin()
+//{
+//	if (m_bulltin.size() > 0)
+//	{
+//		m_bulltin.pop_back();
+//		saveBulltin();
+//	}
+//}
 
 void GameDataHandler::mapUidToUser(int64& uid, User* user)
 {
-    hash_map<int64, User*>::iterator iter = m_mapUsers.find(uid);
-    if (iter != m_mapUsers.end())
+	bool bPushLst = false;
+    hash_map<int64, User*>::iterator iter = users_.find(uid);
+    if (iter != users_.end())
     {
         if (user != NULL)
         {
             if (iter->second == NULL)
             {
-                m_mapUsers[uid] = user;
+                users_[uid] = user;
+				bPushLst = true;
             }
             else
             {
@@ -116,129 +247,310 @@ void GameDataHandler::mapUidToUser(int64& uid, User* user)
     }
     else
     {
-        m_mapUsers.insert(make_pair(uid, user));
+        users_.insert(make_pair(uid, user));
+		bPushLst = true;
     }
 
-	m_listRemove.push_back(uid);
-
-    map<int64, LoadStatus>::iterator load_iter = m_mapLoadList.find(uid);
-    if (load_iter != m_mapLoadList.end())
+    map<int64, LoadStatus>::iterator load_iter = load_list_.find(uid);
+    if (load_iter != load_list_.end())
     {
-        m_mapLoadList.erase(load_iter);
+        load_list_.erase(load_iter);
+		bPushLst = true;
     }
-}
-
-void GameDataHandler::mapPlatidToUid(const string& pid, int64& uid)
-{
-    hash_map<string, int64>::iterator iter = m_mapPlatId2Uid.find(pid);
-    if (iter != m_mapPlatId2Uid.end())
-    {
-        m_mapPlatId2Uid[pid] = uid;
-    }
-    else
-    {
-        m_mapPlatId2Uid.insert(make_pair(pid, uid));
-    }
-}
-
-void GameDataHandler::init()
-{
-    GameCacheInst::instance().SetEnable(true);
+	//if(bPushLst)
+	//{
+	//	if(m_mapRemove.find(uid) == m_mapRemove.end())
+	//	{
+	//		m_listRemove.push_back(uid);
+	//		m_mapRemove[uid] = 1;
+	//	}
+	//	
+	//}
 }
 
 void GameDataHandler::tick()
 {
     updateUserMap();
-    updatePlatidMap();
+    //updatePlatidMap();
     saveAllUserData();
-	UpdateRemoveUser();
-	GameCacheInst::instance().UpdateSaveUser();
+	//UpdateRemoveUser();
+
+	MemCacheServerHandler::SaveAllUserData(revision_);
+
+	UpdateRemoveUser_new();
+	
+	//MemCacheServerHandler::UpdateRemoveUser();
 }
 
 void GameDataHandler::quit()
 {
+	MemCacheServerHandler::SaveAllUserData(revision_,true);
 	saveAllUserData(true);
 }
 
-void GameDataHandler::termThreads()
+void GameDataHandler::termsThread()
 {
-	m_pDataSaver->termThreads();
+	ds_->termThreads();
+	exit(0);
 }
 
-void GameDataHandler::UpdateRemoveUser()
+void GameDataHandler::PushOnlineUserID(int64 nID)
 {
-	if (GameServerConfig::Instance().FreeEnableFlag() == 0)
+	onlineUsersID_.insert(make_pair(nID,1));
+}
+
+void GameDataHandler::PopOnlineUserID(int64 nID)
+{
+	map<int64,int>::iterator iter;
+	iter = onlineUsersID_.find(nID);
+	if(iter!=onlineUsersID_.end())
+	{
+		onlineUsersID_.erase(nID);
+	}
+}
+
+void GameDataHandler::UpdateRemoveUser_new()
+{
+	if (GameSrvCfg::Instance().FreeEnableFlag() != 2)
 	{
 		return;
 	}
 
-	if ((int) m_mapUsers.size() <  GameServerConfig::Instance().FreeMaxUserCnt())
+	if ((int) users_.size() <  GameSrvCfg::Instance().FreeMaxUserCnt())
 	{
 		return;
 	}
 
 	time_t timeNow = Clock::getCurrentSystemTime();
-	if (timeNow - m_timeRemoveUpdate < GameServerConfig::Instance().FreeUpdateTime())
-	{
+	if(m_ltStart4RM + GameSrvCfg::Instance().FreeMaxUserTime() > timeNow)
+	{//服务器刚启动，所有玩家都不会删除
 		return;
 	}
 
-	vector<User*> vecRemoveUser;
-	list<int64>::iterator iter = m_listRemove.begin();
-	int nFreeCnt = 0;
-	while (iter != m_listRemove.end())
+	if (timeNow - m_timeRemoveUpdate < GameSrvCfg::Instance().FreeUpdateTime())
 	{
-		int64 uid = *iter;
-		hash_map<int64, User*>::iterator iter_user = m_mapUsers.find(uid);
-		if (iter_user == m_mapUsers.end() )
-		{//error
-			iter++;
-			continue;
+		return;
+	}
+	hash_map<int64, User*>::iterator iter,iterOld; 
+	iter = users_.find(m_nRemoveKey);
+	if(iter == users_.end())
+	{
+		iter = users_.begin();
+	}
+	int64 nTM1=0,nTM2=0,nTM3=0,nTM4=0,nTM5=0;
+	int nCnt1=0,nCnt2=0,nCnt3=0,nCnt4=0;
+	int64 nTmFlag = timeNow;
+	int64 nTmFlag2 = 0;
+	bool bFree = false;
+	int nFreeCnt = 0;
+	time_t time_last = Clock::getCurrentSystemTime();
+
+	while(iter != users_.end())
+	{
+		User * pUser = iter->second;
+
+		nTmFlag2 = Clock::getCurrentSystemTime();
+		nTM1 += nTmFlag2 - nTmFlag;
+		nTmFlag = nTmFlag2;
+
+		if(nCnt1>200||nCnt2>200||nCnt3>200||nCnt4>200)
+		{
+			time_last = Clock::getCurrentSystemTime();
+			if (time_last - timeNow > 80)
+			{
+				bFree = true;
+				SYS_LOG(0,LT_RemoveUser,0,0,1<<nFreeCnt<<(int)users_.size()<<nCnt1<<nCnt2<<nCnt3<<nCnt4<<"-----------"<<nTM1<<nTM2<<m_nRemoveKey);
+				break;
+			}
 		}
 
-		User * pUser = iter_user->second;
 		if (pUser == NULL)
 		{
-			//iter++;
-			iter = m_listRemove.erase(iter);
+			iter++;
+			nCnt1++;
 			continue;
 		}
 
 		if (pUser->Online() == true)
 		{
 			iter++;
+			nCnt2++;
 			continue;
 		}
 
-		if (timeNow < pUser->revision() + GameServerConfig::Instance().FreeMaxUserTime() *1000/*3600 * 1000 * 24*/)
+		if (timeNow < pUser->RMRevision() + GameSrvCfg::Instance().FreeMaxUserTime())
 		{
 			iter++;
+			nCnt3++;
 			continue;
 		}
 
-		map<int64, User*>::iterator iter_dirty = m_mapDirtyUsers.find(pUser->uid());
-		if (iter_dirty != m_mapDirtyUsers.end())
+		int64 uid = iter->first;
+		hash_map<int64, User*>::iterator iter_dirty = dirty_users_.find(uid);
+		if (iter_dirty != dirty_users_.end())
 		{
 			iter++;
+			nCnt4++;
 			continue;
 		}
 
+		iterOld = iter;
+		iter++;
 		nFreeCnt++;
-		RemoveUser(pUser);
-		iter = m_listRemove.erase(iter);
+		{//删除用户
+			users_.erase(iterOld);
+			delete pUser;
+			pUser = NULL;
+		}
 
-		if (nFreeCnt >= GameServerConfig::Instance().FreeCnt())
+		nTmFlag2 = Clock::getCurrentSystemTime();
+		nTM2 += nTmFlag2 - nTmFlag;
+		nTmFlag = nTmFlag2;
+
+		int nUserSize = (int)users_.size();
+		if (nUserSize<=GameSrvCfg::Instance().FreeMaxUserCnt()||
+			nFreeCnt >= GameSrvCfg::Instance().FreeCnt())
 		{
+			bFree = true;
+			SYS_LOG(0,LT_RemoveUser,0,0,0<<nFreeCnt<<nUserSize<<nCnt1<<nCnt2<<nCnt3<<nCnt4<<"-----------"<<nTM1<<nTM2<<m_nRemoveKey);
 			break;
 		}
 
 		time_t time_last = Clock::getCurrentSystemTime();
-		if (time_last - timeNow > 50)
+		if (time_last - timeNow > 80)
 		{
+			bFree = true;
+			SYS_LOG(0,LT_RemoveUser,0,0,1<<nFreeCnt<<nUserSize<<nCnt1<<nCnt2<<nCnt3<<nCnt4<<"-----------"<<nTM1<<nTM2<<m_nRemoveKey);
+			break;
+		}
+
+	}
+
+	if(iter != users_.end())
+	{
+		m_nRemoveKey = iter->first;
+	}
+	else
+	{
+		m_nRemoveKey = 0;
+	}
+	if(!bFree)
+	{
+		SYS_LOG(0,LT_RemoveUser,0,0,-1<<nFreeCnt<<(int)users_.size()<<nCnt1<<nCnt2<<nCnt3<<nCnt4<<"-----------"<<nTM1<<nTM2<<m_nRemoveKey);
+	}
+
+	m_timeRemoveUpdate = Clock::getCurrentSystemTime();
+}
+
+void GameDataHandler::UpdateRemoveUser()
+{
+	return;
+	if (GameSrvCfg::Instance().FreeEnableFlag() != 1)
+	{
+		return;
+	}
+
+	if ((int) users_.size() <  GameSrvCfg::Instance().FreeMaxUserCnt())
+	{
+		return;
+	}
+
+	time_t timeNow = Clock::getCurrentSystemTime();
+	if(m_ltStart4RM + GameSrvCfg::Instance().FreeMaxUserTime() > timeNow)
+	{//服务器刚启动，所有玩家都不会删除
+		return;
+	}
+
+	if (timeNow - m_timeRemoveUpdate < GameSrvCfg::Instance().FreeUpdateTime())
+	{
+		return;
+	}
+
+	//vector<User*> vecRemoveUser;
+	//list<int64>::iterator iter = m_listRemove.begin();
+	list<int64> lstPushUser;
+	hash_map<int64,int>::iterator iter_RM; 
+
+	lstPushUser.clear();
+	int nFreeCnt = 0;
+	//while (iter != m_listRemove.end())
+	while(m_listRemove.size()>0)
+	{
+		int64 uid = m_listRemove.front();
+		m_listRemove.pop_front();
+		//int64 uid = *iter;
+		hash_map<int64, User*>::iterator iter_user = users_.find(uid);
+		if (iter_user == users_.end() )
+		{//error
+			iter_RM = m_mapRemove.find(uid);
+			if(iter_RM != m_mapRemove.end())
+			{
+				m_mapRemove.erase(iter_RM);
+			}
+			continue;
+		}
+
+		User * pUser = iter_user->second;
+		if (pUser == NULL)
+		{
+			iter_RM = m_mapRemove.find(uid);
+			if(iter_RM != m_mapRemove.end())
+			{
+				m_mapRemove.erase(iter_RM);
+			}
+			continue;
+		}
+
+		if (pUser->Online() == true)
+		{
+			lstPushUser.push_back(uid);
+			continue;
+		}
+
+		if (timeNow < pUser->RMRevision() + GameSrvCfg::Instance().FreeMaxUserTime())
+		{
+			lstPushUser.push_back(uid);
+			continue;
+		}
+
+		hash_map<int64, User*>::iterator iter_dirty = dirty_users_.find(uid);
+		if (iter_dirty != dirty_users_.end())
+		{
+			lstPushUser.push_back(uid);
+			continue;
+		}
+
+		nFreeCnt++;
+		//RemoveUser(pUser);
+		{//删除用户
+			users_.erase(iter_user);
+			delete pUser;
+			pUser = NULL;
+		}
+		iter_RM = m_mapRemove.find(uid);
+		if(iter_RM != m_mapRemove.end())
+		{
+			m_mapRemove.erase(iter_RM);
+		}
+
+		int nUserSize = (int)users_.size();
+		if (nUserSize<=GameSrvCfg::Instance().FreeMaxUserCnt()||
+			nFreeCnt >= GameSrvCfg::Instance().FreeCnt())
+		{
+
+			SYS_LOG(uid,LT_RemoveUser,0,0,0<<nFreeCnt<<nUserSize);
+			break;
+		}
+
+		time_t time_last = Clock::getCurrentSystemTime();
+		if (time_last - timeNow > 80)
+		{
+			SYS_LOG(uid,LT_RemoveUser,0,0,1<<nFreeCnt<<nUserSize);
 			break;
 		}
 	}
-
+	m_listRemove.insert(m_listRemove.end(),lstPushUser.begin(),lstPushUser.end());
+	lstPushUser.clear();
 	m_timeRemoveUpdate = Clock::getCurrentSystemTime();
 }
 
@@ -247,51 +559,32 @@ void GameDataHandler::RemoveUser(User *pUser)
 	if (pUser)
 	{
 		hash_map<int64, User*>::iterator iter;
-		iter = m_mapUsers.find(pUser->uid());
-		if (iter != m_mapUsers.end())
+		iter = users_.find(pUser->GetUid());
+		if (iter != users_.end())
 		{
-			m_mapUsers.erase(iter);
+			users_.erase(iter);
 			delete pUser;
 			pUser = NULL;
 		}
 	}	
 }
-
-void GameDataHandler::RemovePlatidMap(const string& pid)
-{
-	hash_map<string, int64>::iterator iter = m_mapPlatId2Uid.find(pid);
-	if (iter != m_mapPlatId2Uid.end())
-	{
-		m_mapPlatId2Uid.erase(pid);
-	}
-}
-
-void GameDataHandler::RemovePlatidFromDb(const string& pid)
-{
-	m_pDataSaver->RemovePlatidFromDb(pid);
-}
-
-void GameDataHandler::RemoveUserFromDb(int64 uid)
-{
-	m_pDataSaver->RemoveUserFromDb(uid);
-}
-
 void GameDataHandler::updateUserMap()
 {
     acquireDataLock();
-    map<int64, User*>::iterator iter = m_mapLoadedUser.begin();
-    while (iter != m_mapLoadedUser.end())
+    map<int64, User*>::iterator iter = loaded_user_.begin();
+    while (iter != loaded_user_.end())
     {
         map<int64, User*>::iterator oiter = iter;
         ++iter;
         int64 uid = oiter->first;
         User* user = oiter->second;
-        m_mapLoadedUser.erase(oiter);
+        loaded_user_.erase(oiter);
 
         if (user != NULL)
         {
-            const string& pid = user->openid();
-            mapPlatidToUid(pid, uid);
+            const string& pid = user->GetPlatformId();
+			user->SetRmRevision(revision_);
+            //mapPlatidToUid(pid, uid);
         }
         LOG4CXX_DEBUG(logger_, "Update user map uid=" << uid << " ,user=" << user);
         mapUidToUser(uid, user);
@@ -299,64 +592,86 @@ void GameDataHandler::updateUserMap()
     releaseDataLock();
 }
 
-void GameDataHandler::updatePlatidMap()
-{
-    acquireDataLock();
-    map<string, int64>::iterator iter = m_mapLoadedPlatId.begin();
-    while (iter != m_mapLoadedPlatId.end())
-    {
-        map<string, int64>::iterator oiter = iter;
-        ++iter;
-        string pid = oiter->first;
-        int64 uid = oiter->second;
-        m_mapLoadedPlatId.erase(oiter);
-
-        LOG4CXX_DEBUG(logger_, "Update user map platid=" << pid << " ,uid=" << uid);
-        mapPlatidToUid(pid, uid);
-    }
-    releaseDataLock();
-}
+//void GameDataHandler::updatePlatidMap()
+//{
+//    //acquireDataLock();
+//    //map<string, int64>::iterator iter = loaded_platid_.begin();
+//    //while (iter != loaded_platid_.end())
+//    //{
+//    //    map<string, int64>::iterator oiter = iter;
+//    //    ++iter;
+//    //    string pid = oiter->first;
+//    //    int64 uid = oiter->second;
+//    //    loaded_platid_.erase(oiter);
+//
+//    //    LOG4CXX_DEBUG(logger_, "Update user map platid=" << pid << " ,uid=" << uid);
+//    //    mapPlatidToUid(pid, uid);
+//    //}
+//    //releaseDataLock();
+//	acquireDataLock();
+//	//map<string, DB_PlatidInfoList*>::iterator iter = loaded_platid_.begin();
+//	//while (iter != loaded_platid_.end())
+//	//{
+//	//	map<string, DB_PlatidInfoList*>::iterator oiter = iter;
+//	//	++iter;
+//	//	string pid = oiter->first;
+//	//	DB_PlatidInfoList* pPlatidInfoList = oiter->second;
+//	//	if (pPlatidInfoList == NULL)
+//	//		continue;
+//	//	loaded_platid_.erase(oiter);
+//	//	mapPlatidToUid(pid,pPlatidInfoList);
+//	//
+//	//	//DB_PlatidInfoList* pReturn = NULL;
+//	//	//for (int i=0;i<pPlatidInfoList->roleinfo_size();i++)
+//	//	//{
+//	//	//	const DB_PlatidInfo& platidinfo = pPlatidInfoList->roleinfo(i);
+//	//	//	pReturn = mapPlatidToUid(pid, platidinfo.uid(),platidinfo.srvregion());
+//	//	//	LOG4CXX_DEBUG(logger_, "Update user map platid=" << pid << " ,uid=" << platidinfo.uid());
+//	//	//}
+//	//	//if (pReturn)
+//	//	//{	//坑，绝对坑
+//	//	//	pReturn->set_lastuid(pPlatidInfoList->lastuid());
+//
+//	//	//	DB_GiftInfo* pDBGiftInfo = pReturn->mutable_giftinfo();
+//	//	//	DB_GiftInfo* pTmpGiftInfo = pPlatidInfoList->mutable_giftinfo();
+//	//	//	pDBGiftInfo->CopyFrom(*pTmpGiftInfo);	
+//
+//	//	//}
+//	//	//delete pPlatidInfoList;
+//	//	//pPlatidInfoList = NULL;
+//
+//	//	//loaded_platid_.erase(oiter);
+//
+//	//}
+//	//loaded_platid_.clear();
+//	releaseDataLock();
+//}
 
 void GameDataHandler::updateLoadUser(int64& uid, User* user)
 {
     acquireDataLock();
-    map<int64, User*>::iterator iter = m_mapLoadedUser.find(uid);
-    if (iter != m_mapLoadedUser.end())
+    map<int64, User*>::iterator iter = loaded_user_.find(uid);
+    if (iter != loaded_user_.end())
     {
         if (user != NULL)
         {
             if (iter->second == NULL)
             {
-                m_mapLoadedUser[uid] = user;
+                loaded_user_[uid] = user;
             }
             else
             {
                 delete user;
-				user = NULL;
             }
         }
     }
     else
     {
-        m_mapLoadedUser.insert(make_pair(uid, user));
+        loaded_user_.insert(make_pair(uid, user));
     }
     releaseDataLock();
 }
 
-void GameDataHandler::updateLoadPlatid(const string& pid, int64& uid)
-{
-    acquireDataLock();
-    map<string, int64>::iterator iter = m_mapLoadedPlatId.find(pid);
-    if (iter != m_mapLoadedPlatId.end())
-    {
-        m_mapLoadedPlatId[pid] = uid;
-    }
-    else
-    {
-        m_mapLoadedPlatId.insert(make_pair(pid, uid));
-    }
-    releaseDataLock();
-}
 
 void GameDataHandler::markUserDirty(User* user)
 {
@@ -364,21 +679,31 @@ void GameDataHandler::markUserDirty(User* user)
     {
         return;
     }
+    int64 uid = user->GetUid();
+	int nSize = 0;
 
-	if (!GameCacheInst::instance().HasSaveUser(user->uid()))
+	//user->CheckDBBackUp();
+
+	if (MemCacheServerHandler::GetInst() && MemCacheServerHandler::GetInst()->CanUse())
 	{
-		user->setMemRevision(revision_);
-		GameCacheInst::instance().AddSaveUser(user->uid());
+		map<int64,User*> & mem_user_list = MemCacheServerHandler::GetInst()->GetUserList();
+		map<int64, User*>::iterator iter = mem_user_list.find(uid);
+		if (iter == mem_user_list.end())
+		{
+			user->setMemRevision(revision_);
+			MemCacheServerHandler::SafePushUser(user->GetUid(),user);
+			LOG4CXX_DEBUG(logger_, "Marking mem_user dirty: uid=" << uid << ", revision" << revision_);
+		}
 	}
-
-    int64 uid = user->uid();
-    map<int64, User*>::iterator iter = m_mapDirtyUsers.find(uid);
-    if (iter == m_mapDirtyUsers.end())
+    hash_map<int64, User*>::iterator iter = dirty_users_.find(uid);
+    if (iter == dirty_users_.end())
     {
         user->setRevision(revision_);
-        m_mapDirtyUsers.insert(make_pair(uid, user));
+        dirty_users_.insert(make_pair(uid, user));
         LOG4CXX_DEBUG(logger_, "Marking user dirty: uid=" << uid << ", revision" << revision_);
     }
+
+
 }
 
 void GameDataHandler::saveAllUserData(bool urgent)
@@ -387,31 +712,22 @@ void GameDataHandler::saveAllUserData(bool urgent)
     {
         return;
     }
-    m_pDataSaver->safeSaveAllUser(revision_, this, urgent);
-    saveAllocateSetting();
+    ds_->safeSaveAllUser(revision_, this, urgent);
+//	ds_->safeSaveAllMap(revision_, this, urgent);
+//  saveAllocateSetting();
     timeUpdate = revision_;
 }
 
 void GameDataHandler::saveUserData(User* user)
 {
-    m_pDataSaver->safeSaveUser(this, user);
+    ds_->safeSaveUser(this, user);
 }
 
 void GameDataHandler::loadUserData(int64& uid)
 {
-	if (LoadUserFromMemCache(uid))
+	if(LoadUserFromMemCache(uid))
 		return;
-    m_pDataSaver->safeLoadUser(this, uid);
-}
-
-void GameDataHandler::savePlatidMap(const string& pid, int64& uid)
-{
-    m_pDataSaver->safeSaveMap(this, pid, uid);
-}
-
-void GameDataHandler::loadPlatidMap(const string& pid)
-{
-    m_pDataSaver->safeLoadMap(this, pid);
+    ds_->safeLoadUser(this, uid);
 }
 
 User* GameDataHandler::getUser(int64 uid, LoadStatus* status, bool load)
@@ -423,8 +739,8 @@ User* GameDataHandler::getUser(int64 uid, LoadStatus* status, bool load)
         return NULL;
     }
 
-    hash_map<int64, User*>::iterator iter = m_mapUsers.find(uid);
-    if (iter != m_mapUsers.end())
+    hash_map<int64, User*>::iterator iter = users_.find(uid);
+    if (iter != users_.end())
     {
         if (iter->second == NULL)
         {
@@ -432,6 +748,13 @@ User* GameDataHandler::getUser(int64 uid, LoadStatus* status, bool load)
             return NULL;
         }
         *status_ = LOAD_SUCCESS;
+		User* pUser = iter->second;
+		if(pUser->GetPlayer())
+		{
+			pUser->GetPlayer()->SetEventHandler(eh_);
+		}
+
+		pUser->SetRmRevision(revision_);
         return iter->second;
     }
 
@@ -441,35 +764,46 @@ User* GameDataHandler::getUser(int64 uid, LoadStatus* status, bool load)
         return NULL;
     }
 
-    map<int64, LoadStatus>::iterator load_iter = m_mapLoadList.find(uid);
-    if (load_iter != m_mapLoadList.end())
+    map<int64, LoadStatus>::iterator load_iter = load_list_.find(uid);
+    if (load_iter != load_list_.end())
     {
         *status_ = LOAD_WAITING;
         return NULL;
     }
 
     // max wait for 10000
-    int load_count = m_mapLoadList.size();
+    int load_count = load_list_.size();
     if (load_count >= MAX_LOAD_WAITING)
     {
         *status_ = LOAD_BUSY;
         return NULL;
     }
 
-    m_mapLoadList.insert(make_pair(uid, LOAD_WAITING));
+    load_list_.insert(make_pair(uid, LOAD_WAITING));
     *status_ = LOAD_WAITING;
     loadUserData(uid);
     return NULL;
 }
 
-bool GameDataHandler::isPlatidLocal(const string& platid)
-{
-    return ServerConfig::Instance().gameid(distribution::getRegion(platid)) == nid_;
-}
+//bool GameDataHandler::isPlatidLocal(const string& platid)
+//{
+//    //int hash = getPlatidHash(platid);
+//    //return hash % serverConfig.gamedNum() + 1 == nid_;
+//}
 
 bool GameDataHandler::isUidLocal(int64 uid)
 {
-    return ServerConfig::Instance().gameid(distribution::getRegion(uid)) == nid_;
+    int hash = getUidHash(uid);
+	int nPhysicsRegion = getPhysicsRegion(uid);
+
+	int nSrvID = hash % serverConfig.physicsGameNum() + 1;
+	nSrvID += nPhysicsRegion * serverConfig.physicsGameNum() ;
+    return nSrvID == nid_;
+}
+
+int	 GameDataHandler::getPhysicsGameNum()
+{
+	return nid_;
 }
 
 LoadStatus GameDataHandler::getUserStatus(int64 uid, bool load)
@@ -495,122 +829,300 @@ LoadStatus GameDataHandler::getUserStatus(int64 uid, bool load)
     // not found or error
     return LOAD_ERROR;
 }
-
-User* GameDataHandler::getUser(const string& pid, LoadStatus* status, bool load)
+/*
+void GameDataHandler::AddBroadCast2Lst(const RseComBroadcast* pBroadcast)
 {
-    LoadStatus tmp_status, *status_ = (status == NULL) ? &tmp_status : status;
-    if (!isPlatidLocal(pid))
-    {
-        *status_ = LOAD_MISS;
-        return NULL;
-    }
+	if(pBroadcast==NULL)
+		return;
+	RseComBroadcast* pNewBroadcast = new RseComBroadcast();
+	pNewBroadcast->CopyFrom(*pBroadcast);
 
-    hash_map<string, int64>::iterator iter = m_mapPlatId2Uid.find(pid);
-    if (iter != m_mapPlatId2Uid.end())
-    {
-        *status_ = LOAD_SUCCESS;
-        int64 uid = iter->second;
-        if (uid == 0)
-        {
-            *status_ = LOAD_EMPTY;
-            return NULL;
-        }
-        if (uid == -1)
-        {
-            *status_ = LOAD_WAITING;
-            return NULL;
-        }
-        return getUser(uid, status_, load);
-    }
-    int64 uid = -1ll;
-    m_mapPlatId2Uid.insert(make_pair(pid, uid));
-    loadPlatidMap(pid);
-    *status_ = LOAD_WAITING;
-    return NULL;
+	m_lstBroadcast.push_back(pNewBroadcast);
+}
+*/
+//
+
+void GameDataHandler::updateUser(User* user, const string &name,
+								 const string &profile_link, int gender, 
+								 PLAT_TYPE plat_type, bool bIsYellowDmd, 
+								 bool bIsYellowDmdYear, int i4YellowDmdLv, 
+								 const vector<string> &fpid,int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear,
+								 int nBlueTime,int nBlueYearTime,int nHighBlueTime,int nHighBlueYearTime)
+{
+//     user->SetName(name, plat_type);
+//     user->SetProfileLink(profile_link, plat_type);
+// 	user->SetCity(nCity);
+// 
+//     //user->setGender(gender);
+//     if (fpid.size() != 0)
+//     {
+//         user->friends_platid().clear();
+//         user->friends_id().clear();
+//         user->setFriendsPlatID(fpid);
+//     }
+//     // 注册时间为空才设置
+//     if (user->GetRegisterTime() <= 0)
+//     {
+//         user->SetRegisterTime(time(NULL));
+//     }
+//     user->SetPlattype(plat_type);
+// 	if (plat_type == PLAT_QHALL)
+// 	{
+// 		user->SetQHallDmd(bIsYellowDmd);
+// 		user->SetQHallDmdYear(bIsYellowDmdYear);
+// 		user->SetQHallDmdLvl(i4YellowDmdLv);
+// 		user->SetHighQHallDmd(isHighYellowDmd);
+// 		user->SetHighQHallDmdYear(isHighDmdYear);
+// 		user->SetBlueTime(nBlueTime);
+// 		user->SetBlueYearTime(nBlueYearTime);
+// 		user->SetHighBlueTime(nHighBlueTime);
+// 		user->SetHighBlueYearTime(nHighBlueYearTime);
+// 	}
+// 	else{
+// 		if(plat_type != PLAT_QAdd)
+// 		{
+// 			user->SetYellowDmd(bIsYellowDmd);
+// 			user->SetYellowDmdYear(bIsYellowDmdYear);
+// 			user->SetYellowDmdLvl(i4YellowDmdLv);
+// 		}
+// 		else
+// 		{
+// 			user->SetQQDmd(bIsYellowDmd);
+// 			user->SetQQDmdYear(bIsYellowDmdYear);
+// 			user->SetQQDmdLvl(i4YellowDmdLv);
+// 		}
+// 		user->SetHighYellowDmd(isHighYellowDmd);
+// 	}
+	user->GetPlayer()->SetEventHandler(eh_);
+ //   
 }
 
-User* GameDataHandler::getOnlineUser(int64 uid)
+User* GameDataHandler::createUser(int64 uid,const string& pid, const string &name, const string& profile_link, int gender, 
+								  PLAT_TYPE plat_type, bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv, 
+								  const vector<string> &fpid,int nRegion, int nCity,bool bIsNewUser,string strVIA,
+								  bool isHighYellowDmd,GameEventHandler* eh_,string strChannel,bool isHighDmdYear, int nBlueTime, int nBlueYearTime, int nHighBlueTime,
+								   int nHighBlueYearTime)
 {
-    User* user = getUser(uid, NULL, false);
-    if (!user || !user->Online())
-        return NULL;
-    return user;
-}
+	//int64 uid = allocateUserID(pid);
 
-vector<User*> GameDataHandler::getOnlineUsers(const vector<int64>& uids)
-{
-    vector<User*> users;
-    for (size_t i = 0; i < uids.size(); i++)
-    {
-        User* user = getOnlineUser(uids[i]);
-        if (user)
-            users.push_back(user);
-    }
-    return users;
-}
+    User* u = newUser(uid, pid, name, profile_link, gender, plat_type,
+		bIsYellowDmd, bIsYellowDmdYear, i4YellowDmdLv, fpid,nRegion,nCity,isHighYellowDmd,eh_,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighBlueYearTime);
+	u->GetPlayer()->SetEventHandler(eh_);
 
-vector<User*> GameDataHandler::getAllOnlineUsers()
-{
-    vector<User*> users;
-    for (hash_map<int64, User*>::iterator it = m_mapUsers.begin(); it != m_mapUsers.end(); it++)
-    {
-        User* user = it->second;
-        if (user && user->Online())
-            users.push_back(user);
-    }
-    return users;
-}
+     markUserDirty(u);
+     saveUserData(u);
 
-int64 GameDataHandler::getAllOnlineUserNum()
-{
-	int64 nCount = 0;
-	for (hash_map<int64, User*>::iterator it = m_mapUsers.begin(); it != m_mapUsers.end(); it++)
+    SYS_LOG(uid, LT_Register, 0, 0, pid.c_str());
+	SYS_UserStat(u,false,"Register",strVIA,strChannel,"",pid.c_str(),plat_type,nRegion,bIsNewUser);
+
+	if (u)
 	{
-		User* user = it->second;
-		if (user && user->Online())
-		{
-			nCount++;
-		}
+		CMsg2QQ::GetInstance()->TellMsg(MQ_Regist,u,0,0,0);
 	}
-	return nCount;
+    return u;
 }
 
-User* GameDataHandler::createUser( const string& pid )
+User* GameDataHandler::newUser(int64 uid, const string& pid,
+							   const string &name, const string &profile_link, 
+							   int gender, PLAT_TYPE plat_type, 
+							   bool bIsYellowDmd, bool bIsYellowDmdYear, 
+							   int i4YellowDmdLv, const vector<string> &fpid,int nRegion,
+							   int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear,
+							    int nBlueTime, int nBlueYearTime, int nHighBlueTime, int nHighBlueYearTime)
 {
-    LOCALE_TYPE locale = ServerConfig::Instance().GetServerLocale();
-    CHANNEL_TYPE channel = ServerConfig::Instance().GetServerChannel();
-	int regionId = ServerConfig::Instance().gameregion(nid_);
-    int auto_inc = static_cast<int>(next_user_id_++);
-    int64 uid = distribution::allocUid(static_cast<int>(locale), static_cast<int>(channel), regionId, auto_inc);
-    User* user = new User(uid, pid);
-	user->InitNewUser();
-
-    mapUidToUser(uid, user);
-    mapPlatidToUid(pid, uid);
-
-    savePlatidMap(pid, uid);
-    saveUserData(user);
-	SaveGlobalStarInfo();
-    return user;
+    User *u = new User(uid, pid, name, profile_link, gender, plat_type,
+            bIsYellowDmd, bIsYellowDmdYear, i4YellowDmdLv, fpid,nRegion,nCity,isHighYellowDmd,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighBlueYearTime);
+    mapUidToUser(uid, u);
+    return u;
 }
 
+GameFriendInfo* GameDataHandler::getFriendInfo(const string& platID, enum PLAT_TYPE i4PlatType)
+{
+    if (i4PlatType < 0 || i4PlatType >= PLAT_TYPE_MAX)
+    {
+        return NULL;
+    }
+
+    //hash_map<string, GameFriendInfo*> &refPlatid_FrInfo = platid_friendinfo_[i4PlatType];
+    hash_map<string, GameFriendInfo*>::iterator iter = platid_friendinfo_.find(platID);
+    if (iter == platid_friendinfo_.end())
+    {
+        return NULL;
+    }
+    GameFriendInfo* friendinfo = iter->second;
+    //if (friendinfo->timestamp < revision_ - 12 * 3600 * 1000)
+    //{
+    //    refPlatid_FrInfo.erase(iter);
+    //    delete friendinfo;
+    //    friendinfo = NULL;
+    //}
+    return friendinfo;
+}
+
+
+void GameDataHandler::setFriendInfo(const string& platID, int64& uid, FriendInfoLite* pLite, enum PLAT_TYPE i4PlatType,int nRegion,int nLV)
+{
+    if (i4PlatType < 0 || i4PlatType >= PLAT_TYPE_MAX || pLite== NULL)
+    {
+        return;
+    }
+    //hash_map<string, GameFriendInfo*> &refPlatid_FrInfo = platid_friendinfo_[i4PlatType];
+    hash_map<string, GameFriendInfo*>::iterator iter = platid_friendinfo_.find(platID);
+    //hash_map<int64, string>  &friPidtoUid = friendinfo_platid_uid_[i4PlatType];
+    GameFriendInfo* pInfo = NULL;
+    if (iter != platid_friendinfo_.end())
+    {
+        GameFriendInfo* oldinfo = iter->second;
+        //refPlatid_FrInfo.erase(iter);
+        //oldinfo->Clear();
+        pInfo = oldinfo;
+    }
+    else
+    {
+        pInfo = new GameFriendInfo();
+    }
+
+    if (NULL == pInfo || pInfo->m_pFrdInfo==NULL )
+    {
+        return;
+    }
+	pInfo->m_mapRegionUID[nRegion]	= uid;
+	pInfo->m_mapRegionLV[nRegion]	= nLV;
+	pInfo->m_strName[i4PlatType] = pLite->first_name();
+	pInfo->m_strProfileLink[i4PlatType] = pLite->pic();
+	pInfo->m_bLoad[i4PlatType] = true;
+
+	pInfo->m_pFrdInfo->CopyFrom(*pLite);
+	platid_friendinfo_[platID] = pInfo;
+
+	//pInfo->timestamp = revision_;
+	//pInfo->fid = fid;
+    //refPlatid_FrInfo.insert(make_pair(fpid, pInfo));
+    //friPidtoUid[fid] = fpid;
+}
+
+int GameDataHandler::getGamedIdByUserId(int64 uid)
+{ 
+    int hash = getUidHash(uid);
+    //return hash % serverConfig.gamedNum() + 1;
+	int nGameID = hash % serverConfig.physicsGameNum() + 1;
+	int nPhysicsRgn = getPhysicsRegion(uid);
+	nGameID += nPhysicsRgn * serverConfig.physicsGameNum();
+	return nGameID;
+}
+
+int GameDataHandler::getGameIdfromPlatId(string const& platid,int nRegion)
+{
+	//int hash = getPlatidHash(platid);
+	//return hash % serverConfig.gamedNum() + 1;
+	int hash = getPlatidHash(platid);
+	int nGameID = hash % serverConfig.physicsGameNum() + 1;
+	int nPhysicsRgn = serverConfig.GetPhysicsRegionByLogicRegion(nRegion);
+	nGameID += nPhysicsRgn * serverConfig.physicsGameNum();
+	return nGameID;
+
+}
 bool GameDataHandler::LoadUserFromMemCache( int64 nUserID )
 {
 	string infostr("");
-	bool hasInfo = GameCacheInst::instance().GetUserInfo( nUserID, infostr);
+	string infoeffstr("");
+	string infonpcstr("");
+	bool hasInfo = MemCacheServerHandler::GetUserInfo( nUserID, infostr);//,infonpcstr,infoeffstr);
 	if (hasInfo)
 	{
+		//测试内存长度
+		//if(infostr.size()>100*1024)
+		//{
+		//	DB_User dbTmp;
+		//	bool bSuc = dbTmp.ParseFromString( infostr );
+		//	string text;
+		//	int nLen = 0;
+		//	for(int i=0;i<dbTmp.fightrecord_size();i++)
+		//	{
+		//		DB_LootReport* pReport = dbTmp.mutable_fightrecord(i);
+		//		pReport->SerializeToString(&text);
+		//		nLen = text.size();
+
+		//	}
+		//	DB_Player* pDBPlay = dbTmp.mutable_player();
+		//	pDBPlay->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	DB_Bases* pDBBase = pDBPlay->mutable_base(0);
+		//	pDBBase->SerializeToString(&text);
+		//	nLen = text.size();
+		//	
+		//	DB_LootReport* pDBLootReport = pDBBase->mutable_lootreportuser();
+		//	pDBLootReport->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	DB_WeaponCenter* pDBWPC = pDBBase->mutable_weaponcenter();
+		//	pDBWPC->SerializeToString(&text);
+		//	nLen = text.size();
+		//	
+		//	DB_AdmiralInfo* pDBAdmiral = pDBBase->mutable_admiralinfo();
+		//	pDBAdmiral->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	pDBAdmiral->mutable_admiral(0)->SerializeToString(&text);
+		//	nLen = text.size();
+		//	nLen *= pDBAdmiral->admiral_size();
+		//
+		//	DB_Strategic* pDBStrate = pDBBase->mutable_strategicinfo();
+		//	pDBStrate->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	DB_PVEFightData* pDBPVE = pDBBase->mutable_pvefightdata();
+		//	pDBPVE->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	DB_Country* pDBCountry = pDBBase->mutable_countrydata();
+		//	pDBCountry->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	pDBBase->mutable_army(0)->SerializeToString(&text);
+		//	nLen = text.size();
+		//	nLen *= pDBBase->army_size();
+
+		//	pDBBase->mutable_building(0)->SerializeToString(&text);
+		//	nLen = text.size();
+		//	nLen *= pDBBase->building_size();
+
+
+		//	DB_UserStar* pDBStar = pDBPlay->mutable_userstar();
+		//	pDBStar->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	DB_DefenseActivity* pDBDef = pDBPlay->mutable_defenseactivity();
+		//	pDBDef->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	DB_Bag* pDBBag = pDBPlay->mutable_bag();
+		//	pDBBag->SerializeToString(&text);
+		//	nLen = text.size();
+
+		//	int a;
+		//	a = 4;
+		//}
 		User* pUser = new User();
 		DB_User dbUser;
 		if (dbUser.ParseFromString( infostr ))
 		{
+			/*counter_.increase("parse_from_mem");
+			stat_.capture("parse_from_mem",counter_.count("parse_from_mem"));
+			if (Clock::GetMinute()%30 == 0)
+			{
+				counter_.clear("parse_from_mem");
+			}*/
 			pUser->SetDbUser(dbUser);
 			updateLoadUser(nUserID, pUser);
 			return true;
 		}
 		else
 		{
+			
 			delete pUser;
+			pUser = NULL;
 			LOG4CXX_ERROR(logger_, "GameDataHandler::LoadUserFromMemCache() ERROR!!! ParseFromString UserID:" << nUserID);
 			return false;
 		}
@@ -618,43 +1130,155 @@ bool GameDataHandler::LoadUserFromMemCache( int64 nUserID )
 	return false;
 }
 
-void GameDataHandler::LoadPlatFromBack(const string& pid)
+GameRgnDataHandler* GameDataHandler::GetRgnDataHandler(int nRegion)
 {
-	m_pDataSaver->GMloadMapFromBack(this, pid);
+	map<int,GameRgnDataHandler*>::iterator iter;
+	iter = m_mapRgnDataHandler.find(nRegion);
+	if(iter != m_mapRgnDataHandler.end())
+		return iter->second;
+	return NULL;
 }
 
-User* GameDataHandler::TestGetUser( int64 uid, LoadStatus* status /*= NULL*/ )
+CLiteCountry* GameDataHandler::GetLiteRegionCountryInfo(int nCountry,bool bCreateIfNotExit)
 {
-	LoadStatus tmp_status, *status_ = (status == NULL) ? &tmp_status : status;
-	hash_map<int64, User*>::iterator iter = m_mapUsers.find(uid);
-	if (iter != m_mapUsers.end())
+	map<int,CLiteCountry*>::iterator iter;
+
+	iter = m_mapLiteRegionCountry.find(nCountry);
+	if(iter != m_mapLiteRegionCountry.end())
 	{
-		if (iter->second == NULL)
-		{
-			*status_ = LOAD_EMPTY;
-			return NULL;
-		}
-		*status_ = LOAD_SUCCESS;
 		return iter->second;
 	}
-
-	map<int64, LoadStatus>::iterator load_iter = m_mapLoadList.find(uid);
-	if (load_iter != m_mapLoadList.end())
+	if(bCreateIfNotExit)
 	{
-		*status_ = LOAD_WAITING;
-		return NULL;
+		CLiteCountry* pLite = new CLiteCountry(0,nCountry);
+		pLite->m_nCountryID = nCountry;
+		pLite->m_nRegion    = 0;
+		m_mapLiteRegionCountry[nCountry] = pLite;
+		return pLite;
 	}
-
-	// max wait for 10000
-	int load_count = m_mapLoadList.size();
-	if (load_count >= MAX_LOAD_WAITING)
-	{
-		*status_ = LOAD_BUSY;
-		return NULL;
-	}
-
-	m_mapLoadList.insert(make_pair(uid, LOAD_WAITING));
-	*status_ = LOAD_WAITING;
-	loadUserData(uid);
 	return NULL;
+}
+
+
+int GameDataHandler::GetRegionCountryUser(int nCountry)
+{
+	CLiteCountry* pLite = GetLiteRegionCountryInfo(nCountry);
+	if(pLite)
+	{
+		return pLite->m_nUserCnt;
+	}
+	return 0;
+
+}
+
+void GameDataHandler::SetRegionCountryUser(int nCountry,int nCnt)
+{
+	CLiteCountry* pLite = GetLiteRegionCountryInfo(nCountry,true);
+	pLite->m_nUserCnt = nCnt;
+}
+
+void GameDataHandler::AddRegionCountryUser(int nCountry,int nCnt)
+{
+	CLiteCountry* pLite = GetLiteRegionCountryInfo(nCountry,true);
+	pLite->m_nUserCnt += nCnt;
+
+}
+
+int GameDataHandler::GetMaxUserRegionCountry()
+{
+	int nID = C_Start;
+	int nNum = GetRegionCountryUser(nID);
+	for(int i=C_Start+1;i<C_UserCoutryEnd;i++)
+	{
+		int nCnt = GetRegionCountryUser(i);
+		if(nCnt>nNum)
+		{
+			nID = i;
+			nNum = nCnt;
+		}
+	}
+	return nID;
+}
+int GameDataHandler::GetMinUserRegionCountry()
+{
+	int nID = C_Start;
+	int nNum = GetRegionCountryUser(nID);
+	for(int i=C_Start+1;i<C_UserCoutryEnd;i++)
+	{
+		int nCnt = GetRegionCountryUser(i);
+		if(nCnt<nNum)
+		{
+			nID = i;
+			nNum = nCnt;
+		}
+	}
+	return nID;
+}
+
+int GameDataHandler::GetRegionCountryBoom(int nCountry)
+{
+	CLiteCountry* pLite = GetLiteRegionCountryInfo(nCountry,true);
+
+	return pLite->m_nBoom;
+}
+
+
+void GameDataHandler::ResetRegionCountryRank()
+{
+	map<int,CLiteCountry*>::iterator iter;
+	vector<CLiteCountry*> lstCountry;
+	vector<CLiteCountry*>::iterator itCt;
+	for(iter = m_mapLiteRegionCountry.begin();iter!=m_mapLiteRegionCountry.end();iter++)
+	{
+		CLiteCountry* pCntr = iter->second;
+
+		bool bInsert = false;
+		for(itCt = lstCountry.begin();itCt!=lstCountry.end();itCt++)
+		{
+			CLiteCountry* pTmp = *itCt;
+			if(pCntr->m_nBoom >= pTmp->m_nBoom)
+			{
+				if(itCt == lstCountry.begin())
+				{
+					bInsert = true;
+					lstCountry.insert(itCt,pCntr);
+					break;
+				}
+				else
+				{	
+					bInsert = true;
+					lstCountry.insert(itCt,pCntr);
+					break;
+				}
+			}
+		}
+		if(!bInsert)
+		{
+			lstCountry.push_back(pCntr);
+		}
+	}
+
+
+	if(lstCountry.size()<=0)
+		return;
+	string strInfo;
+	char szTmp[256];
+	int nRank = 1;
+	lstCountry[0]->m_nCurRank = nRank;
+	for(int i=1;i<(int)lstCountry.size();i++)
+	{
+		if(lstCountry[i]->m_nBoom >= lstCountry[i-1]->m_nBoom)
+		{
+			lstCountry[i]->m_nCurRank = nRank;
+		}	
+		else
+		{
+			nRank++;
+			lstCountry[i]->m_nCurRank = nRank;
+		}
+		sprintf(szTmp,"%d:%d:%d:%d   ;",lstCountry[i]->m_nCountryID,lstCountry[i]->m_nUserCnt,lstCountry[i]->m_lstCityID.size(),lstCountry[i]->m_nBoom);
+		strInfo+=szTmp;
+	}
+	//SYS_LOG(0,LT_CNTR_Rank,0,0,m_nRegion<<strInfo);
+
 }

@@ -188,6 +188,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\event\DealAdminEvent.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\DealAdminEvent.h"
+					>
+				</File>
+				<File
 					RelativePath=".\event\DealWorldEvent.cpp"
 					>
 				</File>
@@ -196,11 +204,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\event\SendRemoteUser.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\SendRemoteUser.h"
+					>
+				</File>
+				<File
 					RelativePath=".\event\UpdateWorkingStatus.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\event\UpdateWorkingStatus.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\UserLogin.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\UserLogin.h"
 					>
 				</File>
 			</Filter>
@@ -257,26 +281,6 @@
 				</File>
 				<File
 					RelativePath=".\WebServerHandler.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="logic"
-				>
-				<File
-					RelativePath="..\logic\CommonSystemMgr.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\logic\CommonSystemMgr.h"
-					>
-				</File>
-				<File
-					RelativePath="..\logic\WorldConfigMgr.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\logic\WorldConfigMgr.h"
 					>
 				</File>
 			</Filter>

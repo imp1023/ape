@@ -1,6 +1,7 @@
 #ifndef _WORLDNETHANDLER_H_
 #define _WORLDNETHANDLER_H_
 #pragma once
+
 #include <log4cxx/logger.h>
 #include <map>
 #include <string>
@@ -13,6 +14,8 @@
 
 using namespace std;
 
+extern ServerConfig serverConfig;
+
 class EventQueue;
 
 class WorldNetHandler : public NetHandler 
@@ -21,12 +24,12 @@ public:
 	static const int MAX_EVENTS = 256;
 	static const int MAX_QUEUE_LENGTH = 32;
 	EventQueue *eq_;
+	int nid() {return nid_;}
 
-	WorldNetHandler(EventQueue *eq, int wid);
+	WorldNetHandler(EventQueue *eq, int nid);
 	virtual ~WorldNetHandler() {}
 
 	bool sendEventToGamed(Event *e, int gameid);
-    bool sendEventToGamedWithFd(Event *e, int fd);
 	bool sendEventToAllGamed(Event *e);
 
 	int getGamedFdFromGamedId(int gameid);

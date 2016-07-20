@@ -32,7 +32,8 @@ NetCache::NetCache(int fd, struct sockaddr_in addr, size_t rsize)
 	}
 	this->rsize = rsize;
 	rbuf = new (nothrow) char[rsize];
-	if (rbuf==NULL)
+	//cmdbuf = new (nothrow) char[rsize+1];
+	if (rbuf==NULL)// || cmdbuf==NULL)
 	{
 		LOG4CXX_FATAL(logger_, "Cannot allocate memory for read buffer!!");
 		exit(1);
@@ -55,6 +56,10 @@ NetCache::~NetCache(void)
 	{
 		delete []rbuf;
 	}
+	//if (cmdbuf!=NULL)
+	//{
+	//	delete []cmdbuf;
+	//}
 }
 
 char *NetCache::addrstr()
@@ -120,7 +125,7 @@ bool NetCache::assemble(string &str)
 					return true;
 				}
 			}
-			else if (rpos >= 3 && rbuf[0] == 'G' && rbuf[1] == 'E' && rbuf[2] == 'T')
+			if (rpos >= 3 && rbuf[0] == 'G' && rbuf[1] == 'E' && rbuf[2] == 'T')
 			{
 				int newline_cnt  = 0;
 				int newline_cnt2 = 0;
@@ -144,6 +149,7 @@ bool NetCache::assemble(string &str)
 				if (http_length > 0 && http_length <= rpos)
 				{
 					str = string(rbuf, http_length);
+					//INFO("assemble, str:" << str);
 					memmove(rbuf, rbuf + http_length, rpos - http_length);
 					rpos = rpos - http_length;
 					rbuf[rpos] = '\0';
@@ -154,10 +160,10 @@ bool NetCache::assemble(string &str)
 					return false;
 				}
 			}
-			else if (rpos >= 4 && rbuf[0] == 't' && rbuf[1] == 'g' && rbuf[2] == 'w')
+			if (rpos >= 4 && rbuf[0] == 't' && rbuf[1] == 'g' && rbuf[2] == 'w')
 			{
 				int http_length = 0;
-				for (int i = 3; http_length == 0 && i < rpos; i++)
+ 				for (int i = 3; http_length == 0 && i < rpos; i++)
 				{
 					if (rbuf[i - 3] == '\r' && rbuf[i - 2] == '\n' && rbuf[i - 1] == '\r' && rbuf[i] == '\n')
 					{
@@ -198,11 +204,14 @@ bool NetCache::assemble(string &str)
 				}
 				//LOG4CXX_ERROR(logger_, "Net assemble error:fd=" << fd << " uid=" << uid << " length=" << length << " rpos-lsize:"<< rpos-lsize<< " content:"<< (int)*(rbuf)<<" " << (int)*(rbuf+1)<<" "<<(int) *(rbuf+2)<<" "<< (int)*(rbuf+3));
 				return false;
-			}			
-			str.assign(rbuf + lsize, length);
+			}
+			//memcpy(cmdbuf, rbuf+lsize, length);
+			str = string(rbuf+lsize, length);
+			//cmdbuf[length] = '\0';
 			memmove(rbuf, rbuf+length+lsize, rpos-length-lsize);
 			rpos -= length+lsize;
 			rbuf[rpos] = '\0';
+			//str = string(cmdbuf, length);
 			return true;
 		}
 		else if (type==ProtocolHandler::ADMIN || type==ProtocolHandler::WEBSERVER)
@@ -223,15 +232,25 @@ bool NetCache::assemble(string &str)
 				}
 				len = max(p,q)-rbuf+1;
 			}
+			//strncpy(cmdbuf, rbuf, len);
+			//cmdbuf[len] = '\0';
 			int n = len-1;
+			//while (n>=0 && (cmdbuf[n]=='\n'||cmdbuf[n]=='\r'))
+			//{
+			//	cmdbuf[n] = '\0';
+			//	n--;
+			//}
+			int nStrLen = len;
 			while (n>=0 && (rbuf[n]=='\n'||rbuf[n]=='\r'))
 			{
+				nStrLen = n;
 				n--;
 			}
-			str.assign(rbuf, n+1);
+			str = string(rbuf,nStrLen);
 			memmove(rbuf, rbuf+len, rpos-len);
 			rpos -= len;
 			rbuf[rpos] = '\0';
+			//str = string(cmdbuf);
 			return true;
 		}
 	}
@@ -252,10 +271,10 @@ bool NetCache::prepareWrite(const char *str, size_t size)
 	lockWrite();
 	if (size>wsize-1-wpos) // buffer overflow, allocate new buffer
 	{
-		size_t nwsize = max(wsize*2, wpos + size + 1024);
+		size_t nwsize = max(wsize + DEFAULT_WRITE_SIZE , wpos + size + 1024);
 		size_t nwsize_mb = nwsize>>20;
 		if (nwsize_mb >= 100) {
-			LOG4CXX_ERROR(logger_, "Resizing write buffer for fd " << fd << " to " << nwsize_mb << " MB.");
+			LOG4CXX_INFO(logger_, "Resizing write buffer for fd " << fd << " to " << nwsize_mb << " MB.");
 		} else {
 			LOG4CXX_DEBUG(logger_, "Resizing write buffer for fd " << fd << " to " << nwsize_mb << " MB.");
 		}

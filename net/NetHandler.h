@@ -13,7 +13,6 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <sys/epoll.h>
-
 #endif
 #include <log4cxx/logger.h>
 
@@ -37,7 +36,9 @@ public:
 	bool sendFdString(int fd, const char* str, size_t size);
 	bool sendSizedFdString(int fd, const string& str);
 	bool sendIntSizedFdString(int fd, const string& str);
-	bool sendSizedTypeFdString(int fd, int type, const string& str);
+	virtual bool sendSizedTypeFdString(int fd, int type, const string& str){return false;}
+
+	virtual bool SetRc4Keys(int fd,string& strSend,string& strReceive){return true;}
 
 protected:
 	NetHandler();
@@ -55,7 +56,7 @@ protected:
 	 * epfd is for Linux, master is for Windows
 	 */
 	int createListenSocket(string socket_name,string port, string address);
-	int createConnectSocket(string socket_name,string address,string port,struct sockaddr &sa);
+	int createConnectSocket(string socket_name,string address,string port,struct addrinfo &sa);
 
 	NetCache *addConnection(int fd, struct sockaddr_in addr, size_t rsize);
 	char *getRemoteAddress(int fd);

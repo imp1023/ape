@@ -2,45 +2,7 @@
 #define _GAMEDATAHANDLER_H_
 #pragma once
 #include <log4cxx/logger.h>
-#include "../common/const_def.h"
-#include <vector>
-#include <map>
-#include <list>
-#include <pthread.h>
-#include "../event/DataHandler.h"
-using namespace std;
-#ifndef WIN32
-#include <ext/hash_map>
-using namespace __gnu_cxx;
-namespace __gnu_cxx
-{
-
-	template<>
-	struct hash<long long>
-	{
-
-		size_t
-			operator()(long long __x) const
-		{
-			return __x;
-		}
-	} ;
-
-	template<>
-	struct hash<std::string>
-	{
-
-		size_t
-			operator()(std::string __s) const
-		{
-			return __stl_hash_string(__s.c_str());
-		}
-	} ;
-}
-#else
-#include <hash_map>
-using namespace stdext;
-#endif
+#include "GameRgnDataHandler.h"
 
 enum LoadStatus
 {
@@ -52,10 +14,30 @@ enum LoadStatus
     LOAD_EMPTY = 5,
     LOAD_BUSY = 6,
     LOAD_ERROR = 99
-};
+} ;
 
-class User;
+class FriendInfoLite;
+class CLiteCountry;
+
+class GameFriendInfo
+{
+public:
+	GameFriendInfo();
+	~GameFriendInfo();
+	void Clear();
+
+    //int64 timestamp;
+    //int64 fid;
+	FriendInfoLite* m_pFrdInfo;
+	string	m_strName[PLAT_TYPE_MAX];	
+	string	m_strProfileLink[PLAT_TYPE_MAX];
+	bool	m_bLoad[PLAT_TYPE_MAX];		
+	map<int,int> m_mapRegionLV;
+	map<int,int64> m_mapRegionUID;
+} ;
+
 class GameDataSaver;
+class GameEventHandler;
 class Clock;
 class Event;
 
@@ -67,119 +49,206 @@ class GameDataHandler : public DataHandler
 public:
     GameDataHandler(int nid);
     virtual ~GameDataHandler(void);
+	void				SetEventHandler(GameEventHandler* eh){eh_ = eh;}
+	GameEventHandler*	GetEventHandler() {return eh_;};
 
-    virtual void init();
     virtual void tick();
     virtual void quit();
 
-	virtual void termThreads();
+	virtual void termsThread();
 
-    void	loadAllocateSetting();
-    void	saveAllocateSetting();
+    void markUserDirty(User* user);
 
-	void	LoadGlobalStarInfo();
-	void	SaveGlobalStarInfo();
+	void UpdateRemoveUser_new();
+	void UpdateRemoveUser();
+	void RemoveUser(User *pUser);
 
-    int64	allocateItemID(int num = 1);
 
-    void	markUserDirty(User* user);
+    void saveAllUserData(bool urgent = false);
+    void saveUserData(User* user);
+    void loadUserData(int64& uid);
+    void updateLoadUser(int64& uid, User* user);
+    void updateUserMap();
 
-    void	saveAllUserData(bool urgent = false);
-    void	saveUserData(User* user);
-    void	loadUserData(int64& uid);
-    void	updateLoadUser(int64& uid, User* user);
-    void	updateUserMap();
+	void updateUser(GameEventHandler * eventHandler);
 
-	void	UpdateRemoveUser();
-	void	RemoveUser(User *pUser);
-	void	RemovePlatidMap(const string& pid);
-	void	RemovePlatidFromDb(const string& pid);
-	void	RemoveUserFromDb(int64 uid);
 
-    void	savePlatidMap(const string& pid, int64& uid);
-    void	loadPlatidMap(const string& pid);
-    void	updateLoadPlatid(const string& pid, int64& uid);
-    void	updatePlatidMap();
-
-    bool	isPlatidLocal(const string& pid);
-    bool	isUidLocal(int64 uid);
+    //bool isPlatidLocal(const string& pid);
+    bool isUidLocal(int64 uid);
+	int	 getPhysicsGameNum();
     LoadStatus getUserStatus(int64 uid, bool load = false);
 
-    inline pthread_mutex_t* getDataMutex();
-    inline void acquireDataLock();
-    inline void releaseDataLock();
+	int getBandUser(){return m_bandUser;}
+	void setBandUser(int BandUser){m_bandUser=BandUser;}
 
-	User* createUser(const string& pid);
+    inline pthread_mutex_t* getDataMutex()
+    {
+        return &data_mutex_;
+    }
 
-    User*	getUser(int64 uid, LoadStatus* status = NULL, bool load = true);
-    User*	getUser(const string& pid, LoadStatus* status = NULL, bool load = true);
-	User*	TestGetUser(int64 uid, LoadStatus* status = NULL);
+    inline void acquireDataLock()
+    {
+        pthread_mutex_lock(&data_mutex_);
+    }
 
-    User*   getOnlineUser(int64 uid);
-    vector<User*> getOnlineUsers(const vector<int64>& uids);
-    vector<User*> getAllOnlineUsers();
+    inline void releaseDataLock()
+    {
+        pthread_mutex_unlock(&data_mutex_);
+    }
 
-	int64	getAllOnlineUserNum();
+    void updateUser(User* user, const string &name, const string &profile_link,
+                    int gender, PLAT_TYPE plat_type, bool bIsYellowDmd, bool bIsYellowDmdYear,
+                    int i4YellowDmdLv, const vector<string> &fpid,int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear,int , int , int , int nHighBlueYearTime);
+    User* createUser(int64 uid,const string& pid, const string &name, const string& profile_link,
+                     int gender, PLAT_TYPE plat_type, bool bIsYellowDmd, bool bIsYellowDmdYear,
+                     int i4YellowDmdLv, const vector<string> &fpid,int nRegion,int nCity,bool bIsNewUser,string strVIA,bool isHighYellowDmd,GameEventHandler* eh_,string strChannel,bool isHighDmdYear, int, int, int, int nHighBlueYearTime);
+    User* newUser(int64 uid, const string& pid, const string &name,
+                  const string &profile_link, int gender, PLAT_TYPE plat_type,
+                  bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv,
+                  const vector<string> &fpid,int nRegion,int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear, int, int, int, int nHighBlueYearTime);
 
-    const hash_map<int64, User*>&	getUsers(void) const;
-	const map<int64, User*>&		getDirtyUsers(void) const;
+    User* getUser(int64 uid, LoadStatus* status = NULL, bool load = true);
+	int64 GetUserID(const string& pid,int nRegion)
+	{
+		if(nRegion<0||nRegion>=MAX_REGION_CNT)
+			return 0;
+		return m_mapUid[nRegion][pid];
+	}
+	void AddUserID(const string& pid,int nRegion,int64& uid)
+	{
+		if(nRegion<0||nRegion>=MAX_REGION_CNT)
+			return;
+		m_mapUid[nRegion][pid] = uid;
+	}
+
+
+    hash_map<int64, User*>& getUsers(void)
+    {
+        return users_;
+    }
+	map<int64,int>& getOnlineUsersID()
+	{
+		return onlineUsersID_;
+	}
+	//void AddBroadCast2Lst(const RseComBroadcast* pBroadcast);
+
+	void AddLocalStarInfo(User* pUser,int nRegion);		//将玩家信息放入本地卫星列表
+	void DelLocalStarInfo(int ntype,int64 nID,int nRegion);
+	void GetStartUserlist(list<int64>& lstLv,int nNum,int nlv,Star_User_Group emGroup,int64 StarIDLst[500],int& retNum,int nRegion);
+    GameFriendInfo* getFriendInfo(const string& platID, enum PLAT_TYPE i4PlatType);
+    //GameFriendInfo* getFriendInfo(const int64 uid, enum PLAT_TYPE i4PlatType);
+    void setFriendInfo(const string& platID, int64& uid, FriendInfoLite* pLite, enum PLAT_TYPE i4PlatType,int nRegion,int nLV);
+
+	void PushOnlineUserID(int64 nID);
+	void PopOnlineUserID(int64 nID);
+	int getGuildSrvIDByGuildID(int uid);
+    int getGamedIdByUserId(int64 uid);
+	int getGameIdfromPlatId(string const& platid,int nRegion);
+	time_t GetSrvRootTime(){return m_ltStart;}
+
+	const hash_map<int64, User*> & getDirtyUsers()
+	{
+		return dirty_users_;
+	}
+	
+	void FillGuildInfoToEvent(Event* e, User* pUser);
 
 	bool LoadUserFromMemCache( int64 nUserID );
-	void LoadPlatFromBack(const string& pid);
+
+	bool CanLoadByUser(User* pUser,int64 nTID,int nEnterType);
+
+	int GetServerId() {return nid_;}
+
+	void SetAdFlag(bool bFlag){m_bAdFlag = bFlag;}
+	bool AdFlag(){return m_bAdFlag;}
+
+public:
+	//国家相关
+	bool NeedGetCountryUserRank(time_t ltNow);
+public:
+	//分区相关
+	GameRgnDataHandler* GetRgnDataHandler(int nRegion);
+
+public:
+	//跨区国战
+	CLiteCountry* GetLiteRegionCountryInfo(int nCountry,bool bCreateIfNotExit = false);
+	void SetRegionCountryUser(int nCountry,int nCnt);
+	int  GetRegionCountryUser(int nCountry);
+	void AddRegionCountryUser(int nCountry,int nCnt);		
+	int  GetMinUserRegionCountry();	//获得最少人数的国家
+	int  GetMaxUserRegionCountry();	//获得最多人数的国家
+	int  GetRegionCountryBoom(int nCountry);	//获得国家繁荣度
+	void ResetRegionCountryRank();
+
+public:
+    //超级强攻令
+    void DuleSuperStormRemoveUser();
+
+    int AddSuperStormRemoveUser(int64 lUid, int tRemoveTime);
+
+    void RemoveSuperStormUser(int64 lUid);
+
 private:
     void mapUidToUser(int64& uid, User* user);
-    void mapPlatidToUid(const string& pid, int64& uid);
 
     log4cxx::LoggerPtr logger_;
 
-    int64	next_user_id_;
-    int64	next_item_id_;
+	time_t m_ltStart;
 
-    hash_map<int64, User*>	m_mapUsers;
+    int64 next_user_id_;
+    int64 next_item_id_;
 
-    hash_map<string, int64> m_mapPlatId2Uid;
-    map<int64, LoadStatus>	m_mapLoadList;
-    map<int64, User*>		m_mapLoadedUser;
-    map<string, int64>		m_mapLoadedPlatId;
-    map<int64, User*>		m_mapDirtyUsers;
 
-	list<int64>				m_listRemove;
+    hash_map<int64, User*> users_;
+	map<int64,int> onlineUsersID_;
 
-    GameDataSaver* m_pDataSaver;
+   // hash_map<string, int64> platid_uid_;
+	hash_map<string, int64> m_mapUid[MAX_REGION_CNT];
+    map<int64, LoadStatus> load_list_;
+    map<int64, User*> loaded_user_;
+	//map<int64, DB_NPCList*> loaded_npc_;
+	//map<int64, DB_Effect*>  loaded_effect_;
+   // map<string, int64> loaded_platid_;
+    hash_map<int64, User*> dirty_users_;
+	list<int64>			m_listRemove;	//删除用户列表
+	hash_map<int64,int> m_mapRemove;//删除用户列表，用于排差
+	int64				m_nRemoveKey; //删除玩家标记
+	
+	//分区相关
+	//map<string, DB_PlatidInfoList*> platid_uid_;
+	//map<string, DB_PlatidInfoList*> loaded_platid_;
+	//map<string, DB_PlatidInfoList*> dirty_platlst_;
+	//map<string, int64> dirty_platlst_revision_;
+
+	hash_map<string, GameFriendInfo*> platid_friendinfo_;
+ //  hash_map<string, GameFriendInfo*> platid_friendinfo_[PLAT_TYPE_MAX];
+ //   hash_map<int64, string> friendinfo_platid_uid_[PLAT_TYPE_MAX];
+
+	GameEventHandler* eh_;
+    GameDataSaver* ds_;
     int nid_;
-    pthread_mutex_t m_mutexData;
+    pthread_mutex_t data_mutex_;
 
     time_t	timeUpdate;
 	time_t	m_timeRemoveUpdate;
+	time_t  m_ltStart4RM; //game 启动时间
+	//time_t	m_ltGetUserRankTime;	//应获取国家排行榜时间
+
+	bool	m_bAdFlag;	//广告标记
+	//deque<string>	m_bulltin;
+	//Statistics stat_;
+	//Counter counter_;
+
+	// 禁掉外挂玩家
+	int    m_bandUser;
+private:
+	map<int,GameRgnDataHandler*> m_mapRgnDataHandler;
+private:
+	map<int,CLiteCountry*>		m_mapLiteRegionCountry;
+
 public:
     friend class GameDataSaver;
-    friend class GMHandler;
+    
 };
 
-////////////////////inline function//////////////////////
-inline pthread_mutex_t* GameDataHandler::getDataMutex()
-{
-	return &m_mutexData;
-}
-
-inline void GameDataHandler::acquireDataLock()
-{
-	pthread_mutex_lock(&m_mutexData);
-}
-
-inline void GameDataHandler::releaseDataLock()
-{
-	pthread_mutex_unlock(&m_mutexData);
-}
-
-inline const hash_map<int64, User*>& GameDataHandler::getUsers(void) const
-{
-	return m_mapUsers;
-}
-
-inline
-const map<int64, User*>& GameDataHandler::getDirtyUsers(void) const
-{
-	return m_mapDirtyUsers;
-}
 #endif

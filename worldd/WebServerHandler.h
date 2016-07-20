@@ -4,7 +4,6 @@
 #pragma once
 
 #include <string>
-#include <log4cxx/logger.h>
 #include "../net/ProtocolHandler.h"
 #include "../common/const_def.h"
 using namespace std;
@@ -21,13 +20,21 @@ public:
     int handlerType();
 
 protected:
-    int getServerId(const string& query);
+    // command parsers
+    void processUserLogin(vector<string> &tokens);
 	
 private:
     EventQueue *eq_;
     int fd_;
     int nid_;
-    log4cxx::LoggerPtr logger_;
+private:
+    static const int USER_LOGIN_ARG_NUM = 16;
+    static const int INVITE_ARG_NUM = 7;
+	static const int URL_INVITE_ARG_NUM = 7;
+    static const int BUY_ARG_NUM = 8;
+    static const int CHECK_BANDCOIN_NUM = 3;
+    static const int LENGTHEN_ARG_NUM = 8;
+    static const int WEB_BET_ARG_NUM = 16;
 } ;
 
 #endif

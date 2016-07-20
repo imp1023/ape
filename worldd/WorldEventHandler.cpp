@@ -3,7 +3,7 @@
 #include "WorldNetHandler.h"
 #include "WorldDataHandler.h"
 
-#include "../common/distribution.h"
+extern int G_WorldD_ID;
 
 WorldEventHandler::WorldEventHandler(EventQueue *eq, WorldDataHandler* dh, WorldNetHandler *nh, int nid)
 : eq_(eq), dh_(dh), nh_(nh), nid_(nid)
@@ -24,18 +24,13 @@ void WorldEventHandler::start()
 
 bool WorldEventHandler::sendEventToUser(Event *e, int64 uid)
 {
-    int gid = ServerConfig::Instance().gameid(distribution::getRegion(uid));
+    int gid = dh_->getGamedIdByUserId(uid);
     return nh_->sendEventToGamed(e, gid);
 }
 
 bool WorldEventHandler::sendEventToGamed(Event *e, int gid)
 {
     return nh_->sendEventToGamed(e, gid);
-}
-
-bool WorldEventHandler::sendEventToGamedWithFd(Event *e, int fd)
-{
-    return nh_->sendEventToGamedWithFd(e, fd);
 }
 
 bool WorldEventHandler::sendEventToAllGamed(Event *e)
@@ -50,18 +45,17 @@ void WorldEventHandler::sendFdString(int fd, const string &content)
 }
 
 #include "event/UpdateWorkingStatus.h"
+#include "event/UserLogin.h"
+#include "event/SendRemoteUser.h"
+#include "event/DealAdminEvent.h"
 #include "event/DealWorldEvent.h"
-// #include "event/GlobalArenaHandler.h"
-// #include "event/GlobalGuildBattleHandler.h"
 
 void WorldEventHandler::initialEventProcessors()
 {
-    // default event processor: forward event
-    DealWorldEvent::createInstance(this);
-
     // add Event Processors here
     UpdateWorkingStatus::createInstance(this);
-
-// 	GlobalArenaHandler::createInstance(this);
-// 	GlobalGuildBattleHandler::createInstance(this);
+    UserLogin::createInstance(this);
+    SendRemoteUser::createInstance(this);
+    DealAdminEvent::createInstance(this);
+    DealWorldEvent::createInstance(this);
 }

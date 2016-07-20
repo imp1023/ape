@@ -1,42 +1,49 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "../logic/dbinterface.pb.h"
 #include "GameDataSaver.h"
+#include <iomanip>
 #include "GameDataHandler.h"
+#include <sys/types.h>
 #include "../common/Clock.h"
+#include "../common/HotCacheDBCfg.h"
 #include "../common/distribution.h"
-#include "../logic/GameServerConfig.h"
-#include "../logic/User.h"
-#include "../logic/StarLogic.h"
-
+#include "../common/Msg2QQ.h"
+#include "../gamed/MemCacheServerHandler.h"
 #ifndef _WIN32
 #include <unistd.h>
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #endif
 
+extern ServerConfig serverConfig;
 
 GameDataSaver::GameDataSaver(int nid)
 {
 	nid_ = nid;
-	db_num = ServerConfig::Instance().dbNum();
-    sprintf(allocate_file, "allocate_g%d.cfg", ServerConfig::Instance().gameregion(nid_));
-	sprintf(allocate_dbstr,"ALLOCATE_G%05d",ServerConfig::Instance().gameregion(nid_));
-	sprintf(GlobalStarInfo_DB, "GlobalStarInfo_G%05d", ServerConfig::Instance().gameregion(nid_));
+	db_num = serverConfig.dbNum();
+	sprintf(allocate_file, "allocate_g%d.cfg", nid_);
+	sprintf(allocate_dbstr,"ALLOCATE_G%05d",nid_);
 	logger_ = log4cxx::Logger::getLogger("GameDataSaver");
 	alloc_rdb = NULL;
-	star_rdb = NULL;
+	alloc_rdb2= NULL;
+	//plat_tmp_rdb = NULL;
+	//user_tmp_rdb = NULL;
 	log_time = 0;
-    log_error_time = 0;
 	count_dirty_ = 0;
 
 	initDatabase();
 
-	pthread_mutex_init(&m_mutexLoadUser, NULL);
-	pthread_mutex_init(&m_mutexSaveUser, NULL);
-	pthread_mutex_init(&m_mutexLoadMap, NULL);
-	pthread_mutex_init(&m_mutexSaveMap, NULL);
+	pthread_mutex_init(&load_user_mutex_, NULL);
+	pthread_mutex_init(&save_user_mutex_, NULL);
+	pthread_mutex_init(&load_map_mutex_, NULL);
+	pthread_mutex_init(&save_map_mutex_, NULL);
 
 	b_serving = true;
+
+	m_bHotCacheEnable		= HotCacheDBCfg::Instance().EnableWrite();
+	//如果不可写，则不可读
+	m_bHotCacheEnableLoad	= HotCacheDBCfg::Instance().EnableRead();
+	m_bHotCacheEnableLoadNPC= HotCacheDBCfg::Instance().EnableReadNPC();
 	initThreads();
 }
 
@@ -44,52 +51,49 @@ GameDataSaver::~GameDataSaver()
 {
 	termThreads();
 
-	pthread_mutex_destroy(&m_mutexLoadUser);
-	pthread_mutex_destroy(&m_mutexSaveUser);
-	pthread_mutex_destroy(&m_mutexLoadMap);
-	pthread_mutex_destroy(&m_mutexSaveMap);
+	pthread_mutex_destroy(&load_user_mutex_);
+	pthread_mutex_destroy(&save_user_mutex_);
+	pthread_mutex_destroy(&load_map_mutex_);
+	pthread_mutex_destroy(&save_map_mutex_);
 }
 
 void GameDataSaver::initThreads()
 {
 	int ret = 0;
-	ret = pthread_create(&m_threadLoadUser, NULL, GameDataSaver::loadUserThread, (void *)this);
+	ret = pthread_create(&th_user_load, NULL, GameDataSaver::loadUserThread, (void *)this);
 	if(ret != 0)
 	{
 		LOG4CXX_ERROR(logger_, "ERROR creating load data thread");
 	}
-	ret = pthread_create(&m_threadSaveUser, NULL, GameDataSaver::saveUserThread, (void *)this);
+	ret = pthread_create(&th_user_save, NULL, GameDataSaver::saveUserThread, (void *)this);
 	if(ret != 0)
 	{
 		LOG4CXX_ERROR(logger_, "ERROR creating save data thread");
 	}
 
-	ret = pthread_create(&m_threadLoadMap, NULL, GameDataSaver::loadMapThread, (void *)this);
-	if(ret != 0)
-	{
-		LOG4CXX_ERROR(logger_, "ERROR creating load map thread");
-	}
+	//ret = pthread_create(&th_map_load, NULL, GameDataSaver::loadMapThread, (void *)this);
+	//if(ret != 0)
+	//{
+	//	LOG4CXX_ERROR(logger_, "ERROR creating load map thread");
+	//}
 
-	ret = pthread_create(&m_threadSaveMap, NULL, GameDataSaver::saveMapThread, (void *)this);
-	if(ret != 0)
-	{
-		LOG4CXX_ERROR(logger_, "ERROR creating save thread");
-	}
+	//ret = pthread_create(&th_map_save, NULL, GameDataSaver::saveMapThread, (void *)this);
+	//if(ret != 0)
+	//{
+	//	LOG4CXX_ERROR(logger_, "ERROR creating save thread");
+	//}
 }
 
 void GameDataSaver::termThreads()
 {
-	if (b_serving)
-	{
-		b_serving = false;
-		pthread_join(m_threadLoadUser, NULL);
-		pthread_join(m_threadLoadMap, NULL);
-		pthread_join(m_threadSaveMap, NULL);
-		pthread_join(m_threadSaveUser, NULL);
+	b_serving = false;
+	pthread_join(th_user_load, NULL);
+	//pthread_join(th_map_load, NULL);
+	//pthread_join(th_map_save, NULL);
+	pthread_join(th_user_save, NULL);
 
-		LOG4CXX_ERROR(logger_, "Threads terminated. Quit.");
-		termDatabase();
-	}
+	LOG4CXX_ERROR(logger_, "Threads terminated. Quit.");
+	termDatabase();
 }
 
 void GameDataSaver::initDatabase()
@@ -99,12 +103,13 @@ void GameDataSaver::initDatabase()
 	{
 		db_user_load.insert(make_pair(i + 1, tmp));
 		db_user_save.insert(make_pair(i + 1, tmp));
-        db_user_save_backup.insert(make_pair(i + 1, tmp));
-		db_user_load_old.insert(make_pair(i + 1, tmp));
-		db_plat_load.insert(make_pair(i + 1, tmp));
-		db_plat_save.insert(make_pair(i + 1, tmp));
-        db_plat_save_backup.insert(make_pair(i + 1, tmp));
-		db_plat_load_back.insert(make_pair(i + 1, tmp));
+
+		db_user_load2.insert(make_pair(i + 1, tmp));
+		db_user_save2.insert(make_pair(i + 1, tmp));
+
+		hotcache_user_load.insert(make_pair(i + 1, tmp));
+		hotcache_user_save.insert(make_pair(i + 1, tmp));
+
 	}
 }
 
@@ -128,62 +133,53 @@ void GameDataSaver::termDatabase()
 			db_user_save[i] = NULL;
 		}
 
-        rdb = (TCRDB*)db_user_save_backup[i];
-        if (rdb != NULL)
-        {
-            tcrdbclose(rdb);
-            tcrdbdel(rdb);
-            db_user_save_backup[i] = NULL;
-        }
 
-		rdb = (TCRDB*)db_user_load_old[i];
-		if (rdb != NULL)
-		{
-            tcrdbclose(rdb);
-            tcrdbdel(rdb);
-            db_user_load_old[i] = NULL;			
-		}
-
-		rdb = (TCRDB*)db_plat_load[i];
+		//备
+		rdb = (TCRDB*)db_user_load2[i];
 		if(rdb != NULL)
 		{
 			tcrdbclose(rdb);
 			tcrdbdel(rdb);
-			db_plat_load[i] = NULL;
+			db_user_load2[i] = NULL;
 		}
 
-		rdb = (TCRDB*)db_plat_save[i];
+		rdb = (TCRDB*)db_user_save2[i];
 		if(rdb != NULL)
 		{
 			tcrdbclose(rdb);
 			tcrdbdel(rdb);
-			db_plat_save[i] = NULL;
+			db_user_save2[i] = NULL;
 		}
 
-        rdb = (TCRDB*)db_plat_save_backup[i];
-        if (rdb != NULL)
-        {
-            tcrdbclose(rdb);
-            tcrdbdel(rdb);
-            db_plat_save_backup[i] = NULL;
-        }
 
-		rdb = (TCRDB*)db_plat_load_back[i];
-		if (rdb != NULL)
+		//内存TT
+		rdb = (TCRDB*)hotcache_user_load[i];
+		if(rdb != NULL)
 		{
-            tcrdbclose(rdb);
-            tcrdbdel(rdb);
-            db_plat_load_back[i] = NULL;
+			tcrdbclose(rdb);
+			tcrdbdel(rdb);
+			hotcache_user_load[i] = NULL;
 		}
+
+		rdb = (TCRDB*)hotcache_user_save[i];
+		if(rdb != NULL)
+		{
+			tcrdbclose(rdb);
+			tcrdbdel(rdb);
+			hotcache_user_save[i] = NULL;
+		}
+
+
 	}
+	db_user_load2.clear();
+	db_user_save2.clear();
+
+
 	db_user_load.clear();
 	db_user_save.clear();
-    db_user_save_backup.clear();
-	db_user_load_old.clear();
-	db_plat_load.clear();
-	db_plat_save.clear();
-    db_plat_save_backup.clear();
-	db_plat_load_back.clear();
+
+	hotcache_user_load.clear();
+	hotcache_user_save.clear();
 
 	if(alloc_rdb != NULL)
 	{
@@ -191,164 +187,91 @@ void GameDataSaver::termDatabase()
 		tcrdbdel(alloc_rdb);
 		alloc_rdb = NULL;
 	}
-	if(star_rdb){
-		tcrdbclose(star_rdb);
-		tcrdbdel(star_rdb);
-		star_rdb = NULL;
+	if(alloc_rdb2 != NULL)
+	{
+		tcrdbclose(alloc_rdb2);
+		tcrdbdel(alloc_rdb2);
+		alloc_rdb2 = NULL;
 	}
 }
 
-TCRDB* GameDataSaver::getAllocateDb()
-{
-	TCRDB* rdb = tcrdbnew();
-	if (!tcrdbopen(rdb, ServerConfig::Instance().dbUserAddr1(1).c_str(), ServerConfig::Instance().dbUserPort1(1)))
-	{
-		LOG4CXX_ERROR(logger_, "open db[" << ServerConfig::Instance().dbUserAddr1(1)
-			<< ":" << ServerConfig::Instance().dbUserPort1(1)
-			<<"] error: " << tcrdberrmsg(tcrdbecode(rdb)));
-		tcrdbdel(rdb);
-		rdb = NULL;
-	}
-	
-	return rdb;
-}
+//void GameDataSaver::loadAllocateSetting(int64& uid, int64& iid)
+//{
+//	if(alloc_rdb == NULL)
+//	{
+//		alloc_rdb = getAllocateDb(1);
+//	}
+//	char* buffer = NULL;
+//	if(alloc_rdb != NULL)
+//	{
+//		buffer = (char*)tcrdbget2(alloc_rdb, allocate_dbstr);
+//	}
+//	if(buffer != NULL)
+//	{
+//		sscanf(buffer, "%lld,%lld", &uid, &iid);
+//		free(buffer);
+//	}
+//	else
+//	{
+//		//if not in db, read info from file,this is use for change info from file to db,will delete later.
+//		FILE *fp = fopen(allocate_file, "r");
+//		if(NULL != fp)
+//		{
+//			char setting[256];
+//			fgets(setting, 256, fp);
+//			if(strlen(setting) >= 7)
+//			{
+//				sscanf(setting, "%lld,%lld", &uid, &iid);
+//			}
+//			fclose(fp);
+//		}
+//	}
+//}
+//
+//void GameDataSaver::saveAllocateSetting(int64& uid, int64& iid)
+//{
+//	if(alloc_rdb == NULL)
+//	{
+//		alloc_rdb = getAllocateDb(1);
+//	}
+//	if(alloc_rdb != NULL)
+//	{
+//		char setting[256];
+//		sprintf(setting, "%lld,%lld", uid, iid);
+//		if(!tcrdbput2(alloc_rdb, allocate_dbstr, setting))
+//		{
+//			LOG4CXX_ERROR(logger_, "Put allocate ERROR : " << tcrdberrmsg(tcrdbecode(alloc_rdb)));
+//			tcrdbclose(alloc_rdb);
+//			tcrdbdel(alloc_rdb);
+//			alloc_rdb = NULL;
+//		}
+//	}
+//
+//	if(alloc_rdb2 == NULL)
+//	{
+//		alloc_rdb2 = getAllocateDb(2);
+//	}
+//	if(alloc_rdb2 != NULL)
+//	{
+//		char setting[256];
+//		sprintf(setting, "%lld,%lld", uid, iid);
+//		if(!tcrdbput2(alloc_rdb2, allocate_dbstr, setting))
+//		{
+//			LOG4CXX_ERROR(logger_, "Put allocate ERROR : " << tcrdberrmsg(tcrdbecode(alloc_rdb2)));
+//			tcrdbclose(alloc_rdb2);
+//			tcrdbdel(alloc_rdb2);
+//			alloc_rdb2 = NULL;
+//		}
+//	}
+//
+//	FILE *fp = fopen(allocate_file, "w");
+//	if(NULL != fp)
+//	{
+//		fprintf(fp, "%lld,%lld", uid, iid);
+//		fclose(fp);
+//	}
+//}
 
-TCRDB* GameDataSaver::getStarDb()
-{
-	TCRDB* rdb = tcrdbnew();
-	if (!tcrdbopen(rdb, ServerConfig::Instance().dbUserAddr1(1).c_str(), ServerConfig::Instance().dbUserPort1(1)))
-	{
-		LOG4CXX_ERROR(logger_, "open db[" << ServerConfig::Instance().dbUserAddr1(1)
-			<< ":" << ServerConfig::Instance().dbUserPort1(1)
-			<<"] error: " << tcrdberrmsg(tcrdbecode(rdb)));
-		tcrdbdel(rdb);
-		rdb = NULL;
-	}
-	return rdb;
-}
-
-int GameDataSaver::getDBId(int64 uid)
-{
-    return ServerConfig::Instance().dbId(distribution::getRegion(uid));
-}
-
-int GameDataSaver::getDBId(const string& platid)
-{
-    return ServerConfig::Instance().dbId(distribution::getRegion(platid));
-}
-
-void GameDataSaver::loadAllocateSetting(int64& uid, int64& iid)
-{
-	if(alloc_rdb == NULL)
-	{
-		alloc_rdb = getAllocateDb();
-	}
-	char* buffer = NULL;
-	if(alloc_rdb != NULL)
-	{
-		buffer = (char*)tcrdbget2(alloc_rdb, allocate_dbstr);
-	}
-	if(buffer != NULL)
-	{
-		sscanf(buffer, "%lld,%lld", &uid, &iid);
-		free(buffer);
-	}
-	else
-	{
-		//if not in db, read info from file,this is use for change info from file to db,will delete later.
-		FILE *fp = fopen(allocate_file, "r");
-		if(NULL != fp)
-		{
-			char setting[256];
-			fgets(setting, 256, fp);
-			if(strlen(setting) >= 7)
-			{
-				sscanf(setting, "%lld,%lld", &uid, &iid);
-			}
-			fclose(fp);
-		}
-	}
-}
-
-void GameDataSaver::saveAllocateSetting(int64& uid, int64& iid)
-{
-	if(alloc_rdb == NULL)
-	{
-		alloc_rdb = getAllocateDb();
-	}
-	if(alloc_rdb != NULL)
-	{
-		char setting[256];
-		sprintf(setting, "%lld,%lld", uid, iid);
-		if(!tcrdbput2(alloc_rdb, allocate_dbstr, setting))
-		{
-			LOG4CXX_ERROR(logger_, "Put allocate ERROR : " << tcrdberrmsg(tcrdbecode(alloc_rdb)));
-			tcrdbclose(alloc_rdb);
-			tcrdbdel(alloc_rdb);
-			alloc_rdb = NULL;
-		}
-	}
-
-	FILE *fp = fopen(allocate_file, "w");
-	if(NULL != fp)
-	{
-		fprintf(fp, "%lld,%lld", uid, iid);
-		fclose(fp);
-	}
-}
-
-void GameDataSaver::SaveGlobalStarInfo()
-{
-	DB_GlobalStarInfo starDb;
-	StarLogicInst::instance().serizlize(starDb);
-
-	string text;
-	starDb.SerializeToString(&text);
-	if (!tcrdbput(star_rdb, GlobalStarInfo_DB, strlen(GlobalStarInfo_DB), text.c_str(), text.length()))
-	{
-		int ecode = tcrdbecode(star_rdb);
-		LOG4CXX_ERROR(logger_, "Save DB_GlobalStarInfo ERROR :"<<tcrdberrmsg(ecode));
-		tcrdbclose(star_rdb);
-		tcrdbdel(star_rdb);
-		star_rdb = NULL;
-	}
-	LOG4CXX_INFO(logger_, "Save DB_GlobalStarInfo SUCCESS ...stars len=" << starDb.stars_size());
-}
-
-void GameDataSaver::LoadGlobalStarInfo()
-{
-	if(star_rdb == NULL)
-	{
-		star_rdb = getStarDb();
-	}
-	char* buffer = NULL;
-	int len = 0;
-	if(star_rdb != NULL)
-	{
-		buffer = (char*)tcrdbget(star_rdb, GlobalStarInfo_DB, strlen(GlobalStarInfo_DB), &len);
-	}
-	if (buffer == NULL)
-	{
-		int ecode = tcrdbecode(star_rdb);
-		LOG4CXX_ERROR(logger_, "Get GlobalStarInfoDb ERROR : " << tcrdberrmsg(ecode));
-		if (ecode != TTENOREC){
-			tcrdbclose(star_rdb);
-			tcrdbdel(star_rdb);
-			star_rdb = NULL;
-		}
-		return;
-	}
-
-	string data(buffer, len);
-	free(buffer);
-	DB_GlobalStarInfo StarDb;
-	StarDb.ParseFromString(data);
-	if(StarLogicInst::instance().unserialize(StarDb)){
-		LOG4CXX_INFO(logger_, "Load DB_GlobalStarInfo Success. star size="<<StarDb.stars_size());
-	}else{
-		LOG4CXX_INFO(logger_, "Load DB_GlobalStarInfo ERROR. star size="<<StarDb.stars_size());
-	}
-}
 
 void GameDataSaver::writeSaveListLength(int len)
 {
@@ -361,17 +284,18 @@ void GameDataSaver::writeSaveListLength(int len)
 		FILE *fp = fopen(logfile, "a");
 		if(NULL != fp)
 		{
-			struct tm tmnow;
+			struct tm *tmnow = NULL;
 			char szTime[128];
-			localtime_r(&now, &tmnow);
-			strftime(szTime, 128-1, "%Y-%m-%d %H:%M:%S", &tmnow);
-			fprintf(fp, "%s - %d (%d)\n", szTime, len, count_dirty_);
+			tmnow = localtime(&now);
+			strftime(szTime, 128-1, "%Y-%m-%d %H:%M:%S", tmnow);
+			fprintf(fp, "%s - list cnt:%d , dirty cnt: %d \n", szTime, len, count_dirty_);
 			fclose(fp);
 		}
 	}
 }
 
-void GameDataSaver::writeSaveError(const char *strError)
+
+void GameDataSaver::writeSaveError(const char *strError,const char* szKey,int nValueLen)
 {
 	time_t now = time(NULL);
 	char logfile[256];
@@ -379,33 +303,23 @@ void GameDataSaver::writeSaveError(const char *strError)
 	FILE *fp = fopen(logfile, "a");
 	if(NULL != fp)
 	{
-		struct tm tmnow;
+		struct tm *tmnow = NULL;
 		char szTime[128];
-		localtime_r(&now, &tmnow);
-		strftime(szTime, 128-1, "%Y-%m-%d %H:%M:%S", &tmnow);
-		fprintf(fp, "%s - change db error:%s\n", szTime, strError);
+		tmnow = localtime(&now);
+		strftime(szTime, 128-1, "%Y-%m-%d %H:%M:%S", tmnow);
+		fprintf(fp, "%s -save db error,key:%s,value len:%d,error:%s\n", szTime,szKey,nValueLen, strError);
 		fclose(fp);
 	}
-}
-
-void GameDataSaver::writeDisconnectError(const char* strError)
-{
-    time_t now = time(NULL);
-    if (now != log_error_time && now%5 == 0)
-    {
-        writeSaveError(strError);
-        log_error_time = now;
-    }
 }
 
 int GameDataSaver::safeSaveAllUser(time_t revision, GameDataHandler* const dh, bool force)
 {
 	// user data
-	pthread_mutex_lock(&m_mutexSaveUser);
-	map<int64, User*> &users = dh->m_mapDirtyUsers;
-	map<int64, User*>::iterator iter = users.begin();
-	int list_len = m_listSaveUser.size();
-	int save_interval = GameServerConfig::Instance().SaveInterval();
+	pthread_mutex_lock(&save_user_mutex_);
+	hash_map<int64, User*> &users = dh->dirty_users_;
+	hash_map<int64, User*>::iterator iter = users.begin();
+	int list_len = save_user_list_.size();
+	int save_interval = 1;
 	if(list_len > 250)
 	{
 		save_interval += (list_len - 250) / 50;
@@ -416,17 +330,17 @@ int GameDataSaver::safeSaveAllUser(time_t revision, GameDataHandler* const dh, b
 	}
 	while(iter!=users.end())
 	{
-		map<int64, User*>::iterator oiter = iter;
+		hash_map<int64, User*>::iterator oiter = iter;
 		++iter;
 		User *user = oiter->second;
-		if(force || user->revision() < revision - save_interval * 60 * 1000)
+		if(force || user->revision() < revision - save_interval * 600 * 1000)
 		{
-			pushSaveUser(dh, user->uid(), user);
+			pushSaveUser(dh, user->GetUid(), user);
 			users.erase(oiter);
 		}
 	}
 	count_dirty_ = users.size();
-	pthread_mutex_unlock(&m_mutexSaveUser);
+	pthread_mutex_unlock(&save_user_mutex_);
 	return 0;
 }
 
@@ -434,75 +348,48 @@ int GameDataSaver::safeSaveUser(GameDataHandler* const dh, User* user)
 {
 	if(user != NULL)
 	{
-		pthread_mutex_lock(&m_mutexSaveUser);
-		pushSaveUser(dh, user->uid(), user);
-		pthread_mutex_unlock(&m_mutexSaveUser);
-		LOG4CXX_DEBUG(logger_, "Save user data:uid=" << user->uid());
+		pthread_mutex_lock(&save_user_mutex_);
+		pushSaveUser(dh, user->GetUid(), user);
+		pthread_mutex_unlock(&save_user_mutex_);
+		LOG4CXX_DEBUG(logger_, "Save user data:uid=" << user->GetUid());
 	}
 	return 0;
 }
 
 int GameDataSaver::safeLoadUser(GameDataHandler* const dh, int64& uid)
 {
-	pthread_mutex_lock(&m_mutexLoadUser);
+	pthread_mutex_lock(&load_user_mutex_);
 	pushLoadUser(dh, uid);
-	pthread_mutex_unlock(&m_mutexLoadUser);
+	pthread_mutex_unlock(&load_user_mutex_);
 	LOG4CXX_DEBUG(logger_, "Load user data " << uid);
-	return 0;
-}
-
-int GameDataSaver::safeSaveAllMap(GameDataHandler* const dh)
-{
-	// map data
-	pthread_mutex_lock(&m_mutexSaveMap);
-	hash_map<string, int64> &list = dh->m_mapPlatId2Uid;
-	for (hash_map<string, int64>::iterator iter = list.begin(); iter!=list.end(); ++iter)
-	{
-		const string& pid = iter->first;
-		int64 uid = iter->second;
-		if (uid > 0)
-		{
-			pushSaveMap(dh, pid, uid);
-		}
-	}
-	pthread_mutex_unlock(&m_mutexSaveMap);
-	LOG4CXX_DEBUG(logger_, "All PlatformID->UID Map saved.");
-	return 0;
-}
-
-int GameDataSaver::safeSaveMap(GameDataHandler* const dh, const string& pid, int64& uid)
-{
-	if(uid > 0)
-	{
-		pthread_mutex_lock(&m_mutexSaveMap);
-		pushSaveMap(dh, pid, uid);
-		pthread_mutex_unlock(&m_mutexSaveMap);
-		LOG4CXX_DEBUG(logger_, "Save platid map: platid="<<pid<<"->uid="<<uid);
-	}
-	return 0;
-}
-
-int GameDataSaver::safeLoadMap(GameDataHandler* const dh, const string& pid)
-{
-	pthread_mutex_lock(&m_mutexLoadMap);
-	pushLoadMap(dh, pid);
-	pthread_mutex_unlock(&m_mutexLoadMap);
-	LOG4CXX_DEBUG(logger_, "Load user map " << pid);
 	return 0;
 }
 
 int GameDataSaver::pushSaveUser(GameDataHandler* const dh, int64 uid, User* user)
 {
 	string * data = new string;
-	MakeUserString(dh, user, *data);
-
-	list<UserItem>::iterator iter = m_listSaveUser.begin();
-	while(iter != m_listSaveUser.end())
+	//string * effdata = new string;
+	string effdata;
+	string * npcdata = new string;
+	MakeUserString(dh, user, *data);//,effdata,*npcdata);
+	if (MemCacheServerHandler::GetInst() && MemCacheServerHandler::GetInst()->CanUse())
+	{
+		if (MemCacheServerHandler::UpdateUserInfo(uid, *data/*,*npcdata,effdata*/) == true)
+		{
+			MemCacheServerHandler::SafePushRemoveList(uid);
+		}
+	}
+	list<UserItem>::iterator iter = save_user_list_.begin();
+	while(iter != save_user_list_.end())
 	{
 		if(iter->uid == uid)
 		{
 			delete iter->data;
+			//delete iter->effdata;
+			delete iter->npcdata;
 			iter->data = data;
+			//iter->effdata = effdata;
+			iter->npcdata = npcdata;
 			return 0;
 		}
 		++iter;
@@ -511,9 +398,11 @@ int GameDataSaver::pushSaveUser(GameDataHandler* const dh, int64 uid, User* user
 	UserItem save_data;
 	save_data.dh = dh;
 	save_data.data = data;
+	//save_data.effdata = effdata;
+	save_data.npcdata = npcdata;
 	save_data.uid = uid;
 
-	m_listSaveUser.push_front(save_data);
+	save_user_list_.push_front(save_data);
 	//user->setRevision(dh->revision());
 	return 0;
 }
@@ -524,31 +413,10 @@ int GameDataSaver::pushLoadUser(GameDataHandler* const dh, int64& uid)
 	load_data.dh = dh;
 	load_data.data = NULL;
 	load_data.uid = uid;
+//	load_data.effdata = NULL;
+	load_data.npcdata = NULL;
 
-	m_listLoadUser.push_front(load_data);
-	return 0;
-}
-
-int GameDataSaver::pushSaveMap(GameDataHandler* const dh, const string& platid,
-							   int64& uid)
-{
-	MapItem save_data;
-	save_data.dh = dh;
-	save_data.platid = platid;
-	save_data.uid = uid;
-	
-	m_listSaveMap.push_front(save_data);
-	return 0;
-}
-
-int GameDataSaver::pushLoadMap(GameDataHandler* const dh, const string& platid)
-{
-	MapItem load_data;
-	load_data.dh = dh;
-	load_data.platid = platid;
-	load_data.uid = 0;
-
-	m_listLoadMap.push_front(load_data);
+	load_user_list_.push_front(load_data);
 	return 0;
 }
 
@@ -566,149 +434,152 @@ TCRDB* GameDataSaver::getDb(const string& addr, int port)
 	return rdb;
 }
 
-TCRDB* GameDataSaver::getUserLoadDb(int dbid)
+TCRDB* GameDataSaver::getUserLoadDb(int dbid,int type)
 {
-	TCRDB *rdb = (TCRDB *)db_user_load[dbid];
+	if(type==1)
+	{
+		TCRDB *rdb = (TCRDB *)db_user_load[dbid];
+		if(rdb == NULL)
+		{
+			rdb = getDb(serverConfig.dbUserAddr1(dbid), serverConfig.dbUserPort1(dbid));
+		}
+		if(rdb != NULL)
+		{
+			db_user_load[dbid] = rdb;
+		}
+		return rdb;
+	}
+	else if(type==2)
+	{
+		TCRDB *rdb = (TCRDB *)db_user_load2[dbid];
+		if(rdb == NULL)
+		{
+			rdb = getDb(serverConfig.dbUserAddr2(dbid), serverConfig.dbUserPort2(dbid));
+		}
+		if(rdb != NULL)
+		{
+			db_user_load2[dbid] = rdb;
+		}
+		return rdb;
+	}
+	return NULL;
+
+}
+
+TCRDB* GameDataSaver::getUserSaveDb(int dbid,int type)
+{
+	if(type==1)
+	{
+		TCRDB *rdb = (TCRDB *)db_user_save[dbid];
+		if(rdb == NULL)
+		{
+			rdb = getDb(serverConfig.dbUserAddr1(dbid), serverConfig.dbUserPort1(dbid));
+		}
+		if(rdb != NULL)
+		{
+			db_user_save[dbid] = rdb;
+		}
+		return rdb;
+	}
+	else if(type==2)
+	{
+		TCRDB *rdb = (TCRDB *)db_user_save2[dbid];
+		if(rdb == NULL)
+		{
+			rdb = getDb(serverConfig.dbUserAddr2(dbid), serverConfig.dbUserPort2(dbid));
+		}
+		if(rdb != NULL)
+		{
+			db_user_save2[dbid] = rdb;
+		}
+		return rdb;
+	}
+	return NULL;
+
+}
+
+//}
+//
+//int GameDataSaver::saveUserNPC(GameDataHandler* const dh, int64& uid, string& data,int type)
+//{
+//	time_t ltStart = Clock::getCurrentSystemTime();
+//	int dbid = getUidHash(uid) % db_num + 1;
+//	TCRDB* rdb = getUserSaveDb(dbid,type);
+//	if(rdb == NULL)
+//	{
+//		return -1;
+//	}
+//	std::string key = "NPC_" + toString(uid) ;
+//	int klen = key.length();
+//	const char* buf = data.c_str();
+//	int len = data.length();
+//	if(!tcrdbput(rdb, key.c_str(), klen, buf, len))
+//	{
+//		int ecode = tcrdbecode(rdb);
+//		LOG4CXX_ERROR(logger_, "Put user NPC ERROR : uid:" <<uid <<",valuelength:"<< len << ",type:"<<type<<",error:"<< tcrdberrmsg(ecode));
+//
+//		writeSaveError(tcrdberrmsg(ecode),key.c_str(),len);
+//		tcrdbclose(rdb);
+//		tcrdbdel(rdb);
+//		if(type == 1)
+//		{
+//			db_user_save[dbid] = NULL;
+//		}
+//		else if(type == 2)
+//		{
+//			db_user_save2[dbid] = NULL;
+//		}
+//
+//		return -1;
+//	}
+//	LOG4CXX_DEBUG(logger_, "Saved UserNPC: uid="<<uid);
+//	return 0;
+//}
+//int GameDataSaver::saveUserEffect(GameDataHandler* const dh, int64& uid, string& data,int type)
+//{
+//
+//	int dbid = getUidHash(uid) % db_num + 1;
+//	TCRDB* rdb = getUserSaveDb(dbid,type);
+//	if(rdb == NULL)
+//	{
+//		return -1;
+//	}
+//
+//	std::string key = "Eff_" + toString(uid);
+//	int klen = key.length();
+//	const char* buf = data.c_str();
+//	int len = data.length();
+//	if(!tcrdbput(rdb, key.c_str(), klen, buf, len))
+//	{
+//		int ecode = tcrdbecode(rdb);
+//		LOG4CXX_ERROR(logger_, "Put user Effect ERROR : uid:" <<uid <<",valuelength:"<< len << ",type:"<<type<<",error:"<< tcrdberrmsg(ecode));
+//		writeSaveError(tcrdberrmsg(ecode),key.c_str(),len);
+//		tcrdbclose(rdb);
+//		tcrdbdel(rdb);
+//		if(type == 1)
+//		{
+//			db_user_save[dbid] = NULL;
+//		}
+//		else if(type == 2)
+//		{
+//			db_user_save2[dbid] = NULL;
+//		}
+//
+//		return -1;
+//	}
+//	
+//
+//	LOG4CXX_DEBUG(logger_, "Saved UserEffect: uid="<<uid);
+//	return 0;
+//}
+
+int GameDataSaver::saveUser(GameDataHandler* const dh, int64& uid, string& data,int type)
+{
+	//time_t ltStart = Clock::getCurrentSystemTime();
+	int dbid = getUidHash(uid) % db_num + 1;
+	TCRDB* rdb = getUserSaveDb(dbid,type);
 	if(rdb == NULL)
 	{
-		rdb = getDb(ServerConfig::Instance().dbUserAddr1(dbid), ServerConfig::Instance().dbUserPort1(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_user_load[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getUserLoadOldDb(int dbid)
-{
-	TCRDB *rdb = (TCRDB *)db_user_load_old[dbid];
-	if(rdb == NULL)
-	{
-		rdb = getDb(ServerConfig::Instance().dbUserAddrOld(dbid), ServerConfig::Instance().dbUserPortOld(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_user_load_old[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getUserLoadBackDb( int dbid )
-{
-	TCRDB *rdb = (TCRDB *)db_user_load_back[dbid];
-	if(rdb == NULL)
-	{
-		rdb = getDb(ServerConfig::Instance().dbUserBack(dbid), ServerConfig::Instance().dbUserPortback(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_user_load_back[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getUserSaveDb(int dbid)
-{
-	TCRDB *rdb = (TCRDB *)db_user_save[dbid];
-	if(rdb == NULL)
-	{
-		rdb = getDb(ServerConfig::Instance().dbUserAddr1(dbid), ServerConfig::Instance().dbUserPort1(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_user_save[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getUserSaveDbBackup(int dbid)
-{
-    TCRDB *rdb = (TCRDB *)db_user_save_backup[dbid];
-    if(rdb == NULL)
-    {
-        rdb = getDb(ServerConfig::Instance().dbUserAddr2(dbid), ServerConfig::Instance().dbUserPort2(dbid));
-    }
-
-    if(rdb != NULL)
-    {
-        db_user_save_backup[dbid] = rdb;
-    }
-    return rdb;
-}
-
-TCRDB* GameDataSaver::getPlatLoadDb(int dbid)
-{
-	TCRDB *rdb = (TCRDB *)db_plat_load[dbid];
-	if(rdb == NULL)
-	{
-		rdb = getDb(ServerConfig::Instance().dbPlatAddr1(dbid), ServerConfig::Instance().dbPlatPort1(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_plat_load[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getPlatLoadBackDb(int dbid)
-{
-	TCRDB *rdb = (TCRDB *)db_plat_load_back[dbid];
-	if(rdb == NULL)
-	{
-		rdb = getDb(ServerConfig::Instance().dbPlatBack(dbid), ServerConfig::Instance().dbPlatPortback(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_plat_load_back[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getPlatSaveDb(int dbid)
-{
-	TCRDB *rdb = (TCRDB *)db_plat_save[dbid];
-	if(rdb == NULL)
-	{
-		rdb = getDb(ServerConfig::Instance().dbPlatAddr1(dbid), ServerConfig::Instance().dbPlatPort1(dbid));
-	}
-
-	if(rdb != NULL)
-	{
-		db_plat_save[dbid] = rdb;
-	}
-	return rdb;
-}
-
-TCRDB* GameDataSaver::getPlatSaveDbBackup(int dbid)
-{
-    TCRDB *rdb = (TCRDB *)db_plat_save_backup[dbid];
-
-    if(rdb == NULL)
-    {
-        rdb = getDb(ServerConfig::Instance().dbPlatAddr2(dbid), ServerConfig::Instance().dbPlatPort2(dbid));
-    }
-
-    if(rdb != NULL)
-    {
-        db_plat_save_backup[dbid] = rdb;
-    }
-    return rdb;
-}
-
-int GameDataSaver::saveUser(GameDataHandler* const dh, int64& uid, string& data)
-{
-	int dbid = getDBId(uid);
-	TCRDB* rdb = getUserSaveDb(dbid);
-	if(rdb == NULL)
-	{
-        writeDisconnectError("Put User Error : Disconnect");
 		return -1;
 	}
 
@@ -719,310 +590,310 @@ int GameDataSaver::saveUser(GameDataHandler* const dh, int64& uid, string& data)
 	if(!tcrdbput(rdb, suid, 16, buf, len))
 	{
 		int ecode = tcrdbecode(rdb);
-		LOG4CXX_ERROR(logger_, "Put user ERROR : " << tcrdberrmsg(ecode));
-		writeSaveError(tcrdberrmsg(ecode));
+		LOG4CXX_ERROR(logger_, "Put user ERROR : uid:" <<uid <<",valuelength:"<< len << ",type:"<<type<<",error:"<< tcrdberrmsg(ecode));
+
+		writeSaveError(tcrdberrmsg(ecode),suid,len);
 		tcrdbclose(rdb);
 		tcrdbdel(rdb);
-		db_user_save[dbid] = NULL;
+		if(type == 1)
+		{
+			db_user_save[dbid] = NULL;
+		}
+		else if(type == 2)
+		{
+			db_user_save2[dbid] = NULL;
+		}
+		
 		return -1;
 	}
+	if(type==1)
+	{
+		DelUserEffectInfo(rdb,uid);
+		DelUserNPCInfo(rdb,uid);
+	}
+	//time_t ltEnd = Clock::getCurrentSystemTime();
+
+	//CMsg2QQDB::GetInstance()->TellSaveDB(int(ltEnd-ltStart),
+	//	serverConfig.gamedIp(nid_).c_str(),
+	//	serverConfig.dbUserAddr1(dbid).c_str(),
+	//	serverConfig.dbUserPort1(dbid));
 	LOG4CXX_DEBUG(logger_, "Saved User: uid="<<uid);
 	return 0;
 }
-
-int GameDataSaver::saveUserBackup(GameDataHandler* const dh, int64& uid, string& data)
+void GameDataSaver::DelUserNPCInfo(TCRDB* pDB,int64& uid)
 {
-    if (GameServerConfig::Instance().BackupDBEnable() == 0)
-    {
-        return 0;
-    }
-
-    int dbid = getDBId(uid);
-    TCRDB* rdb = getUserSaveDbBackup(dbid);
-    if(rdb == NULL)
-    {
-        writeDisconnectError("Put User backup Error : Disconnect");
-        return -1;
-    }
-
-    char suid[32];
-    sprintf(suid, "%016llX", uid);
-    const char* buf = data.c_str();
-    int len = data.length();
-    if(!tcrdbput(rdb, suid, 16, buf, len))
-    {
-        int ecode = tcrdbecode(rdb);
-        LOG4CXX_ERROR(logger_, "Put user backup ERROR : " << tcrdberrmsg(ecode));
-        writeSaveError(tcrdberrmsg(ecode));
-        tcrdbclose(rdb);
-        tcrdbdel(rdb);
-        db_user_save_backup[dbid] = NULL;
-        return -1;
-    }
-    LOG4CXX_DEBUG(logger_, "Saved User backup: uid="<<uid);
-    return 0;
+	if(pDB==NULL)
+		return;
+	std::string key = "NPC_" + toString(uid);
+	tcrdbout2(pDB,key.c_str());
 }
 
-int GameDataSaver::loadUser(GameDataHandler* const dh, int64& uid)
+void GameDataSaver::DelUserEffectInfo(TCRDB* pDB,int64& uid)
 {
-	int dbid = getDBId(uid);
-	TCRDB* rdb = getUserLoadDb(dbid);
-	if (rdb == NULL)
-	{
-        writeDisconnectError("Load User Error : Disconnect");
+	if(pDB==NULL)
+		return;
+	std::string key = "Eff_" + toString(uid);
+	tcrdbout2(pDB,key.c_str());
+}
+
+//bool GameDataSaver::_TmpGetUser(TCRDB* pDB,int64 uid,DB_User& dbUser)
+//{
+//	char suid[32];
+//	sprintf(suid, "%016llX", uid);
+//	int len;
+//	char* buffer = (char*)tcrdbget(pDB, suid, 16, &len);
+//	if(buffer == NULL)
+//	{
+//		int ecode = tcrdbecode(pDB);
+//		if(ecode == TTENOREC) {
+//			return false;
+//		}
+//		else
+//		{
+//			LOG4CXX_ERROR(logger_, "Get user ERROR : " << tcrdberrmsg(ecode));
+//			exit(0);
+//		}
+//	}
+//	else
+//	{
+//		LOG4CXX_DEBUG(logger_, "Loaded User: uid="<<uid);
+//		string data(buffer, len);
+//		dbUser.ParseFromString( data );
+//		free(buffer);
+//		return true;
+//	}
+//	return false;
+//}
+//
+
+//int GameDataSaver::_TmploadUser(GameDataHandler* const dh, int64& uid)
+//{
+//	int dbid = getUidHash(uid) % db_num + 1;
+//	if(dbid != 20)
+//	{
+//		LOG4CXX_ERROR(logger_," GameDataSaver::_TmploadUser ERROR!!!!!!!!!!!");
+//		exit(0);
+//	}
+//	if(user_tmp_rdb == NULL)
+//	{
+//		user_tmp_rdb = getDb(serverConfig.dbUserAddr2(dbid), serverConfig.dbUserPort2(dbid));
+//	}
+//	if(user_tmp_rdb == NULL)
+//	{
+//		LOG4CXX_ERROR(logger_," GameDataSaver::_TmploadUser GetDB ERROR!!!!!!!!!!!");
+//		exit(0);
+//	}
+//	DB_User dbUser1;
+//	//先读备份库
+//	bool bHasUser1 = _TmpGetUser(user_tmp_rdb,uid,dbUser1);
+//
+//	TCRDB* rdb = getUserLoadDb(dbid);
+//	if(rdb == NULL)
+//	{
+//		LOG4CXX_ERROR(logger_," GameDataSaver::_TmploadUser GetDB ERROR!!!!!!!!!!!");
+//		exit(0);
+//	}
+//	DB_User dbUser2;
+//	bool    bHasUser2 = _TmpGetUser(rdb,uid,dbUser2);
+//
+//	User* user = NULL;
+//	DB_User* pSelDBUser = NULL;
+//	if(!bHasUser1 && !bHasUser2)
+//	{//新用户
+//		dh->updateLoadUser(uid, user);
+//		return 1;
+//	}
+//	else if(bHasUser1 && bHasUser2)
+//	{//两个库都有
+//		if(dbUser1.mutable_player()->level() > dbUser2.mutable_player()->level())
+//		{
+//			pSelDBUser = &dbUser1;
+//		}
+//		else
+//		{
+//			pSelDBUser = &dbUser2;
+//		}
+//	}
+//	else if(bHasUser1)
+//	{
+//		pSelDBUser = &dbUser1;
+//	}
+//	else
+//	{
+//		pSelDBUser = &dbUser2;
+//	}
+//	if(pSelDBUser == NULL)
+//	{
+//		LOG4CXX_ERROR(logger_, "GameDataSaver::_TmploadUser(GameDataHandler* const dh, int64& uid) ERROR!!! " );
+//		exit(0);
+//	}
+//	else
+//	{
+//		user = new User();
+//		dh->acquireDataLock();
+//		user->SetDbUser(*pSelDBUser);
+//		dh->releaseDataLock();
+//		dh->updateLoadUser(uid, user);
+//	}
+//	return 0;
+//}	
+//
+
+//int GameDataSaver::loadUserEffect(GameDataHandler* const dh,DB_Effect* pEffect, int64& uid,int type)
+//{
+//	if (pEffect==NULL)
+//		return -1;
+//	int dbid = getUidHash(uid) % db_num + 1;
+//
+//	TCRDB* rdb = getUserLoadDb(dbid,type);
+//	if(rdb == NULL)
+//	{
+//		return -1;
+//	}
+//
+//	std::string key = "Eff_" + toString(uid) ;
+//	int klen = key.length();
+//	int len  = 0;
+//
+//	char* buffer = (char*)tcrdbget(rdb, key.c_str(), klen, &len);
+//	if(buffer == NULL)
+//	{
+//		int ecode = tcrdbecode(rdb);
+//		if(ecode == TTENOREC) {
+//			LOG4CXX_DEBUG(logger_, "Loaded User Effect is Empty: uid="<<uid);
+//			return 1;
+//		}
+//		LOG4CXX_ERROR(logger_, "Get user Effect ERROR : " << tcrdberrmsg(ecode));
+//		return -1;
+//	}
+//	LOG4CXX_DEBUG(logger_, "Loaded User NPC: uid="<<uid);
+//
+//	string data(buffer, len);
+//	
+//	dh->acquireDataLock();
+//	LoadUserEffectFromString(pEffect, data);
+//	dh->releaseDataLock();
+//	free(buffer);
+//	return 0;
+//}
+
+/*
+int GameDataSaver::loadUserNPC(GameDataHandler* const dh,DB_NPCList* pNpcList, int64& uid)
+{
+	if (pNpcList == NULL)
 		return -1;
+	int dbid = getUidHash(uid) % db_num + 1;
+	int len  = 0;
+	char* buffer = (char*) loadUserNPCFromHotCache(dh,uid,len);
+	if(buffer==NULL)
+	{
+		LOG4CXX_DEBUG(logger_, "Loaded User NPC is Empty: uid="<<uid);
+		return 1;
+
+		//TCRDB* rdb = getUserLoadDb(dbid,type);
+		//if(rdb == NULL)
+		//{
+		//	return -1;
+		//}
+		//std::string key = "NPC_" + toString(uid) ;
+		//int klen = key.length();
+		//
+
+		//buffer = (char*)tcrdbget(rdb, key.c_str(), klen, &len);
+		//if(buffer == NULL)
+		//{
+		//	int ecode = tcrdbecode(rdb);
+		//	if(ecode == TTENOREC) {
+		//		LOG4CXX_DEBUG(logger_, "Loaded User NPC is Empty: uid="<<uid);
+		//		return 1;
+		//	}
+		//	LOG4CXX_ERROR(logger_, "Get user NPC ERROR : " << tcrdberrmsg(ecode));
+		//	return -1;
+		//}
+		//LOG4CXX_DEBUG(logger_, "Loaded User NPC: uid="<<uid);
 	}
+
+	string data(buffer, len);
+	dh->acquireDataLock();
+	LoadUserNpcFromString(pNpcList, data);
+	dh->releaseDataLock();
+	free(buffer);
+	return 0;
+}
+*/
+int GameDataSaver::loadUser(GameDataHandler* const dh, int64& uid,int type)
+{
+	int dbid = getUidHash(uid) % db_num + 1;
+
 	char suid[32];
 	sprintf(suid, "%016llX", uid);
 
 	User* user = NULL;
-	int len;
-	char* buffer = (char*)tcrdbget(rdb, suid, 16, &len);
-	if (buffer == NULL)
+	int len = 0;
+	//time_t ltStart = Clock::getCurrentSystemTime();
+	char* buffer = (char*) loadUserFromHotCache(dh,uid,len);
+	if(buffer==NULL)
 	{
-		int ecode = tcrdbecode(rdb);
-		if (ecode == TTENOREC) 
+		TCRDB* rdb = getUserLoadDb(dbid,type);
+		if(rdb == NULL)
 		{
-			if (ServerConfig::Instance().GetServerChannel() != CHANNEL_UC)
-	        {
-	        	dh->updateLoadUser(uid, user);
-	            return -1;
-	        }
-			rdb = getUserLoadOldDb(dbid);
-			if (rdb == NULL)
-			{
-				writeDisconnectError("Load User Old Error : Disconnect");
-				return -1;
-			}
-			buffer = (char*)tcrdbget(rdb, suid, 16, &len);
-			if (buffer == NULL)
-			{
-				ecode = tcrdbecode(rdb);
-				if (ecode == TTENOREC)
-				{
-					rdb = getUserLoadBackDb(dbid);
-					if (rdb == NULL)
-					{
-						writeDisconnectError("Load User Back Error : Disconnect");
-						return -1;
-					}
-					buffer = (char*)tcrdbget(rdb, suid, 16, &len);
-					if (buffer == NULL)
-					{
-						ecode = tcrdbecode(rdb);
-						if (ecode == TTENOREC)
-						{
-							dh->updateLoadUser(uid, user);
-							return 1;
-						}
-						LOG4CXX_ERROR(logger_, "Get user Back ERROR : " << tcrdberrmsg(ecode));
-						tcrdbclose(rdb);
-						tcrdbdel(rdb);
-						db_user_load_back[dbid] = NULL;
-						return -1;
-					}
-				}
-				else
-				{
-					LOG4CXX_ERROR(logger_, "Get user Old ERROR : " << tcrdberrmsg(ecode));
-					tcrdbclose(rdb);
-					tcrdbdel(rdb);
-					db_user_load_old[dbid] = NULL;
-					return -1;
-				}
-			}
+			return -1;
 		}
-		else
+		buffer = (char*)tcrdbget(rdb, suid, 16, &len);
+		if(buffer == NULL)
 		{
+			int ecode = tcrdbecode(rdb);
+			if(ecode == TTENOREC) {
+				dh->updateLoadUser(uid, user);
+				return 1;
+			}
 			LOG4CXX_ERROR(logger_, "Get user ERROR : " << tcrdberrmsg(ecode));
 			tcrdbclose(rdb);
 			tcrdbdel(rdb);
-			db_user_load[dbid] = NULL;
+			if(type==1)
+			{
+				db_user_load[dbid] = NULL;
+			}
+			else if(type==2)
+			{
+				db_user_load2[dbid] = NULL;
+			}
 			return -1;
 		}
 	}
-	LOG4CXX_DEBUG(logger_, "Loaded User: uid="<<uid <<" : Length="<<len);
+	
+	LOG4CXX_DEBUG(logger_, "Loaded User: uid="<<uid);
+	//time_t ltEnd = Clock::getCurrentSystemTime();
+	//CMsg2QQDB::GetInstance()->TellLoadDB(int(ltEnd-ltStart),
+	//	serverConfig.gamedIp(nid_).c_str(),
+	//	serverConfig.dbUserAddr1(dbid).c_str(),
+	//	serverConfig.dbUserPort1(dbid));
+
+	//DB_Effect* pEffect = new DB_Effect();
+	//pEffect->Clear();//不再读取effect
+	//loadUserEffect(dh,pEffect,uid,2);
+
+	//DB_NPCList* pNpcList = new DB_NPCList();
+	//loadUserNPC(dh,pNpcList,uid);
 
 	string data(buffer, len);
-	dh->acquireDataLock();
 	user = new User();
-	LoadUserFromString(dh, user, data);
+	dh->acquireDataLock();
+	LoadUserFromString(dh, user, data);//,pNpcList,pEffect);
 	dh->releaseDataLock();
 	dh->updateLoadUser(uid, user);
 	free(buffer);
 	return 0;
 }
 
-int GameDataSaver::saveMap(GameDataHandler* const dh, const string& pid, int64& uid)
-{
-	int dbid = getDBId(pid);
-	TCRDB* rdb = getPlatSaveDb(dbid);
-	if(rdb == NULL)
-	{
-        writeDisconnectError("Put map Error : Disconnect");
-		return -1;
-	}
-
-	char suid[32];
-	sprintf(suid, "%016llX", uid);
-	if(!tcrdbput2(rdb, pid.c_str(), suid))
-	{
-		int ecode = tcrdbecode(rdb);
-		LOG4CXX_ERROR(logger_, "Put map ERROR : " << tcrdberrmsg(ecode));
-		tcrdbclose(rdb);
-		tcrdbdel(rdb);
-		db_plat_save[dbid] = NULL;
-		return -1;
-	}
-	LOG4CXX_DEBUG(logger_, "Saved Map:platid="<<pid<<"->uid="<<uid);
-	return 0;
-}
-
-int GameDataSaver::saveMapBackup(GameDataHandler* const dh, const string&pid, int64& uid)
-{
-    if (GameServerConfig::Instance().BackupDBEnable() == 0)
-    {
-        return 0;
-    }
-
-    int dbid = getDBId(pid);
-    TCRDB* rdb = getPlatSaveDbBackup(dbid);
-    if(rdb == NULL)
-    {
-        writeDisconnectError("Put map backup Error : Disconnect");
-        return -1;
-    }
-
-    char suid[32];
-    sprintf(suid, "%016llX", uid);
-    if(!tcrdbput2(rdb, pid.c_str(), suid))
-    {
-        int ecode = tcrdbecode(rdb);
-        LOG4CXX_ERROR(logger_, "Put map backup ERROR : " << tcrdberrmsg(ecode));
-        tcrdbclose(rdb);
-        tcrdbdel(rdb);
-        db_plat_save_backup[dbid] = NULL;
-        return -1;
-    }
-    LOG4CXX_DEBUG(logger_, "Saved Map backup:platid="<<pid<<"->uid="<<uid);
-    return 0;
-}
-
-int GameDataSaver::loadMap(GameDataHandler* const dh, const string& platid)
-{
-	int dbid = getDBId(platid);
-	TCRDB* rdb = getPlatLoadDb(dbid);
-	if(rdb == NULL)
-	{
-        writeDisconnectError("Load map Error : Disconnect");
-		return -1;
-	}
-
-	int64 uid = 0;
-	char* buffer = (char*)tcrdbget2(rdb, platid.c_str());
-	if(buffer == NULL)
-	{
-		int ecode = tcrdbecode(rdb);
-		if(ecode == TTENOREC) {
-			dh->updateLoadPlatid(platid, uid);
-			return 1;
-		}
-		LOG4CXX_ERROR(logger_, "Get map ERROR : " << tcrdberrmsg(ecode));
-		tcrdbclose(rdb);
-		tcrdbdel(rdb);
-		db_plat_load[dbid] = NULL;
-		return -1;
-	}
-
-	sscanf(buffer, "%016llX", &uid);
-	dh->updateLoadPlatid(platid, uid);
-	LOG4CXX_DEBUG(logger_, "Loaded Map:platid="<<platid<<"->uid="<<uid);
-	free(buffer);
-	return 0;
-}
-
-int GameDataSaver::GMloadMapFromBack(GameDataHandler* const dh, const string& platid)
-{
-	int dbid = getDBId(platid);
-	TCRDB* rdb = getPlatLoadBackDb(dbid);
-	if(rdb == NULL)
-	{
-        writeDisconnectError("Load map Error : Disconnect");
-		return -1;
-	}
-
-	int64 uid = 0;
-	char* buffer = (char*)tcrdbget2(rdb, platid.c_str());
-	if(buffer == NULL)
-	{
-		int ecode = tcrdbecode(rdb);
-		if(ecode == TTENOREC) {
-			dh->updateLoadPlatid(platid, uid);
-			return 1;
-		}
-		LOG4CXX_ERROR(logger_, "Get map ERROR : " << tcrdberrmsg(ecode));
-		tcrdbclose(rdb);
-		tcrdbdel(rdb);
-		db_plat_load[dbid] = NULL;
-		return -1;
-	}
-
-	sscanf(buffer, "%016llX", &uid);
-	dh->updateLoadPlatid(platid, uid);
-	dh->savePlatidMap(platid, uid);
-	LOG4CXX_DEBUG(logger_, "Loaded Map:platid="<<platid<<"->uid="<<uid);
-	free(buffer);
-	return 0;
-}
-
-void GameDataSaver::RemovePlatidFromDb(const string& pid)
-{
-	int dbid = getDBId(pid);
-	TCRDB* rdb = getPlatLoadDb(dbid);
-	if(rdb == NULL)
-	{
-		return;
-	}
-
-	if(!tcrdbout(rdb, pid.c_str(), pid.length()))
-	{
-		int ecode = tcrdbecode(rdb);
-		LOG4CXX_ERROR(logger_, "out map ERROR : " << tcrdberrmsg(ecode));
-		tcrdbclose(rdb);
-		tcrdbdel(rdb);
-		db_plat_save[dbid] = NULL;
-		return;
-	}
-	LOG4CXX_DEBUG(logger_, "out Map:platid="<<pid);
-}
-
-void GameDataSaver::RemoveUserFromDb(int64 uid)
-{
-	int dbid = getDBId(uid);
-	TCRDB* rdb = getUserLoadDb(dbid);
-	if(rdb == NULL)
-	{
-		return;
-	}
-
-	char suid[32];
-	sprintf(suid, "%016llX", uid);
-	if(!tcrdbout(rdb, suid, 16))
-	{
-		int ecode = tcrdbecode(rdb);
-		LOG4CXX_ERROR(logger_, "out user ERROR : " << tcrdberrmsg(ecode));
-		tcrdbclose(rdb);
-		tcrdbdel(rdb);
-		return;
-	}
-	LOG4CXX_DEBUG(logger_, "out user->uid="<<uid);
-}
 
 void GameDataSaver::routineUser(ActionType type)
 {
-	int ret = 0, ret_backup = 0;
-	pthread_mutex_t* mutex_ = (type == ACTION_USER_LOAD)?&m_mutexLoadUser:&m_mutexSaveUser;
-	list<UserItem>* list = (type == ACTION_USER_LOAD)? &m_listLoadUser : &m_listSaveUser;
+	int ret = 0;
+	int ret2= 0;
+	int ret3= 0;
+	pthread_mutex_t* mutex_ = (type == ACTION_USER_LOAD)?&load_user_mutex_:&save_user_mutex_;
+	list<UserItem>* list = (type == ACTION_USER_LOAD)? &load_user_list_ : &save_user_list_;
 
 	while(true)
 	{
@@ -1037,7 +908,7 @@ void GameDataSaver::routineUser(ActionType type)
 			pthread_mutex_unlock(mutex_);
 			if(b_serving)
 			{
-				usleep(5000);
+				usleep(500);
 				continue;
 			}
 			else
@@ -1055,20 +926,29 @@ void GameDataSaver::routineUser(ActionType type)
 
 		if(type == ACTION_USER_SAVE)
 		{
-			ret = saveUser(item.dh, item.uid, *item.data);
-            ret_backup = saveUserBackup(item.dh, item.uid, *item.data);
+			ret3= saveUser2HotCache(item.dh, item.uid, *item.data);
+			ret = saveUser(item.dh, item.uid, *item.data,1);
+
+			saveUserNPC2HotCache(item.dh,item.uid,*item.npcdata);
+
 		}
 		else
 		{
-			ret = loadUser(item.dh, item.uid);
-            ret_backup = 0;
+			ret = loadUser(item.dh, item.uid,1);
 		}
-		if(ret >= 0 && ret_backup >= 0)
+		if(ret >= 0)
 		{
 			if(item.data != NULL)
 			{
 				delete item.data;
-				item.data = NULL;
+			}
+			//if (item.effdata !=NULL)
+			//{
+			//	delete item.effdata;
+			//}
+			if (item.npcdata != NULL)
+			{
+				delete item.npcdata;
 			}
 		}
 		else
@@ -1080,59 +960,7 @@ void GameDataSaver::routineUser(ActionType type)
 			usleep(500);
 			continue;
 		}
-	}
-}
-
-void GameDataSaver::routineMap(ActionType type)
-{
-	int ret = 0, ret_backup = 0;
-	pthread_mutex_t* mutex_ = (type == ACTION_MAP_LOAD)?&m_mutexLoadMap:&m_mutexSaveMap;
-	list<MapItem>* list = (type == ACTION_MAP_LOAD)? &m_listLoadMap : &m_listSaveMap;
-
-	while(true)
-	{
-		pthread_mutex_lock(mutex_);
-		if(list->empty())
-		{
-			pthread_mutex_unlock(mutex_);
-			if(b_serving)
-			{
-				usleep(5000);
-				continue;
-			}
-			else
-			{
-				break;
-			}
-		}
-
-		MapItem item;
-		if(!list->empty())
-		{
-			item = list->back();
-			list->pop_back();
-		}
-		pthread_mutex_unlock(mutex_);
-
-		if(type == ACTION_MAP_SAVE)
-		{
-			ret = saveMap(item.dh, item.platid, item.uid);
-            ret_backup = saveMapBackup(item.dh, item.platid, item.uid);
-		}
-		else
-		{
-			ret = loadMap(item.dh, item.platid);
-            ret_backup = 0;
-		}
-		if(ret < 0 || ret_backup < 0)
-		{
-			// retry
-			pthread_mutex_lock(mutex_);
-			list->push_front(item);
-			pthread_mutex_unlock(mutex_);
-			usleep(500);
-			continue;
-		}
+		usleep(500);
 	}
 }
 
@@ -1152,23 +980,7 @@ void* GameDataSaver::loadUserThread(void* arg)
 	return NULL;
 }
 
-void* GameDataSaver::saveMapThread(void* arg)
-{
-	GameDataSaver* ds = static_cast<GameDataSaver*>(arg);
-	ds->routineMap(ACTION_MAP_SAVE);
-	pthread_exit(NULL);
-	return NULL;
-}
-
-void* GameDataSaver::loadMapThread(void* arg)
-{
-	GameDataSaver* ds = static_cast<GameDataSaver*>(arg);
-	ds->routineMap(ACTION_MAP_LOAD);
-	pthread_exit(NULL);
-	return NULL;
-}
-
-void GameDataSaver::MakeUserString(GameDataHandler *dh, User *pUser, string &oString )
+void GameDataSaver::MakeUserString(GameDataHandler *dh, User *pUser, string &oString)//,string &oEffString,string &oNpcString )
 {
 	if (pUser == NULL)
 	{
@@ -1176,15 +988,202 @@ void GameDataSaver::MakeUserString(GameDataHandler *dh, User *pUser, string &oSt
 	}
 	DB_User& dbUser = pUser->GetDbUser();
 	dbUser.SerializeToString( &oString );
+
+// 	DB_NPCList& dbNPCList = pUser->GetDBNPCList();
+// 	dbNPCList.SerializeToString(&oNpcString);
+// 	
+// 	DB_Effect& dbEffect = pUser->GetDBEffect();
+// 	dbEffect.SerializeToString(&oEffString);
+}
+/*
+void    GameDataSaver::LoadUserEffectFromString(DB_Effect* pEffect,string &iString)
+{
+	if (pEffect == NULL)
+	{
+		return;
+	}
+	pEffect->ParseFromString(iString);
 }
 
-void GameDataSaver::LoadUserFromString(GameDataHandler *dh, User *pUser, string &oString )
+void   GameDataSaver::LoadUserNpcFromString(DB_NPCList* pNpcList, string &iString)
+{
+	if (pNpcList == NULL)
+	{
+		return;
+	}
+	pNpcList->ParseFromString(iString);
+}
+*/
+void GameDataSaver::LoadUserFromString(GameDataHandler *dh, User *pUser, string &oString/*, DB_NPCList* pNpcList,DB_Effect* pEffect*/)
 {
 	if (pUser == NULL)
 	{
 		return;
 	}
+
 	DB_User dbUser;
-	dbUser.ParseFromString( oString );
+	bool bSuc = dbUser.ParseFromString( oString );
+	//pUser->SetDbEffect(pEffect);
+	//pUser->SetDbNpcList(pNpcList);
 	pUser->SetDbUser(dbUser);
 }
+
+
+//game DB相关
+TCRDB* GameDataSaver::getUserLoadDb4HotCache(int dbid)
+{
+	TCRDB *rdb = (TCRDB *)hotcache_user_load[dbid];
+	if(rdb == NULL)
+	{
+		rdb = getDb(HotCacheDBCfg::Instance().GameMemDBAddr(dbid), HotCacheDBCfg::Instance().GameMemDBPort(dbid));
+	}
+	if(rdb != NULL)
+	{
+		hotcache_user_load[dbid] = rdb;
+	}
+	return rdb;
+
+}
+
+TCRDB* GameDataSaver::getUserSaveDb4HotCache(int dbid)
+{
+	TCRDB *rdb = (TCRDB *)hotcache_user_save[dbid];
+	if(rdb == NULL)
+	{
+		rdb = getDb(HotCacheDBCfg::Instance().GameMemDBAddr(dbid), HotCacheDBCfg::Instance().GameMemDBPort(dbid));
+	}
+	if(rdb != NULL)
+	{
+		hotcache_user_save[dbid] = rdb;
+	}
+	return rdb;
+
+}
+
+int GameDataSaver::saveUser2HotCache(GameDataHandler* const dh, int64& uid, string& data)
+{
+	if(!m_bHotCacheEnable)
+		return 0;
+
+	int dbid = getUidHash(uid) % db_num + 1;
+	TCRDB* rdb = getUserSaveDb4HotCache(dbid);
+	if(rdb == NULL)
+	{
+		return -1;
+	}
+
+	char suid[32];
+	sprintf(suid, "%016llX", uid);
+	const char* buf = data.c_str();
+	int len = data.length();
+	if(!tcrdbput(rdb, suid, 16, buf, len))
+	{
+		int ecode = tcrdbecode(rdb);
+		LOG4CXX_ERROR(logger_, "Put user 2 HotCache ERROR : uid:" <<uid <<",valuelength:"<< len <<",error:"<< tcrdberrmsg(ecode));
+
+		writeSaveError(tcrdberrmsg(ecode),suid,len);
+
+		tcrdbclose(rdb);
+		tcrdbdel(rdb);
+		hotcache_user_save[dbid] = NULL;
+
+		return -1;
+	}
+	time_t ltEnd = Clock::getCurrentSystemTime();
+
+	LOG4CXX_DEBUG(logger_, "Saved User 2 HotCache: uid="<<uid);
+	return 0;
+}
+
+int GameDataSaver::saveUserNPC2HotCache(GameDataHandler* const dh, int64& uid, string& data)
+{
+	if(!m_bHotCacheEnable)
+		return 0;
+
+	int dbid = getUidHash(uid) % db_num + 1;
+	TCRDB* rdb = getUserSaveDb4HotCache(dbid);
+	if(rdb == NULL)
+	{
+		return -1;
+	}
+	std::string key = "NPC_" + toString(uid) ;
+	int klen = key.length();
+	const char* buf = data.c_str();
+	int len = data.length();
+	if(!tcrdbput(rdb, key.c_str(), klen, buf, len))
+	{
+		int ecode = tcrdbecode(rdb);
+		LOG4CXX_ERROR(logger_, "Put user NPC 2 HotCache ERROR : uid:" <<uid <<",valuelength:"<< len << ",error:"<< tcrdberrmsg(ecode));
+
+		writeSaveError(tcrdberrmsg(ecode),key.c_str(),len);
+
+		tcrdbclose(rdb);
+		tcrdbdel(rdb);
+		hotcache_user_save[dbid] = NULL;
+
+		return -1;
+	}
+	LOG4CXX_DEBUG(logger_, "Saved UserNPC 2 HotCache: uid="<<uid);
+	return 0;
+}
+
+char* GameDataSaver::loadUserFromHotCache(GameDataHandler* const dh, int64& uid, int& len)
+{
+	if(!m_bHotCacheEnable||!m_bHotCacheEnableLoad)
+		return NULL;
+
+	int dbid = getUidHash(uid) % db_num + 1;
+
+	TCRDB* rdb = getUserLoadDb4HotCache(dbid);
+	if(rdb == NULL)
+	{
+		return NULL;
+	}
+	char suid[32];
+	sprintf(suid, "%016llX", uid);
+
+	User* user = NULL;
+	char* buffer = (char*)tcrdbget(rdb, suid, 16, &len);
+	if(buffer == NULL)
+	{
+		int ecode = tcrdbecode(rdb);
+		if(ecode != TTENOREC) {
+			tcrdbclose(rdb);
+			tcrdbdel(rdb);
+			hotcache_user_load[dbid] = NULL;
+		}
+		
+	}
+	LOG4CXX_DEBUG(logger_, "Loaded User: uid="<<uid);
+	return buffer;
+}
+
+char* GameDataSaver::loadUserNPCFromHotCache(GameDataHandler* const dh, int64& uid, int& len)
+{
+	if(!m_bHotCacheEnable||!m_bHotCacheEnableLoadNPC)
+		return NULL;
+
+	int dbid = getUidHash(uid) % db_num + 1;
+
+	TCRDB* rdb = getUserLoadDb4HotCache(dbid);
+	if(rdb == NULL)
+	{
+		return NULL;
+	}
+
+	std::string key = "NPC_" + toString(uid) ;
+	int klen = key.length();
+
+	char* buffer = (char*)tcrdbget(rdb, key.c_str(), klen, &len);
+	if(buffer == NULL)
+	{
+		int ecode = tcrdbecode(rdb);
+		if(ecode != TTENOREC) {
+			tcrdbclose(rdb);
+			tcrdbdel(rdb);
+			hotcache_user_load[dbid] = NULL;
+		}
+	}
+	return buffer;
+}
+

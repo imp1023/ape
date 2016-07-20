@@ -19,15 +19,16 @@ public:
 	void start();
 	EventHandler* getEventHandler(){ return eh_; }
 	WorldDataHandler* getDataHandler() { return dh_; }
-    int nid() {return nid_;}
 
+	inline time_t getReversion()
+	{
+		return eh_->getReversion();
+	}
+	// Helper
 	bool sendEventToGamed(Event *e, int gid);
-    bool sendEventToGamedWithFd(Event *e, int fd);
 	bool sendEventToUser(Event *e, int64 uid);
 	bool sendEventToAllGamed(Event *e);
 	void sendFdString(int fd, const string &content);
-
-	inline EventQueue*  getEventQueue() {return eq_;}
 private:
 	void initialEventProcessors();
 

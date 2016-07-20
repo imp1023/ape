@@ -15,9 +15,11 @@
 #include "../common/string-util.h"
 #include "../event/EventQueue.h"
 #include "GameHandler.h"
+#include "../logic/GameSrvCfg.h"
 #include "WebServerHandler.h"
+extern ServerConfig serverConfig;
 
-WorldNetHandler::WorldNetHandler(EventQueue *eq, int wid): eq_(eq), nid_(wid)
+WorldNetHandler::WorldNetHandler(EventQueue *eq, int nid): eq_(eq),nid_(nid)
 {
 	logger_ = log4cxx::Logger::getLogger("WorldNetHanlder");
 }
@@ -44,19 +46,20 @@ void WorldNetHandler::createProtocolHandler(NetCache *cache, int listenFd)
 	}
 }
 
+extern int G_WorldD_ID; 
 int WorldNetHandler::initSockets()
 {
-	int port = ServerConfig::Instance().worlddGamedPort(nid_);
-	string addr = ServerConfig::Instance().worlddIp(nid_);
+	int port = serverConfig.worlddGamedPort( G_WorldD_ID);
+	string addr = serverConfig.worlddIp(G_WorldD_ID);
 	gamedfd = createListenSocket("gamed", toString(port), addr);
 	if (gamedfd<0) {
 		return -1;
 	}
 
-	port = ServerConfig::Instance().worlddWebPort(nid_);
-	addr = ServerConfig::Instance().worlddIp(nid_);
+	port = serverConfig.worlddWebPort(G_WorldD_ID);
+	addr = serverConfig.worlddIp(G_WorldD_ID);
 	wsfd = createListenSocket("web", toString(port), addr);
-	if (wsfd<0) {
+	if (gamedfd<0) {
 		return -1;
 	}
 	last_keepalive_check = 0;
@@ -69,34 +72,42 @@ int WorldNetHandler::initSockets()
 
 bool WorldNetHandler::sendEventToGamed(Event *e, int gid) {
 	int fd = getGamedFdFromGamedId(gid>=0? gid: 1);
-	return sendEventToGamedWithFd(e, fd);
-}
-
-bool WorldNetHandler::sendEventToGamedWithFd(Event *e, int fd)
-{
-    if (fd<0)  {
-        LOG4CXX_ERROR(logger_, "Get Fd from ID failed!!"<<" fd:"<<fd<<" cmd:"<<e->cmd());
-        return false;
-    }
-    string text;
-    e->SerializeToString(&text);
-    text = "ev,"+text;
-    bool succ = sendIntSizedFdString(fd, text);
-    if (!succ) {
-        LOG4CXX_ERROR(logger_, "Write to cache failed!!");
-    }
-    return succ;
+	//LOG4CXX_DEBUG(logger_, "look up gameid:"<<gid<<", get fd:"<<fd);
+	if (fd<0)  {
+		if(gid <= serverConfig.physicsGameNum())
+		{//只输出一区
+			LOG4CXX_ERROR(logger_, "Get Fd from ID failed!! gid:"<<gid<<" fd:"<<fd<<" cmd:"<<e->cmd());
+		}
+		return false;
+	}
+	e->set_worldsrvid(nid_);
+	string text;
+	e->SerializeToString(&text);
+	text = "ev,"+text;
+	//LOG4CXX_DEBUG(logger_, "event:"<<e->DebugString()<<"to fd:"<<fd<<" with size:"<<text.length());
+	//LOG4CXX_INFO(logger_, "send event " << e->cmd() << " to gamed fd " << fd << ", size: " << text.size() << ", 0 at " << text.find((char)0, 0));
+	bool succ = sendIntSizedFdString(fd, text);
+	//LOG4CXX_DEBUG(logger_, "sendEventToGamed, event: " << e->cmd() << ", size: " << text.size() << ", target fd: " << fd << ", write to cache: " << succ);
+	if (!succ) {
+		LOG4CXX_ERROR(logger_, "Write to cache failed!!");
+	}
+	return succ;
 }
 
 bool WorldNetHandler::sendEventToAllGamed(Event *e)
 {
 	bool succ = true;
-	for (int i=1; i<=ServerConfig::Instance().gamedNum(); i++) {
+	for (int i=1; i<=serverConfig.gamedNum(); i++) {
 		int fd = getFdFromId(i);
 		if (fd<0) {
-			LOG4CXX_ERROR(logger_, "Get Fd from ID failed!! gamed:"<<i<<" fd:"<<" cmd:"<<e->cmd());
+			if(i <= serverConfig.physicsGameNum())
+			{//只输出一区
+				LOG4CXX_ERROR(logger_, "Get Fd from ID failed!! gamed:"<<i<<" fd:"<<" cmd:"<<e->cmd());
+			}
+			
 			continue;
 		}
+		e->set_worldsrvid(nid_);
 		string text;
 		e->SerializeToString(&text);
 		text = "ev,"+text;
@@ -119,6 +130,7 @@ int64 WorldNetHandler::getIdFromFd(int fd)
 
 int WorldNetHandler::getGamedFdFromGamedId(int gameid)
 {
+	// TODO: gamed selection algorithm
 	map<int, int>::const_iterator it = idFd_.find(gameid);
 	if (it!=idFd_.end()) return it->second;
 	return -1;
@@ -170,7 +182,7 @@ bool WorldNetHandler::preNetEvent(time_t now) {
 void WorldNetHandler::keepAliveWithGame(time_t now) {
 	if ((now-last_keepalive_check)>30000) {
 		last_keepalive_check = now;
-		for (int i=1; i<=ServerConfig::Instance().gamedNum(); i++) {
+		for (int i=1; i<=serverConfig.gamedNum(); i++) {
 			int fd = getFdFromId(i);
 			if (fd>0) {
 				sendIntSizedFdString(fd, "ka");

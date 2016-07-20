@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cored.lib pthreadVC2.lib libconfig++d.lib libprotobufd.lib ws2_32.lib log4cxxD.lib"
+				AdditionalDependencies="cored.lib pthreadVC2.lib libconfig++d.lib libprotobufd.lib ws2_32.lib log4cxxD.lib libcurld.lib libcurld_imp.lib"
 				OutputFile="../DebugPath/$(ProjectName).exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\lib\windows\lib;..\build\Debug_core"
@@ -181,14 +181,6 @@
 				Name="data"
 				>
 				<File
-					RelativePath="..\logic\dbinterface.pb.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\logic\dbinterface.pb.h"
-					>
-				</File>
-				<File
 					RelativePath=".\GameDataHandler.cpp"
 					>
 				</File>
@@ -202,6 +194,14 @@
 				</File>
 				<File
 					RelativePath=".\GameDataSaver.h"
+					>
+				</File>
+				<File
+					RelativePath=".\GameRgnDataHandler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameRgnDataHandler.h"
 					>
 				</File>
 			</Filter>
@@ -226,6 +226,22 @@
 				</File>
 				<File
 					RelativePath=".\ClientHandler_Auto.h"
+					>
+				</File>
+				<File
+					RelativePath=".\CountryHandler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CountryHandler.h"
+					>
+				</File>
+				<File
+					RelativePath=".\PlatHandler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\PlatHandler.h"
 					>
 				</File>
 				<File
@@ -257,14 +273,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\GameCacheModule.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameCacheModule.h"
-					>
-				</File>
-				<File
 					RelativePath=".\GameEventAutoCreate.cpp"
 					>
 				</File>
@@ -277,6 +285,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GameHttpHandler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameHttpHandler.h"
+					>
+				</File>
+				<File
 					RelativePath=".\GameNetHandler.cpp"
 					>
 				</File>
@@ -284,10 +300,34 @@
 					RelativePath=".\GameNetHandler.h"
 					>
 				</File>
+				<File
+					RelativePath=".\MemCacheServerHandler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MemCacheServerHandler.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="logic"
 				>
+				<File
+					RelativePath="..\logic\dbinterface.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\dbinterface.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\dbinterface_sub.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\dbinterface_sub.pb.h"
+					>
+				</File>
 				<File
 					RelativePath="..\logic\GameConfigMgr.cpp"
 					>
@@ -297,11 +337,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\logic\GameServerConfig.cpp"
+					RelativePath=".\GameSrvCfg.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\logic\GameServerConfig.h"
+					RelativePath=".\GameSrvCfg.h"
 					>
 				</File>
 				<File
@@ -337,6 +377,30 @@
 					</File>
 					<File
 						RelativePath="..\logic\CountryNameTbl.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\FlashVersionCfg.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\FlashVersionCfg.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\GameConstantSetCfg.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\GameConstantSetCfg.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\GameConstantSetLogic.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\GameConstantSetLogic.h"
 						>
 					</File>
 					<File
@@ -382,7 +446,7 @@
 				</Filter>
 			</Filter>
 			<Filter
-				Name="event"
+				Name="event_handle"
 				>
 				<File
 					RelativePath=".\event\AutoEventHead.h"
@@ -394,14 +458,6 @@
 				</File>
 				<File
 					RelativePath=".\event\BaseEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealRseBroadcast.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealRseBroadcast.h"
 					>
 				</File>
 				<File
@@ -442,8 +498,320 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="event_auto"
+				Name="event_auto_handle"
 				>
+				<File
+					RelativePath=".\event\RceCustomizedActivityHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceCustomizedActivityHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceDeployUnitsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceDeployUnitsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceItemDamagedHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceItemDamagedHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceLoginHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceLoginHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainAskForHelpHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainAskForHelpHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainAttackerListHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainAttackerListHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainBattleReplayHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainBattleReplayHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainCustomizerHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainCustomizerHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainHangarsHelpHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainHangarsHelpHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainMessagesListHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainMessagesListHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainNeighborsListHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainNeighborsListHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainNpcListHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainNpcListHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainPayUrlParameHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainPayUrlParameHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainRandomTargetsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainRandomTargetsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainSocialItemsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainSocialItemsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainSocialUserInfoHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainSocialUserInfoHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainUniverseHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainUniverseHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainVisitHelpsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceObtainVisitHelpsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceOnlineRewardHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceOnlineRewardHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryCheckAndLockAccountIfPossibleHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryCheckAndLockAccountIfPossibleHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryGalaxyWindowHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryGalaxyWindowHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryReceiveWishItemHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryReceiveWishItemHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryRefuseReceiveWishItemHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryRefuseReceiveWishItemHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQuerySendWishItemHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQuerySendWishItemHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryStarInfoHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryStarInfoHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryStarsBookmarksHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryStarsBookmarksHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryVisitHelpsGiftUnitsOnBunkerHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceQueryVisitHelpsGiftUnitsOnBunkerHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUnitDamagedHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUnitDamagedHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateAlliancesHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateAlliancesHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateGameUnitsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateGameUnitsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateItemHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateItemHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateMiscHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateMiscHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateMissionsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateMissionsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateProfileHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateProfileHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateShipsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateShipsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateSocialItemHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateSocialItemHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateStarsBookmarksHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateStarsBookmarksHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateTargetsHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateTargetsHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateVisitHelpHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceUpdateVisitHelpHandle.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>

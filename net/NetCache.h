@@ -10,11 +10,12 @@
 	#include <netinet/in.h>
 	#include <arpa/inet.h>
 #endif
-	#include <log4cxx/logger.h>
+#include <log4cxx/logger.h>
 
 #include <pthread.h>
 #include <string>
 #include "../common/const_def.h"
+#include "RC4Engine.h"
 using namespace std;
 
 #define DEFAULT_CLIENT_SIZE	204800
@@ -32,6 +33,11 @@ public:
 	bool	aborted; // remote disconnected
 	bool	idle; // if idle, should be kicked out
 	ProtocolHandler *ph;
+	//static const size_t DEFAULT_READ_SIZE;// = 4096;
+	//static const size_t INIT_WRITE_SIZE;// = 16384;
+	//static const size_t WEBSERVER_READ_SIZE;// = 131072;
+
+	RC4Engine m_rc4Send,m_rc4Receive;
 
 	NetCache(int fd, struct sockaddr_in addr, size_t rsize);
 	~NetCache(void);
@@ -43,14 +49,14 @@ public:
 	char *addrstr();
 	bool waitToWrite();
 
-	inline unsigned short getNextIndex()
+	inline int getNextIndex()
 	{
 		return ++index_;
 	}
 
 private:
 	char *rbuf;
-	char *cmdbuf;
+	//char *cmdbuf;
 	char *wbuf;
 	size_t wsize; // write buffer size
 	size_t rsize; // read buffer size
@@ -58,7 +64,7 @@ private:
 	int rpos, wpos;
 	pthread_mutex_t write_mutex;
 	log4cxx::LoggerPtr logger_;
-	unsigned short index_;
+	int index_;
 
 	inline void lockWrite()
 	{

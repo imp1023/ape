@@ -1,10 +1,9 @@
 #ifndef _WORLDHANDLER_H_
 #define _WORLDHANDLER_H_
 #pragma once
-#include <string>
 #include <log4cxx/logger.h>
 #include "../net/ProtocolHandler.h"
-
+#include <string>
 using namespace std;
 
 class EventQueue;

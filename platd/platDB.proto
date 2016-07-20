@@ -1,0 +1,225 @@
+/////////////////////////////////////////////////////////////////////////
+//   基础结构                                                          //
+/////////////////////////////////////////////////////////////////////////
+
+message DB_PlatGiftFrdInfo
+{//获取礼物信息
+		optional int64	friendID	= 1;					//好友ID
+		optional string frdOpenID = 2;					//好友openID
+		optional int32	messageID	= 3;					//ID
+		optional int32  giftID		= 4[default = 0];	//礼物ID
+		optional int64  getTime 	= 5[default = 0];			//最后更新玩家增长时间
+		optional int32  giftType	= 6[default = 0];	//类型：0:赠送 1：索要 2：回赠
+		optional string frdName   = 7;
+		optional string frdUrl    = 8;
+}
+
+message DB_PlatGiftGainRecord
+{
+		optional int32 ngiftID    	= 1 [default = 0];       //礼物ID 
+		optional int32 ngiftGain	= 2 [default = 0];       //礼物个数 
+}
+
+message DB_PlatGift
+{//礼物系统
+		//索要和赠送
+	 	repeated string 							daySendFrdIDLst	= 1;	//每日赠送好友礼物列表（此项已无效）
+	 	repeated string								dayAskFrdIDLst	= 2;	//每日索取好友礼物列表
+	 	//礼物处理
+	 	optional int32								dayGetGift2BagCnt		= 3;	//每日获得赠送的礼物个数
+		optional int32								dayAskGift2BagCnt		= 4;	//每日获得索取的礼物个数
+		optional int32								dayGetGiftCnt				= 5;	//每日领取礼物个数
+		optional int32								dayResendGiftCnt		= 6;	//每日回赠礼物个数
+		repeated DB_PlatGiftFrdInfo		getGiftInfo					= 7;	//未处理礼物信息
+		repeated DB_PlatGiftFrdInfo		finishGiftInfo			= 8;	//已处理礼物信息		
+	 	optional int32								msgIdx							= 9[default = 0];
+	 	optional int64     						lastLoginTime 			= 10[default = 0] ;//最后一次登录时间
+	 	optional int32								daySendGiftCnt			= 11;	//每日赠送的礼物个数
+		repeated DB_PlatGiftGainRecord				dayGainGiftRecord		= 12;	//每日获得的礼物记录
+
+		optional bool  								bSendGiftGain			= 13;	//好战友宝箱领取
+		optional bool  								baskGiftGain			= 14;	//伸手党宝箱领取	 	
+}
+
+message DB_PlatRegion
+{
+	required int64 uid        	= 1;          //uid
+  optional int32 srvRegion    = 2 [default = 0];       //分区ID 
+  optional int32 level    		= 3 [default = 0];       //所在分区的等级 
+  optional int32 platType    	= 4 [default = 0];       //登陆类型 
+  optional int32 finishCaptureTm = 5[default = 0];		 // 结束被占领时间
+  optional int32 lastLogonTime 	= 6[default = 0];	 //最后一次登录时间
+  optional int32 viplevel    		= 7 [default = 0];       //所在分区的vip等级 
+  optional int32 viptype    		= 8 [default = 0];       //所在分区的vip类型
+
+}
+
+message DB_WebGiftFlag 
+{
+	optional int64     		lastCacuTime 		= 1[default = 0] ;//最后一次计算时间
+	repeated int32				webGiftLst			= 2;							//webgift列表
+	optional int64				webOnceFlag			= 3[default = 0];	//web端活动标记，用于web端接口只调用一次
+	repeated int32				webGiftMonthLst	= 4;							//webgift列表(按月清除)
+	repeated DB_TotalLimitWebGift	webTotalLimitLst = 5;			//webGift列表（对活动期间领取总数有限制）
+}
+
+message DB_TotalLimitWebGift
+{//web礼物中领取总数限制类型的礼物
+	optional int64 tActEndTime = 1[default = 0];	//活动结束时间，防止同一活动多次上线
+	optional int32 nGiftID	= 2[default = 0];			//礼物ID
+	optional int32 nGiftCnt = 3[default = 0];			//已经领取的数量
+}
+
+message DB_InviteFriends_Record
+{
+	optional int32 ntype		= 1 ;	//类型
+	optional int32 nlevel		= 2 ;	//等级
+	optional int32 ncredit		= 3 ;	//勋章
+}
+
+message DB_InviteFriends_Unit
+{
+	optional int64 friendid					= 1 [default = 0]; // 玩家UID
+	repeated string friendName				= 2 ;				// 玩家名字
+	optional int32 friendlvl				= 3 [default = 0]; // 玩家等级
+	optional int32 friendcredit				= 4 [default = 0]; // 玩家充值记录
+	optional bool invitegain				= 5 [default = false];	//邀请领奖标记
+	optional int32 lvlgain					= 6 ;				// 等级领奖标记
+	repeated DB_InviteFriends_Record	record	= 7 ;				// 领奖记录
+}
+
+message DB_InviteFriends
+{
+	optional string invitefriendid			= 1 [default = '']; // 邀请自己的玩家OpenID
+	optional int32 invitegaincredit			= 2 [default = 0]; // 邀请好友获得勋章总额/天
+	optional int32 lvlgaincredit			= 3 [default = 0]; // 好友等级获得勋章总额/天
+	optional int32 topupgaincredit			= 4 [default = 0]; // 好友充值获得勋章总额/天
+	optional int32 gaincreditall			= 5 [default = 0]; // 邀请好友获得勋章总额
+	optional int64 lastgaintimemark			= 6 [default = 0]; // 邀请好友获得勋章时间
+	repeated DB_InviteFriends_Unit invitefriends = 7;	//好友列表
+}
+
+message DB_PTXMissionData							//腾讯任务
+{
+	optional string missionid					  = 1[default = '']; //任务ID
+	optional int32	missionstate				  = 2[default = -1]; //任务状态
+}
+
+message DB_PlatCrossPromotionData
+{//公司内部交叉推广标记
+	optional string chanle 	= 1;	//渠道:market,farm等
+	optional string date	 	= 2;	//推广日期,用于标记不同期
+}
+
+message DB_PlatCrossPromotion
+{//公司内部交叉推广标记
+	repeated DB_PlatCrossPromotionData data = 1;
+}
+
+
+message DB_Plat {
+	required string    		platform_id      = 1 [default = ""];	
+	repeated string    		name             = 2; //名字和链接，分校友空间
+	repeated string    		profile_link     = 3;
+	optional int32  			gender           = 4; //性别
+	optional int32     		yellowDmdLvl     = 5  [default = 0];     //黄钻等级
+	optional bool      		isYellowDmd      = 6 [default = false]; //是不是黄钻
+	optional bool      		isYellowDmdYear  = 7 [default = false]; //是不是年费黄钻
+	//Q+会员
+	optional int32  			QQDmdLvl     		= 8 [default = 0];     //QQ会员等级等级
+	optional bool   			isQQDmd      		= 9 [default = false]; //是不是QQ会员
+	optional bool   			isQQDmdYear  		= 10 [default = false]; //是不是年费QQ会员
+	
+  repeated DB_PlatRegion platRegion      = 11;  //platid对应的角色信息
+  optional int32  			 lastRegion      = 12  [default = -1];  //最后一次登录的分区
+  optional DB_PlatGift 	 giftInfo			 	 = 13; //礼物系统
+  optional DB_WebGiftFlag	webFlag				 = 14; //web 礼包标记
+ 	optional int64      	 getCBGiftTime   = 15 [default = 0]; //领取老友召回奖励时间(已废弃)
+  optional int32 	 			inviteFrdCnt	 	 = 16 [default = 0]; //邀请好友数量
+	optional DB_InviteFriends invitefriends		=17;	//邀请好友数据
+ 
+	optional uint32  	yellowDmdtime		 				= 18 [default = 0]; //黄钻刷新时间
+	repeated DB_PTXMissionData	txmissiondata = 19;			//腾讯任务数据
+	optional DB_DailyYellowRes dailyyellowres = 20;     //每日资源
+	optional int32 	 			inviteFrdCntDay	 	 	= 21 [default = 0]; //每日邀请好友数量
+	optional bool 	 			gaininviteFrdDay	 	= 22 [default = false]; //每日邀请好友领奖
+	
+	optional int64      	 	lastLoginTime   	 = 23 [default = 0]; //上次登录时间
+	optional bool	      	 	cancallback   	 	 = 24 [default = true]; //是否可以被召回
+	
+	optional DB_InviteFriendGift inviteFriendGift 						= 25;
+	repeated DB_InviteFriendMsgByLogon inviteFriendMsgByLogon	= 26;
+	optional int64			ltRevision						= 27 [default = 0]; //时间戳，用于内存数据删除，为提高速度而设的变量，数据可以不准
+	optional int64			ltSaveRevision				= 28 [default = 0]; //时间戳，用于DB数据存储，为提高速度而设的变量，数据可以不准
+	optional int64			ltMemRevision					= 29 [default = 0]; //时间戳，用于MEM数据存储，为提高速度而设的变量，数据可以不准
+
+	optional int32			inviteFrdCntDayByLimit = 30;
+	optional bool      	isHighYellowDmd      = 31 [default = false]; //是不是豪华黄钻
+	repeated int32			dayGetCostGift			 = 32;//消费礼物每日领取记录
+	optional int64			callBackFrdUid			 = 33;
+	optional int32			dayInviteFrdBackCnt  = 34[default = 0];//邀请好友点券防刷
+	optional int32			dayGetCoupon 				 = 35[default = 0];//邀请好友点券防刷
+	
+	optional DB_TaskMark taskmark = 36; //任务提示
+	
+	optional string    	channel   = 37 [default = ""];
+	
+	optional DB_PlatCrossPromotion promotion	= 38; //交叉推广
+	
+	repeated int32			inviteGiftRecord = 39;
+	
+	optional int32 idenflag = 40[default = 0];//验证标志,未处理过或未验证通过都为0,验证通过的为1
+	optional int32 qqTenyearBackFlowFlag = 41;	//空间十年回流  1：收到标记 2：已经弹过窗口
+	
+	optional int32 			nAdultFlag = 42[default = 100];		//成年人标志 超过100的话就是成年 小于100就是未认证或者未成年
+	//大厅进入
+	optional int32 QHallDmdLvl		= 43[default = 0];				//蓝钻等级
+	optional bool  IsQHallDmd			= 44[default = false];		//是否蓝钻
+	optional bool  IsQHallDmdYear = 45[default = false];		//年费蓝钻
+	optional bool  IsHighQHallDmd = 46[default = false];		//豪华蓝钻
+	optional bool  IsHighQHallDmdYear = 47[default = false];//豪华年费
+	optional uint32 bluedmdtime		= 48[default=0];					//蓝钻刷新时间
+	optional int32 siteid				=	49[default=-1];					//接入渠道,xiaoyou=0,q+,qq hall
+}
+
+message DB_DailyYellowRes							//黄钻每日资源
+{
+	optional int64	lastGetTime	= 1; //上次领取时间
+}
+
+message DB_InviteFriendGift			//邀请好友活动(对应新邀请奖励活动，需要重新计数)
+{
+	optional int32 inviteFrdCntForNew = 1[default = 0]; //邀请好友数量(对应邀请奖励活动，需要重新计数)
+	repeated DB_InviteGiftMsg invitegiftmsg = 2;
+	repeated DB_InvitedFriendLvMsg invitedfriendlvmsg = 3;
+	optional int32 unGetCoupon = 4[default = 0];//未领取点券
+}
+
+message DB_InviteGiftMsg
+{
+	optional int32 inviteFrdCntDay	 = 1 [default = 0]; //邀请好友礼物对应ID
+	optional int32  hasGetTimes	 		= 2 [default = 0]; //邀请好友领奖次数
+}
+
+message DB_InviteFriendMsgByLogon
+{
+	optional string platid = 1;
+	optional string name   = 2;
+	optional string url    = 3;
+}
+
+message DB_InvitedFriendLvMsg
+{
+	optional int32 	id = 1[default = 0]; //邀请好友等级礼物对应ID
+	repeated int64  uids	= 2; //好友信息
+	repeated string  openids	= 3; //好友信息
+	repeated string  urls	= 4; //好友信息
+	repeated string  names	= 5; //好友信息
+}
+
+message	DB_TaskMark
+{
+	optional string id = 1;
+	optional int32 step = 2;
+	repeated int32 getStep = 3;
+}

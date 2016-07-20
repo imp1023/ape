@@ -1,19 +1,23 @@
+#include <stdarg.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+
 #include "WebServerHandler.h"
-#include "../event/EventDefine.h"
+#include "../worldd/WorldNetHandler.h"
+#include "../net/NetCache.h"
 #include "../event/EventQueue.h"
+#include "../logic/User.h"
+#include "../common/json-util.h"
 #include "../common/string-util.h"
-#include "../common/distribution.h"
-#include "../common/ServerConfig.h"
-#include "../common/Clock.h"
-#include "../worldd/worldd.h"
-#include "../worldd/WorldEventHandler.h"
+#include "event/UserLogin.h"
 
 using namespace std;
 
 WebServerHandler::WebServerHandler(EventQueue *eq, int fd, int nid) :
 eq_(eq), fd_(fd), nid_(nid)
 {
-    logger_ = log4cxx::Logger::getLogger("EventHelper");
 }
 
 WebServerHandler::~WebServerHandler(void)
@@ -22,186 +26,158 @@ WebServerHandler::~WebServerHandler(void)
 
 int WebServerHandler::handlerType()
 {
-    return ProtocolHandler::WEBSERVER;
+	return ProtocolHandler::WEBSERVER;
 }
 
 void WebServerHandler::handle(int64 uid, string &req)
 {
-    LOG4CXX_INFO(logger_, "Handle web message: " << req );
-    
-    vector<string> reqtoken;
-    static const string delim = ",";
-    tokenize(req, reqtoken, delim); 
-
-    if (reqtoken.size() == 0)
-        return;
-
-    string& cmd = reqtoken[0];
-
-    int serverId = 0;
-    int nCmd = -1;
-
-    if (cmd == "ul")
-    {
-        int region = distribution::getRegion(reqtoken[1]);
-        serverId = ServerConfig::Instance().gameid(region);
-        nCmd = EVENT_USER_LOGIN;
-    }
-    else if (cmd == "reg")
-    {
-        int region = distribution::getRegion(reqtoken[1]);
-        serverId = ServerConfig::Instance().gameid(region);
-        nCmd = EVENT_USER_REGIST;
-    }
-	else if (cmd == "bind")
+	static string delims = ",";
+	vector<string> tokens;
+	tokenize(req, tokens, delims);
+	string &cmd = tokens[0];
+	if (checkCmd(cmd, "ul", tokens, USER_LOGIN_ARG_NUM))
 	{
-		int region = distribution::getRegion(reqtoken[1]);
-		serverId = ServerConfig::Instance().gameid(region);
-		nCmd = EVENT_USER_BIND;
+		processUserLogin(tokens);
 	}
-	else if (cmd == "player_info")
-	{
-		int64 uid = 0;
-		safe_atoll(reqtoken[1], uid);
-		int region = distribution::getRegion(uid);
-		serverId = ServerConfig::Instance().gameid(region);
-		nCmd = EVENT_PLAYER_INFO;		
-	}
-	else if (cmd == "recharge")
-	{
-		int64 uid = 0;
-		safe_atoll(reqtoken[1], uid);
-		int region = distribution::getRegion(uid);
-		serverId = ServerConfig::Instance().gameid(region);
-		nCmd = EVENT_USER_RECHARGE;	
-	}
-	else if (cmd == "start")
-	{
-		safe_atoi(reqtoken[1], serverId);	
-		nCmd = EVENT_STARTSERVER;	
-	}
-	else if (cmd == "luckygoddess")
-	{
-		int64 uid = 0;
-		safe_atoll(reqtoken[1], uid);
-		int region = distribution::getRegion(uid);
-		serverId = ServerConfig::Instance().gameid(region);
-		nCmd = EVENT_USER_LUCKYGODDESS;
-	}
-	else if (cmd == "recharge_reward_check")
-	{
-		int64 uid = 0;
-		safe_atoll(reqtoken[1], uid);
-		int region = distribution::getRegion(uid);
-		serverId = ServerConfig::Instance().gameid(region);
-		nCmd = EVENT_RECHARGE_REWARD_CHECK;
-	}
-	else if ( cmd == "InviterReward")
-	{
-		int64 uid = 0;
-		safe_atoll(reqtoken[1], uid);
-		int region = distribution::getRegion(uid);
-		serverId = ServerConfig::Instance().gameid(region);
-		nCmd = EVENT_USER_INVITERSREWARD;
-	}
-	else if (cmd == "centerbattleday")
-	{
-		int time = (int)GetTimeVal(reqtoken[1]);
-		int nDay = Clock::getLocalDay(time);
-		//CenterCampBattleModuleInst::instance().SetDate(nDay);
-		World::Instance().GetWorldEventHandler()->sendFdString(fd_, "SetDay Success");
-	}
-    else if (cmd == "goddnesstest")
-    {
-        //LuckyGodHandleInst::instance().HandleLuckyGoddnessForChargeTest();
-        return;
-    }
-    else if (cmd == "addchallengetime")
-    {
-        int count = 0;
-        if (reqtoken.size() <= 1)
-        {
-            return;
-        }
-        safe_atoi(reqtoken[1],count);
-        //ChallengeWorldModuleInst::instance().ProessGMRequest(count);
-        return;
-    }
-	else if(cmd == "deletechallengesign")
-	{
-		int64 uid = StringToUid(reqtoken[1]);
-		//ChallengeWorldModuleInst::instance().ProessGMDeleteSign(uid);
-		return;
-	}
-	else if(cmd == "resetchallengegrade")
-	{
-		int64 uid = StringToUid(reqtoken[1]);
-// 		bool suc = ChallengeWorldModuleInst::instance().ProcessResetChallengeGrade(uid);
-// 		if (suc)
-// 			World::Instance().GetWorldEventHandler()->sendFdString(fd_, "setchallengegrade success!");	
-// 		else
-// 			World::Instance().GetWorldEventHandler()->sendFdString(fd_, "setchallengegrade fail!");	
-		return;
-	}
-    else if (reqtoken.size() > 1)
-    {                                            
-        serverId = getServerId(reqtoken[1]);
-        nCmd = EVENT_GM;
-    }
-
-    if (serverId <= 0 || nCmd <= 0)
-        return;
-
-    Event* e = eq_->allocateEvent();
-    e->set_cmd(nCmd);
-    e->set_state(Web_To_Game);
-    e->set_time(-1);
-    e->set_uid(-1);
-    Forward* forward = e->mutable_forward();
-    forward->set_serveridto(serverId);
-    forward->set_serverfdfrom(fd_);
-    e->set_content(req);
-    eq_->safePushEvent(e);
 }
 
-int WebServerHandler::getServerId(const string& query)
+void WebServerHandler::processUserLogin(vector<string> &tokens)
 {
-    if (query.length() < 1)
-        return 0;
+	bool succ = true;
+	string &platid = tokens[1];
 
-    char type = query[0];
-    string value = query.substr(1, query.length()-1);
+	int siteid = 0;
+	succ = succ && safe_atoi(tokens[2].c_str(), siteid);
 
-    if (type == 'u')
-    {
-        int region = distribution::getRegion(StringToUid(value));
-        return ServerConfig::Instance().gameid(region);
-    }
-    else if (type == 'o')
-    {
-        int region = distribution::getRegion(value);
-        return ServerConfig::Instance().gameid(region);
-    }
-    else if (type == 'r')
-    {
-        int region = 0;
-        safe_atoi(value, region);
-        return ServerConfig::Instance().gameid(region);
-    }
-    else if (type == 'g')
-    {
-        int serverid = 0;
-        safe_atoi(value, serverid);
-        return serverid;
-    }
-	else if (type == 'a')
+	string &name = tokens[3];
+	name = base64_decode(name);
+
+	string &head = tokens[4];
+
+	int gender = 0;
+	succ = succ && safe_atoi(tokens[5].c_str(), gender);
+
+	int i4IsYellowDmd = 0;
+	succ = succ && safe_atoi(tokens[6].c_str(), i4IsYellowDmd);
+
+	int i4IsYellowDmdYear = 0;
+	succ = succ && safe_atoi(tokens[7].c_str(), i4IsYellowDmdYear);
+
+	int i4YellowDmdLv = 0;
+	succ = succ && safe_atoi(tokens[8].c_str(), i4YellowDmdLv);
+
+	int fcnt = 0;
+	succ = succ && safe_atoi(tokens[9].c_str(), fcnt);
+
+	vector<string> friends;
+	string delims = ";";
+	tokenize(tokens[10], friends, delims);
+
+	int region = 0;
+	succ  = succ && safe_atoi(tokens[11].c_str(),region);
+
+
+	int nCity=0;
+	nCity = 0;
+	safe_atoi(tokens[12].c_str(), nCity);
+
+	string strVIA;
+	strVIA = tokens[13];
+
+	bool isRecall = false;
+	bool isHighVip = false;
+	bool isApp51Act = false;
+	int nCustomFlag = 0;
+    int nBackFlowFlag = 0;
+	bool isSuperVip = false;//豪华蓝钻年费版,web的文档里是super vip
+	int	nQHallDmdTime = 0;
+	int nQHallDmdYearTime = 0;
+	int nHighQHallDmdTime = 0;
+	int nHighQHallDmdYearTime = 0;
+	string strTaskMarketId;
+	string strChannel;
+	vector<string> lstCDK;
+	vector<string> extras;
+	delims = ";";
+	tokenize(tokens[14], extras, delims);
+	
+	for ( int i = 0; i < extras.size(); i++ )
 	{
-		return MAX_NUMBER;
-	}
-	else if (type == 'w')
-	{
-		return WORLD_SPECIAL;
+		vector<string> extrasMsg;
+		int int_value = 0;
+		delims = ":";
+		tokenize(extras[i], extrasMsg, delims);
+
+		if ( extrasMsg.size() < 2 )
+		{
+			continue;
+		}
+		if ( strcmp( extrasMsg[0].c_str(), "recall" ) == 0 )
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str(), int_value);
+			isRecall = ( int_value == 1 );
+		}
+
+		if ( strcmp( extrasMsg[0].c_str(), "isHighVip" ) == 0 )
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str(), int_value);
+			isHighVip = ( int_value == 1 );
+		}
+
+		if ( strcmp( extrasMsg[0].c_str(), "isApp51Act" ) == 0 )
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str(), int_value);
+			isApp51Act = ( int_value == 1 );
+		}
+
+		if ( strcmp( extrasMsg[0].c_str(), "customflag" ) == 0 )
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str(), int_value);
+			nCustomFlag = int_value;
+		}
+
+		if ( strcmp( extrasMsg[0].c_str(), "taskMarketId" ) == 0 )
+		{
+			strTaskMarketId = extrasMsg[1];
+		}
+
+		if ( strcmp( extrasMsg[0].c_str(), "channel" ) == 0 )
+		{
+			strChannel = extras[i];
+		}
+
+        if ( strcmp(extrasMsg[0].c_str(), "backflow") == 0)
+        {
+            safe_atoi(extrasMsg[1].c_str(), nBackFlowFlag);
+        }
+		if (strcmp(extrasMsg[0].c_str() , "supervip") == 0)
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str() , int_value);
+			isSuperVip = (int_value == 1);
+		}
+		if (strcmp(extrasMsg[0].c_str() , "bluetime") == 0)
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str() , nQHallDmdTime);
+		}
+		if (strcmp(extrasMsg[0].c_str() , "blueyeartime") == 0)
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str() , nQHallDmdYearTime);
+		}
+		if (strcmp(extrasMsg[0].c_str() , "highbluetime") == 0)
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str() , nHighQHallDmdTime);
+		}
+		if (strcmp(extrasMsg[0].c_str() , "highblueyeartime") == 0)
+		{
+			succ = succ && safe_atoi(extrasMsg[1].c_str() , nHighQHallDmdYearTime);
+		}
 	}
 
-    return 0;
+	string sid = tokens[15];
+
+	if (succ)
+	{
+		UserLogin::addEvent(eq_, fd_, siteid, platid, name, head, gender,
+			friends, i4IsYellowDmd, i4IsYellowDmdYear, i4YellowDmdLv, sid,nCity,strVIA,region,isRecall,isHighVip,isApp51Act,nCustomFlag,strTaskMarketId,strChannel,nBackFlowFlag,isSuperVip,nQHallDmdTime,nQHallDmdYearTime,nHighQHallDmdTime,nHighQHallDmdYearTime);
+	}
 }

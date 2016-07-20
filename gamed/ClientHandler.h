@@ -2,9 +2,9 @@
 #define _CLIENTHANDLER_H_
 #pragma once
 
+#include <log4cxx/logger.h>
 #include <string>
 #include <vector>
-#include <log4cxx/logger.h>
 #include "../net/ProtocolHandler.h"
 #include "../common/const_def.h"
 
@@ -28,8 +28,8 @@ private:
 
 private:
 	GameNetHandler *nh;
-	int				fd;
-	int				nid_;
+	int		fd;
+	int		nid_;
 	static string policy_content;
 	log4cxx::LoggerPtr logger_;
 };

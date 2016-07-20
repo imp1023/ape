@@ -112,33 +112,6 @@ bool NetHandler::sendIntSizedFdString(int fd, const string& str)
     return succ;
 }
 
-bool NetHandler::sendSizedTypeFdString(int fd, int type, const string& str)
-{
-	NetCache *cache = getCacheFromFd(fd);
-	if (cache == NULL)
-	{
-		return false;
-	}
-
-	short index = cache->getNextIndex();
-	index = htons(index);
-	unsigned short utype = (unsigned short) type;
-	utype = htons(type);
-	unsigned int ulen = (unsigned int) str.length() + sizeof (unsigned short)
-			+ sizeof (unsigned short) ;
-	ulen = htonl(ulen);
-	lockSend(); // we use this to lock the send procedure
-	sendFdString(fd, (const char*) (&ulen), sizeof (unsigned int) );
-	sendFdString(fd, (const char*) (&utype), sizeof (unsigned short) );
-	sendFdString(fd, (const char*) (&index), sizeof (unsigned short) );
-	bool succ = sendFdString(fd, str.c_str(), str.length());
-	unlockSend();
-
-    LOG4CXX_DEBUG(logger_, "sendSizedTypeFdString" << ":fd=" << fd << ",len=" << ulen << ",type=" << utype << ",index=" << index << ",succ=" << succ);
-
-	return succ;
-}
-
 void NetHandler::closeConnection(int fd)
 {
     NetCache *cache = getCacheFromFd(fd);
@@ -348,7 +321,7 @@ int NetHandler::createListenSocket(string socket_name, string port, string addre
 
 // Windows specific
 
-int NetHandler::createConnectSocket( string socket_name,string address,string port,struct sockaddr &sa )
+int NetHandler::createConnectSocket(string socket_name, string address, string port, struct addrinfo &sa)
 {
     int ret = socket(PF_INET, SOCK_STREAM, 0);
     struct addrinfo hints, *res;
@@ -364,7 +337,7 @@ int NetHandler::createConnectSocket( string socket_name,string address,string po
         LOG4CXX_FATAL(logger_, "Connect server " << address << "[" << port << "] failed!");
         return -1;
     };
-    sa = *(res->ai_addr);
+    sa = *res;
     LOG4CXX_INFO(logger_, "connected " + socket_name + " to " + address + ":" + port);
 
     if (ret > 0)
@@ -386,6 +359,11 @@ bool NetHandler::sendFdString(int fd, const char* str, size_t size)
     {
         return false;
     }
+	if(size > 204800)
+	{//增加最大尺寸限制，2012.11.02 by sskylin
+		LOG4CXX_ERROR(logger_,"prepareWrite Error!!!! size is too long!!! "<<fd<<"size:"<<size);
+		return false;
+	}
     if (!cache->prepareWrite(str, size))
     {
 		LOG4CXX_ERROR(logger_,"prepareWrite Error!!!! fd:"<<fd<<"size:"<<size);
@@ -643,7 +621,7 @@ int NetHandler::createListenSocket(string socket_name, string port, string addre
 
 // Linux specific
 
-int NetHandler::createConnectSocket(string socket_name, string address, string port, struct sockaddr &sa)
+int NetHandler::createConnectSocket(string socket_name, string address, string port, struct addrinfo &sa)
 {
     int fd = socket(PF_INET, SOCK_STREAM, 0);
     if (fd < 0)
@@ -659,7 +637,7 @@ int NetHandler::createConnectSocket(string socket_name, string address, string p
 
     getaddrinfo(address.c_str(), port.c_str(), &hints, &res);
     connect(fd, res->ai_addr, res->ai_addrlen);
-    sa = *(res->ai_addr);
+    sa = *res;
     freeaddrinfo(res);
     LOG4CXX_INFO(logger_, "connected " << socket_name << " to " << address << ":" << port << " into fd " << fd);
 

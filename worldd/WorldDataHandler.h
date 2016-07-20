@@ -1,6 +1,7 @@
 #ifndef _WORLDDATAHANDLER_H_
 #define _WORLDDATAHANDLER_H_
 #pragma once
+
 #include <log4cxx/logger.h>
 #include <vector>
 #include "../net/NetHandler.h"
@@ -16,10 +17,9 @@ public:
 	virtual ~WorldDataHandler() {}
 
 	GameWorkingStatus setWorkingStatus(int gid, GameWorkingStatus status);
-
-	virtual void tick();
-    virtual void quit();
-
+	int getGameIdfromPlatId(string const& platid,int nRegion);
+	int getGamedIdByUserId(int64 uid);
+	virtual void tick() {}
 private:
 	void checkAllWorkingStatus();
 private:
