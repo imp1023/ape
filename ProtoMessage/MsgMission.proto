@@ -1,0 +1,19 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgMissionParam
+{
+    repeated string Target = 1;
+    optional int32 endTime = 2;
+    optional string sku = 3;
+    optional string progress = 4;
+}
+
+message MsgMissionState
+{
+    optional string ReadyToStart = 1;
+    optional string Available = 2;
+    optional string Rewarded = 3;
+    optional string Completed = 4;
+    repeated MsgMissionParam Params = 5;
+}
+

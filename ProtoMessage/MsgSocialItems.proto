@@ -1,0 +1,7 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgSocialItems
+{
+	optional string sku = 1;
+	optional int32 amount = 2;
+}

@@ -1,0 +1,18 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+import "MsgSocialItems.proto";
+
+message MsgTransaction
+{
+	optional string clientDebugInfo = 1;
+	optional int32 exp = 2;
+	optional int32 minerals = 3;
+	optional int32 score = 4;
+	optional string client = 5;
+	optional string event = 6;
+	optional int32 cash = 7;
+	optional double instantOperationMinutesLeft = 8;
+	optional int32 droids = 9;
+	optional int32 coins = 10;
+	repeated MsgSocialItems socialItems = 11;
+}

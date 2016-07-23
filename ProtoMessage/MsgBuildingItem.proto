@@ -1,0 +1,21 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgBuildingItem
+{
+	optional int32 id = 1;
+	optional int32 sid = 2;
+	optional int32 type = 3;
+	optional int32 upgradeId = 4;
+	optional int32 y = 5;
+	optional int32 x = 6;
+	optional int32 state = 7;
+	optional int32 energy = 8;
+	optional int32 energyPercent = 9;
+	optional int32 time = 10;
+	optional string sku = 11;
+	optional int32 incomeToRestore = 12;
+	optional int32 repairing = 13;
+	repeated int32 Item = 14;
+	optional int32 isFlipped = 15;
+	optional int32 updatedAt = 16;
+}
