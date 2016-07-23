@@ -8189,6 +8189,13 @@ class DB_Flag : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 quality() const;
   inline void set_quality(::google::protobuf::int32 value);
   
+  // optional int32 allianceWelcome = 4;
+  inline bool has_alliancewelcome() const;
+  inline void clear_alliancewelcome();
+  static const int kAllianceWelcomeFieldNumber = 4;
+  inline ::google::protobuf::int32 alliancewelcome() const;
+  inline void set_alliancewelcome(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -8196,11 +8203,12 @@ class DB_Flag : public ::google::protobuf::Message {
   ::google::protobuf::int32 music_;
   ::google::protobuf::int32 effect_;
   ::google::protobuf::int32 quality_;
+  ::google::protobuf::int32 alliancewelcome_;
   friend void  protobuf_AddDesc_dbinterface_5fsub_2eproto();
   friend void protobuf_AssignDesc_dbinterface_5fsub_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_5fsub_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -21837,6 +21845,22 @@ inline ::google::protobuf::int32 DB_Flag::quality() const {
 inline void DB_Flag::set_quality(::google::protobuf::int32 value) {
   _set_bit(2);
   quality_ = value;
+}
+
+// optional int32 allianceWelcome = 4;
+inline bool DB_Flag::has_alliancewelcome() const {
+  return _has_bit(3);
+}
+inline void DB_Flag::clear_alliancewelcome() {
+  alliancewelcome_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_Flag::alliancewelcome() const {
+  return alliancewelcome_;
+}
+inline void DB_Flag::set_alliancewelcome(::google::protobuf::int32 value) {
+  _set_bit(3);
+  alliancewelcome_ = value;
 }
 
 // -------------------------------------------------------------------

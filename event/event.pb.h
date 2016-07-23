@@ -61,6 +61,7 @@
 #include "RceUpdateStarsBookmarks.pb.h"
 #include "RceUpdateTargets.pb.h"
 #include "RceUpdateVisitHelp.pb.h"
+#include "RseAuthState.pb.h"
 #include "RseCustomizedActivity.pb.h"
 #include "RseDeployUnits.pb.h"
 #include "RseItemDamaged.pb.h"
@@ -361,201 +362,201 @@ class Event : public ::google::protobuf::Message {
   inline const ::RceCustomizedActivity& ce_rcecustomizedactivity() const;
   inline ::RceCustomizedActivity* mutable_ce_rcecustomizedactivity();
   
-  // optional .RceLogin ce_RceLogin = 201;
-  inline bool has_ce_rcelogin() const;
-  inline void clear_ce_rcelogin();
-  static const int kCeRceLoginFieldNumber = 201;
-  inline const ::RceLogin& ce_rcelogin() const;
-  inline ::RceLogin* mutable_ce_rcelogin();
-  
-  // optional .RceObtainAttackerList ce_RceObtainAttackerList = 202;
-  inline bool has_ce_rceobtainattackerlist() const;
-  inline void clear_ce_rceobtainattackerlist();
-  static const int kCeRceObtainAttackerListFieldNumber = 202;
-  inline const ::RceObtainAttackerList& ce_rceobtainattackerlist() const;
-  inline ::RceObtainAttackerList* mutable_ce_rceobtainattackerlist();
-  
-  // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
-  inline bool has_ce_rceobtainbattlereplay() const;
-  inline void clear_ce_rceobtainbattlereplay();
-  static const int kCeRceObtainBattleReplayFieldNumber = 203;
-  inline const ::RceObtainBattleReplay& ce_rceobtainbattlereplay() const;
-  inline ::RceObtainBattleReplay* mutable_ce_rceobtainbattlereplay();
-  
-  // optional .RceObtainCustomizer ce_RceObtainCustomizer = 204;
-  inline bool has_ce_rceobtaincustomizer() const;
-  inline void clear_ce_rceobtaincustomizer();
-  static const int kCeRceObtainCustomizerFieldNumber = 204;
-  inline const ::RceObtainCustomizer& ce_rceobtaincustomizer() const;
-  inline ::RceObtainCustomizer* mutable_ce_rceobtaincustomizer();
-  
-  // optional .RceObtainMessagesList ce_RceObtainMessagesList = 205;
-  inline bool has_ce_rceobtainmessageslist() const;
-  inline void clear_ce_rceobtainmessageslist();
-  static const int kCeRceObtainMessagesListFieldNumber = 205;
-  inline const ::RceObtainMessagesList& ce_rceobtainmessageslist() const;
-  inline ::RceObtainMessagesList* mutable_ce_rceobtainmessageslist();
-  
-  // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
-  inline bool has_ce_rceobtainneighborslist() const;
-  inline void clear_ce_rceobtainneighborslist();
-  static const int kCeRceObtainNeighborsListFieldNumber = 206;
-  inline const ::RceObtainNeighborsList& ce_rceobtainneighborslist() const;
-  inline ::RceObtainNeighborsList* mutable_ce_rceobtainneighborslist();
-  
-  // optional .RceObtainNpcList ce_RceObtainNpcList = 207;
-  inline bool has_ce_rceobtainnpclist() const;
-  inline void clear_ce_rceobtainnpclist();
-  static const int kCeRceObtainNpcListFieldNumber = 207;
-  inline const ::RceObtainNpcList& ce_rceobtainnpclist() const;
-  inline ::RceObtainNpcList* mutable_ce_rceobtainnpclist();
-  
-  // optional .RceObtainSocialItems ce_RceObtainSocialItems = 208;
-  inline bool has_ce_rceobtainsocialitems() const;
-  inline void clear_ce_rceobtainsocialitems();
-  static const int kCeRceObtainSocialItemsFieldNumber = 208;
-  inline const ::RceObtainSocialItems& ce_rceobtainsocialitems() const;
-  inline ::RceObtainSocialItems* mutable_ce_rceobtainsocialitems();
-  
-  // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
-  inline bool has_ce_rceobtainsocialuserinfo() const;
-  inline void clear_ce_rceobtainsocialuserinfo();
-  static const int kCeRceObtainSocialUserInfoFieldNumber = 209;
-  inline const ::RceObtainSocialUserInfo& ce_rceobtainsocialuserinfo() const;
-  inline ::RceObtainSocialUserInfo* mutable_ce_rceobtainsocialuserinfo();
-  
-  // optional .RceObtainUniverse ce_RceObtainUniverse = 210;
-  inline bool has_ce_rceobtainuniverse() const;
-  inline void clear_ce_rceobtainuniverse();
-  static const int kCeRceObtainUniverseFieldNumber = 210;
-  inline const ::RceObtainUniverse& ce_rceobtainuniverse() const;
-  inline ::RceObtainUniverse* mutable_ce_rceobtainuniverse();
-  
-  // optional .RceUpdateAlliances ce_RceUpdateAlliances = 211;
-  inline bool has_ce_rceupdatealliances() const;
-  inline void clear_ce_rceupdatealliances();
-  static const int kCeRceUpdateAlliancesFieldNumber = 211;
-  inline const ::RceUpdateAlliances& ce_rceupdatealliances() const;
-  inline ::RceUpdateAlliances* mutable_ce_rceupdatealliances();
-  
-  // optional .RceDeployUnits ce_RceDeployUnits = 212;
+  // optional .RceDeployUnits ce_RceDeployUnits = 201;
   inline bool has_ce_rcedeployunits() const;
   inline void clear_ce_rcedeployunits();
-  static const int kCeRceDeployUnitsFieldNumber = 212;
+  static const int kCeRceDeployUnitsFieldNumber = 201;
   inline const ::RceDeployUnits& ce_rcedeployunits() const;
   inline ::RceDeployUnits* mutable_ce_rcedeployunits();
   
-  // optional .RceItemDamaged ce_RceItemDamaged = 213;
+  // optional .RceItemDamaged ce_RceItemDamaged = 202;
   inline bool has_ce_rceitemdamaged() const;
   inline void clear_ce_rceitemdamaged();
-  static const int kCeRceItemDamagedFieldNumber = 213;
+  static const int kCeRceItemDamagedFieldNumber = 202;
   inline const ::RceItemDamaged& ce_rceitemdamaged() const;
   inline ::RceItemDamaged* mutable_ce_rceitemdamaged();
   
-  // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+  // optional .RceLogin ce_RceLogin = 203;
+  inline bool has_ce_rcelogin() const;
+  inline void clear_ce_rcelogin();
+  static const int kCeRceLoginFieldNumber = 203;
+  inline const ::RceLogin& ce_rcelogin() const;
+  inline ::RceLogin* mutable_ce_rcelogin();
+  
+  // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 204;
   inline bool has_ce_rceobtainaskforhelp() const;
   inline void clear_ce_rceobtainaskforhelp();
-  static const int kCeRceObtainAskForHelpFieldNumber = 214;
+  static const int kCeRceObtainAskForHelpFieldNumber = 204;
   inline const ::RceObtainAskForHelp& ce_rceobtainaskforhelp() const;
   inline ::RceObtainAskForHelp* mutable_ce_rceobtainaskforhelp();
   
-  // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+  // optional .RceObtainAttackerList ce_RceObtainAttackerList = 205;
+  inline bool has_ce_rceobtainattackerlist() const;
+  inline void clear_ce_rceobtainattackerlist();
+  static const int kCeRceObtainAttackerListFieldNumber = 205;
+  inline const ::RceObtainAttackerList& ce_rceobtainattackerlist() const;
+  inline ::RceObtainAttackerList* mutable_ce_rceobtainattackerlist();
+  
+  // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 206;
+  inline bool has_ce_rceobtainbattlereplay() const;
+  inline void clear_ce_rceobtainbattlereplay();
+  static const int kCeRceObtainBattleReplayFieldNumber = 206;
+  inline const ::RceObtainBattleReplay& ce_rceobtainbattlereplay() const;
+  inline ::RceObtainBattleReplay* mutable_ce_rceobtainbattlereplay();
+  
+  // optional .RceObtainCustomizer ce_RceObtainCustomizer = 207;
+  inline bool has_ce_rceobtaincustomizer() const;
+  inline void clear_ce_rceobtaincustomizer();
+  static const int kCeRceObtainCustomizerFieldNumber = 207;
+  inline const ::RceObtainCustomizer& ce_rceobtaincustomizer() const;
+  inline ::RceObtainCustomizer* mutable_ce_rceobtaincustomizer();
+  
+  // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 208;
   inline bool has_ce_rceobtainhangarshelp() const;
   inline void clear_ce_rceobtainhangarshelp();
-  static const int kCeRceObtainHangarsHelpFieldNumber = 215;
+  static const int kCeRceObtainHangarsHelpFieldNumber = 208;
   inline const ::RceObtainHangarsHelp& ce_rceobtainhangarshelp() const;
   inline ::RceObtainHangarsHelp* mutable_ce_rceobtainhangarshelp();
   
-  // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+  // optional .RceObtainMessagesList ce_RceObtainMessagesList = 209;
+  inline bool has_ce_rceobtainmessageslist() const;
+  inline void clear_ce_rceobtainmessageslist();
+  static const int kCeRceObtainMessagesListFieldNumber = 209;
+  inline const ::RceObtainMessagesList& ce_rceobtainmessageslist() const;
+  inline ::RceObtainMessagesList* mutable_ce_rceobtainmessageslist();
+  
+  // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 210;
+  inline bool has_ce_rceobtainneighborslist() const;
+  inline void clear_ce_rceobtainneighborslist();
+  static const int kCeRceObtainNeighborsListFieldNumber = 210;
+  inline const ::RceObtainNeighborsList& ce_rceobtainneighborslist() const;
+  inline ::RceObtainNeighborsList* mutable_ce_rceobtainneighborslist();
+  
+  // optional .RceObtainNpcList ce_RceObtainNpcList = 211;
+  inline bool has_ce_rceobtainnpclist() const;
+  inline void clear_ce_rceobtainnpclist();
+  static const int kCeRceObtainNpcListFieldNumber = 211;
+  inline const ::RceObtainNpcList& ce_rceobtainnpclist() const;
+  inline ::RceObtainNpcList* mutable_ce_rceobtainnpclist();
+  
+  // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 212;
   inline bool has_ce_rceobtainpayurlparame() const;
   inline void clear_ce_rceobtainpayurlparame();
-  static const int kCeRceObtainPayUrlParameFieldNumber = 216;
+  static const int kCeRceObtainPayUrlParameFieldNumber = 212;
   inline const ::RceObtainPayUrlParame& ce_rceobtainpayurlparame() const;
   inline ::RceObtainPayUrlParame* mutable_ce_rceobtainpayurlparame();
   
-  // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+  // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 213;
   inline bool has_ce_rceobtainrandomtargets() const;
   inline void clear_ce_rceobtainrandomtargets();
-  static const int kCeRceObtainRandomTargetsFieldNumber = 217;
+  static const int kCeRceObtainRandomTargetsFieldNumber = 213;
   inline const ::RceObtainRandomTargets& ce_rceobtainrandomtargets() const;
   inline ::RceObtainRandomTargets* mutable_ce_rceobtainrandomtargets();
   
-  // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+  // optional .RceObtainSocialItems ce_RceObtainSocialItems = 214;
+  inline bool has_ce_rceobtainsocialitems() const;
+  inline void clear_ce_rceobtainsocialitems();
+  static const int kCeRceObtainSocialItemsFieldNumber = 214;
+  inline const ::RceObtainSocialItems& ce_rceobtainsocialitems() const;
+  inline ::RceObtainSocialItems* mutable_ce_rceobtainsocialitems();
+  
+  // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 215;
+  inline bool has_ce_rceobtainsocialuserinfo() const;
+  inline void clear_ce_rceobtainsocialuserinfo();
+  static const int kCeRceObtainSocialUserInfoFieldNumber = 215;
+  inline const ::RceObtainSocialUserInfo& ce_rceobtainsocialuserinfo() const;
+  inline ::RceObtainSocialUserInfo* mutable_ce_rceobtainsocialuserinfo();
+  
+  // optional .RceObtainUniverse ce_RceObtainUniverse = 216;
+  inline bool has_ce_rceobtainuniverse() const;
+  inline void clear_ce_rceobtainuniverse();
+  static const int kCeRceObtainUniverseFieldNumber = 216;
+  inline const ::RceObtainUniverse& ce_rceobtainuniverse() const;
+  inline ::RceObtainUniverse* mutable_ce_rceobtainuniverse();
+  
+  // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 217;
   inline bool has_ce_rceobtainvisithelps() const;
   inline void clear_ce_rceobtainvisithelps();
-  static const int kCeRceObtainVisitHelpsFieldNumber = 218;
+  static const int kCeRceObtainVisitHelpsFieldNumber = 217;
   inline const ::RceObtainVisitHelps& ce_rceobtainvisithelps() const;
   inline ::RceObtainVisitHelps* mutable_ce_rceobtainvisithelps();
   
-  // optional .RceOnlineReward ce_RceOnlineReward = 219;
+  // optional .RceOnlineReward ce_RceOnlineReward = 218;
   inline bool has_ce_rceonlinereward() const;
   inline void clear_ce_rceonlinereward();
-  static const int kCeRceOnlineRewardFieldNumber = 219;
+  static const int kCeRceOnlineRewardFieldNumber = 218;
   inline const ::RceOnlineReward& ce_rceonlinereward() const;
   inline ::RceOnlineReward* mutable_ce_rceonlinereward();
   
-  // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+  // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 219;
   inline bool has_ce_rcequerycheckandlockaccountifpossible() const;
   inline void clear_ce_rcequerycheckandlockaccountifpossible();
-  static const int kCeRceQueryCheckAndLockAccountIfPossibleFieldNumber = 220;
+  static const int kCeRceQueryCheckAndLockAccountIfPossibleFieldNumber = 219;
   inline const ::RceQueryCheckAndLockAccountIfPossible& ce_rcequerycheckandlockaccountifpossible() const;
   inline ::RceQueryCheckAndLockAccountIfPossible* mutable_ce_rcequerycheckandlockaccountifpossible();
   
-  // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+  // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 220;
   inline bool has_ce_rcequerygalaxywindow() const;
   inline void clear_ce_rcequerygalaxywindow();
-  static const int kCeRceQueryGalaxyWindowFieldNumber = 221;
+  static const int kCeRceQueryGalaxyWindowFieldNumber = 220;
   inline const ::RceQueryGalaxyWindow& ce_rcequerygalaxywindow() const;
   inline ::RceQueryGalaxyWindow* mutable_ce_rcequerygalaxywindow();
   
-  // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+  // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 221;
   inline bool has_ce_rcequeryreceivewishitem() const;
   inline void clear_ce_rcequeryreceivewishitem();
-  static const int kCeRceQueryReceiveWishItemFieldNumber = 222;
+  static const int kCeRceQueryReceiveWishItemFieldNumber = 221;
   inline const ::RceQueryReceiveWishItem& ce_rcequeryreceivewishitem() const;
   inline ::RceQueryReceiveWishItem* mutable_ce_rcequeryreceivewishitem();
   
-  // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+  // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 222;
   inline bool has_ce_rcequeryrefusereceivewishitem() const;
   inline void clear_ce_rcequeryrefusereceivewishitem();
-  static const int kCeRceQueryRefuseReceiveWishItemFieldNumber = 223;
+  static const int kCeRceQueryRefuseReceiveWishItemFieldNumber = 222;
   inline const ::RceQueryRefuseReceiveWishItem& ce_rcequeryrefusereceivewishitem() const;
   inline ::RceQueryRefuseReceiveWishItem* mutable_ce_rcequeryrefusereceivewishitem();
   
-  // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+  // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 223;
   inline bool has_ce_rcequerysendwishitem() const;
   inline void clear_ce_rcequerysendwishitem();
-  static const int kCeRceQuerySendWishItemFieldNumber = 224;
+  static const int kCeRceQuerySendWishItemFieldNumber = 223;
   inline const ::RceQuerySendWishItem& ce_rcequerysendwishitem() const;
   inline ::RceQuerySendWishItem* mutable_ce_rcequerysendwishitem();
   
-  // optional .RceQueryStarInfo ce_RceQueryStarInfo = 225;
+  // optional .RceQueryStarInfo ce_RceQueryStarInfo = 224;
   inline bool has_ce_rcequerystarinfo() const;
   inline void clear_ce_rcequerystarinfo();
-  static const int kCeRceQueryStarInfoFieldNumber = 225;
+  static const int kCeRceQueryStarInfoFieldNumber = 224;
   inline const ::RceQueryStarInfo& ce_rcequerystarinfo() const;
   inline ::RceQueryStarInfo* mutable_ce_rcequerystarinfo();
   
-  // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+  // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 225;
   inline bool has_ce_rcequerystarsbookmarks() const;
   inline void clear_ce_rcequerystarsbookmarks();
-  static const int kCeRceQueryStarsBookmarksFieldNumber = 226;
+  static const int kCeRceQueryStarsBookmarksFieldNumber = 225;
   inline const ::RceQueryStarsBookmarks& ce_rcequerystarsbookmarks() const;
   inline ::RceQueryStarsBookmarks* mutable_ce_rcequerystarsbookmarks();
   
-  // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+  // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 226;
   inline bool has_ce_rcequeryvisithelpsgiftunitsonbunker() const;
   inline void clear_ce_rcequeryvisithelpsgiftunitsonbunker();
-  static const int kCeRceQueryVisitHelpsGiftUnitsOnBunkerFieldNumber = 227;
+  static const int kCeRceQueryVisitHelpsGiftUnitsOnBunkerFieldNumber = 226;
   inline const ::RceQueryVisitHelpsGiftUnitsOnBunker& ce_rcequeryvisithelpsgiftunitsonbunker() const;
   inline ::RceQueryVisitHelpsGiftUnitsOnBunker* mutable_ce_rcequeryvisithelpsgiftunitsonbunker();
   
-  // optional .RceUnitDamaged ce_RceUnitDamaged = 228;
+  // optional .RceUnitDamaged ce_RceUnitDamaged = 227;
   inline bool has_ce_rceunitdamaged() const;
   inline void clear_ce_rceunitdamaged();
-  static const int kCeRceUnitDamagedFieldNumber = 228;
+  static const int kCeRceUnitDamagedFieldNumber = 227;
   inline const ::RceUnitDamaged& ce_rceunitdamaged() const;
   inline ::RceUnitDamaged* mutable_ce_rceunitdamaged();
+  
+  // optional .RceUpdateAlliances ce_RceUpdateAlliances = 228;
+  inline bool has_ce_rceupdatealliances() const;
+  inline void clear_ce_rceupdatealliances();
+  static const int kCeRceUpdateAlliancesFieldNumber = 228;
+  inline const ::RceUpdateAlliances& ce_rceupdatealliances() const;
+  inline ::RceUpdateAlliances* mutable_ce_rceupdatealliances();
   
   // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
   inline bool has_ce_rceupdategameunits() const;
@@ -627,131 +628,131 @@ class Event : public ::google::protobuf::Message {
   inline const ::RceUpdateVisitHelp& ce_rceupdatevisithelp() const;
   inline ::RceUpdateVisitHelp* mutable_ce_rceupdatevisithelp();
   
-  // optional .RseCustomizedActivity se_RseCustomizedActivity = 500;
+  // optional .RseAuthState se_RseAuthState = 500;
+  inline bool has_se_rseauthstate() const;
+  inline void clear_se_rseauthstate();
+  static const int kSeRseAuthStateFieldNumber = 500;
+  inline const ::RseAuthState& se_rseauthstate() const;
+  inline ::RseAuthState* mutable_se_rseauthstate();
+  
+  // optional .RseCustomizedActivity se_RseCustomizedActivity = 501;
   inline bool has_se_rsecustomizedactivity() const;
   inline void clear_se_rsecustomizedactivity();
-  static const int kSeRseCustomizedActivityFieldNumber = 500;
+  static const int kSeRseCustomizedActivityFieldNumber = 501;
   inline const ::RseCustomizedActivity& se_rsecustomizedactivity() const;
   inline ::RseCustomizedActivity* mutable_se_rsecustomizedactivity();
   
-  // optional .RseLogin se_RseLogin = 501;
-  inline bool has_se_rselogin() const;
-  inline void clear_se_rselogin();
-  static const int kSeRseLoginFieldNumber = 501;
-  inline const ::RseLogin& se_rselogin() const;
-  inline ::RseLogin* mutable_se_rselogin();
-  
-  // optional .RseObtainAttackerList se_RseObtainAttackerList = 502;
-  inline bool has_se_rseobtainattackerlist() const;
-  inline void clear_se_rseobtainattackerlist();
-  static const int kSeRseObtainAttackerListFieldNumber = 502;
-  inline const ::RseObtainAttackerList& se_rseobtainattackerlist() const;
-  inline ::RseObtainAttackerList* mutable_se_rseobtainattackerlist();
-  
-  // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 503;
-  inline bool has_se_rseobtainbattlereplay() const;
-  inline void clear_se_rseobtainbattlereplay();
-  static const int kSeRseObtainBattleReplayFieldNumber = 503;
-  inline const ::RseObtainBattleReplay& se_rseobtainbattlereplay() const;
-  inline ::RseObtainBattleReplay* mutable_se_rseobtainbattlereplay();
-  
-  // optional .RseObtainCustomizer se_RseObtainCustomizer = 504;
-  inline bool has_se_rseobtaincustomizer() const;
-  inline void clear_se_rseobtaincustomizer();
-  static const int kSeRseObtainCustomizerFieldNumber = 504;
-  inline const ::RseObtainCustomizer& se_rseobtaincustomizer() const;
-  inline ::RseObtainCustomizer* mutable_se_rseobtaincustomizer();
-  
-  // optional .RseObtainMessagesList se_RseObtainMessagesList = 505;
-  inline bool has_se_rseobtainmessageslist() const;
-  inline void clear_se_rseobtainmessageslist();
-  static const int kSeRseObtainMessagesListFieldNumber = 505;
-  inline const ::RseObtainMessagesList& se_rseobtainmessageslist() const;
-  inline ::RseObtainMessagesList* mutable_se_rseobtainmessageslist();
-  
-  // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 506;
-  inline bool has_se_rseobtainneighborslist() const;
-  inline void clear_se_rseobtainneighborslist();
-  static const int kSeRseObtainNeighborsListFieldNumber = 506;
-  inline const ::RseObtainNeighborsList& se_rseobtainneighborslist() const;
-  inline ::RseObtainNeighborsList* mutable_se_rseobtainneighborslist();
-  
-  // optional .RseObtainNpcList se_RseObtainNpcList = 507;
-  inline bool has_se_rseobtainnpclist() const;
-  inline void clear_se_rseobtainnpclist();
-  static const int kSeRseObtainNpcListFieldNumber = 507;
-  inline const ::RseObtainNpcList& se_rseobtainnpclist() const;
-  inline ::RseObtainNpcList* mutable_se_rseobtainnpclist();
-  
-  // optional .RseObtainSocialItems se_RseObtainSocialItems = 508;
-  inline bool has_se_rseobtainsocialitems() const;
-  inline void clear_se_rseobtainsocialitems();
-  static const int kSeRseObtainSocialItemsFieldNumber = 508;
-  inline const ::RseObtainSocialItems& se_rseobtainsocialitems() const;
-  inline ::RseObtainSocialItems* mutable_se_rseobtainsocialitems();
-  
-  // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
-  inline bool has_se_rseobtainsocialuserinfo() const;
-  inline void clear_se_rseobtainsocialuserinfo();
-  static const int kSeRseObtainSocialUserInfoFieldNumber = 509;
-  inline const ::RseObtainSocialUserInfo& se_rseobtainsocialuserinfo() const;
-  inline ::RseObtainSocialUserInfo* mutable_se_rseobtainsocialuserinfo();
-  
-  // optional .RseObtainUniverse se_RseObtainUniverse = 510;
-  inline bool has_se_rseobtainuniverse() const;
-  inline void clear_se_rseobtainuniverse();
-  static const int kSeRseObtainUniverseFieldNumber = 510;
-  inline const ::RseObtainUniverse& se_rseobtainuniverse() const;
-  inline ::RseObtainUniverse* mutable_se_rseobtainuniverse();
-  
-  // optional .RseUpdateAlliances se_RseUpdateAlliances = 511;
-  inline bool has_se_rseupdatealliances() const;
-  inline void clear_se_rseupdatealliances();
-  static const int kSeRseUpdateAlliancesFieldNumber = 511;
-  inline const ::RseUpdateAlliances& se_rseupdatealliances() const;
-  inline ::RseUpdateAlliances* mutable_se_rseupdatealliances();
-  
-  // optional .RseDeployUnits se_RseDeployUnits = 512;
+  // optional .RseDeployUnits se_RseDeployUnits = 502;
   inline bool has_se_rsedeployunits() const;
   inline void clear_se_rsedeployunits();
-  static const int kSeRseDeployUnitsFieldNumber = 512;
+  static const int kSeRseDeployUnitsFieldNumber = 502;
   inline const ::RseDeployUnits& se_rsedeployunits() const;
   inline ::RseDeployUnits* mutable_se_rsedeployunits();
   
-  // optional .RseItemDamaged se_RseItemDamaged = 513;
+  // optional .RseItemDamaged se_RseItemDamaged = 503;
   inline bool has_se_rseitemdamaged() const;
   inline void clear_se_rseitemdamaged();
-  static const int kSeRseItemDamagedFieldNumber = 513;
+  static const int kSeRseItemDamagedFieldNumber = 503;
   inline const ::RseItemDamaged& se_rseitemdamaged() const;
   inline ::RseItemDamaged* mutable_se_rseitemdamaged();
   
-  // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+  // optional .RseLogin se_RseLogin = 504;
+  inline bool has_se_rselogin() const;
+  inline void clear_se_rselogin();
+  static const int kSeRseLoginFieldNumber = 504;
+  inline const ::RseLogin& se_rselogin() const;
+  inline ::RseLogin* mutable_se_rselogin();
+  
+  // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 505;
   inline bool has_se_rseobtainaskforhelp() const;
   inline void clear_se_rseobtainaskforhelp();
-  static const int kSeRseObtainAskForHelpFieldNumber = 514;
+  static const int kSeRseObtainAskForHelpFieldNumber = 505;
   inline const ::RseObtainAskForHelp& se_rseobtainaskforhelp() const;
   inline ::RseObtainAskForHelp* mutable_se_rseobtainaskforhelp();
   
-  // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+  // optional .RseObtainAttackerList se_RseObtainAttackerList = 506;
+  inline bool has_se_rseobtainattackerlist() const;
+  inline void clear_se_rseobtainattackerlist();
+  static const int kSeRseObtainAttackerListFieldNumber = 506;
+  inline const ::RseObtainAttackerList& se_rseobtainattackerlist() const;
+  inline ::RseObtainAttackerList* mutable_se_rseobtainattackerlist();
+  
+  // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 507;
+  inline bool has_se_rseobtainbattlereplay() const;
+  inline void clear_se_rseobtainbattlereplay();
+  static const int kSeRseObtainBattleReplayFieldNumber = 507;
+  inline const ::RseObtainBattleReplay& se_rseobtainbattlereplay() const;
+  inline ::RseObtainBattleReplay* mutable_se_rseobtainbattlereplay();
+  
+  // optional .RseObtainCustomizer se_RseObtainCustomizer = 508;
+  inline bool has_se_rseobtaincustomizer() const;
+  inline void clear_se_rseobtaincustomizer();
+  static const int kSeRseObtainCustomizerFieldNumber = 508;
+  inline const ::RseObtainCustomizer& se_rseobtaincustomizer() const;
+  inline ::RseObtainCustomizer* mutable_se_rseobtaincustomizer();
+  
+  // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 509;
   inline bool has_se_rseobtainhangarshelp() const;
   inline void clear_se_rseobtainhangarshelp();
-  static const int kSeRseObtainHangarsHelpFieldNumber = 515;
+  static const int kSeRseObtainHangarsHelpFieldNumber = 509;
   inline const ::RseObtainHangarsHelp& se_rseobtainhangarshelp() const;
   inline ::RseObtainHangarsHelp* mutable_se_rseobtainhangarshelp();
   
-  // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+  // optional .RseObtainMessagesList se_RseObtainMessagesList = 510;
+  inline bool has_se_rseobtainmessageslist() const;
+  inline void clear_se_rseobtainmessageslist();
+  static const int kSeRseObtainMessagesListFieldNumber = 510;
+  inline const ::RseObtainMessagesList& se_rseobtainmessageslist() const;
+  inline ::RseObtainMessagesList* mutable_se_rseobtainmessageslist();
+  
+  // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 511;
+  inline bool has_se_rseobtainneighborslist() const;
+  inline void clear_se_rseobtainneighborslist();
+  static const int kSeRseObtainNeighborsListFieldNumber = 511;
+  inline const ::RseObtainNeighborsList& se_rseobtainneighborslist() const;
+  inline ::RseObtainNeighborsList* mutable_se_rseobtainneighborslist();
+  
+  // optional .RseObtainNpcList se_RseObtainNpcList = 512;
+  inline bool has_se_rseobtainnpclist() const;
+  inline void clear_se_rseobtainnpclist();
+  static const int kSeRseObtainNpcListFieldNumber = 512;
+  inline const ::RseObtainNpcList& se_rseobtainnpclist() const;
+  inline ::RseObtainNpcList* mutable_se_rseobtainnpclist();
+  
+  // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 513;
   inline bool has_se_rseobtainpayurlparame() const;
   inline void clear_se_rseobtainpayurlparame();
-  static const int kSeRseObtainPayUrlParameFieldNumber = 516;
+  static const int kSeRseObtainPayUrlParameFieldNumber = 513;
   inline const ::RseObtainPayUrlParame& se_rseobtainpayurlparame() const;
   inline ::RseObtainPayUrlParame* mutable_se_rseobtainpayurlparame();
   
-  // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+  // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 514;
   inline bool has_se_rseobtainrandomtargets() const;
   inline void clear_se_rseobtainrandomtargets();
-  static const int kSeRseObtainRandomTargetsFieldNumber = 517;
+  static const int kSeRseObtainRandomTargetsFieldNumber = 514;
   inline const ::RseObtainRandomTargets& se_rseobtainrandomtargets() const;
   inline ::RseObtainRandomTargets* mutable_se_rseobtainrandomtargets();
+  
+  // optional .RseObtainSocialItems se_RseObtainSocialItems = 515;
+  inline bool has_se_rseobtainsocialitems() const;
+  inline void clear_se_rseobtainsocialitems();
+  static const int kSeRseObtainSocialItemsFieldNumber = 515;
+  inline const ::RseObtainSocialItems& se_rseobtainsocialitems() const;
+  inline ::RseObtainSocialItems* mutable_se_rseobtainsocialitems();
+  
+  // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 516;
+  inline bool has_se_rseobtainsocialuserinfo() const;
+  inline void clear_se_rseobtainsocialuserinfo();
+  static const int kSeRseObtainSocialUserInfoFieldNumber = 516;
+  inline const ::RseObtainSocialUserInfo& se_rseobtainsocialuserinfo() const;
+  inline ::RseObtainSocialUserInfo* mutable_se_rseobtainsocialuserinfo();
+  
+  // optional .RseObtainUniverse se_RseObtainUniverse = 517;
+  inline bool has_se_rseobtainuniverse() const;
+  inline void clear_se_rseobtainuniverse();
+  static const int kSeRseObtainUniverseFieldNumber = 517;
+  inline const ::RseObtainUniverse& se_rseobtainuniverse() const;
+  inline ::RseObtainUniverse* mutable_se_rseobtainuniverse();
   
   // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 518;
   inline bool has_se_rseobtainvisithelps() const;
@@ -823,66 +824,73 @@ class Event : public ::google::protobuf::Message {
   inline const ::RseUnitDamaged& se_rseunitdamaged() const;
   inline ::RseUnitDamaged* mutable_se_rseunitdamaged();
   
-  // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 528;
+  // optional .RseUpdateAlliances se_RseUpdateAlliances = 528;
+  inline bool has_se_rseupdatealliances() const;
+  inline void clear_se_rseupdatealliances();
+  static const int kSeRseUpdateAlliancesFieldNumber = 528;
+  inline const ::RseUpdateAlliances& se_rseupdatealliances() const;
+  inline ::RseUpdateAlliances* mutable_se_rseupdatealliances();
+  
+  // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 529;
   inline bool has_se_rseupdategameunits() const;
   inline void clear_se_rseupdategameunits();
-  static const int kSeRseUpdateGameUnitsFieldNumber = 528;
+  static const int kSeRseUpdateGameUnitsFieldNumber = 529;
   inline const ::RseUpdateGameUnits& se_rseupdategameunits() const;
   inline ::RseUpdateGameUnits* mutable_se_rseupdategameunits();
   
-  // optional .RseUpdateItem se_RseUpdateItem = 529;
+  // optional .RseUpdateItem se_RseUpdateItem = 530;
   inline bool has_se_rseupdateitem() const;
   inline void clear_se_rseupdateitem();
-  static const int kSeRseUpdateItemFieldNumber = 529;
+  static const int kSeRseUpdateItemFieldNumber = 530;
   inline const ::RseUpdateItem& se_rseupdateitem() const;
   inline ::RseUpdateItem* mutable_se_rseupdateitem();
   
-  // optional .RseUpdateMisc se_RseUpdateMisc = 530;
+  // optional .RseUpdateMisc se_RseUpdateMisc = 531;
   inline bool has_se_rseupdatemisc() const;
   inline void clear_se_rseupdatemisc();
-  static const int kSeRseUpdateMiscFieldNumber = 530;
+  static const int kSeRseUpdateMiscFieldNumber = 531;
   inline const ::RseUpdateMisc& se_rseupdatemisc() const;
   inline ::RseUpdateMisc* mutable_se_rseupdatemisc();
   
-  // optional .RseUpdateMissions se_RseUpdateMissions = 531;
+  // optional .RseUpdateMissions se_RseUpdateMissions = 532;
   inline bool has_se_rseupdatemissions() const;
   inline void clear_se_rseupdatemissions();
-  static const int kSeRseUpdateMissionsFieldNumber = 531;
+  static const int kSeRseUpdateMissionsFieldNumber = 532;
   inline const ::RseUpdateMissions& se_rseupdatemissions() const;
   inline ::RseUpdateMissions* mutable_se_rseupdatemissions();
   
-  // optional .RseUpdateProfile se_RseUpdateProfile = 532;
+  // optional .RseUpdateProfile se_RseUpdateProfile = 533;
   inline bool has_se_rseupdateprofile() const;
   inline void clear_se_rseupdateprofile();
-  static const int kSeRseUpdateProfileFieldNumber = 532;
+  static const int kSeRseUpdateProfileFieldNumber = 533;
   inline const ::RseUpdateProfile& se_rseupdateprofile() const;
   inline ::RseUpdateProfile* mutable_se_rseupdateprofile();
   
-  // optional .RseUpdateShips se_RseUpdateShips = 533;
+  // optional .RseUpdateShips se_RseUpdateShips = 534;
   inline bool has_se_rseupdateships() const;
   inline void clear_se_rseupdateships();
-  static const int kSeRseUpdateShipsFieldNumber = 533;
+  static const int kSeRseUpdateShipsFieldNumber = 534;
   inline const ::RseUpdateShips& se_rseupdateships() const;
   inline ::RseUpdateShips* mutable_se_rseupdateships();
   
-  // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+  // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 535;
   inline bool has_se_rseupdatesocialitem() const;
   inline void clear_se_rseupdatesocialitem();
-  static const int kSeRseUpdateSocialItemFieldNumber = 534;
+  static const int kSeRseUpdateSocialItemFieldNumber = 535;
   inline const ::RseUpdateSocialItem& se_rseupdatesocialitem() const;
   inline ::RseUpdateSocialItem* mutable_se_rseupdatesocialitem();
   
-  // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+  // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 536;
   inline bool has_se_rseupdatestarsbookmarks() const;
   inline void clear_se_rseupdatestarsbookmarks();
-  static const int kSeRseUpdateStarsBookmarksFieldNumber = 535;
+  static const int kSeRseUpdateStarsBookmarksFieldNumber = 536;
   inline const ::RseUpdateStarsBookmarks& se_rseupdatestarsbookmarks() const;
   inline ::RseUpdateStarsBookmarks* mutable_se_rseupdatestarsbookmarks();
   
-  // optional .RseUpdateTargets se_RseUpdateTargets = 536;
+  // optional .RseUpdateTargets se_RseUpdateTargets = 537;
   inline bool has_se_rseupdatetargets() const;
   inline void clear_se_rseupdatetargets();
-  static const int kSeRseUpdateTargetsFieldNumber = 536;
+  static const int kSeRseUpdateTargetsFieldNumber = 537;
   inline const ::RseUpdateTargets& se_rseupdatetargets() const;
   inline ::RseUpdateTargets* mutable_se_rseupdatetargets();
   
@@ -919,23 +927,22 @@ class Event : public ::google::protobuf::Message {
   ::HttpAskMsg* httpaskmsg_;
   ::HttpAnswerMsg* httpanswermsg_;
   ::RceCustomizedActivity* ce_rcecustomizedactivity_;
+  ::RceDeployUnits* ce_rcedeployunits_;
+  ::RceItemDamaged* ce_rceitemdamaged_;
   ::RceLogin* ce_rcelogin_;
+  ::RceObtainAskForHelp* ce_rceobtainaskforhelp_;
   ::RceObtainAttackerList* ce_rceobtainattackerlist_;
   ::RceObtainBattleReplay* ce_rceobtainbattlereplay_;
   ::RceObtainCustomizer* ce_rceobtaincustomizer_;
+  ::RceObtainHangarsHelp* ce_rceobtainhangarshelp_;
   ::RceObtainMessagesList* ce_rceobtainmessageslist_;
   ::RceObtainNeighborsList* ce_rceobtainneighborslist_;
   ::RceObtainNpcList* ce_rceobtainnpclist_;
+  ::RceObtainPayUrlParame* ce_rceobtainpayurlparame_;
+  ::RceObtainRandomTargets* ce_rceobtainrandomtargets_;
   ::RceObtainSocialItems* ce_rceobtainsocialitems_;
   ::RceObtainSocialUserInfo* ce_rceobtainsocialuserinfo_;
   ::RceObtainUniverse* ce_rceobtainuniverse_;
-  ::RceUpdateAlliances* ce_rceupdatealliances_;
-  ::RceDeployUnits* ce_rcedeployunits_;
-  ::RceItemDamaged* ce_rceitemdamaged_;
-  ::RceObtainAskForHelp* ce_rceobtainaskforhelp_;
-  ::RceObtainHangarsHelp* ce_rceobtainhangarshelp_;
-  ::RceObtainPayUrlParame* ce_rceobtainpayurlparame_;
-  ::RceObtainRandomTargets* ce_rceobtainrandomtargets_;
   ::RceObtainVisitHelps* ce_rceobtainvisithelps_;
   ::RceOnlineReward* ce_rceonlinereward_;
   ::RceQueryCheckAndLockAccountIfPossible* ce_rcequerycheckandlockaccountifpossible_;
@@ -947,6 +954,7 @@ class Event : public ::google::protobuf::Message {
   ::RceQueryStarsBookmarks* ce_rcequerystarsbookmarks_;
   ::RceQueryVisitHelpsGiftUnitsOnBunker* ce_rcequeryvisithelpsgiftunitsonbunker_;
   ::RceUnitDamaged* ce_rceunitdamaged_;
+  ::RceUpdateAlliances* ce_rceupdatealliances_;
   ::RceUpdateGameUnits* ce_rceupdategameunits_;
   ::RceUpdateItem* ce_rceupdateitem_;
   ::RceUpdateMisc* ce_rceupdatemisc_;
@@ -957,24 +965,24 @@ class Event : public ::google::protobuf::Message {
   ::RceUpdateStarsBookmarks* ce_rceupdatestarsbookmarks_;
   ::RceUpdateTargets* ce_rceupdatetargets_;
   ::RceUpdateVisitHelp* ce_rceupdatevisithelp_;
+  ::RseAuthState* se_rseauthstate_;
   ::RseCustomizedActivity* se_rsecustomizedactivity_;
+  ::RseDeployUnits* se_rsedeployunits_;
+  ::RseItemDamaged* se_rseitemdamaged_;
   ::RseLogin* se_rselogin_;
+  ::RseObtainAskForHelp* se_rseobtainaskforhelp_;
   ::RseObtainAttackerList* se_rseobtainattackerlist_;
   ::RseObtainBattleReplay* se_rseobtainbattlereplay_;
   ::RseObtainCustomizer* se_rseobtaincustomizer_;
+  ::RseObtainHangarsHelp* se_rseobtainhangarshelp_;
   ::RseObtainMessagesList* se_rseobtainmessageslist_;
   ::RseObtainNeighborsList* se_rseobtainneighborslist_;
   ::RseObtainNpcList* se_rseobtainnpclist_;
+  ::RseObtainPayUrlParame* se_rseobtainpayurlparame_;
+  ::RseObtainRandomTargets* se_rseobtainrandomtargets_;
   ::RseObtainSocialItems* se_rseobtainsocialitems_;
   ::RseObtainSocialUserInfo* se_rseobtainsocialuserinfo_;
   ::RseObtainUniverse* se_rseobtainuniverse_;
-  ::RseUpdateAlliances* se_rseupdatealliances_;
-  ::RseDeployUnits* se_rsedeployunits_;
-  ::RseItemDamaged* se_rseitemdamaged_;
-  ::RseObtainAskForHelp* se_rseobtainaskforhelp_;
-  ::RseObtainHangarsHelp* se_rseobtainhangarshelp_;
-  ::RseObtainPayUrlParame* se_rseobtainpayurlparame_;
-  ::RseObtainRandomTargets* se_rseobtainrandomtargets_;
   ::RseObtainVisitHelps* se_rseobtainvisithelps_;
   ::RseQueryCheckAndLockAccountIfPossible* se_rsequerycheckandlockaccountifpossible_;
   ::RseQueryGalaxyWindow* se_rsequerygalaxywindow_;
@@ -985,6 +993,7 @@ class Event : public ::google::protobuf::Message {
   ::RseQueryStarsBookmarks* se_rsequerystarsbookmarks_;
   ::RseQueryVisitHelpsGiftUnitsOnBunker* se_rsequeryvisithelpsgiftunitsonbunker_;
   ::RseUnitDamaged* se_rseunitdamaged_;
+  ::RseUpdateAlliances* se_rseupdatealliances_;
   ::RseUpdateGameUnits* se_rseupdategameunits_;
   ::RseUpdateItem* se_rseupdateitem_;
   ::RseUpdateMisc* se_rseupdatemisc_;
@@ -998,7 +1007,7 @@ class Event : public ::google::protobuf::Message {
   friend void protobuf_AssignDesc_event_2eproto();
   friend void protobuf_ShutdownFile_event_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(103 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(104 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -1515,480 +1524,480 @@ inline ::RceCustomizedActivity* Event::mutable_ce_rcecustomizedactivity() {
   return ce_rcecustomizedactivity_;
 }
 
-// optional .RceLogin ce_RceLogin = 201;
-inline bool Event::has_ce_rcelogin() const {
-  return _has_bit(28);
-}
-inline void Event::clear_ce_rcelogin() {
-  if (ce_rcelogin_ != NULL) ce_rcelogin_->::RceLogin::Clear();
-  _clear_bit(28);
-}
-inline const ::RceLogin& Event::ce_rcelogin() const {
-  return ce_rcelogin_ != NULL ? *ce_rcelogin_ : *default_instance_->ce_rcelogin_;
-}
-inline ::RceLogin* Event::mutable_ce_rcelogin() {
-  _set_bit(28);
-  if (ce_rcelogin_ == NULL) ce_rcelogin_ = new ::RceLogin;
-  return ce_rcelogin_;
-}
-
-// optional .RceObtainAttackerList ce_RceObtainAttackerList = 202;
-inline bool Event::has_ce_rceobtainattackerlist() const {
-  return _has_bit(29);
-}
-inline void Event::clear_ce_rceobtainattackerlist() {
-  if (ce_rceobtainattackerlist_ != NULL) ce_rceobtainattackerlist_->::RceObtainAttackerList::Clear();
-  _clear_bit(29);
-}
-inline const ::RceObtainAttackerList& Event::ce_rceobtainattackerlist() const {
-  return ce_rceobtainattackerlist_ != NULL ? *ce_rceobtainattackerlist_ : *default_instance_->ce_rceobtainattackerlist_;
-}
-inline ::RceObtainAttackerList* Event::mutable_ce_rceobtainattackerlist() {
-  _set_bit(29);
-  if (ce_rceobtainattackerlist_ == NULL) ce_rceobtainattackerlist_ = new ::RceObtainAttackerList;
-  return ce_rceobtainattackerlist_;
-}
-
-// optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 203;
-inline bool Event::has_ce_rceobtainbattlereplay() const {
-  return _has_bit(30);
-}
-inline void Event::clear_ce_rceobtainbattlereplay() {
-  if (ce_rceobtainbattlereplay_ != NULL) ce_rceobtainbattlereplay_->::RceObtainBattleReplay::Clear();
-  _clear_bit(30);
-}
-inline const ::RceObtainBattleReplay& Event::ce_rceobtainbattlereplay() const {
-  return ce_rceobtainbattlereplay_ != NULL ? *ce_rceobtainbattlereplay_ : *default_instance_->ce_rceobtainbattlereplay_;
-}
-inline ::RceObtainBattleReplay* Event::mutable_ce_rceobtainbattlereplay() {
-  _set_bit(30);
-  if (ce_rceobtainbattlereplay_ == NULL) ce_rceobtainbattlereplay_ = new ::RceObtainBattleReplay;
-  return ce_rceobtainbattlereplay_;
-}
-
-// optional .RceObtainCustomizer ce_RceObtainCustomizer = 204;
-inline bool Event::has_ce_rceobtaincustomizer() const {
-  return _has_bit(31);
-}
-inline void Event::clear_ce_rceobtaincustomizer() {
-  if (ce_rceobtaincustomizer_ != NULL) ce_rceobtaincustomizer_->::RceObtainCustomizer::Clear();
-  _clear_bit(31);
-}
-inline const ::RceObtainCustomizer& Event::ce_rceobtaincustomizer() const {
-  return ce_rceobtaincustomizer_ != NULL ? *ce_rceobtaincustomizer_ : *default_instance_->ce_rceobtaincustomizer_;
-}
-inline ::RceObtainCustomizer* Event::mutable_ce_rceobtaincustomizer() {
-  _set_bit(31);
-  if (ce_rceobtaincustomizer_ == NULL) ce_rceobtaincustomizer_ = new ::RceObtainCustomizer;
-  return ce_rceobtaincustomizer_;
-}
-
-// optional .RceObtainMessagesList ce_RceObtainMessagesList = 205;
-inline bool Event::has_ce_rceobtainmessageslist() const {
-  return _has_bit(32);
-}
-inline void Event::clear_ce_rceobtainmessageslist() {
-  if (ce_rceobtainmessageslist_ != NULL) ce_rceobtainmessageslist_->::RceObtainMessagesList::Clear();
-  _clear_bit(32);
-}
-inline const ::RceObtainMessagesList& Event::ce_rceobtainmessageslist() const {
-  return ce_rceobtainmessageslist_ != NULL ? *ce_rceobtainmessageslist_ : *default_instance_->ce_rceobtainmessageslist_;
-}
-inline ::RceObtainMessagesList* Event::mutable_ce_rceobtainmessageslist() {
-  _set_bit(32);
-  if (ce_rceobtainmessageslist_ == NULL) ce_rceobtainmessageslist_ = new ::RceObtainMessagesList;
-  return ce_rceobtainmessageslist_;
-}
-
-// optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 206;
-inline bool Event::has_ce_rceobtainneighborslist() const {
-  return _has_bit(33);
-}
-inline void Event::clear_ce_rceobtainneighborslist() {
-  if (ce_rceobtainneighborslist_ != NULL) ce_rceobtainneighborslist_->::RceObtainNeighborsList::Clear();
-  _clear_bit(33);
-}
-inline const ::RceObtainNeighborsList& Event::ce_rceobtainneighborslist() const {
-  return ce_rceobtainneighborslist_ != NULL ? *ce_rceobtainneighborslist_ : *default_instance_->ce_rceobtainneighborslist_;
-}
-inline ::RceObtainNeighborsList* Event::mutable_ce_rceobtainneighborslist() {
-  _set_bit(33);
-  if (ce_rceobtainneighborslist_ == NULL) ce_rceobtainneighborslist_ = new ::RceObtainNeighborsList;
-  return ce_rceobtainneighborslist_;
-}
-
-// optional .RceObtainNpcList ce_RceObtainNpcList = 207;
-inline bool Event::has_ce_rceobtainnpclist() const {
-  return _has_bit(34);
-}
-inline void Event::clear_ce_rceobtainnpclist() {
-  if (ce_rceobtainnpclist_ != NULL) ce_rceobtainnpclist_->::RceObtainNpcList::Clear();
-  _clear_bit(34);
-}
-inline const ::RceObtainNpcList& Event::ce_rceobtainnpclist() const {
-  return ce_rceobtainnpclist_ != NULL ? *ce_rceobtainnpclist_ : *default_instance_->ce_rceobtainnpclist_;
-}
-inline ::RceObtainNpcList* Event::mutable_ce_rceobtainnpclist() {
-  _set_bit(34);
-  if (ce_rceobtainnpclist_ == NULL) ce_rceobtainnpclist_ = new ::RceObtainNpcList;
-  return ce_rceobtainnpclist_;
-}
-
-// optional .RceObtainSocialItems ce_RceObtainSocialItems = 208;
-inline bool Event::has_ce_rceobtainsocialitems() const {
-  return _has_bit(35);
-}
-inline void Event::clear_ce_rceobtainsocialitems() {
-  if (ce_rceobtainsocialitems_ != NULL) ce_rceobtainsocialitems_->::RceObtainSocialItems::Clear();
-  _clear_bit(35);
-}
-inline const ::RceObtainSocialItems& Event::ce_rceobtainsocialitems() const {
-  return ce_rceobtainsocialitems_ != NULL ? *ce_rceobtainsocialitems_ : *default_instance_->ce_rceobtainsocialitems_;
-}
-inline ::RceObtainSocialItems* Event::mutable_ce_rceobtainsocialitems() {
-  _set_bit(35);
-  if (ce_rceobtainsocialitems_ == NULL) ce_rceobtainsocialitems_ = new ::RceObtainSocialItems;
-  return ce_rceobtainsocialitems_;
-}
-
-// optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 209;
-inline bool Event::has_ce_rceobtainsocialuserinfo() const {
-  return _has_bit(36);
-}
-inline void Event::clear_ce_rceobtainsocialuserinfo() {
-  if (ce_rceobtainsocialuserinfo_ != NULL) ce_rceobtainsocialuserinfo_->::RceObtainSocialUserInfo::Clear();
-  _clear_bit(36);
-}
-inline const ::RceObtainSocialUserInfo& Event::ce_rceobtainsocialuserinfo() const {
-  return ce_rceobtainsocialuserinfo_ != NULL ? *ce_rceobtainsocialuserinfo_ : *default_instance_->ce_rceobtainsocialuserinfo_;
-}
-inline ::RceObtainSocialUserInfo* Event::mutable_ce_rceobtainsocialuserinfo() {
-  _set_bit(36);
-  if (ce_rceobtainsocialuserinfo_ == NULL) ce_rceobtainsocialuserinfo_ = new ::RceObtainSocialUserInfo;
-  return ce_rceobtainsocialuserinfo_;
-}
-
-// optional .RceObtainUniverse ce_RceObtainUniverse = 210;
-inline bool Event::has_ce_rceobtainuniverse() const {
-  return _has_bit(37);
-}
-inline void Event::clear_ce_rceobtainuniverse() {
-  if (ce_rceobtainuniverse_ != NULL) ce_rceobtainuniverse_->::RceObtainUniverse::Clear();
-  _clear_bit(37);
-}
-inline const ::RceObtainUniverse& Event::ce_rceobtainuniverse() const {
-  return ce_rceobtainuniverse_ != NULL ? *ce_rceobtainuniverse_ : *default_instance_->ce_rceobtainuniverse_;
-}
-inline ::RceObtainUniverse* Event::mutable_ce_rceobtainuniverse() {
-  _set_bit(37);
-  if (ce_rceobtainuniverse_ == NULL) ce_rceobtainuniverse_ = new ::RceObtainUniverse;
-  return ce_rceobtainuniverse_;
-}
-
-// optional .RceUpdateAlliances ce_RceUpdateAlliances = 211;
-inline bool Event::has_ce_rceupdatealliances() const {
-  return _has_bit(38);
-}
-inline void Event::clear_ce_rceupdatealliances() {
-  if (ce_rceupdatealliances_ != NULL) ce_rceupdatealliances_->::RceUpdateAlliances::Clear();
-  _clear_bit(38);
-}
-inline const ::RceUpdateAlliances& Event::ce_rceupdatealliances() const {
-  return ce_rceupdatealliances_ != NULL ? *ce_rceupdatealliances_ : *default_instance_->ce_rceupdatealliances_;
-}
-inline ::RceUpdateAlliances* Event::mutable_ce_rceupdatealliances() {
-  _set_bit(38);
-  if (ce_rceupdatealliances_ == NULL) ce_rceupdatealliances_ = new ::RceUpdateAlliances;
-  return ce_rceupdatealliances_;
-}
-
-// optional .RceDeployUnits ce_RceDeployUnits = 212;
+// optional .RceDeployUnits ce_RceDeployUnits = 201;
 inline bool Event::has_ce_rcedeployunits() const {
-  return _has_bit(39);
+  return _has_bit(28);
 }
 inline void Event::clear_ce_rcedeployunits() {
   if (ce_rcedeployunits_ != NULL) ce_rcedeployunits_->::RceDeployUnits::Clear();
-  _clear_bit(39);
+  _clear_bit(28);
 }
 inline const ::RceDeployUnits& Event::ce_rcedeployunits() const {
   return ce_rcedeployunits_ != NULL ? *ce_rcedeployunits_ : *default_instance_->ce_rcedeployunits_;
 }
 inline ::RceDeployUnits* Event::mutable_ce_rcedeployunits() {
-  _set_bit(39);
+  _set_bit(28);
   if (ce_rcedeployunits_ == NULL) ce_rcedeployunits_ = new ::RceDeployUnits;
   return ce_rcedeployunits_;
 }
 
-// optional .RceItemDamaged ce_RceItemDamaged = 213;
+// optional .RceItemDamaged ce_RceItemDamaged = 202;
 inline bool Event::has_ce_rceitemdamaged() const {
-  return _has_bit(40);
+  return _has_bit(29);
 }
 inline void Event::clear_ce_rceitemdamaged() {
   if (ce_rceitemdamaged_ != NULL) ce_rceitemdamaged_->::RceItemDamaged::Clear();
-  _clear_bit(40);
+  _clear_bit(29);
 }
 inline const ::RceItemDamaged& Event::ce_rceitemdamaged() const {
   return ce_rceitemdamaged_ != NULL ? *ce_rceitemdamaged_ : *default_instance_->ce_rceitemdamaged_;
 }
 inline ::RceItemDamaged* Event::mutable_ce_rceitemdamaged() {
-  _set_bit(40);
+  _set_bit(29);
   if (ce_rceitemdamaged_ == NULL) ce_rceitemdamaged_ = new ::RceItemDamaged;
   return ce_rceitemdamaged_;
 }
 
-// optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 214;
+// optional .RceLogin ce_RceLogin = 203;
+inline bool Event::has_ce_rcelogin() const {
+  return _has_bit(30);
+}
+inline void Event::clear_ce_rcelogin() {
+  if (ce_rcelogin_ != NULL) ce_rcelogin_->::RceLogin::Clear();
+  _clear_bit(30);
+}
+inline const ::RceLogin& Event::ce_rcelogin() const {
+  return ce_rcelogin_ != NULL ? *ce_rcelogin_ : *default_instance_->ce_rcelogin_;
+}
+inline ::RceLogin* Event::mutable_ce_rcelogin() {
+  _set_bit(30);
+  if (ce_rcelogin_ == NULL) ce_rcelogin_ = new ::RceLogin;
+  return ce_rcelogin_;
+}
+
+// optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 204;
 inline bool Event::has_ce_rceobtainaskforhelp() const {
-  return _has_bit(41);
+  return _has_bit(31);
 }
 inline void Event::clear_ce_rceobtainaskforhelp() {
   if (ce_rceobtainaskforhelp_ != NULL) ce_rceobtainaskforhelp_->::RceObtainAskForHelp::Clear();
-  _clear_bit(41);
+  _clear_bit(31);
 }
 inline const ::RceObtainAskForHelp& Event::ce_rceobtainaskforhelp() const {
   return ce_rceobtainaskforhelp_ != NULL ? *ce_rceobtainaskforhelp_ : *default_instance_->ce_rceobtainaskforhelp_;
 }
 inline ::RceObtainAskForHelp* Event::mutable_ce_rceobtainaskforhelp() {
-  _set_bit(41);
+  _set_bit(31);
   if (ce_rceobtainaskforhelp_ == NULL) ce_rceobtainaskforhelp_ = new ::RceObtainAskForHelp;
   return ce_rceobtainaskforhelp_;
 }
 
-// optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 215;
+// optional .RceObtainAttackerList ce_RceObtainAttackerList = 205;
+inline bool Event::has_ce_rceobtainattackerlist() const {
+  return _has_bit(32);
+}
+inline void Event::clear_ce_rceobtainattackerlist() {
+  if (ce_rceobtainattackerlist_ != NULL) ce_rceobtainattackerlist_->::RceObtainAttackerList::Clear();
+  _clear_bit(32);
+}
+inline const ::RceObtainAttackerList& Event::ce_rceobtainattackerlist() const {
+  return ce_rceobtainattackerlist_ != NULL ? *ce_rceobtainattackerlist_ : *default_instance_->ce_rceobtainattackerlist_;
+}
+inline ::RceObtainAttackerList* Event::mutable_ce_rceobtainattackerlist() {
+  _set_bit(32);
+  if (ce_rceobtainattackerlist_ == NULL) ce_rceobtainattackerlist_ = new ::RceObtainAttackerList;
+  return ce_rceobtainattackerlist_;
+}
+
+// optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 206;
+inline bool Event::has_ce_rceobtainbattlereplay() const {
+  return _has_bit(33);
+}
+inline void Event::clear_ce_rceobtainbattlereplay() {
+  if (ce_rceobtainbattlereplay_ != NULL) ce_rceobtainbattlereplay_->::RceObtainBattleReplay::Clear();
+  _clear_bit(33);
+}
+inline const ::RceObtainBattleReplay& Event::ce_rceobtainbattlereplay() const {
+  return ce_rceobtainbattlereplay_ != NULL ? *ce_rceobtainbattlereplay_ : *default_instance_->ce_rceobtainbattlereplay_;
+}
+inline ::RceObtainBattleReplay* Event::mutable_ce_rceobtainbattlereplay() {
+  _set_bit(33);
+  if (ce_rceobtainbattlereplay_ == NULL) ce_rceobtainbattlereplay_ = new ::RceObtainBattleReplay;
+  return ce_rceobtainbattlereplay_;
+}
+
+// optional .RceObtainCustomizer ce_RceObtainCustomizer = 207;
+inline bool Event::has_ce_rceobtaincustomizer() const {
+  return _has_bit(34);
+}
+inline void Event::clear_ce_rceobtaincustomizer() {
+  if (ce_rceobtaincustomizer_ != NULL) ce_rceobtaincustomizer_->::RceObtainCustomizer::Clear();
+  _clear_bit(34);
+}
+inline const ::RceObtainCustomizer& Event::ce_rceobtaincustomizer() const {
+  return ce_rceobtaincustomizer_ != NULL ? *ce_rceobtaincustomizer_ : *default_instance_->ce_rceobtaincustomizer_;
+}
+inline ::RceObtainCustomizer* Event::mutable_ce_rceobtaincustomizer() {
+  _set_bit(34);
+  if (ce_rceobtaincustomizer_ == NULL) ce_rceobtaincustomizer_ = new ::RceObtainCustomizer;
+  return ce_rceobtaincustomizer_;
+}
+
+// optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 208;
 inline bool Event::has_ce_rceobtainhangarshelp() const {
-  return _has_bit(42);
+  return _has_bit(35);
 }
 inline void Event::clear_ce_rceobtainhangarshelp() {
   if (ce_rceobtainhangarshelp_ != NULL) ce_rceobtainhangarshelp_->::RceObtainHangarsHelp::Clear();
-  _clear_bit(42);
+  _clear_bit(35);
 }
 inline const ::RceObtainHangarsHelp& Event::ce_rceobtainhangarshelp() const {
   return ce_rceobtainhangarshelp_ != NULL ? *ce_rceobtainhangarshelp_ : *default_instance_->ce_rceobtainhangarshelp_;
 }
 inline ::RceObtainHangarsHelp* Event::mutable_ce_rceobtainhangarshelp() {
-  _set_bit(42);
+  _set_bit(35);
   if (ce_rceobtainhangarshelp_ == NULL) ce_rceobtainhangarshelp_ = new ::RceObtainHangarsHelp;
   return ce_rceobtainhangarshelp_;
 }
 
-// optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 216;
+// optional .RceObtainMessagesList ce_RceObtainMessagesList = 209;
+inline bool Event::has_ce_rceobtainmessageslist() const {
+  return _has_bit(36);
+}
+inline void Event::clear_ce_rceobtainmessageslist() {
+  if (ce_rceobtainmessageslist_ != NULL) ce_rceobtainmessageslist_->::RceObtainMessagesList::Clear();
+  _clear_bit(36);
+}
+inline const ::RceObtainMessagesList& Event::ce_rceobtainmessageslist() const {
+  return ce_rceobtainmessageslist_ != NULL ? *ce_rceobtainmessageslist_ : *default_instance_->ce_rceobtainmessageslist_;
+}
+inline ::RceObtainMessagesList* Event::mutable_ce_rceobtainmessageslist() {
+  _set_bit(36);
+  if (ce_rceobtainmessageslist_ == NULL) ce_rceobtainmessageslist_ = new ::RceObtainMessagesList;
+  return ce_rceobtainmessageslist_;
+}
+
+// optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 210;
+inline bool Event::has_ce_rceobtainneighborslist() const {
+  return _has_bit(37);
+}
+inline void Event::clear_ce_rceobtainneighborslist() {
+  if (ce_rceobtainneighborslist_ != NULL) ce_rceobtainneighborslist_->::RceObtainNeighborsList::Clear();
+  _clear_bit(37);
+}
+inline const ::RceObtainNeighborsList& Event::ce_rceobtainneighborslist() const {
+  return ce_rceobtainneighborslist_ != NULL ? *ce_rceobtainneighborslist_ : *default_instance_->ce_rceobtainneighborslist_;
+}
+inline ::RceObtainNeighborsList* Event::mutable_ce_rceobtainneighborslist() {
+  _set_bit(37);
+  if (ce_rceobtainneighborslist_ == NULL) ce_rceobtainneighborslist_ = new ::RceObtainNeighborsList;
+  return ce_rceobtainneighborslist_;
+}
+
+// optional .RceObtainNpcList ce_RceObtainNpcList = 211;
+inline bool Event::has_ce_rceobtainnpclist() const {
+  return _has_bit(38);
+}
+inline void Event::clear_ce_rceobtainnpclist() {
+  if (ce_rceobtainnpclist_ != NULL) ce_rceobtainnpclist_->::RceObtainNpcList::Clear();
+  _clear_bit(38);
+}
+inline const ::RceObtainNpcList& Event::ce_rceobtainnpclist() const {
+  return ce_rceobtainnpclist_ != NULL ? *ce_rceobtainnpclist_ : *default_instance_->ce_rceobtainnpclist_;
+}
+inline ::RceObtainNpcList* Event::mutable_ce_rceobtainnpclist() {
+  _set_bit(38);
+  if (ce_rceobtainnpclist_ == NULL) ce_rceobtainnpclist_ = new ::RceObtainNpcList;
+  return ce_rceobtainnpclist_;
+}
+
+// optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 212;
 inline bool Event::has_ce_rceobtainpayurlparame() const {
-  return _has_bit(43);
+  return _has_bit(39);
 }
 inline void Event::clear_ce_rceobtainpayurlparame() {
   if (ce_rceobtainpayurlparame_ != NULL) ce_rceobtainpayurlparame_->::RceObtainPayUrlParame::Clear();
-  _clear_bit(43);
+  _clear_bit(39);
 }
 inline const ::RceObtainPayUrlParame& Event::ce_rceobtainpayurlparame() const {
   return ce_rceobtainpayurlparame_ != NULL ? *ce_rceobtainpayurlparame_ : *default_instance_->ce_rceobtainpayurlparame_;
 }
 inline ::RceObtainPayUrlParame* Event::mutable_ce_rceobtainpayurlparame() {
-  _set_bit(43);
+  _set_bit(39);
   if (ce_rceobtainpayurlparame_ == NULL) ce_rceobtainpayurlparame_ = new ::RceObtainPayUrlParame;
   return ce_rceobtainpayurlparame_;
 }
 
-// optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 217;
+// optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 213;
 inline bool Event::has_ce_rceobtainrandomtargets() const {
-  return _has_bit(44);
+  return _has_bit(40);
 }
 inline void Event::clear_ce_rceobtainrandomtargets() {
   if (ce_rceobtainrandomtargets_ != NULL) ce_rceobtainrandomtargets_->::RceObtainRandomTargets::Clear();
-  _clear_bit(44);
+  _clear_bit(40);
 }
 inline const ::RceObtainRandomTargets& Event::ce_rceobtainrandomtargets() const {
   return ce_rceobtainrandomtargets_ != NULL ? *ce_rceobtainrandomtargets_ : *default_instance_->ce_rceobtainrandomtargets_;
 }
 inline ::RceObtainRandomTargets* Event::mutable_ce_rceobtainrandomtargets() {
-  _set_bit(44);
+  _set_bit(40);
   if (ce_rceobtainrandomtargets_ == NULL) ce_rceobtainrandomtargets_ = new ::RceObtainRandomTargets;
   return ce_rceobtainrandomtargets_;
 }
 
-// optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 218;
+// optional .RceObtainSocialItems ce_RceObtainSocialItems = 214;
+inline bool Event::has_ce_rceobtainsocialitems() const {
+  return _has_bit(41);
+}
+inline void Event::clear_ce_rceobtainsocialitems() {
+  if (ce_rceobtainsocialitems_ != NULL) ce_rceobtainsocialitems_->::RceObtainSocialItems::Clear();
+  _clear_bit(41);
+}
+inline const ::RceObtainSocialItems& Event::ce_rceobtainsocialitems() const {
+  return ce_rceobtainsocialitems_ != NULL ? *ce_rceobtainsocialitems_ : *default_instance_->ce_rceobtainsocialitems_;
+}
+inline ::RceObtainSocialItems* Event::mutable_ce_rceobtainsocialitems() {
+  _set_bit(41);
+  if (ce_rceobtainsocialitems_ == NULL) ce_rceobtainsocialitems_ = new ::RceObtainSocialItems;
+  return ce_rceobtainsocialitems_;
+}
+
+// optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 215;
+inline bool Event::has_ce_rceobtainsocialuserinfo() const {
+  return _has_bit(42);
+}
+inline void Event::clear_ce_rceobtainsocialuserinfo() {
+  if (ce_rceobtainsocialuserinfo_ != NULL) ce_rceobtainsocialuserinfo_->::RceObtainSocialUserInfo::Clear();
+  _clear_bit(42);
+}
+inline const ::RceObtainSocialUserInfo& Event::ce_rceobtainsocialuserinfo() const {
+  return ce_rceobtainsocialuserinfo_ != NULL ? *ce_rceobtainsocialuserinfo_ : *default_instance_->ce_rceobtainsocialuserinfo_;
+}
+inline ::RceObtainSocialUserInfo* Event::mutable_ce_rceobtainsocialuserinfo() {
+  _set_bit(42);
+  if (ce_rceobtainsocialuserinfo_ == NULL) ce_rceobtainsocialuserinfo_ = new ::RceObtainSocialUserInfo;
+  return ce_rceobtainsocialuserinfo_;
+}
+
+// optional .RceObtainUniverse ce_RceObtainUniverse = 216;
+inline bool Event::has_ce_rceobtainuniverse() const {
+  return _has_bit(43);
+}
+inline void Event::clear_ce_rceobtainuniverse() {
+  if (ce_rceobtainuniverse_ != NULL) ce_rceobtainuniverse_->::RceObtainUniverse::Clear();
+  _clear_bit(43);
+}
+inline const ::RceObtainUniverse& Event::ce_rceobtainuniverse() const {
+  return ce_rceobtainuniverse_ != NULL ? *ce_rceobtainuniverse_ : *default_instance_->ce_rceobtainuniverse_;
+}
+inline ::RceObtainUniverse* Event::mutable_ce_rceobtainuniverse() {
+  _set_bit(43);
+  if (ce_rceobtainuniverse_ == NULL) ce_rceobtainuniverse_ = new ::RceObtainUniverse;
+  return ce_rceobtainuniverse_;
+}
+
+// optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 217;
 inline bool Event::has_ce_rceobtainvisithelps() const {
-  return _has_bit(45);
+  return _has_bit(44);
 }
 inline void Event::clear_ce_rceobtainvisithelps() {
   if (ce_rceobtainvisithelps_ != NULL) ce_rceobtainvisithelps_->::RceObtainVisitHelps::Clear();
-  _clear_bit(45);
+  _clear_bit(44);
 }
 inline const ::RceObtainVisitHelps& Event::ce_rceobtainvisithelps() const {
   return ce_rceobtainvisithelps_ != NULL ? *ce_rceobtainvisithelps_ : *default_instance_->ce_rceobtainvisithelps_;
 }
 inline ::RceObtainVisitHelps* Event::mutable_ce_rceobtainvisithelps() {
-  _set_bit(45);
+  _set_bit(44);
   if (ce_rceobtainvisithelps_ == NULL) ce_rceobtainvisithelps_ = new ::RceObtainVisitHelps;
   return ce_rceobtainvisithelps_;
 }
 
-// optional .RceOnlineReward ce_RceOnlineReward = 219;
+// optional .RceOnlineReward ce_RceOnlineReward = 218;
 inline bool Event::has_ce_rceonlinereward() const {
-  return _has_bit(46);
+  return _has_bit(45);
 }
 inline void Event::clear_ce_rceonlinereward() {
   if (ce_rceonlinereward_ != NULL) ce_rceonlinereward_->::RceOnlineReward::Clear();
-  _clear_bit(46);
+  _clear_bit(45);
 }
 inline const ::RceOnlineReward& Event::ce_rceonlinereward() const {
   return ce_rceonlinereward_ != NULL ? *ce_rceonlinereward_ : *default_instance_->ce_rceonlinereward_;
 }
 inline ::RceOnlineReward* Event::mutable_ce_rceonlinereward() {
-  _set_bit(46);
+  _set_bit(45);
   if (ce_rceonlinereward_ == NULL) ce_rceonlinereward_ = new ::RceOnlineReward;
   return ce_rceonlinereward_;
 }
 
-// optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 220;
+// optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 219;
 inline bool Event::has_ce_rcequerycheckandlockaccountifpossible() const {
-  return _has_bit(47);
+  return _has_bit(46);
 }
 inline void Event::clear_ce_rcequerycheckandlockaccountifpossible() {
   if (ce_rcequerycheckandlockaccountifpossible_ != NULL) ce_rcequerycheckandlockaccountifpossible_->::RceQueryCheckAndLockAccountIfPossible::Clear();
-  _clear_bit(47);
+  _clear_bit(46);
 }
 inline const ::RceQueryCheckAndLockAccountIfPossible& Event::ce_rcequerycheckandlockaccountifpossible() const {
   return ce_rcequerycheckandlockaccountifpossible_ != NULL ? *ce_rcequerycheckandlockaccountifpossible_ : *default_instance_->ce_rcequerycheckandlockaccountifpossible_;
 }
 inline ::RceQueryCheckAndLockAccountIfPossible* Event::mutable_ce_rcequerycheckandlockaccountifpossible() {
-  _set_bit(47);
+  _set_bit(46);
   if (ce_rcequerycheckandlockaccountifpossible_ == NULL) ce_rcequerycheckandlockaccountifpossible_ = new ::RceQueryCheckAndLockAccountIfPossible;
   return ce_rcequerycheckandlockaccountifpossible_;
 }
 
-// optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 221;
+// optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 220;
 inline bool Event::has_ce_rcequerygalaxywindow() const {
-  return _has_bit(48);
+  return _has_bit(47);
 }
 inline void Event::clear_ce_rcequerygalaxywindow() {
   if (ce_rcequerygalaxywindow_ != NULL) ce_rcequerygalaxywindow_->::RceQueryGalaxyWindow::Clear();
-  _clear_bit(48);
+  _clear_bit(47);
 }
 inline const ::RceQueryGalaxyWindow& Event::ce_rcequerygalaxywindow() const {
   return ce_rcequerygalaxywindow_ != NULL ? *ce_rcequerygalaxywindow_ : *default_instance_->ce_rcequerygalaxywindow_;
 }
 inline ::RceQueryGalaxyWindow* Event::mutable_ce_rcequerygalaxywindow() {
-  _set_bit(48);
+  _set_bit(47);
   if (ce_rcequerygalaxywindow_ == NULL) ce_rcequerygalaxywindow_ = new ::RceQueryGalaxyWindow;
   return ce_rcequerygalaxywindow_;
 }
 
-// optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 222;
+// optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 221;
 inline bool Event::has_ce_rcequeryreceivewishitem() const {
-  return _has_bit(49);
+  return _has_bit(48);
 }
 inline void Event::clear_ce_rcequeryreceivewishitem() {
   if (ce_rcequeryreceivewishitem_ != NULL) ce_rcequeryreceivewishitem_->::RceQueryReceiveWishItem::Clear();
-  _clear_bit(49);
+  _clear_bit(48);
 }
 inline const ::RceQueryReceiveWishItem& Event::ce_rcequeryreceivewishitem() const {
   return ce_rcequeryreceivewishitem_ != NULL ? *ce_rcequeryreceivewishitem_ : *default_instance_->ce_rcequeryreceivewishitem_;
 }
 inline ::RceQueryReceiveWishItem* Event::mutable_ce_rcequeryreceivewishitem() {
-  _set_bit(49);
+  _set_bit(48);
   if (ce_rcequeryreceivewishitem_ == NULL) ce_rcequeryreceivewishitem_ = new ::RceQueryReceiveWishItem;
   return ce_rcequeryreceivewishitem_;
 }
 
-// optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 223;
+// optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 222;
 inline bool Event::has_ce_rcequeryrefusereceivewishitem() const {
-  return _has_bit(50);
+  return _has_bit(49);
 }
 inline void Event::clear_ce_rcequeryrefusereceivewishitem() {
   if (ce_rcequeryrefusereceivewishitem_ != NULL) ce_rcequeryrefusereceivewishitem_->::RceQueryRefuseReceiveWishItem::Clear();
-  _clear_bit(50);
+  _clear_bit(49);
 }
 inline const ::RceQueryRefuseReceiveWishItem& Event::ce_rcequeryrefusereceivewishitem() const {
   return ce_rcequeryrefusereceivewishitem_ != NULL ? *ce_rcequeryrefusereceivewishitem_ : *default_instance_->ce_rcequeryrefusereceivewishitem_;
 }
 inline ::RceQueryRefuseReceiveWishItem* Event::mutable_ce_rcequeryrefusereceivewishitem() {
-  _set_bit(50);
+  _set_bit(49);
   if (ce_rcequeryrefusereceivewishitem_ == NULL) ce_rcequeryrefusereceivewishitem_ = new ::RceQueryRefuseReceiveWishItem;
   return ce_rcequeryrefusereceivewishitem_;
 }
 
-// optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 224;
+// optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 223;
 inline bool Event::has_ce_rcequerysendwishitem() const {
-  return _has_bit(51);
+  return _has_bit(50);
 }
 inline void Event::clear_ce_rcequerysendwishitem() {
   if (ce_rcequerysendwishitem_ != NULL) ce_rcequerysendwishitem_->::RceQuerySendWishItem::Clear();
-  _clear_bit(51);
+  _clear_bit(50);
 }
 inline const ::RceQuerySendWishItem& Event::ce_rcequerysendwishitem() const {
   return ce_rcequerysendwishitem_ != NULL ? *ce_rcequerysendwishitem_ : *default_instance_->ce_rcequerysendwishitem_;
 }
 inline ::RceQuerySendWishItem* Event::mutable_ce_rcequerysendwishitem() {
-  _set_bit(51);
+  _set_bit(50);
   if (ce_rcequerysendwishitem_ == NULL) ce_rcequerysendwishitem_ = new ::RceQuerySendWishItem;
   return ce_rcequerysendwishitem_;
 }
 
-// optional .RceQueryStarInfo ce_RceQueryStarInfo = 225;
+// optional .RceQueryStarInfo ce_RceQueryStarInfo = 224;
 inline bool Event::has_ce_rcequerystarinfo() const {
-  return _has_bit(52);
+  return _has_bit(51);
 }
 inline void Event::clear_ce_rcequerystarinfo() {
   if (ce_rcequerystarinfo_ != NULL) ce_rcequerystarinfo_->::RceQueryStarInfo::Clear();
-  _clear_bit(52);
+  _clear_bit(51);
 }
 inline const ::RceQueryStarInfo& Event::ce_rcequerystarinfo() const {
   return ce_rcequerystarinfo_ != NULL ? *ce_rcequerystarinfo_ : *default_instance_->ce_rcequerystarinfo_;
 }
 inline ::RceQueryStarInfo* Event::mutable_ce_rcequerystarinfo() {
-  _set_bit(52);
+  _set_bit(51);
   if (ce_rcequerystarinfo_ == NULL) ce_rcequerystarinfo_ = new ::RceQueryStarInfo;
   return ce_rcequerystarinfo_;
 }
 
-// optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 226;
+// optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 225;
 inline bool Event::has_ce_rcequerystarsbookmarks() const {
-  return _has_bit(53);
+  return _has_bit(52);
 }
 inline void Event::clear_ce_rcequerystarsbookmarks() {
   if (ce_rcequerystarsbookmarks_ != NULL) ce_rcequerystarsbookmarks_->::RceQueryStarsBookmarks::Clear();
-  _clear_bit(53);
+  _clear_bit(52);
 }
 inline const ::RceQueryStarsBookmarks& Event::ce_rcequerystarsbookmarks() const {
   return ce_rcequerystarsbookmarks_ != NULL ? *ce_rcequerystarsbookmarks_ : *default_instance_->ce_rcequerystarsbookmarks_;
 }
 inline ::RceQueryStarsBookmarks* Event::mutable_ce_rcequerystarsbookmarks() {
-  _set_bit(53);
+  _set_bit(52);
   if (ce_rcequerystarsbookmarks_ == NULL) ce_rcequerystarsbookmarks_ = new ::RceQueryStarsBookmarks;
   return ce_rcequerystarsbookmarks_;
 }
 
-// optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 227;
+// optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 226;
 inline bool Event::has_ce_rcequeryvisithelpsgiftunitsonbunker() const {
-  return _has_bit(54);
+  return _has_bit(53);
 }
 inline void Event::clear_ce_rcequeryvisithelpsgiftunitsonbunker() {
   if (ce_rcequeryvisithelpsgiftunitsonbunker_ != NULL) ce_rcequeryvisithelpsgiftunitsonbunker_->::RceQueryVisitHelpsGiftUnitsOnBunker::Clear();
-  _clear_bit(54);
+  _clear_bit(53);
 }
 inline const ::RceQueryVisitHelpsGiftUnitsOnBunker& Event::ce_rcequeryvisithelpsgiftunitsonbunker() const {
   return ce_rcequeryvisithelpsgiftunitsonbunker_ != NULL ? *ce_rcequeryvisithelpsgiftunitsonbunker_ : *default_instance_->ce_rcequeryvisithelpsgiftunitsonbunker_;
 }
 inline ::RceQueryVisitHelpsGiftUnitsOnBunker* Event::mutable_ce_rcequeryvisithelpsgiftunitsonbunker() {
-  _set_bit(54);
+  _set_bit(53);
   if (ce_rcequeryvisithelpsgiftunitsonbunker_ == NULL) ce_rcequeryvisithelpsgiftunitsonbunker_ = new ::RceQueryVisitHelpsGiftUnitsOnBunker;
   return ce_rcequeryvisithelpsgiftunitsonbunker_;
 }
 
-// optional .RceUnitDamaged ce_RceUnitDamaged = 228;
+// optional .RceUnitDamaged ce_RceUnitDamaged = 227;
 inline bool Event::has_ce_rceunitdamaged() const {
-  return _has_bit(55);
+  return _has_bit(54);
 }
 inline void Event::clear_ce_rceunitdamaged() {
   if (ce_rceunitdamaged_ != NULL) ce_rceunitdamaged_->::RceUnitDamaged::Clear();
-  _clear_bit(55);
+  _clear_bit(54);
 }
 inline const ::RceUnitDamaged& Event::ce_rceunitdamaged() const {
   return ce_rceunitdamaged_ != NULL ? *ce_rceunitdamaged_ : *default_instance_->ce_rceunitdamaged_;
 }
 inline ::RceUnitDamaged* Event::mutable_ce_rceunitdamaged() {
-  _set_bit(55);
+  _set_bit(54);
   if (ce_rceunitdamaged_ == NULL) ce_rceunitdamaged_ = new ::RceUnitDamaged;
   return ce_rceunitdamaged_;
+}
+
+// optional .RceUpdateAlliances ce_RceUpdateAlliances = 228;
+inline bool Event::has_ce_rceupdatealliances() const {
+  return _has_bit(55);
+}
+inline void Event::clear_ce_rceupdatealliances() {
+  if (ce_rceupdatealliances_ != NULL) ce_rceupdatealliances_->::RceUpdateAlliances::Clear();
+  _clear_bit(55);
+}
+inline const ::RceUpdateAlliances& Event::ce_rceupdatealliances() const {
+  return ce_rceupdatealliances_ != NULL ? *ce_rceupdatealliances_ : *default_instance_->ce_rceupdatealliances_;
+}
+inline ::RceUpdateAlliances* Event::mutable_ce_rceupdatealliances() {
+  _set_bit(55);
+  if (ce_rceupdatealliances_ == NULL) ce_rceupdatealliances_ = new ::RceUpdateAlliances;
+  return ce_rceupdatealliances_;
 }
 
 // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 229;
@@ -2161,310 +2170,310 @@ inline ::RceUpdateVisitHelp* Event::mutable_ce_rceupdatevisithelp() {
   return ce_rceupdatevisithelp_;
 }
 
-// optional .RseCustomizedActivity se_RseCustomizedActivity = 500;
-inline bool Event::has_se_rsecustomizedactivity() const {
+// optional .RseAuthState se_RseAuthState = 500;
+inline bool Event::has_se_rseauthstate() const {
   return _has_bit(66);
+}
+inline void Event::clear_se_rseauthstate() {
+  if (se_rseauthstate_ != NULL) se_rseauthstate_->::RseAuthState::Clear();
+  _clear_bit(66);
+}
+inline const ::RseAuthState& Event::se_rseauthstate() const {
+  return se_rseauthstate_ != NULL ? *se_rseauthstate_ : *default_instance_->se_rseauthstate_;
+}
+inline ::RseAuthState* Event::mutable_se_rseauthstate() {
+  _set_bit(66);
+  if (se_rseauthstate_ == NULL) se_rseauthstate_ = new ::RseAuthState;
+  return se_rseauthstate_;
+}
+
+// optional .RseCustomizedActivity se_RseCustomizedActivity = 501;
+inline bool Event::has_se_rsecustomizedactivity() const {
+  return _has_bit(67);
 }
 inline void Event::clear_se_rsecustomizedactivity() {
   if (se_rsecustomizedactivity_ != NULL) se_rsecustomizedactivity_->::RseCustomizedActivity::Clear();
-  _clear_bit(66);
+  _clear_bit(67);
 }
 inline const ::RseCustomizedActivity& Event::se_rsecustomizedactivity() const {
   return se_rsecustomizedactivity_ != NULL ? *se_rsecustomizedactivity_ : *default_instance_->se_rsecustomizedactivity_;
 }
 inline ::RseCustomizedActivity* Event::mutable_se_rsecustomizedactivity() {
-  _set_bit(66);
+  _set_bit(67);
   if (se_rsecustomizedactivity_ == NULL) se_rsecustomizedactivity_ = new ::RseCustomizedActivity;
   return se_rsecustomizedactivity_;
 }
 
-// optional .RseLogin se_RseLogin = 501;
-inline bool Event::has_se_rselogin() const {
-  return _has_bit(67);
-}
-inline void Event::clear_se_rselogin() {
-  if (se_rselogin_ != NULL) se_rselogin_->::RseLogin::Clear();
-  _clear_bit(67);
-}
-inline const ::RseLogin& Event::se_rselogin() const {
-  return se_rselogin_ != NULL ? *se_rselogin_ : *default_instance_->se_rselogin_;
-}
-inline ::RseLogin* Event::mutable_se_rselogin() {
-  _set_bit(67);
-  if (se_rselogin_ == NULL) se_rselogin_ = new ::RseLogin;
-  return se_rselogin_;
-}
-
-// optional .RseObtainAttackerList se_RseObtainAttackerList = 502;
-inline bool Event::has_se_rseobtainattackerlist() const {
-  return _has_bit(68);
-}
-inline void Event::clear_se_rseobtainattackerlist() {
-  if (se_rseobtainattackerlist_ != NULL) se_rseobtainattackerlist_->::RseObtainAttackerList::Clear();
-  _clear_bit(68);
-}
-inline const ::RseObtainAttackerList& Event::se_rseobtainattackerlist() const {
-  return se_rseobtainattackerlist_ != NULL ? *se_rseobtainattackerlist_ : *default_instance_->se_rseobtainattackerlist_;
-}
-inline ::RseObtainAttackerList* Event::mutable_se_rseobtainattackerlist() {
-  _set_bit(68);
-  if (se_rseobtainattackerlist_ == NULL) se_rseobtainattackerlist_ = new ::RseObtainAttackerList;
-  return se_rseobtainattackerlist_;
-}
-
-// optional .RseObtainBattleReplay se_RseObtainBattleReplay = 503;
-inline bool Event::has_se_rseobtainbattlereplay() const {
-  return _has_bit(69);
-}
-inline void Event::clear_se_rseobtainbattlereplay() {
-  if (se_rseobtainbattlereplay_ != NULL) se_rseobtainbattlereplay_->::RseObtainBattleReplay::Clear();
-  _clear_bit(69);
-}
-inline const ::RseObtainBattleReplay& Event::se_rseobtainbattlereplay() const {
-  return se_rseobtainbattlereplay_ != NULL ? *se_rseobtainbattlereplay_ : *default_instance_->se_rseobtainbattlereplay_;
-}
-inline ::RseObtainBattleReplay* Event::mutable_se_rseobtainbattlereplay() {
-  _set_bit(69);
-  if (se_rseobtainbattlereplay_ == NULL) se_rseobtainbattlereplay_ = new ::RseObtainBattleReplay;
-  return se_rseobtainbattlereplay_;
-}
-
-// optional .RseObtainCustomizer se_RseObtainCustomizer = 504;
-inline bool Event::has_se_rseobtaincustomizer() const {
-  return _has_bit(70);
-}
-inline void Event::clear_se_rseobtaincustomizer() {
-  if (se_rseobtaincustomizer_ != NULL) se_rseobtaincustomizer_->::RseObtainCustomizer::Clear();
-  _clear_bit(70);
-}
-inline const ::RseObtainCustomizer& Event::se_rseobtaincustomizer() const {
-  return se_rseobtaincustomizer_ != NULL ? *se_rseobtaincustomizer_ : *default_instance_->se_rseobtaincustomizer_;
-}
-inline ::RseObtainCustomizer* Event::mutable_se_rseobtaincustomizer() {
-  _set_bit(70);
-  if (se_rseobtaincustomizer_ == NULL) se_rseobtaincustomizer_ = new ::RseObtainCustomizer;
-  return se_rseobtaincustomizer_;
-}
-
-// optional .RseObtainMessagesList se_RseObtainMessagesList = 505;
-inline bool Event::has_se_rseobtainmessageslist() const {
-  return _has_bit(71);
-}
-inline void Event::clear_se_rseobtainmessageslist() {
-  if (se_rseobtainmessageslist_ != NULL) se_rseobtainmessageslist_->::RseObtainMessagesList::Clear();
-  _clear_bit(71);
-}
-inline const ::RseObtainMessagesList& Event::se_rseobtainmessageslist() const {
-  return se_rseobtainmessageslist_ != NULL ? *se_rseobtainmessageslist_ : *default_instance_->se_rseobtainmessageslist_;
-}
-inline ::RseObtainMessagesList* Event::mutable_se_rseobtainmessageslist() {
-  _set_bit(71);
-  if (se_rseobtainmessageslist_ == NULL) se_rseobtainmessageslist_ = new ::RseObtainMessagesList;
-  return se_rseobtainmessageslist_;
-}
-
-// optional .RseObtainNeighborsList se_RseObtainNeighborsList = 506;
-inline bool Event::has_se_rseobtainneighborslist() const {
-  return _has_bit(72);
-}
-inline void Event::clear_se_rseobtainneighborslist() {
-  if (se_rseobtainneighborslist_ != NULL) se_rseobtainneighborslist_->::RseObtainNeighborsList::Clear();
-  _clear_bit(72);
-}
-inline const ::RseObtainNeighborsList& Event::se_rseobtainneighborslist() const {
-  return se_rseobtainneighborslist_ != NULL ? *se_rseobtainneighborslist_ : *default_instance_->se_rseobtainneighborslist_;
-}
-inline ::RseObtainNeighborsList* Event::mutable_se_rseobtainneighborslist() {
-  _set_bit(72);
-  if (se_rseobtainneighborslist_ == NULL) se_rseobtainneighborslist_ = new ::RseObtainNeighborsList;
-  return se_rseobtainneighborslist_;
-}
-
-// optional .RseObtainNpcList se_RseObtainNpcList = 507;
-inline bool Event::has_se_rseobtainnpclist() const {
-  return _has_bit(73);
-}
-inline void Event::clear_se_rseobtainnpclist() {
-  if (se_rseobtainnpclist_ != NULL) se_rseobtainnpclist_->::RseObtainNpcList::Clear();
-  _clear_bit(73);
-}
-inline const ::RseObtainNpcList& Event::se_rseobtainnpclist() const {
-  return se_rseobtainnpclist_ != NULL ? *se_rseobtainnpclist_ : *default_instance_->se_rseobtainnpclist_;
-}
-inline ::RseObtainNpcList* Event::mutable_se_rseobtainnpclist() {
-  _set_bit(73);
-  if (se_rseobtainnpclist_ == NULL) se_rseobtainnpclist_ = new ::RseObtainNpcList;
-  return se_rseobtainnpclist_;
-}
-
-// optional .RseObtainSocialItems se_RseObtainSocialItems = 508;
-inline bool Event::has_se_rseobtainsocialitems() const {
-  return _has_bit(74);
-}
-inline void Event::clear_se_rseobtainsocialitems() {
-  if (se_rseobtainsocialitems_ != NULL) se_rseobtainsocialitems_->::RseObtainSocialItems::Clear();
-  _clear_bit(74);
-}
-inline const ::RseObtainSocialItems& Event::se_rseobtainsocialitems() const {
-  return se_rseobtainsocialitems_ != NULL ? *se_rseobtainsocialitems_ : *default_instance_->se_rseobtainsocialitems_;
-}
-inline ::RseObtainSocialItems* Event::mutable_se_rseobtainsocialitems() {
-  _set_bit(74);
-  if (se_rseobtainsocialitems_ == NULL) se_rseobtainsocialitems_ = new ::RseObtainSocialItems;
-  return se_rseobtainsocialitems_;
-}
-
-// optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 509;
-inline bool Event::has_se_rseobtainsocialuserinfo() const {
-  return _has_bit(75);
-}
-inline void Event::clear_se_rseobtainsocialuserinfo() {
-  if (se_rseobtainsocialuserinfo_ != NULL) se_rseobtainsocialuserinfo_->::RseObtainSocialUserInfo::Clear();
-  _clear_bit(75);
-}
-inline const ::RseObtainSocialUserInfo& Event::se_rseobtainsocialuserinfo() const {
-  return se_rseobtainsocialuserinfo_ != NULL ? *se_rseobtainsocialuserinfo_ : *default_instance_->se_rseobtainsocialuserinfo_;
-}
-inline ::RseObtainSocialUserInfo* Event::mutable_se_rseobtainsocialuserinfo() {
-  _set_bit(75);
-  if (se_rseobtainsocialuserinfo_ == NULL) se_rseobtainsocialuserinfo_ = new ::RseObtainSocialUserInfo;
-  return se_rseobtainsocialuserinfo_;
-}
-
-// optional .RseObtainUniverse se_RseObtainUniverse = 510;
-inline bool Event::has_se_rseobtainuniverse() const {
-  return _has_bit(76);
-}
-inline void Event::clear_se_rseobtainuniverse() {
-  if (se_rseobtainuniverse_ != NULL) se_rseobtainuniverse_->::RseObtainUniverse::Clear();
-  _clear_bit(76);
-}
-inline const ::RseObtainUniverse& Event::se_rseobtainuniverse() const {
-  return se_rseobtainuniverse_ != NULL ? *se_rseobtainuniverse_ : *default_instance_->se_rseobtainuniverse_;
-}
-inline ::RseObtainUniverse* Event::mutable_se_rseobtainuniverse() {
-  _set_bit(76);
-  if (se_rseobtainuniverse_ == NULL) se_rseobtainuniverse_ = new ::RseObtainUniverse;
-  return se_rseobtainuniverse_;
-}
-
-// optional .RseUpdateAlliances se_RseUpdateAlliances = 511;
-inline bool Event::has_se_rseupdatealliances() const {
-  return _has_bit(77);
-}
-inline void Event::clear_se_rseupdatealliances() {
-  if (se_rseupdatealliances_ != NULL) se_rseupdatealliances_->::RseUpdateAlliances::Clear();
-  _clear_bit(77);
-}
-inline const ::RseUpdateAlliances& Event::se_rseupdatealliances() const {
-  return se_rseupdatealliances_ != NULL ? *se_rseupdatealliances_ : *default_instance_->se_rseupdatealliances_;
-}
-inline ::RseUpdateAlliances* Event::mutable_se_rseupdatealliances() {
-  _set_bit(77);
-  if (se_rseupdatealliances_ == NULL) se_rseupdatealliances_ = new ::RseUpdateAlliances;
-  return se_rseupdatealliances_;
-}
-
-// optional .RseDeployUnits se_RseDeployUnits = 512;
+// optional .RseDeployUnits se_RseDeployUnits = 502;
 inline bool Event::has_se_rsedeployunits() const {
-  return _has_bit(78);
+  return _has_bit(68);
 }
 inline void Event::clear_se_rsedeployunits() {
   if (se_rsedeployunits_ != NULL) se_rsedeployunits_->::RseDeployUnits::Clear();
-  _clear_bit(78);
+  _clear_bit(68);
 }
 inline const ::RseDeployUnits& Event::se_rsedeployunits() const {
   return se_rsedeployunits_ != NULL ? *se_rsedeployunits_ : *default_instance_->se_rsedeployunits_;
 }
 inline ::RseDeployUnits* Event::mutable_se_rsedeployunits() {
-  _set_bit(78);
+  _set_bit(68);
   if (se_rsedeployunits_ == NULL) se_rsedeployunits_ = new ::RseDeployUnits;
   return se_rsedeployunits_;
 }
 
-// optional .RseItemDamaged se_RseItemDamaged = 513;
+// optional .RseItemDamaged se_RseItemDamaged = 503;
 inline bool Event::has_se_rseitemdamaged() const {
-  return _has_bit(79);
+  return _has_bit(69);
 }
 inline void Event::clear_se_rseitemdamaged() {
   if (se_rseitemdamaged_ != NULL) se_rseitemdamaged_->::RseItemDamaged::Clear();
-  _clear_bit(79);
+  _clear_bit(69);
 }
 inline const ::RseItemDamaged& Event::se_rseitemdamaged() const {
   return se_rseitemdamaged_ != NULL ? *se_rseitemdamaged_ : *default_instance_->se_rseitemdamaged_;
 }
 inline ::RseItemDamaged* Event::mutable_se_rseitemdamaged() {
-  _set_bit(79);
+  _set_bit(69);
   if (se_rseitemdamaged_ == NULL) se_rseitemdamaged_ = new ::RseItemDamaged;
   return se_rseitemdamaged_;
 }
 
-// optional .RseObtainAskForHelp se_RseObtainAskForHelp = 514;
+// optional .RseLogin se_RseLogin = 504;
+inline bool Event::has_se_rselogin() const {
+  return _has_bit(70);
+}
+inline void Event::clear_se_rselogin() {
+  if (se_rselogin_ != NULL) se_rselogin_->::RseLogin::Clear();
+  _clear_bit(70);
+}
+inline const ::RseLogin& Event::se_rselogin() const {
+  return se_rselogin_ != NULL ? *se_rselogin_ : *default_instance_->se_rselogin_;
+}
+inline ::RseLogin* Event::mutable_se_rselogin() {
+  _set_bit(70);
+  if (se_rselogin_ == NULL) se_rselogin_ = new ::RseLogin;
+  return se_rselogin_;
+}
+
+// optional .RseObtainAskForHelp se_RseObtainAskForHelp = 505;
 inline bool Event::has_se_rseobtainaskforhelp() const {
-  return _has_bit(80);
+  return _has_bit(71);
 }
 inline void Event::clear_se_rseobtainaskforhelp() {
   if (se_rseobtainaskforhelp_ != NULL) se_rseobtainaskforhelp_->::RseObtainAskForHelp::Clear();
-  _clear_bit(80);
+  _clear_bit(71);
 }
 inline const ::RseObtainAskForHelp& Event::se_rseobtainaskforhelp() const {
   return se_rseobtainaskforhelp_ != NULL ? *se_rseobtainaskforhelp_ : *default_instance_->se_rseobtainaskforhelp_;
 }
 inline ::RseObtainAskForHelp* Event::mutable_se_rseobtainaskforhelp() {
-  _set_bit(80);
+  _set_bit(71);
   if (se_rseobtainaskforhelp_ == NULL) se_rseobtainaskforhelp_ = new ::RseObtainAskForHelp;
   return se_rseobtainaskforhelp_;
 }
 
-// optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 515;
+// optional .RseObtainAttackerList se_RseObtainAttackerList = 506;
+inline bool Event::has_se_rseobtainattackerlist() const {
+  return _has_bit(72);
+}
+inline void Event::clear_se_rseobtainattackerlist() {
+  if (se_rseobtainattackerlist_ != NULL) se_rseobtainattackerlist_->::RseObtainAttackerList::Clear();
+  _clear_bit(72);
+}
+inline const ::RseObtainAttackerList& Event::se_rseobtainattackerlist() const {
+  return se_rseobtainattackerlist_ != NULL ? *se_rseobtainattackerlist_ : *default_instance_->se_rseobtainattackerlist_;
+}
+inline ::RseObtainAttackerList* Event::mutable_se_rseobtainattackerlist() {
+  _set_bit(72);
+  if (se_rseobtainattackerlist_ == NULL) se_rseobtainattackerlist_ = new ::RseObtainAttackerList;
+  return se_rseobtainattackerlist_;
+}
+
+// optional .RseObtainBattleReplay se_RseObtainBattleReplay = 507;
+inline bool Event::has_se_rseobtainbattlereplay() const {
+  return _has_bit(73);
+}
+inline void Event::clear_se_rseobtainbattlereplay() {
+  if (se_rseobtainbattlereplay_ != NULL) se_rseobtainbattlereplay_->::RseObtainBattleReplay::Clear();
+  _clear_bit(73);
+}
+inline const ::RseObtainBattleReplay& Event::se_rseobtainbattlereplay() const {
+  return se_rseobtainbattlereplay_ != NULL ? *se_rseobtainbattlereplay_ : *default_instance_->se_rseobtainbattlereplay_;
+}
+inline ::RseObtainBattleReplay* Event::mutable_se_rseobtainbattlereplay() {
+  _set_bit(73);
+  if (se_rseobtainbattlereplay_ == NULL) se_rseobtainbattlereplay_ = new ::RseObtainBattleReplay;
+  return se_rseobtainbattlereplay_;
+}
+
+// optional .RseObtainCustomizer se_RseObtainCustomizer = 508;
+inline bool Event::has_se_rseobtaincustomizer() const {
+  return _has_bit(74);
+}
+inline void Event::clear_se_rseobtaincustomizer() {
+  if (se_rseobtaincustomizer_ != NULL) se_rseobtaincustomizer_->::RseObtainCustomizer::Clear();
+  _clear_bit(74);
+}
+inline const ::RseObtainCustomizer& Event::se_rseobtaincustomizer() const {
+  return se_rseobtaincustomizer_ != NULL ? *se_rseobtaincustomizer_ : *default_instance_->se_rseobtaincustomizer_;
+}
+inline ::RseObtainCustomizer* Event::mutable_se_rseobtaincustomizer() {
+  _set_bit(74);
+  if (se_rseobtaincustomizer_ == NULL) se_rseobtaincustomizer_ = new ::RseObtainCustomizer;
+  return se_rseobtaincustomizer_;
+}
+
+// optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 509;
 inline bool Event::has_se_rseobtainhangarshelp() const {
-  return _has_bit(81);
+  return _has_bit(75);
 }
 inline void Event::clear_se_rseobtainhangarshelp() {
   if (se_rseobtainhangarshelp_ != NULL) se_rseobtainhangarshelp_->::RseObtainHangarsHelp::Clear();
-  _clear_bit(81);
+  _clear_bit(75);
 }
 inline const ::RseObtainHangarsHelp& Event::se_rseobtainhangarshelp() const {
   return se_rseobtainhangarshelp_ != NULL ? *se_rseobtainhangarshelp_ : *default_instance_->se_rseobtainhangarshelp_;
 }
 inline ::RseObtainHangarsHelp* Event::mutable_se_rseobtainhangarshelp() {
-  _set_bit(81);
+  _set_bit(75);
   if (se_rseobtainhangarshelp_ == NULL) se_rseobtainhangarshelp_ = new ::RseObtainHangarsHelp;
   return se_rseobtainhangarshelp_;
 }
 
-// optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 516;
+// optional .RseObtainMessagesList se_RseObtainMessagesList = 510;
+inline bool Event::has_se_rseobtainmessageslist() const {
+  return _has_bit(76);
+}
+inline void Event::clear_se_rseobtainmessageslist() {
+  if (se_rseobtainmessageslist_ != NULL) se_rseobtainmessageslist_->::RseObtainMessagesList::Clear();
+  _clear_bit(76);
+}
+inline const ::RseObtainMessagesList& Event::se_rseobtainmessageslist() const {
+  return se_rseobtainmessageslist_ != NULL ? *se_rseobtainmessageslist_ : *default_instance_->se_rseobtainmessageslist_;
+}
+inline ::RseObtainMessagesList* Event::mutable_se_rseobtainmessageslist() {
+  _set_bit(76);
+  if (se_rseobtainmessageslist_ == NULL) se_rseobtainmessageslist_ = new ::RseObtainMessagesList;
+  return se_rseobtainmessageslist_;
+}
+
+// optional .RseObtainNeighborsList se_RseObtainNeighborsList = 511;
+inline bool Event::has_se_rseobtainneighborslist() const {
+  return _has_bit(77);
+}
+inline void Event::clear_se_rseobtainneighborslist() {
+  if (se_rseobtainneighborslist_ != NULL) se_rseobtainneighborslist_->::RseObtainNeighborsList::Clear();
+  _clear_bit(77);
+}
+inline const ::RseObtainNeighborsList& Event::se_rseobtainneighborslist() const {
+  return se_rseobtainneighborslist_ != NULL ? *se_rseobtainneighborslist_ : *default_instance_->se_rseobtainneighborslist_;
+}
+inline ::RseObtainNeighborsList* Event::mutable_se_rseobtainneighborslist() {
+  _set_bit(77);
+  if (se_rseobtainneighborslist_ == NULL) se_rseobtainneighborslist_ = new ::RseObtainNeighborsList;
+  return se_rseobtainneighborslist_;
+}
+
+// optional .RseObtainNpcList se_RseObtainNpcList = 512;
+inline bool Event::has_se_rseobtainnpclist() const {
+  return _has_bit(78);
+}
+inline void Event::clear_se_rseobtainnpclist() {
+  if (se_rseobtainnpclist_ != NULL) se_rseobtainnpclist_->::RseObtainNpcList::Clear();
+  _clear_bit(78);
+}
+inline const ::RseObtainNpcList& Event::se_rseobtainnpclist() const {
+  return se_rseobtainnpclist_ != NULL ? *se_rseobtainnpclist_ : *default_instance_->se_rseobtainnpclist_;
+}
+inline ::RseObtainNpcList* Event::mutable_se_rseobtainnpclist() {
+  _set_bit(78);
+  if (se_rseobtainnpclist_ == NULL) se_rseobtainnpclist_ = new ::RseObtainNpcList;
+  return se_rseobtainnpclist_;
+}
+
+// optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 513;
 inline bool Event::has_se_rseobtainpayurlparame() const {
-  return _has_bit(82);
+  return _has_bit(79);
 }
 inline void Event::clear_se_rseobtainpayurlparame() {
   if (se_rseobtainpayurlparame_ != NULL) se_rseobtainpayurlparame_->::RseObtainPayUrlParame::Clear();
-  _clear_bit(82);
+  _clear_bit(79);
 }
 inline const ::RseObtainPayUrlParame& Event::se_rseobtainpayurlparame() const {
   return se_rseobtainpayurlparame_ != NULL ? *se_rseobtainpayurlparame_ : *default_instance_->se_rseobtainpayurlparame_;
 }
 inline ::RseObtainPayUrlParame* Event::mutable_se_rseobtainpayurlparame() {
-  _set_bit(82);
+  _set_bit(79);
   if (se_rseobtainpayurlparame_ == NULL) se_rseobtainpayurlparame_ = new ::RseObtainPayUrlParame;
   return se_rseobtainpayurlparame_;
 }
 
-// optional .RseObtainRandomTargets se_RseObtainRandomTargets = 517;
+// optional .RseObtainRandomTargets se_RseObtainRandomTargets = 514;
 inline bool Event::has_se_rseobtainrandomtargets() const {
-  return _has_bit(83);
+  return _has_bit(80);
 }
 inline void Event::clear_se_rseobtainrandomtargets() {
   if (se_rseobtainrandomtargets_ != NULL) se_rseobtainrandomtargets_->::RseObtainRandomTargets::Clear();
-  _clear_bit(83);
+  _clear_bit(80);
 }
 inline const ::RseObtainRandomTargets& Event::se_rseobtainrandomtargets() const {
   return se_rseobtainrandomtargets_ != NULL ? *se_rseobtainrandomtargets_ : *default_instance_->se_rseobtainrandomtargets_;
 }
 inline ::RseObtainRandomTargets* Event::mutable_se_rseobtainrandomtargets() {
-  _set_bit(83);
+  _set_bit(80);
   if (se_rseobtainrandomtargets_ == NULL) se_rseobtainrandomtargets_ = new ::RseObtainRandomTargets;
   return se_rseobtainrandomtargets_;
+}
+
+// optional .RseObtainSocialItems se_RseObtainSocialItems = 515;
+inline bool Event::has_se_rseobtainsocialitems() const {
+  return _has_bit(81);
+}
+inline void Event::clear_se_rseobtainsocialitems() {
+  if (se_rseobtainsocialitems_ != NULL) se_rseobtainsocialitems_->::RseObtainSocialItems::Clear();
+  _clear_bit(81);
+}
+inline const ::RseObtainSocialItems& Event::se_rseobtainsocialitems() const {
+  return se_rseobtainsocialitems_ != NULL ? *se_rseobtainsocialitems_ : *default_instance_->se_rseobtainsocialitems_;
+}
+inline ::RseObtainSocialItems* Event::mutable_se_rseobtainsocialitems() {
+  _set_bit(81);
+  if (se_rseobtainsocialitems_ == NULL) se_rseobtainsocialitems_ = new ::RseObtainSocialItems;
+  return se_rseobtainsocialitems_;
+}
+
+// optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 516;
+inline bool Event::has_se_rseobtainsocialuserinfo() const {
+  return _has_bit(82);
+}
+inline void Event::clear_se_rseobtainsocialuserinfo() {
+  if (se_rseobtainsocialuserinfo_ != NULL) se_rseobtainsocialuserinfo_->::RseObtainSocialUserInfo::Clear();
+  _clear_bit(82);
+}
+inline const ::RseObtainSocialUserInfo& Event::se_rseobtainsocialuserinfo() const {
+  return se_rseobtainsocialuserinfo_ != NULL ? *se_rseobtainsocialuserinfo_ : *default_instance_->se_rseobtainsocialuserinfo_;
+}
+inline ::RseObtainSocialUserInfo* Event::mutable_se_rseobtainsocialuserinfo() {
+  _set_bit(82);
+  if (se_rseobtainsocialuserinfo_ == NULL) se_rseobtainsocialuserinfo_ = new ::RseObtainSocialUserInfo;
+  return se_rseobtainsocialuserinfo_;
+}
+
+// optional .RseObtainUniverse se_RseObtainUniverse = 517;
+inline bool Event::has_se_rseobtainuniverse() const {
+  return _has_bit(83);
+}
+inline void Event::clear_se_rseobtainuniverse() {
+  if (se_rseobtainuniverse_ != NULL) se_rseobtainuniverse_->::RseObtainUniverse::Clear();
+  _clear_bit(83);
+}
+inline const ::RseObtainUniverse& Event::se_rseobtainuniverse() const {
+  return se_rseobtainuniverse_ != NULL ? *se_rseobtainuniverse_ : *default_instance_->se_rseobtainuniverse_;
+}
+inline ::RseObtainUniverse* Event::mutable_se_rseobtainuniverse() {
+  _set_bit(83);
+  if (se_rseobtainuniverse_ == NULL) se_rseobtainuniverse_ = new ::RseObtainUniverse;
+  return se_rseobtainuniverse_;
 }
 
 // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 518;
@@ -2637,155 +2646,172 @@ inline ::RseUnitDamaged* Event::mutable_se_rseunitdamaged() {
   return se_rseunitdamaged_;
 }
 
-// optional .RseUpdateGameUnits se_RseUpdateGameUnits = 528;
-inline bool Event::has_se_rseupdategameunits() const {
+// optional .RseUpdateAlliances se_RseUpdateAlliances = 528;
+inline bool Event::has_se_rseupdatealliances() const {
   return _has_bit(94);
+}
+inline void Event::clear_se_rseupdatealliances() {
+  if (se_rseupdatealliances_ != NULL) se_rseupdatealliances_->::RseUpdateAlliances::Clear();
+  _clear_bit(94);
+}
+inline const ::RseUpdateAlliances& Event::se_rseupdatealliances() const {
+  return se_rseupdatealliances_ != NULL ? *se_rseupdatealliances_ : *default_instance_->se_rseupdatealliances_;
+}
+inline ::RseUpdateAlliances* Event::mutable_se_rseupdatealliances() {
+  _set_bit(94);
+  if (se_rseupdatealliances_ == NULL) se_rseupdatealliances_ = new ::RseUpdateAlliances;
+  return se_rseupdatealliances_;
+}
+
+// optional .RseUpdateGameUnits se_RseUpdateGameUnits = 529;
+inline bool Event::has_se_rseupdategameunits() const {
+  return _has_bit(95);
 }
 inline void Event::clear_se_rseupdategameunits() {
   if (se_rseupdategameunits_ != NULL) se_rseupdategameunits_->::RseUpdateGameUnits::Clear();
-  _clear_bit(94);
+  _clear_bit(95);
 }
 inline const ::RseUpdateGameUnits& Event::se_rseupdategameunits() const {
   return se_rseupdategameunits_ != NULL ? *se_rseupdategameunits_ : *default_instance_->se_rseupdategameunits_;
 }
 inline ::RseUpdateGameUnits* Event::mutable_se_rseupdategameunits() {
-  _set_bit(94);
+  _set_bit(95);
   if (se_rseupdategameunits_ == NULL) se_rseupdategameunits_ = new ::RseUpdateGameUnits;
   return se_rseupdategameunits_;
 }
 
-// optional .RseUpdateItem se_RseUpdateItem = 529;
+// optional .RseUpdateItem se_RseUpdateItem = 530;
 inline bool Event::has_se_rseupdateitem() const {
-  return _has_bit(95);
+  return _has_bit(96);
 }
 inline void Event::clear_se_rseupdateitem() {
   if (se_rseupdateitem_ != NULL) se_rseupdateitem_->::RseUpdateItem::Clear();
-  _clear_bit(95);
+  _clear_bit(96);
 }
 inline const ::RseUpdateItem& Event::se_rseupdateitem() const {
   return se_rseupdateitem_ != NULL ? *se_rseupdateitem_ : *default_instance_->se_rseupdateitem_;
 }
 inline ::RseUpdateItem* Event::mutable_se_rseupdateitem() {
-  _set_bit(95);
+  _set_bit(96);
   if (se_rseupdateitem_ == NULL) se_rseupdateitem_ = new ::RseUpdateItem;
   return se_rseupdateitem_;
 }
 
-// optional .RseUpdateMisc se_RseUpdateMisc = 530;
+// optional .RseUpdateMisc se_RseUpdateMisc = 531;
 inline bool Event::has_se_rseupdatemisc() const {
-  return _has_bit(96);
+  return _has_bit(97);
 }
 inline void Event::clear_se_rseupdatemisc() {
   if (se_rseupdatemisc_ != NULL) se_rseupdatemisc_->::RseUpdateMisc::Clear();
-  _clear_bit(96);
+  _clear_bit(97);
 }
 inline const ::RseUpdateMisc& Event::se_rseupdatemisc() const {
   return se_rseupdatemisc_ != NULL ? *se_rseupdatemisc_ : *default_instance_->se_rseupdatemisc_;
 }
 inline ::RseUpdateMisc* Event::mutable_se_rseupdatemisc() {
-  _set_bit(96);
+  _set_bit(97);
   if (se_rseupdatemisc_ == NULL) se_rseupdatemisc_ = new ::RseUpdateMisc;
   return se_rseupdatemisc_;
 }
 
-// optional .RseUpdateMissions se_RseUpdateMissions = 531;
+// optional .RseUpdateMissions se_RseUpdateMissions = 532;
 inline bool Event::has_se_rseupdatemissions() const {
-  return _has_bit(97);
+  return _has_bit(98);
 }
 inline void Event::clear_se_rseupdatemissions() {
   if (se_rseupdatemissions_ != NULL) se_rseupdatemissions_->::RseUpdateMissions::Clear();
-  _clear_bit(97);
+  _clear_bit(98);
 }
 inline const ::RseUpdateMissions& Event::se_rseupdatemissions() const {
   return se_rseupdatemissions_ != NULL ? *se_rseupdatemissions_ : *default_instance_->se_rseupdatemissions_;
 }
 inline ::RseUpdateMissions* Event::mutable_se_rseupdatemissions() {
-  _set_bit(97);
+  _set_bit(98);
   if (se_rseupdatemissions_ == NULL) se_rseupdatemissions_ = new ::RseUpdateMissions;
   return se_rseupdatemissions_;
 }
 
-// optional .RseUpdateProfile se_RseUpdateProfile = 532;
+// optional .RseUpdateProfile se_RseUpdateProfile = 533;
 inline bool Event::has_se_rseupdateprofile() const {
-  return _has_bit(98);
+  return _has_bit(99);
 }
 inline void Event::clear_se_rseupdateprofile() {
   if (se_rseupdateprofile_ != NULL) se_rseupdateprofile_->::RseUpdateProfile::Clear();
-  _clear_bit(98);
+  _clear_bit(99);
 }
 inline const ::RseUpdateProfile& Event::se_rseupdateprofile() const {
   return se_rseupdateprofile_ != NULL ? *se_rseupdateprofile_ : *default_instance_->se_rseupdateprofile_;
 }
 inline ::RseUpdateProfile* Event::mutable_se_rseupdateprofile() {
-  _set_bit(98);
+  _set_bit(99);
   if (se_rseupdateprofile_ == NULL) se_rseupdateprofile_ = new ::RseUpdateProfile;
   return se_rseupdateprofile_;
 }
 
-// optional .RseUpdateShips se_RseUpdateShips = 533;
+// optional .RseUpdateShips se_RseUpdateShips = 534;
 inline bool Event::has_se_rseupdateships() const {
-  return _has_bit(99);
+  return _has_bit(100);
 }
 inline void Event::clear_se_rseupdateships() {
   if (se_rseupdateships_ != NULL) se_rseupdateships_->::RseUpdateShips::Clear();
-  _clear_bit(99);
+  _clear_bit(100);
 }
 inline const ::RseUpdateShips& Event::se_rseupdateships() const {
   return se_rseupdateships_ != NULL ? *se_rseupdateships_ : *default_instance_->se_rseupdateships_;
 }
 inline ::RseUpdateShips* Event::mutable_se_rseupdateships() {
-  _set_bit(99);
+  _set_bit(100);
   if (se_rseupdateships_ == NULL) se_rseupdateships_ = new ::RseUpdateShips;
   return se_rseupdateships_;
 }
 
-// optional .RseUpdateSocialItem se_RseUpdateSocialItem = 534;
+// optional .RseUpdateSocialItem se_RseUpdateSocialItem = 535;
 inline bool Event::has_se_rseupdatesocialitem() const {
-  return _has_bit(100);
+  return _has_bit(101);
 }
 inline void Event::clear_se_rseupdatesocialitem() {
   if (se_rseupdatesocialitem_ != NULL) se_rseupdatesocialitem_->::RseUpdateSocialItem::Clear();
-  _clear_bit(100);
+  _clear_bit(101);
 }
 inline const ::RseUpdateSocialItem& Event::se_rseupdatesocialitem() const {
   return se_rseupdatesocialitem_ != NULL ? *se_rseupdatesocialitem_ : *default_instance_->se_rseupdatesocialitem_;
 }
 inline ::RseUpdateSocialItem* Event::mutable_se_rseupdatesocialitem() {
-  _set_bit(100);
+  _set_bit(101);
   if (se_rseupdatesocialitem_ == NULL) se_rseupdatesocialitem_ = new ::RseUpdateSocialItem;
   return se_rseupdatesocialitem_;
 }
 
-// optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 535;
+// optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 536;
 inline bool Event::has_se_rseupdatestarsbookmarks() const {
-  return _has_bit(101);
+  return _has_bit(102);
 }
 inline void Event::clear_se_rseupdatestarsbookmarks() {
   if (se_rseupdatestarsbookmarks_ != NULL) se_rseupdatestarsbookmarks_->::RseUpdateStarsBookmarks::Clear();
-  _clear_bit(101);
+  _clear_bit(102);
 }
 inline const ::RseUpdateStarsBookmarks& Event::se_rseupdatestarsbookmarks() const {
   return se_rseupdatestarsbookmarks_ != NULL ? *se_rseupdatestarsbookmarks_ : *default_instance_->se_rseupdatestarsbookmarks_;
 }
 inline ::RseUpdateStarsBookmarks* Event::mutable_se_rseupdatestarsbookmarks() {
-  _set_bit(101);
+  _set_bit(102);
   if (se_rseupdatestarsbookmarks_ == NULL) se_rseupdatestarsbookmarks_ = new ::RseUpdateStarsBookmarks;
   return se_rseupdatestarsbookmarks_;
 }
 
-// optional .RseUpdateTargets se_RseUpdateTargets = 536;
+// optional .RseUpdateTargets se_RseUpdateTargets = 537;
 inline bool Event::has_se_rseupdatetargets() const {
-  return _has_bit(102);
+  return _has_bit(103);
 }
 inline void Event::clear_se_rseupdatetargets() {
   if (se_rseupdatetargets_ != NULL) se_rseupdatetargets_->::RseUpdateTargets::Clear();
-  _clear_bit(102);
+  _clear_bit(103);
 }
 inline const ::RseUpdateTargets& Event::se_rseupdatetargets() const {
   return se_rseupdatetargets_ != NULL ? *se_rseupdatetargets_ : *default_instance_->se_rseupdatetargets_;
 }
 inline ::RseUpdateTargets* Event::mutable_se_rseupdatetargets() {
-  _set_bit(102);
+  _set_bit(103);
   if (se_rseupdatetargets_ == NULL) se_rseupdatetargets_ = new ::RseUpdateTargets;
   return se_rseupdatetargets_;
 }

@@ -4,7 +4,7 @@
 message MsgNpc
 {
     repeated string npc = 1;
-    optional int64 xp = 2;
+    optional int32 xp = 2;
     optional int32 HQLevel = 3;
     optional string sku = 4;
 }

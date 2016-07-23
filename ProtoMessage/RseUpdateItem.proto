@@ -3,6 +3,7 @@
 
 message RseUpdateItem
 {
-	optional int64 id = 1;
-	optional int32 sid = 2;
+	optional int32 ret = 1; //1：资源不足, 2:创建失败, 3:找不到殖民地,4：销毁失败
+	optional int64 id = 2;
+	optional int32 sid = 3;
 }

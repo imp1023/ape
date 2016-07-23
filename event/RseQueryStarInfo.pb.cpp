@@ -11,15 +11,12 @@
 
 namespace {
 
-const ::google::protobuf::Descriptor* RseQueryStarInfo_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  RseQueryStarInfo_reflection_ = NULL;
 const ::google::protobuf::Descriptor* SpaceStarInfo_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   SpaceStarInfo_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Planet_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* RseQueryStarInfo_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  Planet_reflection_ = NULL;
+  RseQueryStarInfo_reflection_ = NULL;
 
 }  // namespace
 
@@ -30,25 +27,7 @@ void protobuf_AssignDesc_RseQueryStarInfo_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "RseQueryStarInfo.proto");
   GOOGLE_CHECK(file != NULL);
-  RseQueryStarInfo_descriptor_ = file->message_type(0);
-  static const int RseQueryStarInfo_offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, spacestarinfo_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, type_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, sku_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, starid_),
-  };
-  RseQueryStarInfo_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      RseQueryStarInfo_descriptor_,
-      RseQueryStarInfo::default_instance_,
-      RseQueryStarInfo_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(RseQueryStarInfo));
-  SpaceStarInfo_descriptor_ = file->message_type(1);
+  SpaceStarInfo_descriptor_ = file->message_type(0);
   static const int SpaceStarInfo_offsets_[15] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SpaceStarInfo, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SpaceStarInfo, url_),
@@ -77,21 +56,24 @@ void protobuf_AssignDesc_RseQueryStarInfo_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SpaceStarInfo));
-  Planet_descriptor_ = file->message_type(2);
-  static const int Planet_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Planet, ret_),
+  RseQueryStarInfo_descriptor_ = file->message_type(1);
+  static const int RseQueryStarInfo_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, spacestarinfo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, type_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, sku_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, starid_),
   };
-  Planet_reflection_ =
+  RseQueryStarInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      Planet_descriptor_,
-      Planet::default_instance_,
-      Planet_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Planet, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Planet, _unknown_fields_),
+      RseQueryStarInfo_descriptor_,
+      RseQueryStarInfo::default_instance_,
+      RseQueryStarInfo_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryStarInfo, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Planet));
+      sizeof(RseQueryStarInfo));
 }
 
 namespace {
@@ -105,22 +87,18 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    RseQueryStarInfo_descriptor_, &RseQueryStarInfo::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     SpaceStarInfo_descriptor_, &SpaceStarInfo::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Planet_descriptor_, &Planet::default_instance());
+    RseQueryStarInfo_descriptor_, &RseQueryStarInfo::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_RseQueryStarInfo_2eproto() {
-  delete RseQueryStarInfo::default_instance_;
-  delete RseQueryStarInfo_reflection_;
   delete SpaceStarInfo::default_instance_;
   delete SpaceStarInfo_reflection_;
-  delete Planet::default_instance_;
-  delete Planet_reflection_;
+  delete RseQueryStarInfo::default_instance_;
+  delete RseQueryStarInfo_reflection_;
 }
 
 void protobuf_AddDesc_RseQueryStarInfo_2eproto() {
@@ -129,27 +107,26 @@ void protobuf_AddDesc_RseQueryStarInfo_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::protobuf_AddDesc_MsgPlanet_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\026RseQueryStarInfo.proto\"d\n\020RseQueryStar"
-    "Info\022%\n\rspaceStarInfo\030\001 \003(\0132\016.SpaceStarI"
-    "nfo\022\014\n\004type\030\002 \001(\005\022\013\n\003sku\030\003 \001(\t\022\016\n\006starId"
-    "\030\004 \001(\005\"\252\002\n\rSpaceStarInfo\022\014\n\004name\030\001 \001(\t\022\013"
-    "\n\003url\030\002 \001(\t\022\n\n\002xp\030\003 \001(\003\022\r\n\005score\030\004 \001(\005\022\013"
-    "\n\003sku\030\005 \001(\t\022\020\n\010planetId\030\006 \001(\005\022\017\n\007HQLevel"
-    "\030\007 \001(\005\022\014\n\004type\030\010 \001(\005\022\017\n\007capital\030\t \001(\005\022\027\n"
-    "\006Planet\030\n \003(\0132\007.Planet\022 \n\030damageProtecti"
-    "onTimeLeft\030\013 \001(\003\022\031\n\021tutorialCompleted\030\014 "
-    "\001(\003\022\020\n\010isOnline\030\r \001(\005\022\021\n\taccountId\030\016 \001(\005"
-    "\022\031\n\021levelBasedOnScore\030\017 \001(\005\"\025\n\006Planet\022\013\n"
-    "\003ret\030\001 \001(\005", 450);
+    "\n\026RseQueryStarInfo.proto\032\017MsgPlanet.prot"
+    "o\"\255\002\n\rSpaceStarInfo\022\014\n\004name\030\001 \001(\t\022\013\n\003url"
+    "\030\002 \001(\t\022\n\n\002xp\030\003 \001(\003\022\r\n\005score\030\004 \001(\005\022\013\n\003sku"
+    "\030\005 \001(\t\022\020\n\010planetId\030\006 \001(\005\022\017\n\007HQLevel\030\007 \001("
+    "\005\022\014\n\004type\030\010 \001(\005\022\017\n\007capital\030\t \001(\005\022\032\n\006Plan"
+    "et\030\n \003(\0132\n.MsgPlanet\022 \n\030damageProtection"
+    "TimeLeft\030\013 \001(\003\022\031\n\021tutorialCompleted\030\014 \001("
+    "\003\022\020\n\010isOnline\030\r \001(\005\022\021\n\taccountId\030\016 \001(\005\022\031"
+    "\n\021levelBasedOnScore\030\017 \001(\005\"d\n\020RseQuerySta"
+    "rInfo\022%\n\rspaceStarInfo\030\001 \003(\0132\016.SpaceStar"
+    "Info\022\014\n\004type\030\002 \001(\005\022\013\n\003sku\030\003 \001(\t\022\016\n\006starI"
+    "d\030\004 \001(\005", 447);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseQueryStarInfo.proto", &protobuf_RegisterTypes);
-  RseQueryStarInfo::default_instance_ = new RseQueryStarInfo();
   SpaceStarInfo::default_instance_ = new SpaceStarInfo();
-  Planet::default_instance_ = new Planet();
-  RseQueryStarInfo::default_instance_->InitAsDefaultInstance();
+  RseQueryStarInfo::default_instance_ = new RseQueryStarInfo();
   SpaceStarInfo::default_instance_->InitAsDefaultInstance();
-  Planet::default_instance_->InitAsDefaultInstance();
+  RseQueryStarInfo::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_RseQueryStarInfo_2eproto);
 }
 
@@ -159,6 +136,804 @@ struct StaticDescriptorInitializer_RseQueryStarInfo_2eproto {
     protobuf_AddDesc_RseQueryStarInfo_2eproto();
   }
 } static_descriptor_initializer_RseQueryStarInfo_2eproto_;
+
+
+// ===================================================================
+
+const ::std::string SpaceStarInfo::_default_name_;
+const ::std::string SpaceStarInfo::_default_url_;
+const ::std::string SpaceStarInfo::_default_sku_;
+#ifndef _MSC_VER
+const int SpaceStarInfo::kNameFieldNumber;
+const int SpaceStarInfo::kUrlFieldNumber;
+const int SpaceStarInfo::kXpFieldNumber;
+const int SpaceStarInfo::kScoreFieldNumber;
+const int SpaceStarInfo::kSkuFieldNumber;
+const int SpaceStarInfo::kPlanetIdFieldNumber;
+const int SpaceStarInfo::kHQLevelFieldNumber;
+const int SpaceStarInfo::kTypeFieldNumber;
+const int SpaceStarInfo::kCapitalFieldNumber;
+const int SpaceStarInfo::kPlanetFieldNumber;
+const int SpaceStarInfo::kDamageProtectionTimeLeftFieldNumber;
+const int SpaceStarInfo::kTutorialCompletedFieldNumber;
+const int SpaceStarInfo::kIsOnlineFieldNumber;
+const int SpaceStarInfo::kAccountIdFieldNumber;
+const int SpaceStarInfo::kLevelBasedOnScoreFieldNumber;
+#endif  // !_MSC_VER
+
+SpaceStarInfo::SpaceStarInfo() {
+  SharedCtor();
+}
+
+void SpaceStarInfo::InitAsDefaultInstance() {
+}
+
+SpaceStarInfo::SpaceStarInfo(const SpaceStarInfo& from) {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void SpaceStarInfo::SharedCtor() {
+  _cached_size_ = 0;
+  name_ = const_cast< ::std::string*>(&_default_name_);
+  url_ = const_cast< ::std::string*>(&_default_url_);
+  xp_ = GOOGLE_LONGLONG(0);
+  score_ = 0;
+  sku_ = const_cast< ::std::string*>(&_default_sku_);
+  planetid_ = 0;
+  hqlevel_ = 0;
+  type_ = 0;
+  capital_ = 0;
+  damageprotectiontimeleft_ = GOOGLE_LONGLONG(0);
+  tutorialcompleted_ = GOOGLE_LONGLONG(0);
+  isonline_ = 0;
+  accountid_ = 0;
+  levelbasedonscore_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+SpaceStarInfo::~SpaceStarInfo() {
+  SharedDtor();
+}
+
+void SpaceStarInfo::SharedDtor() {
+  if (name_ != &_default_name_) {
+    delete name_;
+  }
+  if (url_ != &_default_url_) {
+    delete url_;
+  }
+  if (sku_ != &_default_sku_) {
+    delete sku_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+const ::google::protobuf::Descriptor* SpaceStarInfo::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return SpaceStarInfo_descriptor_;
+}
+
+const SpaceStarInfo& SpaceStarInfo::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_RseQueryStarInfo_2eproto();  return *default_instance_;
+}
+
+SpaceStarInfo* SpaceStarInfo::default_instance_ = NULL;
+
+SpaceStarInfo* SpaceStarInfo::New() const {
+  return new SpaceStarInfo;
+}
+
+void SpaceStarInfo::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (_has_bit(0)) {
+      if (name_ != &_default_name_) {
+        name_->clear();
+      }
+    }
+    if (_has_bit(1)) {
+      if (url_ != &_default_url_) {
+        url_->clear();
+      }
+    }
+    xp_ = GOOGLE_LONGLONG(0);
+    score_ = 0;
+    if (_has_bit(4)) {
+      if (sku_ != &_default_sku_) {
+        sku_->clear();
+      }
+    }
+    planetid_ = 0;
+    hqlevel_ = 0;
+    type_ = 0;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    capital_ = 0;
+    damageprotectiontimeleft_ = GOOGLE_LONGLONG(0);
+    tutorialcompleted_ = GOOGLE_LONGLONG(0);
+    isonline_ = 0;
+    accountid_ = 0;
+    levelbasedonscore_ = 0;
+  }
+  planet_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool SpaceStarInfo::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string name = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_name()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->name().data(), this->name().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(18)) goto parse_url;
+        break;
+      }
+      
+      // optional string url = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_url:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_url()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->url().data(), this->url().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(24)) goto parse_xp;
+        break;
+      }
+      
+      // optional int64 xp = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_xp:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+              input, &xp_));
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_score;
+        break;
+      }
+      
+      // optional int32 score = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_score:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &score_));
+        _set_bit(3);
+        if (input->ExpectTag(42)) goto parse_sku;
+        break;
+      }
+      
+      // optional string sku = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_sku:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_sku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->sku().data(), this->sku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(48)) goto parse_planetId;
+        break;
+      }
+      
+      // optional int32 planetId = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_planetId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planetid_));
+        _set_bit(5);
+        if (input->ExpectTag(56)) goto parse_HQLevel;
+        break;
+      }
+      
+      // optional int32 HQLevel = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_HQLevel:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &hqlevel_));
+        _set_bit(6);
+        if (input->ExpectTag(64)) goto parse_type;
+        break;
+      }
+      
+      // optional int32 type = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_type:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &type_));
+        _set_bit(7);
+        if (input->ExpectTag(72)) goto parse_capital;
+        break;
+      }
+      
+      // optional int32 capital = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_capital:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &capital_));
+        _set_bit(8);
+        if (input->ExpectTag(82)) goto parse_Planet;
+        break;
+      }
+      
+      // repeated .MsgPlanet Planet = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Planet:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_planet()));
+        if (input->ExpectTag(82)) goto parse_Planet;
+        if (input->ExpectTag(88)) goto parse_damageProtectionTimeLeft;
+        break;
+      }
+      
+      // optional int64 damageProtectionTimeLeft = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_damageProtectionTimeLeft:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+              input, &damageprotectiontimeleft_));
+        _set_bit(10);
+        if (input->ExpectTag(96)) goto parse_tutorialCompleted;
+        break;
+      }
+      
+      // optional int64 tutorialCompleted = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_tutorialCompleted:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+              input, &tutorialcompleted_));
+        _set_bit(11);
+        if (input->ExpectTag(104)) goto parse_isOnline;
+        break;
+      }
+      
+      // optional int32 isOnline = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_isOnline:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &isonline_));
+        _set_bit(12);
+        if (input->ExpectTag(112)) goto parse_accountId;
+        break;
+      }
+      
+      // optional int32 accountId = 14;
+      case 14: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_accountId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &accountid_));
+        _set_bit(13);
+        if (input->ExpectTag(120)) goto parse_levelBasedOnScore;
+        break;
+      }
+      
+      // optional int32 levelBasedOnScore = 15;
+      case 15: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_levelBasedOnScore:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &levelbasedonscore_));
+        _set_bit(14);
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void SpaceStarInfo::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
+  if (raw_buffer != NULL) {
+    SpaceStarInfo::SerializeWithCachedSizesToArray(raw_buffer);
+    return;
+  }
+  
+  // optional string name = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->name(), output);
+  }
+  
+  // optional string url = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->url().data(), this->url().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      2, this->url(), output);
+  }
+  
+  // optional int64 xp = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->xp(), output);
+  }
+  
+  // optional int32 score = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->score(), output);
+  }
+  
+  // optional string sku = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->sku(), output);
+  }
+  
+  // optional int32 planetId = 6;
+  if (_has_bit(5)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->planetid(), output);
+  }
+  
+  // optional int32 HQLevel = 7;
+  if (_has_bit(6)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->hqlevel(), output);
+  }
+  
+  // optional int32 type = 8;
+  if (_has_bit(7)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->type(), output);
+  }
+  
+  // optional int32 capital = 9;
+  if (_has_bit(8)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->capital(), output);
+  }
+  
+  // repeated .MsgPlanet Planet = 10;
+  for (int i = 0; i < this->planet_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      10, this->planet(i), output);
+  }
+  
+  // optional int64 damageProtectionTimeLeft = 11;
+  if (_has_bit(10)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(11, this->damageprotectiontimeleft(), output);
+  }
+  
+  // optional int64 tutorialCompleted = 12;
+  if (_has_bit(11)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(12, this->tutorialcompleted(), output);
+  }
+  
+  // optional int32 isOnline = 13;
+  if (_has_bit(12)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(13, this->isonline(), output);
+  }
+  
+  // optional int32 accountId = 14;
+  if (_has_bit(13)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(14, this->accountid(), output);
+  }
+  
+  // optional int32 levelBasedOnScore = 15;
+  if (_has_bit(14)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(15, this->levelbasedonscore(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* SpaceStarInfo::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional string name = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->name(), target);
+  }
+  
+  // optional string url = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->url().data(), this->url().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->url(), target);
+  }
+  
+  // optional int64 xp = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->xp(), target);
+  }
+  
+  // optional int32 score = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->score(), target);
+  }
+  
+  // optional string sku = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->sku(), target);
+  }
+  
+  // optional int32 planetId = 6;
+  if (_has_bit(5)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->planetid(), target);
+  }
+  
+  // optional int32 HQLevel = 7;
+  if (_has_bit(6)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->hqlevel(), target);
+  }
+  
+  // optional int32 type = 8;
+  if (_has_bit(7)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->type(), target);
+  }
+  
+  // optional int32 capital = 9;
+  if (_has_bit(8)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->capital(), target);
+  }
+  
+  // repeated .MsgPlanet Planet = 10;
+  for (int i = 0; i < this->planet_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        10, this->planet(i), target);
+  }
+  
+  // optional int64 damageProtectionTimeLeft = 11;
+  if (_has_bit(10)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(11, this->damageprotectiontimeleft(), target);
+  }
+  
+  // optional int64 tutorialCompleted = 12;
+  if (_has_bit(11)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(12, this->tutorialcompleted(), target);
+  }
+  
+  // optional int32 isOnline = 13;
+  if (_has_bit(12)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(13, this->isonline(), target);
+  }
+  
+  // optional int32 accountId = 14;
+  if (_has_bit(13)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(14, this->accountid(), target);
+  }
+  
+  // optional int32 levelBasedOnScore = 15;
+  if (_has_bit(14)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(15, this->levelbasedonscore(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int SpaceStarInfo::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional string name = 1;
+    if (has_name()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->name());
+    }
+    
+    // optional string url = 2;
+    if (has_url()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->url());
+    }
+    
+    // optional int64 xp = 3;
+    if (has_xp()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->xp());
+    }
+    
+    // optional int32 score = 4;
+    if (has_score()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->score());
+    }
+    
+    // optional string sku = 5;
+    if (has_sku()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->sku());
+    }
+    
+    // optional int32 planetId = 6;
+    if (has_planetid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->planetid());
+    }
+    
+    // optional int32 HQLevel = 7;
+    if (has_hqlevel()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->hqlevel());
+    }
+    
+    // optional int32 type = 8;
+    if (has_type()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->type());
+    }
+    
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // optional int32 capital = 9;
+    if (has_capital()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->capital());
+    }
+    
+    // optional int64 damageProtectionTimeLeft = 11;
+    if (has_damageprotectiontimeleft()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->damageprotectiontimeleft());
+    }
+    
+    // optional int64 tutorialCompleted = 12;
+    if (has_tutorialcompleted()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->tutorialcompleted());
+    }
+    
+    // optional int32 isOnline = 13;
+    if (has_isonline()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->isonline());
+    }
+    
+    // optional int32 accountId = 14;
+    if (has_accountid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->accountid());
+    }
+    
+    // optional int32 levelBasedOnScore = 15;
+    if (has_levelbasedonscore()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->levelbasedonscore());
+    }
+    
+  }
+  // repeated .MsgPlanet Planet = 10;
+  total_size += 1 * this->planet_size();
+  for (int i = 0; i < this->planet_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->planet(i));
+  }
+  
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  _cached_size_ = total_size;
+  return total_size;
+}
+
+void SpaceStarInfo::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const SpaceStarInfo* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const SpaceStarInfo*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void SpaceStarInfo::MergeFrom(const SpaceStarInfo& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  planet_.MergeFrom(from.planet_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from._has_bit(0)) {
+      set_name(from.name());
+    }
+    if (from._has_bit(1)) {
+      set_url(from.url());
+    }
+    if (from._has_bit(2)) {
+      set_xp(from.xp());
+    }
+    if (from._has_bit(3)) {
+      set_score(from.score());
+    }
+    if (from._has_bit(4)) {
+      set_sku(from.sku());
+    }
+    if (from._has_bit(5)) {
+      set_planetid(from.planetid());
+    }
+    if (from._has_bit(6)) {
+      set_hqlevel(from.hqlevel());
+    }
+    if (from._has_bit(7)) {
+      set_type(from.type());
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    if (from._has_bit(8)) {
+      set_capital(from.capital());
+    }
+    if (from._has_bit(10)) {
+      set_damageprotectiontimeleft(from.damageprotectiontimeleft());
+    }
+    if (from._has_bit(11)) {
+      set_tutorialcompleted(from.tutorialcompleted());
+    }
+    if (from._has_bit(12)) {
+      set_isonline(from.isonline());
+    }
+    if (from._has_bit(13)) {
+      set_accountid(from.accountid());
+    }
+    if (from._has_bit(14)) {
+      set_levelbasedonscore(from.levelbasedonscore());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void SpaceStarInfo::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void SpaceStarInfo::CopyFrom(const SpaceStarInfo& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool SpaceStarInfo::IsInitialized() const {
+  
+  return true;
+}
+
+void SpaceStarInfo::Swap(SpaceStarInfo* other) {
+  if (other != this) {
+    std::swap(name_, other->name_);
+    std::swap(url_, other->url_);
+    std::swap(xp_, other->xp_);
+    std::swap(score_, other->score_);
+    std::swap(sku_, other->sku_);
+    std::swap(planetid_, other->planetid_);
+    std::swap(hqlevel_, other->hqlevel_);
+    std::swap(type_, other->type_);
+    std::swap(capital_, other->capital_);
+    planet_.Swap(&other->planet_);
+    std::swap(damageprotectiontimeleft_, other->damageprotectiontimeleft_);
+    std::swap(tutorialcompleted_, other->tutorialcompleted_);
+    std::swap(isonline_, other->isonline_);
+    std::swap(accountid_, other->accountid_);
+    std::swap(levelbasedonscore_, other->levelbasedonscore_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata SpaceStarInfo::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = SpaceStarInfo_descriptor_;
+  metadata.reflection = SpaceStarInfo_reflection_;
+  return metadata;
+}
 
 
 // ===================================================================
@@ -494,1006 +1269,6 @@ void RseQueryStarInfo::Swap(RseQueryStarInfo* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = RseQueryStarInfo_descriptor_;
   metadata.reflection = RseQueryStarInfo_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-const ::std::string SpaceStarInfo::_default_name_;
-const ::std::string SpaceStarInfo::_default_url_;
-const ::std::string SpaceStarInfo::_default_sku_;
-#ifndef _MSC_VER
-const int SpaceStarInfo::kNameFieldNumber;
-const int SpaceStarInfo::kUrlFieldNumber;
-const int SpaceStarInfo::kXpFieldNumber;
-const int SpaceStarInfo::kScoreFieldNumber;
-const int SpaceStarInfo::kSkuFieldNumber;
-const int SpaceStarInfo::kPlanetIdFieldNumber;
-const int SpaceStarInfo::kHQLevelFieldNumber;
-const int SpaceStarInfo::kTypeFieldNumber;
-const int SpaceStarInfo::kCapitalFieldNumber;
-const int SpaceStarInfo::kPlanetFieldNumber;
-const int SpaceStarInfo::kDamageProtectionTimeLeftFieldNumber;
-const int SpaceStarInfo::kTutorialCompletedFieldNumber;
-const int SpaceStarInfo::kIsOnlineFieldNumber;
-const int SpaceStarInfo::kAccountIdFieldNumber;
-const int SpaceStarInfo::kLevelBasedOnScoreFieldNumber;
-#endif  // !_MSC_VER
-
-SpaceStarInfo::SpaceStarInfo() {
-  SharedCtor();
-}
-
-void SpaceStarInfo::InitAsDefaultInstance() {
-}
-
-SpaceStarInfo::SpaceStarInfo(const SpaceStarInfo& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void SpaceStarInfo::SharedCtor() {
-  _cached_size_ = 0;
-  name_ = const_cast< ::std::string*>(&_default_name_);
-  url_ = const_cast< ::std::string*>(&_default_url_);
-  xp_ = GOOGLE_LONGLONG(0);
-  score_ = 0;
-  sku_ = const_cast< ::std::string*>(&_default_sku_);
-  planetid_ = 0;
-  hqlevel_ = 0;
-  type_ = 0;
-  capital_ = 0;
-  damageprotectiontimeleft_ = GOOGLE_LONGLONG(0);
-  tutorialcompleted_ = GOOGLE_LONGLONG(0);
-  isonline_ = 0;
-  accountid_ = 0;
-  levelbasedonscore_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-SpaceStarInfo::~SpaceStarInfo() {
-  SharedDtor();
-}
-
-void SpaceStarInfo::SharedDtor() {
-  if (name_ != &_default_name_) {
-    delete name_;
-  }
-  if (url_ != &_default_url_) {
-    delete url_;
-  }
-  if (sku_ != &_default_sku_) {
-    delete sku_;
-  }
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* SpaceStarInfo::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return SpaceStarInfo_descriptor_;
-}
-
-const SpaceStarInfo& SpaceStarInfo::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_RseQueryStarInfo_2eproto();  return *default_instance_;
-}
-
-SpaceStarInfo* SpaceStarInfo::default_instance_ = NULL;
-
-SpaceStarInfo* SpaceStarInfo::New() const {
-  return new SpaceStarInfo;
-}
-
-void SpaceStarInfo::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (name_ != &_default_name_) {
-        name_->clear();
-      }
-    }
-    if (_has_bit(1)) {
-      if (url_ != &_default_url_) {
-        url_->clear();
-      }
-    }
-    xp_ = GOOGLE_LONGLONG(0);
-    score_ = 0;
-    if (_has_bit(4)) {
-      if (sku_ != &_default_sku_) {
-        sku_->clear();
-      }
-    }
-    planetid_ = 0;
-    hqlevel_ = 0;
-    type_ = 0;
-  }
-  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    capital_ = 0;
-    damageprotectiontimeleft_ = GOOGLE_LONGLONG(0);
-    tutorialcompleted_ = GOOGLE_LONGLONG(0);
-    isonline_ = 0;
-    accountid_ = 0;
-    levelbasedonscore_ = 0;
-  }
-  planet_.Clear();
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool SpaceStarInfo::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string name = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name().data(), this->name().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(18)) goto parse_url;
-        break;
-      }
-      
-      // optional string url = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_url:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_url()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->url().data(), this->url().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(24)) goto parse_xp;
-        break;
-      }
-      
-      // optional int64 xp = 3;
-      case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_xp:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
-              input, &xp_));
-        _set_bit(2);
-        if (input->ExpectTag(32)) goto parse_score;
-        break;
-      }
-      
-      // optional int32 score = 4;
-      case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_score:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &score_));
-        _set_bit(3);
-        if (input->ExpectTag(42)) goto parse_sku;
-        break;
-      }
-      
-      // optional string sku = 5;
-      case 5: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_sku:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_sku()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->sku().data(), this->sku().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(48)) goto parse_planetId;
-        break;
-      }
-      
-      // optional int32 planetId = 6;
-      case 6: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_planetId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &planetid_));
-        _set_bit(5);
-        if (input->ExpectTag(56)) goto parse_HQLevel;
-        break;
-      }
-      
-      // optional int32 HQLevel = 7;
-      case 7: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_HQLevel:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &hqlevel_));
-        _set_bit(6);
-        if (input->ExpectTag(64)) goto parse_type;
-        break;
-      }
-      
-      // optional int32 type = 8;
-      case 8: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_type:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &type_));
-        _set_bit(7);
-        if (input->ExpectTag(72)) goto parse_capital;
-        break;
-      }
-      
-      // optional int32 capital = 9;
-      case 9: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_capital:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &capital_));
-        _set_bit(8);
-        if (input->ExpectTag(82)) goto parse_Planet;
-        break;
-      }
-      
-      // repeated .Planet Planet = 10;
-      case 10: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_Planet:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, add_planet()));
-        if (input->ExpectTag(82)) goto parse_Planet;
-        if (input->ExpectTag(88)) goto parse_damageProtectionTimeLeft;
-        break;
-      }
-      
-      // optional int64 damageProtectionTimeLeft = 11;
-      case 11: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_damageProtectionTimeLeft:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
-              input, &damageprotectiontimeleft_));
-        _set_bit(10);
-        if (input->ExpectTag(96)) goto parse_tutorialCompleted;
-        break;
-      }
-      
-      // optional int64 tutorialCompleted = 12;
-      case 12: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_tutorialCompleted:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
-              input, &tutorialcompleted_));
-        _set_bit(11);
-        if (input->ExpectTag(104)) goto parse_isOnline;
-        break;
-      }
-      
-      // optional int32 isOnline = 13;
-      case 13: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_isOnline:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &isonline_));
-        _set_bit(12);
-        if (input->ExpectTag(112)) goto parse_accountId;
-        break;
-      }
-      
-      // optional int32 accountId = 14;
-      case 14: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_accountId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &accountid_));
-        _set_bit(13);
-        if (input->ExpectTag(120)) goto parse_levelBasedOnScore;
-        break;
-      }
-      
-      // optional int32 levelBasedOnScore = 15;
-      case 15: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_levelBasedOnScore:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &levelbasedonscore_));
-        _set_bit(14);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void SpaceStarInfo::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    SpaceStarInfo::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // optional string name = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->name(), output);
-  }
-  
-  // optional string url = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->url().data(), this->url().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->url(), output);
-  }
-  
-  // optional int64 xp = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->xp(), output);
-  }
-  
-  // optional int32 score = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->score(), output);
-  }
-  
-  // optional string sku = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->sku().data(), this->sku().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->sku(), output);
-  }
-  
-  // optional int32 planetId = 6;
-  if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->planetid(), output);
-  }
-  
-  // optional int32 HQLevel = 7;
-  if (_has_bit(6)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->hqlevel(), output);
-  }
-  
-  // optional int32 type = 8;
-  if (_has_bit(7)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->type(), output);
-  }
-  
-  // optional int32 capital = 9;
-  if (_has_bit(8)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->capital(), output);
-  }
-  
-  // repeated .Planet Planet = 10;
-  for (int i = 0; i < this->planet_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      10, this->planet(i), output);
-  }
-  
-  // optional int64 damageProtectionTimeLeft = 11;
-  if (_has_bit(10)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(11, this->damageprotectiontimeleft(), output);
-  }
-  
-  // optional int64 tutorialCompleted = 12;
-  if (_has_bit(11)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(12, this->tutorialcompleted(), output);
-  }
-  
-  // optional int32 isOnline = 13;
-  if (_has_bit(12)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(13, this->isonline(), output);
-  }
-  
-  // optional int32 accountId = 14;
-  if (_has_bit(13)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(14, this->accountid(), output);
-  }
-  
-  // optional int32 levelBasedOnScore = 15;
-  if (_has_bit(14)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(15, this->levelbasedonscore(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* SpaceStarInfo::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional string name = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->name(), target);
-  }
-  
-  // optional string url = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->url().data(), this->url().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->url(), target);
-  }
-  
-  // optional int64 xp = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->xp(), target);
-  }
-  
-  // optional int32 score = 4;
-  if (_has_bit(3)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->score(), target);
-  }
-  
-  // optional string sku = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->sku().data(), this->sku().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->sku(), target);
-  }
-  
-  // optional int32 planetId = 6;
-  if (_has_bit(5)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->planetid(), target);
-  }
-  
-  // optional int32 HQLevel = 7;
-  if (_has_bit(6)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->hqlevel(), target);
-  }
-  
-  // optional int32 type = 8;
-  if (_has_bit(7)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->type(), target);
-  }
-  
-  // optional int32 capital = 9;
-  if (_has_bit(8)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->capital(), target);
-  }
-  
-  // repeated .Planet Planet = 10;
-  for (int i = 0; i < this->planet_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        10, this->planet(i), target);
-  }
-  
-  // optional int64 damageProtectionTimeLeft = 11;
-  if (_has_bit(10)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(11, this->damageprotectiontimeleft(), target);
-  }
-  
-  // optional int64 tutorialCompleted = 12;
-  if (_has_bit(11)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(12, this->tutorialcompleted(), target);
-  }
-  
-  // optional int32 isOnline = 13;
-  if (_has_bit(12)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(13, this->isonline(), target);
-  }
-  
-  // optional int32 accountId = 14;
-  if (_has_bit(13)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(14, this->accountid(), target);
-  }
-  
-  // optional int32 levelBasedOnScore = 15;
-  if (_has_bit(14)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(15, this->levelbasedonscore(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int SpaceStarInfo::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string name = 1;
-    if (has_name()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name());
-    }
-    
-    // optional string url = 2;
-    if (has_url()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->url());
-    }
-    
-    // optional int64 xp = 3;
-    if (has_xp()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->xp());
-    }
-    
-    // optional int32 score = 4;
-    if (has_score()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->score());
-    }
-    
-    // optional string sku = 5;
-    if (has_sku()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->sku());
-    }
-    
-    // optional int32 planetId = 6;
-    if (has_planetid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->planetid());
-    }
-    
-    // optional int32 HQLevel = 7;
-    if (has_hqlevel()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->hqlevel());
-    }
-    
-    // optional int32 type = 8;
-    if (has_type()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->type());
-    }
-    
-  }
-  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    // optional int32 capital = 9;
-    if (has_capital()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->capital());
-    }
-    
-    // optional int64 damageProtectionTimeLeft = 11;
-    if (has_damageprotectiontimeleft()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->damageprotectiontimeleft());
-    }
-    
-    // optional int64 tutorialCompleted = 12;
-    if (has_tutorialcompleted()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
-          this->tutorialcompleted());
-    }
-    
-    // optional int32 isOnline = 13;
-    if (has_isonline()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->isonline());
-    }
-    
-    // optional int32 accountId = 14;
-    if (has_accountid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->accountid());
-    }
-    
-    // optional int32 levelBasedOnScore = 15;
-    if (has_levelbasedonscore()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->levelbasedonscore());
-    }
-    
-  }
-  // repeated .Planet Planet = 10;
-  total_size += 1 * this->planet_size();
-  for (int i = 0; i < this->planet_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->planet(i));
-  }
-  
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void SpaceStarInfo::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const SpaceStarInfo* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const SpaceStarInfo*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void SpaceStarInfo::MergeFrom(const SpaceStarInfo& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  planet_.MergeFrom(from.planet_);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_name(from.name());
-    }
-    if (from._has_bit(1)) {
-      set_url(from.url());
-    }
-    if (from._has_bit(2)) {
-      set_xp(from.xp());
-    }
-    if (from._has_bit(3)) {
-      set_score(from.score());
-    }
-    if (from._has_bit(4)) {
-      set_sku(from.sku());
-    }
-    if (from._has_bit(5)) {
-      set_planetid(from.planetid());
-    }
-    if (from._has_bit(6)) {
-      set_hqlevel(from.hqlevel());
-    }
-    if (from._has_bit(7)) {
-      set_type(from.type());
-    }
-  }
-  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    if (from._has_bit(8)) {
-      set_capital(from.capital());
-    }
-    if (from._has_bit(10)) {
-      set_damageprotectiontimeleft(from.damageprotectiontimeleft());
-    }
-    if (from._has_bit(11)) {
-      set_tutorialcompleted(from.tutorialcompleted());
-    }
-    if (from._has_bit(12)) {
-      set_isonline(from.isonline());
-    }
-    if (from._has_bit(13)) {
-      set_accountid(from.accountid());
-    }
-    if (from._has_bit(14)) {
-      set_levelbasedonscore(from.levelbasedonscore());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void SpaceStarInfo::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void SpaceStarInfo::CopyFrom(const SpaceStarInfo& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool SpaceStarInfo::IsInitialized() const {
-  
-  return true;
-}
-
-void SpaceStarInfo::Swap(SpaceStarInfo* other) {
-  if (other != this) {
-    std::swap(name_, other->name_);
-    std::swap(url_, other->url_);
-    std::swap(xp_, other->xp_);
-    std::swap(score_, other->score_);
-    std::swap(sku_, other->sku_);
-    std::swap(planetid_, other->planetid_);
-    std::swap(hqlevel_, other->hqlevel_);
-    std::swap(type_, other->type_);
-    std::swap(capital_, other->capital_);
-    planet_.Swap(&other->planet_);
-    std::swap(damageprotectiontimeleft_, other->damageprotectiontimeleft_);
-    std::swap(tutorialcompleted_, other->tutorialcompleted_);
-    std::swap(isonline_, other->isonline_);
-    std::swap(accountid_, other->accountid_);
-    std::swap(levelbasedonscore_, other->levelbasedonscore_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata SpaceStarInfo::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = SpaceStarInfo_descriptor_;
-  metadata.reflection = SpaceStarInfo_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int Planet::kRetFieldNumber;
-#endif  // !_MSC_VER
-
-Planet::Planet() {
-  SharedCtor();
-}
-
-void Planet::InitAsDefaultInstance() {
-}
-
-Planet::Planet(const Planet& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void Planet::SharedCtor() {
-  _cached_size_ = 0;
-  ret_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-Planet::~Planet() {
-  SharedDtor();
-}
-
-void Planet::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* Planet::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Planet_descriptor_;
-}
-
-const Planet& Planet::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_RseQueryStarInfo_2eproto();  return *default_instance_;
-}
-
-Planet* Planet::default_instance_ = NULL;
-
-Planet* Planet::New() const {
-  return new Planet;
-}
-
-void Planet::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    ret_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool Planet::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 ret = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &ret_));
-        _set_bit(0);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void Planet::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    Planet::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // optional int32 ret = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* Planet::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional int32 ret = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int Planet::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 ret = 1;
-    if (has_ret()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->ret());
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void Planet::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const Planet* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Planet*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void Planet::MergeFrom(const Planet& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_ret(from.ret());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void Planet::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void Planet::CopyFrom(const Planet& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Planet::IsInitialized() const {
-  
-  return true;
-}
-
-void Planet::Swap(Planet* other) {
-  if (other != this) {
-    std::swap(ret_, other->ret_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata Planet::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Planet_descriptor_;
-  metadata.reflection = Planet_reflection_;
   return metadata;
 }
 

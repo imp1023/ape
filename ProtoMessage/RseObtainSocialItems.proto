@@ -14,7 +14,7 @@ message MsgItem
 
 message RseObtainSocialItems
 {
-	optional string wishlist = 1;
+	optional int32 wishlist = 1;
 	repeated MsgItem ItemsList = 2;
 }
 

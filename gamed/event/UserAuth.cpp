@@ -7,6 +7,7 @@
 #include "../../logic/User.h"
 #include "../../logic/Player.h"
 #include "../../event/EventQueue.h"
+#include "../../event/RseLogin.pb.h"
 #include "../../common/SysLog.h"
 #include "../../common/Msg2QQ.h"
 
@@ -114,7 +115,7 @@ void UserAuth::handle_CG_Req(Event* e)
 		}
 		type = 3;
 	}
-
+#endif
 
 	bool pass = pass1 && pass2 && pass3;
 
@@ -128,8 +129,9 @@ void UserAuth::handle_CG_Req(Event* e)
 		user->setFd(fd);
 		user->setOnline(true);
 
-		user->Logon(dh);
+		//user->Logon(dh);
 		dh->PushOnlineUserID(user->GetUid());
+#if 0
 		BattleManager* pBtlMgr = user->GetBattleManager();
 		if(pBtlMgr)
 		{
@@ -141,8 +143,10 @@ void UserAuth::handle_CG_Req(Event* e)
 		}
 
 		user->SetInBlackList(BlackListConfig::Instance().IsInBlackList(uid));
-
+#endif
 		dh->markUserDirty(user); 
+
+#if 0
 		user->GetResStat()->Clear();
 		bool bStatUser = CSysLog::GetInstance()->IsStatUser(uid);
 
@@ -161,6 +165,7 @@ void UserAuth::handle_CG_Req(Event* e)
 		}*/
 
 		CMsg2QQ::GetInstance()->TellMsg(MQ_Logon,user,0,0,0);
+#endif
 	}
 
 	RseAuthState state;
@@ -170,5 +175,4 @@ void UserAuth::handle_CG_Req(Event* e)
 	string text;
 	state.SerializeToString(&text);
 	eh_->sendDataToUser(fd, S2C_RseAuthState, text);
-#endif
 }

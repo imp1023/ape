@@ -1,15 +1,6 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
-message MsgTransaction
-{
-    optional int32 exp = 1;//": 0,
-    optional int32 minerals = 2;//": 0,
-    optional string client = 3;//": "0:1291883:12703953:9378890",
-    optional string event = 4;//": "",
-    optional int32 cash = 5;//": 0,
-    optional int32 droids = 6;//": 0,
-    optional int32 coins = 7;//": 0	
-}
+import "MsgTransaction.proto";
 
 message RceItemDamaged
 {

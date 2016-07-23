@@ -25,10 +25,11 @@ User::User(int64 id, const string& pid, const string &name,
 	m_dbUser.set_profile_link(plat_type, profile_link);
 	m_dbUser.set_region(nRegion);
 	m_dbUser.set_city(nCity);
-	//¹ØÁªplayerÊı¾İ¿â
+	//å…³è”playeræ•°æ®åº“
+	m_pPlayer->InitPlayerData();
 	m_pPlayer->InitDB(m_dbUser.mutable_player());
 	//m_pPlayer->InitNpcDB(&m_dbNPCList);
-	m_pPlayer->InitNewUserFromCfg();
+	//m_pPlayer->InitNewUserFromCfg();
 
 	SetGender(gender);
 	SetProfileLink(profile_link,plat_type);
@@ -62,7 +63,7 @@ User::User(int64 id, const string& pid, const string &name,
 		m_dbUser.set_ishighyellowdmd(bIsHighYellowDmd);
 // 	}
 
-	// ×¢²áÊ±¼äÎª¿Õ²ÅÉèÖÃ
+	// æ³¨å†Œæ—¶é—´ä¸ºç©ºæ‰è®¾ç½®
 	if (m_dbUser.regist_time() <= 0)
 	{
 		m_dbUser.set_regist_time(time(NULL));
@@ -137,14 +138,6 @@ void User::OnSetDbUser()
  	}
 }
 
-void User::InitNewUser()
-{
-	//m_dbUser.set_name("TestPlayer");
-	//m_dbUser.set_head(0);
-	SetRegisterTime(time(NULL));
-	m_pPlayer->InitPlayerData();	
-}
-
 DB_User& User::GetDbUser()
 {
     return m_dbUser;
@@ -180,7 +173,7 @@ void User::SetDbUser(const DB_User& dbuser)
     m_dbUser.Clear();
     m_dbUser.CopyFrom(dbuser);
     OnSetDbUser();
-	////·ÀÖ¹±»¸²¸Ç
+	////é˜²æ­¢è¢«è¦†ç›–
 	for (int i = m_dbUser.name_size(); i < PLAT_TYPE_MAX; i++)
 	{
 		m_dbUser.add_name("");
@@ -198,14 +191,14 @@ bool User::IsNewLoginMonth() const
 	struct tm nowtime;
 	localtime_r(&now,&nowtime);
 
-	if (lastlogintime.tm_year == nowtime.tm_year)//Í¬Ò»Äê
+	if (lastlogintime.tm_year == nowtime.tm_year)//åŒä¸€å¹´
 	{
 		if (lastlogintime.tm_mon != nowtime.tm_mon)
 		{
 			return true;
 		}
 	}
-	else//²»ÊÇÍ¬Ò»Äê
+	else//ä¸æ˜¯åŒä¸€å¹´
 	{
 		return true;
 	}	
@@ -300,7 +293,7 @@ void User::InitRc4Key(int nNum,string szSid)
 }
 
 bool User::CheckPlayerAdult()
-{//Ò»µ¶ÇĞ·À³ÁÃÔ
+{//ä¸€åˆ€åˆ‡é˜²æ²‰è¿·
 	ConstantSetUnit* pUnit = GameConstantSetCfg::Instance().GetGameConstantSet(E_GAMECONSTANTSET_DEF_CHECK_ADULT);
 	if (pUnit == NULL || pUnit->m_nArgs[0] == 0)
 	{
@@ -315,19 +308,15 @@ bool User::CheckPlayerAdult()
 	return m_dbUser.badult();
 }
 
-/*
 void User::Logon(GameDataHandler* dh)
 {
-
 	if(m_pPlayer&&m_pPlayer->CanUse())
 	{
-		m_pPlayer->_TmpCheckLV();
-
-		m_pPlayer->Logon(dh);
+		//m_pPlayer->_TmpCheckLV();
+		//m_pPlayer->Logon(dh);
 	}
-
-	m_UpdateSaveTime = 0;
-}*/
+	//m_UpdateSaveTime = 0;
+}
 
 inline string User::GetProfileLink(PLAT_TYPE nPlatType) const 
 {

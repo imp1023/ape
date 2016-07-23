@@ -95,7 +95,7 @@ void protobuf_AddDesc_RseObtainNpcList_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\026RseObtainNpcList.proto\"?\n\006MsgNpc\022\013\n\003np"
-    "c\030\001 \003(\t\022\n\n\002xp\030\002 \001(\003\022\017\n\007HQLevel\030\003 \001(\005\022\013\n\003"
+    "c\030\001 \003(\t\022\n\n\002xp\030\002 \001(\005\022\017\n\007HQLevel\030\003 \001(\005\022\013\n\003"
     "sku\030\004 \001(\t\",\n\020RseObtainNpcList\022\030\n\007npcList"
     "\030\001 \003(\0132\007.MsgNpc", 135);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
@@ -139,7 +139,7 @@ MsgNpc::MsgNpc(const MsgNpc& from) {
 
 void MsgNpc::SharedCtor() {
   _cached_size_ = 0;
-  xp_ = GOOGLE_LONGLONG(0);
+  xp_ = 0;
   hqlevel_ = 0;
   sku_ = const_cast< ::std::string*>(&_default_sku_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -174,7 +174,7 @@ MsgNpc* MsgNpc::New() const {
 
 void MsgNpc::Clear() {
   if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
-    xp_ = GOOGLE_LONGLONG(0);
+    xp_ = 0;
     hqlevel_ = 0;
     if (_has_bit(3)) {
       if (sku_ != &_default_sku_) {
@@ -210,14 +210,14 @@ bool MsgNpc::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int64 xp = 2;
+      // optional int32 xp = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_xp:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &xp_));
         _set_bit(1);
         if (input->ExpectTag(24)) goto parse_HQLevel;
@@ -287,9 +287,9 @@ void MsgNpc::SerializeWithCachedSizes(
       1, this->npc(i), output);
   }
   
-  // optional int64 xp = 2;
+  // optional int32 xp = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->xp(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->xp(), output);
   }
   
   // optional int32 HQLevel = 3;
@@ -323,9 +323,9 @@ void MsgNpc::SerializeWithCachedSizes(
       WriteStringToArray(1, this->npc(i), target);
   }
   
-  // optional int64 xp = 2;
+  // optional int32 xp = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->xp(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->xp(), target);
   }
   
   // optional int32 HQLevel = 3;
@@ -354,10 +354,10 @@ int MsgNpc::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
-    // optional int64 xp = 2;
+    // optional int32 xp = 2;
     if (has_xp()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->xp());
     }
     

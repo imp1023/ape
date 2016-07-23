@@ -105,14 +105,14 @@ void protobuf_AddDesc_RseObtainAttackerList_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\033RseObtainAttackerList.proto\"\367\001\n\013MsgAtt"
-    "acker\022\n\n\002id\030\001 \001(\003\022\022\n\nattackDate\030\002 \001(\003\022\021\n"
-    "\taccountId\030\003 \001(\003\022\021\n\tplanetSku\030\004 \001(\t\022\016\n\006d"
+    "acker\022\n\n\002id\030\001 \001(\005\022\022\n\nattackDate\030\002 \001(\005\022\021\n"
+    "\taccountId\030\003 \001(\005\022\021\n\tplanetSku\030\004 \001(\t\022\016\n\006d"
     "amage\030\005 \001(\005\022\024\n\014planetDamage\030\006 \001(\005\022\020\n\010att"
-    "acker\030\007 \003(\003\022\025\n\rmineralsTaken\030\010 \001(\005\022\022\n\nco"
+    "acker\030\007 \003(\005\022\025\n\rmineralsTaken\030\010 \001(\005\022\022\n\nco"
     "insTaken\030\t \001(\005\022$\n\034obtainedDamageProtecti"
-    "onTime\030\n \001(\003\022\014\n\004name\030\013 \001(\t\022\013\n\003url\030\014 \001(\t\""
+    "onTime\030\n \001(\005\022\014\n\004name\030\013 \001(\t\022\013\n\003url\030\014 \001(\t\""
     "o\n\025RseObtainAttackerList\022\017\n\007idCount\030\001 \001("
-    "\005\022!\n\031damageProtectionAppliedAt\030\002 \001(\003\022\"\n\014"
+    "\005\022!\n\031damageProtectionAppliedAt\030\002 \001(\005\022\"\n\014"
     "attackerList\030\003 \003(\0132\014.MsgAttacker", 392);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseObtainAttackerList.proto", &protobuf_RegisterTypes);
@@ -165,15 +165,15 @@ MsgAttacker::MsgAttacker(const MsgAttacker& from) {
 
 void MsgAttacker::SharedCtor() {
   _cached_size_ = 0;
-  id_ = GOOGLE_LONGLONG(0);
-  attackdate_ = GOOGLE_LONGLONG(0);
-  accountid_ = GOOGLE_LONGLONG(0);
+  id_ = 0;
+  attackdate_ = 0;
+  accountid_ = 0;
   planetsku_ = const_cast< ::std::string*>(&_default_planetsku_);
   damage_ = 0;
   planetdamage_ = 0;
   mineralstaken_ = 0;
   coinstaken_ = 0;
-  obtaineddamageprotectiontime_ = GOOGLE_LONGLONG(0);
+  obtaineddamageprotectiontime_ = 0;
   name_ = const_cast< ::std::string*>(&_default_name_);
   url_ = const_cast< ::std::string*>(&_default_url_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -214,9 +214,9 @@ MsgAttacker* MsgAttacker::New() const {
 
 void MsgAttacker::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    id_ = GOOGLE_LONGLONG(0);
-    attackdate_ = GOOGLE_LONGLONG(0);
-    accountid_ = GOOGLE_LONGLONG(0);
+    id_ = 0;
+    attackdate_ = 0;
+    accountid_ = 0;
     if (_has_bit(3)) {
       if (planetsku_ != &_default_planetsku_) {
         planetsku_->clear();
@@ -228,7 +228,7 @@ void MsgAttacker::Clear() {
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     coinstaken_ = 0;
-    obtaineddamageprotectiontime_ = GOOGLE_LONGLONG(0);
+    obtaineddamageprotectiontime_ = 0;
     if (_has_bit(10)) {
       if (name_ != &_default_name_) {
         name_->clear();
@@ -251,41 +251,41 @@ bool MsgAttacker::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int64 id = 1;
+      // optional int32 id = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &id_));
         _set_bit(0);
         if (input->ExpectTag(16)) goto parse_attackDate;
         break;
       }
       
-      // optional int64 attackDate = 2;
+      // optional int32 attackDate = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_attackDate:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &attackdate_));
         _set_bit(1);
         if (input->ExpectTag(24)) goto parse_accountId;
         break;
       }
       
-      // optional int64 accountId = 3;
+      // optional int32 accountId = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_accountId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &accountid_));
         _set_bit(2);
         if (input->ExpectTag(34)) goto parse_planetSku;
@@ -336,15 +336,15 @@ bool MsgAttacker::MergePartialFromCodedStream(
         break;
       }
       
-      // repeated int64 attacker = 7;
+      // repeated int32 attacker = 7;
       case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_attacker:
-        ::google::protobuf::int64 value;
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        ::google::protobuf::int32 value;
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &value));
         add_attacker(value);
         if (input->ExpectTag(56)) goto parse_attacker;
@@ -380,14 +380,14 @@ bool MsgAttacker::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int64 obtainedDamageProtectionTime = 10;
+      // optional int32 obtainedDamageProtectionTime = 10;
       case 10: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_obtainedDamageProtectionTime:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &obtaineddamageprotectiontime_));
         _set_bit(9);
         if (input->ExpectTag(90)) goto parse_name;
@@ -450,19 +450,19 @@ void MsgAttacker::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int64 id = 1;
+  // optional int32 id = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
   }
   
-  // optional int64 attackDate = 2;
+  // optional int32 attackDate = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->attackdate(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->attackdate(), output);
   }
   
-  // optional int64 accountId = 3;
+  // optional int32 accountId = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->accountid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->accountid(), output);
   }
   
   // optional string planetSku = 4;
@@ -484,9 +484,9 @@ void MsgAttacker::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->planetdamage(), output);
   }
   
-  // repeated int64 attacker = 7;
+  // repeated int32 attacker = 7;
   for (int i = 0; i < this->attacker_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(
       7, this->attacker(i), output);
   }
   
@@ -500,9 +500,9 @@ void MsgAttacker::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->coinstaken(), output);
   }
   
-  // optional int64 obtainedDamageProtectionTime = 10;
+  // optional int32 obtainedDamageProtectionTime = 10;
   if (_has_bit(9)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(10, this->obtaineddamageprotectiontime(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->obtaineddamageprotectiontime(), output);
   }
   
   // optional string name = 11;
@@ -531,19 +531,19 @@ void MsgAttacker::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MsgAttacker::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int64 id = 1;
+  // optional int32 id = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
   }
   
-  // optional int64 attackDate = 2;
+  // optional int32 attackDate = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->attackdate(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->attackdate(), target);
   }
   
-  // optional int64 accountId = 3;
+  // optional int32 accountId = 3;
   if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->accountid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->accountid(), target);
   }
   
   // optional string planetSku = 4;
@@ -566,10 +566,10 @@ void MsgAttacker::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->planetdamage(), target);
   }
   
-  // repeated int64 attacker = 7;
+  // repeated int32 attacker = 7;
   for (int i = 0; i < this->attacker_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt64ToArray(7, this->attacker(i), target);
+      WriteInt32ToArray(7, this->attacker(i), target);
   }
   
   // optional int32 mineralsTaken = 8;
@@ -582,9 +582,9 @@ void MsgAttacker::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->coinstaken(), target);
   }
   
-  // optional int64 obtainedDamageProtectionTime = 10;
+  // optional int32 obtainedDamageProtectionTime = 10;
   if (_has_bit(9)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(10, this->obtaineddamageprotectiontime(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->obtaineddamageprotectiontime(), target);
   }
   
   // optional string name = 11;
@@ -618,24 +618,24 @@ int MsgAttacker::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int64 id = 1;
+    // optional int32 id = 1;
     if (has_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->id());
     }
     
-    // optional int64 attackDate = 2;
+    // optional int32 attackDate = 2;
     if (has_attackdate()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->attackdate());
     }
     
-    // optional int64 accountId = 3;
+    // optional int32 accountId = 3;
     if (has_accountid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->accountid());
     }
     
@@ -676,10 +676,10 @@ int MsgAttacker::ByteSize() const {
           this->coinstaken());
     }
     
-    // optional int64 obtainedDamageProtectionTime = 10;
+    // optional int32 obtainedDamageProtectionTime = 10;
     if (has_obtaineddamageprotectiontime()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->obtaineddamageprotectiontime());
     }
     
@@ -698,12 +698,12 @@ int MsgAttacker::ByteSize() const {
     }
     
   }
-  // repeated int64 attacker = 7;
+  // repeated int32 attacker = 7;
   {
     int data_size = 0;
     for (int i = 0; i < this->attacker_size(); i++) {
       data_size += ::google::protobuf::internal::WireFormatLite::
-        Int64Size(this->attacker(i));
+        Int32Size(this->attacker(i));
     }
     total_size += 1 * this->attacker_size() + data_size;
   }
@@ -841,7 +841,7 @@ RseObtainAttackerList::RseObtainAttackerList(const RseObtainAttackerList& from) 
 void RseObtainAttackerList::SharedCtor() {
   _cached_size_ = 0;
   idcount_ = 0;
-  damageprotectionappliedat_ = GOOGLE_LONGLONG(0);
+  damageprotectionappliedat_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -872,7 +872,7 @@ RseObtainAttackerList* RseObtainAttackerList::New() const {
 void RseObtainAttackerList::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     idcount_ = 0;
-    damageprotectionappliedat_ = GOOGLE_LONGLONG(0);
+    damageprotectionappliedat_ = 0;
   }
   attackerlist_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -898,14 +898,14 @@ bool RseObtainAttackerList::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int64 damageProtectionAppliedAt = 2;
+      // optional int32 damageProtectionAppliedAt = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_damageProtectionAppliedAt:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &damageprotectionappliedat_));
         _set_bit(1);
         if (input->ExpectTag(26)) goto parse_attackerList;
@@ -955,9 +955,9 @@ void RseObtainAttackerList::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->idcount(), output);
   }
   
-  // optional int64 damageProtectionAppliedAt = 2;
+  // optional int32 damageProtectionAppliedAt = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->damageprotectionappliedat(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->damageprotectionappliedat(), output);
   }
   
   // repeated .MsgAttacker attackerList = 3;
@@ -979,9 +979,9 @@ void RseObtainAttackerList::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->idcount(), target);
   }
   
-  // optional int64 damageProtectionAppliedAt = 2;
+  // optional int32 damageProtectionAppliedAt = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->damageprotectionappliedat(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->damageprotectionappliedat(), target);
   }
   
   // repeated .MsgAttacker attackerList = 3;
@@ -1009,10 +1009,10 @@ int RseObtainAttackerList::ByteSize() const {
           this->idcount());
     }
     
-    // optional int64 damageProtectionAppliedAt = 2;
+    // optional int32 damageProtectionAppliedAt = 2;
     if (has_damageprotectionappliedat()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->damageprotectionappliedat());
     }
     

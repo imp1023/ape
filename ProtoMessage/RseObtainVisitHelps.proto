@@ -1,8 +1,10 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
+
 message RseObtainVisitHelps
 {
 	repeated ActionsPerformedByFriendsList actionsPerformedByFriendsList = 1;
 }
+
 message ActionsPerformedByFriendsList
 {
 	optional int32 ret = 1;

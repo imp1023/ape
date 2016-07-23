@@ -20,7 +20,7 @@ typedef struct{
 
 typedef struct{
 	int64 uid;
-	int planetId;
+	string planetId;
 }PlanetLiteInfo;
 
 class Star

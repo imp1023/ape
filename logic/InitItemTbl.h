@@ -16,7 +16,7 @@ typedef struct
 	int x;
 	int y;
 	int time;
-}CFG_ITEM;
+}CFG_InitItem;
 
 class InitItemTbl
 {
@@ -26,12 +26,12 @@ public:
 
 	void			LoadInfo();
 	void			Clear();
-	CFG_ITEM*		GetInfo(int nIndex);
+	CFG_InitItem*		GetInfo(int nIndex);
 	inline int		GetTotalSize(){return m_mapInitItem.size();}
 
 protected:
 	static const char*  szConfigFile;
-	map<int, CFG_ITEM*>	m_mapInitItem;
+	map<int, CFG_InitItem*>	m_mapInitItem;
 };
 
 typedef Singleton<InitItemTbl> InitItemTblInst;

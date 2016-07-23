@@ -85,17 +85,24 @@ class RseUpdateItem : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int64 id = 1;
+  // optional int32 ret = 1;
+  inline bool has_ret() const;
+  inline void clear_ret();
+  static const int kRetFieldNumber = 1;
+  inline ::google::protobuf::int32 ret() const;
+  inline void set_ret(::google::protobuf::int32 value);
+  
+  // optional int64 id = 2;
   inline bool has_id() const;
   inline void clear_id();
-  static const int kIdFieldNumber = 1;
+  static const int kIdFieldNumber = 2;
   inline ::google::protobuf::int64 id() const;
   inline void set_id(::google::protobuf::int64 value);
   
-  // optional int32 sid = 2;
+  // optional int32 sid = 3;
   inline bool has_sid() const;
   inline void clear_sid();
-  static const int kSidFieldNumber = 2;
+  static const int kSidFieldNumber = 3;
   inline ::google::protobuf::int32 sid() const;
   inline void set_sid(::google::protobuf::int32 value);
   
@@ -103,13 +110,14 @@ class RseUpdateItem : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
+  ::google::protobuf::int32 ret_;
   ::google::protobuf::int64 id_;
   ::google::protobuf::int32 sid_;
   friend void  protobuf_AddDesc_RseUpdateItem_2eproto();
   friend void protobuf_AssignDesc_RseUpdateItem_2eproto();
   friend void protobuf_ShutdownFile_RseUpdateItem_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -135,35 +143,51 @@ class RseUpdateItem : public ::google::protobuf::Message {
 
 // RseUpdateItem
 
-// optional int64 id = 1;
-inline bool RseUpdateItem::has_id() const {
+// optional int32 ret = 1;
+inline bool RseUpdateItem::has_ret() const {
   return _has_bit(0);
+}
+inline void RseUpdateItem::clear_ret() {
+  ret_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 RseUpdateItem::ret() const {
+  return ret_;
+}
+inline void RseUpdateItem::set_ret(::google::protobuf::int32 value) {
+  _set_bit(0);
+  ret_ = value;
+}
+
+// optional int64 id = 2;
+inline bool RseUpdateItem::has_id() const {
+  return _has_bit(1);
 }
 inline void RseUpdateItem::clear_id() {
   id_ = GOOGLE_LONGLONG(0);
-  _clear_bit(0);
+  _clear_bit(1);
 }
 inline ::google::protobuf::int64 RseUpdateItem::id() const {
   return id_;
 }
 inline void RseUpdateItem::set_id(::google::protobuf::int64 value) {
-  _set_bit(0);
+  _set_bit(1);
   id_ = value;
 }
 
-// optional int32 sid = 2;
+// optional int32 sid = 3;
 inline bool RseUpdateItem::has_sid() const {
-  return _has_bit(1);
+  return _has_bit(2);
 }
 inline void RseUpdateItem::clear_sid() {
   sid_ = 0;
-  _clear_bit(1);
+  _clear_bit(2);
 }
 inline ::google::protobuf::int32 RseUpdateItem::sid() const {
   return sid_;
 }
 inline void RseUpdateItem::set_sid(::google::protobuf::int32 value) {
-  _set_bit(1);
+  _set_bit(2);
   sid_ = value;
 }
 

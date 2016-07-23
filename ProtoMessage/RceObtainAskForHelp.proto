@@ -1,5 +1,6 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
+
 message RceObtainAskForHelp
 {
-	optional int32 ret = 1;
+	
 }

@@ -3,8 +3,8 @@
 message MsgPlanet
 {
 	optional int32 planetId = 1;//": 1,
-    optional string starName = 2;//": "塌圖嗣嫌",
-    optional int32 planetType = 3;//": 0,
+    optional int32 planetType = 2;//": 0,
+    optional string starName = 3;//": "塌圖嗣嫌",
     optional int32 coinsLimit = 4;//": 9000,
     optional int32 mineralsLimit = 5;//": 9000,
     optional int32 starId = 6;//": 2038,

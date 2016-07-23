@@ -82,6 +82,7 @@ private:
 	log4cxx::LoggerPtr logger_;
 
 protected:
+
 };
 
 #endif

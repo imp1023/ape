@@ -7,23 +7,22 @@
 void GameEventHandler::initAutoEventProcessors()
 {
 	RceCustomizedActivityHandle::createInstance(this);
+	RceDeployUnitsHandle::createInstance(this);
+	RceItemDamagedHandle::createInstance(this);
 	RceLoginHandle::createInstance(this);
+	RceObtainAskForHelpHandle::createInstance(this);
 	RceObtainAttackerListHandle::createInstance(this);
 	RceObtainBattleReplayHandle::createInstance(this);
 	RceObtainCustomizerHandle::createInstance(this);
+	RceObtainHangarsHelpHandle::createInstance(this);
 	RceObtainMessagesListHandle::createInstance(this);
 	RceObtainNeighborsListHandle::createInstance(this);
 	RceObtainNpcListHandle::createInstance(this);
+	RceObtainPayUrlParameHandle::createInstance(this);
+	RceObtainRandomTargetsHandle::createInstance(this);
 	RceObtainSocialItemsHandle::createInstance(this);
 	RceObtainSocialUserInfoHandle::createInstance(this);
 	RceObtainUniverseHandle::createInstance(this);
-	RceUpdateAlliancesHandle::createInstance(this);
-	RceDeployUnitsHandle::createInstance(this);
-	RceItemDamagedHandle::createInstance(this);
-	RceObtainAskForHelpHandle::createInstance(this);
-	RceObtainHangarsHelpHandle::createInstance(this);
-	RceObtainPayUrlParameHandle::createInstance(this);
-	RceObtainRandomTargetsHandle::createInstance(this);
 	RceObtainVisitHelpsHandle::createInstance(this);
 	RceOnlineRewardHandle::createInstance(this);
 	RceQueryCheckAndLockAccountIfPossibleHandle::createInstance(this);
@@ -35,6 +34,7 @@ void GameEventHandler::initAutoEventProcessors()
 	RceQueryStarsBookmarksHandle::createInstance(this);
 	RceQueryVisitHelpsGiftUnitsOnBunkerHandle::createInstance(this);
 	RceUnitDamagedHandle::createInstance(this);
+	RceUpdateAlliancesHandle::createInstance(this);
 	RceUpdateGameUnitsHandle::createInstance(this);
 	RceUpdateItemHandle::createInstance(this);
 	RceUpdateMiscHandle::createInstance(this);

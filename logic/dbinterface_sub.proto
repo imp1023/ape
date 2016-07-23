@@ -731,7 +731,8 @@ message DB_Flag
 {
     optional int32 music = 1;
     optional int32 effect = 2;
-    optional int32 quality = 3;    
+    optional int32 quality = 3;
+    optional int32 allianceWelcome = 4;  
 }
 
 message DB_Storedata

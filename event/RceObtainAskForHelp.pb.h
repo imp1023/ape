@@ -85,23 +85,15 @@ class RceObtainAskForHelp : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 ret = 1;
-  inline bool has_ret() const;
-  inline void clear_ret();
-  static const int kRetFieldNumber = 1;
-  inline ::google::protobuf::int32 ret() const;
-  inline void set_ret(::google::protobuf::int32 value);
-  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 ret_;
   friend void  protobuf_AddDesc_RceObtainAskForHelp_2eproto();
   friend void protobuf_AssignDesc_RceObtainAskForHelp_2eproto();
   friend void protobuf_ShutdownFile_RceObtainAskForHelp_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[1];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -126,22 +118,6 @@ class RceObtainAskForHelp : public ::google::protobuf::Message {
 // ===================================================================
 
 // RceObtainAskForHelp
-
-// optional int32 ret = 1;
-inline bool RceObtainAskForHelp::has_ret() const {
-  return _has_bit(0);
-}
-inline void RceObtainAskForHelp::clear_ret() {
-  ret_ = 0;
-  _clear_bit(0);
-}
-inline ::google::protobuf::int32 RceObtainAskForHelp::ret() const {
-  return ret_;
-}
-inline void RceObtainAskForHelp::set_ret(::google::protobuf::int32 value) {
-  _set_bit(0);
-  ret_ = value;
-}
 
 
 #ifndef SWIG

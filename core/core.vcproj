@@ -222,11 +222,43 @@
 					>
 				</File>
 				<File
+					RelativePath="..\event\MsgBuildingItem.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgBuildingItem.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgMission.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgMission.pb.h"
+					>
+				</File>
+				<File
 					RelativePath="..\event\MsgPlanet.pb.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\event\MsgPlanet.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgSocialItems.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgSocialItems.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgTransaction.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgTransaction.pb.h"
 					>
 				</File>
 				<File
@@ -539,6 +571,14 @@
 				</File>
 				<File
 					RelativePath="..\event\RceUpdateVisitHelp.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseAuthState.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseAuthState.pb.h"
 					>
 				</File>
 				<File

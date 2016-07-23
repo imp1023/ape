@@ -3,7 +3,11 @@
 #pragma once
 //该文件为使用工具自动生成，请不要在文件中修改，如需要修改，请与sskylin联系。
 #include "FriendInfoLite.pb.h"
+#include "MsgBuildingItem.pb.h"
+#include "MsgMission.pb.h"
 #include "MsgPlanet.pb.h"
+#include "MsgSocialItems.pb.h"
+#include "MsgTransaction.pb.h"
 #include "RceCustomizedActivity.pb.h"
 #include "RceDeployUnits.pb.h"
 #include "RceItemDamaged.pb.h"
@@ -43,6 +47,7 @@
 #include "RceUpdateStarsBookmarks.pb.h"
 #include "RceUpdateTargets.pb.h"
 #include "RceUpdateVisitHelp.pb.h"
+#include "RseAuthState.pb.h"
 #include "RseCustomizedActivity.pb.h"
 #include "RseDeployUnits.pb.h"
 #include "RseItemDamaged.pb.h"

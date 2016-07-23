@@ -29,7 +29,7 @@ void InitItemTbl::LoadInfo()
 
 	for (int i = 0; i < nRow; i++)
 	{
-		CFG_ITEM *pItem = new CFG_ITEM;
+		CFG_InitItem *pItem = new CFG_InitItem;
 		int id = fileDBC.Search_Posistion(i, 0)->iValue;
 		pItem->sid = fileDBC.Search_Posistion(i, 1)->iValue;
 		pItem->sku = fileDBC.Search_Posistion(i, 2)->iValue;
@@ -39,7 +39,7 @@ void InitItemTbl::LoadInfo()
 		pItem->y = fileDBC.Search_Posistion(i, 6)->iValue;
 		pItem->time = fileDBC.Search_Posistion(i, 7)->iValue;
 
-		map<int, CFG_ITEM*>::iterator iter = m_mapInitItem.find(id);
+		map<int, CFG_InitItem*>::iterator iter = m_mapInitItem.find(id);
 		if(iter != m_mapInitItem.end()){
 			return;
 		}
@@ -51,7 +51,7 @@ void InitItemTbl::LoadInfo()
 
 void InitItemTbl::Clear()
 {
-	for (map<int,CFG_ITEM*>::iterator iter = m_mapInitItem.begin(); iter != m_mapInitItem.end(); ++iter)
+	for (map<int,CFG_InitItem*>::iterator iter = m_mapInitItem.begin(); iter != m_mapInitItem.end(); ++iter)
 	{
 		if (iter->second != NULL)
 		{
@@ -61,9 +61,9 @@ void InitItemTbl::Clear()
 	m_mapInitItem.clear();
 }
 
-CFG_ITEM* InitItemTbl::GetInfo(int nIndex)
+CFG_InitItem* InitItemTbl::GetInfo(int nIndex)
 {
-	map<int, CFG_ITEM*>::iterator iterFind = m_mapInitItem.find(nIndex);
+	map<int, CFG_InitItem*>::iterator iterFind = m_mapInitItem.find(nIndex);
 	if (iterFind != m_mapInitItem.end())
 	{
 		return iterFind->second;

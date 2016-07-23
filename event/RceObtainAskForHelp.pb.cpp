@@ -26,7 +26,6 @@ void protobuf_AssignDesc_RceObtainAskForHelp_2eproto() {
   GOOGLE_CHECK(file != NULL);
   RceObtainAskForHelp_descriptor_ = file->message_type(0);
   static const int RceObtainAskForHelp_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceObtainAskForHelp, ret_),
   };
   RceObtainAskForHelp_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -69,8 +68,8 @@ void protobuf_AddDesc_RceObtainAskForHelp_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\031RceObtainAskForHelp.proto\"\"\n\023RceObtain"
-    "AskForHelp\022\013\n\003ret\030\001 \001(\005", 63);
+    "\n\031RceObtainAskForHelp.proto\"\025\n\023RceObtain"
+    "AskForHelp", 50);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceObtainAskForHelp.proto", &protobuf_RegisterTypes);
   RceObtainAskForHelp::default_instance_ = new RceObtainAskForHelp();
@@ -89,7 +88,6 @@ struct StaticDescriptorInitializer_RceObtainAskForHelp_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int RceObtainAskForHelp::kRetFieldNumber;
 #endif  // !_MSC_VER
 
 RceObtainAskForHelp::RceObtainAskForHelp() {
@@ -106,7 +104,6 @@ RceObtainAskForHelp::RceObtainAskForHelp(const RceObtainAskForHelp& from) {
 
 void RceObtainAskForHelp::SharedCtor() {
   _cached_size_ = 0;
-  ret_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -135,9 +132,6 @@ RceObtainAskForHelp* RceObtainAskForHelp::New() const {
 }
 
 void RceObtainAskForHelp::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    ret_ = 0;
-  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -147,31 +141,12 @@ bool RceObtainAskForHelp::MergePartialFromCodedStream(
 #define DO_(EXPRESSION) if (!(EXPRESSION)) return false
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 ret = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &ret_));
-        _set_bit(0);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
+    if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+      return true;
     }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, mutable_unknown_fields()));
   }
   return true;
 #undef DO_
@@ -185,11 +160,6 @@ void RceObtainAskForHelp::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int32 ret = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
-  }
-  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -198,11 +168,6 @@ void RceObtainAskForHelp::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RceObtainAskForHelp::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 ret = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
-  }
-  
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -213,15 +178,6 @@ void RceObtainAskForHelp::SerializeWithCachedSizes(
 int RceObtainAskForHelp::ByteSize() const {
   int total_size = 0;
   
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 ret = 1;
-    if (has_ret()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->ret());
-    }
-    
-  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -245,11 +201,6 @@ void RceObtainAskForHelp::MergeFrom(const ::google::protobuf::Message& from) {
 
 void RceObtainAskForHelp::MergeFrom(const RceObtainAskForHelp& from) {
   GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_ret(from.ret());
-    }
-  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -272,8 +223,6 @@ bool RceObtainAskForHelp::IsInitialized() const {
 
 void RceObtainAskForHelp::Swap(RceObtainAskForHelp* other) {
   if (other != this) {
-    std::swap(ret_, other->ret_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }

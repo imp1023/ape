@@ -1486,10 +1486,11 @@ void protobuf_AssignDesc_dbinterface_5fsub_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DB_HeroInfo));
   DB_Flag_descriptor_ = file->message_type(54);
-  static const int DB_Flag_offsets_[3] = {
+  static const int DB_Flag_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_Flag, music_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_Flag, effect_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_Flag, quality_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_Flag, alliancewelcome_),
   };
   DB_Flag_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -2974,159 +2975,159 @@ void protobuf_AddDesc_dbinterface_5fsub_2eproto() {
     "eroDefLst\030\013 \003(\005\022\023\n\013heroAutoLst\030\014 \003(\005\022\024\n\014"
     "heroarenaLst\030\r \003(\005\022\026\n\016nAtkPartnerNum\030\016 \001"
     "(\005\022\026\n\016nDefPartnerNum\030\017 \001(\005\022\027\n\017nAutoPartn"
-    "erNum\030\020 \001(\005\"9\n\007DB_Flag\022\r\n\005music\030\001 \001(\005\022\016\n"
-    "\006effect\030\002 \001(\005\022\017\n\007quality\030\003 \001(\005\"=\n\014DB_Sto"
-    "redata\022\014\n\004type\030\001 \001(\t\022\t\n\001q\030\002 \001(\005\022\t\n\001s\030\003 \001"
-    "(\005\022\t\n\001e\030\004 \001(\005\"q\n\014DB_EnemyStar\022\017\n\007enemyID"
-    "\030\001 \001(\003\022\021\n\tattactCnt\030\002 \001(\003\022\023\n\013recoveryCnt"
-    "\030\003 \001(\003\022\022\n\nattacktime\030\004 \001(\005\022\024\n\tcountdown\030"
-    "\005 \001(\005:\0010\"\204\001\n\016DB_GiftFrdInfo\022\020\n\010friendID\030"
-    "\001 \001(\003\022\021\n\tfrdOpenID\030\002 \001(\t\022\021\n\tmessageID\030\003 "
-    "\001(\005\022\021\n\006giftID\030\004 \001(\005:\0010\022\022\n\007getTime\030\005 \001(\003:"
-    "\0010\022\023\n\010giftType\030\006 \001(\005:\0010\"G\n\023DB_NewComerGi"
-    "ftList\022\026\n\016newComerGiftID\030\001 \001(\005\022\030\n\020newCom"
-    "erGiftGain\030\002 \001(\005\"\351\002\n\013DB_GiftInfo\022\027\n\017dayS"
-    "endFrdIDLst\030\001 \003(\t\022\026\n\016dayAskFrdIDLst\030\002 \003("
-    "\t\022\031\n\021dayGetGift2BagCnt\030\003 \001(\005\022\031\n\021dayAskGi"
-    "ft2BagCnt\030\004 \001(\005\022\025\n\rdayGetGiftCnt\030\005 \001(\005\022\030"
-    "\n\020dayResendGiftCnt\030\006 \001(\005\022$\n\013getGiftInfo\030"
-    "\007 \003(\0132\017.DB_GiftFrdInfo\022\'\n\016finishGiftInfo"
-    "\030\010 \003(\0132\017.DB_GiftFrdInfo\022\021\n\006msgIdx\030\t \001(\005:"
-    "\0010\022\030\n\rlastLoginTime\030\n \001(\003:\0010\022\026\n\016daySendG"
-    "iftCnt\030\013 \001(\005\022.\n\020newComerGiftList\030\014 \003(\0132\024"
-    ".DB_NewComerGiftList\"B\n\rDB_DayAtkUser\022\027\n"
-    "\014dayAtkUserID\030\001 \001(\003:\0010\022\030\n\rdayAtkUserCnt\030"
-    "\002 \001(\003:\0010\"\236\002\n\013DB_UserStar\022\017\n\007enemyID\030\001 \003("
-    "\003\022\021\n\tattactCnt\030\002 \003(\003\022\023\n\013recoveryCnt\030\003 \003("
-    "\003\022 \n\tEnemyList\030\004 \003(\0132\r.DB_EnemyStar\022\"\n\nd"
-    "ayAtkInfo\030\005 \003(\0132\016.DB_DayAtkUser\022!\n\026dayDe"
-    "stroySlaveRoomCnt\030\006 \001(\005:\0010\022\026\n\013dayAtkCoun"
-    "t\030\007 \001(\005:\0010\022\026\n\013dayDefCount\030\010 \001(\005:\0010\022\035\n\022sp"
-    "rweaponhurtednum\030\t \001(\005:\0010\022\036\n\023sprweaponhu"
-    "rtedtime\030\n \001(\005:\0010\"u\n\026DB_DefenseActivityN"
-    "ode\022\025\n\nactivityid\030\001 \001(\005:\0010\022\026\n\013activitycu"
-    "t\030\002 \001(\005:\0010\022\021\n\tawardlist\030\003 \003(\010\022\031\n\rlstcust"
-    "omtime\030\004 \001(\005:\002-1\"A\n\022DB_DefenseActivity\022+"
-    "\n\nactivities\030\001 \001(\0132\027.DB_DefenseActivityN"
-    "ode\"Q\n\017DB_DefenseHonor\022\035\n\022lastdefencehon"
-    "orid\030\001 \001(\003:\0010\022\037\n\024gaindefencehornorcnt\030\002 "
-    "\001(\005:\0010\"4\n\013DB_BuffUnit\022\020\n\010bufftype\030\001 \001(\005\022"
-    "\023\n\013buffEndTime\030\002 \001(\r\"-\n\013DB_BuffData\022\036\n\010b"
-    "ufflist\030\001 \003(\0132\014.DB_BuffUnit\"\353\004\n\rDB_BagIt"
-    "emLog\022\022\n\007logType\030\001 \001(\005:\0010\022\021\n\006itemID\030\002 \001("
-    "\005:\0010\022\020\n\005count\030\003 \001(\005:\0010\022\017\n\004date\030\004 \001(\005:\0010\022"
-    "\020\n\005medal\030\005 \001(\005:\0010\022\016\n\003oil\030\006 \001(\005:\0010\022\021\n\006cre"
-    "dit\030\007 \001(\005:\0010\022\020\n\005honor\030\010 \001(\005:\0010\022\020\n\010itemTy"
-    "pe\030\t \003(\005\022\017\n\007itemCnt\030\n \003(\005\022\020\n\010armyType\030\013 "
-    "\003(\005\022\017\n\007armyCnt\030\014 \003(\005\022\020\n\010weaponID\030\r \003(\005\022\020"
-    "\n\010emblemID\030\016 \003(\005\022\021\n\tweaponCnt\030\017 \003(\005\022\021\n\te"
-    "mblemCnt\030\020 \003(\005\022\021\n\tadmiralID\030\021 \003(\005\022\022\n\nadm"
-    "iralCnt\030\022 \003(\005\022\r\n\005feats\030\023 \001(\005\022\014\n\004thew\030\024 \001"
-    "(\005\022\016\n\006morale\030\025 \001(\005\022\020\n\010zhangong\030\026 \001(\005\022\017\n\007"
-    "equipID\030\027 \003(\005\022\020\n\010equipCnt\030\030 \003(\005\022\016\n\006gScor"
-    "e\030\031 \001(\005\022\023\n\013admiralsoul\030\032 \001(\005\022\024\n\tcntrScor"
-    "e\030\033 \001(\005:\0010\022\027\n\017admiralLetterID\030\034 \003(\005\022\030\n\020a"
-    "dmiralLetterCnt\030\035 \003(\005\022\024\n\014heroLetterID\030\036 "
-    "\003(\005\022\025\n\rheroLetterCnt\030\037 \003(\005\022\025\n\rnMilitaryS"
-    "oul\030  \001(\005\")\n\006DB_Log\022\037\n\007itemLog\030\001 \003(\0132\016.D"
-    "B_BagItemLog\"T\n\nDB_BagItem\022\021\n\006itemID\030\001 \001"
-    "(\005:\0010\022\020\n\005count\030\002 \001(\005:\0010\022\r\n\002id\030\003 \001(\005:\0010\022\022"
-    "\n\007getTime\030\004 \001(\005:\0010\"\255\001\n\006DB_Bag\022\034\n\007bagItem"
-    "\030\001 \003(\0132\013.DB_BagItem\022\027\n\014lastOpenTime\030\002 \001("
-    "\005:\0010\022\020\n\005bagLV\030\003 \001(\005:\0010\022\024\n\tbagUseCnt\030\004 \001("
-    "\005:\0010\022\037\n\ntmpBagItem\030\005 \003(\0132\013.DB_BagItem\022#\n"
-    "\016virtualBagItem\030\006 \003(\0132\013.DB_BagItem\"\202\003\n\013D"
-    "B_MoonCake\022\026\n\013moonCakeCnt\030\001 \001(\005:\0010\022\024\n\tgo"
-    "ldLevel\030\002 \001(\005:\0010\022\026\n\013silverLevel\030\003 \001(\005:\0010"
-    "\022\r\n\005frdID\030\004 \003(\003\022\023\n\013visitFrdCnt\030\005 \003(\005\022\027\n\014"
-    "dayAccSucCnt\030\006 \001(\005:\0010\022\027\n\017getAccRewardCnt"
-    "\030\007 \003(\005\022\030\n\rlastLoginTime\030\010 \001(\003:\0010\022\034\n\021accS"
-    "ucMoonCakeCnt\030\t \001(\005:\0010\022\034\n\021maxSucMoonCake"
-    "Cnt\030\n \001(\005:\0010\022\025\n\nactiveFlag\030\013 \001(\005:\0010\022\031\n\016d"
-    "ayGetFlag1Cnt\030\014 \001(\005:\0010\022\031\n\016accGetFlag1Cnt"
-    "\030\r \001(\005:\0010\022\031\n\016accGetFlag2Cnt\030\016 \001(\005:\0010\022\031\n\016"
-    "dayGetFlag2Cnt\030\017 \001(\005:\0010\"\227\003\n\016DB_HolidayDr"
-    "aw\022\025\n\nactiveFlag\030\001 \001(\005:\0010\022\024\n\tgoldLevel\030\002"
-    " \001(\005:\0010\022\026\n\013silverLevel\030\003 \001(\005:\0010\022\r\n\005frdID"
-    "\030\004 \003(\003\022\023\n\013visitFrdCnt\030\005 \003(\005\022\027\n\014dayAccSuc"
-    "Cnt\030\006 \001(\005:\0010\022\027\n\017getAccRewardCnt\030\007 \003(\005\022\031\n"
-    "\016dayGetFlag1Cnt\030\010 \001(\005:\0010\022\031\n\016accGetFlag1C"
-    "nt\030\t \001(\005:\0010\022\031\n\016accGetFlag2Cnt\030\n \001(\005:\0010\022\031"
-    "\n\016dayGetFlag2Cnt\030\013 \001(\005:\0010\022\026\n\013lastGetTime"
-    "\030\014 \001(\003:\0010\022\025\n\ndayFreeCnt\030\020 \001(\005:\0010\022\034\n\021dayC"
-    "ostCreditTime\030\021 \001(\005:\0010\022\031\n\nhasGetRank\030\022 \001"
-    "(\010:\005false\022\026\n\013dayAgainCnt\030\023 \001(\005:\0010\"\203\001\n\024DB"
-    "_LeaveMessage_Unit\022\020\n\005nType\030\001 \001(\005:\0010\022\016\n\003"
-    "nID\030\002 \001(\005:\0010\022\020\n\006strMsg\030\003 \001(\t:\000\022\022\n\007msgtim"
-    "e\030\004 \001(\r:\0010\022\021\n\007strName\030\005 \001(\t:\000\022\020\n\006strUid\030"
-    "\006 \001(\t:\000\"{\n\017DB_LeaveMessage\022\021\n\006nTimes\030\001 \001"
-    "(\005:\0010\022\025\n\rviewtargetuin\030\002 \001(\003\022\016\n\006bIsNew\030\003"
-    " \001(\010\022.\n\017leavemessagearr\030\004 \003(\0132\025.DB_Leave"
-    "Message_Unit\"A\n\020DB_TXMissionData\022\023\n\tmiss"
-    "ionid\030\001 \001(\t:\000\022\030\n\014missionstate\030\002 \001(\005:\002-1\""
-    ";\n\020DB_ClientNumStat\022\023\n\013dayStatType\030\002 \003(\005"
-    "\022\022\n\ndayStatNum\030\003 \003(\005\"4\n\014DB_PokerInfo\022\017\n\007"
-    "pokerNo\030\001 \001(\005\022\023\n\013pokerColour\030\002 \001(\005\"\200\001\n\020D"
-    "B_CurrPokerInfo\022!\n\nuserPokers\030\001 \003(\0132\r.DB"
-    "_PokerInfo\022 \n\tnpcPokers\030\002 \003(\0132\r.DB_Poker"
-    "Info\022\023\n\010userType\030\003 \001(\005:\0010\022\022\n\007NPCType\030\004 \001"
-    "(\005:\0010\"\220\002\n\021DB_PokerExchanges\022\020\n\005gift0\030\001 \001"
-    "(\005:\0010\022\020\n\005gift1\030\002 \001(\005:\0010\022\020\n\005gift2\030\003 \001(\005:\001"
-    "0\022\020\n\005gift3\030\004 \001(\005:\0010\022\020\n\005gift4\030\005 \001(\005:\0010\022\036\n"
-    "\017isGetRarityGift\030\006 \001(\010:\005false\022\023\n\010giftnum"
-    "0\030\007 \001(\005:\0010\022\023\n\010giftnum1\030\010 \001(\005:\0010\022\023\n\010giftn"
-    "um2\030\t \001(\005:\0010\022\023\n\010giftnum3\030\n \001(\005:\0010\022\023\n\010gif"
-    "tnum4\030\013 \001(\005:\0010\022\030\n\rrefreshExcCnt\030\014 \001(\005:\0010"
-    "\"b\n\026DB_WorldCupPredictions\022\024\n\005isBet\030\001 \001("
-    "\010:\005false\022\036\n\007betInfo\030\002 \003(\0132\r.DB_WCBetInfo"
-    "\022\022\n\007nReward\030\003 \001(\005:\0010\"Y\n\014DB_WCBetInfo\022\020\n\005"
-    "nType\030\001 \001(\005:\0010\022\025\n\nnJettonNum\030\002 \001(\005:\0010\022\020\n"
-    "\005nOdds\030\003 \001(\005:\0010\022\016\n\006teamID\030\004 \003(\005\"\247\001\n\017DB_C"
-    "ardDuelInfo\022\025\n\nmyCardType\030\001 \001(\005:\0010\022\020\n\005op"
-    "pID\030\002 \001(\003:\0010\022\023\n\004bNpc\030\003 \001(\010:\005false\022\021\n\006win"
-    "Num\030\004 \001(\005:\0010\022\025\n\006bMatch\030\005 \001(\010:\005false\022\026\n\013a"
-    "ddupCredit\030\006 \001(\005:\0010\022\024\n\tmaxwinNum\030\007 \001(\005:\001"
-    "0\"i\n\021DB_MiddleYearGift\022\024\n\tfirstGift\030\001 \001("
-    "\005:\0010\022\023\n\010secdGift\030\002 \001(\005:\0010\022\027\n\014nTotalCredi"
-    "t\030\003 \001(\005:\0010\022\020\n\005nFlag\030\004 \001(\005:\0010\"G\n\016DB_OpenS"
-    "NSGift\022\021\n\005nType\030\001 \001(\005:\002-1\022\020\n\005nFlag\030\002 \001(\005"
-    ":\0010\022\020\n\005nTime\030\003 \001(\003:\0010\"\'\n\021DB_CallBackFrie"
-    "nd\022\022\n\nfrdplatids\030\001 \003(\t\",\n\016DB_AttackCount"
-    "\022\013\n\003uid\030\001 \002(\003\022\r\n\005count\030\002 \001(\005\"\267\002\n\nDB_Scie"
-    "nce\022\033\n\020recruitlandlevel\030\001 \001(\005:\0010\022\032\n\017recr"
-    "uitairlevel\030\002 \001(\005:\0010\022\032\n\017attacklandlevel\030"
-    "\003 \001(\005:\0010\022\032\n\017extrahonorlevel\030\004 \001(\005:\0010\022\027\n\014"
-    "exttimelevel\030\005 \001(\005:\0010\022\027\n\014redtimelevel\030\006 "
-    "\001(\005:\0010\022\021\n\006extres\030\007 \001(\005:\0010\022\021\n\006redres\030\010 \001("
-    "\005:\0010\022\025\n\naddbuildhp\030\t \001(\005:\0010\022\027\n\014addgunatt"
-    "ack\030\n \001(\005:\0010\022\030\n\raddmissileatk\030\013 \001(\005:\0010\022\026"
-    "\n\013minewarfare\030\014 \001(\005:\0010\"\034\n\tDB_Effect\022\017\n\007e"
-    "ffects\030\002 \003(\t\"\202\001\n\nDB_Officer\022\032\n\017officerPo"
-    "sition\030\001 \001(\005:\0010\022\036\n\023officerRightUseFlag\030\002"
-    " \001(\005:\0010\022!\n\026officerRightEffectFlag\030\003 \001(\005:"
-    "\0010\022\025\n\nupdateTime\030\004 \001(\005:\0010\"\202\001\n\nDB_WpcRank"
-    "\022\022\n\007rightID\030\001 \001(\005:\0010\022\025\n\nupdateTime\030\002 \001(\005"
-    ":\0010\022\025\n\nsearchTime\030\003 \001(\005:\0010\022\023\n\010activeID\030\004"
-    " \001(\005:\0010\022\035\n\022overTimeSearchTime\030\005 \001(\005:\0010\"U"
-    "\n\014DB_LeagueBtl\022\023\n\010activeID\030\001 \001(\005:\0010\022\026\n\013l"
-    "eaguePoint\030\002 \001(\005:\0010\022\030\n\trewardGet\030\003 \001(\010:\005"
-    "false\"D\n\020DB_HappylibAward\022\r\n\005times\030\001 \001(\005"
-    "\022\017\n\007awardid\030\002 \003(\005\022\020\n\010awardnum\030\003 \003(\005\"f\n\013D"
-    "B_HappyLib\022\021\n\tactiveend\030\001 \001(\005\022\r\n\005times\030\002"
-    " \001(\005\022\023\n\010getaward\030\003 \001(\005:\0010\022 \n\005award\030\004 \003(\013"
-    "2\021.DB_HappylibAward\"\220\001\n\rDB_BossBtlMsg\022\027\n"
-    "\014nBossBtlFlag\030\001 \001(\005:\0010\022\023\n\010totalDmg\030\002 \001(\003"
-    ":\0010\022\027\n\017honorEmbraveCnt\030\003 \001(\005\022\021\n\taddAtkPc"
-    "t\030\004 \001(\005\022\025\n\rhasPickReward\030\005 \001(\005\022\016\n\006upList"
-    "\030\006 \003(\010\"\232\001\n\021DB_MedalHonorInfo\022\027\n\013freeCast"
-    "Num\030\001 \001(\005:\00250\022\024\n\tnTokenNum\030\002 \001(\005:\0010\022\027\n\014d"
-    "ecorateType\030\003 \001(\005:\0010\022\025\n\rhallHonorList\030\004 "
-    "\003(\005\022&\n\016medalHonorList\030\005 \003(\0132\016.DB_MedalHo"
-    "nor\"\233\001\n\rDB_MedalHonor\022\016\n\003nID\030\001 \001(\005:\0010\022\027\n"
-    "\014medalHonorID\030\002 \001(\005:\0010\022\017\n\004nExp\030\003 \001(\005:\0010\022"
-    "\016\n\003nLV\030\004 \001(\005:\0010\022\023\n\010nBagType\030\005 \001(\005:\0010\022\025\n\n"
-    "nAdmiralID\030\006 \001(\005:\0010\022\024\n\005bLock\030\007 \001(\010:\005fals"
-    "e", 15641);
+    "erNum\030\020 \001(\005\"R\n\007DB_Flag\022\r\n\005music\030\001 \001(\005\022\016\n"
+    "\006effect\030\002 \001(\005\022\017\n\007quality\030\003 \001(\005\022\027\n\017allian"
+    "ceWelcome\030\004 \001(\005\"=\n\014DB_Storedata\022\014\n\004type\030"
+    "\001 \001(\t\022\t\n\001q\030\002 \001(\005\022\t\n\001s\030\003 \001(\005\022\t\n\001e\030\004 \001(\005\"q"
+    "\n\014DB_EnemyStar\022\017\n\007enemyID\030\001 \001(\003\022\021\n\tattac"
+    "tCnt\030\002 \001(\003\022\023\n\013recoveryCnt\030\003 \001(\003\022\022\n\nattac"
+    "ktime\030\004 \001(\005\022\024\n\tcountdown\030\005 \001(\005:\0010\"\204\001\n\016DB"
+    "_GiftFrdInfo\022\020\n\010friendID\030\001 \001(\003\022\021\n\tfrdOpe"
+    "nID\030\002 \001(\t\022\021\n\tmessageID\030\003 \001(\005\022\021\n\006giftID\030\004"
+    " \001(\005:\0010\022\022\n\007getTime\030\005 \001(\003:\0010\022\023\n\010giftType\030"
+    "\006 \001(\005:\0010\"G\n\023DB_NewComerGiftList\022\026\n\016newCo"
+    "merGiftID\030\001 \001(\005\022\030\n\020newComerGiftGain\030\002 \001("
+    "\005\"\351\002\n\013DB_GiftInfo\022\027\n\017daySendFrdIDLst\030\001 \003"
+    "(\t\022\026\n\016dayAskFrdIDLst\030\002 \003(\t\022\031\n\021dayGetGift"
+    "2BagCnt\030\003 \001(\005\022\031\n\021dayAskGift2BagCnt\030\004 \001(\005"
+    "\022\025\n\rdayGetGiftCnt\030\005 \001(\005\022\030\n\020dayResendGift"
+    "Cnt\030\006 \001(\005\022$\n\013getGiftInfo\030\007 \003(\0132\017.DB_Gift"
+    "FrdInfo\022\'\n\016finishGiftInfo\030\010 \003(\0132\017.DB_Gif"
+    "tFrdInfo\022\021\n\006msgIdx\030\t \001(\005:\0010\022\030\n\rlastLogin"
+    "Time\030\n \001(\003:\0010\022\026\n\016daySendGiftCnt\030\013 \001(\005\022.\n"
+    "\020newComerGiftList\030\014 \003(\0132\024.DB_NewComerGif"
+    "tList\"B\n\rDB_DayAtkUser\022\027\n\014dayAtkUserID\030\001"
+    " \001(\003:\0010\022\030\n\rdayAtkUserCnt\030\002 \001(\003:\0010\"\236\002\n\013DB"
+    "_UserStar\022\017\n\007enemyID\030\001 \003(\003\022\021\n\tattactCnt\030"
+    "\002 \003(\003\022\023\n\013recoveryCnt\030\003 \003(\003\022 \n\tEnemyList\030"
+    "\004 \003(\0132\r.DB_EnemyStar\022\"\n\ndayAtkInfo\030\005 \003(\013"
+    "2\016.DB_DayAtkUser\022!\n\026dayDestroySlaveRoomC"
+    "nt\030\006 \001(\005:\0010\022\026\n\013dayAtkCount\030\007 \001(\005:\0010\022\026\n\013d"
+    "ayDefCount\030\010 \001(\005:\0010\022\035\n\022sprweaponhurtednu"
+    "m\030\t \001(\005:\0010\022\036\n\023sprweaponhurtedtime\030\n \001(\005:"
+    "\0010\"u\n\026DB_DefenseActivityNode\022\025\n\nactivity"
+    "id\030\001 \001(\005:\0010\022\026\n\013activitycut\030\002 \001(\005:\0010\022\021\n\ta"
+    "wardlist\030\003 \003(\010\022\031\n\rlstcustomtime\030\004 \001(\005:\002-"
+    "1\"A\n\022DB_DefenseActivity\022+\n\nactivities\030\001 "
+    "\001(\0132\027.DB_DefenseActivityNode\"Q\n\017DB_Defen"
+    "seHonor\022\035\n\022lastdefencehonorid\030\001 \001(\003:\0010\022\037"
+    "\n\024gaindefencehornorcnt\030\002 \001(\005:\0010\"4\n\013DB_Bu"
+    "ffUnit\022\020\n\010bufftype\030\001 \001(\005\022\023\n\013buffEndTime\030"
+    "\002 \001(\r\"-\n\013DB_BuffData\022\036\n\010bufflist\030\001 \003(\0132\014"
+    ".DB_BuffUnit\"\353\004\n\rDB_BagItemLog\022\022\n\007logTyp"
+    "e\030\001 \001(\005:\0010\022\021\n\006itemID\030\002 \001(\005:\0010\022\020\n\005count\030\003"
+    " \001(\005:\0010\022\017\n\004date\030\004 \001(\005:\0010\022\020\n\005medal\030\005 \001(\005:"
+    "\0010\022\016\n\003oil\030\006 \001(\005:\0010\022\021\n\006credit\030\007 \001(\005:\0010\022\020\n"
+    "\005honor\030\010 \001(\005:\0010\022\020\n\010itemType\030\t \003(\005\022\017\n\007ite"
+    "mCnt\030\n \003(\005\022\020\n\010armyType\030\013 \003(\005\022\017\n\007armyCnt\030"
+    "\014 \003(\005\022\020\n\010weaponID\030\r \003(\005\022\020\n\010emblemID\030\016 \003("
+    "\005\022\021\n\tweaponCnt\030\017 \003(\005\022\021\n\temblemCnt\030\020 \003(\005\022"
+    "\021\n\tadmiralID\030\021 \003(\005\022\022\n\nadmiralCnt\030\022 \003(\005\022\r"
+    "\n\005feats\030\023 \001(\005\022\014\n\004thew\030\024 \001(\005\022\016\n\006morale\030\025 "
+    "\001(\005\022\020\n\010zhangong\030\026 \001(\005\022\017\n\007equipID\030\027 \003(\005\022\020"
+    "\n\010equipCnt\030\030 \003(\005\022\016\n\006gScore\030\031 \001(\005\022\023\n\013admi"
+    "ralsoul\030\032 \001(\005\022\024\n\tcntrScore\030\033 \001(\005:\0010\022\027\n\017a"
+    "dmiralLetterID\030\034 \003(\005\022\030\n\020admiralLetterCnt"
+    "\030\035 \003(\005\022\024\n\014heroLetterID\030\036 \003(\005\022\025\n\rheroLett"
+    "erCnt\030\037 \003(\005\022\025\n\rnMilitarySoul\030  \001(\005\")\n\006DB"
+    "_Log\022\037\n\007itemLog\030\001 \003(\0132\016.DB_BagItemLog\"T\n"
+    "\nDB_BagItem\022\021\n\006itemID\030\001 \001(\005:\0010\022\020\n\005count\030"
+    "\002 \001(\005:\0010\022\r\n\002id\030\003 \001(\005:\0010\022\022\n\007getTime\030\004 \001(\005"
+    ":\0010\"\255\001\n\006DB_Bag\022\034\n\007bagItem\030\001 \003(\0132\013.DB_Bag"
+    "Item\022\027\n\014lastOpenTime\030\002 \001(\005:\0010\022\020\n\005bagLV\030\003"
+    " \001(\005:\0010\022\024\n\tbagUseCnt\030\004 \001(\005:\0010\022\037\n\ntmpBagI"
+    "tem\030\005 \003(\0132\013.DB_BagItem\022#\n\016virtualBagItem"
+    "\030\006 \003(\0132\013.DB_BagItem\"\202\003\n\013DB_MoonCake\022\026\n\013m"
+    "oonCakeCnt\030\001 \001(\005:\0010\022\024\n\tgoldLevel\030\002 \001(\005:\001"
+    "0\022\026\n\013silverLevel\030\003 \001(\005:\0010\022\r\n\005frdID\030\004 \003(\003"
+    "\022\023\n\013visitFrdCnt\030\005 \003(\005\022\027\n\014dayAccSucCnt\030\006 "
+    "\001(\005:\0010\022\027\n\017getAccRewardCnt\030\007 \003(\005\022\030\n\rlastL"
+    "oginTime\030\010 \001(\003:\0010\022\034\n\021accSucMoonCakeCnt\030\t"
+    " \001(\005:\0010\022\034\n\021maxSucMoonCakeCnt\030\n \001(\005:\0010\022\025\n"
+    "\nactiveFlag\030\013 \001(\005:\0010\022\031\n\016dayGetFlag1Cnt\030\014"
+    " \001(\005:\0010\022\031\n\016accGetFlag1Cnt\030\r \001(\005:\0010\022\031\n\016ac"
+    "cGetFlag2Cnt\030\016 \001(\005:\0010\022\031\n\016dayGetFlag2Cnt\030"
+    "\017 \001(\005:\0010\"\227\003\n\016DB_HolidayDraw\022\025\n\nactiveFla"
+    "g\030\001 \001(\005:\0010\022\024\n\tgoldLevel\030\002 \001(\005:\0010\022\026\n\013silv"
+    "erLevel\030\003 \001(\005:\0010\022\r\n\005frdID\030\004 \003(\003\022\023\n\013visit"
+    "FrdCnt\030\005 \003(\005\022\027\n\014dayAccSucCnt\030\006 \001(\005:\0010\022\027\n"
+    "\017getAccRewardCnt\030\007 \003(\005\022\031\n\016dayGetFlag1Cnt"
+    "\030\010 \001(\005:\0010\022\031\n\016accGetFlag1Cnt\030\t \001(\005:\0010\022\031\n\016"
+    "accGetFlag2Cnt\030\n \001(\005:\0010\022\031\n\016dayGetFlag2Cn"
+    "t\030\013 \001(\005:\0010\022\026\n\013lastGetTime\030\014 \001(\003:\0010\022\025\n\nda"
+    "yFreeCnt\030\020 \001(\005:\0010\022\034\n\021dayCostCreditTime\030\021"
+    " \001(\005:\0010\022\031\n\nhasGetRank\030\022 \001(\010:\005false\022\026\n\013da"
+    "yAgainCnt\030\023 \001(\005:\0010\"\203\001\n\024DB_LeaveMessage_U"
+    "nit\022\020\n\005nType\030\001 \001(\005:\0010\022\016\n\003nID\030\002 \001(\005:\0010\022\020\n"
+    "\006strMsg\030\003 \001(\t:\000\022\022\n\007msgtime\030\004 \001(\r:\0010\022\021\n\007s"
+    "trName\030\005 \001(\t:\000\022\020\n\006strUid\030\006 \001(\t:\000\"{\n\017DB_L"
+    "eaveMessage\022\021\n\006nTimes\030\001 \001(\005:\0010\022\025\n\rviewta"
+    "rgetuin\030\002 \001(\003\022\016\n\006bIsNew\030\003 \001(\010\022.\n\017leaveme"
+    "ssagearr\030\004 \003(\0132\025.DB_LeaveMessage_Unit\"A\n"
+    "\020DB_TXMissionData\022\023\n\tmissionid\030\001 \001(\t:\000\022\030"
+    "\n\014missionstate\030\002 \001(\005:\002-1\";\n\020DB_ClientNum"
+    "Stat\022\023\n\013dayStatType\030\002 \003(\005\022\022\n\ndayStatNum\030"
+    "\003 \003(\005\"4\n\014DB_PokerInfo\022\017\n\007pokerNo\030\001 \001(\005\022\023"
+    "\n\013pokerColour\030\002 \001(\005\"\200\001\n\020DB_CurrPokerInfo"
+    "\022!\n\nuserPokers\030\001 \003(\0132\r.DB_PokerInfo\022 \n\tn"
+    "pcPokers\030\002 \003(\0132\r.DB_PokerInfo\022\023\n\010userTyp"
+    "e\030\003 \001(\005:\0010\022\022\n\007NPCType\030\004 \001(\005:\0010\"\220\002\n\021DB_Po"
+    "kerExchanges\022\020\n\005gift0\030\001 \001(\005:\0010\022\020\n\005gift1\030"
+    "\002 \001(\005:\0010\022\020\n\005gift2\030\003 \001(\005:\0010\022\020\n\005gift3\030\004 \001("
+    "\005:\0010\022\020\n\005gift4\030\005 \001(\005:\0010\022\036\n\017isGetRarityGif"
+    "t\030\006 \001(\010:\005false\022\023\n\010giftnum0\030\007 \001(\005:\0010\022\023\n\010g"
+    "iftnum1\030\010 \001(\005:\0010\022\023\n\010giftnum2\030\t \001(\005:\0010\022\023\n"
+    "\010giftnum3\030\n \001(\005:\0010\022\023\n\010giftnum4\030\013 \001(\005:\0010\022"
+    "\030\n\rrefreshExcCnt\030\014 \001(\005:\0010\"b\n\026DB_WorldCup"
+    "Predictions\022\024\n\005isBet\030\001 \001(\010:\005false\022\036\n\007bet"
+    "Info\030\002 \003(\0132\r.DB_WCBetInfo\022\022\n\007nReward\030\003 \001"
+    "(\005:\0010\"Y\n\014DB_WCBetInfo\022\020\n\005nType\030\001 \001(\005:\0010\022"
+    "\025\n\nnJettonNum\030\002 \001(\005:\0010\022\020\n\005nOdds\030\003 \001(\005:\0010"
+    "\022\016\n\006teamID\030\004 \003(\005\"\247\001\n\017DB_CardDuelInfo\022\025\n\n"
+    "myCardType\030\001 \001(\005:\0010\022\020\n\005oppID\030\002 \001(\003:\0010\022\023\n"
+    "\004bNpc\030\003 \001(\010:\005false\022\021\n\006winNum\030\004 \001(\005:\0010\022\025\n"
+    "\006bMatch\030\005 \001(\010:\005false\022\026\n\013addupCredit\030\006 \001("
+    "\005:\0010\022\024\n\tmaxwinNum\030\007 \001(\005:\0010\"i\n\021DB_MiddleY"
+    "earGift\022\024\n\tfirstGift\030\001 \001(\005:\0010\022\023\n\010secdGif"
+    "t\030\002 \001(\005:\0010\022\027\n\014nTotalCredit\030\003 \001(\005:\0010\022\020\n\005n"
+    "Flag\030\004 \001(\005:\0010\"G\n\016DB_OpenSNSGift\022\021\n\005nType"
+    "\030\001 \001(\005:\002-1\022\020\n\005nFlag\030\002 \001(\005:\0010\022\020\n\005nTime\030\003 "
+    "\001(\003:\0010\"\'\n\021DB_CallBackFriend\022\022\n\nfrdplatid"
+    "s\030\001 \003(\t\",\n\016DB_AttackCount\022\013\n\003uid\030\001 \002(\003\022\r"
+    "\n\005count\030\002 \001(\005\"\267\002\n\nDB_Science\022\033\n\020recruitl"
+    "andlevel\030\001 \001(\005:\0010\022\032\n\017recruitairlevel\030\002 \001"
+    "(\005:\0010\022\032\n\017attacklandlevel\030\003 \001(\005:\0010\022\032\n\017ext"
+    "rahonorlevel\030\004 \001(\005:\0010\022\027\n\014exttimelevel\030\005 "
+    "\001(\005:\0010\022\027\n\014redtimelevel\030\006 \001(\005:\0010\022\021\n\006extre"
+    "s\030\007 \001(\005:\0010\022\021\n\006redres\030\010 \001(\005:\0010\022\025\n\naddbuil"
+    "dhp\030\t \001(\005:\0010\022\027\n\014addgunattack\030\n \001(\005:\0010\022\030\n"
+    "\raddmissileatk\030\013 \001(\005:\0010\022\026\n\013minewarfare\030\014"
+    " \001(\005:\0010\"\034\n\tDB_Effect\022\017\n\007effects\030\002 \003(\t\"\202\001"
+    "\n\nDB_Officer\022\032\n\017officerPosition\030\001 \001(\005:\0010"
+    "\022\036\n\023officerRightUseFlag\030\002 \001(\005:\0010\022!\n\026offi"
+    "cerRightEffectFlag\030\003 \001(\005:\0010\022\025\n\nupdateTim"
+    "e\030\004 \001(\005:\0010\"\202\001\n\nDB_WpcRank\022\022\n\007rightID\030\001 \001"
+    "(\005:\0010\022\025\n\nupdateTime\030\002 \001(\005:\0010\022\025\n\nsearchTi"
+    "me\030\003 \001(\005:\0010\022\023\n\010activeID\030\004 \001(\005:\0010\022\035\n\022over"
+    "TimeSearchTime\030\005 \001(\005:\0010\"U\n\014DB_LeagueBtl\022"
+    "\023\n\010activeID\030\001 \001(\005:\0010\022\026\n\013leaguePoint\030\002 \001("
+    "\005:\0010\022\030\n\trewardGet\030\003 \001(\010:\005false\"D\n\020DB_Hap"
+    "pylibAward\022\r\n\005times\030\001 \001(\005\022\017\n\007awardid\030\002 \003"
+    "(\005\022\020\n\010awardnum\030\003 \003(\005\"f\n\013DB_HappyLib\022\021\n\ta"
+    "ctiveend\030\001 \001(\005\022\r\n\005times\030\002 \001(\005\022\023\n\010getawar"
+    "d\030\003 \001(\005:\0010\022 \n\005award\030\004 \003(\0132\021.DB_HappylibA"
+    "ward\"\220\001\n\rDB_BossBtlMsg\022\027\n\014nBossBtlFlag\030\001"
+    " \001(\005:\0010\022\023\n\010totalDmg\030\002 \001(\003:\0010\022\027\n\017honorEmb"
+    "raveCnt\030\003 \001(\005\022\021\n\taddAtkPct\030\004 \001(\005\022\025\n\rhasP"
+    "ickReward\030\005 \001(\005\022\016\n\006upList\030\006 \003(\010\"\232\001\n\021DB_M"
+    "edalHonorInfo\022\027\n\013freeCastNum\030\001 \001(\005:\00250\022\024"
+    "\n\tnTokenNum\030\002 \001(\005:\0010\022\027\n\014decorateType\030\003 \001"
+    "(\005:\0010\022\025\n\rhallHonorList\030\004 \003(\005\022&\n\016medalHon"
+    "orList\030\005 \003(\0132\016.DB_MedalHonor\"\233\001\n\rDB_Meda"
+    "lHonor\022\016\n\003nID\030\001 \001(\005:\0010\022\027\n\014medalHonorID\030\002"
+    " \001(\005:\0010\022\017\n\004nExp\030\003 \001(\005:\0010\022\016\n\003nLV\030\004 \001(\005:\0010"
+    "\022\023\n\010nBagType\030\005 \001(\005:\0010\022\025\n\nnAdmiralID\030\006 \001("
+    "\005:\0010\022\024\n\005bLock\030\007 \001(\010:\005false", 15666);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "dbinterface_sub.proto", &protobuf_RegisterTypes);
   DB_UserLiteBase::default_instance_ = new DB_UserLiteBase();
@@ -28803,6 +28804,7 @@ void DB_HeroInfo::Swap(DB_HeroInfo* other) {
 const int DB_Flag::kMusicFieldNumber;
 const int DB_Flag::kEffectFieldNumber;
 const int DB_Flag::kQualityFieldNumber;
+const int DB_Flag::kAllianceWelcomeFieldNumber;
 #endif  // !_MSC_VER
 
 DB_Flag::DB_Flag() {
@@ -28822,6 +28824,7 @@ void DB_Flag::SharedCtor() {
   music_ = 0;
   effect_ = 0;
   quality_ = 0;
+  alliancewelcome_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -28854,6 +28857,7 @@ void DB_Flag::Clear() {
     music_ = 0;
     effect_ = 0;
     quality_ = 0;
+    alliancewelcome_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -28902,6 +28906,20 @@ bool DB_Flag::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &quality_));
         _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_allianceWelcome;
+        break;
+      }
+      
+      // optional int32 allianceWelcome = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_allianceWelcome:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &alliancewelcome_));
+        _set_bit(3);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -28945,6 +28963,11 @@ void DB_Flag::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->quality(), output);
   }
   
+  // optional int32 allianceWelcome = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->alliancewelcome(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -28966,6 +28989,11 @@ void DB_Flag::SerializeWithCachedSizes(
   // optional int32 quality = 3;
   if (_has_bit(2)) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->quality(), target);
+  }
+  
+  // optional int32 allianceWelcome = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->alliancewelcome(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -28998,6 +29026,13 @@ int DB_Flag::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->quality());
+    }
+    
+    // optional int32 allianceWelcome = 4;
+    if (has_alliancewelcome()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->alliancewelcome());
     }
     
   }
@@ -29034,6 +29069,9 @@ void DB_Flag::MergeFrom(const DB_Flag& from) {
     if (from._has_bit(2)) {
       set_quality(from.quality());
     }
+    if (from._has_bit(3)) {
+      set_alliancewelcome(from.alliancewelcome());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -29060,6 +29098,7 @@ void DB_Flag::Swap(DB_Flag* other) {
     std::swap(music_, other->music_);
     std::swap(effect_, other->effect_);
     std::swap(quality_, other->quality_);
+    std::swap(alliancewelcome_, other->alliancewelcome_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

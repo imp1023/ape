@@ -22,135 +22,17 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include "MsgPlanet.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_RseQueryStarInfo_2eproto();
 void protobuf_AssignDesc_RseQueryStarInfo_2eproto();
 void protobuf_ShutdownFile_RseQueryStarInfo_2eproto();
 
-class RseQueryStarInfo;
 class SpaceStarInfo;
-class Planet;
+class RseQueryStarInfo;
 
 // ===================================================================
-
-class RseQueryStarInfo : public ::google::protobuf::Message {
- public:
-  RseQueryStarInfo();
-  virtual ~RseQueryStarInfo();
-  
-  RseQueryStarInfo(const RseQueryStarInfo& from);
-  
-  inline RseQueryStarInfo& operator=(const RseQueryStarInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const RseQueryStarInfo& default_instance();
-  void Swap(RseQueryStarInfo* other);
-  
-  // implements Message ----------------------------------------------
-  
-  RseQueryStarInfo* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const RseQueryStarInfo& from);
-  void MergeFrom(const RseQueryStarInfo& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // repeated .SpaceStarInfo spaceStarInfo = 1;
-  inline int spacestarinfo_size() const;
-  inline void clear_spacestarinfo();
-  static const int kSpaceStarInfoFieldNumber = 1;
-  inline const ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >& spacestarinfo() const;
-  inline ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >* mutable_spacestarinfo();
-  inline const ::SpaceStarInfo& spacestarinfo(int index) const;
-  inline ::SpaceStarInfo* mutable_spacestarinfo(int index);
-  inline ::SpaceStarInfo* add_spacestarinfo();
-  
-  // optional int32 type = 2;
-  inline bool has_type() const;
-  inline void clear_type();
-  static const int kTypeFieldNumber = 2;
-  inline ::google::protobuf::int32 type() const;
-  inline void set_type(::google::protobuf::int32 value);
-  
-  // optional string sku = 3;
-  inline bool has_sku() const;
-  inline void clear_sku();
-  static const int kSkuFieldNumber = 3;
-  inline const ::std::string& sku() const;
-  inline void set_sku(const ::std::string& value);
-  inline void set_sku(const char* value);
-  inline void set_sku(const char* value, size_t size);
-  inline ::std::string* mutable_sku();
-  
-  // optional int32 starId = 4;
-  inline bool has_starid() const;
-  inline void clear_starid();
-  static const int kStarIdFieldNumber = 4;
-  inline ::google::protobuf::int32 starid() const;
-  inline void set_starid(::google::protobuf::int32 value);
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo > spacestarinfo_;
-  ::google::protobuf::int32 type_;
-  ::std::string* sku_;
-  static const ::std::string _default_sku_;
-  ::google::protobuf::int32 starid_;
-  friend void  protobuf_AddDesc_RseQueryStarInfo_2eproto();
-  friend void protobuf_AssignDesc_RseQueryStarInfo_2eproto();
-  friend void protobuf_ShutdownFile_RseQueryStarInfo_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static RseQueryStarInfo* default_instance_;
-};
-// -------------------------------------------------------------------
 
 class SpaceStarInfo : public ::google::protobuf::Message {
  public:
@@ -277,15 +159,15 @@ class SpaceStarInfo : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 capital() const;
   inline void set_capital(::google::protobuf::int32 value);
   
-  // repeated .Planet Planet = 10;
+  // repeated .MsgPlanet Planet = 10;
   inline int planet_size() const;
   inline void clear_planet();
   static const int kPlanetFieldNumber = 10;
-  inline const ::google::protobuf::RepeatedPtrField< ::Planet >& planet() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Planet >* mutable_planet();
-  inline const ::Planet& planet(int index) const;
-  inline ::Planet* mutable_planet(int index);
-  inline ::Planet* add_planet();
+  inline const ::google::protobuf::RepeatedPtrField< ::MsgPlanet >& planet() const;
+  inline ::google::protobuf::RepeatedPtrField< ::MsgPlanet >* mutable_planet();
+  inline const ::MsgPlanet& planet(int index) const;
+  inline ::MsgPlanet* mutable_planet(int index);
+  inline ::MsgPlanet* add_planet();
   
   // optional int64 damageProtectionTimeLeft = 11;
   inline bool has_damageprotectiontimeleft() const;
@@ -338,7 +220,7 @@ class SpaceStarInfo : public ::google::protobuf::Message {
   ::google::protobuf::int32 hqlevel_;
   ::google::protobuf::int32 type_;
   ::google::protobuf::int32 capital_;
-  ::google::protobuf::RepeatedPtrField< ::Planet > planet_;
+  ::google::protobuf::RepeatedPtrField< ::MsgPlanet > planet_;
   ::google::protobuf::int64 damageprotectiontimeleft_;
   ::google::protobuf::int64 tutorialcompleted_;
   ::google::protobuf::int32 isonline_;
@@ -366,14 +248,14 @@ class SpaceStarInfo : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class Planet : public ::google::protobuf::Message {
+class RseQueryStarInfo : public ::google::protobuf::Message {
  public:
-  Planet();
-  virtual ~Planet();
+  RseQueryStarInfo();
+  virtual ~RseQueryStarInfo();
   
-  Planet(const Planet& from);
+  RseQueryStarInfo(const RseQueryStarInfo& from);
   
-  inline Planet& operator=(const Planet& from) {
+  inline RseQueryStarInfo& operator=(const RseQueryStarInfo& from) {
     CopyFrom(from);
     return *this;
   }
@@ -387,16 +269,16 @@ class Planet : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Planet& default_instance();
-  void Swap(Planet* other);
+  static const RseQueryStarInfo& default_instance();
+  void Swap(RseQueryStarInfo* other);
   
   // implements Message ----------------------------------------------
   
-  Planet* New() const;
+  RseQueryStarInfo* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Planet& from);
-  void MergeFrom(const Planet& from);
+  void CopyFrom(const RseQueryStarInfo& from);
+  void MergeFrom(const RseQueryStarInfo& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -419,23 +301,54 @@ class Planet : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 ret = 1;
-  inline bool has_ret() const;
-  inline void clear_ret();
-  static const int kRetFieldNumber = 1;
-  inline ::google::protobuf::int32 ret() const;
-  inline void set_ret(::google::protobuf::int32 value);
+  // repeated .SpaceStarInfo spaceStarInfo = 1;
+  inline int spacestarinfo_size() const;
+  inline void clear_spacestarinfo();
+  static const int kSpaceStarInfoFieldNumber = 1;
+  inline const ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >& spacestarinfo() const;
+  inline ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >* mutable_spacestarinfo();
+  inline const ::SpaceStarInfo& spacestarinfo(int index) const;
+  inline ::SpaceStarInfo* mutable_spacestarinfo(int index);
+  inline ::SpaceStarInfo* add_spacestarinfo();
+  
+  // optional int32 type = 2;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 2;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional string sku = 3;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 3;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 starId = 4;
+  inline bool has_starid() const;
+  inline void clear_starid();
+  static const int kStarIdFieldNumber = 4;
+  inline ::google::protobuf::int32 starid() const;
+  inline void set_starid(::google::protobuf::int32 value);
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 ret_;
+  ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo > spacestarinfo_;
+  ::google::protobuf::int32 type_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 starid_;
   friend void  protobuf_AddDesc_RseQueryStarInfo_2eproto();
   friend void protobuf_AssignDesc_RseQueryStarInfo_2eproto();
   friend void protobuf_ShutdownFile_RseQueryStarInfo_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -449,7 +362,7 @@ class Planet : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Planet* default_instance_;
+  static RseQueryStarInfo* default_instance_;
 };
 // ===================================================================
 
@@ -458,109 +371,6 @@ class Planet : public ::google::protobuf::Message {
 
 
 // ===================================================================
-
-// RseQueryStarInfo
-
-// repeated .SpaceStarInfo spaceStarInfo = 1;
-inline int RseQueryStarInfo::spacestarinfo_size() const {
-  return spacestarinfo_.size();
-}
-inline void RseQueryStarInfo::clear_spacestarinfo() {
-  spacestarinfo_.Clear();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >&
-RseQueryStarInfo::spacestarinfo() const {
-  return spacestarinfo_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >*
-RseQueryStarInfo::mutable_spacestarinfo() {
-  return &spacestarinfo_;
-}
-inline const ::SpaceStarInfo& RseQueryStarInfo::spacestarinfo(int index) const {
-  return spacestarinfo_.Get(index);
-}
-inline ::SpaceStarInfo* RseQueryStarInfo::mutable_spacestarinfo(int index) {
-  return spacestarinfo_.Mutable(index);
-}
-inline ::SpaceStarInfo* RseQueryStarInfo::add_spacestarinfo() {
-  return spacestarinfo_.Add();
-}
-
-// optional int32 type = 2;
-inline bool RseQueryStarInfo::has_type() const {
-  return _has_bit(1);
-}
-inline void RseQueryStarInfo::clear_type() {
-  type_ = 0;
-  _clear_bit(1);
-}
-inline ::google::protobuf::int32 RseQueryStarInfo::type() const {
-  return type_;
-}
-inline void RseQueryStarInfo::set_type(::google::protobuf::int32 value) {
-  _set_bit(1);
-  type_ = value;
-}
-
-// optional string sku = 3;
-inline bool RseQueryStarInfo::has_sku() const {
-  return _has_bit(2);
-}
-inline void RseQueryStarInfo::clear_sku() {
-  if (sku_ != &_default_sku_) {
-    sku_->clear();
-  }
-  _clear_bit(2);
-}
-inline const ::std::string& RseQueryStarInfo::sku() const {
-  return *sku_;
-}
-inline void RseQueryStarInfo::set_sku(const ::std::string& value) {
-  _set_bit(2);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(value);
-}
-inline void RseQueryStarInfo::set_sku(const char* value) {
-  _set_bit(2);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(value);
-}
-inline void RseQueryStarInfo::set_sku(const char* value, size_t size) {
-  _set_bit(2);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RseQueryStarInfo::mutable_sku() {
-  _set_bit(2);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  return sku_;
-}
-
-// optional int32 starId = 4;
-inline bool RseQueryStarInfo::has_starid() const {
-  return _has_bit(3);
-}
-inline void RseQueryStarInfo::clear_starid() {
-  starid_ = 0;
-  _clear_bit(3);
-}
-inline ::google::protobuf::int32 RseQueryStarInfo::starid() const {
-  return starid_;
-}
-inline void RseQueryStarInfo::set_starid(::google::protobuf::int32 value) {
-  _set_bit(3);
-  starid_ = value;
-}
-
-// -------------------------------------------------------------------
 
 // SpaceStarInfo
 
@@ -786,28 +596,28 @@ inline void SpaceStarInfo::set_capital(::google::protobuf::int32 value) {
   capital_ = value;
 }
 
-// repeated .Planet Planet = 10;
+// repeated .MsgPlanet Planet = 10;
 inline int SpaceStarInfo::planet_size() const {
   return planet_.size();
 }
 inline void SpaceStarInfo::clear_planet() {
   planet_.Clear();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Planet >&
+inline const ::google::protobuf::RepeatedPtrField< ::MsgPlanet >&
 SpaceStarInfo::planet() const {
   return planet_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Planet >*
+inline ::google::protobuf::RepeatedPtrField< ::MsgPlanet >*
 SpaceStarInfo::mutable_planet() {
   return &planet_;
 }
-inline const ::Planet& SpaceStarInfo::planet(int index) const {
+inline const ::MsgPlanet& SpaceStarInfo::planet(int index) const {
   return planet_.Get(index);
 }
-inline ::Planet* SpaceStarInfo::mutable_planet(int index) {
+inline ::MsgPlanet* SpaceStarInfo::mutable_planet(int index) {
   return planet_.Mutable(index);
 }
-inline ::Planet* SpaceStarInfo::add_planet() {
+inline ::MsgPlanet* SpaceStarInfo::add_planet() {
   return planet_.Add();
 }
 
@@ -893,22 +703,105 @@ inline void SpaceStarInfo::set_levelbasedonscore(::google::protobuf::int32 value
 
 // -------------------------------------------------------------------
 
-// Planet
+// RseQueryStarInfo
 
-// optional int32 ret = 1;
-inline bool Planet::has_ret() const {
-  return _has_bit(0);
+// repeated .SpaceStarInfo spaceStarInfo = 1;
+inline int RseQueryStarInfo::spacestarinfo_size() const {
+  return spacestarinfo_.size();
 }
-inline void Planet::clear_ret() {
-  ret_ = 0;
-  _clear_bit(0);
+inline void RseQueryStarInfo::clear_spacestarinfo() {
+  spacestarinfo_.Clear();
 }
-inline ::google::protobuf::int32 Planet::ret() const {
-  return ret_;
+inline const ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >&
+RseQueryStarInfo::spacestarinfo() const {
+  return spacestarinfo_;
 }
-inline void Planet::set_ret(::google::protobuf::int32 value) {
-  _set_bit(0);
-  ret_ = value;
+inline ::google::protobuf::RepeatedPtrField< ::SpaceStarInfo >*
+RseQueryStarInfo::mutable_spacestarinfo() {
+  return &spacestarinfo_;
+}
+inline const ::SpaceStarInfo& RseQueryStarInfo::spacestarinfo(int index) const {
+  return spacestarinfo_.Get(index);
+}
+inline ::SpaceStarInfo* RseQueryStarInfo::mutable_spacestarinfo(int index) {
+  return spacestarinfo_.Mutable(index);
+}
+inline ::SpaceStarInfo* RseQueryStarInfo::add_spacestarinfo() {
+  return spacestarinfo_.Add();
+}
+
+// optional int32 type = 2;
+inline bool RseQueryStarInfo::has_type() const {
+  return _has_bit(1);
+}
+inline void RseQueryStarInfo::clear_type() {
+  type_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 RseQueryStarInfo::type() const {
+  return type_;
+}
+inline void RseQueryStarInfo::set_type(::google::protobuf::int32 value) {
+  _set_bit(1);
+  type_ = value;
+}
+
+// optional string sku = 3;
+inline bool RseQueryStarInfo::has_sku() const {
+  return _has_bit(2);
+}
+inline void RseQueryStarInfo::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(2);
+}
+inline const ::std::string& RseQueryStarInfo::sku() const {
+  return *sku_;
+}
+inline void RseQueryStarInfo::set_sku(const ::std::string& value) {
+  _set_bit(2);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void RseQueryStarInfo::set_sku(const char* value) {
+  _set_bit(2);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void RseQueryStarInfo::set_sku(const char* value, size_t size) {
+  _set_bit(2);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RseQueryStarInfo::mutable_sku() {
+  _set_bit(2);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 starId = 4;
+inline bool RseQueryStarInfo::has_starid() const {
+  return _has_bit(3);
+}
+inline void RseQueryStarInfo::clear_starid() {
+  starid_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 RseQueryStarInfo::starid() const {
+  return starid_;
+}
+inline void RseQueryStarInfo::set_starid(::google::protobuf::int32 value) {
+  _set_bit(3);
+  starid_ = value;
 }
 
 

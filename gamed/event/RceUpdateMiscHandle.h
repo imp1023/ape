@@ -10,8 +10,14 @@ public:
 	~RceUpdateMiscHandle();
 	RegistEvent(RceUpdateMiscHandle,C2S_RceUpdateMisc)
 
+	enum{
+		RseUpdateMiscRet_Success = 0,
+		RseUpdateMiscRet_CantFindPlanet = 1,
+		RseUpdateMiscRet_DroidCntError = 2,
+	};
 private:
 	void handle(Event* e);
+	void SendRet2User(User* pUser,int nRet,RseUpdateMisc& rseUpdateItem);
 };
 #endif
 

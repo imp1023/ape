@@ -102,12 +102,12 @@ class MsgNpc : public ::google::protobuf::Message {
   inline void add_npc(const char* value);
   inline void add_npc(const char* value, size_t size);
   
-  // optional int64 xp = 2;
+  // optional int32 xp = 2;
   inline bool has_xp() const;
   inline void clear_xp();
   static const int kXpFieldNumber = 2;
-  inline ::google::protobuf::int64 xp() const;
-  inline void set_xp(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 xp() const;
+  inline void set_xp(::google::protobuf::int32 value);
   
   // optional int32 HQLevel = 3;
   inline bool has_hqlevel() const;
@@ -131,7 +131,7 @@ class MsgNpc : public ::google::protobuf::Message {
   mutable int _cached_size_;
   
   ::google::protobuf::RepeatedPtrField< ::std::string> npc_;
-  ::google::protobuf::int64 xp_;
+  ::google::protobuf::int32 xp_;
   ::google::protobuf::int32 hqlevel_;
   ::std::string* sku_;
   static const ::std::string _default_sku_;
@@ -299,18 +299,18 @@ inline void MsgNpc::add_npc(const char* value, size_t size) {
   npc_.Add()->assign(reinterpret_cast<const char*>(value), size);
 }
 
-// optional int64 xp = 2;
+// optional int32 xp = 2;
 inline bool MsgNpc::has_xp() const {
   return _has_bit(1);
 }
 inline void MsgNpc::clear_xp() {
-  xp_ = GOOGLE_LONGLONG(0);
+  xp_ = 0;
   _clear_bit(1);
 }
-inline ::google::protobuf::int64 MsgNpc::xp() const {
+inline ::google::protobuf::int32 MsgNpc::xp() const {
   return xp_;
 }
-inline void MsgNpc::set_xp(::google::protobuf::int64 value) {
+inline void MsgNpc::set_xp(::google::protobuf::int32 value) {
   _set_bit(1);
   xp_ = value;
 }

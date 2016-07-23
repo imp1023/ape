@@ -1,4 +1,5 @@
 #include <cmath>
+#include <ctime>
 #include "Player.h"
 #include "dbinterface.pb.h"
 #include "../common/SysLog.h"
@@ -15,9 +16,12 @@
 #include "GameUnitsTbl.h"
 #include "SkuIdTbl.h"
 #include "NpcInitItemTbl.h"
+#include "ResourceSilos.h"
 
 //logic
 #include "StarLogic.h"
+#include "PlanetManager.h"
+
 
 #define DELETE_POBJ(pObj) \
 {\
@@ -30,13 +34,14 @@
 
 Player::Player(User* pParent)//:m_rPVEFightManager(this),m_rCountryArenaMgr(),m_rWorldArenaMgr(),m_rRegionArenaMgr(),m_rHeroArenaMgr()
 {
-#if 0
-	m_bHasSendInfoToStar = false;
 	m_pUser = pParent;
-
-	m_ltRecoveryTime = 0;
 	m_pdbPlayer = NULL;
 	eh_ = NULL;
+	m_pPlanetManager = new PlanetManager(this);
+
+#if 0
+	m_bHasSendInfoToStar = false;
+	m_ltRecoveryTime = 0;
 	m_emStat = US_CanAttack;
 	m_lstStarIDLst.clear();
 	//	m_mapDayAttUserCnt.clear();
@@ -77,28 +82,29 @@ void Player::SetEventHandler(GameEventHandler* eh)
 void Player::InitDB(DB_Player* pDBPlaper)
 {
 	m_pdbPlayer = pDBPlaper;
+	m_pPlanetManager->InitDB(pDBPlaper);
 
 #if 0
-	//ÅÐ¶ÏºÏ·þ
-	//ºÏ·þ±ê¼ÇÎ»£¬Èç¹û¸ÃÖµ²»ÎªÁãÇÐÓëDBÖµ²»·û£¬Ôò½øÐÐºÏ·þ²Ù×÷
+	//åˆ¤æ–­åˆæœ
+	//åˆæœæ ‡è®°ä½ï¼Œå¦‚æžœè¯¥å€¼ä¸ä¸ºé›¶åˆ‡ä¸ŽDBå€¼ä¸ç¬¦ï¼Œåˆ™è¿›è¡Œåˆæœæ“ä½œ
 	int nCombineRegionFlag = serverConfig.getRegionResetFlag(m_pUser->GetUserRegion());
 	if(nCombineRegionFlag>0&&m_pdbPlayer->uniteregionflag()!=nCombineRegionFlag)
-	{//ºÏ·þÊý¾Ý²Ù×÷
+	{//åˆæœæ•°æ®æ“ä½œ
 		if(m_pdbPlayer->base_size()<=0)
-		{//×îÉÙ1¸ö»ùµØ
+		{//æœ€å°‘1ä¸ªåŸºåœ°
 			m_pdbPlayer->add_base();
 		}
 		DB_Bases* pDBBase = pDBPlaper->mutable_base(0);
 		DB_Country* pDBCountry = pDBBase->mutable_countrydata();
 		DB_Guild* pDBGuild	= pDBBase->mutable_guilddata();
-		//¹ú¼Ò£º»ØÊ×¶¼£¬ÇåÑªÕ½£¬Çå¹ú¼Ò¹ÙÔ±
+		//å›½å®¶ï¼šå›žé¦–éƒ½ï¼Œæ¸…è¡€æˆ˜ï¼Œæ¸…å›½å®¶å®˜å‘˜
 		if(pDBCountry->countryid()>0)
 		{
 			pDBCountry->set_cityid(CountryInfoCfg::Instance().GetCapital(pDBCountry->countryid()));
 		}
 		m_pUser->GetDbUser().clear_officer();
 		pDBCountry->clear_btlrecord();
-		//¹«»á£ºÇå¹¤»áÕ½
+		//å…¬ä¼šï¼šæ¸…å·¥ä¼šæˆ˜
 		if(pDBGuild->guildid()>0)
 		{
 			DB_GuildBtl* pDBGBtl = pDBGuild->mutable_guildbtlinfo();
@@ -107,28 +113,21 @@ void Player::InitDB(DB_Player* pDBPlaper)
 			pDBGBtl->clear_addatkpct();
 			pDBGBtl->clear_addbloodpct();
 		}
-		//¾º¼¼³¡£ºÊý¾ÝÈ«Çå
+		//ç«žæŠ€åœºï¼šæ•°æ®å…¨æ¸…
 		DB_ArenaInfo* pArenaInfo = pDBBase->mutable_arenainfo();
 		int nScore = pArenaInfo->nintegralscore();
 		pDBBase->clear_arenainfo();
 		if(nScore>0)
 		{
 			pArenaInfo = pDBBase->mutable_arenainfo();
-			pArenaInfo->set_nintegralscore(nScore);//±£Áô×Ü»ý·Ö
+			pArenaInfo->set_nintegralscore(nScore);//ä¿ç•™æ€»ç§¯åˆ†
 		}
-
 		pDBBase->clear_worldarenainfo();
 		pDBBase->clear_regionarenainfo();
-
 		pDBBase->clear_resourcemsg();
-
 		m_pdbPlayer->set_uniteregionflag(nCombineRegionFlag);
-
 		SYS_LOG(GetUserID(),LT_UniteRegion,m_pUser->GetUserRegion(),0,nScore);
 	}
-
-
-
 	for(int i=m_pdbPlayer->res_size();i<RC_Cnt;i++)
 	{
 		m_pdbPlayer->add_res(0);
@@ -138,7 +137,7 @@ void Player::InitDB(DB_Player* pDBPlaper)
 		m_pdbPlayer->add_resmax(0);
 	}
 	if(m_pdbPlayer->base_size()<=0)
-	{//×îÉÙ1¸ö»ùµØ
+	{//æœ€å°‘1ä¸ªåŸºåœ°
 		m_pdbPlayer->add_base();
 	}
 	OldDBInfo2New();
@@ -165,10 +164,8 @@ void Player::InitDB(DB_Player* pDBPlaper)
 	m_nInviteFrdCnt = 0;
 	m_bGiftGain = false;
 	m_mapServerStat.clear();
-
 	UpdateCombatPowerCheck();
-
-	ProofreadRentParts(false);   //ÑéÖ¤×âÓÃÅä¼þÊÇ·ñ¹ýÆÚ
+	ProofreadRentParts(false);   //éªŒè¯ç§Ÿç”¨é…ä»¶æ˜¯å¦è¿‡æœŸ
 #endif
 }
 
@@ -177,22 +174,15 @@ void Player::InitNewUserFromCfg()
 	/*if(!CanUse())
 		return;
 	const InitUserTbl& userTbl = InitUserCfg::Instance().GetInitUserTbl();
-
-
 	m_pdbPlayer->set_credits(userTbl.m_nCredits);
 	m_pdbPlayer->set_level(1);
-
 	m_pdbPlayer->set_res(RC_Metal,userTbl.m_nMetal);
 	m_pdbPlayer->set_res(RC_Oil,userTbl.m_nOil);
 	m_pdbPlayer->set_res(RC_Electric,userTbl.m_nElectric);
 	m_pdbPlayer->set_res(RC_Human,userTbl.m_nHuman);
-
 	m_pBaseManager->InitNewUBaseFromCfg();
 	m_pNPCManager->InitNewWmstatusFromCfg();
-
-
 	m_pdbPlayer->set_tutorialstat(1);
-
 	SetState(US_NewProtected);*/
 }
 
@@ -221,20 +211,20 @@ void Player::InitPlayerModel()
 {
 	m_pdbPlayer->mutable_model()->set_exp(0);
 	m_pdbPlayer->mutable_model()->set_level(1);
-// 	m_pdbPlayer->mutable_model()->set_coins(INIT_PLAYER_COINS);
-// 	m_pdbPlayer->mutable_model()->set_minerals(INIT_PLAYER_MINERALS);
-// 	m_pdbPlayer->mutable_model()->set_coinstotal(INIT_PLAYER_TOTALCOINS);
-// 	m_pdbPlayer->mutable_model()->set_mineralstotal(INIT_PLAYER_TOTALMINERALS);
+ 	m_pdbPlayer->mutable_model()->set_coins(INIT_PLAYER_COINS);
+ 	m_pdbPlayer->mutable_model()->set_minerals(INIT_PLAYER_MINERALS);
+ 	m_pdbPlayer->mutable_model()->set_coinstotal(INIT_PLAYER_TOTALCOINS);
+ 	m_pdbPlayer->mutable_model()->set_mineralstotal(INIT_PLAYER_TOTALMINERALS);
 	m_pdbPlayer->mutable_model()->set_score(0);
 	m_pdbPlayer->mutable_model()->set_exp(0);
-/*	m_pdbPlayer->mutable_model()->set_cash(INIT_PLAYER_CASH);*/
+	m_pdbPlayer->mutable_model()->set_cash(INIT_PLAYER_CASH);
 }
 
 void Player::InitPlayerState()
 {
 	m_pdbPlayer->mutable_state()->set_tutorialcompleted(0);
 	m_pdbPlayer->mutable_state()->set_dmgprotectiontimeleft(time(NULL));
-/*	m_pdbPlayer->mutable_state()->set_dmgprotectiontimetotal(INIT_PLAYER_DMGPROTECTIONTIMETOTAL);*/
+	m_pdbPlayer->mutable_state()->set_dmgprotectiontimetotal(INIT_PLAYER_DMGPROTECTIONTIMETOTAL);
 }
 
 void Player::InitPlayerPlanets()
@@ -243,25 +233,31 @@ void Player::InitPlayerPlanets()
 	DB_Planet *pp = m_pdbPlayer->add_planets();
 	if(!pp){return;}
 	pp->set_id(1);
-// 	pp->set_type(INIT_PLAYER_PLANETTYPE);
-// 	pp->set_hqlevel(INIT_PLAYER_HQLEVEL);
-// 	pp->set_droids(INIT_PLAYER_DROIDS);
+ 	pp->set_type(INIT_PLAYER_PLANETTYPE);
+ 	pp->set_hqlevel(INIT_PLAYER_HQLEVEL);
+ 	pp->set_droids(INIT_PLAYER_DROIDS);
 	pp->set_droidinuse(0);
 	pp->set_capital(1);
-// 	pp->set_coinslimit(INIT_PLAYER_TOTALCOINS);
-// 	pp->set_minerallimit(INIT_PLAYER_TOTALMINERALS);
-	int nStarId = StarLogicInst::instance().GetNewPlayerStar(m_pUser->GetUid());
-	pp->set_star(nStarId);
+ 	pp->set_coinslimit(INIT_PLAYER_TOTALCOINS);
+ 	pp->set_minerallimit(INIT_PLAYER_TOTALMINERALS);
+	//int nStarId = StarLogicInst::instance().GetNewPlayerStar(m_pUser->GetUid());
+	DB_StarLite *pStar = pp->mutable_star();
+	if(!pStar){return;}
+	pStar->set_starid(1);
+	pStar->set_starname("cn");
+	pStar->set_startype(3);
+	pStar->set_sku("4:0:1");
 
 	//init planet item
 	int num = InitItemTblInst::instance().GetTotalSize();
 	for(int i = 1; i <= num; i++){
-		CFG_ITEM *pCfgItem = InitItemTblInst::instance().GetInfo(i);
+		CFG_InitItem *pCfgItem = InitItemTblInst::instance().GetInfo(i);
 		if(pCfgItem){
 			DB_Item *pDBItem = pp->add_items();
 			if(pDBItem){
+				pDBItem->set_id(BUILDING_ID_START + i);
 				pDBItem->set_sid(pCfgItem->sid);
-				pDBItem->set_sku(pCfgItem->sku);
+				pDBItem->set_sku(SkuIDTblInst::instance().GetName(pCfgItem->sku));
 				pDBItem->set_type(pCfgItem->type);
 				pDBItem->set_upgradeid(0);
 				pDBItem->set_isflipped(0);
@@ -283,8 +279,6 @@ void Player::InitPlayerPlanets()
 	DB_Hangar *pHangar = pp->add_hangars();
 	if(pHangar){
 		pHangar->set_sid(40);
-		pHangar->set_sku(0);
-		pHangar->set_num(0);
 	}
 
 	//init game unit
@@ -336,7 +330,7 @@ void Player::InitPlayerNPC()
 				DB_Item *pDBItem = pDBNpc->add_items();
 				if(pDBItem){
 					pDBItem->set_sid(pCfgItem->sid);
-					pDBItem->set_sku(pCfgItem->sku);
+					pDBItem->set_sku(SkuIDTblInst::instance().GetName(pCfgItem->sku));
 					pDBItem->set_type(pCfgItem->type);
 					pDBItem->set_upgradeid(pCfgItem->upgradeId);
 					pDBItem->set_isflipped(pCfgItem->isFlipped);
@@ -369,7 +363,7 @@ void Player::InitPlayerNPC()
 				DB_Item *pDBItem = pDBNpc->add_items();
 				if(pDBItem){
 					pDBItem->set_sid(pCfgItem->sid);
-					pDBItem->set_sku(pCfgItem->sku);
+					pDBItem->set_sku(SkuIDTblInst::instance().GetName(pCfgItem->sku));
 					pDBItem->set_type(pCfgItem->type);
 					pDBItem->set_upgradeid(pCfgItem->upgradeId);
 					pDBItem->set_isflipped(pCfgItem->isFlipped);
@@ -402,7 +396,7 @@ void Player::InitPlayerNPC()
 				DB_Item *pDBItem = pDBNpc->add_items();
 				if(pDBItem){
 					pDBItem->set_sid(pCfgItem->sid);
-					pDBItem->set_sku(pCfgItem->sku);
+					pDBItem->set_sku(SkuIDTblInst::instance().GetName(pCfgItem->sku));
 					pDBItem->set_type(pCfgItem->type);
 					pDBItem->set_upgradeid(pCfgItem->upgradeId);
 					pDBItem->set_isflipped(pCfgItem->isFlipped);
@@ -419,3 +413,706 @@ void Player::InitPlayerNPC()
 		}
 	}
 }
+
+bool Player::CostRes(UserSource emType,int nCount,bool bLog,UserSource_CostType eCosttype)
+{
+	if(emType < 0 || emType >= RC_Cnt)
+		return false;
+
+	int64 nOldCnt = 0;
+	switch (emType)
+	{
+	case RC_Coin:
+		nOldCnt = m_pdbPlayer->model().coins();
+		break;
+	case RC_Mineral:
+		nOldCnt = m_pdbPlayer->model().minerals();
+		break;
+	case RC_Cash:
+		nOldCnt = m_pdbPlayer->model().cash();
+		break;
+	case RC_Exp:
+		nOldCnt = m_pdbPlayer->model().exp();
+		break;
+	case RC_Score:
+		nOldCnt = m_pdbPlayer->model().score();
+		break;
+	}
+	int64 nNewCnt = nOldCnt + nCount;
+	if(nNewCnt >= 0){
+		switch (emType)
+		{
+		case RC_Coin:
+			m_pdbPlayer->mutable_model()->set_coins(nNewCnt);
+			break;
+		case RC_Mineral:
+			m_pdbPlayer->mutable_model()->set_minerals(nNewCnt);
+			break;
+		case RC_Cash:
+			m_pdbPlayer->mutable_model()->set_cash(nNewCnt);
+			break;
+		case RC_Exp:
+			m_pdbPlayer->mutable_model()->set_exp(nNewCnt);
+			break;
+		case RC_Score:
+			m_pdbPlayer->mutable_model()->set_score(nNewCnt);
+			break;
+		}
+
+		//AddResStat(1,emType,nCount);
+
+#if 0
+		if(eCosttype != E_UserSource_CostType_TREATSTRATEGIC)
+		{
+			//if(bLog == true)
+			//{
+			//	SendCostResStat(emType,nCount,eCosttype);
+			//}
+			if(nCount>5000)
+			{
+				SYS_LOG(m_pUser->GetUid(),LT_CostRes,0,0,emType<<nCount<<nOldCnt<<nNewCnt);
+			}			
+		}
+#endif
+		return true;
+	}
+	return false;
+}
+
+int Player::GetRes(UserSource emType)
+{
+	if(emType < 0 || emType >= RC_Cnt)
+		return false;
+
+	int64 nOldCnt = 0;
+	switch (emType)
+	{
+	case RC_Coin:
+		nOldCnt = m_pdbPlayer->model().coins();
+		break;
+	case RC_Mineral:
+		nOldCnt = m_pdbPlayer->model().minerals();
+		break;
+	case RC_Cash:
+		nOldCnt = m_pdbPlayer->model().cash();
+		break;
+	case RC_Exp:
+		nOldCnt = m_pdbPlayer->model().exp();
+		break;
+	case RC_Score:
+		nOldCnt = m_pdbPlayer->model().score();
+		break;
+	}
+	return nOldCnt;
+}
+
+bool Player::SetDroidInUse(DB_Planet *pPlanet, int cnt)
+{
+	if(!pPlanet || pPlanet->droids() < cnt){
+		return false;
+	}
+	pPlanet->set_droidinuse(cnt);
+	return true;
+}
+
+bool Player::CheckDroidInUse(DB_Planet *pPlanet, int cnt)
+{
+	if(!pPlanet){
+		return false;
+	}
+	int nOldDroidInUse = pPlanet->droidinuse();
+	if(nOldDroidInUse + cnt > pPlanet->droids()){
+		return false;
+	}
+	return true;
+}
+
+bool Player::CheckDroids(DB_Planet *pPlanet, int workingCnt)
+{
+	if(!pPlanet || workingCnt > pPlanet->droids()){
+		return false;
+	}
+	return true;
+}
+
+bool Player::CostSocialItem(string sku, int cnt)
+{
+	DB_SocialItem *pDbSocialItem = NULL;
+	for (int i = 0; i < m_pdbPlayer->socialitems_size(); i++){
+		DB_SocialItem *pTmp = m_pdbPlayer->mutable_socialitems(i);
+		if(pTmp && pTmp->sku() == sku){
+			pDbSocialItem = pTmp;
+			break;
+		}
+	}
+	if(!pDbSocialItem || pDbSocialItem->amount() < cnt){
+		return false;
+	}
+	pDbSocialItem->set_amount(cnt - pDbSocialItem->amount());
+	return true;
+}
+
+int Player::CreateBuilding(int nPlanetId, MsgBuildingItem *pItem)
+{
+	if(!pItem){
+		return 0;
+	}
+	
+	DB_Item *pDBItem = m_pPlanetManager->CreateItem(nPlanetId, pItem);
+	if(pDBItem){
+		return pDBItem->id();
+	}
+	return 0;
+}
+
+int Player::CreateBuilding(int nPlanetId, CFG_InitItem *pCfgItem)
+{
+	if(!pCfgItem){
+		return 0;
+	}
+	
+	DB_Item *pDBItem = m_pPlanetManager->CreateItem(nPlanetId, pCfgItem);
+	if(pDBItem){
+		return pDBItem->id();
+	}
+	return 0;
+}
+
+DB_Planet* Player::GetPlanet(int nPlanetId)
+{
+	if(!CanUse() || 0 >= nPlanetId){
+		return NULL;
+	}
+	
+	Planet *pPlanet = m_pPlanetManager->GetPlanet(nPlanetId);
+	if(!pPlanet){
+		return NULL;
+	}
+	return pPlanet->GetDBPlanet();
+}
+
+bool Player::DestroyBuilding(int nPlanetId, int id, int sid)
+{
+	if(!CanUse()){
+		return false;
+	}
+	DB_Item *pItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	if(!pItem){
+		return false;
+	}
+	int nType = pItem->type();
+	string sku = pItem->sku();
+	bool ret = m_pPlanetManager->DestroyItem(nPlanetId, id);
+	if(!ret){
+		return false;
+	}
+
+	switch(nType)
+	{
+	case 3://æ¸…é™¤å…µè¥
+		break;
+	case 7://æ¸…é™¤ä¼ é€é—¨
+		break;
+	case 8://åœ°å ¡
+		break;
+	case 9://å®žéªŒå®¤
+		break;
+	default:
+		break;
+	}
+
+	if(pItem->sku() == "rs_002_001")//é“¶è¡Œ
+	{
+		int lv = pItem->upgradeid() + 1;
+		char mapKey [128] = {0};
+		sprintf(mapKey, "%s_%d", pItem->sku(), lv);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		int slot = Tbl->slotCapacity;
+		if(!updateCoinsLimit(-slot))
+			return false;
+	}
+	if(pItem->sku() == "rs_001_001")//çŸ¿åœº
+	{
+		int lv = pItem->upgradeid() + 1;
+		char mapKey [128] = {0};
+		sprintf(mapKey, "%s_%d", pItem->sku(), lv);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		int slot = Tbl->slotCapacity;
+		if(!updateMineralsLimit(-slot))
+			return false;
+	}
+	return true;
+}
+
+bool Player::RotateBuilding(int nPlanetId, int id, int sid, int x, int y, int flip)
+{
+	DB_Item *pDBItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	if(!pDBItem){
+		return false;
+	}
+	pDBItem->set_x(x);
+	pDBItem->set_y(y);
+	pDBItem->set_isflipped(flip);
+	return true;
+}
+
+bool Player::MoveBuilding(int nPlanetId, int id, int sid, int x, int y)
+{
+	DB_Item *pDBItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	if(!pDBItem){
+		return false;
+	}
+	pDBItem->set_x(x);
+	pDBItem->set_y(y);
+	return true;
+}
+
+bool Player::cancelBuild(int nPlanetId, int id, int sid)
+{
+	DB_Item *pDBItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	if(!pDBItem)
+		return false;
+
+	pDBItem->Clear();
+	return true;
+
+}
+
+bool Player::cancelUpgrade(int nPlanetId, int id, int sid, int64 ntime)
+{
+
+	DB_Item *pDBItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	if(!pDBItem){
+		return false;
+	}
+	pDBItem->set_state(1);
+	pDBItem->set_updateat(0);
+	pDBItem->set_time(ntime);
+	return true;
+}
+
+bool Player::upgradePremium(int nPlanetId, int id, int sid)
+{
+	Planet *pPlanet = m_pPlanetManager->GetPlanet(nPlanetId);
+	
+	if(!pPlanet){
+		return false;
+	}
+	DB_Item *pDBItem = pPlanet->GetItem(id);
+	if(!pDBItem)
+	{
+		return false;
+	}
+	int sku = SkuIDTblInst::instance().GetSku(pDBItem->sku());
+	if(!pDBItem){
+		return false;
+	}
+	pDBItem->set_state(1);
+	pDBItem->set_updateat(0);
+	pDBItem->set_time(0);
+	pDBItem->set_upgradeid(pDBItem->upgradeid() + 1);
+	if (pDBItem->sku() == "rs_002_001") {// é“¶è¡Œ
+		int lv = pDBItem->upgradeid() + 1;
+		char mapKey [128] = {0};
+		sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		int slot = Tbl->slotCapacity;
+		//ä¿®æ”¹ ä¸Šé™
+		if(!updateCoinsLimit(slot))
+			return false;
+	}
+	if (pDBItem->sku() == "rs_001_001") {// ç­’ä»“
+		int lv = pDBItem->upgradeid() + 1;
+		char mapKey [128] = {0};
+		sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		int slot = Tbl->slotCapacity;
+		if(!updateMineralsLimit(slot))
+			return false;
+	}
+	if (pDBItem->sku() == "wonders_headquarters") {// ä¸»åŸºåœ°
+		pPlanet->SetHQlevel(pPlanet->GetHQLevel() + 1);
+	}
+	int level = pDBItem->upgradeid() + 2;
+	int energy = ResourceSilosTblInst::instance().GetEnergy(sku, level);
+	pDBItem->set_energy(energy);
+	//pDBItem->set_incometorestore(incometorestore);
+
+	return true;
+}
+
+bool Player::updateCoinsLimit(int slot)
+{
+	DB_Model * model = m_pdbPlayer->mutable_model();
+	if(!model)
+		return false;
+	model->set_coinstotal(model->coinstotal() + slot);
+	return true;
+}
+
+bool Player::updateMineralsLimit(int slot)
+{
+	DB_Model * model = m_pdbPlayer->mutable_model();
+	if(!model)
+		return false;
+	model->set_mineralstotal(model->mineralstotal() + slot);
+	return true;
+}
+
+bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int sid, int64 ntime)
+{
+	Planet *pPlanet = m_pPlanetManager->GetPlanet(nPlanetId);
+	DB_Planet* pDBPlanet = pPlanet->GetDBPlanet();
+	DB_Item *pDBItem = pPlanet->GetItem(id);
+	int sku = SkuIDTblInst::instance().GetSku(pDBItem->sku());
+	if(newState == 1 && oldState == 0)//å»ºç­‘å®Œæˆ
+	{
+		//é‡Šæ”¾å·¥äºº
+		pDBPlanet->set_droidinuse(pDBPlanet->droidinuse() - 1);
+
+		// æ ¹æ®ItemTypeåˆå§‹å…µè¥ã€å…µåŽ‚ã€å®žéªŒå®¤
+
+		if(pDBPlanet->type() == 3)
+		{
+
+		}
+		
+		if (pDBItem->sku() == "rs_002_001") {// é“¶è¡Œ
+			int lv = pDBItem->upgradeid() + 1;
+			char mapKey [128] = {0};
+			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			int slot = Tbl->slotCapacity;
+			//ä¿®æ”¹ ä¸Šé™
+			if(!updateCoinsLimit(slot))
+				return false;
+		}
+		if (pDBItem->sku() == "rs_001_001") {// ç­’ä»“
+			int lv = pDBItem->upgradeid() + 1;
+			char mapKey [128] = {0};
+			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			int slot = Tbl->slotCapacity;
+			if(!updateMineralsLimit(slot))
+				return false;
+		}
+	}
+	else if(oldState == 1 && newState == 2 )//å¼€å§‹å‡çº§
+	{
+		pDBItem->set_time(ntime);
+		//pDBItem->incometorestore();ä¸ä¸€å®šæœ‰
+	}
+	else if(oldState == 2 && newState == 1) //å‡çº§å®Œæˆ
+	{
+		int level = pDBItem->upgradeid() + 2;
+		pDBItem->set_time(ntime);
+		pDBPlanet->set_droidinuse(pDBPlanet->droidinuse() - 1);
+		int energy = ResourceSilosTblInst::instance().GetEnergy(sku, level);
+		pDBItem->set_energy(energy);
+		if(sku == SKU_wonders_headquarters)
+		{
+			pDBPlanet->set_hqlevel(pDBPlanet->hqlevel() + 1);
+		}
+		pDBPlanet->set_droidinuse(pDBPlanet->droidinuse() - 1);
+
+		if (pDBItem->sku() == "rs_002_001") {// é“¶è¡Œ
+			int lv = pDBItem->upgradeid() + 1;
+			char mapKey [128] = {0};
+			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			int slot = Tbl->slotCapacity;
+			//ä¿®æ”¹ ä¸Šé™
+			if(!updateCoinsLimit(slot))
+				return false;
+		}
+		if (pDBItem->sku() == "rs_001_001") {// ç­’ä»“
+			int lv = pDBItem->upgradeid() + 1;
+			char mapKey [128] = {0};
+			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			int slot = Tbl->slotCapacity;
+			if(!updateMineralsLimit(slot))
+				return false;
+		}
+	}
+	else
+	{
+		pDBItem->set_time(ntime);
+		pDBItem->set_incometorestore(0);
+	}
+	pDBItem->set_state(newState);
+	time_t ltime = time(NULL);
+	pDBItem->set_updateat(ltime);
+
+	return true;
+}
+
+void Player::FillNpcs(RseObtainNpcList *lst)
+{
+	if(!CanUse() || !lst){
+		return;
+	}
+
+	for(int i = 0; i < m_pdbPlayer->npcs_size(); i++){
+		DB_NPC *pDBNpc = m_pdbPlayer->mutable_npcs(i);
+		if(pDBNpc){
+			MsgNpc* pMsgNpc = lst->add_npclist();
+			if(pMsgNpc){
+				pMsgNpc->set_hqlevel(pDBNpc->hqlevel());
+				pMsgNpc->set_sku(SkuIDTblInst::instance().GetName(pDBNpc->sku()));
+				pMsgNpc->set_xp(pDBNpc->exp());
+			}
+		}
+	}
+}
+
+void Player::FillInMissoin(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+	MsgMissionState *pMission = rse->mutable_missions();
+	if(pMission){
+		pMission->set_readytostart(m_pdbPlayer->missions().readytostart());
+		pMission->set_available(m_pdbPlayer->missions().available());
+		pMission->set_completed(m_pdbPlayer->missions().completed());
+		pMission->set_rewarded(m_pdbPlayer->missions().rewarded());
+		for(int i = 0; i < m_pdbPlayer->missions().params_size(); i++){
+			MsgMissionParam *pMsgParam = pMission->add_params();
+			DB_MissionParam *pDBParam = m_pdbPlayer->mutable_missions()->mutable_params(i);
+			if(pMsgParam && pDBParam){
+				pMsgParam->set_sku(pDBParam->sku());
+				pMsgParam->set_endtime(pDBParam->endtime());
+				pMsgParam->set_progress(pDBParam->progress());
+			}
+		}
+	}
+}
+
+void Player::FillInPlanet(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	if(!pPlanet){
+		return;
+	}
+	MsgPlanet *PMsgPlanet = rse->add_planets();
+	PMsgPlanet->set_startype(pPlanet->star().startype());
+	PMsgPlanet->set_starid(pPlanet->star().starid());
+	PMsgPlanet->set_starname(pPlanet->star().starname());
+	PMsgPlanet->set_sku(pPlanet->star().sku());
+	PMsgPlanet->set_planetid(pPlanet->id());
+	PMsgPlanet->set_planettype(pPlanet->type());
+	PMsgPlanet->set_coinslimit(pPlanet->coinslimit());
+	PMsgPlanet->set_mineralslimit(pPlanet->minerallimit());
+	PMsgPlanet->set_hqlevel(pPlanet->hqlevel());
+	PMsgPlanet->set_capital(pPlanet->capital());
+#if 0
+	optional int32 planetId = 1;//": 1,
+	optional int32 planetType = 2;//": 0,
+	optional string starName = 3;//": "å¡Œåœ–å—£å«Œ",
+	optional int32 coinsLimit = 4;//": 9000,
+	optional int32 mineralsLimit = 5;//": 9000,
+	optional int32 starId = 6;//": 2038,
+	optional string sku = 7;//": "4:1:4",
+	optional int32 starType = 8;//": 3,
+	optional int32 HQLevel = 9;//": 0,
+	optional int32 capital = 10;//": 1,
+	repeated int32 Planet = 11;//": []
+#endif
+
+}
+
+void Player::FillinItem(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+
+	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	if(!pPlanet){
+		return;
+	}
+
+	for(int i = 0; i < pPlanet->items_size(); i++){
+		DB_Item *pDBItem = pPlanet->mutable_items(i);
+		MsgBuildingItem *pMsgItem = rse->add_items();
+		if(pDBItem && pMsgItem){
+			pMsgItem->set_id(pDBItem->id());
+			pMsgItem->set_sid(pDBItem->sid());
+			pMsgItem->set_type(pDBItem->type());
+			pMsgItem->set_upgradeid(pDBItem->upgradeid());
+			pMsgItem->set_y(pDBItem->y());
+			pMsgItem->set_x(pDBItem->x());
+			pMsgItem->set_state(pDBItem->state());
+			pMsgItem->set_energy(pDBItem->energy());
+			pMsgItem->set_energypercent(pDBItem->energypercent());
+			pMsgItem->set_time(pDBItem->time());
+			pMsgItem->set_sku(pDBItem->sku());
+			pMsgItem->set_incometorestore(pDBItem->incometorestore());
+			pMsgItem->set_repairing(pDBItem->repairing());
+			pMsgItem->set_isflipped(pDBItem->isflipped());
+			//pMsgItem->set_updateat(pDBItem->updateat());
+		}
+	}
+}
+
+void Player::FillinShipyard(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+
+	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	if(!pPlanet){
+		return;
+	}
+
+	for (int i = 0; i < pPlanet->shipyard_size(); i++){
+		DB_Shipyard *pDBShipyard = pPlanet->mutable_shipyard(i);
+		MsgShipyard *pMsgShipyard = rse->add_shipyards();
+		if(pDBShipyard && pMsgShipyard){
+			pMsgShipyard->set_sid(pDBShipyard->sid());
+			pMsgShipyard->set_updatedat(pDBShipyard->updatedat());
+			pMsgShipyard->set_unlockedslots(pDBShipyard->unlockedslots());
+			pMsgShipyard->set_block(0);
+			for(int i = 0; i < pDBShipyard->slot_size(); i++){
+				MsgShipyardSlot *pMsgSlot = pMsgShipyard->add_shipyard();
+				DB_Slot *pDBSlot = pDBShipyard->mutable_slot(i);
+				if(pDBSlot && pMsgSlot){
+					pMsgSlot->set_sku(pDBSlot->sku());
+					pMsgSlot->set_num(pDBSlot->skunum());
+					pMsgSlot->set_timeleft(pDBSlot->timeleft());
+					if(0 == i && 1 == pDBSlot->skunum() && 0 == pDBSlot->timeleft()){
+						pMsgShipyard->set_block(1);
+					}
+				}
+			}
+		}
+	}
+}
+
+void Player::FillinHangar(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+
+	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	if(!pPlanet){
+		return;
+	}
+
+	for (int i = 0; i < pPlanet->hangars_size(); i++){
+		DB_Hangar *pDBBunker = pPlanet->mutable_hangars(i);
+		MsgHangars *pMsgBunker = rse->add_hangars();
+		if(pDBBunker && pMsgBunker){
+			pMsgBunker->set_sid(pDBBunker->sid());
+			for(int j = 0; j < pDBBunker->units_size(); j++){
+				DB_HangarUnit *pBunkerUnit = pDBBunker->mutable_units(i);
+				MsgHangarUnit *pMsgBunkerUnit = pMsgBunker->add_hangar();
+				if(pBunkerUnit && pMsgBunkerUnit){
+					pMsgBunkerUnit->set_sku(pBunkerUnit->sku());
+					pMsgBunkerUnit->set_num(pBunkerUnit->num());
+				}
+			}
+		}
+	}
+}
+
+void Player::FillinBunker(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+
+	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	if(!pPlanet){
+		return;
+	}
+
+	for (int i = 0; i < pPlanet->bunkers_size(); i++){
+		DB_Bunker *pDBBunker = pPlanet->mutable_bunkers(i);
+		MsgBunker *pMsgBunker = rse->add_bunkers();
+		if(pDBBunker && pMsgBunker){
+			pMsgBunker->set_sid(pDBBunker->sid());
+			pMsgBunker->set_helpersaccountids(pDBBunker->helpersaccountids());
+			for(int j = 0; j < pDBBunker->bunker_size(); j++){
+				DB_BunkerUnit *pBunkerUnit = pDBBunker->mutable_bunker(i);
+				MsgBunkerUnit *pMsgBunkerUnit = pMsgBunker->add_bunker();
+				if(pBunkerUnit && pMsgBunkerUnit){
+					pMsgBunkerUnit->set_sku(pBunkerUnit->sku());
+					//pMsgBunkerUnit->set_unit(pBunkerUnit->unit());
+				}
+			}
+		}
+	}
+}
+
+void Player::FillinGameUnit(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+
+	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	if(!pPlanet){
+		return;
+	}
+
+	for (int i = 0; i < pPlanet->units_size(); i++){
+		DB_GameUnit *pDBUnit = pPlanet->mutable_units(i);
+		MsgGameUnit *pMsgUnit = rse->add_gameunits();
+		if(pDBUnit && pMsgUnit){
+			string name = SkuIDTblInst::instance().GetName(pDBUnit->sku());
+			pMsgUnit->set_sku(name);
+			pMsgUnit->set_unlocked(pDBUnit->unlock());
+			pMsgUnit->set_timeleft(pDBUnit->timeleft());
+			pMsgUnit->set_upgradeid(pDBUnit->upgradeid());
+			pMsgUnit->set_updatedat(pDBUnit->updateat());
+		}
+	}
+}
+
+void Player::FillUniverse(RseObtainUniverse *rse)
+{
+	if(!CanUse() || !rse){
+		return;		
+	}
+
+	rse->set_vip(m_pUser->GetIsYellowDmd());
+	rse->set_yearvip(m_pUser->GetIsYearYellowDmd());
+	rse->set_viplevel(m_pUser->GetYearYellowDmdLevel());
+	rse->set_newplayergiftbag(false);
+	rse->set_everydaygiftbag(false);
+	rse->set_spycapsulestimeleft(0);
+	rse->set_dcplayername(m_pUser->GetPlatformId());
+	rse->set_dcworldname("");
+	rse->set_levelbasedonscore(1);
+	rse->set_dcplayerrank(1);
+	rse->set_dccoins(GetRes(RC_Coin));
+	rse->set_dcminerals(GetRes(RC_Mineral));
+	rse->set_score(GetRes(RC_Score));
+	rse->set_exp(GetRes(RC_Exp));
+	rse->set_lastvisittime(m_pUser->GetLastLoginTime());
+	rse->set_lastlevelnotified(0);
+	rse->set_dccash(GetRes(RC_Cash));
+	rse->set_dcdroids(2);
+	rse->set_dcdroidsinuse(0);
+	rse->set_damageprotectiontimeleft(m_pdbPlayer->state().dmgprotectiontimeleft());
+	rse->set_damageprotectiontimetotal(m_pdbPlayer->state().dmgprotectiontimetotal());
+	rse->set_tutorialcompleted(m_pdbPlayer->state().tutorialcompleted());
+	char flag[128];
+	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", m_pdbPlayer->flag().quality(), m_pdbPlayer->flag().music(), m_pdbPlayer->flag().effect(), m_pdbPlayer->flag().alliancewelcome());
+	rse->set_flags(flag);
+	FillInMissoin(rse);
+	FillInPlanet(rse);
+	FillinItem(rse);
+	FillinShipyard(rse);
+	FillinHangar(rse);
+	FillinBunker(rse);
+	FillinGameUnit(rse);
+}
+

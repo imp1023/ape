@@ -19,5 +19,20 @@ RceObtainCustomizerHandle::~RceObtainCustomizerHandle()
 
 void RceObtainCustomizerHandle::handle(Event* e)
 {
+	int64 uid = e->uid();
+	GameDataHandler* pUserManager = eh_->getDataHandler();
+	if(!pUserManager)
+	{
+		return;
+	}
+	User *pUser = pUserManager->getUser(uid);
+	if ( !pUser)
+	{
+		return;
+	}
 
+	RseObtainCustomizer rse;
+	string text;
+	rse.SerializeToString(&text);
+	eh_->sendDataToUser(pUser->fd(), S2C_RseObtainCustomizer,text);
 }

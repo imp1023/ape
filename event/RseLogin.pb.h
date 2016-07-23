@@ -85,19 +85,19 @@ class RseLogin : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int64 currentTimeMillis = 1;
+  // optional int32 currentTimeMillis = 1;
   inline bool has_currenttimemillis() const;
   inline void clear_currenttimemillis();
   static const int kCurrentTimeMillisFieldNumber = 1;
-  inline ::google::protobuf::int64 currenttimemillis() const;
-  inline void set_currenttimemillis(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 currenttimemillis() const;
+  inline void set_currenttimemillis(::google::protobuf::int32 value);
   
-  // optional int64 id = 2;
+  // optional int32 id = 2;
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 2;
-  inline ::google::protobuf::int64 id() const;
-  inline void set_id(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
   
   // optional int32 levelBasedOnScore = 3;
   inline bool has_levelbasedonscore() const;
@@ -134,19 +134,19 @@ class RseLogin : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 sync() const;
   inline void set_sync(::google::protobuf::int32 value);
   
-  // optional int64 timeFromLastLogin = 8;
+  // optional int32 timeFromLastLogin = 8;
   inline bool has_timefromlastlogin() const;
   inline void clear_timefromlastlogin();
   static const int kTimeFromLastLoginFieldNumber = 8;
-  inline ::google::protobuf::int64 timefromlastlogin() const;
-  inline void set_timefromlastlogin(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 timefromlastlogin() const;
+  inline void set_timefromlastlogin(::google::protobuf::int32 value);
   
-  // optional int64 timeFromLastUpdate = 9;
+  // optional int32 timeFromLastUpdate = 9;
   inline bool has_timefromlastupdate() const;
   inline void clear_timefromlastupdate();
   static const int kTimeFromLastUpdateFieldNumber = 9;
-  inline ::google::protobuf::int64 timefromlastupdate() const;
-  inline void set_timefromlastupdate(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 timefromlastupdate() const;
+  inline void set_timefromlastupdate(::google::protobuf::int32 value);
   
   // optional int32 token = 10;
   inline bool has_token() const;
@@ -155,12 +155,15 @@ class RseLogin : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 token() const;
   inline void set_token(::google::protobuf::int32 value);
   
-  // optional int64 userId = 11;
+  // optional string userId = 11;
   inline bool has_userid() const;
   inline void clear_userid();
   static const int kUserIdFieldNumber = 11;
-  inline ::google::protobuf::int64 userid() const;
-  inline void set_userid(::google::protobuf::int64 value);
+  inline const ::std::string& userid() const;
+  inline void set_userid(const ::std::string& value);
+  inline void set_userid(const char* value);
+  inline void set_userid(const char* value, size_t size);
+  inline ::std::string* mutable_userid();
   
   // optional string version = 12;
   inline bool has_version() const;
@@ -183,17 +186,18 @@ class RseLogin : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int64 currenttimemillis_;
-  ::google::protobuf::int64 id_;
+  ::google::protobuf::int32 currenttimemillis_;
+  ::google::protobuf::int32 id_;
   ::google::protobuf::int32 levelbasedonscore_;
   ::google::protobuf::int32 myaccountislocked_;
   bool pop_;
   ::google::protobuf::int32 rqid_;
   ::google::protobuf::int32 sync_;
-  ::google::protobuf::int64 timefromlastlogin_;
-  ::google::protobuf::int64 timefromlastupdate_;
+  ::google::protobuf::int32 timefromlastlogin_;
+  ::google::protobuf::int32 timefromlastupdate_;
   ::google::protobuf::int32 token_;
-  ::google::protobuf::int64 userid_;
+  ::std::string* userid_;
+  static const ::std::string _default_userid_;
   ::std::string* version_;
   static const ::std::string _default_version_;
   ::google::protobuf::int32 vip_;
@@ -227,34 +231,34 @@ class RseLogin : public ::google::protobuf::Message {
 
 // RseLogin
 
-// optional int64 currentTimeMillis = 1;
+// optional int32 currentTimeMillis = 1;
 inline bool RseLogin::has_currenttimemillis() const {
   return _has_bit(0);
 }
 inline void RseLogin::clear_currenttimemillis() {
-  currenttimemillis_ = GOOGLE_LONGLONG(0);
+  currenttimemillis_ = 0;
   _clear_bit(0);
 }
-inline ::google::protobuf::int64 RseLogin::currenttimemillis() const {
+inline ::google::protobuf::int32 RseLogin::currenttimemillis() const {
   return currenttimemillis_;
 }
-inline void RseLogin::set_currenttimemillis(::google::protobuf::int64 value) {
+inline void RseLogin::set_currenttimemillis(::google::protobuf::int32 value) {
   _set_bit(0);
   currenttimemillis_ = value;
 }
 
-// optional int64 id = 2;
+// optional int32 id = 2;
 inline bool RseLogin::has_id() const {
   return _has_bit(1);
 }
 inline void RseLogin::clear_id() {
-  id_ = GOOGLE_LONGLONG(0);
+  id_ = 0;
   _clear_bit(1);
 }
-inline ::google::protobuf::int64 RseLogin::id() const {
+inline ::google::protobuf::int32 RseLogin::id() const {
   return id_;
 }
-inline void RseLogin::set_id(::google::protobuf::int64 value) {
+inline void RseLogin::set_id(::google::protobuf::int32 value) {
   _set_bit(1);
   id_ = value;
 }
@@ -339,34 +343,34 @@ inline void RseLogin::set_sync(::google::protobuf::int32 value) {
   sync_ = value;
 }
 
-// optional int64 timeFromLastLogin = 8;
+// optional int32 timeFromLastLogin = 8;
 inline bool RseLogin::has_timefromlastlogin() const {
   return _has_bit(7);
 }
 inline void RseLogin::clear_timefromlastlogin() {
-  timefromlastlogin_ = GOOGLE_LONGLONG(0);
+  timefromlastlogin_ = 0;
   _clear_bit(7);
 }
-inline ::google::protobuf::int64 RseLogin::timefromlastlogin() const {
+inline ::google::protobuf::int32 RseLogin::timefromlastlogin() const {
   return timefromlastlogin_;
 }
-inline void RseLogin::set_timefromlastlogin(::google::protobuf::int64 value) {
+inline void RseLogin::set_timefromlastlogin(::google::protobuf::int32 value) {
   _set_bit(7);
   timefromlastlogin_ = value;
 }
 
-// optional int64 timeFromLastUpdate = 9;
+// optional int32 timeFromLastUpdate = 9;
 inline bool RseLogin::has_timefromlastupdate() const {
   return _has_bit(8);
 }
 inline void RseLogin::clear_timefromlastupdate() {
-  timefromlastupdate_ = GOOGLE_LONGLONG(0);
+  timefromlastupdate_ = 0;
   _clear_bit(8);
 }
-inline ::google::protobuf::int64 RseLogin::timefromlastupdate() const {
+inline ::google::protobuf::int32 RseLogin::timefromlastupdate() const {
   return timefromlastupdate_;
 }
-inline void RseLogin::set_timefromlastupdate(::google::protobuf::int64 value) {
+inline void RseLogin::set_timefromlastupdate(::google::protobuf::int32 value) {
   _set_bit(8);
   timefromlastupdate_ = value;
 }
@@ -387,20 +391,46 @@ inline void RseLogin::set_token(::google::protobuf::int32 value) {
   token_ = value;
 }
 
-// optional int64 userId = 11;
+// optional string userId = 11;
 inline bool RseLogin::has_userid() const {
   return _has_bit(10);
 }
 inline void RseLogin::clear_userid() {
-  userid_ = GOOGLE_LONGLONG(0);
+  if (userid_ != &_default_userid_) {
+    userid_->clear();
+  }
   _clear_bit(10);
 }
-inline ::google::protobuf::int64 RseLogin::userid() const {
-  return userid_;
+inline const ::std::string& RseLogin::userid() const {
+  return *userid_;
 }
-inline void RseLogin::set_userid(::google::protobuf::int64 value) {
+inline void RseLogin::set_userid(const ::std::string& value) {
   _set_bit(10);
-  userid_ = value;
+  if (userid_ == &_default_userid_) {
+    userid_ = new ::std::string;
+  }
+  userid_->assign(value);
+}
+inline void RseLogin::set_userid(const char* value) {
+  _set_bit(10);
+  if (userid_ == &_default_userid_) {
+    userid_ = new ::std::string;
+  }
+  userid_->assign(value);
+}
+inline void RseLogin::set_userid(const char* value, size_t size) {
+  _set_bit(10);
+  if (userid_ == &_default_userid_) {
+    userid_ = new ::std::string;
+  }
+  userid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RseLogin::mutable_userid() {
+  _set_bit(10);
+  if (userid_ == &_default_userid_) {
+    userid_ = new ::std::string;
+  }
+  return userid_;
 }
 
 // optional string version = 12;

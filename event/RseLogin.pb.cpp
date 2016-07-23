@@ -82,12 +82,12 @@ void protobuf_AddDesc_RseLogin_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\016RseLogin.proto\"\204\002\n\010RseLogin\022\031\n\021current"
-    "TimeMillis\030\001 \001(\003\022\n\n\002id\030\002 \001(\003\022\031\n\021levelBas"
+    "TimeMillis\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\031\n\021levelBas"
     "edOnScore\030\003 \001(\005\022\031\n\021myAccountIsLocked\030\004 \001"
     "(\005\022\013\n\003pop\030\005 \001(\010\022\014\n\004rqId\030\006 \001(\005\022\014\n\004sync\030\007 "
-    "\001(\005\022\031\n\021timeFromLastLogin\030\010 \001(\003\022\032\n\022timeFr"
-    "omLastUpdate\030\t \001(\003\022\r\n\005token\030\n \001(\005\022\016\n\006use"
-    "rId\030\013 \001(\003\022\017\n\007version\030\014 \001(\t\022\013\n\003vip\030\r \001(\005", 279);
+    "\001(\005\022\031\n\021timeFromLastLogin\030\010 \001(\005\022\032\n\022timeFr"
+    "omLastUpdate\030\t \001(\005\022\r\n\005token\030\n \001(\005\022\016\n\006use"
+    "rId\030\013 \001(\t\022\017\n\007version\030\014 \001(\t\022\013\n\003vip\030\r \001(\005", 279);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseLogin.proto", &protobuf_RegisterTypes);
   RseLogin::default_instance_ = new RseLogin();
@@ -105,6 +105,7 @@ struct StaticDescriptorInitializer_RseLogin_2eproto {
 
 // ===================================================================
 
+const ::std::string RseLogin::_default_userid_;
 const ::std::string RseLogin::_default_version_;
 #ifndef _MSC_VER
 const int RseLogin::kCurrentTimeMillisFieldNumber;
@@ -136,17 +137,17 @@ RseLogin::RseLogin(const RseLogin& from) {
 
 void RseLogin::SharedCtor() {
   _cached_size_ = 0;
-  currenttimemillis_ = GOOGLE_LONGLONG(0);
-  id_ = GOOGLE_LONGLONG(0);
+  currenttimemillis_ = 0;
+  id_ = 0;
   levelbasedonscore_ = 0;
   myaccountislocked_ = 0;
   pop_ = false;
   rqid_ = 0;
   sync_ = 0;
-  timefromlastlogin_ = GOOGLE_LONGLONG(0);
-  timefromlastupdate_ = GOOGLE_LONGLONG(0);
+  timefromlastlogin_ = 0;
+  timefromlastupdate_ = 0;
   token_ = 0;
-  userid_ = GOOGLE_LONGLONG(0);
+  userid_ = const_cast< ::std::string*>(&_default_userid_);
   version_ = const_cast< ::std::string*>(&_default_version_);
   vip_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -157,6 +158,9 @@ RseLogin::~RseLogin() {
 }
 
 void RseLogin::SharedDtor() {
+  if (userid_ != &_default_userid_) {
+    delete userid_;
+  }
   if (version_ != &_default_version_) {
     delete version_;
   }
@@ -181,19 +185,23 @@ RseLogin* RseLogin::New() const {
 
 void RseLogin::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    currenttimemillis_ = GOOGLE_LONGLONG(0);
-    id_ = GOOGLE_LONGLONG(0);
+    currenttimemillis_ = 0;
+    id_ = 0;
     levelbasedonscore_ = 0;
     myaccountislocked_ = 0;
     pop_ = false;
     rqid_ = 0;
     sync_ = 0;
-    timefromlastlogin_ = GOOGLE_LONGLONG(0);
+    timefromlastlogin_ = 0;
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    timefromlastupdate_ = GOOGLE_LONGLONG(0);
+    timefromlastupdate_ = 0;
     token_ = 0;
-    userid_ = GOOGLE_LONGLONG(0);
+    if (_has_bit(10)) {
+      if (userid_ != &_default_userid_) {
+        userid_->clear();
+      }
+    }
     if (_has_bit(11)) {
       if (version_ != &_default_version_) {
         version_->clear();
@@ -211,27 +219,27 @@ bool RseLogin::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int64 currentTimeMillis = 1;
+      // optional int32 currentTimeMillis = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &currenttimemillis_));
         _set_bit(0);
         if (input->ExpectTag(16)) goto parse_id;
         break;
       }
       
-      // optional int64 id = 2;
+      // optional int32 id = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_id:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &id_));
         _set_bit(1);
         if (input->ExpectTag(24)) goto parse_levelBasedOnScore;
@@ -308,28 +316,28 @@ bool RseLogin::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int64 timeFromLastLogin = 8;
+      // optional int32 timeFromLastLogin = 8;
       case 8: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_timeFromLastLogin:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &timefromlastlogin_));
         _set_bit(7);
         if (input->ExpectTag(72)) goto parse_timeFromLastUpdate;
         break;
       }
       
-      // optional int64 timeFromLastUpdate = 9;
+      // optional int32 timeFromLastUpdate = 9;
       case 9: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_timeFromLastUpdate:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &timefromlastupdate_));
         _set_bit(8);
         if (input->ExpectTag(80)) goto parse_token;
@@ -346,20 +354,22 @@ bool RseLogin::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &token_));
         _set_bit(9);
-        if (input->ExpectTag(88)) goto parse_userId;
+        if (input->ExpectTag(90)) goto parse_userId;
         break;
       }
       
-      // optional int64 userId = 11;
+      // optional string userId = 11;
       case 11: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
        parse_userId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
-              input, &userid_));
-        _set_bit(10);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_userid()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->userid().data(), this->userid().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
         if (input->ExpectTag(98)) goto parse_version;
         break;
       }
@@ -418,14 +428,14 @@ void RseLogin::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int64 currentTimeMillis = 1;
+  // optional int32 currentTimeMillis = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->currenttimemillis(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->currenttimemillis(), output);
   }
   
-  // optional int64 id = 2;
+  // optional int32 id = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
   }
   
   // optional int32 levelBasedOnScore = 3;
@@ -453,14 +463,14 @@ void RseLogin::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->sync(), output);
   }
   
-  // optional int64 timeFromLastLogin = 8;
+  // optional int32 timeFromLastLogin = 8;
   if (_has_bit(7)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(8, this->timefromlastlogin(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->timefromlastlogin(), output);
   }
   
-  // optional int64 timeFromLastUpdate = 9;
+  // optional int32 timeFromLastUpdate = 9;
   if (_has_bit(8)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(9, this->timefromlastupdate(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->timefromlastupdate(), output);
   }
   
   // optional int32 token = 10;
@@ -468,9 +478,13 @@ void RseLogin::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->token(), output);
   }
   
-  // optional int64 userId = 11;
+  // optional string userId = 11;
   if (_has_bit(10)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(11, this->userid(), output);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->userid().data(), this->userid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      11, this->userid(), output);
   }
   
   // optional string version = 12;
@@ -495,14 +509,14 @@ void RseLogin::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RseLogin::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int64 currentTimeMillis = 1;
+  // optional int32 currentTimeMillis = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->currenttimemillis(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->currenttimemillis(), target);
   }
   
-  // optional int64 id = 2;
+  // optional int32 id = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
   }
   
   // optional int32 levelBasedOnScore = 3;
@@ -530,14 +544,14 @@ void RseLogin::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->sync(), target);
   }
   
-  // optional int64 timeFromLastLogin = 8;
+  // optional int32 timeFromLastLogin = 8;
   if (_has_bit(7)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(8, this->timefromlastlogin(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->timefromlastlogin(), target);
   }
   
-  // optional int64 timeFromLastUpdate = 9;
+  // optional int32 timeFromLastUpdate = 9;
   if (_has_bit(8)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(9, this->timefromlastupdate(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->timefromlastupdate(), target);
   }
   
   // optional int32 token = 10;
@@ -545,9 +559,14 @@ void RseLogin::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->token(), target);
   }
   
-  // optional int64 userId = 11;
+  // optional string userId = 11;
   if (_has_bit(10)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(11, this->userid(), target);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->userid().data(), this->userid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        11, this->userid(), target);
   }
   
   // optional string version = 12;
@@ -576,17 +595,17 @@ int RseLogin::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int64 currentTimeMillis = 1;
+    // optional int32 currentTimeMillis = 1;
     if (has_currenttimemillis()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->currenttimemillis());
     }
     
-    // optional int64 id = 2;
+    // optional int32 id = 2;
     if (has_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->id());
     }
     
@@ -623,19 +642,19 @@ int RseLogin::ByteSize() const {
           this->sync());
     }
     
-    // optional int64 timeFromLastLogin = 8;
+    // optional int32 timeFromLastLogin = 8;
     if (has_timefromlastlogin()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->timefromlastlogin());
     }
     
   }
   if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    // optional int64 timeFromLastUpdate = 9;
+    // optional int32 timeFromLastUpdate = 9;
     if (has_timefromlastupdate()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->timefromlastupdate());
     }
     
@@ -646,10 +665,10 @@ int RseLogin::ByteSize() const {
           this->token());
     }
     
-    // optional int64 userId = 11;
+    // optional string userId = 11;
     if (has_userid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::StringSize(
           this->userid());
     }
     

@@ -345,6 +345,22 @@
 					>
 				</File>
 				<File
+					RelativePath="..\logic\ItemManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\ItemManager.h"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\PlanetManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\PlanetManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\logic\Player.cpp"
 					>
 				</File>
@@ -380,6 +396,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\logic\DefensesTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\DefensesTbl.h"
+						>
+					</File>
+					<File
 						RelativePath="..\logic\FlashVersionCfg.cpp"
 						>
 					</File>
@@ -412,6 +436,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\logic\HangarTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\HangarTbl.h"
+						>
+					</File>
+					<File
 						RelativePath="..\logic\InitItemTbl.cpp"
 						>
 					</File>
@@ -428,11 +460,43 @@
 						>
 					</File>
 					<File
+						RelativePath="..\logic\LaboratoryTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\LaboratoryTbl.h"
+						>
+					</File>
+					<File
 						RelativePath="..\logic\NpcInitItemTbl.cpp"
 						>
 					</File>
 					<File
 						RelativePath="..\logic\NpcInitItemTbl.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ResourceSilos.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ResourceSilos.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ResourcesTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ResourcesTbl.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ShipyardsTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ShipyardsTbl.h"
 						>
 					</File>
 					<File

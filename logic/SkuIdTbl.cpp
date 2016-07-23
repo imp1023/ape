@@ -55,7 +55,7 @@ void SkuIDTbl::Clear()
 string SkuIDTbl::GetName(int sku)
 {
 	map<int, string>::iterator iter = m_mSkuID.find(sku);
-	if(iter == m_mSkuID.end()){
+	if(iter != m_mSkuID.end()){
 		return iter->second;
 	}
 	return "";
@@ -64,7 +64,7 @@ string SkuIDTbl::GetName(int sku)
 int SkuIDTbl::GetSku(string name)
 {
 	map<string, int>::iterator iter = m_mIDSku.find(name);
-	if(iter == m_mIDSku.end()){
+	if(iter != m_mIDSku.end()){
 		return iter->second;
 	}
 	return 0;

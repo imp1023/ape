@@ -1,14 +1,6 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
-
-message RseQueryStarInfo
-{
-	repeated SpaceStarInfo spaceStarInfo = 1;
-	optional int32 type = 2;
-	optional string sku = 3;
-	optional int32 starId = 4;
-	
-}
+import "MsgPlanet.proto";
 
 message SpaceStarInfo
 {
@@ -21,7 +13,7 @@ message SpaceStarInfo
 	optional int32 HQLevel = 7;
 	optional int32 type = 8;
 	optional int32 capital = 9;
-	repeated Planet Planet = 10;
+	repeated MsgPlanet Planet = 10;
 	optional int64 damageProtectionTimeLeft = 11;
 	optional int64 tutorialCompleted = 12;
 	optional int32 isOnline = 13;
@@ -30,7 +22,11 @@ message SpaceStarInfo
 
 }
 
-message Planet
+message RseQueryStarInfo
 {
-	optional int32 ret = 1;
+	repeated SpaceStarInfo spaceStarInfo = 1;
+	optional int32 type = 2;
+	optional string sku = 3;
+	optional int32 starId = 4;
+	
 }

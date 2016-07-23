@@ -27,8 +27,8 @@ void protobuf_AssignDesc_MsgPlanet_2eproto() {
   MsgPlanet_descriptor_ = file->message_type(0);
   static const int MsgPlanet_offsets_[11] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, planetid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, starname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, planettype_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, starname_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, coinslimit_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, mineralslimit_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgPlanet, starid_),
@@ -80,8 +80,8 @@ void protobuf_AddDesc_MsgPlanet_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\017MsgPlanet.proto\"\317\001\n\tMsgPlanet\022\020\n\010plane"
-    "tId\030\001 \001(\005\022\020\n\010starName\030\002 \001(\t\022\022\n\nplanetTyp"
-    "e\030\003 \001(\005\022\022\n\ncoinsLimit\030\004 \001(\005\022\025\n\rmineralsL"
+    "tId\030\001 \001(\005\022\022\n\nplanetType\030\002 \001(\005\022\020\n\010starNam"
+    "e\030\003 \001(\t\022\022\n\ncoinsLimit\030\004 \001(\005\022\025\n\rmineralsL"
     "imit\030\005 \001(\005\022\016\n\006starId\030\006 \001(\005\022\013\n\003sku\030\007 \001(\t\022"
     "\020\n\010starType\030\010 \001(\005\022\017\n\007HQLevel\030\t \001(\005\022\017\n\007ca"
     "pital\030\n \001(\005\022\016\n\006Planet\030\013 \003(\005", 227);
@@ -106,8 +106,8 @@ const ::std::string MsgPlanet::_default_starname_;
 const ::std::string MsgPlanet::_default_sku_;
 #ifndef _MSC_VER
 const int MsgPlanet::kPlanetIdFieldNumber;
-const int MsgPlanet::kStarNameFieldNumber;
 const int MsgPlanet::kPlanetTypeFieldNumber;
+const int MsgPlanet::kStarNameFieldNumber;
 const int MsgPlanet::kCoinsLimitFieldNumber;
 const int MsgPlanet::kMineralsLimitFieldNumber;
 const int MsgPlanet::kStarIdFieldNumber;
@@ -133,8 +133,8 @@ MsgPlanet::MsgPlanet(const MsgPlanet& from) {
 void MsgPlanet::SharedCtor() {
   _cached_size_ = 0;
   planetid_ = 0;
-  starname_ = const_cast< ::std::string*>(&_default_starname_);
   planettype_ = 0;
+  starname_ = const_cast< ::std::string*>(&_default_starname_);
   coinslimit_ = 0;
   mineralslimit_ = 0;
   starid_ = 0;
@@ -178,12 +178,12 @@ MsgPlanet* MsgPlanet::New() const {
 void MsgPlanet::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     planetid_ = 0;
-    if (_has_bit(1)) {
+    planettype_ = 0;
+    if (_has_bit(2)) {
       if (starname_ != &_default_starname_) {
         starname_->clear();
       }
     }
-    planettype_ = 0;
     coinslimit_ = 0;
     mineralslimit_ = 0;
     starid_ = 0;
@@ -218,12 +218,26 @@ bool MsgPlanet::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &planetid_));
         _set_bit(0);
-        if (input->ExpectTag(18)) goto parse_starName;
+        if (input->ExpectTag(16)) goto parse_planetType;
         break;
       }
       
-      // optional string starName = 2;
+      // optional int32 planetType = 2;
       case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_planetType:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planettype_));
+        _set_bit(1);
+        if (input->ExpectTag(26)) goto parse_starName;
+        break;
+      }
+      
+      // optional string starName = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
@@ -234,20 +248,6 @@ bool MsgPlanet::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->starname().data(), this->starname().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(24)) goto parse_planetType;
-        break;
-      }
-      
-      // optional int32 planetType = 3;
-      case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_planetType:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &planettype_));
-        _set_bit(2);
         if (input->ExpectTag(32)) goto parse_coinsLimit;
         break;
       }
@@ -397,18 +397,18 @@ void MsgPlanet::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->planetid(), output);
   }
   
-  // optional string starName = 2;
+  // optional int32 planetType = 2;
   if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->planettype(), output);
+  }
+  
+  // optional string starName = 3;
+  if (_has_bit(2)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->starname().data(), this->starname().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->starname(), output);
-  }
-  
-  // optional int32 planetType = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->planettype(), output);
+      3, this->starname(), output);
   }
   
   // optional int32 coinsLimit = 4;
@@ -469,19 +469,19 @@ void MsgPlanet::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->planetid(), target);
   }
   
-  // optional string starName = 2;
+  // optional int32 planetType = 2;
   if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->planettype(), target);
+  }
+  
+  // optional string starName = 3;
+  if (_has_bit(2)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->starname().data(), this->starname().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->starname(), target);
-  }
-  
-  // optional int32 planetType = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->planettype(), target);
+        3, this->starname(), target);
   }
   
   // optional int32 coinsLimit = 4;
@@ -548,18 +548,18 @@ int MsgPlanet::ByteSize() const {
           this->planetid());
     }
     
-    // optional string starName = 2;
-    if (has_starname()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->starname());
-    }
-    
-    // optional int32 planetType = 3;
+    // optional int32 planetType = 2;
     if (has_planettype()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->planettype());
+    }
+    
+    // optional string starName = 3;
+    if (has_starname()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->starname());
     }
     
     // optional int32 coinsLimit = 4;
@@ -653,10 +653,10 @@ void MsgPlanet::MergeFrom(const MsgPlanet& from) {
       set_planetid(from.planetid());
     }
     if (from._has_bit(1)) {
-      set_starname(from.starname());
+      set_planettype(from.planettype());
     }
     if (from._has_bit(2)) {
-      set_planettype(from.planettype());
+      set_starname(from.starname());
     }
     if (from._has_bit(3)) {
       set_coinslimit(from.coinslimit());
@@ -705,8 +705,8 @@ bool MsgPlanet::IsInitialized() const {
 void MsgPlanet::Swap(MsgPlanet* other) {
   if (other != this) {
     std::swap(planetid_, other->planetid_);
-    std::swap(starname_, other->starname_);
     std::swap(planettype_, other->planettype_);
+    std::swap(starname_, other->starname_);
     std::swap(coinslimit_, other->coinslimit_);
     std::swap(mineralslimit_, other->mineralslimit_);
     std::swap(starid_, other->starid_);

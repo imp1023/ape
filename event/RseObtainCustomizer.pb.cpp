@@ -11,6 +11,9 @@
 
 namespace {
 
+const ::google::protobuf::Descriptor* MsgCustomizer_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  MsgCustomizer_reflection_ = NULL;
 const ::google::protobuf::Descriptor* RseObtainCustomizer_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   RseObtainCustomizer_reflection_ = NULL;
@@ -24,9 +27,24 @@ void protobuf_AssignDesc_RseObtainCustomizer_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "RseObtainCustomizer.proto");
   GOOGLE_CHECK(file != NULL);
-  RseObtainCustomizer_descriptor_ = file->message_type(0);
-  static const int RseObtainCustomizer_offsets_[1] = {
+  MsgCustomizer_descriptor_ = file->message_type(0);
+  static const int MsgCustomizer_offsets_[1] = {
+  };
+  MsgCustomizer_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      MsgCustomizer_descriptor_,
+      MsgCustomizer::default_instance_,
+      MsgCustomizer_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgCustomizer, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgCustomizer, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(MsgCustomizer));
+  RseObtainCustomizer_descriptor_ = file->message_type(1);
+  static const int RseObtainCustomizer_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainCustomizer, ret_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainCustomizer, customizer_),
   };
   RseObtainCustomizer_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -52,12 +70,16 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    MsgCustomizer_descriptor_, &MsgCustomizer::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     RseObtainCustomizer_descriptor_, &RseObtainCustomizer::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_RseObtainCustomizer_2eproto() {
+  delete MsgCustomizer::default_instance_;
+  delete MsgCustomizer_reflection_;
   delete RseObtainCustomizer::default_instance_;
   delete RseObtainCustomizer_reflection_;
 }
@@ -69,11 +91,14 @@ void protobuf_AddDesc_RseObtainCustomizer_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\031RseObtainCustomizer.proto\"\"\n\023RseObtain"
-    "Customizer\022\013\n\003ret\030\001 \001(\005", 63);
+    "\n\031RseObtainCustomizer.proto\"\017\n\rMsgCustom"
+    "izer\"F\n\023RseObtainCustomizer\022\013\n\003ret\030\001 \001(\005"
+    "\022\"\n\ncustomizer\030\002 \001(\0132\016.MsgCustomizer", 116);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseObtainCustomizer.proto", &protobuf_RegisterTypes);
+  MsgCustomizer::default_instance_ = new MsgCustomizer();
   RseObtainCustomizer::default_instance_ = new RseObtainCustomizer();
+  MsgCustomizer::default_instance_->InitAsDefaultInstance();
   RseObtainCustomizer::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_RseObtainCustomizer_2eproto);
 }
@@ -89,7 +114,160 @@ struct StaticDescriptorInitializer_RseObtainCustomizer_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
+#endif  // !_MSC_VER
+
+MsgCustomizer::MsgCustomizer() {
+  SharedCtor();
+}
+
+void MsgCustomizer::InitAsDefaultInstance() {
+}
+
+MsgCustomizer::MsgCustomizer(const MsgCustomizer& from) {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void MsgCustomizer::SharedCtor() {
+  _cached_size_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+MsgCustomizer::~MsgCustomizer() {
+  SharedDtor();
+}
+
+void MsgCustomizer::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+const ::google::protobuf::Descriptor* MsgCustomizer::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgCustomizer_descriptor_;
+}
+
+const MsgCustomizer& MsgCustomizer::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_RseObtainCustomizer_2eproto();  return *default_instance_;
+}
+
+MsgCustomizer* MsgCustomizer::default_instance_ = NULL;
+
+MsgCustomizer* MsgCustomizer::New() const {
+  return new MsgCustomizer;
+}
+
+void MsgCustomizer::Clear() {
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool MsgCustomizer::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+      return true;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, mutable_unknown_fields()));
+  }
+  return true;
+#undef DO_
+}
+
+void MsgCustomizer::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
+  if (raw_buffer != NULL) {
+    MsgCustomizer::SerializeWithCachedSizesToArray(raw_buffer);
+    return;
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* MsgCustomizer::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int MsgCustomizer::ByteSize() const {
+  int total_size = 0;
+  
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  _cached_size_ = total_size;
+  return total_size;
+}
+
+void MsgCustomizer::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const MsgCustomizer* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const MsgCustomizer*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void MsgCustomizer::MergeFrom(const MsgCustomizer& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void MsgCustomizer::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MsgCustomizer::CopyFrom(const MsgCustomizer& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MsgCustomizer::IsInitialized() const {
+  
+  return true;
+}
+
+void MsgCustomizer::Swap(MsgCustomizer* other) {
+  if (other != this) {
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata MsgCustomizer::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MsgCustomizer_descriptor_;
+  metadata.reflection = MsgCustomizer_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
 const int RseObtainCustomizer::kRetFieldNumber;
+const int RseObtainCustomizer::kCustomizerFieldNumber;
 #endif  // !_MSC_VER
 
 RseObtainCustomizer::RseObtainCustomizer() {
@@ -97,6 +275,7 @@ RseObtainCustomizer::RseObtainCustomizer() {
 }
 
 void RseObtainCustomizer::InitAsDefaultInstance() {
+  customizer_ = const_cast< ::MsgCustomizer*>(&::MsgCustomizer::default_instance());
 }
 
 RseObtainCustomizer::RseObtainCustomizer(const RseObtainCustomizer& from) {
@@ -107,6 +286,7 @@ RseObtainCustomizer::RseObtainCustomizer(const RseObtainCustomizer& from) {
 void RseObtainCustomizer::SharedCtor() {
   _cached_size_ = 0;
   ret_ = 0;
+  customizer_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -116,6 +296,7 @@ RseObtainCustomizer::~RseObtainCustomizer() {
 
 void RseObtainCustomizer::SharedDtor() {
   if (this != default_instance_) {
+    delete customizer_;
   }
 }
 
@@ -137,6 +318,9 @@ RseObtainCustomizer* RseObtainCustomizer::New() const {
 void RseObtainCustomizer::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     ret_ = 0;
+    if (_has_bit(1)) {
+      if (customizer_ != NULL) customizer_->::MsgCustomizer::Clear();
+    }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -157,6 +341,19 @@ bool RseObtainCustomizer::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &ret_));
         _set_bit(0);
+        if (input->ExpectTag(18)) goto parse_customizer;
+        break;
+      }
+      
+      // optional .MsgCustomizer customizer = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_customizer:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_customizer()));
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -190,6 +387,12 @@ void RseObtainCustomizer::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
   }
   
+  // optional .MsgCustomizer customizer = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      2, this->customizer(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -201,6 +404,13 @@ void RseObtainCustomizer::SerializeWithCachedSizes(
   // optional int32 ret = 1;
   if (_has_bit(0)) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
+  }
+  
+  // optional .MsgCustomizer customizer = 2;
+  if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, this->customizer(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -219,6 +429,13 @@ int RseObtainCustomizer::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->ret());
+    }
+    
+    // optional .MsgCustomizer customizer = 2;
+    if (has_customizer()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->customizer());
     }
     
   }
@@ -249,6 +466,9 @@ void RseObtainCustomizer::MergeFrom(const RseObtainCustomizer& from) {
     if (from._has_bit(0)) {
       set_ret(from.ret());
     }
+    if (from._has_bit(1)) {
+      mutable_customizer()->::MsgCustomizer::MergeFrom(from.customizer());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -273,6 +493,7 @@ bool RseObtainCustomizer::IsInitialized() const {
 void RseObtainCustomizer::Swap(RseObtainCustomizer* other) {
   if (other != this) {
     std::swap(ret_, other->ret_);
+    std::swap(customizer_, other->customizer_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

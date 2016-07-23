@@ -28,9 +28,89 @@ void  protobuf_AddDesc_RseObtainCustomizer_2eproto();
 void protobuf_AssignDesc_RseObtainCustomizer_2eproto();
 void protobuf_ShutdownFile_RseObtainCustomizer_2eproto();
 
+class MsgCustomizer;
 class RseObtainCustomizer;
 
 // ===================================================================
+
+class MsgCustomizer : public ::google::protobuf::Message {
+ public:
+  MsgCustomizer();
+  virtual ~MsgCustomizer();
+  
+  MsgCustomizer(const MsgCustomizer& from);
+  
+  inline MsgCustomizer& operator=(const MsgCustomizer& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgCustomizer& default_instance();
+  void Swap(MsgCustomizer* other);
+  
+  // implements Message ----------------------------------------------
+  
+  MsgCustomizer* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgCustomizer& from);
+  void MergeFrom(const MsgCustomizer& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  friend void  protobuf_AddDesc_RseObtainCustomizer_2eproto();
+  friend void protobuf_AssignDesc_RseObtainCustomizer_2eproto();
+  friend void protobuf_ShutdownFile_RseObtainCustomizer_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[1];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static MsgCustomizer* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class RseObtainCustomizer : public ::google::protobuf::Message {
  public:
@@ -92,16 +172,24 @@ class RseObtainCustomizer : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 ret() const;
   inline void set_ret(::google::protobuf::int32 value);
   
+  // optional .MsgCustomizer customizer = 2;
+  inline bool has_customizer() const;
+  inline void clear_customizer();
+  static const int kCustomizerFieldNumber = 2;
+  inline const ::MsgCustomizer& customizer() const;
+  inline ::MsgCustomizer* mutable_customizer();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   ::google::protobuf::int32 ret_;
+  ::MsgCustomizer* customizer_;
   friend void  protobuf_AddDesc_RseObtainCustomizer_2eproto();
   friend void protobuf_AssignDesc_RseObtainCustomizer_2eproto();
   friend void protobuf_ShutdownFile_RseObtainCustomizer_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -125,6 +213,10 @@ class RseObtainCustomizer : public ::google::protobuf::Message {
 
 // ===================================================================
 
+// MsgCustomizer
+
+// -------------------------------------------------------------------
+
 // RseObtainCustomizer
 
 // optional int32 ret = 1;
@@ -141,6 +233,23 @@ inline ::google::protobuf::int32 RseObtainCustomizer::ret() const {
 inline void RseObtainCustomizer::set_ret(::google::protobuf::int32 value) {
   _set_bit(0);
   ret_ = value;
+}
+
+// optional .MsgCustomizer customizer = 2;
+inline bool RseObtainCustomizer::has_customizer() const {
+  return _has_bit(1);
+}
+inline void RseObtainCustomizer::clear_customizer() {
+  if (customizer_ != NULL) customizer_->::MsgCustomizer::Clear();
+  _clear_bit(1);
+}
+inline const ::MsgCustomizer& RseObtainCustomizer::customizer() const {
+  return customizer_ != NULL ? *customizer_ : *default_instance_->customizer_;
+}
+inline ::MsgCustomizer* RseObtainCustomizer::mutable_customizer() {
+  _set_bit(1);
+  if (customizer_ == NULL) customizer_ = new ::MsgCustomizer;
+  return customizer_;
 }
 
 

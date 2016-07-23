@@ -22,407 +22,18 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include "MsgBuildingItem.pb.h"
+#include "MsgSocialItems.pb.h"
+#include "MsgTransaction.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_RceUpdateItem_2eproto();
 void protobuf_AssignDesc_RceUpdateItem_2eproto();
 void protobuf_ShutdownFile_RceUpdateItem_2eproto();
 
-class MsgTmpTransaction;
-class MsgTmpItem;
 class RceUpdateItem;
 
 // ===================================================================
-
-class MsgTmpTransaction : public ::google::protobuf::Message {
- public:
-  MsgTmpTransaction();
-  virtual ~MsgTmpTransaction();
-  
-  MsgTmpTransaction(const MsgTmpTransaction& from);
-  
-  inline MsgTmpTransaction& operator=(const MsgTmpTransaction& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgTmpTransaction& default_instance();
-  void Swap(MsgTmpTransaction* other);
-  
-  // implements Message ----------------------------------------------
-  
-  MsgTmpTransaction* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgTmpTransaction& from);
-  void MergeFrom(const MsgTmpTransaction& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // optional string clientDebugInfo = 1;
-  inline bool has_clientdebuginfo() const;
-  inline void clear_clientdebuginfo();
-  static const int kClientDebugInfoFieldNumber = 1;
-  inline const ::std::string& clientdebuginfo() const;
-  inline void set_clientdebuginfo(const ::std::string& value);
-  inline void set_clientdebuginfo(const char* value);
-  inline void set_clientdebuginfo(const char* value, size_t size);
-  inline ::std::string* mutable_clientdebuginfo();
-  
-  // optional int32 exp = 2;
-  inline bool has_exp() const;
-  inline void clear_exp();
-  static const int kExpFieldNumber = 2;
-  inline ::google::protobuf::int32 exp() const;
-  inline void set_exp(::google::protobuf::int32 value);
-  
-  // optional int32 minerals = 3;
-  inline bool has_minerals() const;
-  inline void clear_minerals();
-  static const int kMineralsFieldNumber = 3;
-  inline ::google::protobuf::int32 minerals() const;
-  inline void set_minerals(::google::protobuf::int32 value);
-  
-  // optional int32 score = 4;
-  inline bool has_score() const;
-  inline void clear_score();
-  static const int kScoreFieldNumber = 4;
-  inline ::google::protobuf::int32 score() const;
-  inline void set_score(::google::protobuf::int32 value);
-  
-  // optional string client = 5;
-  inline bool has_client() const;
-  inline void clear_client();
-  static const int kClientFieldNumber = 5;
-  inline const ::std::string& client() const;
-  inline void set_client(const ::std::string& value);
-  inline void set_client(const char* value);
-  inline void set_client(const char* value, size_t size);
-  inline ::std::string* mutable_client();
-  
-  // optional string event = 6;
-  inline bool has_event() const;
-  inline void clear_event();
-  static const int kEventFieldNumber = 6;
-  inline const ::std::string& event() const;
-  inline void set_event(const ::std::string& value);
-  inline void set_event(const char* value);
-  inline void set_event(const char* value, size_t size);
-  inline ::std::string* mutable_event();
-  
-  // optional int32 cash = 7;
-  inline bool has_cash() const;
-  inline void clear_cash();
-  static const int kCashFieldNumber = 7;
-  inline ::google::protobuf::int32 cash() const;
-  inline void set_cash(::google::protobuf::int32 value);
-  
-  // optional double instantOperationMinutesLeft = 8;
-  inline bool has_instantoperationminutesleft() const;
-  inline void clear_instantoperationminutesleft();
-  static const int kInstantOperationMinutesLeftFieldNumber = 8;
-  inline double instantoperationminutesleft() const;
-  inline void set_instantoperationminutesleft(double value);
-  
-  // optional int32 droids = 9;
-  inline bool has_droids() const;
-  inline void clear_droids();
-  static const int kDroidsFieldNumber = 9;
-  inline ::google::protobuf::int32 droids() const;
-  inline void set_droids(::google::protobuf::int32 value);
-  
-  // optional int32 coins = 10;
-  inline bool has_coins() const;
-  inline void clear_coins();
-  static const int kCoinsFieldNumber = 10;
-  inline ::google::protobuf::int32 coins() const;
-  inline void set_coins(::google::protobuf::int32 value);
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::std::string* clientdebuginfo_;
-  static const ::std::string _default_clientdebuginfo_;
-  ::google::protobuf::int32 exp_;
-  ::google::protobuf::int32 minerals_;
-  ::google::protobuf::int32 score_;
-  ::std::string* client_;
-  static const ::std::string _default_client_;
-  ::std::string* event_;
-  static const ::std::string _default_event_;
-  ::google::protobuf::int32 cash_;
-  double instantoperationminutesleft_;
-  ::google::protobuf::int32 droids_;
-  ::google::protobuf::int32 coins_;
-  friend void  protobuf_AddDesc_RceUpdateItem_2eproto();
-  friend void protobuf_AssignDesc_RceUpdateItem_2eproto();
-  friend void protobuf_ShutdownFile_RceUpdateItem_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static MsgTmpTransaction* default_instance_;
-};
-// -------------------------------------------------------------------
-
-class MsgTmpItem : public ::google::protobuf::Message {
- public:
-  MsgTmpItem();
-  virtual ~MsgTmpItem();
-  
-  MsgTmpItem(const MsgTmpItem& from);
-  
-  inline MsgTmpItem& operator=(const MsgTmpItem& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgTmpItem& default_instance();
-  void Swap(MsgTmpItem* other);
-  
-  // implements Message ----------------------------------------------
-  
-  MsgTmpItem* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgTmpItem& from);
-  void MergeFrom(const MsgTmpItem& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // optional string sid = 1;
-  inline bool has_sid() const;
-  inline void clear_sid();
-  static const int kSidFieldNumber = 1;
-  inline const ::std::string& sid() const;
-  inline void set_sid(const ::std::string& value);
-  inline void set_sid(const char* value);
-  inline void set_sid(const char* value, size_t size);
-  inline ::std::string* mutable_sid();
-  
-  // optional string type = 2;
-  inline bool has_type() const;
-  inline void clear_type();
-  static const int kTypeFieldNumber = 2;
-  inline const ::std::string& type() const;
-  inline void set_type(const ::std::string& value);
-  inline void set_type(const char* value);
-  inline void set_type(const char* value, size_t size);
-  inline ::std::string* mutable_type();
-  
-  // optional string upgradeId = 3;
-  inline bool has_upgradeid() const;
-  inline void clear_upgradeid();
-  static const int kUpgradeIdFieldNumber = 3;
-  inline const ::std::string& upgradeid() const;
-  inline void set_upgradeid(const ::std::string& value);
-  inline void set_upgradeid(const char* value);
-  inline void set_upgradeid(const char* value, size_t size);
-  inline ::std::string* mutable_upgradeid();
-  
-  // optional string y = 4;
-  inline bool has_y() const;
-  inline void clear_y();
-  static const int kYFieldNumber = 4;
-  inline const ::std::string& y() const;
-  inline void set_y(const ::std::string& value);
-  inline void set_y(const char* value);
-  inline void set_y(const char* value, size_t size);
-  inline ::std::string* mutable_y();
-  
-  // optional string state = 5;
-  inline bool has_state() const;
-  inline void clear_state();
-  static const int kStateFieldNumber = 5;
-  inline const ::std::string& state() const;
-  inline void set_state(const ::std::string& value);
-  inline void set_state(const char* value);
-  inline void set_state(const char* value, size_t size);
-  inline ::std::string* mutable_state();
-  
-  // optional string energy = 6;
-  inline bool has_energy() const;
-  inline void clear_energy();
-  static const int kEnergyFieldNumber = 6;
-  inline const ::std::string& energy() const;
-  inline void set_energy(const ::std::string& value);
-  inline void set_energy(const char* value);
-  inline void set_energy(const char* value, size_t size);
-  inline ::std::string* mutable_energy();
-  
-  // optional int64 time = 7;
-  inline bool has_time() const;
-  inline void clear_time();
-  static const int kTimeFieldNumber = 7;
-  inline ::google::protobuf::int64 time() const;
-  inline void set_time(::google::protobuf::int64 value);
-  
-  // optional string sku = 8;
-  inline bool has_sku() const;
-  inline void clear_sku();
-  static const int kSkuFieldNumber = 8;
-  inline const ::std::string& sku() const;
-  inline void set_sku(const ::std::string& value);
-  inline void set_sku(const char* value);
-  inline void set_sku(const char* value, size_t size);
-  inline ::std::string* mutable_sku();
-  
-  // optional string incomeToRestore = 9;
-  inline bool has_incometorestore() const;
-  inline void clear_incometorestore();
-  static const int kIncomeToRestoreFieldNumber = 9;
-  inline const ::std::string& incometorestore() const;
-  inline void set_incometorestore(const ::std::string& value);
-  inline void set_incometorestore(const char* value);
-  inline void set_incometorestore(const char* value, size_t size);
-  inline ::std::string* mutable_incometorestore();
-  
-  // optional string repairing = 10;
-  inline bool has_repairing() const;
-  inline void clear_repairing();
-  static const int kRepairingFieldNumber = 10;
-  inline const ::std::string& repairing() const;
-  inline void set_repairing(const ::std::string& value);
-  inline void set_repairing(const char* value);
-  inline void set_repairing(const char* value, size_t size);
-  inline ::std::string* mutable_repairing();
-  
-  // repeated int32 Item = 11;
-  inline int item_size() const;
-  inline void clear_item();
-  static const int kItemFieldNumber = 11;
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >& item() const
-      ;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >* mutable_item();
-  inline ::google::protobuf::int32 item(int index) const;
-  inline void set_item(int index, ::google::protobuf::int32 value);
-  inline void add_item(::google::protobuf::int32 value);
-  
-  // optional string isFlipped = 12;
-  inline bool has_isflipped() const;
-  inline void clear_isflipped();
-  static const int kIsFlippedFieldNumber = 12;
-  inline const ::std::string& isflipped() const;
-  inline void set_isflipped(const ::std::string& value);
-  inline void set_isflipped(const char* value);
-  inline void set_isflipped(const char* value, size_t size);
-  inline ::std::string* mutable_isflipped();
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::std::string* sid_;
-  static const ::std::string _default_sid_;
-  ::std::string* type_;
-  static const ::std::string _default_type_;
-  ::std::string* upgradeid_;
-  static const ::std::string _default_upgradeid_;
-  ::std::string* y_;
-  static const ::std::string _default_y_;
-  ::std::string* state_;
-  static const ::std::string _default_state_;
-  ::std::string* energy_;
-  static const ::std::string _default_energy_;
-  ::google::protobuf::int64 time_;
-  ::std::string* sku_;
-  static const ::std::string _default_sku_;
-  ::std::string* incometorestore_;
-  static const ::std::string _default_incometorestore_;
-  ::std::string* repairing_;
-  static const ::std::string _default_repairing_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > item_;
-  ::std::string* isflipped_;
-  static const ::std::string _default_isflipped_;
-  friend void  protobuf_AddDesc_RceUpdateItem_2eproto();
-  friend void protobuf_AssignDesc_RceUpdateItem_2eproto();
-  friend void protobuf_ShutdownFile_RceUpdateItem_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(12 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static MsgTmpItem* default_instance_;
-};
-// -------------------------------------------------------------------
 
 class RceUpdateItem : public ::google::protobuf::Message {
  public:
@@ -491,19 +102,19 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 time() const;
   inline void set_time(::google::protobuf::int64 value);
   
-  // optional .MsgTmpTransaction transaction = 3;
+  // optional .MsgTransaction transaction = 3;
   inline bool has_transaction() const;
   inline void clear_transaction();
   static const int kTransactionFieldNumber = 3;
-  inline const ::MsgTmpTransaction& transaction() const;
-  inline ::MsgTmpTransaction* mutable_transaction();
+  inline const ::MsgTransaction& transaction() const;
+  inline ::MsgTransaction* mutable_transaction();
   
-  // optional .MsgTmpItem item = 4;
+  // optional .MsgBuildingItem item = 4;
   inline bool has_item() const;
   inline void clear_item();
   static const int kItemFieldNumber = 4;
-  inline const ::MsgTmpItem& item() const;
-  inline ::MsgTmpItem* mutable_item();
+  inline const ::MsgBuildingItem& item() const;
+  inline ::MsgBuildingItem* mutable_item();
   
   // optional int32 oldState = 5;
   inline bool has_oldstate() const;
@@ -519,15 +130,12 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 id() const;
   inline void set_id(::google::protobuf::int64 value);
   
-  // optional string planetId = 7;
+  // optional int32 planetId = 7;
   inline bool has_planetid() const;
   inline void clear_planetid();
   static const int kPlanetIdFieldNumber = 7;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
   
   // optional int32 newState = 8;
   inline bool has_newstate() const;
@@ -574,18 +182,24 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 flip() const;
   inline void set_flip(::google::protobuf::int32 value);
   
+  // optional int32 role = 14;
+  inline bool has_role() const;
+  inline void clear_role();
+  static const int kRoleFieldNumber = 14;
+  inline ::google::protobuf::int32 role() const;
+  inline void set_role(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   ::google::protobuf::int32 sid_;
   ::google::protobuf::int64 time_;
-  ::MsgTmpTransaction* transaction_;
-  ::MsgTmpItem* item_;
+  ::MsgTransaction* transaction_;
+  ::MsgBuildingItem* item_;
   ::google::protobuf::int32 oldstate_;
   ::google::protobuf::int64 id_;
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
+  ::google::protobuf::int32 planetid_;
   ::google::protobuf::int32 newstate_;
   ::std::string* action_;
   static const ::std::string _default_action_;
@@ -593,11 +207,12 @@ class RceUpdateItem : public ::google::protobuf::Message {
   ::google::protobuf::int32 x_;
   ::google::protobuf::int32 y_;
   ::google::protobuf::int32 flip_;
+  ::google::protobuf::int32 role_;
   friend void  protobuf_AddDesc_RceUpdateItem_2eproto();
   friend void protobuf_AssignDesc_RceUpdateItem_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateItem_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(14 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -620,713 +235,6 @@ class RceUpdateItem : public ::google::protobuf::Message {
 
 
 // ===================================================================
-
-// MsgTmpTransaction
-
-// optional string clientDebugInfo = 1;
-inline bool MsgTmpTransaction::has_clientdebuginfo() const {
-  return _has_bit(0);
-}
-inline void MsgTmpTransaction::clear_clientdebuginfo() {
-  if (clientdebuginfo_ != &_default_clientdebuginfo_) {
-    clientdebuginfo_->clear();
-  }
-  _clear_bit(0);
-}
-inline const ::std::string& MsgTmpTransaction::clientdebuginfo() const {
-  return *clientdebuginfo_;
-}
-inline void MsgTmpTransaction::set_clientdebuginfo(const ::std::string& value) {
-  _set_bit(0);
-  if (clientdebuginfo_ == &_default_clientdebuginfo_) {
-    clientdebuginfo_ = new ::std::string;
-  }
-  clientdebuginfo_->assign(value);
-}
-inline void MsgTmpTransaction::set_clientdebuginfo(const char* value) {
-  _set_bit(0);
-  if (clientdebuginfo_ == &_default_clientdebuginfo_) {
-    clientdebuginfo_ = new ::std::string;
-  }
-  clientdebuginfo_->assign(value);
-}
-inline void MsgTmpTransaction::set_clientdebuginfo(const char* value, size_t size) {
-  _set_bit(0);
-  if (clientdebuginfo_ == &_default_clientdebuginfo_) {
-    clientdebuginfo_ = new ::std::string;
-  }
-  clientdebuginfo_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpTransaction::mutable_clientdebuginfo() {
-  _set_bit(0);
-  if (clientdebuginfo_ == &_default_clientdebuginfo_) {
-    clientdebuginfo_ = new ::std::string;
-  }
-  return clientdebuginfo_;
-}
-
-// optional int32 exp = 2;
-inline bool MsgTmpTransaction::has_exp() const {
-  return _has_bit(1);
-}
-inline void MsgTmpTransaction::clear_exp() {
-  exp_ = 0;
-  _clear_bit(1);
-}
-inline ::google::protobuf::int32 MsgTmpTransaction::exp() const {
-  return exp_;
-}
-inline void MsgTmpTransaction::set_exp(::google::protobuf::int32 value) {
-  _set_bit(1);
-  exp_ = value;
-}
-
-// optional int32 minerals = 3;
-inline bool MsgTmpTransaction::has_minerals() const {
-  return _has_bit(2);
-}
-inline void MsgTmpTransaction::clear_minerals() {
-  minerals_ = 0;
-  _clear_bit(2);
-}
-inline ::google::protobuf::int32 MsgTmpTransaction::minerals() const {
-  return minerals_;
-}
-inline void MsgTmpTransaction::set_minerals(::google::protobuf::int32 value) {
-  _set_bit(2);
-  minerals_ = value;
-}
-
-// optional int32 score = 4;
-inline bool MsgTmpTransaction::has_score() const {
-  return _has_bit(3);
-}
-inline void MsgTmpTransaction::clear_score() {
-  score_ = 0;
-  _clear_bit(3);
-}
-inline ::google::protobuf::int32 MsgTmpTransaction::score() const {
-  return score_;
-}
-inline void MsgTmpTransaction::set_score(::google::protobuf::int32 value) {
-  _set_bit(3);
-  score_ = value;
-}
-
-// optional string client = 5;
-inline bool MsgTmpTransaction::has_client() const {
-  return _has_bit(4);
-}
-inline void MsgTmpTransaction::clear_client() {
-  if (client_ != &_default_client_) {
-    client_->clear();
-  }
-  _clear_bit(4);
-}
-inline const ::std::string& MsgTmpTransaction::client() const {
-  return *client_;
-}
-inline void MsgTmpTransaction::set_client(const ::std::string& value) {
-  _set_bit(4);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(value);
-}
-inline void MsgTmpTransaction::set_client(const char* value) {
-  _set_bit(4);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(value);
-}
-inline void MsgTmpTransaction::set_client(const char* value, size_t size) {
-  _set_bit(4);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpTransaction::mutable_client() {
-  _set_bit(4);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  return client_;
-}
-
-// optional string event = 6;
-inline bool MsgTmpTransaction::has_event() const {
-  return _has_bit(5);
-}
-inline void MsgTmpTransaction::clear_event() {
-  if (event_ != &_default_event_) {
-    event_->clear();
-  }
-  _clear_bit(5);
-}
-inline const ::std::string& MsgTmpTransaction::event() const {
-  return *event_;
-}
-inline void MsgTmpTransaction::set_event(const ::std::string& value) {
-  _set_bit(5);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(value);
-}
-inline void MsgTmpTransaction::set_event(const char* value) {
-  _set_bit(5);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(value);
-}
-inline void MsgTmpTransaction::set_event(const char* value, size_t size) {
-  _set_bit(5);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpTransaction::mutable_event() {
-  _set_bit(5);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  return event_;
-}
-
-// optional int32 cash = 7;
-inline bool MsgTmpTransaction::has_cash() const {
-  return _has_bit(6);
-}
-inline void MsgTmpTransaction::clear_cash() {
-  cash_ = 0;
-  _clear_bit(6);
-}
-inline ::google::protobuf::int32 MsgTmpTransaction::cash() const {
-  return cash_;
-}
-inline void MsgTmpTransaction::set_cash(::google::protobuf::int32 value) {
-  _set_bit(6);
-  cash_ = value;
-}
-
-// optional double instantOperationMinutesLeft = 8;
-inline bool MsgTmpTransaction::has_instantoperationminutesleft() const {
-  return _has_bit(7);
-}
-inline void MsgTmpTransaction::clear_instantoperationminutesleft() {
-  instantoperationminutesleft_ = 0;
-  _clear_bit(7);
-}
-inline double MsgTmpTransaction::instantoperationminutesleft() const {
-  return instantoperationminutesleft_;
-}
-inline void MsgTmpTransaction::set_instantoperationminutesleft(double value) {
-  _set_bit(7);
-  instantoperationminutesleft_ = value;
-}
-
-// optional int32 droids = 9;
-inline bool MsgTmpTransaction::has_droids() const {
-  return _has_bit(8);
-}
-inline void MsgTmpTransaction::clear_droids() {
-  droids_ = 0;
-  _clear_bit(8);
-}
-inline ::google::protobuf::int32 MsgTmpTransaction::droids() const {
-  return droids_;
-}
-inline void MsgTmpTransaction::set_droids(::google::protobuf::int32 value) {
-  _set_bit(8);
-  droids_ = value;
-}
-
-// optional int32 coins = 10;
-inline bool MsgTmpTransaction::has_coins() const {
-  return _has_bit(9);
-}
-inline void MsgTmpTransaction::clear_coins() {
-  coins_ = 0;
-  _clear_bit(9);
-}
-inline ::google::protobuf::int32 MsgTmpTransaction::coins() const {
-  return coins_;
-}
-inline void MsgTmpTransaction::set_coins(::google::protobuf::int32 value) {
-  _set_bit(9);
-  coins_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// MsgTmpItem
-
-// optional string sid = 1;
-inline bool MsgTmpItem::has_sid() const {
-  return _has_bit(0);
-}
-inline void MsgTmpItem::clear_sid() {
-  if (sid_ != &_default_sid_) {
-    sid_->clear();
-  }
-  _clear_bit(0);
-}
-inline const ::std::string& MsgTmpItem::sid() const {
-  return *sid_;
-}
-inline void MsgTmpItem::set_sid(const ::std::string& value) {
-  _set_bit(0);
-  if (sid_ == &_default_sid_) {
-    sid_ = new ::std::string;
-  }
-  sid_->assign(value);
-}
-inline void MsgTmpItem::set_sid(const char* value) {
-  _set_bit(0);
-  if (sid_ == &_default_sid_) {
-    sid_ = new ::std::string;
-  }
-  sid_->assign(value);
-}
-inline void MsgTmpItem::set_sid(const char* value, size_t size) {
-  _set_bit(0);
-  if (sid_ == &_default_sid_) {
-    sid_ = new ::std::string;
-  }
-  sid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_sid() {
-  _set_bit(0);
-  if (sid_ == &_default_sid_) {
-    sid_ = new ::std::string;
-  }
-  return sid_;
-}
-
-// optional string type = 2;
-inline bool MsgTmpItem::has_type() const {
-  return _has_bit(1);
-}
-inline void MsgTmpItem::clear_type() {
-  if (type_ != &_default_type_) {
-    type_->clear();
-  }
-  _clear_bit(1);
-}
-inline const ::std::string& MsgTmpItem::type() const {
-  return *type_;
-}
-inline void MsgTmpItem::set_type(const ::std::string& value) {
-  _set_bit(1);
-  if (type_ == &_default_type_) {
-    type_ = new ::std::string;
-  }
-  type_->assign(value);
-}
-inline void MsgTmpItem::set_type(const char* value) {
-  _set_bit(1);
-  if (type_ == &_default_type_) {
-    type_ = new ::std::string;
-  }
-  type_->assign(value);
-}
-inline void MsgTmpItem::set_type(const char* value, size_t size) {
-  _set_bit(1);
-  if (type_ == &_default_type_) {
-    type_ = new ::std::string;
-  }
-  type_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_type() {
-  _set_bit(1);
-  if (type_ == &_default_type_) {
-    type_ = new ::std::string;
-  }
-  return type_;
-}
-
-// optional string upgradeId = 3;
-inline bool MsgTmpItem::has_upgradeid() const {
-  return _has_bit(2);
-}
-inline void MsgTmpItem::clear_upgradeid() {
-  if (upgradeid_ != &_default_upgradeid_) {
-    upgradeid_->clear();
-  }
-  _clear_bit(2);
-}
-inline const ::std::string& MsgTmpItem::upgradeid() const {
-  return *upgradeid_;
-}
-inline void MsgTmpItem::set_upgradeid(const ::std::string& value) {
-  _set_bit(2);
-  if (upgradeid_ == &_default_upgradeid_) {
-    upgradeid_ = new ::std::string;
-  }
-  upgradeid_->assign(value);
-}
-inline void MsgTmpItem::set_upgradeid(const char* value) {
-  _set_bit(2);
-  if (upgradeid_ == &_default_upgradeid_) {
-    upgradeid_ = new ::std::string;
-  }
-  upgradeid_->assign(value);
-}
-inline void MsgTmpItem::set_upgradeid(const char* value, size_t size) {
-  _set_bit(2);
-  if (upgradeid_ == &_default_upgradeid_) {
-    upgradeid_ = new ::std::string;
-  }
-  upgradeid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_upgradeid() {
-  _set_bit(2);
-  if (upgradeid_ == &_default_upgradeid_) {
-    upgradeid_ = new ::std::string;
-  }
-  return upgradeid_;
-}
-
-// optional string y = 4;
-inline bool MsgTmpItem::has_y() const {
-  return _has_bit(3);
-}
-inline void MsgTmpItem::clear_y() {
-  if (y_ != &_default_y_) {
-    y_->clear();
-  }
-  _clear_bit(3);
-}
-inline const ::std::string& MsgTmpItem::y() const {
-  return *y_;
-}
-inline void MsgTmpItem::set_y(const ::std::string& value) {
-  _set_bit(3);
-  if (y_ == &_default_y_) {
-    y_ = new ::std::string;
-  }
-  y_->assign(value);
-}
-inline void MsgTmpItem::set_y(const char* value) {
-  _set_bit(3);
-  if (y_ == &_default_y_) {
-    y_ = new ::std::string;
-  }
-  y_->assign(value);
-}
-inline void MsgTmpItem::set_y(const char* value, size_t size) {
-  _set_bit(3);
-  if (y_ == &_default_y_) {
-    y_ = new ::std::string;
-  }
-  y_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_y() {
-  _set_bit(3);
-  if (y_ == &_default_y_) {
-    y_ = new ::std::string;
-  }
-  return y_;
-}
-
-// optional string state = 5;
-inline bool MsgTmpItem::has_state() const {
-  return _has_bit(4);
-}
-inline void MsgTmpItem::clear_state() {
-  if (state_ != &_default_state_) {
-    state_->clear();
-  }
-  _clear_bit(4);
-}
-inline const ::std::string& MsgTmpItem::state() const {
-  return *state_;
-}
-inline void MsgTmpItem::set_state(const ::std::string& value) {
-  _set_bit(4);
-  if (state_ == &_default_state_) {
-    state_ = new ::std::string;
-  }
-  state_->assign(value);
-}
-inline void MsgTmpItem::set_state(const char* value) {
-  _set_bit(4);
-  if (state_ == &_default_state_) {
-    state_ = new ::std::string;
-  }
-  state_->assign(value);
-}
-inline void MsgTmpItem::set_state(const char* value, size_t size) {
-  _set_bit(4);
-  if (state_ == &_default_state_) {
-    state_ = new ::std::string;
-  }
-  state_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_state() {
-  _set_bit(4);
-  if (state_ == &_default_state_) {
-    state_ = new ::std::string;
-  }
-  return state_;
-}
-
-// optional string energy = 6;
-inline bool MsgTmpItem::has_energy() const {
-  return _has_bit(5);
-}
-inline void MsgTmpItem::clear_energy() {
-  if (energy_ != &_default_energy_) {
-    energy_->clear();
-  }
-  _clear_bit(5);
-}
-inline const ::std::string& MsgTmpItem::energy() const {
-  return *energy_;
-}
-inline void MsgTmpItem::set_energy(const ::std::string& value) {
-  _set_bit(5);
-  if (energy_ == &_default_energy_) {
-    energy_ = new ::std::string;
-  }
-  energy_->assign(value);
-}
-inline void MsgTmpItem::set_energy(const char* value) {
-  _set_bit(5);
-  if (energy_ == &_default_energy_) {
-    energy_ = new ::std::string;
-  }
-  energy_->assign(value);
-}
-inline void MsgTmpItem::set_energy(const char* value, size_t size) {
-  _set_bit(5);
-  if (energy_ == &_default_energy_) {
-    energy_ = new ::std::string;
-  }
-  energy_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_energy() {
-  _set_bit(5);
-  if (energy_ == &_default_energy_) {
-    energy_ = new ::std::string;
-  }
-  return energy_;
-}
-
-// optional int64 time = 7;
-inline bool MsgTmpItem::has_time() const {
-  return _has_bit(6);
-}
-inline void MsgTmpItem::clear_time() {
-  time_ = GOOGLE_LONGLONG(0);
-  _clear_bit(6);
-}
-inline ::google::protobuf::int64 MsgTmpItem::time() const {
-  return time_;
-}
-inline void MsgTmpItem::set_time(::google::protobuf::int64 value) {
-  _set_bit(6);
-  time_ = value;
-}
-
-// optional string sku = 8;
-inline bool MsgTmpItem::has_sku() const {
-  return _has_bit(7);
-}
-inline void MsgTmpItem::clear_sku() {
-  if (sku_ != &_default_sku_) {
-    sku_->clear();
-  }
-  _clear_bit(7);
-}
-inline const ::std::string& MsgTmpItem::sku() const {
-  return *sku_;
-}
-inline void MsgTmpItem::set_sku(const ::std::string& value) {
-  _set_bit(7);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(value);
-}
-inline void MsgTmpItem::set_sku(const char* value) {
-  _set_bit(7);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(value);
-}
-inline void MsgTmpItem::set_sku(const char* value, size_t size) {
-  _set_bit(7);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_sku() {
-  _set_bit(7);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  return sku_;
-}
-
-// optional string incomeToRestore = 9;
-inline bool MsgTmpItem::has_incometorestore() const {
-  return _has_bit(8);
-}
-inline void MsgTmpItem::clear_incometorestore() {
-  if (incometorestore_ != &_default_incometorestore_) {
-    incometorestore_->clear();
-  }
-  _clear_bit(8);
-}
-inline const ::std::string& MsgTmpItem::incometorestore() const {
-  return *incometorestore_;
-}
-inline void MsgTmpItem::set_incometorestore(const ::std::string& value) {
-  _set_bit(8);
-  if (incometorestore_ == &_default_incometorestore_) {
-    incometorestore_ = new ::std::string;
-  }
-  incometorestore_->assign(value);
-}
-inline void MsgTmpItem::set_incometorestore(const char* value) {
-  _set_bit(8);
-  if (incometorestore_ == &_default_incometorestore_) {
-    incometorestore_ = new ::std::string;
-  }
-  incometorestore_->assign(value);
-}
-inline void MsgTmpItem::set_incometorestore(const char* value, size_t size) {
-  _set_bit(8);
-  if (incometorestore_ == &_default_incometorestore_) {
-    incometorestore_ = new ::std::string;
-  }
-  incometorestore_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_incometorestore() {
-  _set_bit(8);
-  if (incometorestore_ == &_default_incometorestore_) {
-    incometorestore_ = new ::std::string;
-  }
-  return incometorestore_;
-}
-
-// optional string repairing = 10;
-inline bool MsgTmpItem::has_repairing() const {
-  return _has_bit(9);
-}
-inline void MsgTmpItem::clear_repairing() {
-  if (repairing_ != &_default_repairing_) {
-    repairing_->clear();
-  }
-  _clear_bit(9);
-}
-inline const ::std::string& MsgTmpItem::repairing() const {
-  return *repairing_;
-}
-inline void MsgTmpItem::set_repairing(const ::std::string& value) {
-  _set_bit(9);
-  if (repairing_ == &_default_repairing_) {
-    repairing_ = new ::std::string;
-  }
-  repairing_->assign(value);
-}
-inline void MsgTmpItem::set_repairing(const char* value) {
-  _set_bit(9);
-  if (repairing_ == &_default_repairing_) {
-    repairing_ = new ::std::string;
-  }
-  repairing_->assign(value);
-}
-inline void MsgTmpItem::set_repairing(const char* value, size_t size) {
-  _set_bit(9);
-  if (repairing_ == &_default_repairing_) {
-    repairing_ = new ::std::string;
-  }
-  repairing_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_repairing() {
-  _set_bit(9);
-  if (repairing_ == &_default_repairing_) {
-    repairing_ = new ::std::string;
-  }
-  return repairing_;
-}
-
-// repeated int32 Item = 11;
-inline int MsgTmpItem::item_size() const {
-  return item_.size();
-}
-inline void MsgTmpItem::clear_item() {
-  item_.Clear();
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-MsgTmpItem::item() const {
-  return item_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-MsgTmpItem::mutable_item() {
-  return &item_;
-}
-inline ::google::protobuf::int32 MsgTmpItem::item(int index) const {
-  return item_.Get(index);
-}
-inline void MsgTmpItem::set_item(int index, ::google::protobuf::int32 value) {
-  item_.Set(index, value);
-}
-inline void MsgTmpItem::add_item(::google::protobuf::int32 value) {
-  item_.Add(value);
-}
-
-// optional string isFlipped = 12;
-inline bool MsgTmpItem::has_isflipped() const {
-  return _has_bit(11);
-}
-inline void MsgTmpItem::clear_isflipped() {
-  if (isflipped_ != &_default_isflipped_) {
-    isflipped_->clear();
-  }
-  _clear_bit(11);
-}
-inline const ::std::string& MsgTmpItem::isflipped() const {
-  return *isflipped_;
-}
-inline void MsgTmpItem::set_isflipped(const ::std::string& value) {
-  _set_bit(11);
-  if (isflipped_ == &_default_isflipped_) {
-    isflipped_ = new ::std::string;
-  }
-  isflipped_->assign(value);
-}
-inline void MsgTmpItem::set_isflipped(const char* value) {
-  _set_bit(11);
-  if (isflipped_ == &_default_isflipped_) {
-    isflipped_ = new ::std::string;
-  }
-  isflipped_->assign(value);
-}
-inline void MsgTmpItem::set_isflipped(const char* value, size_t size) {
-  _set_bit(11);
-  if (isflipped_ == &_default_isflipped_) {
-    isflipped_ = new ::std::string;
-  }
-  isflipped_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgTmpItem::mutable_isflipped() {
-  _set_bit(11);
-  if (isflipped_ == &_default_isflipped_) {
-    isflipped_ = new ::std::string;
-  }
-  return isflipped_;
-}
-
-// -------------------------------------------------------------------
 
 // RceUpdateItem
 
@@ -1362,37 +270,37 @@ inline void RceUpdateItem::set_time(::google::protobuf::int64 value) {
   time_ = value;
 }
 
-// optional .MsgTmpTransaction transaction = 3;
+// optional .MsgTransaction transaction = 3;
 inline bool RceUpdateItem::has_transaction() const {
   return _has_bit(2);
 }
 inline void RceUpdateItem::clear_transaction() {
-  if (transaction_ != NULL) transaction_->::MsgTmpTransaction::Clear();
+  if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
   _clear_bit(2);
 }
-inline const ::MsgTmpTransaction& RceUpdateItem::transaction() const {
+inline const ::MsgTransaction& RceUpdateItem::transaction() const {
   return transaction_ != NULL ? *transaction_ : *default_instance_->transaction_;
 }
-inline ::MsgTmpTransaction* RceUpdateItem::mutable_transaction() {
+inline ::MsgTransaction* RceUpdateItem::mutable_transaction() {
   _set_bit(2);
-  if (transaction_ == NULL) transaction_ = new ::MsgTmpTransaction;
+  if (transaction_ == NULL) transaction_ = new ::MsgTransaction;
   return transaction_;
 }
 
-// optional .MsgTmpItem item = 4;
+// optional .MsgBuildingItem item = 4;
 inline bool RceUpdateItem::has_item() const {
   return _has_bit(3);
 }
 inline void RceUpdateItem::clear_item() {
-  if (item_ != NULL) item_->::MsgTmpItem::Clear();
+  if (item_ != NULL) item_->::MsgBuildingItem::Clear();
   _clear_bit(3);
 }
-inline const ::MsgTmpItem& RceUpdateItem::item() const {
+inline const ::MsgBuildingItem& RceUpdateItem::item() const {
   return item_ != NULL ? *item_ : *default_instance_->item_;
 }
-inline ::MsgTmpItem* RceUpdateItem::mutable_item() {
+inline ::MsgBuildingItem* RceUpdateItem::mutable_item() {
   _set_bit(3);
-  if (item_ == NULL) item_ = new ::MsgTmpItem;
+  if (item_ == NULL) item_ = new ::MsgBuildingItem;
   return item_;
 }
 
@@ -1428,46 +336,20 @@ inline void RceUpdateItem::set_id(::google::protobuf::int64 value) {
   id_ = value;
 }
 
-// optional string planetId = 7;
+// optional int32 planetId = 7;
 inline bool RceUpdateItem::has_planetid() const {
   return _has_bit(6);
 }
 inline void RceUpdateItem::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
+  planetid_ = 0;
   _clear_bit(6);
 }
-inline const ::std::string& RceUpdateItem::planetid() const {
-  return *planetid_;
-}
-inline void RceUpdateItem::set_planetid(const ::std::string& value) {
-  _set_bit(6);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateItem::set_planetid(const char* value) {
-  _set_bit(6);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateItem::set_planetid(const char* value, size_t size) {
-  _set_bit(6);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateItem::mutable_planetid() {
-  _set_bit(6);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceUpdateItem::planetid() const {
   return planetid_;
+}
+inline void RceUpdateItem::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(6);
+  planetid_ = value;
 }
 
 // optional int32 newState = 8;
@@ -1590,6 +472,22 @@ inline ::google::protobuf::int32 RceUpdateItem::flip() const {
 inline void RceUpdateItem::set_flip(::google::protobuf::int32 value) {
   _set_bit(12);
   flip_ = value;
+}
+
+// optional int32 role = 14;
+inline bool RceUpdateItem::has_role() const {
+  return _has_bit(13);
+}
+inline void RceUpdateItem::clear_role() {
+  role_ = 0;
+  _clear_bit(13);
+}
+inline ::google::protobuf::int32 RceUpdateItem::role() const {
+  return role_;
+}
+inline void RceUpdateItem::set_role(::google::protobuf::int32 value) {
+  _set_bit(13);
+  role_ = value;
 }
 
 

@@ -15,22 +15,22 @@ message DB_Model
     optional int64           minerals               = 3;  //矿石
     optional int64           coinsTotal             = 4;  //总金币
     optional int64           mineralsTotal          = 5;  //总矿石
-    optional int32           score                  = 6;  //战斗力或者得分
-    optional int32           exp                    = 7;  //当前经验值
-    optional int32           cash                   = 8;  //国际货币
+    optional int64           score                  = 6;  //经验值
+    optional int64           exp                    = 7;  //
+    optional int64           cash                   = 8;  //国际货币
 }
 
 message DB_State
 {
     optional int32          tutorialCompleted       = 1;  //新手流程是否完成
-    optional int32          dmgProtectionTimeLeft   = 2;  //剩余伤害保护时间、伤害保护起效时间点
-    optional int32          dmgProtectionTimeTotal  = 3;  //总的伤害保护时间
+    optional int64          dmgProtectionTimeLeft   = 2;  //剩余伤害保护时间、伤害保护起效时间点
+    optional int64          dmgProtectionTimeTotal  = 3;  //总的伤害保护时间
 }
 
 message DB_PlanetLiteInfo
 {
     optional int64          uid                     = 1;
-    optional int64          planetId                = 2;        
+    optional string         planetId                = 2;        
 }
 
 message DB_Galaxy
@@ -46,7 +46,7 @@ message DB_Galaxy
 message DB_Item
 {
     optional int32          sid                     = 1;
-    optional int32          sku                     = 2;
+    optional string         sku                     = 2;
     optional int32          type                    = 3;
     optional int32          upgradeId               = 4;
     optional int32          isFlipped               = 5;
@@ -55,18 +55,25 @@ message DB_Item
     optional int32          x                       = 8;
     optional int32          y                       = 9;
     optional int32          state                   = 10;
-    optional int32          time                    = 11;
+    optional int64          time                    = 11;
     optional int32          incomeToRestore         = 12;
     optional int32          repairing               = 13;
     optional int64          repairStart             = 14;
     optional int64          updateAt                = 15;
+    optional int32          id                      = 16;
+    //repeated item           // 兵厂 // 兵营(传送门) // 地堡
+}
+
+message DB_HangarUnit
+{
+    optional int32          sku                     = 1;
+    optional int32          num                     = 2;    
 }
 
 message DB_Hangar
 {
     optional int32          sid                     = 1;
-    optional int32          sku                     = 2;
-    optional int32          num                     = 3;
+    repeated DB_HangarUnit  units                   = 2;
 }
 
 message DB_GameUnit
@@ -76,6 +83,42 @@ message DB_GameUnit
     optional int32          upgradeId               = 3;
     optional int32          timeLeft                = 4;
     optional int64          updateAt                = 5;    
+}
+
+message DB_Shipyard
+{
+    optional int32 sid = 1;
+    optional int32 unlockedSlots =  2;
+    optional int32 updatedAt = 3;
+    repeated DB_Slot slot = 4;
+}
+
+message DB_Slot
+{
+    optional int32 skuNum = 1;
+    optional string sku = 2;
+    optional int32 timeLeft = 3; 
+}
+
+message DB_BunkerUnit
+{
+    optional string sku = 1;
+    repeated int32 Unit = 2;
+}
+
+message DB_Bunker
+{
+    optional int32 sid = 1;
+    optional string helpersAccountIds = 2;
+    repeated DB_BunkerUnit Bunker = 3;
+}
+
+message DB_StarLite
+{
+    optional int32 starId = 1;
+    optional string starName = 2;
+    optional int32 starType = 3;
+    optional string sku = 4;
 }
 
 message DB_Planet
@@ -88,11 +131,12 @@ message DB_Planet
     optional int32          Capital                 = 6;
     optional int64          CoinsLimit              = 7;
     optional int64          MineralLimit            = 8;
-    optional int32          star                    = 9;
+    optional DB_StarLite    star                    = 9;
     repeated DB_Item        items                   = 10;
     repeated DB_Hangar      hangars                 = 11;
     repeated DB_GameUnit    units                   = 12;
-
+    repeated DB_Shipyard    shipyard                = 13;
+    repeated DB_Bunker      bunkers                 = 14;
 }
 
 message DB_NPC
@@ -106,8 +150,25 @@ message DB_NPC
 
 message DB_SocialItem
 {
-    optional int32          sku                      = 1;
+    optional string         sku                      = 1;
     optional int32          amount                   = 2;  
+}
+
+message DB_MissionParam
+{
+    repeated string Target = 1;
+    optional int32 endTime = 2;
+    optional string sku = 3;
+    optional string progress = 4;
+}
+
+message DB_Mission
+{
+    optional string ReadyToStart = 1;
+    optional string Available = 2;
+    optional string Rewarded = 3;
+    optional string Completed = 4;
+    repeated DB_MissionParam Params = 5;
 }
 
 message DB_Player
@@ -116,8 +177,9 @@ message DB_Player
     optional DB_State        state                  = 2; //玩家状态
     repeated DB_Planet       planets                = 3; //猩球数据
     repeated DB_NPC          npcs                   = 4; //npc(A/B/C/D)
-    optional DB_Flag         flag                   = 5;
+    optional DB_Flag         flag                   = 5; //music sound quality alliance
     repeated DB_SocialItem   socialItems            = 6;
+    optional DB_Mission      missions               = 7;
 }
 
 message DB_DailyLogon

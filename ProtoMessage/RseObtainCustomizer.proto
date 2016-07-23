@@ -1,9 +1,14 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
 
+message MsgCustomizer
+{
+	
+}
+
 message RseObtainCustomizer
 {
     optional int32 ret = 1;
-    
+	optional MsgCustomizer customizer = 2;
 }
 
