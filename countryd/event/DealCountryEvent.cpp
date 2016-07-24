@@ -29,8 +29,7 @@ DealCountryEvent::~DealCountryEvent()
 
 void DealCountryEvent::registHandler()
 {
-	eh_->getEventHandler()->registHandler(EVENT_ADMIN_RELOAD, ((ProcessRoutine) DealCountryEvent::handle_));	
-	eh_->getEventHandler()->registHandler(EVENT_UPDATE_COUNTRY_USER, ((ProcessRoutine) DealCountryEvent::handle_));	
+	eh_->getEventHandler()->registHandler(EVENT_ADMIN_RELOAD, ((ProcessRoutine) DealCountryEvent::handle_));
 	eh_->getEventHandler()->registHandler(EVENT_COUNTRY_LITE, ((ProcessRoutine) DealCountryEvent::handle_));	
 }
 
@@ -73,11 +72,11 @@ void DealCountryEvent::handle(Event* e)
 
 	switch(e->cmd())
 	{
-	case EVENT_UPDATE_COUNTRY_USER:
-		{
-			HandleUpdateCountryUser(e,pRDH,nGameID);
-		}		
-		break;
+// 	case EVENT_UPDATE_COUNTRY_USER:
+// 		{
+// 			HandleUpdateCountryUser(e,pRDH,nGameID);
+// 		}		
+// 		break;
 	default:
 		break;
 	}

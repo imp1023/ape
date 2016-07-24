@@ -246,10 +246,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\logic\GameConfigMgr.cpp"
-					>
-				</File>
-				<File
 					RelativePath="..\logic\GameConstantSetCfg.cpp"
 					>
 				</File>

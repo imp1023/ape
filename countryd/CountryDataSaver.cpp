@@ -149,6 +149,17 @@ int CountryDataSaver::safeSaveAll(time_t revision, CountryDataHandler* const dh,
 	return 0;
 }
 
+int CountryDataSaver::safeSave(CountryDataHandler* const dh, int nKey,DB_C_Country *pDBCountry)
+{
+	if(pDBCountry)
+	{
+		pthread_mutex_lock(&save_map_mutex_);
+		pushSaveCountry(dh, nKey, pDBCountry);
+		pthread_mutex_unlock(&save_map_mutex_);
+	}
+	return 0;
+}
+
 int CountryDataSaver::safeSaveAllCountry(time_t revision, CountryDataHandler* const dh, bool force)
 {
 	pthread_mutex_lock(&save_map_mutex_);
