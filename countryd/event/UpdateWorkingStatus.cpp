@@ -60,8 +60,6 @@ void UpdateWorkingStatus::handle_GH_Conn(Event* e)
 	eh_->sendEventToGamed(e, gid);
 
 	eh_->SendCountryLiteInfo(gid);
-	eh_->SendBloodBtlInfo(-1,gid);
-	eh_->SendCityBuffInfo(gid);
 }
 
 void UpdateWorkingStatus::handle_GH_Sync(Event* e)

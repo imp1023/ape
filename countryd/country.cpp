@@ -10,15 +10,12 @@
 #include "../common/SysLog.h"
 #include "../common/coredump.h"
 #include "MemCacheServerHandler.h"
-#include "GuildBtlDBHandler.h"
 #ifdef _WIN32
 #include <WinSock2.h>
-#include "../common/Logger_win.h"
-#else
+#endif
 #include <log4cxx/logger.h>
 #include <log4cxx/basicconfigurator.h>
 #include <log4cxx/propertyconfigurator.h>
-#endif
 
 ServerConfig serverConfig("server.cfg");
 int G_CountrySrvD_ID =0; 
@@ -33,7 +30,6 @@ CountrySrv::CountrySrv() {
 	nh_ = new CountryNetHandler(eq_,G_CountrySrvD_ID);
 	dh_ = new CountryDataHandler(G_CountrySrvD_ID);
 	eh_ = new CountryEventHandler(eq_, dh_, nh_, G_CountrySrvD_ID);
-	GuildBtlDBHandler::Instance().SetEventHandler(eh_);
 	//ÊÇ·ñÆô¶¯
 	if (serverConfig.IsGameLogStart())
 	{
@@ -44,6 +40,7 @@ CountrySrv::CountrySrv() {
 	
 //	MemCacheServerHandler::GetInst()->SetEventHandler(eh_);
 }
+
 CountrySrv::~CountrySrv() {
 	delete eq_;
 	delete nh_;
@@ -52,9 +49,6 @@ CountrySrv::~CountrySrv() {
 }
 
 void CountrySrv::start() {
-
-	GuildBtlDBHandler::Instance().initThread();
-
 	eh_->start();
 	nh_->start();
 }

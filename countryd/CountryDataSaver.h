@@ -37,7 +37,6 @@ enum ActionType
 	ACTION_COUNTRY_SAVE = 3
 };
 
-
 class CountryDataSaver 
 {
 public:
@@ -55,52 +54,23 @@ public:
 
 	//return succ
 	int		safeSaveAll(time_t revision, CountryDataHandler* const dh, bool force=false);
-	int		safeSave(CountryDataHandler* const dh, int nKey,DB_C_City *pDBCity);
 	int		safeSave(CountryDataHandler* const dh, int nKey,DB_C_Country *pDBCountry);
-	int		safeSave(CountryDataHandler* const dh, int nKey,DB_C_GuildList *pDBGuildLst);
-	int		safeSave(CountryDataHandler* const dh, int nKey,DB_C_UserList *pDBUserLst);
-	int		safeSave(CountryDataHandler* const dh, int nKey,DB_C_ResourceData *pDBResourceData);
-	int		safeSave(CountryDataHandler* const dh, int nKey,DB_C_GvgCity *pDBCity);
-    int     safeSave(CountryDataHandler* const dh, int nKey,DB_C_WarGameData *pDBWarGameData);
-	int     safeSave(CountryDataHandler* const dh, int nKey,DB_C_BossBtlMsg *pDBBossBtlMsg);
 
 	void	routine(ActionType type);
 
 private:
-	int		safeSaveAllCity(time_t revision, CountryDataHandler* const dh, bool force=false);
 	int		safeSaveAllCountry(time_t revision, CountryDataHandler* const dh, bool force=false);
-	int		safeSaveAllGuildLst(time_t  revision,CountryDataHandler* const dh, bool force=false);
-	int		safeSaveAllUserLst(time_t  revision,CountryDataHandler* const dh, bool force=false);
-	int		safeSaveAllResourceData(time_t  revision,CountryDataHandler* const dh, bool force=false);
-	int		safeSaveAllGvgCity(time_t revision, CountryDataHandler* const dh, bool force=false);
-    int     safeSaveAllWarGameData(time_t  revision,CountryDataHandler* const dh, bool force=false);
-	int     safeSaveAllBossBtlMsg(time_t  revision,CountryDataHandler* const dh, bool force=false);
+
 public:
-	int		loadCity(const string& strKey,DB_C_City& dbCity);
 	int		loadCountry(const string& strKey,DB_C_Country& dbCountry);
-	int		loadGuildLst(const string& strKey,DB_C_GuildList& dbGuildLst);
-	int		loadUserLst(const string& strKey,DB_C_UserList& dbUserLst);
-	int		loadResourceData(const string& strKey,DB_C_ResourceData& dbResourseData);
-	int		loadGvgCity(const string& strKey,DB_C_GvgCity& dbCity);
-    int     loadWarGameData(const string& strKey,DB_C_WarGameData& dbWarGameData);
-	int     loadBossBtlMsg(const string& strKey,DB_C_BossBtlMsg& dbBossBtlMsg);
+
 protected:
 
 	int		saveInfo2DB(CountryDataHandler* const dh, string strKey, string& data);
 	int		pushSaveCountry(CountryDataHandler* const dh, int nKey,DB_C_Country* pDBCountry);
-	int		pushSaveCity(CountryDataHandler* const dh, int nKey,DB_C_City* pDBCity);
-	int		pushSaveGuildLst(CountryDataHandler* const dh,int nKey,DB_C_GuildList* pDBGuildLst);
-	int		pushSaveUserLst(CountryDataHandler* const dh,int nKey,DB_C_UserList* pDBUserLst);
-	int		pushSaveResourceData(CountryDataHandler* const dh,int nKey,DB_C_ResourceData* pDBResourceData);
-	int		pushSaveGvgCity(CountryDataHandler* const dh, int nKey,DB_C_GvgCity* pDBCity);
-    int     pushSaveWarGameData(CountryDataHandler* const dh, int nKey,DB_C_WarGameData* pDBWarGameData);
-	int     pushSaveBossBtlMsg(CountryDataHandler* const dh, int nKey,DB_C_BossBtlMsg* pDBBossBtlMsg);
 
 	static void* saveMapThread(void* arg);
 	static void* loadMapThread(void* arg);
-
-	void	writeCountrySaveListLength(int len);
-	void	writeSaveError(const char *strError,const char* szKey,int nValueLen);
 
 	TCRDB*	getDb(const string& addr, int port);
 	TCRDB*	getCountryLoadDb(int dbid);
@@ -109,6 +79,9 @@ protected:
 	//game DBœ‡πÿ
 	TCRDB*	getCountryLoadDb4HotCache(int dbid);
 	TCRDB*	getCountrySaveDb4HotCache(int dbid);
+
+	void	writeCountrySaveListLength(int len);
+	void	writeSaveError(const char *strError,const char* szKey,int nValueLen);
 
 	int		saveInfo2HotCache(CountryDataHandler* const dh,string strKey , string& data);
 	char*   loadInfoFromHotCache(const string& strKey,int& len);
@@ -140,14 +113,7 @@ protected:
 
 	time_t log_plattime;
 
-	int m_nDirtyCityCnt;
 	int m_nDirtyCountryCnt;
-	int m_nDirtyGuildLstCnt;
-	int m_nDirtyUserLstCnt;
-	int m_nDirtyResourceDataCnt;
-	int m_nDirtyGvgCityCnt;
-	int m_nDirtyWarGameDataCnt;
-    int m_nDirtyBossBtlMsgCnt;
 
 	bool m_bHotCacheEnable;
 };

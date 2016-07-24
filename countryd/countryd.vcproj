@@ -59,7 +59,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cored.lib pthreadVC2.lib libconfig++d.lib libprotobufd.lib bgd.lib ws2_32.lib libcurld.lib libcurld_imp.lib"
+				AdditionalDependencies="cored.lib pthreadVC2.lib libconfig++d.lib libprotobufd.lib ws2_32.lib log4cxxD.lib libcurld.lib libcurld_imp.lib"
 				OutputFile="../DebugPath/$(ProjectName).exe"
 				AdditionalLibraryDirectories="..\lib\windows\lib;..\build\Debug_core"
 				GenerateDebugInformation="true"
@@ -210,67 +210,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\event\DealArenaEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealArenaEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealBossBtlEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealBossBtlEvent.h"
-					>
-				</File>
-				<File
 					RelativePath=".\event\DealCountryEvent.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\event\DealCountryEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealGuildEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealGuildEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealGuildRedEnvelopeEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealGuildRedEnvelopeEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealGvgEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealGvgEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealResourceEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealResourceEvent.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealWarGameEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\DealWarGameEvent.h"
 					>
 				</File>
 				<File
@@ -355,14 +299,6 @@
 				</File>
 				<File
 					RelativePath=".\CountryNetHandler.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GuildBtlDBHandler.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GuildBtlDBHandler.h"
 					>
 				</File>
 				<File

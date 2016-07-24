@@ -44,22 +44,10 @@ public:
 
 	static bool			SafePushMemDB(int nKey,CCity* pCity,time_t revision_);
 	static bool			SafePushMemDB(int nKey,CCountry* pCountry,time_t revision_);
-	static bool			SafePushMemDB(int nKey,DB_C_GuildList* pDBGuildLst,time_t revision_);
-	static bool			SafePushMemDB(int nKey,DB_C_UserList* pDBUserLst,time_t revision_);
-	static bool			SafePushMemDB(int nKey,DB_C_ResourceData* pDBResourceData,time_t revision_);
-	static bool			SafePushMemDB(int nKey,CGvgCity* pCity,time_t revision_);
-    static bool         SafePushMemDB(int nKey,DB_C_WarGameData *pDBWarGame,time_t revision_);
-	static bool         SafePushMemDB(int nKey,DB_C_BossBtlMsg *pDBBossBtlMsg,time_t revision_);
 
 	static bool			SaveAllMemDBData(int64 revision,bool urgent = false);
-	static bool			SaveAllCityMemDBData(int64 revision,bool urgent = false);
 	static bool			SaveAllCountryMemDBData(int64 revision,bool urgent = false);
-	static bool			SaveAllGuildLstMemDBData(int64 revision,bool urgent = false);
-	static bool			SaveAllUserLstMemDBData(int64 revision,bool urgent = false);
-	static bool			SaveAllResourceDBData(int64 revision,bool urgent = false);
-	static bool			SaveAllGvgCityMemDBData(int64 revision,bool urgent = false);
-    static bool         SaveAllWarGameMemDBData(int64 revision,bool urgent = false);
-	static bool         SaveAllBossBtlMsg(int64 revision,bool urgent = false);
+
 public:
 	void				acquireLock() {pthread_mutex_lock(&mutex_);}
 	void				releaseLock() {pthread_mutex_unlock(&mutex_);}
@@ -70,17 +58,8 @@ public:
     TCRDB*              GetDB(int id);
     bool                CanUse();
     void                SetEnbale(bool enable);
-//	void				SetEventHandler(CountryEventHandler* eh);
-//	CountryEventHandler*		GetEventHandler(void){return m_eh;}
-	map<int,CCity*>&			GetCityList(void){return m_CityList;}
+
 	map<int,CCountry*>&			GetCountryList(void){return m_CountryList;}
-	map<int,DB_C_GuildList*>&	GetGuildList(void){return m_GuildList;}
-	map<int,DB_C_UserList*>&	GetUserList(void){return m_UserList;}
-	map<int,DB_C_ResourceData*>&	GetResourceList(void){return m_ResourceList;}
-	map<int,CGvgCity*>&			GetGvgCityList(void){return m_GvgCityList;}
-    map<int,DB_C_WarGameData*>& GetWarGameList(void){return m_WarGameList;}
-	map<int,DB_C_BossBtlMsg*>&	GetBossBtlMsgList(void){return m_BossBtlMsgList;}
-	
 
 	time_t				GetSaveUpdateTime(){return m_SaveUpdate;}
 	void				SetSaveUpdateTime(time_t save_time){m_SaveUpdate = save_time;}
@@ -93,14 +72,7 @@ private:
 
 	static MSH_T*       g_pInst;
     int                 m_nServerNum;
-	map<int,CCity*>		m_CityList;
 	map<int,CCountry*>	m_CountryList;
-	map<int,DB_C_UserList*>	m_UserList;
-	map<int,DB_C_GuildList*> m_GuildList;
-	map<int,DB_C_ResourceData*> m_ResourceList;
-	map<int,CGvgCity*>	m_GvgCityList;
-    map<int,DB_C_WarGameData*> m_WarGameList;
-	map<int,DB_C_BossBtlMsg*> m_BossBtlMsgList;
 
 	//map<string, int64>  m_mapRevision;
     IPList              m_xIpList;
@@ -111,8 +83,6 @@ private:
 	static log4cxx::LoggerPtr logger;
 	//CountryEventHandler*	m_eh;
 	time_t				m_SaveUpdate;
-
-	
 } ;
 ///////////////////////////////////////
 
