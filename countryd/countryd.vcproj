@@ -246,6 +246,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\logic\CountryNameTbl.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\CountryNameTbl.h"
+					>
+				</File>
+				<File
 					RelativePath="..\logic\GameConstantSetCfg.cpp"
 					>
 				</File>
@@ -267,6 +275,14 @@
 				</File>
 				<File
 					RelativePath="..\logic\GameSrvCfg.h"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\StarLogic.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\StarLogic.h"
 					>
 				</File>
 			</Filter>

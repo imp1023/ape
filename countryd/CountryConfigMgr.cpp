@@ -1,5 +1,6 @@
 #include "CountryConfigMgr.h"
 #include "../logic/GameSrvCfg.h"
+#include "../logic/CountryNameTbl.h"
 #include "MemCacheServerHandler.h"
 #include "../logic/GameConstantSetCfg.h"
 
@@ -18,7 +19,8 @@ void CountryConfigMgr::LoadCountryConfigInfo(int nCountrySrvID,bool bRootLoad/* 
 {
 	bool bSuc = true;
 	if(!GameSrvCfg::Instance().LoadTbl()
-		||!GameConstantSetCfg::Instance().LoadTbl())
+		||!GameConstantSetCfg::Instance().LoadTbl()
+		||!CountryNameTblInst::instance().LoadInfo())
 	{
 		printf("Read Config File ERROR!!!!!\r\n");
 		exit(0);

@@ -14,4 +14,7 @@ private:
 private:
 	void processReloadConfig(Event* e);
 	void HandleCountryLite(Event* e);
+	void HandleNewPlayerLogin(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
+	void HandleQueryStarInfo(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
+	void HandleQueryGalaxyWindow(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
 };

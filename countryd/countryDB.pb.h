@@ -28,10 +28,302 @@ void  protobuf_AddDesc_countryDB_2eproto();
 void protobuf_AssignDesc_countryDB_2eproto();
 void protobuf_ShutdownFile_countryDB_2eproto();
 
+class DB_C_UserLite;
+class DB_C_PlanetLite;
 class DB_C_City;
 class DB_C_Country;
 
 // ===================================================================
+
+class DB_C_UserLite : public ::google::protobuf::Message {
+ public:
+  DB_C_UserLite();
+  virtual ~DB_C_UserLite();
+  
+  DB_C_UserLite(const DB_C_UserLite& from);
+  
+  inline DB_C_UserLite& operator=(const DB_C_UserLite& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_UserLite& default_instance();
+  void Swap(DB_C_UserLite* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_UserLite* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_UserLite& from);
+  void MergeFrom(const DB_C_UserLite& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string name = 1;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 1;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string url = 2;
+  inline bool has_url() const;
+  inline void clear_url();
+  static const int kUrlFieldNumber = 2;
+  inline const ::std::string& url() const;
+  inline void set_url(const ::std::string& value);
+  inline void set_url(const char* value);
+  inline void set_url(const char* value, size_t size);
+  inline ::std::string* mutable_url();
+  
+  // optional int32 xp = 3;
+  inline bool has_xp() const;
+  inline void clear_xp();
+  static const int kXpFieldNumber = 3;
+  inline ::google::protobuf::int32 xp() const;
+  inline void set_xp(::google::protobuf::int32 value);
+  
+  // optional int32 score = 4;
+  inline bool has_score() const;
+  inline void clear_score();
+  static const int kScoreFieldNumber = 4;
+  inline ::google::protobuf::int32 score() const;
+  inline void set_score(::google::protobuf::int32 value);
+  
+  // optional int32 damageProtectionTimeLeft = 5;
+  inline bool has_damageprotectiontimeleft() const;
+  inline void clear_damageprotectiontimeleft();
+  static const int kDamageProtectionTimeLeftFieldNumber = 5;
+  inline ::google::protobuf::int32 damageprotectiontimeleft() const;
+  inline void set_damageprotectiontimeleft(::google::protobuf::int32 value);
+  
+  // optional int32 tutorialCompleted = 6;
+  inline bool has_tutorialcompleted() const;
+  inline void clear_tutorialcompleted();
+  static const int kTutorialCompletedFieldNumber = 6;
+  inline ::google::protobuf::int32 tutorialcompleted() const;
+  inline void set_tutorialcompleted(::google::protobuf::int32 value);
+  
+  // optional int32 isOnline = 7;
+  inline bool has_isonline() const;
+  inline void clear_isonline();
+  static const int kIsOnlineFieldNumber = 7;
+  inline ::google::protobuf::int32 isonline() const;
+  inline void set_isonline(::google::protobuf::int32 value);
+  
+  // optional int32 levelBasedOnScore = 8;
+  inline bool has_levelbasedonscore() const;
+  inline void clear_levelbasedonscore();
+  static const int kLevelBasedOnScoreFieldNumber = 8;
+  inline ::google::protobuf::int32 levelbasedonscore() const;
+  inline void set_levelbasedonscore(::google::protobuf::int32 value);
+  
+  // optional int64 uid = 9;
+  inline bool has_uid() const;
+  inline void clear_uid();
+  static const int kUidFieldNumber = 9;
+  inline ::google::protobuf::int64 uid() const;
+  inline void set_uid(::google::protobuf::int64 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* url_;
+  static const ::std::string _default_url_;
+  ::google::protobuf::int32 xp_;
+  ::google::protobuf::int32 score_;
+  ::google::protobuf::int32 damageprotectiontimeleft_;
+  ::google::protobuf::int32 tutorialcompleted_;
+  ::google::protobuf::int32 isonline_;
+  ::google::protobuf::int32 levelbasedonscore_;
+  ::google::protobuf::int64 uid_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(9 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_UserLite* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_C_PlanetLite : public ::google::protobuf::Message {
+ public:
+  DB_C_PlanetLite();
+  virtual ~DB_C_PlanetLite();
+  
+  DB_C_PlanetLite(const DB_C_PlanetLite& from);
+  
+  inline DB_C_PlanetLite& operator=(const DB_C_PlanetLite& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_PlanetLite& default_instance();
+  void Swap(DB_C_PlanetLite* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_PlanetLite* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_PlanetLite& from);
+  void MergeFrom(const DB_C_PlanetLite& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int64 uid = 1;
+  inline bool has_uid() const;
+  inline void clear_uid();
+  static const int kUidFieldNumber = 1;
+  inline ::google::protobuf::int64 uid() const;
+  inline void set_uid(::google::protobuf::int64 value);
+  
+  // optional int32 planetId = 2;
+  inline bool has_planetid() const;
+  inline void clear_planetid();
+  static const int kPlanetIdFieldNumber = 2;
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
+  
+  // optional int32 type = 3;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 3;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional int32 HQLevel = 4;
+  inline bool has_hqlevel() const;
+  inline void clear_hqlevel();
+  static const int kHQLevelFieldNumber = 4;
+  inline ::google::protobuf::int32 hqlevel() const;
+  inline void set_hqlevel(::google::protobuf::int32 value);
+  
+  // optional int32 capital = 5;
+  inline bool has_capital() const;
+  inline void clear_capital();
+  static const int kCapitalFieldNumber = 5;
+  inline ::google::protobuf::int32 capital() const;
+  inline void set_capital(::google::protobuf::int32 value);
+  
+  // optional string sku = 6;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 6;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int64 uid_;
+  ::google::protobuf::int32 planetid_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 hqlevel_;
+  ::google::protobuf::int32 capital_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_PlanetLite* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class DB_C_City : public ::google::protobuf::Message {
  public:
@@ -93,24 +385,59 @@ class DB_C_City : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 cityid() const;
   inline void set_cityid(::google::protobuf::int32 value);
   
-  // optional int64 ltSaveRevision = 2 [default = 0];
-  inline bool has_ltsaverevision() const;
-  inline void clear_ltsaverevision();
-  static const int kLtSaveRevisionFieldNumber = 2;
-  inline ::google::protobuf::int64 ltsaverevision() const;
-  inline void set_ltsaverevision(::google::protobuf::int64 value);
+  // optional int32 x = 2;
+  inline bool has_x() const;
+  inline void clear_x();
+  static const int kXFieldNumber = 2;
+  inline ::google::protobuf::int32 x() const;
+  inline void set_x(::google::protobuf::int32 value);
+  
+  // optional int32 y = 3;
+  inline bool has_y() const;
+  inline void clear_y();
+  static const int kYFieldNumber = 3;
+  inline ::google::protobuf::int32 y() const;
+  inline void set_y(::google::protobuf::int32 value);
+  
+  // optional int32 type = 4;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 4;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional int32 name = 5;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 5;
+  inline ::google::protobuf::int32 name() const;
+  inline void set_name(::google::protobuf::int32 value);
+  
+  // repeated .DB_C_PlanetLite planets = 6;
+  inline int planets_size() const;
+  inline void clear_planets();
+  static const int kPlanetsFieldNumber = 6;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_C_PlanetLite >& planets() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_C_PlanetLite >* mutable_planets();
+  inline const ::DB_C_PlanetLite& planets(int index) const;
+  inline ::DB_C_PlanetLite* mutable_planets(int index);
+  inline ::DB_C_PlanetLite* add_planets();
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   ::google::protobuf::int32 cityid_;
-  ::google::protobuf::int64 ltsaverevision_;
+  ::google::protobuf::int32 x_;
+  ::google::protobuf::int32 y_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 name_;
+  ::google::protobuf::RepeatedPtrField< ::DB_C_PlanetLite > planets_;
   friend void  protobuf_AddDesc_countryDB_2eproto();
   friend void protobuf_AssignDesc_countryDB_2eproto();
   friend void protobuf_ShutdownFile_countryDB_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -198,6 +525,16 @@ class DB_C_Country : public ::google::protobuf::Message {
   inline ::DB_C_City* mutable_city(int index);
   inline ::DB_C_City* add_city();
   
+  // repeated .DB_C_UserLite users = 3;
+  inline int users_size() const;
+  inline void clear_users();
+  static const int kUsersFieldNumber = 3;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_C_UserLite >& users() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_C_UserLite >* mutable_users();
+  inline const ::DB_C_UserLite& users(int index) const;
+  inline ::DB_C_UserLite* mutable_users(int index);
+  inline ::DB_C_UserLite* add_users();
+  
   // optional int64 ltSaveRevision = 4 [default = 0];
   inline bool has_ltsaverevision() const;
   inline void clear_ltsaverevision();
@@ -211,12 +548,13 @@ class DB_C_Country : public ::google::protobuf::Message {
   
   ::google::protobuf::int32 region_;
   ::google::protobuf::RepeatedPtrField< ::DB_C_City > city_;
+  ::google::protobuf::RepeatedPtrField< ::DB_C_UserLite > users_;
   ::google::protobuf::int64 ltsaverevision_;
   friend void  protobuf_AddDesc_countryDB_2eproto();
   friend void protobuf_AssignDesc_countryDB_2eproto();
   friend void protobuf_ShutdownFile_countryDB_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -240,6 +578,332 @@ class DB_C_Country : public ::google::protobuf::Message {
 
 // ===================================================================
 
+// DB_C_UserLite
+
+// optional string name = 1;
+inline bool DB_C_UserLite::has_name() const {
+  return _has_bit(0);
+}
+inline void DB_C_UserLite::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& DB_C_UserLite::name() const {
+  return *name_;
+}
+inline void DB_C_UserLite::set_name(const ::std::string& value) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_UserLite::set_name(const char* value) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_UserLite::set_name(const char* value, size_t size) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_UserLite::mutable_name() {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string url = 2;
+inline bool DB_C_UserLite::has_url() const {
+  return _has_bit(1);
+}
+inline void DB_C_UserLite::clear_url() {
+  if (url_ != &_default_url_) {
+    url_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& DB_C_UserLite::url() const {
+  return *url_;
+}
+inline void DB_C_UserLite::set_url(const ::std::string& value) {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void DB_C_UserLite::set_url(const char* value) {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void DB_C_UserLite::set_url(const char* value, size_t size) {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_UserLite::mutable_url() {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  return url_;
+}
+
+// optional int32 xp = 3;
+inline bool DB_C_UserLite::has_xp() const {
+  return _has_bit(2);
+}
+inline void DB_C_UserLite::clear_xp() {
+  xp_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_C_UserLite::xp() const {
+  return xp_;
+}
+inline void DB_C_UserLite::set_xp(::google::protobuf::int32 value) {
+  _set_bit(2);
+  xp_ = value;
+}
+
+// optional int32 score = 4;
+inline bool DB_C_UserLite::has_score() const {
+  return _has_bit(3);
+}
+inline void DB_C_UserLite::clear_score() {
+  score_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_C_UserLite::score() const {
+  return score_;
+}
+inline void DB_C_UserLite::set_score(::google::protobuf::int32 value) {
+  _set_bit(3);
+  score_ = value;
+}
+
+// optional int32 damageProtectionTimeLeft = 5;
+inline bool DB_C_UserLite::has_damageprotectiontimeleft() const {
+  return _has_bit(4);
+}
+inline void DB_C_UserLite::clear_damageprotectiontimeleft() {
+  damageprotectiontimeleft_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_UserLite::damageprotectiontimeleft() const {
+  return damageprotectiontimeleft_;
+}
+inline void DB_C_UserLite::set_damageprotectiontimeleft(::google::protobuf::int32 value) {
+  _set_bit(4);
+  damageprotectiontimeleft_ = value;
+}
+
+// optional int32 tutorialCompleted = 6;
+inline bool DB_C_UserLite::has_tutorialcompleted() const {
+  return _has_bit(5);
+}
+inline void DB_C_UserLite::clear_tutorialcompleted() {
+  tutorialcompleted_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 DB_C_UserLite::tutorialcompleted() const {
+  return tutorialcompleted_;
+}
+inline void DB_C_UserLite::set_tutorialcompleted(::google::protobuf::int32 value) {
+  _set_bit(5);
+  tutorialcompleted_ = value;
+}
+
+// optional int32 isOnline = 7;
+inline bool DB_C_UserLite::has_isonline() const {
+  return _has_bit(6);
+}
+inline void DB_C_UserLite::clear_isonline() {
+  isonline_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 DB_C_UserLite::isonline() const {
+  return isonline_;
+}
+inline void DB_C_UserLite::set_isonline(::google::protobuf::int32 value) {
+  _set_bit(6);
+  isonline_ = value;
+}
+
+// optional int32 levelBasedOnScore = 8;
+inline bool DB_C_UserLite::has_levelbasedonscore() const {
+  return _has_bit(7);
+}
+inline void DB_C_UserLite::clear_levelbasedonscore() {
+  levelbasedonscore_ = 0;
+  _clear_bit(7);
+}
+inline ::google::protobuf::int32 DB_C_UserLite::levelbasedonscore() const {
+  return levelbasedonscore_;
+}
+inline void DB_C_UserLite::set_levelbasedonscore(::google::protobuf::int32 value) {
+  _set_bit(7);
+  levelbasedonscore_ = value;
+}
+
+// optional int64 uid = 9;
+inline bool DB_C_UserLite::has_uid() const {
+  return _has_bit(8);
+}
+inline void DB_C_UserLite::clear_uid() {
+  uid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(8);
+}
+inline ::google::protobuf::int64 DB_C_UserLite::uid() const {
+  return uid_;
+}
+inline void DB_C_UserLite::set_uid(::google::protobuf::int64 value) {
+  _set_bit(8);
+  uid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DB_C_PlanetLite
+
+// optional int64 uid = 1;
+inline bool DB_C_PlanetLite::has_uid() const {
+  return _has_bit(0);
+}
+inline void DB_C_PlanetLite::clear_uid() {
+  uid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(0);
+}
+inline ::google::protobuf::int64 DB_C_PlanetLite::uid() const {
+  return uid_;
+}
+inline void DB_C_PlanetLite::set_uid(::google::protobuf::int64 value) {
+  _set_bit(0);
+  uid_ = value;
+}
+
+// optional int32 planetId = 2;
+inline bool DB_C_PlanetLite::has_planetid() const {
+  return _has_bit(1);
+}
+inline void DB_C_PlanetLite::clear_planetid() {
+  planetid_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 DB_C_PlanetLite::planetid() const {
+  return planetid_;
+}
+inline void DB_C_PlanetLite::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(1);
+  planetid_ = value;
+}
+
+// optional int32 type = 3;
+inline bool DB_C_PlanetLite::has_type() const {
+  return _has_bit(2);
+}
+inline void DB_C_PlanetLite::clear_type() {
+  type_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_C_PlanetLite::type() const {
+  return type_;
+}
+inline void DB_C_PlanetLite::set_type(::google::protobuf::int32 value) {
+  _set_bit(2);
+  type_ = value;
+}
+
+// optional int32 HQLevel = 4;
+inline bool DB_C_PlanetLite::has_hqlevel() const {
+  return _has_bit(3);
+}
+inline void DB_C_PlanetLite::clear_hqlevel() {
+  hqlevel_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_C_PlanetLite::hqlevel() const {
+  return hqlevel_;
+}
+inline void DB_C_PlanetLite::set_hqlevel(::google::protobuf::int32 value) {
+  _set_bit(3);
+  hqlevel_ = value;
+}
+
+// optional int32 capital = 5;
+inline bool DB_C_PlanetLite::has_capital() const {
+  return _has_bit(4);
+}
+inline void DB_C_PlanetLite::clear_capital() {
+  capital_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_PlanetLite::capital() const {
+  return capital_;
+}
+inline void DB_C_PlanetLite::set_capital(::google::protobuf::int32 value) {
+  _set_bit(4);
+  capital_ = value;
+}
+
+// optional string sku = 6;
+inline bool DB_C_PlanetLite::has_sku() const {
+  return _has_bit(5);
+}
+inline void DB_C_PlanetLite::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(5);
+}
+inline const ::std::string& DB_C_PlanetLite::sku() const {
+  return *sku_;
+}
+inline void DB_C_PlanetLite::set_sku(const ::std::string& value) {
+  _set_bit(5);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_C_PlanetLite::set_sku(const char* value) {
+  _set_bit(5);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_C_PlanetLite::set_sku(const char* value, size_t size) {
+  _set_bit(5);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_PlanetLite::mutable_sku() {
+  _set_bit(5);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// -------------------------------------------------------------------
+
 // DB_C_City
 
 // required int32 cityID = 1;
@@ -258,20 +922,93 @@ inline void DB_C_City::set_cityid(::google::protobuf::int32 value) {
   cityid_ = value;
 }
 
-// optional int64 ltSaveRevision = 2 [default = 0];
-inline bool DB_C_City::has_ltsaverevision() const {
+// optional int32 x = 2;
+inline bool DB_C_City::has_x() const {
   return _has_bit(1);
 }
-inline void DB_C_City::clear_ltsaverevision() {
-  ltsaverevision_ = GOOGLE_LONGLONG(0);
+inline void DB_C_City::clear_x() {
+  x_ = 0;
   _clear_bit(1);
 }
-inline ::google::protobuf::int64 DB_C_City::ltsaverevision() const {
-  return ltsaverevision_;
+inline ::google::protobuf::int32 DB_C_City::x() const {
+  return x_;
 }
-inline void DB_C_City::set_ltsaverevision(::google::protobuf::int64 value) {
+inline void DB_C_City::set_x(::google::protobuf::int32 value) {
   _set_bit(1);
-  ltsaverevision_ = value;
+  x_ = value;
+}
+
+// optional int32 y = 3;
+inline bool DB_C_City::has_y() const {
+  return _has_bit(2);
+}
+inline void DB_C_City::clear_y() {
+  y_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_C_City::y() const {
+  return y_;
+}
+inline void DB_C_City::set_y(::google::protobuf::int32 value) {
+  _set_bit(2);
+  y_ = value;
+}
+
+// optional int32 type = 4;
+inline bool DB_C_City::has_type() const {
+  return _has_bit(3);
+}
+inline void DB_C_City::clear_type() {
+  type_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_C_City::type() const {
+  return type_;
+}
+inline void DB_C_City::set_type(::google::protobuf::int32 value) {
+  _set_bit(3);
+  type_ = value;
+}
+
+// optional int32 name = 5;
+inline bool DB_C_City::has_name() const {
+  return _has_bit(4);
+}
+inline void DB_C_City::clear_name() {
+  name_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_City::name() const {
+  return name_;
+}
+inline void DB_C_City::set_name(::google::protobuf::int32 value) {
+  _set_bit(4);
+  name_ = value;
+}
+
+// repeated .DB_C_PlanetLite planets = 6;
+inline int DB_C_City::planets_size() const {
+  return planets_.size();
+}
+inline void DB_C_City::clear_planets() {
+  planets_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_C_PlanetLite >&
+DB_C_City::planets() const {
+  return planets_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_C_PlanetLite >*
+DB_C_City::mutable_planets() {
+  return &planets_;
+}
+inline const ::DB_C_PlanetLite& DB_C_City::planets(int index) const {
+  return planets_.Get(index);
+}
+inline ::DB_C_PlanetLite* DB_C_City::mutable_planets(int index) {
+  return planets_.Mutable(index);
+}
+inline ::DB_C_PlanetLite* DB_C_City::add_planets() {
+  return planets_.Add();
 }
 
 // -------------------------------------------------------------------
@@ -319,19 +1056,44 @@ inline ::DB_C_City* DB_C_Country::add_city() {
   return city_.Add();
 }
 
+// repeated .DB_C_UserLite users = 3;
+inline int DB_C_Country::users_size() const {
+  return users_.size();
+}
+inline void DB_C_Country::clear_users() {
+  users_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_C_UserLite >&
+DB_C_Country::users() const {
+  return users_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_C_UserLite >*
+DB_C_Country::mutable_users() {
+  return &users_;
+}
+inline const ::DB_C_UserLite& DB_C_Country::users(int index) const {
+  return users_.Get(index);
+}
+inline ::DB_C_UserLite* DB_C_Country::mutable_users(int index) {
+  return users_.Mutable(index);
+}
+inline ::DB_C_UserLite* DB_C_Country::add_users() {
+  return users_.Add();
+}
+
 // optional int64 ltSaveRevision = 4 [default = 0];
 inline bool DB_C_Country::has_ltsaverevision() const {
-  return _has_bit(2);
+  return _has_bit(3);
 }
 inline void DB_C_Country::clear_ltsaverevision() {
   ltsaverevision_ = GOOGLE_LONGLONG(0);
-  _clear_bit(2);
+  _clear_bit(3);
 }
 inline ::google::protobuf::int64 DB_C_Country::ltsaverevision() const {
   return ltsaverevision_;
 }
 inline void DB_C_Country::set_ltsaverevision(::google::protobuf::int64 value) {
-  _set_bit(2);
+  _set_bit(3);
   ltsaverevision_ = value;
 }
 

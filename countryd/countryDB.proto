@@ -2,16 +2,43 @@
 //   »ù´¡½á¹¹                                                          //
 /////////////////////////////////////////////////////////////////////////
 
+message DB_C_UserLite
+{
+    optional string name = 1; //": "lxl",
+    optional string url = 2; //": "pic",
+    optional int32 xp = 3; //": 12230487,
+    optional int32 score = 4; //": 11484,
+    optional int32 damageProtectionTimeLeft = 5; //": 0,
+    optional int32 tutorialCompleted = 6; //": 1,
+    optional int32 isOnline = 7; //": 1,
+    optional int32 levelBasedOnScore = 8; //": 1
+    optional int64 uid = 9;
+}
+
+message DB_C_PlanetLite
+{
+	optional int64 uid 					= 1;
+	optional int32 planetId				= 2;
+	optional int32 type 				= 3;
+	optional int32 HQLevel 				= 4; //": 4,
+	optional int32 capital 				= 5; //": 1,
+	optional string sku 				= 6; //": "1:1:5",
+}
 
 message DB_C_City
 {
-	required int32  cityID 			= 1;
-	optional int64	ltSaveRevision	= 2 [default = 0];	//Ê±¼ä´Á£¬ÓÃÓÚDBÊý¾Ý´æ´¢£¬ÎªÌá¸ßËÙ¶È¶øÉèµÄ±äÁ¿£¬Êý¾Ý¿ÉÒÔ²»×¼
+	required int32  cityID 				= 1;
+	optional int32 	x 					= 2;
+	optional int32 	y					= 3;
+	optional int32  type				= 4;
+	optional int32 name				= 5;
+	repeated DB_C_PlanetLite	planets = 6;
 }
 
-message DB_C_Country		//###¶ÀÁ¢´æ´¢µ¥Ôª###
+message DB_C_Country
 {
-	required int32  region				= 1;		//·ÖÇø
-	repeated DB_C_City city 			= 2; 
-	optional int64	ltSaveRevision		= 4[default = 0];	//Ê±¼ä´Á£¬ÓÃÓÚDBÊý¾Ý´æ´¢£¬ÎªÌá¸ßËÙ¶È¶øÉèµÄ±äÁ¿£¬Êý¾Ý¿ÉÒÔ²»×¼
+	required int32  region				= 1;
+	repeated DB_C_City city 			= 2;
+	repeated DB_C_UserLite users   = 3; 
+	optional int64	ltSaveRevision		= 4[default = 0];
 }

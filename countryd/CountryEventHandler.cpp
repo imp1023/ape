@@ -72,65 +72,44 @@ void CountryEventHandler::SendCountryLiteInfo(int nGameID /* = -1 */)
 	evn.set_state(Status_Country_To_Game);
 	evn.set_time(0);
 
-	//GCG_CountryLite* pRseCnt = evn.mutable_countrycnt();
 	for(int i=0;i<(int)lstRgn.size();i++)
 	{
 		int nRegion = lstRgn[i];
 		CountryRgnDatHandler* pRDH = pDH->GetRegionDatHandler(nRegion);
-		if(pRDH==NULL)
+		if(!pRDH)
 			continue;
-		for(int j=C_Start;j<C_UserCoutryEnd;j++)
+
+		CCountry* pCountry = pRDH->GetCountry();
+		if(!pCountry)
+			continue;
+
+		GCG_CountryLite* pLite = evn.add_countrylite();
+		pLite->set_region(nRegion);
+		map<int, CCity*>::iterator iter;
+		for(iter = pCountry->m_mCitys.begin();iter!=pCountry->m_mCitys.end();iter++)
 		{
-
-			if(!pRDH->IsValidCountry(j))
-				continue;
-			CCountry* pCountry = pRDH->GetCountry(j);
-			if(pCountry==NULL)
-				continue;
-			GCG_CountryLite* pLite = evn.add_countrylite();
-			
-			pLite->set_guildcnt(pRDH->GetGuildCnt(j));
-			pLite->set_countryid(pCountry->m_nCountryID);
-			pLite->set_region(nRegion);
-			pLite->set_usercnt(pCountry->GetCountryUserCnt());
-			pLite->set_lastrank(pRDH->GetCountryLastDayRank(pCountry->m_nCountryID));
-
-			pLite->set_atktargetcity(pCountry->GetDBCountry()->atktargetcity());
-			pLite->set_deftargetcity(pCountry->GetDBCountry()->deftargetcity());
-
-			int64 nPrensidentUid = pCountry->GetOfficerPositionUser(Officer_Chairman);
-			if(nPrensidentUid<=0)
-			{
-				nPrensidentUid = pCountry->GetOfficerPositionUser(Officer_President);
-			}
-			if(nPrensidentUid>0)
-			{
-				DB_C_User* pUser = pRDH->GetDBCityUser(nPrensidentUid);
-				if(pUser)
-				{
-					CGuild* pGuild = pRDH->GetGuild(pUser->guildid());
-					if(pGuild&&pGuild->GetLeaderID()==nPrensidentUid)
-					{
-						pLite->set_presidentuid(pGuild->GetLeaderID());
-						pLite->set_presidentname(pGuild->GetLeaderName());
-						pLite->set_presidentguildname(pGuild->GetGuildName());
+			GCG_City *pMsgCity = pLite->add_city();
+			CCity *pDBCity = iter->second;
+			if(pMsgCity && pDBCity){
+				pMsgCity->set_cityid(pDBCity->GetCityID());
+				pMsgCity->set_x(pDBCity->GetX());
+				pMsgCity->set_y(pDBCity->GetY());
+				pMsgCity->set_name(pDBCity->GetName());
+				for(int k = 0; k < pDBCity->m_dbCity.planets_size(); k++){
+					DB_C_PlanetLite *pDBPlanet = pDBCity->m_dbCity.mutable_planets(k);
+					GCG_PlanetLite *pMsgPlanet = pMsgCity->add_planets();
+					if(pMsgPlanet && pDBPlanet){
+						pMsgPlanet->set_planetid(pDBPlanet->planetid());
+						pMsgPlanet->set_uid(pDBPlanet->uid());
 					}
 				}
 			}
-			vector<CCity*>::iterator iter;
-			for(iter = pCountry->m_lstCity.begin();iter!=pCountry->m_lstCity.end();iter++)
-			{
-				CCity* pCity = *iter;
-				pLite->add_cityid(pCity->GetCityID());
-			}
 		}
 	}
-	if(nGameID>0)
-	{
+
+	if(nGameID>0){
 		sendEventToGamed(&evn,nGameID);
-	}
-	else
-	{
+	}else{
 		sendEventToAllGamed(&evn);
 	}
 #endif
