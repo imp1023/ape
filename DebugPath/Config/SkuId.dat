@@ -42,10 +42,10 @@ id	sku	skuId
 40	mecaUnits_002_000	70008
 41	mecaUnits_003_000	70009
 42	mecaUnits_004_000	70010
-43	warSmallShips_001_00	70011
-44	warSmallShips_001_00	70012
-45	warSmallShips_001_00	70013
-46	warSmallShips_001_00	70014
+43	warSmallShips_001_002	70011
+44	warSmallShips_001_003	70012
+45	warSmallShips_001_001	70013
+46	warSmallShips_001_004	70014
 47	mecaUnits_005_000	70015
 48	o_001_001	80001
 49	o_001_002	80002
