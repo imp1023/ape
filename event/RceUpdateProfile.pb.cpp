@@ -14,12 +14,6 @@ namespace {
 const ::google::protobuf::Descriptor* RceUpdateProfile_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   RceUpdateProfile_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Transaction3_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  Transaction3_reflection_ = NULL;
-const ::google::protobuf::Descriptor* SocialItems_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  SocialItems_reflection_ = NULL;
 
 }  // namespace
 
@@ -50,44 +44,6 @@ void protobuf_AssignDesc_RceUpdateProfile_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RceUpdateProfile));
-  Transaction3_descriptor_ = file->message_type(1);
-  static const int Transaction3_offsets_[8] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, exp_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, minerals_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, socialitems_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, client_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, event_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, cash_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, droids_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, coins_),
-  };
-  Transaction3_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      Transaction3_descriptor_,
-      Transaction3::default_instance_,
-      Transaction3_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Transaction3, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Transaction3));
-  SocialItems_descriptor_ = file->message_type(2);
-  static const int SocialItems_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SocialItems, sku_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SocialItems, amount_),
-  };
-  SocialItems_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      SocialItems_descriptor_,
-      SocialItems::default_instance_,
-      SocialItems_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SocialItems, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SocialItems, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(SocialItems));
 }
 
 namespace {
@@ -102,10 +58,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     RceUpdateProfile_descriptor_, &RceUpdateProfile::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Transaction3_descriptor_, &Transaction3::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    SocialItems_descriptor_, &SocialItems::default_instance());
 }
 
 }  // namespace
@@ -113,10 +65,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void protobuf_ShutdownFile_RceUpdateProfile_2eproto() {
   delete RceUpdateProfile::default_instance_;
   delete RceUpdateProfile_reflection_;
-  delete Transaction3::default_instance_;
-  delete Transaction3_reflection_;
-  delete SocialItems::default_instance_;
-  delete SocialItems_reflection_;
 }
 
 void protobuf_AddDesc_RceUpdateProfile_2eproto() {
@@ -125,24 +73,19 @@ void protobuf_AddDesc_RceUpdateProfile_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::protobuf_AddDesc_MsgSocialItems_2eproto();
+  ::protobuf_AddDesc_MsgTransaction_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\026RceUpdateProfile.proto\"\201\001\n\020RceUpdatePr"
-    "ofile\022\"\n\013transaction\030\001 \001(\0132\r.Transaction"
-    "3\022\013\n\003sku\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\022\013\n\003key\030\004 \001"
-    "(\t\022\020\n\010planetId\030\005 \001(\t\022\016\n\006action\030\006 \001(\t\"\234\001\n"
-    "\014Transaction3\022\013\n\003exp\030\001 \001(\005\022\020\n\010minerals\030\002"
-    " \001(\005\022!\n\013socialItems\030\003 \003(\0132\014.SocialItems\022"
-    "\016\n\006client\030\004 \001(\t\022\r\n\005event\030\005 \001(\t\022\014\n\004cash\030\006"
-    " \001(\005\022\016\n\006droids\030\007 \001(\005\022\r\n\005coins\030\010 \001(\005\"*\n\013S"
-    "ocialItems\022\013\n\003sku\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005", 359);
+    "\n\026RceUpdateProfile.proto\032\024MsgSocialItems"
+    ".proto\032\024MsgTransaction.proto\"\203\001\n\020RceUpda"
+    "teProfile\022$\n\013transaction\030\001 \001(\0132\017.MsgTran"
+    "saction\022\013\n\003sku\030\002 \001(\t\022\r\n\005value\030\003 \001(\005\022\013\n\003k"
+    "ey\030\004 \001(\t\022\020\n\010planetId\030\005 \001(\005\022\016\n\006action\030\006 \001"
+    "(\t", 202);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceUpdateProfile.proto", &protobuf_RegisterTypes);
   RceUpdateProfile::default_instance_ = new RceUpdateProfile();
-  Transaction3::default_instance_ = new Transaction3();
-  SocialItems::default_instance_ = new SocialItems();
   RceUpdateProfile::default_instance_->InitAsDefaultInstance();
-  Transaction3::default_instance_->InitAsDefaultInstance();
-  SocialItems::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_RceUpdateProfile_2eproto);
 }
 
@@ -157,9 +100,7 @@ struct StaticDescriptorInitializer_RceUpdateProfile_2eproto {
 // ===================================================================
 
 const ::std::string RceUpdateProfile::_default_sku_;
-const ::std::string RceUpdateProfile::_default_value_;
 const ::std::string RceUpdateProfile::_default_key_;
-const ::std::string RceUpdateProfile::_default_planetid_;
 const ::std::string RceUpdateProfile::_default_action_;
 #ifndef _MSC_VER
 const int RceUpdateProfile::kTransactionFieldNumber;
@@ -175,7 +116,7 @@ RceUpdateProfile::RceUpdateProfile() {
 }
 
 void RceUpdateProfile::InitAsDefaultInstance() {
-  transaction_ = const_cast< ::Transaction3*>(&::Transaction3::default_instance());
+  transaction_ = const_cast< ::MsgTransaction*>(&::MsgTransaction::default_instance());
 }
 
 RceUpdateProfile::RceUpdateProfile(const RceUpdateProfile& from) {
@@ -187,9 +128,9 @@ void RceUpdateProfile::SharedCtor() {
   _cached_size_ = 0;
   transaction_ = NULL;
   sku_ = const_cast< ::std::string*>(&_default_sku_);
-  value_ = const_cast< ::std::string*>(&_default_value_);
+  value_ = 0;
   key_ = const_cast< ::std::string*>(&_default_key_);
-  planetid_ = const_cast< ::std::string*>(&_default_planetid_);
+  planetid_ = 0;
   action_ = const_cast< ::std::string*>(&_default_action_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -202,14 +143,8 @@ void RceUpdateProfile::SharedDtor() {
   if (sku_ != &_default_sku_) {
     delete sku_;
   }
-  if (value_ != &_default_value_) {
-    delete value_;
-  }
   if (key_ != &_default_key_) {
     delete key_;
-  }
-  if (planetid_ != &_default_planetid_) {
-    delete planetid_;
   }
   if (action_ != &_default_action_) {
     delete action_;
@@ -237,28 +172,20 @@ RceUpdateProfile* RceUpdateProfile::New() const {
 void RceUpdateProfile::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (_has_bit(0)) {
-      if (transaction_ != NULL) transaction_->::Transaction3::Clear();
+      if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
     }
     if (_has_bit(1)) {
       if (sku_ != &_default_sku_) {
         sku_->clear();
       }
     }
-    if (_has_bit(2)) {
-      if (value_ != &_default_value_) {
-        value_->clear();
-      }
-    }
+    value_ = 0;
     if (_has_bit(3)) {
       if (key_ != &_default_key_) {
         key_->clear();
       }
     }
-    if (_has_bit(4)) {
-      if (planetid_ != &_default_planetid_) {
-        planetid_->clear();
-      }
-    }
+    planetid_ = 0;
     if (_has_bit(5)) {
       if (action_ != &_default_action_) {
         action_->clear();
@@ -275,7 +202,7 @@ bool RceUpdateProfile::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .Transaction3 transaction = 1;
+      // optional .MsgTransaction transaction = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -299,22 +226,20 @@ bool RceUpdateProfile::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->sku().data(), this->sku().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(26)) goto parse_value;
+        if (input->ExpectTag(24)) goto parse_value;
         break;
       }
       
-      // optional string value = 3;
+      // optional int32 value = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_value:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_value()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->value().data(), this->value().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &value_));
+        _set_bit(2);
         if (input->ExpectTag(34)) goto parse_key;
         break;
       }
@@ -331,22 +256,20 @@ bool RceUpdateProfile::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->key().data(), this->key().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(42)) goto parse_planetId;
+        if (input->ExpectTag(40)) goto parse_planetId;
         break;
       }
       
-      // optional string planetId = 5;
+      // optional int32 planetId = 5;
       case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_planetId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_planetid()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->planetid().data(), this->planetid().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planetid_));
+        _set_bit(4);
         if (input->ExpectTag(50)) goto parse_action;
         break;
       }
@@ -391,7 +314,7 @@ void RceUpdateProfile::SerializeWithCachedSizes(
     return;
   }
   
-  // optional .Transaction3 transaction = 1;
+  // optional .MsgTransaction transaction = 1;
   if (_has_bit(0)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       1, this->transaction(), output);
@@ -406,13 +329,9 @@ void RceUpdateProfile::SerializeWithCachedSizes(
       2, this->sku(), output);
   }
   
-  // optional string value = 3;
+  // optional int32 value = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->value().data(), this->value().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      3, this->value(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->value(), output);
   }
   
   // optional string key = 4;
@@ -424,13 +343,9 @@ void RceUpdateProfile::SerializeWithCachedSizes(
       4, this->key(), output);
   }
   
-  // optional string planetId = 5;
+  // optional int32 planetId = 5;
   if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->planetid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->planetid(), output);
   }
   
   // optional string action = 6;
@@ -450,7 +365,7 @@ void RceUpdateProfile::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RceUpdateProfile::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional .Transaction3 transaction = 1;
+  // optional .MsgTransaction transaction = 1;
   if (_has_bit(0)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -467,14 +382,9 @@ void RceUpdateProfile::SerializeWithCachedSizes(
         2, this->sku(), target);
   }
   
-  // optional string value = 3;
+  // optional int32 value = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->value().data(), this->value().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->value(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->value(), target);
   }
   
   // optional string key = 4;
@@ -487,14 +397,9 @@ void RceUpdateProfile::SerializeWithCachedSizes(
         4, this->key(), target);
   }
   
-  // optional string planetId = 5;
+  // optional int32 planetId = 5;
   if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->planetid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->planetid(), target);
   }
   
   // optional string action = 6;
@@ -518,7 +423,7 @@ int RceUpdateProfile::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional .Transaction3 transaction = 1;
+    // optional .MsgTransaction transaction = 1;
     if (has_transaction()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -532,10 +437,10 @@ int RceUpdateProfile::ByteSize() const {
           this->sku());
     }
     
-    // optional string value = 3;
+    // optional int32 value = 3;
     if (has_value()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->value());
     }
     
@@ -546,10 +451,10 @@ int RceUpdateProfile::ByteSize() const {
           this->key());
     }
     
-    // optional string planetId = 5;
+    // optional int32 planetId = 5;
     if (has_planetid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->planetid());
     }
     
@@ -586,7 +491,7 @@ void RceUpdateProfile::MergeFrom(const RceUpdateProfile& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      mutable_transaction()->::Transaction3::MergeFrom(from.transaction());
+      mutable_transaction()->::MsgTransaction::MergeFrom(from.transaction());
     }
     if (from._has_bit(1)) {
       set_sku(from.sku());
@@ -643,772 +548,6 @@ void RceUpdateProfile::Swap(RceUpdateProfile* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = RceUpdateProfile_descriptor_;
   metadata.reflection = RceUpdateProfile_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-const ::std::string Transaction3::_default_client_;
-const ::std::string Transaction3::_default_event_;
-#ifndef _MSC_VER
-const int Transaction3::kExpFieldNumber;
-const int Transaction3::kMineralsFieldNumber;
-const int Transaction3::kSocialItemsFieldNumber;
-const int Transaction3::kClientFieldNumber;
-const int Transaction3::kEventFieldNumber;
-const int Transaction3::kCashFieldNumber;
-const int Transaction3::kDroidsFieldNumber;
-const int Transaction3::kCoinsFieldNumber;
-#endif  // !_MSC_VER
-
-Transaction3::Transaction3() {
-  SharedCtor();
-}
-
-void Transaction3::InitAsDefaultInstance() {
-}
-
-Transaction3::Transaction3(const Transaction3& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void Transaction3::SharedCtor() {
-  _cached_size_ = 0;
-  exp_ = 0;
-  minerals_ = 0;
-  client_ = const_cast< ::std::string*>(&_default_client_);
-  event_ = const_cast< ::std::string*>(&_default_event_);
-  cash_ = 0;
-  droids_ = 0;
-  coins_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-Transaction3::~Transaction3() {
-  SharedDtor();
-}
-
-void Transaction3::SharedDtor() {
-  if (client_ != &_default_client_) {
-    delete client_;
-  }
-  if (event_ != &_default_event_) {
-    delete event_;
-  }
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* Transaction3::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return Transaction3_descriptor_;
-}
-
-const Transaction3& Transaction3::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_RceUpdateProfile_2eproto();  return *default_instance_;
-}
-
-Transaction3* Transaction3::default_instance_ = NULL;
-
-Transaction3* Transaction3::New() const {
-  return new Transaction3;
-}
-
-void Transaction3::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    exp_ = 0;
-    minerals_ = 0;
-    if (_has_bit(3)) {
-      if (client_ != &_default_client_) {
-        client_->clear();
-      }
-    }
-    if (_has_bit(4)) {
-      if (event_ != &_default_event_) {
-        event_->clear();
-      }
-    }
-    cash_ = 0;
-    droids_ = 0;
-    coins_ = 0;
-  }
-  socialitems_.Clear();
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool Transaction3::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 exp = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &exp_));
-        _set_bit(0);
-        if (input->ExpectTag(16)) goto parse_minerals;
-        break;
-      }
-      
-      // optional int32 minerals = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_minerals:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &minerals_));
-        _set_bit(1);
-        if (input->ExpectTag(26)) goto parse_socialItems;
-        break;
-      }
-      
-      // repeated .SocialItems socialItems = 3;
-      case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_socialItems:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, add_socialitems()));
-        if (input->ExpectTag(26)) goto parse_socialItems;
-        if (input->ExpectTag(34)) goto parse_client;
-        break;
-      }
-      
-      // optional string client = 4;
-      case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_client:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_client()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->client().data(), this->client().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(42)) goto parse_event;
-        break;
-      }
-      
-      // optional string event = 5;
-      case 5: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_event:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_event()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->event().data(), this->event().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(48)) goto parse_cash;
-        break;
-      }
-      
-      // optional int32 cash = 6;
-      case 6: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_cash:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &cash_));
-        _set_bit(5);
-        if (input->ExpectTag(56)) goto parse_droids;
-        break;
-      }
-      
-      // optional int32 droids = 7;
-      case 7: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_droids:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &droids_));
-        _set_bit(6);
-        if (input->ExpectTag(64)) goto parse_coins;
-        break;
-      }
-      
-      // optional int32 coins = 8;
-      case 8: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_coins:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &coins_));
-        _set_bit(7);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void Transaction3::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    Transaction3::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // optional int32 exp = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->exp(), output);
-  }
-  
-  // optional int32 minerals = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->minerals(), output);
-  }
-  
-  // repeated .SocialItems socialItems = 3;
-  for (int i = 0; i < this->socialitems_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      3, this->socialitems(i), output);
-  }
-  
-  // optional string client = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->client().data(), this->client().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      4, this->client(), output);
-  }
-  
-  // optional string event = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->event().data(), this->event().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->event(), output);
-  }
-  
-  // optional int32 cash = 6;
-  if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->cash(), output);
-  }
-  
-  // optional int32 droids = 7;
-  if (_has_bit(6)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->droids(), output);
-  }
-  
-  // optional int32 coins = 8;
-  if (_has_bit(7)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->coins(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* Transaction3::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional int32 exp = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->exp(), target);
-  }
-  
-  // optional int32 minerals = 2;
-  if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->minerals(), target);
-  }
-  
-  // repeated .SocialItems socialItems = 3;
-  for (int i = 0; i < this->socialitems_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        3, this->socialitems(i), target);
-  }
-  
-  // optional string client = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->client().data(), this->client().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->client(), target);
-  }
-  
-  // optional string event = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->event().data(), this->event().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->event(), target);
-  }
-  
-  // optional int32 cash = 6;
-  if (_has_bit(5)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->cash(), target);
-  }
-  
-  // optional int32 droids = 7;
-  if (_has_bit(6)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->droids(), target);
-  }
-  
-  // optional int32 coins = 8;
-  if (_has_bit(7)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->coins(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int Transaction3::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 exp = 1;
-    if (has_exp()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->exp());
-    }
-    
-    // optional int32 minerals = 2;
-    if (has_minerals()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->minerals());
-    }
-    
-    // optional string client = 4;
-    if (has_client()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->client());
-    }
-    
-    // optional string event = 5;
-    if (has_event()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->event());
-    }
-    
-    // optional int32 cash = 6;
-    if (has_cash()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->cash());
-    }
-    
-    // optional int32 droids = 7;
-    if (has_droids()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->droids());
-    }
-    
-    // optional int32 coins = 8;
-    if (has_coins()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->coins());
-    }
-    
-  }
-  // repeated .SocialItems socialItems = 3;
-  total_size += 1 * this->socialitems_size();
-  for (int i = 0; i < this->socialitems_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->socialitems(i));
-  }
-  
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void Transaction3::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const Transaction3* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Transaction3*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void Transaction3::MergeFrom(const Transaction3& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  socialitems_.MergeFrom(from.socialitems_);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_exp(from.exp());
-    }
-    if (from._has_bit(1)) {
-      set_minerals(from.minerals());
-    }
-    if (from._has_bit(3)) {
-      set_client(from.client());
-    }
-    if (from._has_bit(4)) {
-      set_event(from.event());
-    }
-    if (from._has_bit(5)) {
-      set_cash(from.cash());
-    }
-    if (from._has_bit(6)) {
-      set_droids(from.droids());
-    }
-    if (from._has_bit(7)) {
-      set_coins(from.coins());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void Transaction3::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void Transaction3::CopyFrom(const Transaction3& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Transaction3::IsInitialized() const {
-  
-  return true;
-}
-
-void Transaction3::Swap(Transaction3* other) {
-  if (other != this) {
-    std::swap(exp_, other->exp_);
-    std::swap(minerals_, other->minerals_);
-    socialitems_.Swap(&other->socialitems_);
-    std::swap(client_, other->client_);
-    std::swap(event_, other->event_);
-    std::swap(cash_, other->cash_);
-    std::swap(droids_, other->droids_);
-    std::swap(coins_, other->coins_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata Transaction3::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Transaction3_descriptor_;
-  metadata.reflection = Transaction3_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-const ::std::string SocialItems::_default_sku_;
-#ifndef _MSC_VER
-const int SocialItems::kSkuFieldNumber;
-const int SocialItems::kAmountFieldNumber;
-#endif  // !_MSC_VER
-
-SocialItems::SocialItems() {
-  SharedCtor();
-}
-
-void SocialItems::InitAsDefaultInstance() {
-}
-
-SocialItems::SocialItems(const SocialItems& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void SocialItems::SharedCtor() {
-  _cached_size_ = 0;
-  sku_ = const_cast< ::std::string*>(&_default_sku_);
-  amount_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-SocialItems::~SocialItems() {
-  SharedDtor();
-}
-
-void SocialItems::SharedDtor() {
-  if (sku_ != &_default_sku_) {
-    delete sku_;
-  }
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* SocialItems::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return SocialItems_descriptor_;
-}
-
-const SocialItems& SocialItems::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_RceUpdateProfile_2eproto();  return *default_instance_;
-}
-
-SocialItems* SocialItems::default_instance_ = NULL;
-
-SocialItems* SocialItems::New() const {
-  return new SocialItems;
-}
-
-void SocialItems::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (sku_ != &_default_sku_) {
-        sku_->clear();
-      }
-    }
-    amount_ = 0;
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool SocialItems::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string sku = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_sku()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->sku().data(), this->sku().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(16)) goto parse_amount;
-        break;
-      }
-      
-      // optional int32 amount = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_amount:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &amount_));
-        _set_bit(1);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void SocialItems::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    SocialItems::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // optional string sku = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->sku().data(), this->sku().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->sku(), output);
-  }
-  
-  // optional int32 amount = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->amount(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* SocialItems::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional string sku = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->sku().data(), this->sku().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->sku(), target);
-  }
-  
-  // optional int32 amount = 2;
-  if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->amount(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int SocialItems::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string sku = 1;
-    if (has_sku()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->sku());
-    }
-    
-    // optional int32 amount = 2;
-    if (has_amount()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->amount());
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void SocialItems::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const SocialItems* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const SocialItems*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void SocialItems::MergeFrom(const SocialItems& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_sku(from.sku());
-    }
-    if (from._has_bit(1)) {
-      set_amount(from.amount());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void SocialItems::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void SocialItems::CopyFrom(const SocialItems& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool SocialItems::IsInitialized() const {
-  
-  return true;
-}
-
-void SocialItems::Swap(SocialItems* other) {
-  if (other != this) {
-    std::swap(sku_, other->sku_);
-    std::swap(amount_, other->amount_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata SocialItems::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = SocialItems_descriptor_;
-  metadata.reflection = SocialItems_reflection_;
   return metadata;
 }
 

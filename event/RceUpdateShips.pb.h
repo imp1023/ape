@@ -22,16 +22,132 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include "MsgTransaction.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_RceUpdateShips_2eproto();
 void protobuf_AssignDesc_RceUpdateShips_2eproto();
 void protobuf_ShutdownFile_RceUpdateShips_2eproto();
 
+class SlotsContentsAccelerated;
 class RceUpdateShips;
-class Transaction4;
 
 // ===================================================================
+
+class SlotsContentsAccelerated : public ::google::protobuf::Message {
+ public:
+  SlotsContentsAccelerated();
+  virtual ~SlotsContentsAccelerated();
+  
+  SlotsContentsAccelerated(const SlotsContentsAccelerated& from);
+  
+  inline SlotsContentsAccelerated& operator=(const SlotsContentsAccelerated& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const SlotsContentsAccelerated& default_instance();
+  void Swap(SlotsContentsAccelerated* other);
+  
+  // implements Message ----------------------------------------------
+  
+  SlotsContentsAccelerated* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const SlotsContentsAccelerated& from);
+  void MergeFrom(const SlotsContentsAccelerated& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string sku = 1;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 1;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 amount = 2;
+  inline bool has_amount() const;
+  inline void clear_amount();
+  static const int kAmountFieldNumber = 2;
+  inline ::google::protobuf::int32 amount() const;
+  inline void set_amount(::google::protobuf::int32 value);
+  
+  // optional int32 slot = 3;
+  inline bool has_slot() const;
+  inline void clear_slot();
+  static const int kSlotFieldNumber = 3;
+  inline ::google::protobuf::int32 slot() const;
+  inline void set_slot(::google::protobuf::int32 value);
+  
+  // optional int32 hangarSid = 4;
+  inline bool has_hangarsid() const;
+  inline void clear_hangarsid();
+  static const int kHangarSidFieldNumber = 4;
+  inline ::google::protobuf::int32 hangarsid() const;
+  inline void set_hangarsid(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 amount_;
+  ::google::protobuf::int32 slot_;
+  ::google::protobuf::int32 hangarsid_;
+  friend void  protobuf_AddDesc_RceUpdateShips_2eproto();
+  friend void protobuf_AssignDesc_RceUpdateShips_2eproto();
+  friend void protobuf_ShutdownFile_RceUpdateShips_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static SlotsContentsAccelerated* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class RceUpdateShips : public ::google::protobuf::Message {
  public:
@@ -86,22 +202,19 @@ class RceUpdateShips : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional .Transaction4 transaction = 1;
+  // optional .MsgTransaction transaction = 1;
   inline bool has_transaction() const;
   inline void clear_transaction();
   static const int kTransactionFieldNumber = 1;
-  inline const ::Transaction4& transaction() const;
-  inline ::Transaction4* mutable_transaction();
+  inline const ::MsgTransaction& transaction() const;
+  inline ::MsgTransaction* mutable_transaction();
   
-  // optional string planetId = 2;
+  // optional int32 planetId = 2;
   inline bool has_planetid() const;
   inline void clear_planetid();
   static const int kPlanetIdFieldNumber = 2;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
   
   // optional string action = 3;
   inline bool has_action() const;
@@ -120,12 +233,15 @@ class RceUpdateShips : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 sid() const;
   inline void set_sid(::google::protobuf::int32 value);
   
-  // optional int32 sku = 5;
+  // optional string sku = 5;
   inline bool has_sku() const;
   inline void clear_sku();
   static const int kSkuFieldNumber = 5;
-  inline ::google::protobuf::int32 sku() const;
-  inline void set_sku(::google::protobuf::int32 value);
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
   
   // optional int32 hangarSid = 6;
   inline bool has_hangarsid() const;
@@ -165,28 +281,55 @@ class RceUpdateShips : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 block() const;
   inline void set_block(::google::protobuf::int32 value);
   
+  // optional int32 slot = 11;
+  inline bool has_slot() const;
+  inline void clear_slot();
+  static const int kSlotFieldNumber = 11;
+  inline ::google::protobuf::int32 slot() const;
+  inline void set_slot(::google::protobuf::int32 value);
+  
+  // optional int32 timeLeft = 12;
+  inline bool has_timeleft() const;
+  inline void clear_timeleft();
+  static const int kTimeLeftFieldNumber = 12;
+  inline ::google::protobuf::int32 timeleft() const;
+  inline void set_timeleft(::google::protobuf::int32 value);
+  
+  // repeated .SlotsContentsAccelerated slotsContentsAccelerated = 13;
+  inline int slotscontentsaccelerated_size() const;
+  inline void clear_slotscontentsaccelerated();
+  static const int kSlotsContentsAcceleratedFieldNumber = 13;
+  inline const ::google::protobuf::RepeatedPtrField< ::SlotsContentsAccelerated >& slotscontentsaccelerated() const;
+  inline ::google::protobuf::RepeatedPtrField< ::SlotsContentsAccelerated >* mutable_slotscontentsaccelerated();
+  inline const ::SlotsContentsAccelerated& slotscontentsaccelerated(int index) const;
+  inline ::SlotsContentsAccelerated* mutable_slotscontentsaccelerated(int index);
+  inline ::SlotsContentsAccelerated* add_slotscontentsaccelerated();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::Transaction4* transaction_;
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
+  ::MsgTransaction* transaction_;
+  ::google::protobuf::int32 planetid_;
   ::std::string* action_;
   static const ::std::string _default_action_;
   ::google::protobuf::int32 sid_;
-  ::google::protobuf::int32 sku_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
   ::google::protobuf::int32 hangarsid_;
   ::google::protobuf::int32 bunkersid_;
   ::std::string* unitsku_;
   static const ::std::string _default_unitsku_;
   ::google::protobuf::int32 amount_;
   ::google::protobuf::int32 block_;
+  ::google::protobuf::int32 slot_;
+  ::google::protobuf::int32 timeleft_;
+  ::google::protobuf::RepeatedPtrField< ::SlotsContentsAccelerated > slotscontentsaccelerated_;
   friend void  protobuf_AddDesc_RceUpdateShips_2eproto();
   friend void protobuf_AssignDesc_RceUpdateShips_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateShips_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -202,224 +345,141 @@ class RceUpdateShips : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static RceUpdateShips* default_instance_;
 };
+// ===================================================================
+
+
+// ===================================================================
+
+
+// ===================================================================
+
+// SlotsContentsAccelerated
+
+// optional string sku = 1;
+inline bool SlotsContentsAccelerated::has_sku() const {
+  return _has_bit(0);
+}
+inline void SlotsContentsAccelerated::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& SlotsContentsAccelerated::sku() const {
+  return *sku_;
+}
+inline void SlotsContentsAccelerated::set_sku(const ::std::string& value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void SlotsContentsAccelerated::set_sku(const char* value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void SlotsContentsAccelerated::set_sku(const char* value, size_t size) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* SlotsContentsAccelerated::mutable_sku() {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 amount = 2;
+inline bool SlotsContentsAccelerated::has_amount() const {
+  return _has_bit(1);
+}
+inline void SlotsContentsAccelerated::clear_amount() {
+  amount_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 SlotsContentsAccelerated::amount() const {
+  return amount_;
+}
+inline void SlotsContentsAccelerated::set_amount(::google::protobuf::int32 value) {
+  _set_bit(1);
+  amount_ = value;
+}
+
+// optional int32 slot = 3;
+inline bool SlotsContentsAccelerated::has_slot() const {
+  return _has_bit(2);
+}
+inline void SlotsContentsAccelerated::clear_slot() {
+  slot_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 SlotsContentsAccelerated::slot() const {
+  return slot_;
+}
+inline void SlotsContentsAccelerated::set_slot(::google::protobuf::int32 value) {
+  _set_bit(2);
+  slot_ = value;
+}
+
+// optional int32 hangarSid = 4;
+inline bool SlotsContentsAccelerated::has_hangarsid() const {
+  return _has_bit(3);
+}
+inline void SlotsContentsAccelerated::clear_hangarsid() {
+  hangarsid_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 SlotsContentsAccelerated::hangarsid() const {
+  return hangarsid_;
+}
+inline void SlotsContentsAccelerated::set_hangarsid(::google::protobuf::int32 value) {
+  _set_bit(3);
+  hangarsid_ = value;
+}
+
 // -------------------------------------------------------------------
-
-class Transaction4 : public ::google::protobuf::Message {
- public:
-  Transaction4();
-  virtual ~Transaction4();
-  
-  Transaction4(const Transaction4& from);
-  
-  inline Transaction4& operator=(const Transaction4& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Transaction4& default_instance();
-  void Swap(Transaction4* other);
-  
-  // implements Message ----------------------------------------------
-  
-  Transaction4* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Transaction4& from);
-  void MergeFrom(const Transaction4& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // optional int32 exp = 1;
-  inline bool has_exp() const;
-  inline void clear_exp();
-  static const int kExpFieldNumber = 1;
-  inline ::google::protobuf::int32 exp() const;
-  inline void set_exp(::google::protobuf::int32 value);
-  
-  // optional int32 minerals = 2;
-  inline bool has_minerals() const;
-  inline void clear_minerals();
-  static const int kMineralsFieldNumber = 2;
-  inline ::google::protobuf::int32 minerals() const;
-  inline void set_minerals(::google::protobuf::int32 value);
-  
-  // optional string client = 3;
-  inline bool has_client() const;
-  inline void clear_client();
-  static const int kClientFieldNumber = 3;
-  inline const ::std::string& client() const;
-  inline void set_client(const ::std::string& value);
-  inline void set_client(const char* value);
-  inline void set_client(const char* value, size_t size);
-  inline ::std::string* mutable_client();
-  
-  // optional string event = 4;
-  inline bool has_event() const;
-  inline void clear_event();
-  static const int kEventFieldNumber = 4;
-  inline const ::std::string& event() const;
-  inline void set_event(const ::std::string& value);
-  inline void set_event(const char* value);
-  inline void set_event(const char* value, size_t size);
-  inline ::std::string* mutable_event();
-  
-  // optional int32 cash = 5;
-  inline bool has_cash() const;
-  inline void clear_cash();
-  static const int kCashFieldNumber = 5;
-  inline ::google::protobuf::int32 cash() const;
-  inline void set_cash(::google::protobuf::int32 value);
-  
-  // optional double instantOperationMinutesLeft = 6;
-  inline bool has_instantoperationminutesleft() const;
-  inline void clear_instantoperationminutesleft();
-  static const int kInstantOperationMinutesLeftFieldNumber = 6;
-  inline double instantoperationminutesleft() const;
-  inline void set_instantoperationminutesleft(double value);
-  
-  // optional int32 droids = 7;
-  inline bool has_droids() const;
-  inline void clear_droids();
-  static const int kDroidsFieldNumber = 7;
-  inline ::google::protobuf::int32 droids() const;
-  inline void set_droids(::google::protobuf::int32 value);
-  
-  // optional int32 coins = 8;
-  inline bool has_coins() const;
-  inline void clear_coins();
-  static const int kCoinsFieldNumber = 8;
-  inline ::google::protobuf::int32 coins() const;
-  inline void set_coins(::google::protobuf::int32 value);
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::google::protobuf::int32 exp_;
-  ::google::protobuf::int32 minerals_;
-  ::std::string* client_;
-  static const ::std::string _default_client_;
-  ::std::string* event_;
-  static const ::std::string _default_event_;
-  ::google::protobuf::int32 cash_;
-  double instantoperationminutesleft_;
-  ::google::protobuf::int32 droids_;
-  ::google::protobuf::int32 coins_;
-  friend void  protobuf_AddDesc_RceUpdateShips_2eproto();
-  friend void protobuf_AssignDesc_RceUpdateShips_2eproto();
-  friend void protobuf_ShutdownFile_RceUpdateShips_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static Transaction4* default_instance_;
-};
-// ===================================================================
-
-
-// ===================================================================
-
-
-// ===================================================================
 
 // RceUpdateShips
 
-// optional .Transaction4 transaction = 1;
+// optional .MsgTransaction transaction = 1;
 inline bool RceUpdateShips::has_transaction() const {
   return _has_bit(0);
 }
 inline void RceUpdateShips::clear_transaction() {
-  if (transaction_ != NULL) transaction_->::Transaction4::Clear();
+  if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
   _clear_bit(0);
 }
-inline const ::Transaction4& RceUpdateShips::transaction() const {
+inline const ::MsgTransaction& RceUpdateShips::transaction() const {
   return transaction_ != NULL ? *transaction_ : *default_instance_->transaction_;
 }
-inline ::Transaction4* RceUpdateShips::mutable_transaction() {
+inline ::MsgTransaction* RceUpdateShips::mutable_transaction() {
   _set_bit(0);
-  if (transaction_ == NULL) transaction_ = new ::Transaction4;
+  if (transaction_ == NULL) transaction_ = new ::MsgTransaction;
   return transaction_;
 }
 
-// optional string planetId = 2;
+// optional int32 planetId = 2;
 inline bool RceUpdateShips::has_planetid() const {
   return _has_bit(1);
 }
 inline void RceUpdateShips::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
+  planetid_ = 0;
   _clear_bit(1);
 }
-inline const ::std::string& RceUpdateShips::planetid() const {
-  return *planetid_;
-}
-inline void RceUpdateShips::set_planetid(const ::std::string& value) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateShips::set_planetid(const char* value) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateShips::set_planetid(const char* value, size_t size) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateShips::mutable_planetid() {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceUpdateShips::planetid() const {
   return planetid_;
+}
+inline void RceUpdateShips::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(1);
+  planetid_ = value;
 }
 
 // optional string action = 3;
@@ -480,20 +540,46 @@ inline void RceUpdateShips::set_sid(::google::protobuf::int32 value) {
   sid_ = value;
 }
 
-// optional int32 sku = 5;
+// optional string sku = 5;
 inline bool RceUpdateShips::has_sku() const {
   return _has_bit(4);
 }
 inline void RceUpdateShips::clear_sku() {
-  sku_ = 0;
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
   _clear_bit(4);
 }
-inline ::google::protobuf::int32 RceUpdateShips::sku() const {
-  return sku_;
+inline const ::std::string& RceUpdateShips::sku() const {
+  return *sku_;
 }
-inline void RceUpdateShips::set_sku(::google::protobuf::int32 value) {
+inline void RceUpdateShips::set_sku(const ::std::string& value) {
   _set_bit(4);
-  sku_ = value;
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void RceUpdateShips::set_sku(const char* value) {
+  _set_bit(4);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void RceUpdateShips::set_sku(const char* value, size_t size) {
+  _set_bit(4);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateShips::mutable_sku() {
+  _set_bit(4);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
 }
 
 // optional int32 hangarSid = 6;
@@ -602,188 +688,61 @@ inline void RceUpdateShips::set_block(::google::protobuf::int32 value) {
   block_ = value;
 }
 
-// -------------------------------------------------------------------
-
-// Transaction4
-
-// optional int32 exp = 1;
-inline bool Transaction4::has_exp() const {
-  return _has_bit(0);
+// optional int32 slot = 11;
+inline bool RceUpdateShips::has_slot() const {
+  return _has_bit(10);
 }
-inline void Transaction4::clear_exp() {
-  exp_ = 0;
-  _clear_bit(0);
+inline void RceUpdateShips::clear_slot() {
+  slot_ = 0;
+  _clear_bit(10);
 }
-inline ::google::protobuf::int32 Transaction4::exp() const {
-  return exp_;
+inline ::google::protobuf::int32 RceUpdateShips::slot() const {
+  return slot_;
 }
-inline void Transaction4::set_exp(::google::protobuf::int32 value) {
-  _set_bit(0);
-  exp_ = value;
+inline void RceUpdateShips::set_slot(::google::protobuf::int32 value) {
+  _set_bit(10);
+  slot_ = value;
 }
 
-// optional int32 minerals = 2;
-inline bool Transaction4::has_minerals() const {
-  return _has_bit(1);
+// optional int32 timeLeft = 12;
+inline bool RceUpdateShips::has_timeleft() const {
+  return _has_bit(11);
 }
-inline void Transaction4::clear_minerals() {
-  minerals_ = 0;
-  _clear_bit(1);
+inline void RceUpdateShips::clear_timeleft() {
+  timeleft_ = 0;
+  _clear_bit(11);
 }
-inline ::google::protobuf::int32 Transaction4::minerals() const {
-  return minerals_;
+inline ::google::protobuf::int32 RceUpdateShips::timeleft() const {
+  return timeleft_;
 }
-inline void Transaction4::set_minerals(::google::protobuf::int32 value) {
-  _set_bit(1);
-  minerals_ = value;
-}
-
-// optional string client = 3;
-inline bool Transaction4::has_client() const {
-  return _has_bit(2);
-}
-inline void Transaction4::clear_client() {
-  if (client_ != &_default_client_) {
-    client_->clear();
-  }
-  _clear_bit(2);
-}
-inline const ::std::string& Transaction4::client() const {
-  return *client_;
-}
-inline void Transaction4::set_client(const ::std::string& value) {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(value);
-}
-inline void Transaction4::set_client(const char* value) {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(value);
-}
-inline void Transaction4::set_client(const char* value, size_t size) {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* Transaction4::mutable_client() {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  return client_;
+inline void RceUpdateShips::set_timeleft(::google::protobuf::int32 value) {
+  _set_bit(11);
+  timeleft_ = value;
 }
 
-// optional string event = 4;
-inline bool Transaction4::has_event() const {
-  return _has_bit(3);
+// repeated .SlotsContentsAccelerated slotsContentsAccelerated = 13;
+inline int RceUpdateShips::slotscontentsaccelerated_size() const {
+  return slotscontentsaccelerated_.size();
 }
-inline void Transaction4::clear_event() {
-  if (event_ != &_default_event_) {
-    event_->clear();
-  }
-  _clear_bit(3);
+inline void RceUpdateShips::clear_slotscontentsaccelerated() {
+  slotscontentsaccelerated_.Clear();
 }
-inline const ::std::string& Transaction4::event() const {
-  return *event_;
+inline const ::google::protobuf::RepeatedPtrField< ::SlotsContentsAccelerated >&
+RceUpdateShips::slotscontentsaccelerated() const {
+  return slotscontentsaccelerated_;
 }
-inline void Transaction4::set_event(const ::std::string& value) {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(value);
+inline ::google::protobuf::RepeatedPtrField< ::SlotsContentsAccelerated >*
+RceUpdateShips::mutable_slotscontentsaccelerated() {
+  return &slotscontentsaccelerated_;
 }
-inline void Transaction4::set_event(const char* value) {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(value);
+inline const ::SlotsContentsAccelerated& RceUpdateShips::slotscontentsaccelerated(int index) const {
+  return slotscontentsaccelerated_.Get(index);
 }
-inline void Transaction4::set_event(const char* value, size_t size) {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(reinterpret_cast<const char*>(value), size);
+inline ::SlotsContentsAccelerated* RceUpdateShips::mutable_slotscontentsaccelerated(int index) {
+  return slotscontentsaccelerated_.Mutable(index);
 }
-inline ::std::string* Transaction4::mutable_event() {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  return event_;
-}
-
-// optional int32 cash = 5;
-inline bool Transaction4::has_cash() const {
-  return _has_bit(4);
-}
-inline void Transaction4::clear_cash() {
-  cash_ = 0;
-  _clear_bit(4);
-}
-inline ::google::protobuf::int32 Transaction4::cash() const {
-  return cash_;
-}
-inline void Transaction4::set_cash(::google::protobuf::int32 value) {
-  _set_bit(4);
-  cash_ = value;
-}
-
-// optional double instantOperationMinutesLeft = 6;
-inline bool Transaction4::has_instantoperationminutesleft() const {
-  return _has_bit(5);
-}
-inline void Transaction4::clear_instantoperationminutesleft() {
-  instantoperationminutesleft_ = 0;
-  _clear_bit(5);
-}
-inline double Transaction4::instantoperationminutesleft() const {
-  return instantoperationminutesleft_;
-}
-inline void Transaction4::set_instantoperationminutesleft(double value) {
-  _set_bit(5);
-  instantoperationminutesleft_ = value;
-}
-
-// optional int32 droids = 7;
-inline bool Transaction4::has_droids() const {
-  return _has_bit(6);
-}
-inline void Transaction4::clear_droids() {
-  droids_ = 0;
-  _clear_bit(6);
-}
-inline ::google::protobuf::int32 Transaction4::droids() const {
-  return droids_;
-}
-inline void Transaction4::set_droids(::google::protobuf::int32 value) {
-  _set_bit(6);
-  droids_ = value;
-}
-
-// optional int32 coins = 8;
-inline bool Transaction4::has_coins() const {
-  return _has_bit(7);
-}
-inline void Transaction4::clear_coins() {
-  coins_ = 0;
-  _clear_bit(7);
-}
-inline ::google::protobuf::int32 Transaction4::coins() const {
-  return coins_;
-}
-inline void Transaction4::set_coins(::google::protobuf::int32 value) {
-  _set_bit(7);
-  coins_ = value;
+inline ::SlotsContentsAccelerated* RceUpdateShips::add_slotscontentsaccelerated() {
+  return slotscontentsaccelerated_.Add();
 }
 
 

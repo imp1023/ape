@@ -81,7 +81,7 @@ void protobuf_AddDesc_MsgPlanet_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\017MsgPlanet.proto\"\317\001\n\tMsgPlanet\022\020\n\010plane"
     "tId\030\001 \001(\005\022\022\n\nplanetType\030\002 \001(\005\022\020\n\010starNam"
-    "e\030\003 \001(\t\022\022\n\ncoinsLimit\030\004 \001(\005\022\025\n\rmineralsL"
+    "e\030\003 \001(\005\022\022\n\ncoinsLimit\030\004 \001(\005\022\025\n\rmineralsL"
     "imit\030\005 \001(\005\022\016\n\006starId\030\006 \001(\005\022\013\n\003sku\030\007 \001(\t\022"
     "\020\n\010starType\030\010 \001(\005\022\017\n\007HQLevel\030\t \001(\005\022\017\n\007ca"
     "pital\030\n \001(\005\022\016\n\006Planet\030\013 \003(\005", 227);
@@ -102,7 +102,6 @@ struct StaticDescriptorInitializer_MsgPlanet_2eproto {
 
 // ===================================================================
 
-const ::std::string MsgPlanet::_default_starname_;
 const ::std::string MsgPlanet::_default_sku_;
 #ifndef _MSC_VER
 const int MsgPlanet::kPlanetIdFieldNumber;
@@ -134,7 +133,7 @@ void MsgPlanet::SharedCtor() {
   _cached_size_ = 0;
   planetid_ = 0;
   planettype_ = 0;
-  starname_ = const_cast< ::std::string*>(&_default_starname_);
+  starname_ = 0;
   coinslimit_ = 0;
   mineralslimit_ = 0;
   starid_ = 0;
@@ -150,9 +149,6 @@ MsgPlanet::~MsgPlanet() {
 }
 
 void MsgPlanet::SharedDtor() {
-  if (starname_ != &_default_starname_) {
-    delete starname_;
-  }
   if (sku_ != &_default_sku_) {
     delete sku_;
   }
@@ -179,11 +175,7 @@ void MsgPlanet::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     planetid_ = 0;
     planettype_ = 0;
-    if (_has_bit(2)) {
-      if (starname_ != &_default_starname_) {
-        starname_->clear();
-      }
-    }
+    starname_ = 0;
     coinslimit_ = 0;
     mineralslimit_ = 0;
     starid_ = 0;
@@ -232,22 +224,20 @@ bool MsgPlanet::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &planettype_));
         _set_bit(1);
-        if (input->ExpectTag(26)) goto parse_starName;
+        if (input->ExpectTag(24)) goto parse_starName;
         break;
       }
       
-      // optional string starName = 3;
+      // optional int32 starName = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_starName:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_starname()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->starname().data(), this->starname().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &starname_));
+        _set_bit(2);
         if (input->ExpectTag(32)) goto parse_coinsLimit;
         break;
       }
@@ -402,13 +392,9 @@ void MsgPlanet::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->planettype(), output);
   }
   
-  // optional string starName = 3;
+  // optional int32 starName = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->starname().data(), this->starname().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      3, this->starname(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->starname(), output);
   }
   
   // optional int32 coinsLimit = 4;
@@ -474,14 +460,9 @@ void MsgPlanet::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->planettype(), target);
   }
   
-  // optional string starName = 3;
+  // optional int32 starName = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->starname().data(), this->starname().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->starname(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->starname(), target);
   }
   
   // optional int32 coinsLimit = 4;
@@ -555,10 +536,10 @@ int MsgPlanet::ByteSize() const {
           this->planettype());
     }
     
-    // optional string starName = 3;
+    // optional int32 starName = 3;
     if (has_starname()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->starname());
     }
     

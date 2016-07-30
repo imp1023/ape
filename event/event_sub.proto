@@ -2,8 +2,8 @@ import "FriendInfoLite.proto";
 
 message WebCrossPromotion
 {
-	optional string chanle 	= 1;	//渠道
-	optional string date	 	= 2;	//推广日期
+	optional string chanle 	= 1;	//脟镁碌脌
+	optional string date	 	= 2;	//脥脝鹿茫脠脮脝脷
 	repeated string cdk			= 3;		
 	optional bool	  canuse	= 4[default = false];
 }
@@ -20,36 +20,36 @@ message UserLogin_Req {
 	repeated string friends_platid = 9; // plat_id
 	required int32 webfd 					= 10;
 	required string sid					 	= 11;
-	optional int32 mydb_ret   		= 12[default = 0];	//已失效读取老用户的返回值，返回值： 0:无此用户 1：查找成功 -1：读取错误
-	optional int32 mydb_oldid 		= 13[default = 0];	//已失效
+	optional int32 mydb_ret   		= 12[default = 0];	//脪脩脢搂脨搂露脕脠隆脌脧脫脙禄搂碌脛路碌禄脴脰碌拢卢路碌禄脴脰碌拢潞 0:脦脼麓脣脫脙禄搂 1拢潞虏茅脮脪鲁脡鹿娄 -1拢潞露脕脠隆麓铆脦贸
+	optional int32 mydb_oldid 		= 13[default = 0];	//脪脩脢搂脨搂
 	required int32 region 				= 14;	
 	optional int64 uid 						= 15[default = 0];			
 	optional int32 level 					= 16[default = 0];		
-	optional int64 defregion 			= 17[default = 0];		//新玩家进入的分区		
-	optional int32 undealGiftCnt 	= 18[default = 0]; //未处理的礼物数
-	optional int32 inviteFrdCnt 	= 19[default = 0]; //邀请好友数
-	optional uint32 yellowDmdtime = 20 [default = 0]; //黄钻刷新时间
-	optional int64 gettime 				= 21[default = 0];	//用于计算消息运行时间		
-	optional string invitefriendid		= 22 [default = '']; // 邀请自己的玩家OpenID	
-	optional bool isnewplayer = 23[default = false];//是否是新用户
-	optional int32 undealFrdGiftCnt 	= 24[default = 0]; //未处理的礼物数
-	optional int32 city 						= 25[default = 0];		//1北京2上海3广州4深圳 0其他
-	optional string via 						= 26;		//渠道
-	optional bool isrecall				  = 27[default = false];   //是否是被召回玩家
-	optional bool is_high_yellow_dmd = 28[default = false];   //是否是豪华黄钻
-	optional bool isApp51Act 				= 29[default = false];   //是否是51活动用户
-	optional int32	daySendGiftCnt			= 30[default = 0];	//每日赠送的礼物个数
-	optional int32 	inviteFrdCntDay	 	 	= 31[default = 0]; //每日邀请好友数量
-	optional int32	customFlag 				= 32[default = 0]; //回流礼包标记
-	optional string taskMarketId			= 33[default = '']; //任务
-	optional int32  qqTaskStep				= 34[default = 0]; //任务记录
-	optional WebCrossPromotion promotion	= 35;					 			//交叉推广
-	repeated int32	inviteGiftRecord = 36;							 //邀请好友奖励记录
-	optional int32  nBackFlowFlag			= 37[default = 0];		//空间回流礼包，1:顶部应用墙 2：左侧应用列表
-	optional int32  nAdultFlag        = 38[default = 100];		//是否通过实名认证
-	optional bool		is_high_dmd_year	= 39[default = false];	//是否豪华蓝钻年费版
-	optional uint32 bluedmdtime				= 40[default = 0];			//蓝钻刷新时间
-	optional int32 bluetime		= 41[default = 0];			//到期时间
+	optional int64 defregion 			= 17[default = 0];		//脨脗脥忙录脪陆酶脠毛碌脛路脰脟酶		
+	optional int32 undealGiftCnt 	= 18[default = 0]; //脦麓麓娄脌铆碌脛脌帽脦茂脢媒
+	optional int32 inviteFrdCnt 	= 19[default = 0]; //脩没脟毛潞脙脫脩脢媒
+	optional uint32 yellowDmdtime = 20 [default = 0]; //禄脝脳锚脣垄脨脗脢卤录盲
+	optional int64 gettime 				= 21[default = 0];	//脫脙脫脷录脝脣茫脧没脧垄脭脣脨脨脢卤录盲		
+	optional string invitefriendid		= 22 [default = '']; // 脩没脟毛脳脭录潞碌脛脥忙录脪OpenID	
+	optional bool isnewplayer = 23[default = false];//脢脟路帽脢脟脨脗脫脙禄搂
+	optional int32 undealFrdGiftCnt 	= 24[default = 0]; //脦麓麓娄脌铆碌脛脌帽脦茂脢媒
+	optional int32 city 						= 25[default = 0];		//1卤卤戮漏2脡脧潞拢3鹿茫脰脻4脡卯脹脷 0脝盲脣没
+	optional string via 						= 26;		//脟镁碌脌
+	optional bool isrecall				  = 27[default = false];   //脢脟路帽脢脟卤禄脮脵禄脴脥忙录脪
+	optional bool is_high_yellow_dmd = 28[default = false];   //脢脟路帽脢脟潞脌禄陋禄脝脳锚
+	optional bool isApp51Act 				= 29[default = false];   //脢脟路帽脢脟51禄卯露炉脫脙禄搂
+	optional int32	daySendGiftCnt			= 30[default = 0];	//脙驴脠脮脭霉脣脥碌脛脌帽脦茂赂枚脢媒
+	optional int32 	inviteFrdCntDay	 	 	= 31[default = 0]; //脙驴脠脮脩没脟毛潞脙脫脩脢媒脕驴
+	optional int32	customFlag 				= 32[default = 0]; //禄脴脕梅脌帽掳眉卤锚录脟
+	optional string taskMarketId			= 33[default = '']; //脠脦脦帽
+	optional int32  qqTaskStep				= 34[default = 0]; //脠脦脦帽录脟脗录
+	optional WebCrossPromotion promotion	= 35;					 			//陆禄虏忙脥脝鹿茫
+	repeated int32	inviteGiftRecord = 36;							 //脩没脟毛潞脙脫脩陆卤脌酶录脟脗录
+	optional int32  nBackFlowFlag			= 37[default = 0];		//驴脮录盲禄脴脕梅脌帽掳眉拢卢1:露楼虏驴脫娄脫脙脟陆 2拢潞脳贸虏脿脫娄脫脙脕脨卤铆
+	optional int32  nAdultFlag        = 38[default = 100];		//脢脟路帽脥篓鹿媒脢碌脙没脠脧脰陇
+	optional bool		is_high_dmd_year	= 39[default = false];	//脢脟路帽潞脌禄陋脌露脳锚脛锚路脩掳忙
+	optional uint32 bluedmdtime				= 40[default = 0];			//脌露脳锚脣垄脨脗脢卤录盲
+	optional int32 bluetime		= 41[default = 0];			//碌陆脝脷脢卤录盲
 	optional int32 blueyeartime			= 42[default = 0];
 	optional int32 highbluetime			= 43[default = 0];
 	optional int32 highblueyeartime	= 44[default = 0];
@@ -64,16 +64,16 @@ message UserLogin_Rsp {
 	required int32 port1 			= 5;
 	required int32 webfd 			= 6;
 	required string sid 			= 7;
-	required string mainload 	= 8;	//flash mainloader版本号
-	required string version  	= 9;		//flash 游戏配置文件版本号
+	required string mainload 	= 8;	//flash mainloader掳忙卤戮潞脜
+	required string version  	= 9;		//flash 脫脦脧路脜盲脰脙脦脛录镁掳忙卤戮潞脜
 	required int32 region 		= 10;		
-	optional int64 gettime 		= 11[default = 0];	//用于计算消息运行时间		
+	optional int64 gettime 		= 11[default = 0];	//脫脙脫脷录脝脣茫脧没脧垄脭脣脨脨脢卤录盲		
 	optional string platform_id = 12;
-	optional int32 logintimes = 13;		//每天第几次登陆
-	optional int32 playerlvl = 14;		//每天玩家等级
-	optional bool isnewplayer = 15[default = false];//是否是新用户
-	optional int32	customFlag 	= 16[default = 0]; //回流礼包标记
-	optional string channel			= 17[default = '']; //交叉推广渠道
+	optional int32 logintimes = 13;		//脙驴脤矛碌脷录赂麓脦碌脟脗陆
+	optional int32 playerlvl = 14;		//脙驴脤矛脥忙录脪碌脠录露
+	optional bool isnewplayer = 15[default = false];//脢脟路帽脢脟脨脗脫脙禄搂
+	optional int32	customFlag 	= 16[default = 0]; //禄脴脕梅脌帽掳眉卤锚录脟
+	optional string channel			= 17[default = '']; //陆禄虏忙脥脝鹿茫脟镁碌脌
 } 
 
 message WorkingStatus_Req {
@@ -122,11 +122,25 @@ message WebGetRegion
 {
     required string         openid          = 1;
     required int32          fd              = 2;
-    repeated int32          srvRegion       = 3;  //服务器列表
-    optional int32          lastregion      = 4; //最后一次登录的服务器
+    repeated int32          srvRegion       = 3;
+    optional int32          lastregion      = 4;
     required string         sid             = 5;
 }
 
+message GCG_PlanetLite
+{
+	optional int64 uid 					= 1;
+	optional int32 planetId			= 2;
+}
+
+message GCG_City
+{
+	required int32  cityID 				= 1;
+	optional int32 	x 					= 2;
+	optional int32 	y					= 3;
+	optional string name				= 4;
+	repeated GCG_PlanetLite	planets 	= 5;
+}
 
 message GCG_CountryNeed
 {
@@ -157,28 +171,56 @@ message GSG_StatNeed
 	optional int32 gameSrvID 		= 3;
 }
 
-//Http请求
 message HttpAskMsg
 {
-	optional	string			szOpenid			=	1;		//OpenID
-	optional	int64			nUid				=	2;		//UID
-	optional	int32			nRegion				=	3;		//分区
-	optional	int32			nType				=	4;		//第一类别
-	optional	int32			nTypeSec			=	5;		//第二类别
-	optional	string			szArgvs				=	6;		//参数
-	optional  bool			bToQQ				= 7[default = false]; 	//是否是发往QQ的消息
+	optional	string			szOpenid			=	1;
+	optional	int64			nUid				=	2;
+	optional	int32			nRegion				=	3;
+	optional	int32			nType				=	4;
+	optional	int32			nTypeSec			=	5;
+	optional	string			szArgvs				=	6;
+	optional  bool			bToQQ				= 7[default = false];
 	optional  int32			nUserIP			= 8[default = 0];
 	optional  int32			nModifyfee  = 9[default = 0];
 	optional  int32     nTime				= 10[default = 0];
 }
 
-//Http回复
 message HttpAnswerMsg
 {
-	optional	string			szOpenid			=	1;		//OpenID
-	optional	int64			nUid				=	2;		//UID
-	optional	int32			nRegion				=	3;		//分区
-	optional	int32			nType				=	4;		//第一类别
-	optional	int32			nTypeSec			=	5;		//第二类别
-	optional	string			szAnswer			=	6;		//结果
+	optional	string			szOpenid			=	1;
+	optional	int64			nUid				=	2;
+	optional	int32			nRegion				=	3;
+	optional	int32			nType				=	4;
+	optional	int32			nTypeSec			=	5;
+	optional	string			szAnswer			=	6;
+}
+
+message NewStar_Req
+{
+    optional string name = 1; //": "lxl",
+    optional string url = 2; //": "pic",
+    optional int32 planetId = 3; //": 1,
+    optional int64 accountId = 4; //": 1036,
+}
+
+message NewStar_Rsp
+{
+	optional int32	id = 1;
+	optional string sku = 2; //": "1:1:5",	
+	optional int32 type = 3; //": 1,
+	optional int32 name = 4; 
+}
+
+message GWG_BattleItemEnergy
+{
+	optional int32 sid = 1;
+	optional string sku = 2;
+	optional int32 num = 3;	
+}
+
+message GWG_Battle
+{
+	optional int32 coins = 1;
+	optional int32 minerals = 2;
+	repeated GWG_BattleItemEnergy BattleItemEnergy = 3;
 }

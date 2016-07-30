@@ -22,6 +22,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include "MsgTransaction.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_RceUpdateSocialItem_2eproto();
@@ -85,15 +86,12 @@ class RceUpdateSocialItem : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional string planetId = 1;
+  // optional int32 planetId = 1;
   inline bool has_planetid() const;
   inline void clear_planetid();
   static const int kPlanetIdFieldNumber = 1;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
   
   // optional int32 currentSequence = 2;
   inline bool has_currentsequence() const;
@@ -150,12 +148,28 @@ class RceUpdateSocialItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 postion() const;
   inline void set_postion(::google::protobuf::int32 value);
   
+  // optional .MsgTransaction transaction = 9;
+  inline bool has_transaction() const;
+  inline void clear_transaction();
+  static const int kTransactionFieldNumber = 9;
+  inline const ::MsgTransaction& transaction() const;
+  inline ::MsgTransaction* mutable_transaction();
+  
+  // optional string num = 10;
+  inline bool has_num() const;
+  inline void clear_num();
+  static const int kNumFieldNumber = 10;
+  inline const ::std::string& num() const;
+  inline void set_num(const ::std::string& value);
+  inline void set_num(const char* value);
+  inline void set_num(const char* value, size_t size);
+  inline ::std::string* mutable_num();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
+  ::google::protobuf::int32 planetid_;
   ::google::protobuf::int32 currentsequence_;
   ::google::protobuf::int32 currentcount_;
   ::std::string* sku_;
@@ -165,11 +179,14 @@ class RceUpdateSocialItem : public ::google::protobuf::Message {
   ::std::string* action_;
   static const ::std::string _default_action_;
   ::google::protobuf::int32 postion_;
+  ::MsgTransaction* transaction_;
+  ::std::string* num_;
+  static const ::std::string _default_num_;
   friend void  protobuf_AddDesc_RceUpdateSocialItem_2eproto();
   friend void protobuf_AssignDesc_RceUpdateSocialItem_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateSocialItem_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -195,46 +212,20 @@ class RceUpdateSocialItem : public ::google::protobuf::Message {
 
 // RceUpdateSocialItem
 
-// optional string planetId = 1;
+// optional int32 planetId = 1;
 inline bool RceUpdateSocialItem::has_planetid() const {
   return _has_bit(0);
 }
 inline void RceUpdateSocialItem::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
+  planetid_ = 0;
   _clear_bit(0);
 }
-inline const ::std::string& RceUpdateSocialItem::planetid() const {
-  return *planetid_;
-}
-inline void RceUpdateSocialItem::set_planetid(const ::std::string& value) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateSocialItem::set_planetid(const char* value) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateSocialItem::set_planetid(const char* value, size_t size) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateSocialItem::mutable_planetid() {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceUpdateSocialItem::planetid() const {
   return planetid_;
+}
+inline void RceUpdateSocialItem::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  planetid_ = value;
 }
 
 // optional int32 currentSequence = 2;
@@ -399,6 +390,65 @@ inline ::google::protobuf::int32 RceUpdateSocialItem::postion() const {
 inline void RceUpdateSocialItem::set_postion(::google::protobuf::int32 value) {
   _set_bit(7);
   postion_ = value;
+}
+
+// optional .MsgTransaction transaction = 9;
+inline bool RceUpdateSocialItem::has_transaction() const {
+  return _has_bit(8);
+}
+inline void RceUpdateSocialItem::clear_transaction() {
+  if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
+  _clear_bit(8);
+}
+inline const ::MsgTransaction& RceUpdateSocialItem::transaction() const {
+  return transaction_ != NULL ? *transaction_ : *default_instance_->transaction_;
+}
+inline ::MsgTransaction* RceUpdateSocialItem::mutable_transaction() {
+  _set_bit(8);
+  if (transaction_ == NULL) transaction_ = new ::MsgTransaction;
+  return transaction_;
+}
+
+// optional string num = 10;
+inline bool RceUpdateSocialItem::has_num() const {
+  return _has_bit(9);
+}
+inline void RceUpdateSocialItem::clear_num() {
+  if (num_ != &_default_num_) {
+    num_->clear();
+  }
+  _clear_bit(9);
+}
+inline const ::std::string& RceUpdateSocialItem::num() const {
+  return *num_;
+}
+inline void RceUpdateSocialItem::set_num(const ::std::string& value) {
+  _set_bit(9);
+  if (num_ == &_default_num_) {
+    num_ = new ::std::string;
+  }
+  num_->assign(value);
+}
+inline void RceUpdateSocialItem::set_num(const char* value) {
+  _set_bit(9);
+  if (num_ == &_default_num_) {
+    num_ = new ::std::string;
+  }
+  num_->assign(value);
+}
+inline void RceUpdateSocialItem::set_num(const char* value, size_t size) {
+  _set_bit(9);
+  if (num_ == &_default_num_) {
+    num_ = new ::std::string;
+  }
+  num_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateSocialItem::mutable_num() {
+  _set_bit(9);
+  if (num_ == &_default_num_) {
+    num_ = new ::std::string;
+  }
+  return num_;
 }
 
 

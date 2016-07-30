@@ -85,27 +85,15 @@ class RceQueryStarsBookmarks : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional string planetId = 1;
-  inline bool has_planetid() const;
-  inline void clear_planetid();
-  static const int kPlanetIdFieldNumber = 1;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
-  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
   friend void  protobuf_AddDesc_RceQueryStarsBookmarks_2eproto();
   friend void protobuf_AssignDesc_RceQueryStarsBookmarks_2eproto();
   friend void protobuf_ShutdownFile_RceQueryStarsBookmarks_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[1];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -130,48 +118,6 @@ class RceQueryStarsBookmarks : public ::google::protobuf::Message {
 // ===================================================================
 
 // RceQueryStarsBookmarks
-
-// optional string planetId = 1;
-inline bool RceQueryStarsBookmarks::has_planetid() const {
-  return _has_bit(0);
-}
-inline void RceQueryStarsBookmarks::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
-  _clear_bit(0);
-}
-inline const ::std::string& RceQueryStarsBookmarks::planetid() const {
-  return *planetid_;
-}
-inline void RceQueryStarsBookmarks::set_planetid(const ::std::string& value) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryStarsBookmarks::set_planetid(const char* value) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryStarsBookmarks::set_planetid(const char* value, size_t size) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceQueryStarsBookmarks::mutable_planetid() {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  return planetid_;
-}
 
 
 #ifndef SWIG

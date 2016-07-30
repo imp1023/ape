@@ -43,8 +43,11 @@ void protobuf_AssignDesc_RseQueryStarsBookmarks_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RseQueryStarsBookmarks));
   Bookmarks_descriptor_ = file->message_type(1);
-  static const int Bookmarks_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Bookmarks, ret_),
+  static const int Bookmarks_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Bookmarks, starname_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Bookmarks, sku_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Bookmarks, startype_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Bookmarks, starid_),
   };
   Bookmarks_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -93,7 +96,9 @@ void protobuf_AddDesc_RseQueryStarsBookmarks_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\034RseQueryStarsBookmarks.proto\"7\n\026RseQue"
     "ryStarsBookmarks\022\035\n\tBookmarks\030\001 \003(\0132\n.Bo"
-    "okmarks\"\030\n\tBookmarks\022\013\n\003ret\030\001 \001(\005", 113);
+    "okmarks\"L\n\tBookmarks\022\020\n\010starName\030\001 \001(\005\022\013"
+    "\n\003sku\030\002 \001(\t\022\020\n\010starType\030\003 \001(\005\022\016\n\006starId\030"
+    "\004 \001(\005", 165);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseQueryStarsBookmarks.proto", &protobuf_RegisterTypes);
   RseQueryStarsBookmarks::default_instance_ = new RseQueryStarsBookmarks();
@@ -311,8 +316,12 @@ void RseQueryStarsBookmarks::Swap(RseQueryStarsBookmarks* other) {
 
 // ===================================================================
 
+const ::std::string Bookmarks::_default_sku_;
 #ifndef _MSC_VER
-const int Bookmarks::kRetFieldNumber;
+const int Bookmarks::kStarNameFieldNumber;
+const int Bookmarks::kSkuFieldNumber;
+const int Bookmarks::kStarTypeFieldNumber;
+const int Bookmarks::kStarIdFieldNumber;
 #endif  // !_MSC_VER
 
 Bookmarks::Bookmarks() {
@@ -329,7 +338,10 @@ Bookmarks::Bookmarks(const Bookmarks& from) {
 
 void Bookmarks::SharedCtor() {
   _cached_size_ = 0;
-  ret_ = 0;
+  starname_ = 0;
+  sku_ = const_cast< ::std::string*>(&_default_sku_);
+  startype_ = 0;
+  starid_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -338,6 +350,9 @@ Bookmarks::~Bookmarks() {
 }
 
 void Bookmarks::SharedDtor() {
+  if (sku_ != &_default_sku_) {
+    delete sku_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -359,7 +374,14 @@ Bookmarks* Bookmarks::New() const {
 
 void Bookmarks::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    ret_ = 0;
+    starname_ = 0;
+    if (_has_bit(1)) {
+      if (sku_ != &_default_sku_) {
+        sku_->clear();
+      }
+    }
+    startype_ = 0;
+    starid_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -371,15 +393,59 @@ bool Bookmarks::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 ret = 1;
+      // optional int32 starName = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &ret_));
+              input, &starname_));
         _set_bit(0);
+        if (input->ExpectTag(18)) goto parse_sku;
+        break;
+      }
+      
+      // optional string sku = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_sku:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_sku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->sku().data(), this->sku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(24)) goto parse_starType;
+        break;
+      }
+      
+      // optional int32 starType = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_starType:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &startype_));
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_starId;
+        break;
+      }
+      
+      // optional int32 starId = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_starId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &starid_));
+        _set_bit(3);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -408,9 +474,28 @@ void Bookmarks::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int32 ret = 1;
+  // optional int32 starName = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->starname(), output);
+  }
+  
+  // optional string sku = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      2, this->sku(), output);
+  }
+  
+  // optional int32 starType = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->startype(), output);
+  }
+  
+  // optional int32 starId = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->starid(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -421,9 +506,29 @@ void Bookmarks::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Bookmarks::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 ret = 1;
+  // optional int32 starName = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->starname(), target);
+  }
+  
+  // optional string sku = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->sku(), target);
+  }
+  
+  // optional int32 starType = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->startype(), target);
+  }
+  
+  // optional int32 starId = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->starid(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -437,11 +542,32 @@ int Bookmarks::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 ret = 1;
-    if (has_ret()) {
+    // optional int32 starName = 1;
+    if (has_starname()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->ret());
+          this->starname());
+    }
+    
+    // optional string sku = 2;
+    if (has_sku()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->sku());
+    }
+    
+    // optional int32 starType = 3;
+    if (has_startype()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->startype());
+    }
+    
+    // optional int32 starId = 4;
+    if (has_starid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->starid());
     }
     
   }
@@ -470,7 +596,16 @@ void Bookmarks::MergeFrom(const Bookmarks& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      set_ret(from.ret());
+      set_starname(from.starname());
+    }
+    if (from._has_bit(1)) {
+      set_sku(from.sku());
+    }
+    if (from._has_bit(2)) {
+      set_startype(from.startype());
+    }
+    if (from._has_bit(3)) {
+      set_starid(from.starid());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -495,7 +630,10 @@ bool Bookmarks::IsInitialized() const {
 
 void Bookmarks::Swap(Bookmarks* other) {
   if (other != this) {
-    std::swap(ret_, other->ret_);
+    std::swap(starname_, other->starname_);
+    std::swap(sku_, other->sku_);
+    std::swap(startype_, other->startype_);
+    std::swap(starid_, other->starid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

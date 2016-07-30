@@ -186,12 +186,15 @@ class MsgNeighbor : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 tutorialcompleted() const;
   inline void set_tutorialcompleted(::google::protobuf::int32 value);
   
-  // optional .MsgPlanet neighbor = 13;
-  inline bool has_neighbor() const;
+  // repeated .MsgPlanet neighbor = 13;
+  inline int neighbor_size() const;
   inline void clear_neighbor();
   static const int kNeighborFieldNumber = 13;
-  inline const ::MsgPlanet& neighbor() const;
-  inline ::MsgPlanet* mutable_neighbor();
+  inline const ::google::protobuf::RepeatedPtrField< ::MsgPlanet >& neighbor() const;
+  inline ::google::protobuf::RepeatedPtrField< ::MsgPlanet >* mutable_neighbor();
+  inline const ::MsgPlanet& neighbor(int index) const;
+  inline ::MsgPlanet* mutable_neighbor(int index);
+  inline ::MsgPlanet* add_neighbor();
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -214,7 +217,7 @@ class MsgNeighbor : public ::google::protobuf::Message {
   static const ::std::string _default_wishlist_;
   ::google::protobuf::int64 damageprotectiontimeleft_;
   ::google::protobuf::int32 tutorialcompleted_;
-  ::MsgPlanet* neighbor_;
+  ::google::protobuf::RepeatedPtrField< ::MsgPlanet > neighbor_;
   friend void  protobuf_AddDesc_RseObtainNeighborsList_2eproto();
   friend void protobuf_AssignDesc_RseObtainNeighborsList_2eproto();
   friend void protobuf_ShutdownFile_RseObtainNeighborsList_2eproto();
@@ -657,21 +660,29 @@ inline void MsgNeighbor::set_tutorialcompleted(::google::protobuf::int32 value) 
   tutorialcompleted_ = value;
 }
 
-// optional .MsgPlanet neighbor = 13;
-inline bool MsgNeighbor::has_neighbor() const {
-  return _has_bit(12);
+// repeated .MsgPlanet neighbor = 13;
+inline int MsgNeighbor::neighbor_size() const {
+  return neighbor_.size();
 }
 inline void MsgNeighbor::clear_neighbor() {
-  if (neighbor_ != NULL) neighbor_->::MsgPlanet::Clear();
-  _clear_bit(12);
+  neighbor_.Clear();
 }
-inline const ::MsgPlanet& MsgNeighbor::neighbor() const {
-  return neighbor_ != NULL ? *neighbor_ : *default_instance_->neighbor_;
-}
-inline ::MsgPlanet* MsgNeighbor::mutable_neighbor() {
-  _set_bit(12);
-  if (neighbor_ == NULL) neighbor_ = new ::MsgPlanet;
+inline const ::google::protobuf::RepeatedPtrField< ::MsgPlanet >&
+MsgNeighbor::neighbor() const {
   return neighbor_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::MsgPlanet >*
+MsgNeighbor::mutable_neighbor() {
+  return &neighbor_;
+}
+inline const ::MsgPlanet& MsgNeighbor::neighbor(int index) const {
+  return neighbor_.Get(index);
+}
+inline ::MsgPlanet* MsgNeighbor::mutable_neighbor(int index) {
+  return neighbor_.Mutable(index);
+}
+inline ::MsgPlanet* MsgNeighbor::add_neighbor() {
+  return neighbor_.Add();
 }
 
 // -------------------------------------------------------------------

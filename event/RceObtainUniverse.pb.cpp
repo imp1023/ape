@@ -25,9 +25,12 @@ void protobuf_AssignDesc_RceObtainUniverse_2eproto() {
       "RceObtainUniverse.proto");
   GOOGLE_CHECK(file != NULL);
   RceObtainUniverse_descriptor_ = file->message_type(0);
-  static const int RceObtainUniverse_offsets_[2] = {
+  static const int RceObtainUniverse_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceObtainUniverse, targetaccountid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceObtainUniverse, firstrequest_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceObtainUniverse, planetid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceObtainUniverse, attack_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceObtainUniverse, targetadvisorsku_),
   };
   RceObtainUniverse_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -70,9 +73,10 @@ void protobuf_AddDesc_RceObtainUniverse_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\027RceObtainUniverse.proto\"B\n\021RceObtainUn"
+    "\n\027RceObtainUniverse.proto\"~\n\021RceObtainUn"
     "iverse\022\027\n\017targetAccountId\030\001 \001(\t\022\024\n\014first"
-    "Request\030\002 \001(\010", 93);
+    "Request\030\002 \001(\010\022\020\n\010planetId\030\003 \001(\005\022\016\n\006attac"
+    "k\030\004 \001(\005\022\030\n\020targetAdvisorSku\030\005 \001(\t", 153);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceObtainUniverse.proto", &protobuf_RegisterTypes);
   RceObtainUniverse::default_instance_ = new RceObtainUniverse();
@@ -91,9 +95,13 @@ struct StaticDescriptorInitializer_RceObtainUniverse_2eproto {
 // ===================================================================
 
 const ::std::string RceObtainUniverse::_default_targetaccountid_;
+const ::std::string RceObtainUniverse::_default_targetadvisorsku_;
 #ifndef _MSC_VER
 const int RceObtainUniverse::kTargetAccountIdFieldNumber;
 const int RceObtainUniverse::kFirstRequestFieldNumber;
+const int RceObtainUniverse::kPlanetIdFieldNumber;
+const int RceObtainUniverse::kAttackFieldNumber;
+const int RceObtainUniverse::kTargetAdvisorSkuFieldNumber;
 #endif  // !_MSC_VER
 
 RceObtainUniverse::RceObtainUniverse() {
@@ -112,6 +120,9 @@ void RceObtainUniverse::SharedCtor() {
   _cached_size_ = 0;
   targetaccountid_ = const_cast< ::std::string*>(&_default_targetaccountid_);
   firstrequest_ = false;
+  planetid_ = 0;
+  attack_ = 0;
+  targetadvisorsku_ = const_cast< ::std::string*>(&_default_targetadvisorsku_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -122,6 +133,9 @@ RceObtainUniverse::~RceObtainUniverse() {
 void RceObtainUniverse::SharedDtor() {
   if (targetaccountid_ != &_default_targetaccountid_) {
     delete targetaccountid_;
+  }
+  if (targetadvisorsku_ != &_default_targetadvisorsku_) {
+    delete targetadvisorsku_;
   }
   if (this != default_instance_) {
   }
@@ -150,6 +164,13 @@ void RceObtainUniverse::Clear() {
       }
     }
     firstrequest_ = false;
+    planetid_ = 0;
+    attack_ = 0;
+    if (_has_bit(4)) {
+      if (targetadvisorsku_ != &_default_targetadvisorsku_) {
+        targetadvisorsku_->clear();
+      }
+    }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -186,6 +207,50 @@ bool RceObtainUniverse::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
               input, &firstrequest_));
         _set_bit(1);
+        if (input->ExpectTag(24)) goto parse_planetId;
+        break;
+      }
+      
+      // optional int32 planetId = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_planetId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planetid_));
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_attack;
+        break;
+      }
+      
+      // optional int32 attack = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_attack:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &attack_));
+        _set_bit(3);
+        if (input->ExpectTag(42)) goto parse_targetAdvisorSku;
+        break;
+      }
+      
+      // optional string targetAdvisorSku = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_targetAdvisorSku:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_targetadvisorsku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->targetadvisorsku().data(), this->targetadvisorsku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -228,6 +293,25 @@ void RceObtainUniverse::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->firstrequest(), output);
   }
   
+  // optional int32 planetId = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->planetid(), output);
+  }
+  
+  // optional int32 attack = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->attack(), output);
+  }
+  
+  // optional string targetAdvisorSku = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->targetadvisorsku().data(), this->targetadvisorsku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->targetadvisorsku(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -251,6 +335,26 @@ void RceObtainUniverse::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->firstrequest(), target);
   }
   
+  // optional int32 planetId = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->planetid(), target);
+  }
+  
+  // optional int32 attack = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->attack(), target);
+  }
+  
+  // optional string targetAdvisorSku = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->targetadvisorsku().data(), this->targetadvisorsku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->targetadvisorsku(), target);
+  }
+  
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -272,6 +376,27 @@ int RceObtainUniverse::ByteSize() const {
     // optional bool firstRequest = 2;
     if (has_firstrequest()) {
       total_size += 1 + 1;
+    }
+    
+    // optional int32 planetId = 3;
+    if (has_planetid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->planetid());
+    }
+    
+    // optional int32 attack = 4;
+    if (has_attack()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->attack());
+    }
+    
+    // optional string targetAdvisorSku = 5;
+    if (has_targetadvisorsku()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->targetadvisorsku());
     }
     
   }
@@ -305,6 +430,15 @@ void RceObtainUniverse::MergeFrom(const RceObtainUniverse& from) {
     if (from._has_bit(1)) {
       set_firstrequest(from.firstrequest());
     }
+    if (from._has_bit(2)) {
+      set_planetid(from.planetid());
+    }
+    if (from._has_bit(3)) {
+      set_attack(from.attack());
+    }
+    if (from._has_bit(4)) {
+      set_targetadvisorsku(from.targetadvisorsku());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -330,6 +464,9 @@ void RceObtainUniverse::Swap(RceObtainUniverse* other) {
   if (other != this) {
     std::swap(targetaccountid_, other->targetaccountid_);
     std::swap(firstrequest_, other->firstrequest_);
+    std::swap(planetid_, other->planetid_);
+    std::swap(attack_, other->attack_);
+    std::swap(targetadvisorsku_, other->targetadvisorsku_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

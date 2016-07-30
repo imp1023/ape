@@ -86,22 +86,22 @@ class RceQueryCheckAndLockAccountIfPossible : public ::google::protobuf::Message
   
   // accessors -------------------------------------------------------
   
-  // optional .HangarsUnitsInfo hangarsUnitsInfo = 1;
-  inline bool has_hangarsunitsinfo() const;
+  // repeated .HangarsUnitsInfo hangarsUnitsInfo = 1;
+  inline int hangarsunitsinfo_size() const;
   inline void clear_hangarsunitsinfo();
   static const int kHangarsUnitsInfoFieldNumber = 1;
-  inline const ::HangarsUnitsInfo& hangarsunitsinfo() const;
-  inline ::HangarsUnitsInfo* mutable_hangarsunitsinfo();
+  inline const ::google::protobuf::RepeatedPtrField< ::HangarsUnitsInfo >& hangarsunitsinfo() const;
+  inline ::google::protobuf::RepeatedPtrField< ::HangarsUnitsInfo >* mutable_hangarsunitsinfo();
+  inline const ::HangarsUnitsInfo& hangarsunitsinfo(int index) const;
+  inline ::HangarsUnitsInfo* mutable_hangarsunitsinfo(int index);
+  inline ::HangarsUnitsInfo* add_hangarsunitsinfo();
   
-  // optional string planetId = 2;
+  // optional int32 planetId = 2;
   inline bool has_planetid() const;
   inline void clear_planetid();
   static const int kPlanetIdFieldNumber = 2;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
   
   // optional int32 applyLock = 3;
   inline bool has_applylock() const;
@@ -131,9 +131,8 @@ class RceQueryCheckAndLockAccountIfPossible : public ::google::protobuf::Message
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::HangarsUnitsInfo* hangarsunitsinfo_;
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
+  ::google::protobuf::RepeatedPtrField< ::HangarsUnitsInfo > hangarsunitsinfo_;
+  ::google::protobuf::int32 planetid_;
   ::google::protobuf::int32 applylock_;
   ::std::string* targetaccountid_;
   static const ::std::string _default_targetaccountid_;
@@ -213,143 +212,43 @@ class HangarsUnitsInfo : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 id = 1;
-  inline bool has_id() const;
-  inline void clear_id();
-  static const int kIdFieldNumber = 1;
-  inline ::google::protobuf::int32 id() const;
-  inline void set_id(::google::protobuf::int32 value);
+  // optional int32 sid = 1;
+  inline bool has_sid() const;
+  inline void clear_sid();
+  static const int kSidFieldNumber = 1;
+  inline ::google::protobuf::int32 sid() const;
+  inline void set_sid(::google::protobuf::int32 value);
   
-  // optional string name1 = 2;
-  inline bool has_name1() const;
-  inline void clear_name1();
-  static const int kName1FieldNumber = 2;
-  inline const ::std::string& name1() const;
-  inline void set_name1(const ::std::string& value);
-  inline void set_name1(const char* value);
-  inline void set_name1(const char* value, size_t size);
-  inline ::std::string* mutable_name1();
+  // optional string sku = 2;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 2;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
   
-  // optional string name2 = 3;
-  inline bool has_name2() const;
-  inline void clear_name2();
-  static const int kName2FieldNumber = 3;
-  inline const ::std::string& name2() const;
-  inline void set_name2(const ::std::string& value);
-  inline void set_name2(const char* value);
-  inline void set_name2(const char* value, size_t size);
-  inline ::std::string* mutable_name2();
-  
-  // optional string name3 = 4;
-  inline bool has_name3() const;
-  inline void clear_name3();
-  static const int kName3FieldNumber = 4;
-  inline const ::std::string& name3() const;
-  inline void set_name3(const ::std::string& value);
-  inline void set_name3(const char* value);
-  inline void set_name3(const char* value, size_t size);
-  inline ::std::string* mutable_name3();
-  
-  // optional string name4 = 5;
-  inline bool has_name4() const;
-  inline void clear_name4();
-  static const int kName4FieldNumber = 5;
-  inline const ::std::string& name4() const;
-  inline void set_name4(const ::std::string& value);
-  inline void set_name4(const char* value);
-  inline void set_name4(const char* value, size_t size);
-  inline ::std::string* mutable_name4();
-  
-  // optional string name5 = 6;
-  inline bool has_name5() const;
-  inline void clear_name5();
-  static const int kName5FieldNumber = 6;
-  inline const ::std::string& name5() const;
-  inline void set_name5(const ::std::string& value);
-  inline void set_name5(const char* value);
-  inline void set_name5(const char* value, size_t size);
-  inline ::std::string* mutable_name5();
-  
-  // optional string name6 = 7;
-  inline bool has_name6() const;
-  inline void clear_name6();
-  static const int kName6FieldNumber = 7;
-  inline const ::std::string& name6() const;
-  inline void set_name6(const ::std::string& value);
-  inline void set_name6(const char* value);
-  inline void set_name6(const char* value, size_t size);
-  inline ::std::string* mutable_name6();
-  
-  // optional int32 value1 = 8;
-  inline bool has_value1() const;
-  inline void clear_value1();
-  static const int kValue1FieldNumber = 8;
-  inline ::google::protobuf::int32 value1() const;
-  inline void set_value1(::google::protobuf::int32 value);
-  
-  // optional int32 value2 = 9;
-  inline bool has_value2() const;
-  inline void clear_value2();
-  static const int kValue2FieldNumber = 9;
-  inline ::google::protobuf::int32 value2() const;
-  inline void set_value2(::google::protobuf::int32 value);
-  
-  // optional int32 value3 = 10;
-  inline bool has_value3() const;
-  inline void clear_value3();
-  static const int kValue3FieldNumber = 10;
-  inline ::google::protobuf::int32 value3() const;
-  inline void set_value3(::google::protobuf::int32 value);
-  
-  // optional int32 value4 = 11;
-  inline bool has_value4() const;
-  inline void clear_value4();
-  static const int kValue4FieldNumber = 11;
-  inline ::google::protobuf::int32 value4() const;
-  inline void set_value4(::google::protobuf::int32 value);
-  
-  // optional int32 value5 = 12;
-  inline bool has_value5() const;
-  inline void clear_value5();
-  static const int kValue5FieldNumber = 12;
-  inline ::google::protobuf::int32 value5() const;
-  inline void set_value5(::google::protobuf::int32 value);
-  
-  // optional int32 value6 = 13;
-  inline bool has_value6() const;
-  inline void clear_value6();
-  static const int kValue6FieldNumber = 13;
-  inline ::google::protobuf::int32 value6() const;
-  inline void set_value6(::google::protobuf::int32 value);
+  // optional int32 num = 3;
+  inline bool has_num() const;
+  inline void clear_num();
+  static const int kNumFieldNumber = 3;
+  inline ::google::protobuf::int32 num() const;
+  inline void set_num(::google::protobuf::int32 value);
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 id_;
-  ::std::string* name1_;
-  static const ::std::string _default_name1_;
-  ::std::string* name2_;
-  static const ::std::string _default_name2_;
-  ::std::string* name3_;
-  static const ::std::string _default_name3_;
-  ::std::string* name4_;
-  static const ::std::string _default_name4_;
-  ::std::string* name5_;
-  static const ::std::string _default_name5_;
-  ::std::string* name6_;
-  static const ::std::string _default_name6_;
-  ::google::protobuf::int32 value1_;
-  ::google::protobuf::int32 value2_;
-  ::google::protobuf::int32 value3_;
-  ::google::protobuf::int32 value4_;
-  ::google::protobuf::int32 value5_;
-  ::google::protobuf::int32 value6_;
+  ::google::protobuf::int32 sid_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 num_;
   friend void  protobuf_AddDesc_RceQueryCheckAndLockAccountIfPossible_2eproto();
   friend void protobuf_AssignDesc_RceQueryCheckAndLockAccountIfPossible_2eproto();
   friend void protobuf_ShutdownFile_RceQueryCheckAndLockAccountIfPossible_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -375,63 +274,45 @@ class HangarsUnitsInfo : public ::google::protobuf::Message {
 
 // RceQueryCheckAndLockAccountIfPossible
 
-// optional .HangarsUnitsInfo hangarsUnitsInfo = 1;
-inline bool RceQueryCheckAndLockAccountIfPossible::has_hangarsunitsinfo() const {
-  return _has_bit(0);
+// repeated .HangarsUnitsInfo hangarsUnitsInfo = 1;
+inline int RceQueryCheckAndLockAccountIfPossible::hangarsunitsinfo_size() const {
+  return hangarsunitsinfo_.size();
 }
 inline void RceQueryCheckAndLockAccountIfPossible::clear_hangarsunitsinfo() {
-  if (hangarsunitsinfo_ != NULL) hangarsunitsinfo_->::HangarsUnitsInfo::Clear();
-  _clear_bit(0);
+  hangarsunitsinfo_.Clear();
 }
-inline const ::HangarsUnitsInfo& RceQueryCheckAndLockAccountIfPossible::hangarsunitsinfo() const {
-  return hangarsunitsinfo_ != NULL ? *hangarsunitsinfo_ : *default_instance_->hangarsunitsinfo_;
-}
-inline ::HangarsUnitsInfo* RceQueryCheckAndLockAccountIfPossible::mutable_hangarsunitsinfo() {
-  _set_bit(0);
-  if (hangarsunitsinfo_ == NULL) hangarsunitsinfo_ = new ::HangarsUnitsInfo;
+inline const ::google::protobuf::RepeatedPtrField< ::HangarsUnitsInfo >&
+RceQueryCheckAndLockAccountIfPossible::hangarsunitsinfo() const {
   return hangarsunitsinfo_;
 }
+inline ::google::protobuf::RepeatedPtrField< ::HangarsUnitsInfo >*
+RceQueryCheckAndLockAccountIfPossible::mutable_hangarsunitsinfo() {
+  return &hangarsunitsinfo_;
+}
+inline const ::HangarsUnitsInfo& RceQueryCheckAndLockAccountIfPossible::hangarsunitsinfo(int index) const {
+  return hangarsunitsinfo_.Get(index);
+}
+inline ::HangarsUnitsInfo* RceQueryCheckAndLockAccountIfPossible::mutable_hangarsunitsinfo(int index) {
+  return hangarsunitsinfo_.Mutable(index);
+}
+inline ::HangarsUnitsInfo* RceQueryCheckAndLockAccountIfPossible::add_hangarsunitsinfo() {
+  return hangarsunitsinfo_.Add();
+}
 
-// optional string planetId = 2;
+// optional int32 planetId = 2;
 inline bool RceQueryCheckAndLockAccountIfPossible::has_planetid() const {
   return _has_bit(1);
 }
 inline void RceQueryCheckAndLockAccountIfPossible::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
+  planetid_ = 0;
   _clear_bit(1);
 }
-inline const ::std::string& RceQueryCheckAndLockAccountIfPossible::planetid() const {
-  return *planetid_;
-}
-inline void RceQueryCheckAndLockAccountIfPossible::set_planetid(const ::std::string& value) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryCheckAndLockAccountIfPossible::set_planetid(const char* value) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryCheckAndLockAccountIfPossible::set_planetid(const char* value, size_t size) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceQueryCheckAndLockAccountIfPossible::mutable_planetid() {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceQueryCheckAndLockAccountIfPossible::planetid() const {
   return planetid_;
+}
+inline void RceQueryCheckAndLockAccountIfPossible::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(1);
+  planetid_ = value;
 }
 
 // optional int32 applyLock = 3;
@@ -512,368 +393,78 @@ inline void RceQueryCheckAndLockAccountIfPossible::set_isalliancewar(::google::p
 
 // HangarsUnitsInfo
 
-// optional int32 id = 1;
-inline bool HangarsUnitsInfo::has_id() const {
+// optional int32 sid = 1;
+inline bool HangarsUnitsInfo::has_sid() const {
   return _has_bit(0);
 }
-inline void HangarsUnitsInfo::clear_id() {
-  id_ = 0;
+inline void HangarsUnitsInfo::clear_sid() {
+  sid_ = 0;
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 HangarsUnitsInfo::id() const {
-  return id_;
+inline ::google::protobuf::int32 HangarsUnitsInfo::sid() const {
+  return sid_;
 }
-inline void HangarsUnitsInfo::set_id(::google::protobuf::int32 value) {
+inline void HangarsUnitsInfo::set_sid(::google::protobuf::int32 value) {
   _set_bit(0);
-  id_ = value;
+  sid_ = value;
 }
 
-// optional string name1 = 2;
-inline bool HangarsUnitsInfo::has_name1() const {
+// optional string sku = 2;
+inline bool HangarsUnitsInfo::has_sku() const {
   return _has_bit(1);
 }
-inline void HangarsUnitsInfo::clear_name1() {
-  if (name1_ != &_default_name1_) {
-    name1_->clear();
+inline void HangarsUnitsInfo::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
   }
   _clear_bit(1);
 }
-inline const ::std::string& HangarsUnitsInfo::name1() const {
-  return *name1_;
+inline const ::std::string& HangarsUnitsInfo::sku() const {
+  return *sku_;
 }
-inline void HangarsUnitsInfo::set_name1(const ::std::string& value) {
+inline void HangarsUnitsInfo::set_sku(const ::std::string& value) {
   _set_bit(1);
-  if (name1_ == &_default_name1_) {
-    name1_ = new ::std::string;
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
   }
-  name1_->assign(value);
+  sku_->assign(value);
 }
-inline void HangarsUnitsInfo::set_name1(const char* value) {
+inline void HangarsUnitsInfo::set_sku(const char* value) {
   _set_bit(1);
-  if (name1_ == &_default_name1_) {
-    name1_ = new ::std::string;
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
   }
-  name1_->assign(value);
+  sku_->assign(value);
 }
-inline void HangarsUnitsInfo::set_name1(const char* value, size_t size) {
+inline void HangarsUnitsInfo::set_sku(const char* value, size_t size) {
   _set_bit(1);
-  if (name1_ == &_default_name1_) {
-    name1_ = new ::std::string;
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
   }
-  name1_->assign(reinterpret_cast<const char*>(value), size);
+  sku_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* HangarsUnitsInfo::mutable_name1() {
+inline ::std::string* HangarsUnitsInfo::mutable_sku() {
   _set_bit(1);
-  if (name1_ == &_default_name1_) {
-    name1_ = new ::std::string;
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
   }
-  return name1_;
+  return sku_;
 }
 
-// optional string name2 = 3;
-inline bool HangarsUnitsInfo::has_name2() const {
+// optional int32 num = 3;
+inline bool HangarsUnitsInfo::has_num() const {
   return _has_bit(2);
 }
-inline void HangarsUnitsInfo::clear_name2() {
-  if (name2_ != &_default_name2_) {
-    name2_->clear();
-  }
+inline void HangarsUnitsInfo::clear_num() {
+  num_ = 0;
   _clear_bit(2);
 }
-inline const ::std::string& HangarsUnitsInfo::name2() const {
-  return *name2_;
+inline ::google::protobuf::int32 HangarsUnitsInfo::num() const {
+  return num_;
 }
-inline void HangarsUnitsInfo::set_name2(const ::std::string& value) {
+inline void HangarsUnitsInfo::set_num(::google::protobuf::int32 value) {
   _set_bit(2);
-  if (name2_ == &_default_name2_) {
-    name2_ = new ::std::string;
-  }
-  name2_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name2(const char* value) {
-  _set_bit(2);
-  if (name2_ == &_default_name2_) {
-    name2_ = new ::std::string;
-  }
-  name2_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name2(const char* value, size_t size) {
-  _set_bit(2);
-  if (name2_ == &_default_name2_) {
-    name2_ = new ::std::string;
-  }
-  name2_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* HangarsUnitsInfo::mutable_name2() {
-  _set_bit(2);
-  if (name2_ == &_default_name2_) {
-    name2_ = new ::std::string;
-  }
-  return name2_;
-}
-
-// optional string name3 = 4;
-inline bool HangarsUnitsInfo::has_name3() const {
-  return _has_bit(3);
-}
-inline void HangarsUnitsInfo::clear_name3() {
-  if (name3_ != &_default_name3_) {
-    name3_->clear();
-  }
-  _clear_bit(3);
-}
-inline const ::std::string& HangarsUnitsInfo::name3() const {
-  return *name3_;
-}
-inline void HangarsUnitsInfo::set_name3(const ::std::string& value) {
-  _set_bit(3);
-  if (name3_ == &_default_name3_) {
-    name3_ = new ::std::string;
-  }
-  name3_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name3(const char* value) {
-  _set_bit(3);
-  if (name3_ == &_default_name3_) {
-    name3_ = new ::std::string;
-  }
-  name3_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name3(const char* value, size_t size) {
-  _set_bit(3);
-  if (name3_ == &_default_name3_) {
-    name3_ = new ::std::string;
-  }
-  name3_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* HangarsUnitsInfo::mutable_name3() {
-  _set_bit(3);
-  if (name3_ == &_default_name3_) {
-    name3_ = new ::std::string;
-  }
-  return name3_;
-}
-
-// optional string name4 = 5;
-inline bool HangarsUnitsInfo::has_name4() const {
-  return _has_bit(4);
-}
-inline void HangarsUnitsInfo::clear_name4() {
-  if (name4_ != &_default_name4_) {
-    name4_->clear();
-  }
-  _clear_bit(4);
-}
-inline const ::std::string& HangarsUnitsInfo::name4() const {
-  return *name4_;
-}
-inline void HangarsUnitsInfo::set_name4(const ::std::string& value) {
-  _set_bit(4);
-  if (name4_ == &_default_name4_) {
-    name4_ = new ::std::string;
-  }
-  name4_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name4(const char* value) {
-  _set_bit(4);
-  if (name4_ == &_default_name4_) {
-    name4_ = new ::std::string;
-  }
-  name4_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name4(const char* value, size_t size) {
-  _set_bit(4);
-  if (name4_ == &_default_name4_) {
-    name4_ = new ::std::string;
-  }
-  name4_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* HangarsUnitsInfo::mutable_name4() {
-  _set_bit(4);
-  if (name4_ == &_default_name4_) {
-    name4_ = new ::std::string;
-  }
-  return name4_;
-}
-
-// optional string name5 = 6;
-inline bool HangarsUnitsInfo::has_name5() const {
-  return _has_bit(5);
-}
-inline void HangarsUnitsInfo::clear_name5() {
-  if (name5_ != &_default_name5_) {
-    name5_->clear();
-  }
-  _clear_bit(5);
-}
-inline const ::std::string& HangarsUnitsInfo::name5() const {
-  return *name5_;
-}
-inline void HangarsUnitsInfo::set_name5(const ::std::string& value) {
-  _set_bit(5);
-  if (name5_ == &_default_name5_) {
-    name5_ = new ::std::string;
-  }
-  name5_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name5(const char* value) {
-  _set_bit(5);
-  if (name5_ == &_default_name5_) {
-    name5_ = new ::std::string;
-  }
-  name5_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name5(const char* value, size_t size) {
-  _set_bit(5);
-  if (name5_ == &_default_name5_) {
-    name5_ = new ::std::string;
-  }
-  name5_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* HangarsUnitsInfo::mutable_name5() {
-  _set_bit(5);
-  if (name5_ == &_default_name5_) {
-    name5_ = new ::std::string;
-  }
-  return name5_;
-}
-
-// optional string name6 = 7;
-inline bool HangarsUnitsInfo::has_name6() const {
-  return _has_bit(6);
-}
-inline void HangarsUnitsInfo::clear_name6() {
-  if (name6_ != &_default_name6_) {
-    name6_->clear();
-  }
-  _clear_bit(6);
-}
-inline const ::std::string& HangarsUnitsInfo::name6() const {
-  return *name6_;
-}
-inline void HangarsUnitsInfo::set_name6(const ::std::string& value) {
-  _set_bit(6);
-  if (name6_ == &_default_name6_) {
-    name6_ = new ::std::string;
-  }
-  name6_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name6(const char* value) {
-  _set_bit(6);
-  if (name6_ == &_default_name6_) {
-    name6_ = new ::std::string;
-  }
-  name6_->assign(value);
-}
-inline void HangarsUnitsInfo::set_name6(const char* value, size_t size) {
-  _set_bit(6);
-  if (name6_ == &_default_name6_) {
-    name6_ = new ::std::string;
-  }
-  name6_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* HangarsUnitsInfo::mutable_name6() {
-  _set_bit(6);
-  if (name6_ == &_default_name6_) {
-    name6_ = new ::std::string;
-  }
-  return name6_;
-}
-
-// optional int32 value1 = 8;
-inline bool HangarsUnitsInfo::has_value1() const {
-  return _has_bit(7);
-}
-inline void HangarsUnitsInfo::clear_value1() {
-  value1_ = 0;
-  _clear_bit(7);
-}
-inline ::google::protobuf::int32 HangarsUnitsInfo::value1() const {
-  return value1_;
-}
-inline void HangarsUnitsInfo::set_value1(::google::protobuf::int32 value) {
-  _set_bit(7);
-  value1_ = value;
-}
-
-// optional int32 value2 = 9;
-inline bool HangarsUnitsInfo::has_value2() const {
-  return _has_bit(8);
-}
-inline void HangarsUnitsInfo::clear_value2() {
-  value2_ = 0;
-  _clear_bit(8);
-}
-inline ::google::protobuf::int32 HangarsUnitsInfo::value2() const {
-  return value2_;
-}
-inline void HangarsUnitsInfo::set_value2(::google::protobuf::int32 value) {
-  _set_bit(8);
-  value2_ = value;
-}
-
-// optional int32 value3 = 10;
-inline bool HangarsUnitsInfo::has_value3() const {
-  return _has_bit(9);
-}
-inline void HangarsUnitsInfo::clear_value3() {
-  value3_ = 0;
-  _clear_bit(9);
-}
-inline ::google::protobuf::int32 HangarsUnitsInfo::value3() const {
-  return value3_;
-}
-inline void HangarsUnitsInfo::set_value3(::google::protobuf::int32 value) {
-  _set_bit(9);
-  value3_ = value;
-}
-
-// optional int32 value4 = 11;
-inline bool HangarsUnitsInfo::has_value4() const {
-  return _has_bit(10);
-}
-inline void HangarsUnitsInfo::clear_value4() {
-  value4_ = 0;
-  _clear_bit(10);
-}
-inline ::google::protobuf::int32 HangarsUnitsInfo::value4() const {
-  return value4_;
-}
-inline void HangarsUnitsInfo::set_value4(::google::protobuf::int32 value) {
-  _set_bit(10);
-  value4_ = value;
-}
-
-// optional int32 value5 = 12;
-inline bool HangarsUnitsInfo::has_value5() const {
-  return _has_bit(11);
-}
-inline void HangarsUnitsInfo::clear_value5() {
-  value5_ = 0;
-  _clear_bit(11);
-}
-inline ::google::protobuf::int32 HangarsUnitsInfo::value5() const {
-  return value5_;
-}
-inline void HangarsUnitsInfo::set_value5(::google::protobuf::int32 value) {
-  _set_bit(11);
-  value5_ = value;
-}
-
-// optional int32 value6 = 13;
-inline bool HangarsUnitsInfo::has_value6() const {
-  return _has_bit(12);
-}
-inline void HangarsUnitsInfo::clear_value6() {
-  value6_ = 0;
-  _clear_bit(12);
-}
-inline ::google::protobuf::int32 HangarsUnitsInfo::value6() const {
-  return value6_;
-}
-inline void HangarsUnitsInfo::set_value6(::google::protobuf::int32 value) {
-  _set_bit(12);
-  value6_ = value;
+  num_ = value;
 }
 
 

@@ -29,7 +29,6 @@ void protobuf_AssignDesc_RceQueryStarInfo_2eproto();
 void protobuf_ShutdownFile_RceQueryStarInfo_2eproto();
 
 class RceQueryStarInfo;
-class Coords;
 
 // ===================================================================
 
@@ -86,41 +85,10 @@ class RceQueryStarInfo : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 coordY = 1;
-  inline bool has_coordy() const;
-  inline void clear_coordy();
-  static const int kCoordYFieldNumber = 1;
-  inline ::google::protobuf::int32 coordy() const;
-  inline void set_coordy(::google::protobuf::int32 value);
-  
-  // optional string planetId = 2;
-  inline bool has_planetid() const;
-  inline void clear_planetid();
-  static const int kPlanetIdFieldNumber = 2;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
-  
-  // optional .Coords coords = 3;
-  inline bool has_coords() const;
-  inline void clear_coords();
-  static const int kCoordsFieldNumber = 3;
-  inline const ::Coords& coords() const;
-  inline ::Coords* mutable_coords();
-  
-  // optional int32 coordX = 4;
-  inline bool has_coordx() const;
-  inline void clear_coordx();
-  static const int kCoordXFieldNumber = 4;
-  inline ::google::protobuf::int32 coordx() const;
-  inline void set_coordx(::google::protobuf::int32 value);
-  
-  // optional int32 starId = 5;
+  // optional int32 starId = 1;
   inline bool has_starid() const;
   inline void clear_starid();
-  static const int kStarIdFieldNumber = 5;
+  static const int kStarIdFieldNumber = 1;
   inline ::google::protobuf::int32 starid() const;
   inline void set_starid(::google::protobuf::int32 value);
   
@@ -128,17 +96,12 @@ class RceQueryStarInfo : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 coordy_;
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
-  ::Coords* coords_;
-  ::google::protobuf::int32 coordx_;
   ::google::protobuf::int32 starid_;
   friend void  protobuf_AddDesc_RceQueryStarInfo_2eproto();
   friend void protobuf_AssignDesc_RceQueryStarInfo_2eproto();
   friend void protobuf_ShutdownFile_RceQueryStarInfo_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -154,109 +117,6 @@ class RceQueryStarInfo : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static RceQueryStarInfo* default_instance_;
 };
-// -------------------------------------------------------------------
-
-class Coords : public ::google::protobuf::Message {
- public:
-  Coords();
-  virtual ~Coords();
-  
-  Coords(const Coords& from);
-  
-  inline Coords& operator=(const Coords& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Coords& default_instance();
-  void Swap(Coords* other);
-  
-  // implements Message ----------------------------------------------
-  
-  Coords* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Coords& from);
-  void MergeFrom(const Coords& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // optional int32 x = 1;
-  inline bool has_x() const;
-  inline void clear_x();
-  static const int kXFieldNumber = 1;
-  inline ::google::protobuf::int32 x() const;
-  inline void set_x(::google::protobuf::int32 value);
-  
-  // optional int32 z = 2;
-  inline bool has_z() const;
-  inline void clear_z();
-  static const int kZFieldNumber = 2;
-  inline ::google::protobuf::int32 z() const;
-  inline void set_z(::google::protobuf::int32 value);
-  
-  // optional int32 y = 3;
-  inline bool has_y() const;
-  inline void clear_y();
-  static const int kYFieldNumber = 3;
-  inline ::google::protobuf::int32 y() const;
-  inline void set_y(::google::protobuf::int32 value);
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::google::protobuf::int32 x_;
-  ::google::protobuf::int32 z_;
-  ::google::protobuf::int32 y_;
-  friend void  protobuf_AddDesc_RceQueryStarInfo_2eproto();
-  friend void protobuf_AssignDesc_RceQueryStarInfo_2eproto();
-  friend void protobuf_ShutdownFile_RceQueryStarInfo_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static Coords* default_instance_;
-};
 // ===================================================================
 
 
@@ -267,163 +127,20 @@ class Coords : public ::google::protobuf::Message {
 
 // RceQueryStarInfo
 
-// optional int32 coordY = 1;
-inline bool RceQueryStarInfo::has_coordy() const {
-  return _has_bit(0);
-}
-inline void RceQueryStarInfo::clear_coordy() {
-  coordy_ = 0;
-  _clear_bit(0);
-}
-inline ::google::protobuf::int32 RceQueryStarInfo::coordy() const {
-  return coordy_;
-}
-inline void RceQueryStarInfo::set_coordy(::google::protobuf::int32 value) {
-  _set_bit(0);
-  coordy_ = value;
-}
-
-// optional string planetId = 2;
-inline bool RceQueryStarInfo::has_planetid() const {
-  return _has_bit(1);
-}
-inline void RceQueryStarInfo::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
-  _clear_bit(1);
-}
-inline const ::std::string& RceQueryStarInfo::planetid() const {
-  return *planetid_;
-}
-inline void RceQueryStarInfo::set_planetid(const ::std::string& value) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryStarInfo::set_planetid(const char* value) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryStarInfo::set_planetid(const char* value, size_t size) {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceQueryStarInfo::mutable_planetid() {
-  _set_bit(1);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  return planetid_;
-}
-
-// optional .Coords coords = 3;
-inline bool RceQueryStarInfo::has_coords() const {
-  return _has_bit(2);
-}
-inline void RceQueryStarInfo::clear_coords() {
-  if (coords_ != NULL) coords_->::Coords::Clear();
-  _clear_bit(2);
-}
-inline const ::Coords& RceQueryStarInfo::coords() const {
-  return coords_ != NULL ? *coords_ : *default_instance_->coords_;
-}
-inline ::Coords* RceQueryStarInfo::mutable_coords() {
-  _set_bit(2);
-  if (coords_ == NULL) coords_ = new ::Coords;
-  return coords_;
-}
-
-// optional int32 coordX = 4;
-inline bool RceQueryStarInfo::has_coordx() const {
-  return _has_bit(3);
-}
-inline void RceQueryStarInfo::clear_coordx() {
-  coordx_ = 0;
-  _clear_bit(3);
-}
-inline ::google::protobuf::int32 RceQueryStarInfo::coordx() const {
-  return coordx_;
-}
-inline void RceQueryStarInfo::set_coordx(::google::protobuf::int32 value) {
-  _set_bit(3);
-  coordx_ = value;
-}
-
-// optional int32 starId = 5;
+// optional int32 starId = 1;
 inline bool RceQueryStarInfo::has_starid() const {
-  return _has_bit(4);
+  return _has_bit(0);
 }
 inline void RceQueryStarInfo::clear_starid() {
   starid_ = 0;
-  _clear_bit(4);
+  _clear_bit(0);
 }
 inline ::google::protobuf::int32 RceQueryStarInfo::starid() const {
   return starid_;
 }
 inline void RceQueryStarInfo::set_starid(::google::protobuf::int32 value) {
-  _set_bit(4);
-  starid_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// Coords
-
-// optional int32 x = 1;
-inline bool Coords::has_x() const {
-  return _has_bit(0);
-}
-inline void Coords::clear_x() {
-  x_ = 0;
-  _clear_bit(0);
-}
-inline ::google::protobuf::int32 Coords::x() const {
-  return x_;
-}
-inline void Coords::set_x(::google::protobuf::int32 value) {
   _set_bit(0);
-  x_ = value;
-}
-
-// optional int32 z = 2;
-inline bool Coords::has_z() const {
-  return _has_bit(1);
-}
-inline void Coords::clear_z() {
-  z_ = 0;
-  _clear_bit(1);
-}
-inline ::google::protobuf::int32 Coords::z() const {
-  return z_;
-}
-inline void Coords::set_z(::google::protobuf::int32 value) {
-  _set_bit(1);
-  z_ = value;
-}
-
-// optional int32 y = 3;
-inline bool Coords::has_y() const {
-  return _has_bit(2);
-}
-inline void Coords::clear_y() {
-  y_ = 0;
-  _clear_bit(2);
-}
-inline ::google::protobuf::int32 Coords::y() const {
-  return y_;
-}
-inline void Coords::set_y(::google::protobuf::int32 value) {
-  _set_bit(2);
-  y_ = value;
+  starid_ = value;
 }
 
 

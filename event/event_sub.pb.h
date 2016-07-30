@@ -40,12 +40,18 @@ class WG_UserLeave;
 class GWG_FriendRequest;
 class ForwardInfo;
 class WebGetRegion;
+class GCG_PlanetLite;
+class GCG_City;
 class GCG_CountryNeed;
 class GRG_RegionNeed;
 class GRG_RankNeed;
 class GSG_StatNeed;
 class HttpAskMsg;
 class HttpAnswerMsg;
+class NewStar_Req;
+class NewStar_Rsp;
+class GWG_BattleItemEnergy;
+class GWG_Battle;
 
 // ===================================================================
 
@@ -1740,6 +1746,227 @@ class WebGetRegion : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class GCG_PlanetLite : public ::google::protobuf::Message {
+ public:
+  GCG_PlanetLite();
+  virtual ~GCG_PlanetLite();
+  
+  GCG_PlanetLite(const GCG_PlanetLite& from);
+  
+  inline GCG_PlanetLite& operator=(const GCG_PlanetLite& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GCG_PlanetLite& default_instance();
+  void Swap(GCG_PlanetLite* other);
+  
+  // implements Message ----------------------------------------------
+  
+  GCG_PlanetLite* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GCG_PlanetLite& from);
+  void MergeFrom(const GCG_PlanetLite& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int64 uid = 1;
+  inline bool has_uid() const;
+  inline void clear_uid();
+  static const int kUidFieldNumber = 1;
+  inline ::google::protobuf::int64 uid() const;
+  inline void set_uid(::google::protobuf::int64 value);
+  
+  // optional int32 planetId = 2;
+  inline bool has_planetid() const;
+  inline void clear_planetid();
+  static const int kPlanetIdFieldNumber = 2;
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int64 uid_;
+  ::google::protobuf::int32 planetid_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static GCG_PlanetLite* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class GCG_City : public ::google::protobuf::Message {
+ public:
+  GCG_City();
+  virtual ~GCG_City();
+  
+  GCG_City(const GCG_City& from);
+  
+  inline GCG_City& operator=(const GCG_City& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GCG_City& default_instance();
+  void Swap(GCG_City* other);
+  
+  // implements Message ----------------------------------------------
+  
+  GCG_City* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GCG_City& from);
+  void MergeFrom(const GCG_City& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required int32 cityID = 1;
+  inline bool has_cityid() const;
+  inline void clear_cityid();
+  static const int kCityIDFieldNumber = 1;
+  inline ::google::protobuf::int32 cityid() const;
+  inline void set_cityid(::google::protobuf::int32 value);
+  
+  // optional int32 x = 2;
+  inline bool has_x() const;
+  inline void clear_x();
+  static const int kXFieldNumber = 2;
+  inline ::google::protobuf::int32 x() const;
+  inline void set_x(::google::protobuf::int32 value);
+  
+  // optional int32 y = 3;
+  inline bool has_y() const;
+  inline void clear_y();
+  static const int kYFieldNumber = 3;
+  inline ::google::protobuf::int32 y() const;
+  inline void set_y(::google::protobuf::int32 value);
+  
+  // optional string name = 4;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 4;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // repeated .GCG_PlanetLite planets = 5;
+  inline int planets_size() const;
+  inline void clear_planets();
+  static const int kPlanetsFieldNumber = 5;
+  inline const ::google::protobuf::RepeatedPtrField< ::GCG_PlanetLite >& planets() const;
+  inline ::google::protobuf::RepeatedPtrField< ::GCG_PlanetLite >* mutable_planets();
+  inline const ::GCG_PlanetLite& planets(int index) const;
+  inline ::GCG_PlanetLite* mutable_planets(int index);
+  inline ::GCG_PlanetLite* add_planets();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 cityid_;
+  ::google::protobuf::int32 x_;
+  ::google::protobuf::int32 y_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::google::protobuf::RepeatedPtrField< ::GCG_PlanetLite > planets_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static GCG_City* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class GCG_CountryNeed : public ::google::protobuf::Message {
  public:
   GCG_CountryNeed();
@@ -2451,6 +2678,453 @@ class HttpAnswerMsg : public ::google::protobuf::Message {
   
   void InitAsDefaultInstance();
   static HttpAnswerMsg* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class NewStar_Req : public ::google::protobuf::Message {
+ public:
+  NewStar_Req();
+  virtual ~NewStar_Req();
+  
+  NewStar_Req(const NewStar_Req& from);
+  
+  inline NewStar_Req& operator=(const NewStar_Req& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const NewStar_Req& default_instance();
+  void Swap(NewStar_Req* other);
+  
+  // implements Message ----------------------------------------------
+  
+  NewStar_Req* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const NewStar_Req& from);
+  void MergeFrom(const NewStar_Req& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string name = 1;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 1;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string url = 2;
+  inline bool has_url() const;
+  inline void clear_url();
+  static const int kUrlFieldNumber = 2;
+  inline const ::std::string& url() const;
+  inline void set_url(const ::std::string& value);
+  inline void set_url(const char* value);
+  inline void set_url(const char* value, size_t size);
+  inline ::std::string* mutable_url();
+  
+  // optional int32 planetId = 3;
+  inline bool has_planetid() const;
+  inline void clear_planetid();
+  static const int kPlanetIdFieldNumber = 3;
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
+  
+  // optional int64 accountId = 4;
+  inline bool has_accountid() const;
+  inline void clear_accountid();
+  static const int kAccountIdFieldNumber = 4;
+  inline ::google::protobuf::int64 accountid() const;
+  inline void set_accountid(::google::protobuf::int64 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* url_;
+  static const ::std::string _default_url_;
+  ::google::protobuf::int32 planetid_;
+  ::google::protobuf::int64 accountid_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static NewStar_Req* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class NewStar_Rsp : public ::google::protobuf::Message {
+ public:
+  NewStar_Rsp();
+  virtual ~NewStar_Rsp();
+  
+  NewStar_Rsp(const NewStar_Rsp& from);
+  
+  inline NewStar_Rsp& operator=(const NewStar_Rsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const NewStar_Rsp& default_instance();
+  void Swap(NewStar_Rsp* other);
+  
+  // implements Message ----------------------------------------------
+  
+  NewStar_Rsp* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const NewStar_Rsp& from);
+  void MergeFrom(const NewStar_Rsp& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
+  
+  // optional string sku = 2;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 2;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 type = 3;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 3;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional int32 name = 4;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 4;
+  inline ::google::protobuf::int32 name() const;
+  inline void set_name(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 id_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 name_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static NewStar_Rsp* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class GWG_BattleItemEnergy : public ::google::protobuf::Message {
+ public:
+  GWG_BattleItemEnergy();
+  virtual ~GWG_BattleItemEnergy();
+  
+  GWG_BattleItemEnergy(const GWG_BattleItemEnergy& from);
+  
+  inline GWG_BattleItemEnergy& operator=(const GWG_BattleItemEnergy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GWG_BattleItemEnergy& default_instance();
+  void Swap(GWG_BattleItemEnergy* other);
+  
+  // implements Message ----------------------------------------------
+  
+  GWG_BattleItemEnergy* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GWG_BattleItemEnergy& from);
+  void MergeFrom(const GWG_BattleItemEnergy& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 sid = 1;
+  inline bool has_sid() const;
+  inline void clear_sid();
+  static const int kSidFieldNumber = 1;
+  inline ::google::protobuf::int32 sid() const;
+  inline void set_sid(::google::protobuf::int32 value);
+  
+  // optional string sku = 2;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 2;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 num = 3;
+  inline bool has_num() const;
+  inline void clear_num();
+  static const int kNumFieldNumber = 3;
+  inline ::google::protobuf::int32 num() const;
+  inline void set_num(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 sid_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 num_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static GWG_BattleItemEnergy* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class GWG_Battle : public ::google::protobuf::Message {
+ public:
+  GWG_Battle();
+  virtual ~GWG_Battle();
+  
+  GWG_Battle(const GWG_Battle& from);
+  
+  inline GWG_Battle& operator=(const GWG_Battle& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const GWG_Battle& default_instance();
+  void Swap(GWG_Battle* other);
+  
+  // implements Message ----------------------------------------------
+  
+  GWG_Battle* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const GWG_Battle& from);
+  void MergeFrom(const GWG_Battle& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 coins = 1;
+  inline bool has_coins() const;
+  inline void clear_coins();
+  static const int kCoinsFieldNumber = 1;
+  inline ::google::protobuf::int32 coins() const;
+  inline void set_coins(::google::protobuf::int32 value);
+  
+  // optional int32 minerals = 2;
+  inline bool has_minerals() const;
+  inline void clear_minerals();
+  static const int kMineralsFieldNumber = 2;
+  inline ::google::protobuf::int32 minerals() const;
+  inline void set_minerals(::google::protobuf::int32 value);
+  
+  // repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
+  inline int battleitemenergy_size() const;
+  inline void clear_battleitemenergy();
+  static const int kBattleItemEnergyFieldNumber = 3;
+  inline const ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >& battleitemenergy() const;
+  inline ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >* mutable_battleitemenergy();
+  inline const ::GWG_BattleItemEnergy& battleitemenergy(int index) const;
+  inline ::GWG_BattleItemEnergy* mutable_battleitemenergy(int index);
+  inline ::GWG_BattleItemEnergy* add_battleitemenergy();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 coins_;
+  ::google::protobuf::int32 minerals_;
+  ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy > battleitemenergy_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static GWG_Battle* default_instance_;
 };
 // ===================================================================
 
@@ -4550,6 +5224,161 @@ inline ::std::string* WebGetRegion::mutable_sid() {
 
 // -------------------------------------------------------------------
 
+// GCG_PlanetLite
+
+// optional int64 uid = 1;
+inline bool GCG_PlanetLite::has_uid() const {
+  return _has_bit(0);
+}
+inline void GCG_PlanetLite::clear_uid() {
+  uid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(0);
+}
+inline ::google::protobuf::int64 GCG_PlanetLite::uid() const {
+  return uid_;
+}
+inline void GCG_PlanetLite::set_uid(::google::protobuf::int64 value) {
+  _set_bit(0);
+  uid_ = value;
+}
+
+// optional int32 planetId = 2;
+inline bool GCG_PlanetLite::has_planetid() const {
+  return _has_bit(1);
+}
+inline void GCG_PlanetLite::clear_planetid() {
+  planetid_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 GCG_PlanetLite::planetid() const {
+  return planetid_;
+}
+inline void GCG_PlanetLite::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(1);
+  planetid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GCG_City
+
+// required int32 cityID = 1;
+inline bool GCG_City::has_cityid() const {
+  return _has_bit(0);
+}
+inline void GCG_City::clear_cityid() {
+  cityid_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 GCG_City::cityid() const {
+  return cityid_;
+}
+inline void GCG_City::set_cityid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  cityid_ = value;
+}
+
+// optional int32 x = 2;
+inline bool GCG_City::has_x() const {
+  return _has_bit(1);
+}
+inline void GCG_City::clear_x() {
+  x_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 GCG_City::x() const {
+  return x_;
+}
+inline void GCG_City::set_x(::google::protobuf::int32 value) {
+  _set_bit(1);
+  x_ = value;
+}
+
+// optional int32 y = 3;
+inline bool GCG_City::has_y() const {
+  return _has_bit(2);
+}
+inline void GCG_City::clear_y() {
+  y_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 GCG_City::y() const {
+  return y_;
+}
+inline void GCG_City::set_y(::google::protobuf::int32 value) {
+  _set_bit(2);
+  y_ = value;
+}
+
+// optional string name = 4;
+inline bool GCG_City::has_name() const {
+  return _has_bit(3);
+}
+inline void GCG_City::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(3);
+}
+inline const ::std::string& GCG_City::name() const {
+  return *name_;
+}
+inline void GCG_City::set_name(const ::std::string& value) {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void GCG_City::set_name(const char* value) {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void GCG_City::set_name(const char* value, size_t size) {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GCG_City::mutable_name() {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// repeated .GCG_PlanetLite planets = 5;
+inline int GCG_City::planets_size() const {
+  return planets_.size();
+}
+inline void GCG_City::clear_planets() {
+  planets_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::GCG_PlanetLite >&
+GCG_City::planets() const {
+  return planets_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::GCG_PlanetLite >*
+GCG_City::mutable_planets() {
+  return &planets_;
+}
+inline const ::GCG_PlanetLite& GCG_City::planets(int index) const {
+  return planets_.Get(index);
+}
+inline ::GCG_PlanetLite* GCG_City::mutable_planets(int index) {
+  return planets_.Mutable(index);
+}
+inline ::GCG_PlanetLite* GCG_City::add_planets() {
+  return planets_.Add();
+}
+
+// -------------------------------------------------------------------
+
 // GCG_CountryNeed
 
 // optional int32 countrySrvID = 1;
@@ -5122,6 +5951,359 @@ inline ::std::string* HttpAnswerMsg::mutable_szanswer() {
     szanswer_ = new ::std::string;
   }
   return szanswer_;
+}
+
+// -------------------------------------------------------------------
+
+// NewStar_Req
+
+// optional string name = 1;
+inline bool NewStar_Req::has_name() const {
+  return _has_bit(0);
+}
+inline void NewStar_Req::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& NewStar_Req::name() const {
+  return *name_;
+}
+inline void NewStar_Req::set_name(const ::std::string& value) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void NewStar_Req::set_name(const char* value) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void NewStar_Req::set_name(const char* value, size_t size) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* NewStar_Req::mutable_name() {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string url = 2;
+inline bool NewStar_Req::has_url() const {
+  return _has_bit(1);
+}
+inline void NewStar_Req::clear_url() {
+  if (url_ != &_default_url_) {
+    url_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& NewStar_Req::url() const {
+  return *url_;
+}
+inline void NewStar_Req::set_url(const ::std::string& value) {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void NewStar_Req::set_url(const char* value) {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void NewStar_Req::set_url(const char* value, size_t size) {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* NewStar_Req::mutable_url() {
+  _set_bit(1);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  return url_;
+}
+
+// optional int32 planetId = 3;
+inline bool NewStar_Req::has_planetid() const {
+  return _has_bit(2);
+}
+inline void NewStar_Req::clear_planetid() {
+  planetid_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 NewStar_Req::planetid() const {
+  return planetid_;
+}
+inline void NewStar_Req::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(2);
+  planetid_ = value;
+}
+
+// optional int64 accountId = 4;
+inline bool NewStar_Req::has_accountid() const {
+  return _has_bit(3);
+}
+inline void NewStar_Req::clear_accountid() {
+  accountid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(3);
+}
+inline ::google::protobuf::int64 NewStar_Req::accountid() const {
+  return accountid_;
+}
+inline void NewStar_Req::set_accountid(::google::protobuf::int64 value) {
+  _set_bit(3);
+  accountid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// NewStar_Rsp
+
+// optional int32 id = 1;
+inline bool NewStar_Rsp::has_id() const {
+  return _has_bit(0);
+}
+inline void NewStar_Rsp::clear_id() {
+  id_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 NewStar_Rsp::id() const {
+  return id_;
+}
+inline void NewStar_Rsp::set_id(::google::protobuf::int32 value) {
+  _set_bit(0);
+  id_ = value;
+}
+
+// optional string sku = 2;
+inline bool NewStar_Rsp::has_sku() const {
+  return _has_bit(1);
+}
+inline void NewStar_Rsp::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& NewStar_Rsp::sku() const {
+  return *sku_;
+}
+inline void NewStar_Rsp::set_sku(const ::std::string& value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void NewStar_Rsp::set_sku(const char* value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void NewStar_Rsp::set_sku(const char* value, size_t size) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* NewStar_Rsp::mutable_sku() {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 type = 3;
+inline bool NewStar_Rsp::has_type() const {
+  return _has_bit(2);
+}
+inline void NewStar_Rsp::clear_type() {
+  type_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 NewStar_Rsp::type() const {
+  return type_;
+}
+inline void NewStar_Rsp::set_type(::google::protobuf::int32 value) {
+  _set_bit(2);
+  type_ = value;
+}
+
+// optional int32 name = 4;
+inline bool NewStar_Rsp::has_name() const {
+  return _has_bit(3);
+}
+inline void NewStar_Rsp::clear_name() {
+  name_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 NewStar_Rsp::name() const {
+  return name_;
+}
+inline void NewStar_Rsp::set_name(::google::protobuf::int32 value) {
+  _set_bit(3);
+  name_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GWG_BattleItemEnergy
+
+// optional int32 sid = 1;
+inline bool GWG_BattleItemEnergy::has_sid() const {
+  return _has_bit(0);
+}
+inline void GWG_BattleItemEnergy::clear_sid() {
+  sid_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 GWG_BattleItemEnergy::sid() const {
+  return sid_;
+}
+inline void GWG_BattleItemEnergy::set_sid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  sid_ = value;
+}
+
+// optional string sku = 2;
+inline bool GWG_BattleItemEnergy::has_sku() const {
+  return _has_bit(1);
+}
+inline void GWG_BattleItemEnergy::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& GWG_BattleItemEnergy::sku() const {
+  return *sku_;
+}
+inline void GWG_BattleItemEnergy::set_sku(const ::std::string& value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void GWG_BattleItemEnergy::set_sku(const char* value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void GWG_BattleItemEnergy::set_sku(const char* value, size_t size) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GWG_BattleItemEnergy::mutable_sku() {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 num = 3;
+inline bool GWG_BattleItemEnergy::has_num() const {
+  return _has_bit(2);
+}
+inline void GWG_BattleItemEnergy::clear_num() {
+  num_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 GWG_BattleItemEnergy::num() const {
+  return num_;
+}
+inline void GWG_BattleItemEnergy::set_num(::google::protobuf::int32 value) {
+  _set_bit(2);
+  num_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// GWG_Battle
+
+// optional int32 coins = 1;
+inline bool GWG_Battle::has_coins() const {
+  return _has_bit(0);
+}
+inline void GWG_Battle::clear_coins() {
+  coins_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 GWG_Battle::coins() const {
+  return coins_;
+}
+inline void GWG_Battle::set_coins(::google::protobuf::int32 value) {
+  _set_bit(0);
+  coins_ = value;
+}
+
+// optional int32 minerals = 2;
+inline bool GWG_Battle::has_minerals() const {
+  return _has_bit(1);
+}
+inline void GWG_Battle::clear_minerals() {
+  minerals_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 GWG_Battle::minerals() const {
+  return minerals_;
+}
+inline void GWG_Battle::set_minerals(::google::protobuf::int32 value) {
+  _set_bit(1);
+  minerals_ = value;
+}
+
+// repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
+inline int GWG_Battle::battleitemenergy_size() const {
+  return battleitemenergy_.size();
+}
+inline void GWG_Battle::clear_battleitemenergy() {
+  battleitemenergy_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >&
+GWG_Battle::battleitemenergy() const {
+  return battleitemenergy_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >*
+GWG_Battle::mutable_battleitemenergy() {
+  return &battleitemenergy_;
+}
+inline const ::GWG_BattleItemEnergy& GWG_Battle::battleitemenergy(int index) const {
+  return battleitemenergy_.Get(index);
+}
+inline ::GWG_BattleItemEnergy* GWG_Battle::mutable_battleitemenergy(int index) {
+  return battleitemenergy_.Mutable(index);
+}
+inline ::GWG_BattleItemEnergy* GWG_Battle::add_battleitemenergy() {
+  return battleitemenergy_.Add();
 }
 
 

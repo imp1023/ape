@@ -106,6 +106,20 @@ class RseQueryCheckAndLockAccountIfPossible : public ::google::protobuf::Message
   inline ::google::protobuf::int32 locksuccess() const;
   inline void set_locksuccess(::google::protobuf::int32 value);
   
+  // optional int32 lockType = 4;
+  inline bool has_locktype() const;
+  inline void clear_locktype();
+  static const int kLockTypeFieldNumber = 4;
+  inline ::google::protobuf::int32 locktype() const;
+  inline void set_locktype(::google::protobuf::int32 value);
+  
+  // optional int32 unlockTimeLeft = 5;
+  inline bool has_unlocktimeleft() const;
+  inline void clear_unlocktimeleft();
+  static const int kUnlockTimeLeftFieldNumber = 5;
+  inline ::google::protobuf::int32 unlocktimeleft() const;
+  inline void set_unlocktimeleft(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -113,11 +127,13 @@ class RseQueryCheckAndLockAccountIfPossible : public ::google::protobuf::Message
   ::google::protobuf::int32 lockrequested_;
   ::google::protobuf::int32 lockapplied_;
   ::google::protobuf::int32 locksuccess_;
+  ::google::protobuf::int32 locktype_;
+  ::google::protobuf::int32 unlocktimeleft_;
   friend void  protobuf_AddDesc_RseQueryCheckAndLockAccountIfPossible_2eproto();
   friend void protobuf_AssignDesc_RseQueryCheckAndLockAccountIfPossible_2eproto();
   friend void protobuf_ShutdownFile_RseQueryCheckAndLockAccountIfPossible_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -189,6 +205,38 @@ inline ::google::protobuf::int32 RseQueryCheckAndLockAccountIfPossible::locksucc
 inline void RseQueryCheckAndLockAccountIfPossible::set_locksuccess(::google::protobuf::int32 value) {
   _set_bit(2);
   locksuccess_ = value;
+}
+
+// optional int32 lockType = 4;
+inline bool RseQueryCheckAndLockAccountIfPossible::has_locktype() const {
+  return _has_bit(3);
+}
+inline void RseQueryCheckAndLockAccountIfPossible::clear_locktype() {
+  locktype_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 RseQueryCheckAndLockAccountIfPossible::locktype() const {
+  return locktype_;
+}
+inline void RseQueryCheckAndLockAccountIfPossible::set_locktype(::google::protobuf::int32 value) {
+  _set_bit(3);
+  locktype_ = value;
+}
+
+// optional int32 unlockTimeLeft = 5;
+inline bool RseQueryCheckAndLockAccountIfPossible::has_unlocktimeleft() const {
+  return _has_bit(4);
+}
+inline void RseQueryCheckAndLockAccountIfPossible::clear_unlocktimeleft() {
+  unlocktimeleft_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 RseQueryCheckAndLockAccountIfPossible::unlocktimeleft() const {
+  return unlocktimeleft_;
+}
+inline void RseQueryCheckAndLockAccountIfPossible::set_unlocktimeleft(::google::protobuf::int32 value) {
+  _set_bit(4);
+  unlocktimeleft_ = value;
 }
 
 

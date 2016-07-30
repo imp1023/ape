@@ -176,23 +176,51 @@ class Bookmarks : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 ret = 1;
-  inline bool has_ret() const;
-  inline void clear_ret();
-  static const int kRetFieldNumber = 1;
-  inline ::google::protobuf::int32 ret() const;
-  inline void set_ret(::google::protobuf::int32 value);
+  // optional int32 starName = 1;
+  inline bool has_starname() const;
+  inline void clear_starname();
+  static const int kStarNameFieldNumber = 1;
+  inline ::google::protobuf::int32 starname() const;
+  inline void set_starname(::google::protobuf::int32 value);
+  
+  // optional string sku = 2;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 2;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 starType = 3;
+  inline bool has_startype() const;
+  inline void clear_startype();
+  static const int kStarTypeFieldNumber = 3;
+  inline ::google::protobuf::int32 startype() const;
+  inline void set_startype(::google::protobuf::int32 value);
+  
+  // optional int32 starId = 4;
+  inline bool has_starid() const;
+  inline void clear_starid();
+  static const int kStarIdFieldNumber = 4;
+  inline ::google::protobuf::int32 starid() const;
+  inline void set_starid(::google::protobuf::int32 value);
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 ret_;
+  ::google::protobuf::int32 starname_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 startype_;
+  ::google::protobuf::int32 starid_;
   friend void  protobuf_AddDesc_RseQueryStarsBookmarks_2eproto();
   friend void protobuf_AssignDesc_RseQueryStarsBookmarks_2eproto();
   friend void protobuf_ShutdownFile_RseQueryStarsBookmarks_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -247,20 +275,94 @@ inline ::Bookmarks* RseQueryStarsBookmarks::add_bookmarks() {
 
 // Bookmarks
 
-// optional int32 ret = 1;
-inline bool Bookmarks::has_ret() const {
+// optional int32 starName = 1;
+inline bool Bookmarks::has_starname() const {
   return _has_bit(0);
 }
-inline void Bookmarks::clear_ret() {
-  ret_ = 0;
+inline void Bookmarks::clear_starname() {
+  starname_ = 0;
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 Bookmarks::ret() const {
-  return ret_;
+inline ::google::protobuf::int32 Bookmarks::starname() const {
+  return starname_;
 }
-inline void Bookmarks::set_ret(::google::protobuf::int32 value) {
+inline void Bookmarks::set_starname(::google::protobuf::int32 value) {
   _set_bit(0);
-  ret_ = value;
+  starname_ = value;
+}
+
+// optional string sku = 2;
+inline bool Bookmarks::has_sku() const {
+  return _has_bit(1);
+}
+inline void Bookmarks::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& Bookmarks::sku() const {
+  return *sku_;
+}
+inline void Bookmarks::set_sku(const ::std::string& value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void Bookmarks::set_sku(const char* value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void Bookmarks::set_sku(const char* value, size_t size) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Bookmarks::mutable_sku() {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 starType = 3;
+inline bool Bookmarks::has_startype() const {
+  return _has_bit(2);
+}
+inline void Bookmarks::clear_startype() {
+  startype_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 Bookmarks::startype() const {
+  return startype_;
+}
+inline void Bookmarks::set_startype(::google::protobuf::int32 value) {
+  _set_bit(2);
+  startype_ = value;
+}
+
+// optional int32 starId = 4;
+inline bool Bookmarks::has_starid() const {
+  return _has_bit(3);
+}
+inline void Bookmarks::clear_starid() {
+  starid_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 Bookmarks::starid() const {
+  return starid_;
+}
+inline void Bookmarks::set_starid(::google::protobuf::int32 value) {
+  _set_bit(3);
+  starid_ = value;
 }
 
 

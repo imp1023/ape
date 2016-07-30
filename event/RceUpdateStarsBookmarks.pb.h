@@ -85,15 +85,12 @@ class RceUpdateStarsBookmarks : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional string planetId = 1;
+  // optional int32 planetId = 1;
   inline bool has_planetid() const;
   inline void clear_planetid();
   static const int kPlanetIdFieldNumber = 1;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
   
   // optional int32 coordX = 2;
   inline bool has_coordx() const;
@@ -102,54 +99,38 @@ class RceUpdateStarsBookmarks : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 coordx() const;
   inline void set_coordx(::google::protobuf::int32 value);
   
-  // optional string starName = 3;
+  // optional int32 starName = 3;
   inline bool has_starname() const;
   inline void clear_starname();
   static const int kStarNameFieldNumber = 3;
-  inline const ::std::string& starname() const;
-  inline void set_starname(const ::std::string& value);
-  inline void set_starname(const char* value);
-  inline void set_starname(const char* value, size_t size);
-  inline ::std::string* mutable_starname();
+  inline ::google::protobuf::int32 starname() const;
+  inline void set_starname(::google::protobuf::int32 value);
   
-  // optional string starNameUserGenerated = 4;
-  inline bool has_starnameusergenerated() const;
-  inline void clear_starnameusergenerated();
-  static const int kStarNameUserGeneratedFieldNumber = 4;
-  inline const ::std::string& starnameusergenerated() const;
-  inline void set_starnameusergenerated(const ::std::string& value);
-  inline void set_starnameusergenerated(const char* value);
-  inline void set_starnameusergenerated(const char* value, size_t size);
-  inline ::std::string* mutable_starnameusergenerated();
-  
-  // optional int32 coordY = 5;
+  // optional int32 coordY = 4;
   inline bool has_coordy() const;
   inline void clear_coordy();
-  static const int kCoordYFieldNumber = 5;
+  static const int kCoordYFieldNumber = 4;
   inline ::google::protobuf::int32 coordy() const;
   inline void set_coordy(::google::protobuf::int32 value);
   
-  // optional string starType = 6;
+  // optional int32 starType = 5;
   inline bool has_startype() const;
   inline void clear_startype();
-  static const int kStarTypeFieldNumber = 6;
-  inline const ::std::string& startype() const;
-  inline void set_startype(const ::std::string& value);
-  inline void set_startype(const char* value);
-  inline void set_startype(const char* value, size_t size);
-  inline ::std::string* mutable_startype();
+  static const int kStarTypeFieldNumber = 5;
+  inline ::google::protobuf::int32 startype() const;
+  inline void set_startype(::google::protobuf::int32 value);
   
-  // optional int32 starId = 7;
+  // optional int32 starId = 6;
   inline bool has_starid() const;
   inline void clear_starid();
-  static const int kStarIdFieldNumber = 7;
+  static const int kStarIdFieldNumber = 6;
   inline ::google::protobuf::int32 starid() const;
   inline void set_starid(::google::protobuf::int32 value);
   
-  // optional string action = 8;
+  // optional string action = 7;
   inline bool has_action() const;
   inline void clear_action();
-  static const int kActionFieldNumber = 8;
+  static const int kActionFieldNumber = 7;
   inline const ::std::string& action() const;
   inline void set_action(const ::std::string& value);
   inline void set_action(const char* value);
@@ -160,16 +141,11 @@ class RceUpdateStarsBookmarks : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
+  ::google::protobuf::int32 planetid_;
   ::google::protobuf::int32 coordx_;
-  ::std::string* starname_;
-  static const ::std::string _default_starname_;
-  ::std::string* starnameusergenerated_;
-  static const ::std::string _default_starnameusergenerated_;
+  ::google::protobuf::int32 starname_;
   ::google::protobuf::int32 coordy_;
-  ::std::string* startype_;
-  static const ::std::string _default_startype_;
+  ::google::protobuf::int32 startype_;
   ::google::protobuf::int32 starid_;
   ::std::string* action_;
   static const ::std::string _default_action_;
@@ -177,7 +153,7 @@ class RceUpdateStarsBookmarks : public ::google::protobuf::Message {
   friend void protobuf_AssignDesc_RceUpdateStarsBookmarks_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateStarsBookmarks_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -203,46 +179,20 @@ class RceUpdateStarsBookmarks : public ::google::protobuf::Message {
 
 // RceUpdateStarsBookmarks
 
-// optional string planetId = 1;
+// optional int32 planetId = 1;
 inline bool RceUpdateStarsBookmarks::has_planetid() const {
   return _has_bit(0);
 }
 inline void RceUpdateStarsBookmarks::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
+  planetid_ = 0;
   _clear_bit(0);
 }
-inline const ::std::string& RceUpdateStarsBookmarks::planetid() const {
-  return *planetid_;
-}
-inline void RceUpdateStarsBookmarks::set_planetid(const ::std::string& value) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_planetid(const char* value) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_planetid(const char* value, size_t size) {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateStarsBookmarks::mutable_planetid() {
-  _set_bit(0);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceUpdateStarsBookmarks::planetid() const {
   return planetid_;
+}
+inline void RceUpdateStarsBookmarks::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  planetid_ = value;
 }
 
 // optional int32 coordX = 2;
@@ -261,200 +211,106 @@ inline void RceUpdateStarsBookmarks::set_coordx(::google::protobuf::int32 value)
   coordx_ = value;
 }
 
-// optional string starName = 3;
+// optional int32 starName = 3;
 inline bool RceUpdateStarsBookmarks::has_starname() const {
   return _has_bit(2);
 }
 inline void RceUpdateStarsBookmarks::clear_starname() {
-  if (starname_ != &_default_starname_) {
-    starname_->clear();
-  }
+  starname_ = 0;
   _clear_bit(2);
 }
-inline const ::std::string& RceUpdateStarsBookmarks::starname() const {
-  return *starname_;
-}
-inline void RceUpdateStarsBookmarks::set_starname(const ::std::string& value) {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_starname(const char* value) {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_starname(const char* value, size_t size) {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateStarsBookmarks::mutable_starname() {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceUpdateStarsBookmarks::starname() const {
   return starname_;
 }
-
-// optional string starNameUserGenerated = 4;
-inline bool RceUpdateStarsBookmarks::has_starnameusergenerated() const {
-  return _has_bit(3);
-}
-inline void RceUpdateStarsBookmarks::clear_starnameusergenerated() {
-  if (starnameusergenerated_ != &_default_starnameusergenerated_) {
-    starnameusergenerated_->clear();
-  }
-  _clear_bit(3);
-}
-inline const ::std::string& RceUpdateStarsBookmarks::starnameusergenerated() const {
-  return *starnameusergenerated_;
-}
-inline void RceUpdateStarsBookmarks::set_starnameusergenerated(const ::std::string& value) {
-  _set_bit(3);
-  if (starnameusergenerated_ == &_default_starnameusergenerated_) {
-    starnameusergenerated_ = new ::std::string;
-  }
-  starnameusergenerated_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_starnameusergenerated(const char* value) {
-  _set_bit(3);
-  if (starnameusergenerated_ == &_default_starnameusergenerated_) {
-    starnameusergenerated_ = new ::std::string;
-  }
-  starnameusergenerated_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_starnameusergenerated(const char* value, size_t size) {
-  _set_bit(3);
-  if (starnameusergenerated_ == &_default_starnameusergenerated_) {
-    starnameusergenerated_ = new ::std::string;
-  }
-  starnameusergenerated_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateStarsBookmarks::mutable_starnameusergenerated() {
-  _set_bit(3);
-  if (starnameusergenerated_ == &_default_starnameusergenerated_) {
-    starnameusergenerated_ = new ::std::string;
-  }
-  return starnameusergenerated_;
+inline void RceUpdateStarsBookmarks::set_starname(::google::protobuf::int32 value) {
+  _set_bit(2);
+  starname_ = value;
 }
 
-// optional int32 coordY = 5;
+// optional int32 coordY = 4;
 inline bool RceUpdateStarsBookmarks::has_coordy() const {
-  return _has_bit(4);
+  return _has_bit(3);
 }
 inline void RceUpdateStarsBookmarks::clear_coordy() {
   coordy_ = 0;
-  _clear_bit(4);
+  _clear_bit(3);
 }
 inline ::google::protobuf::int32 RceUpdateStarsBookmarks::coordy() const {
   return coordy_;
 }
 inline void RceUpdateStarsBookmarks::set_coordy(::google::protobuf::int32 value) {
-  _set_bit(4);
+  _set_bit(3);
   coordy_ = value;
 }
 
-// optional string starType = 6;
+// optional int32 starType = 5;
 inline bool RceUpdateStarsBookmarks::has_startype() const {
-  return _has_bit(5);
+  return _has_bit(4);
 }
 inline void RceUpdateStarsBookmarks::clear_startype() {
-  if (startype_ != &_default_startype_) {
-    startype_->clear();
-  }
-  _clear_bit(5);
+  startype_ = 0;
+  _clear_bit(4);
 }
-inline const ::std::string& RceUpdateStarsBookmarks::startype() const {
-  return *startype_;
-}
-inline void RceUpdateStarsBookmarks::set_startype(const ::std::string& value) {
-  _set_bit(5);
-  if (startype_ == &_default_startype_) {
-    startype_ = new ::std::string;
-  }
-  startype_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_startype(const char* value) {
-  _set_bit(5);
-  if (startype_ == &_default_startype_) {
-    startype_ = new ::std::string;
-  }
-  startype_->assign(value);
-}
-inline void RceUpdateStarsBookmarks::set_startype(const char* value, size_t size) {
-  _set_bit(5);
-  if (startype_ == &_default_startype_) {
-    startype_ = new ::std::string;
-  }
-  startype_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceUpdateStarsBookmarks::mutable_startype() {
-  _set_bit(5);
-  if (startype_ == &_default_startype_) {
-    startype_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 RceUpdateStarsBookmarks::startype() const {
   return startype_;
 }
+inline void RceUpdateStarsBookmarks::set_startype(::google::protobuf::int32 value) {
+  _set_bit(4);
+  startype_ = value;
+}
 
-// optional int32 starId = 7;
+// optional int32 starId = 6;
 inline bool RceUpdateStarsBookmarks::has_starid() const {
-  return _has_bit(6);
+  return _has_bit(5);
 }
 inline void RceUpdateStarsBookmarks::clear_starid() {
   starid_ = 0;
-  _clear_bit(6);
+  _clear_bit(5);
 }
 inline ::google::protobuf::int32 RceUpdateStarsBookmarks::starid() const {
   return starid_;
 }
 inline void RceUpdateStarsBookmarks::set_starid(::google::protobuf::int32 value) {
-  _set_bit(6);
+  _set_bit(5);
   starid_ = value;
 }
 
-// optional string action = 8;
+// optional string action = 7;
 inline bool RceUpdateStarsBookmarks::has_action() const {
-  return _has_bit(7);
+  return _has_bit(6);
 }
 inline void RceUpdateStarsBookmarks::clear_action() {
   if (action_ != &_default_action_) {
     action_->clear();
   }
-  _clear_bit(7);
+  _clear_bit(6);
 }
 inline const ::std::string& RceUpdateStarsBookmarks::action() const {
   return *action_;
 }
 inline void RceUpdateStarsBookmarks::set_action(const ::std::string& value) {
-  _set_bit(7);
+  _set_bit(6);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   action_->assign(value);
 }
 inline void RceUpdateStarsBookmarks::set_action(const char* value) {
-  _set_bit(7);
+  _set_bit(6);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   action_->assign(value);
 }
 inline void RceUpdateStarsBookmarks::set_action(const char* value, size_t size) {
-  _set_bit(7);
+  _set_bit(6);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   action_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* RceUpdateStarsBookmarks::mutable_action() {
-  _set_bit(7);
+  _set_bit(6);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }

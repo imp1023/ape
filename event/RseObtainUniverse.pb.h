@@ -444,12 +444,15 @@ class MsgHangarUnit : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 sku = 1;
+  // optional string sku = 1;
   inline bool has_sku() const;
   inline void clear_sku();
   static const int kSkuFieldNumber = 1;
-  inline ::google::protobuf::int32 sku() const;
-  inline void set_sku(::google::protobuf::int32 value);
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
   
   // optional int32 num = 2;
   inline bool has_num() const;
@@ -462,7 +465,8 @@ class MsgHangarUnit : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 sku_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
   ::google::protobuf::int32 num_;
   friend void  protobuf_AddDesc_RseObtainUniverse_2eproto();
   friend void protobuf_AssignDesc_RseObtainUniverse_2eproto();
@@ -843,12 +847,12 @@ class MsgShipyard : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int64 updatedAt = 1;
+  // optional int32 updatedAt = 1;
   inline bool has_updatedat() const;
   inline void clear_updatedat();
   static const int kUpdatedAtFieldNumber = 1;
-  inline ::google::protobuf::int64 updatedat() const;
-  inline void set_updatedat(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 updatedat() const;
+  inline void set_updatedat(::google::protobuf::int32 value);
   
   // optional int32 sid = 2;
   inline bool has_sid() const;
@@ -885,7 +889,7 @@ class MsgShipyard : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int64 updatedat_;
+  ::google::protobuf::int32 updatedat_;
   ::google::protobuf::int32 sid_;
   ::google::protobuf::int32 block_;
   ::google::protobuf::int32 unlockedslots_;
@@ -1562,20 +1566,46 @@ inline ::MsgBunkerUnit* MsgBunker::add_bunker() {
 
 // MsgHangarUnit
 
-// optional int32 sku = 1;
+// optional string sku = 1;
 inline bool MsgHangarUnit::has_sku() const {
   return _has_bit(0);
 }
 inline void MsgHangarUnit::clear_sku() {
-  sku_ = 0;
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 MsgHangarUnit::sku() const {
-  return sku_;
+inline const ::std::string& MsgHangarUnit::sku() const {
+  return *sku_;
 }
-inline void MsgHangarUnit::set_sku(::google::protobuf::int32 value) {
+inline void MsgHangarUnit::set_sku(const ::std::string& value) {
   _set_bit(0);
-  sku_ = value;
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void MsgHangarUnit::set_sku(const char* value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void MsgHangarUnit::set_sku(const char* value, size_t size) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* MsgHangarUnit::mutable_sku() {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
 }
 
 // optional int32 num = 2;
@@ -1766,18 +1796,18 @@ inline void MsgShipyardSlot::set_timeleft(::google::protobuf::int32 value) {
 
 // MsgShipyard
 
-// optional int64 updatedAt = 1;
+// optional int32 updatedAt = 1;
 inline bool MsgShipyard::has_updatedat() const {
   return _has_bit(0);
 }
 inline void MsgShipyard::clear_updatedat() {
-  updatedat_ = GOOGLE_LONGLONG(0);
+  updatedat_ = 0;
   _clear_bit(0);
 }
-inline ::google::protobuf::int64 MsgShipyard::updatedat() const {
+inline ::google::protobuf::int32 MsgShipyard::updatedat() const {
   return updatedat_;
 }
-inline void MsgShipyard::set_updatedat(::google::protobuf::int64 value) {
+inline void MsgShipyard::set_updatedat(::google::protobuf::int32 value) {
   _set_bit(0);
   updatedat_ = value;
 }

@@ -72,7 +72,7 @@ void protobuf_AddDesc_RseUpdateItem_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\023RseUpdateItem.proto\"5\n\rRseUpdateItem\022\013"
-    "\n\003ret\030\001 \001(\005\022\n\n\002id\030\002 \001(\003\022\013\n\003sid\030\003 \001(\005", 76);
+    "\n\003ret\030\001 \001(\005\022\n\n\002id\030\002 \001(\005\022\013\n\003sid\030\003 \001(\005", 76);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseUpdateItem.proto", &protobuf_RegisterTypes);
   RseUpdateItem::default_instance_ = new RseUpdateItem();
@@ -111,7 +111,7 @@ RseUpdateItem::RseUpdateItem(const RseUpdateItem& from) {
 void RseUpdateItem::SharedCtor() {
   _cached_size_ = 0;
   ret_ = 0;
-  id_ = GOOGLE_LONGLONG(0);
+  id_ = 0;
   sid_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -143,7 +143,7 @@ RseUpdateItem* RseUpdateItem::New() const {
 void RseUpdateItem::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     ret_ = 0;
-    id_ = GOOGLE_LONGLONG(0);
+    id_ = 0;
     sid_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -169,14 +169,14 @@ bool RseUpdateItem::MergePartialFromCodedStream(
         break;
       }
       
-      // optional int64 id = 2;
+      // optional int32 id = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_id:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &id_));
         _set_bit(1);
         if (input->ExpectTag(24)) goto parse_sid;
@@ -226,9 +226,9 @@ void RseUpdateItem::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
   }
   
-  // optional int64 id = 2;
+  // optional int32 id = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->id(), output);
   }
   
   // optional int32 sid = 3;
@@ -249,9 +249,9 @@ void RseUpdateItem::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
   }
   
-  // optional int64 id = 2;
+  // optional int32 id = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->id(), target);
   }
   
   // optional int32 sid = 3;
@@ -277,10 +277,10 @@ int RseUpdateItem::ByteSize() const {
           this->ret());
     }
     
-    // optional int64 id = 2;
+    // optional int32 id = 2;
     if (has_id()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->id());
     }
     

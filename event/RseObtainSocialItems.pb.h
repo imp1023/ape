@@ -225,12 +225,15 @@ class RseObtainSocialItems : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 wishlist = 1;
+  // optional string wishlist = 1;
   inline bool has_wishlist() const;
   inline void clear_wishlist();
   static const int kWishlistFieldNumber = 1;
-  inline ::google::protobuf::int32 wishlist() const;
-  inline void set_wishlist(::google::protobuf::int32 value);
+  inline const ::std::string& wishlist() const;
+  inline void set_wishlist(const ::std::string& value);
+  inline void set_wishlist(const char* value);
+  inline void set_wishlist(const char* value, size_t size);
+  inline ::std::string* mutable_wishlist();
   
   // repeated .MsgItem ItemsList = 2;
   inline int itemslist_size() const;
@@ -246,7 +249,8 @@ class RseObtainSocialItems : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 wishlist_;
+  ::std::string* wishlist_;
+  static const ::std::string _default_wishlist_;
   ::google::protobuf::RepeatedPtrField< ::MsgItem > itemslist_;
   friend void  protobuf_AddDesc_RseObtainSocialItems_2eproto();
   friend void protobuf_AssignDesc_RseObtainSocialItems_2eproto();
@@ -403,20 +407,46 @@ inline void MsgItem::set_timeleft(::google::protobuf::int32 value) {
 
 // RseObtainSocialItems
 
-// optional int32 wishlist = 1;
+// optional string wishlist = 1;
 inline bool RseObtainSocialItems::has_wishlist() const {
   return _has_bit(0);
 }
 inline void RseObtainSocialItems::clear_wishlist() {
-  wishlist_ = 0;
+  if (wishlist_ != &_default_wishlist_) {
+    wishlist_->clear();
+  }
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 RseObtainSocialItems::wishlist() const {
-  return wishlist_;
+inline const ::std::string& RseObtainSocialItems::wishlist() const {
+  return *wishlist_;
 }
-inline void RseObtainSocialItems::set_wishlist(::google::protobuf::int32 value) {
+inline void RseObtainSocialItems::set_wishlist(const ::std::string& value) {
   _set_bit(0);
-  wishlist_ = value;
+  if (wishlist_ == &_default_wishlist_) {
+    wishlist_ = new ::std::string;
+  }
+  wishlist_->assign(value);
+}
+inline void RseObtainSocialItems::set_wishlist(const char* value) {
+  _set_bit(0);
+  if (wishlist_ == &_default_wishlist_) {
+    wishlist_ = new ::std::string;
+  }
+  wishlist_->assign(value);
+}
+inline void RseObtainSocialItems::set_wishlist(const char* value, size_t size) {
+  _set_bit(0);
+  if (wishlist_ == &_default_wishlist_) {
+    wishlist_ = new ::std::string;
+  }
+  wishlist_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RseObtainSocialItems::mutable_wishlist() {
+  _set_bit(0);
+  if (wishlist_ == &_default_wishlist_) {
+    wishlist_ = new ::std::string;
+  }
+  return wishlist_;
 }
 
 // repeated .MsgItem ItemsList = 2;

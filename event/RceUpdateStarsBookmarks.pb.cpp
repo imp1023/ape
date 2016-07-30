@@ -25,11 +25,10 @@ void protobuf_AssignDesc_RceUpdateStarsBookmarks_2eproto() {
       "RceUpdateStarsBookmarks.proto");
   GOOGLE_CHECK(file != NULL);
   RceUpdateStarsBookmarks_descriptor_ = file->message_type(0);
-  static const int RceUpdateStarsBookmarks_offsets_[8] = {
+  static const int RceUpdateStarsBookmarks_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, planetid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, coordx_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, starname_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, starnameusergenerated_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, coordy_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, startype_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateStarsBookmarks, starid_),
@@ -76,12 +75,11 @@ void protobuf_AddDesc_RceUpdateStarsBookmarks_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\035RceUpdateStarsBookmarks.proto\"\256\001\n\027RceU"
-    "pdateStarsBookmarks\022\020\n\010planetId\030\001 \001(\t\022\016\n"
-    "\006coordX\030\002 \001(\005\022\020\n\010starName\030\003 \001(\t\022\035\n\025starN"
-    "ameUserGenerated\030\004 \001(\t\022\016\n\006coordY\030\005 \001(\005\022\020"
-    "\n\010starType\030\006 \001(\t\022\016\n\006starId\030\007 \001(\005\022\016\n\006acti"
-    "on\030\010 \001(\t", 208);
+    "\n\035RceUpdateStarsBookmarks.proto\"\217\001\n\027RceU"
+    "pdateStarsBookmarks\022\020\n\010planetId\030\001 \001(\005\022\016\n"
+    "\006coordX\030\002 \001(\005\022\020\n\010starName\030\003 \001(\005\022\016\n\006coord"
+    "Y\030\004 \001(\005\022\020\n\010starType\030\005 \001(\005\022\016\n\006starId\030\006 \001("
+    "\005\022\016\n\006action\030\007 \001(\t", 177);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceUpdateStarsBookmarks.proto", &protobuf_RegisterTypes);
   RceUpdateStarsBookmarks::default_instance_ = new RceUpdateStarsBookmarks();
@@ -99,16 +97,11 @@ struct StaticDescriptorInitializer_RceUpdateStarsBookmarks_2eproto {
 
 // ===================================================================
 
-const ::std::string RceUpdateStarsBookmarks::_default_planetid_;
-const ::std::string RceUpdateStarsBookmarks::_default_starname_;
-const ::std::string RceUpdateStarsBookmarks::_default_starnameusergenerated_;
-const ::std::string RceUpdateStarsBookmarks::_default_startype_;
 const ::std::string RceUpdateStarsBookmarks::_default_action_;
 #ifndef _MSC_VER
 const int RceUpdateStarsBookmarks::kPlanetIdFieldNumber;
 const int RceUpdateStarsBookmarks::kCoordXFieldNumber;
 const int RceUpdateStarsBookmarks::kStarNameFieldNumber;
-const int RceUpdateStarsBookmarks::kStarNameUserGeneratedFieldNumber;
 const int RceUpdateStarsBookmarks::kCoordYFieldNumber;
 const int RceUpdateStarsBookmarks::kStarTypeFieldNumber;
 const int RceUpdateStarsBookmarks::kStarIdFieldNumber;
@@ -129,12 +122,11 @@ RceUpdateStarsBookmarks::RceUpdateStarsBookmarks(const RceUpdateStarsBookmarks& 
 
 void RceUpdateStarsBookmarks::SharedCtor() {
   _cached_size_ = 0;
-  planetid_ = const_cast< ::std::string*>(&_default_planetid_);
+  planetid_ = 0;
   coordx_ = 0;
-  starname_ = const_cast< ::std::string*>(&_default_starname_);
-  starnameusergenerated_ = const_cast< ::std::string*>(&_default_starnameusergenerated_);
+  starname_ = 0;
   coordy_ = 0;
-  startype_ = const_cast< ::std::string*>(&_default_startype_);
+  startype_ = 0;
   starid_ = 0;
   action_ = const_cast< ::std::string*>(&_default_action_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -145,18 +137,6 @@ RceUpdateStarsBookmarks::~RceUpdateStarsBookmarks() {
 }
 
 void RceUpdateStarsBookmarks::SharedDtor() {
-  if (planetid_ != &_default_planetid_) {
-    delete planetid_;
-  }
-  if (starname_ != &_default_starname_) {
-    delete starname_;
-  }
-  if (starnameusergenerated_ != &_default_starnameusergenerated_) {
-    delete starnameusergenerated_;
-  }
-  if (startype_ != &_default_startype_) {
-    delete startype_;
-  }
   if (action_ != &_default_action_) {
     delete action_;
   }
@@ -181,30 +161,13 @@ RceUpdateStarsBookmarks* RceUpdateStarsBookmarks::New() const {
 
 void RceUpdateStarsBookmarks::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (planetid_ != &_default_planetid_) {
-        planetid_->clear();
-      }
-    }
+    planetid_ = 0;
     coordx_ = 0;
-    if (_has_bit(2)) {
-      if (starname_ != &_default_starname_) {
-        starname_->clear();
-      }
-    }
-    if (_has_bit(3)) {
-      if (starnameusergenerated_ != &_default_starnameusergenerated_) {
-        starnameusergenerated_->clear();
-      }
-    }
+    starname_ = 0;
     coordy_ = 0;
-    if (_has_bit(5)) {
-      if (startype_ != &_default_startype_) {
-        startype_->clear();
-      }
-    }
+    startype_ = 0;
     starid_ = 0;
-    if (_has_bit(7)) {
+    if (_has_bit(6)) {
       if (action_ != &_default_action_) {
         action_->clear();
       }
@@ -220,17 +183,15 @@ bool RceUpdateStarsBookmarks::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string planetId = 1;
+      // optional int32 planetId = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_planetid()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->planetid().data(), this->planetid().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planetid_));
+        _set_bit(0);
         if (input->ExpectTag(16)) goto parse_coordX;
         break;
       }
@@ -245,44 +206,26 @@ bool RceUpdateStarsBookmarks::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &coordx_));
         _set_bit(1);
-        if (input->ExpectTag(26)) goto parse_starName;
+        if (input->ExpectTag(24)) goto parse_starName;
         break;
       }
       
-      // optional string starName = 3;
+      // optional int32 starName = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_starName:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_starname()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->starname().data(), this->starname().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(34)) goto parse_starNameUserGenerated;
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &starname_));
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_coordY;
         break;
       }
       
-      // optional string starNameUserGenerated = 4;
+      // optional int32 coordY = 4;
       case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_starNameUserGenerated:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_starnameusergenerated()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->starnameusergenerated().data(), this->starnameusergenerated().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(40)) goto parse_coordY;
-        break;
-      }
-      
-      // optional int32 coordY = 5;
-      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
@@ -290,29 +233,27 @@ bool RceUpdateStarsBookmarks::MergePartialFromCodedStream(
        parse_coordY:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &coordy_));
-        _set_bit(4);
-        if (input->ExpectTag(50)) goto parse_starType;
+        _set_bit(3);
+        if (input->ExpectTag(40)) goto parse_starType;
         break;
       }
       
-      // optional string starType = 6;
-      case 6: {
+      // optional int32 starType = 5;
+      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_starType:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_startype()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->startype().data(), this->startype().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(56)) goto parse_starId;
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &startype_));
+        _set_bit(4);
+        if (input->ExpectTag(48)) goto parse_starId;
         break;
       }
       
-      // optional int32 starId = 7;
-      case 7: {
+      // optional int32 starId = 6;
+      case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
@@ -320,13 +261,13 @@ bool RceUpdateStarsBookmarks::MergePartialFromCodedStream(
        parse_starId:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &starid_));
-        _set_bit(6);
-        if (input->ExpectTag(66)) goto parse_action;
+        _set_bit(5);
+        if (input->ExpectTag(58)) goto parse_action;
         break;
       }
       
-      // optional string action = 8;
-      case 8: {
+      // optional string action = 7;
+      case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
@@ -365,13 +306,9 @@ void RceUpdateStarsBookmarks::SerializeWithCachedSizes(
     return;
   }
   
-  // optional string planetId = 1;
+  // optional int32 planetId = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->planetid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->planetid(), output);
   }
   
   // optional int32 coordX = 2;
@@ -379,50 +316,33 @@ void RceUpdateStarsBookmarks::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->coordx(), output);
   }
   
-  // optional string starName = 3;
+  // optional int32 starName = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->starname().data(), this->starname().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      3, this->starname(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->starname(), output);
   }
   
-  // optional string starNameUserGenerated = 4;
+  // optional int32 coordY = 4;
   if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->starnameusergenerated().data(), this->starnameusergenerated().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      4, this->starnameusergenerated(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->coordy(), output);
   }
   
-  // optional int32 coordY = 5;
+  // optional int32 starType = 5;
   if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->coordy(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->startype(), output);
   }
   
-  // optional string starType = 6;
+  // optional int32 starId = 6;
   if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->startype().data(), this->startype().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      6, this->startype(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->starid(), output);
   }
   
-  // optional int32 starId = 7;
+  // optional string action = 7;
   if (_has_bit(6)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->starid(), output);
-  }
-  
-  // optional string action = 8;
-  if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->action().data(), this->action().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      8, this->action(), output);
+      7, this->action(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -433,14 +353,9 @@ void RceUpdateStarsBookmarks::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RceUpdateStarsBookmarks::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional string planetId = 1;
+  // optional int32 planetId = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->planetid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->planetid(), target);
   }
   
   // optional int32 coordX = 2;
@@ -448,54 +363,34 @@ void RceUpdateStarsBookmarks::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->coordx(), target);
   }
   
-  // optional string starName = 3;
+  // optional int32 starName = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->starname().data(), this->starname().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->starname(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->starname(), target);
   }
   
-  // optional string starNameUserGenerated = 4;
+  // optional int32 coordY = 4;
   if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->starnameusergenerated().data(), this->starnameusergenerated().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->starnameusergenerated(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->coordy(), target);
   }
   
-  // optional int32 coordY = 5;
+  // optional int32 starType = 5;
   if (_has_bit(4)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->coordy(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->startype(), target);
   }
   
-  // optional string starType = 6;
+  // optional int32 starId = 6;
   if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->startype().data(), this->startype().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        6, this->startype(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->starid(), target);
   }
   
-  // optional int32 starId = 7;
+  // optional string action = 7;
   if (_has_bit(6)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->starid(), target);
-  }
-  
-  // optional string action = 8;
-  if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->action().data(), this->action().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        8, this->action(), target);
+        7, this->action(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -509,10 +404,10 @@ int RceUpdateStarsBookmarks::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string planetId = 1;
+    // optional int32 planetId = 1;
     if (has_planetid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->planetid());
     }
     
@@ -523,42 +418,35 @@ int RceUpdateStarsBookmarks::ByteSize() const {
           this->coordx());
     }
     
-    // optional string starName = 3;
+    // optional int32 starName = 3;
     if (has_starname()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->starname());
     }
     
-    // optional string starNameUserGenerated = 4;
-    if (has_starnameusergenerated()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->starnameusergenerated());
-    }
-    
-    // optional int32 coordY = 5;
+    // optional int32 coordY = 4;
     if (has_coordy()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->coordy());
     }
     
-    // optional string starType = 6;
+    // optional int32 starType = 5;
     if (has_startype()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->startype());
     }
     
-    // optional int32 starId = 7;
+    // optional int32 starId = 6;
     if (has_starid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->starid());
     }
     
-    // optional string action = 8;
+    // optional string action = 7;
     if (has_action()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -600,18 +488,15 @@ void RceUpdateStarsBookmarks::MergeFrom(const RceUpdateStarsBookmarks& from) {
       set_starname(from.starname());
     }
     if (from._has_bit(3)) {
-      set_starnameusergenerated(from.starnameusergenerated());
-    }
-    if (from._has_bit(4)) {
       set_coordy(from.coordy());
     }
-    if (from._has_bit(5)) {
+    if (from._has_bit(4)) {
       set_startype(from.startype());
     }
-    if (from._has_bit(6)) {
+    if (from._has_bit(5)) {
       set_starid(from.starid());
     }
-    if (from._has_bit(7)) {
+    if (from._has_bit(6)) {
       set_action(from.action());
     }
   }
@@ -640,7 +525,6 @@ void RceUpdateStarsBookmarks::Swap(RceUpdateStarsBookmarks* other) {
     std::swap(planetid_, other->planetid_);
     std::swap(coordx_, other->coordx_);
     std::swap(starname_, other->starname_);
-    std::swap(starnameusergenerated_, other->starnameusergenerated_);
     std::swap(coordy_, other->coordy_);
     std::swap(startype_, other->startype_);
     std::swap(starid_, other->starid_);

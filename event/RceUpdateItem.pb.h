@@ -95,12 +95,12 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 sid() const;
   inline void set_sid(::google::protobuf::int32 value);
   
-  // optional int64 time = 2;
+  // optional int32 time = 2;
   inline bool has_time() const;
   inline void clear_time();
   static const int kTimeFieldNumber = 2;
-  inline ::google::protobuf::int64 time() const;
-  inline void set_time(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 time() const;
+  inline void set_time(::google::protobuf::int32 value);
   
   // optional .MsgTransaction transaction = 3;
   inline bool has_transaction() const;
@@ -123,12 +123,12 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 oldstate() const;
   inline void set_oldstate(::google::protobuf::int32 value);
   
-  // optional int64 id = 6;
+  // optional int32 id = 6;
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 6;
-  inline ::google::protobuf::int64 id() const;
-  inline void set_id(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 id() const;
+  inline void set_id(::google::protobuf::int32 value);
   
   // optional int32 planetId = 7;
   inline bool has_planetid() const;
@@ -154,12 +154,12 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline void set_action(const char* value, size_t size);
   inline ::std::string* mutable_action();
   
-  // optional int64 timePassed = 10;
+  // optional int32 timePassed = 10;
   inline bool has_timepassed() const;
   inline void clear_timepassed();
   static const int kTimePassedFieldNumber = 10;
-  inline ::google::protobuf::int64 timepassed() const;
-  inline void set_timepassed(::google::protobuf::int64 value);
+  inline ::google::protobuf::int32 timepassed() const;
+  inline void set_timepassed(::google::protobuf::int32 value);
   
   // optional int32 x = 11;
   inline bool has_x() const;
@@ -189,30 +189,38 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 role() const;
   inline void set_role(::google::protobuf::int32 value);
   
+  // optional int32 incomeToRestore = 15;
+  inline bool has_incometorestore() const;
+  inline void clear_incometorestore();
+  static const int kIncomeToRestoreFieldNumber = 15;
+  inline ::google::protobuf::int32 incometorestore() const;
+  inline void set_incometorestore(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   ::google::protobuf::int32 sid_;
-  ::google::protobuf::int64 time_;
+  ::google::protobuf::int32 time_;
   ::MsgTransaction* transaction_;
   ::MsgBuildingItem* item_;
   ::google::protobuf::int32 oldstate_;
-  ::google::protobuf::int64 id_;
+  ::google::protobuf::int32 id_;
   ::google::protobuf::int32 planetid_;
   ::google::protobuf::int32 newstate_;
   ::std::string* action_;
   static const ::std::string _default_action_;
-  ::google::protobuf::int64 timepassed_;
+  ::google::protobuf::int32 timepassed_;
   ::google::protobuf::int32 x_;
   ::google::protobuf::int32 y_;
   ::google::protobuf::int32 flip_;
   ::google::protobuf::int32 role_;
+  ::google::protobuf::int32 incometorestore_;
   friend void  protobuf_AddDesc_RceUpdateItem_2eproto();
   friend void protobuf_AssignDesc_RceUpdateItem_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateItem_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(14 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(15 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -254,18 +262,18 @@ inline void RceUpdateItem::set_sid(::google::protobuf::int32 value) {
   sid_ = value;
 }
 
-// optional int64 time = 2;
+// optional int32 time = 2;
 inline bool RceUpdateItem::has_time() const {
   return _has_bit(1);
 }
 inline void RceUpdateItem::clear_time() {
-  time_ = GOOGLE_LONGLONG(0);
+  time_ = 0;
   _clear_bit(1);
 }
-inline ::google::protobuf::int64 RceUpdateItem::time() const {
+inline ::google::protobuf::int32 RceUpdateItem::time() const {
   return time_;
 }
-inline void RceUpdateItem::set_time(::google::protobuf::int64 value) {
+inline void RceUpdateItem::set_time(::google::protobuf::int32 value) {
   _set_bit(1);
   time_ = value;
 }
@@ -320,18 +328,18 @@ inline void RceUpdateItem::set_oldstate(::google::protobuf::int32 value) {
   oldstate_ = value;
 }
 
-// optional int64 id = 6;
+// optional int32 id = 6;
 inline bool RceUpdateItem::has_id() const {
   return _has_bit(5);
 }
 inline void RceUpdateItem::clear_id() {
-  id_ = GOOGLE_LONGLONG(0);
+  id_ = 0;
   _clear_bit(5);
 }
-inline ::google::protobuf::int64 RceUpdateItem::id() const {
+inline ::google::protobuf::int32 RceUpdateItem::id() const {
   return id_;
 }
-inline void RceUpdateItem::set_id(::google::protobuf::int64 value) {
+inline void RceUpdateItem::set_id(::google::protobuf::int32 value) {
   _set_bit(5);
   id_ = value;
 }
@@ -410,18 +418,18 @@ inline ::std::string* RceUpdateItem::mutable_action() {
   return action_;
 }
 
-// optional int64 timePassed = 10;
+// optional int32 timePassed = 10;
 inline bool RceUpdateItem::has_timepassed() const {
   return _has_bit(9);
 }
 inline void RceUpdateItem::clear_timepassed() {
-  timepassed_ = GOOGLE_LONGLONG(0);
+  timepassed_ = 0;
   _clear_bit(9);
 }
-inline ::google::protobuf::int64 RceUpdateItem::timepassed() const {
+inline ::google::protobuf::int32 RceUpdateItem::timepassed() const {
   return timepassed_;
 }
-inline void RceUpdateItem::set_timepassed(::google::protobuf::int64 value) {
+inline void RceUpdateItem::set_timepassed(::google::protobuf::int32 value) {
   _set_bit(9);
   timepassed_ = value;
 }
@@ -488,6 +496,22 @@ inline ::google::protobuf::int32 RceUpdateItem::role() const {
 inline void RceUpdateItem::set_role(::google::protobuf::int32 value) {
   _set_bit(13);
   role_ = value;
+}
+
+// optional int32 incomeToRestore = 15;
+inline bool RceUpdateItem::has_incometorestore() const {
+  return _has_bit(14);
+}
+inline void RceUpdateItem::clear_incometorestore() {
+  incometorestore_ = 0;
+  _clear_bit(14);
+}
+inline ::google::protobuf::int32 RceUpdateItem::incometorestore() const {
+  return incometorestore_;
+}
+inline void RceUpdateItem::set_incometorestore(::google::protobuf::int32 value) {
+  _set_bit(14);
+  incometorestore_ = value;
 }
 
 

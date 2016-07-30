@@ -111,7 +111,7 @@ void protobuf_AddDesc_RseObtainNeighborsList_2eproto() {
     "ame\030\007 \001(\t\022\022\n\nisNeighbor\030\010 \001(\005\022\031\n\021levelBa"
     "sedOnScore\030\t \001(\005\022\020\n\010wishlist\030\n \001(\t\022 \n\030da"
     "mageProtectionTimeLeft\030\013 \001(\003\022\031\n\021tutorial"
-    "Completed\030\014 \001(\005\022\034\n\010neighbor\030\r \001(\0132\n.MsgP"
+    "Completed\030\014 \001(\005\022\034\n\010neighbor\030\r \003(\0132\n.MsgP"
     "lanet\"<\n\026RseObtainNeighborsList\022\"\n\014neigh"
     "borList\030\001 \003(\0132\014.MsgNeighbor", 387);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
@@ -159,7 +159,6 @@ MsgNeighbor::MsgNeighbor() {
 }
 
 void MsgNeighbor::InitAsDefaultInstance() {
-  neighbor_ = const_cast< ::MsgPlanet*>(&::MsgPlanet::default_instance());
 }
 
 MsgNeighbor::MsgNeighbor(const MsgNeighbor& from) {
@@ -181,7 +180,6 @@ void MsgNeighbor::SharedCtor() {
   wishlist_ = const_cast< ::std::string*>(&_default_wishlist_);
   damageprotectiontimeleft_ = GOOGLE_LONGLONG(0);
   tutorialcompleted_ = 0;
-  neighbor_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -206,7 +204,6 @@ void MsgNeighbor::SharedDtor() {
     delete wishlist_;
   }
   if (this != default_instance_) {
-    delete neighbor_;
   }
 }
 
@@ -261,10 +258,8 @@ void MsgNeighbor::Clear() {
     }
     damageprotectiontimeleft_ = GOOGLE_LONGLONG(0);
     tutorialcompleted_ = 0;
-    if (_has_bit(12)) {
-      if (neighbor_ != NULL) neighbor_->::MsgPlanet::Clear();
-    }
   }
+  neighbor_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -452,7 +447,7 @@ bool MsgNeighbor::MergePartialFromCodedStream(
         break;
       }
       
-      // optional .MsgPlanet neighbor = 13;
+      // repeated .MsgPlanet neighbor = 13;
       case 13: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -460,7 +455,8 @@ bool MsgNeighbor::MergePartialFromCodedStream(
         }
        parse_neighbor:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_neighbor()));
+              input, add_neighbor()));
+        if (input->ExpectTag(106)) goto parse_neighbor;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -569,10 +565,10 @@ void MsgNeighbor::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->tutorialcompleted(), output);
   }
   
-  // optional .MsgPlanet neighbor = 13;
-  if (_has_bit(12)) {
+  // repeated .MsgPlanet neighbor = 13;
+  for (int i = 0; i < this->neighbor_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      13, this->neighbor(), output);
+      13, this->neighbor(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -668,11 +664,11 @@ void MsgNeighbor::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->tutorialcompleted(), target);
   }
   
-  // optional .MsgPlanet neighbor = 13;
-  if (_has_bit(12)) {
+  // repeated .MsgPlanet neighbor = 13;
+  for (int i = 0; i < this->neighbor_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        13, this->neighbor(), target);
+        13, this->neighbor(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -772,14 +768,15 @@ int MsgNeighbor::ByteSize() const {
           this->tutorialcompleted());
     }
     
-    // optional .MsgPlanet neighbor = 13;
-    if (has_neighbor()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->neighbor());
-    }
-    
   }
+  // repeated .MsgPlanet neighbor = 13;
+  total_size += 1 * this->neighbor_size();
+  for (int i = 0; i < this->neighbor_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->neighbor(i));
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -803,6 +800,7 @@ void MsgNeighbor::MergeFrom(const ::google::protobuf::Message& from) {
 
 void MsgNeighbor::MergeFrom(const MsgNeighbor& from) {
   GOOGLE_CHECK_NE(&from, this);
+  neighbor_.MergeFrom(from.neighbor_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
       set_platform(from.platform());
@@ -842,9 +840,6 @@ void MsgNeighbor::MergeFrom(const MsgNeighbor& from) {
     if (from._has_bit(11)) {
       set_tutorialcompleted(from.tutorialcompleted());
     }
-    if (from._has_bit(12)) {
-      mutable_neighbor()->::MsgPlanet::MergeFrom(from.neighbor());
-    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -880,7 +875,7 @@ void MsgNeighbor::Swap(MsgNeighbor* other) {
     std::swap(wishlist_, other->wishlist_);
     std::swap(damageprotectiontimeleft_, other->damageprotectiontimeleft_);
     std::swap(tutorialcompleted_, other->tutorialcompleted_);
-    std::swap(neighbor_, other->neighbor_);
+    neighbor_.Swap(&other->neighbor_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

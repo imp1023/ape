@@ -102,7 +102,7 @@ void protobuf_AddDesc_RseObtainSocialItems_2eproto() {
     "\013\n\003sku\030\001 \001(\005\022\020\n\010position\030\002 \001(\005\022\014\n\004Item\030\003"
     " \003(\005\022\020\n\010sequence\030\004 \001(\005\022\017\n\007counter\030\005 \001(\005\022"
     "\020\n\010quantity\030\006 \001(\005\022\020\n\010timeLeft\030\007 \001(\005\"E\n\024R"
-    "seObtainSocialItems\022\020\n\010wishlist\030\001 \001(\005\022\033\n"
+    "seObtainSocialItems\022\020\n\010wishlist\030\001 \001(\t\022\033\n"
     "\tItemsList\030\002 \003(\0132\010.MsgItem", 226);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseObtainSocialItems.proto", &protobuf_RegisterTypes);
@@ -557,6 +557,7 @@ void MsgItem::Swap(MsgItem* other) {
 
 // ===================================================================
 
+const ::std::string RseObtainSocialItems::_default_wishlist_;
 #ifndef _MSC_VER
 const int RseObtainSocialItems::kWishlistFieldNumber;
 const int RseObtainSocialItems::kItemsListFieldNumber;
@@ -576,7 +577,7 @@ RseObtainSocialItems::RseObtainSocialItems(const RseObtainSocialItems& from) {
 
 void RseObtainSocialItems::SharedCtor() {
   _cached_size_ = 0;
-  wishlist_ = 0;
+  wishlist_ = const_cast< ::std::string*>(&_default_wishlist_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -585,6 +586,9 @@ RseObtainSocialItems::~RseObtainSocialItems() {
 }
 
 void RseObtainSocialItems::SharedDtor() {
+  if (wishlist_ != &_default_wishlist_) {
+    delete wishlist_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -606,7 +610,11 @@ RseObtainSocialItems* RseObtainSocialItems::New() const {
 
 void RseObtainSocialItems::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    wishlist_ = 0;
+    if (_has_bit(0)) {
+      if (wishlist_ != &_default_wishlist_) {
+        wishlist_->clear();
+      }
+    }
   }
   itemslist_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -619,15 +627,17 @@ bool RseObtainSocialItems::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 wishlist = 1;
+      // optional string wishlist = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &wishlist_));
-        _set_bit(0);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_wishlist()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->wishlist().data(), this->wishlist().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
         if (input->ExpectTag(18)) goto parse_ItemsList;
         break;
       }
@@ -670,9 +680,13 @@ void RseObtainSocialItems::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int32 wishlist = 1;
+  // optional string wishlist = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->wishlist(), output);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->wishlist().data(), this->wishlist().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->wishlist(), output);
   }
   
   // repeated .MsgItem ItemsList = 2;
@@ -689,9 +703,14 @@ void RseObtainSocialItems::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RseObtainSocialItems::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 wishlist = 1;
+  // optional string wishlist = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->wishlist(), target);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->wishlist().data(), this->wishlist().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->wishlist(), target);
   }
   
   // repeated .MsgItem ItemsList = 2;
@@ -712,10 +731,10 @@ int RseObtainSocialItems::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 wishlist = 1;
+    // optional string wishlist = 1;
     if (has_wishlist()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
+        ::google::protobuf::internal::WireFormatLite::StringSize(
           this->wishlist());
     }
     

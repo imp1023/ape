@@ -22,6 +22,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include "MsgTransaction.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_RceUpdateMissions_2eproto();
@@ -29,7 +30,6 @@ void protobuf_AssignDesc_RceUpdateMissions_2eproto();
 void protobuf_ShutdownFile_RceUpdateMissions_2eproto();
 
 class RceUpdateMissions;
-class Transaction2;
 
 // ===================================================================
 
@@ -123,12 +123,12 @@ class RceUpdateMissions : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 state() const;
   inline void set_state(::google::protobuf::int32 value);
   
-  // optional .Transaction2 transaction = 5;
+  // optional .MsgTransaction transaction = 5;
   inline bool has_transaction() const;
   inline void clear_transaction();
   static const int kTransactionFieldNumber = 5;
-  inline const ::Transaction2& transaction() const;
-  inline ::Transaction2* mutable_transaction();
+  inline const ::MsgTransaction& transaction() const;
+  inline ::MsgTransaction* mutable_transaction();
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -141,7 +141,7 @@ class RceUpdateMissions : public ::google::protobuf::Message {
   ::std::string* acton_;
   static const ::std::string _default_acton_;
   ::google::protobuf::int32 state_;
-  ::Transaction2* transaction_;
+  ::MsgTransaction* transaction_;
   friend void  protobuf_AddDesc_RceUpdateMissions_2eproto();
   friend void protobuf_AssignDesc_RceUpdateMissions_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateMissions_2eproto();
@@ -161,149 +161,6 @@ class RceUpdateMissions : public ::google::protobuf::Message {
   
   void InitAsDefaultInstance();
   static RceUpdateMissions* default_instance_;
-};
-// -------------------------------------------------------------------
-
-class Transaction2 : public ::google::protobuf::Message {
- public:
-  Transaction2();
-  virtual ~Transaction2();
-  
-  Transaction2(const Transaction2& from);
-  
-  inline Transaction2& operator=(const Transaction2& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const Transaction2& default_instance();
-  void Swap(Transaction2* other);
-  
-  // implements Message ----------------------------------------------
-  
-  Transaction2* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Transaction2& from);
-  void MergeFrom(const Transaction2& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // optional int32 exp = 1;
-  inline bool has_exp() const;
-  inline void clear_exp();
-  static const int kExpFieldNumber = 1;
-  inline ::google::protobuf::int32 exp() const;
-  inline void set_exp(::google::protobuf::int32 value);
-  
-  // optional int32 minerals = 2;
-  inline bool has_minerals() const;
-  inline void clear_minerals();
-  static const int kMineralsFieldNumber = 2;
-  inline ::google::protobuf::int32 minerals() const;
-  inline void set_minerals(::google::protobuf::int32 value);
-  
-  // optional string client = 3;
-  inline bool has_client() const;
-  inline void clear_client();
-  static const int kClientFieldNumber = 3;
-  inline const ::std::string& client() const;
-  inline void set_client(const ::std::string& value);
-  inline void set_client(const char* value);
-  inline void set_client(const char* value, size_t size);
-  inline ::std::string* mutable_client();
-  
-  // optional string event = 4;
-  inline bool has_event() const;
-  inline void clear_event();
-  static const int kEventFieldNumber = 4;
-  inline const ::std::string& event() const;
-  inline void set_event(const ::std::string& value);
-  inline void set_event(const char* value);
-  inline void set_event(const char* value, size_t size);
-  inline ::std::string* mutable_event();
-  
-  // optional int32 cash = 5;
-  inline bool has_cash() const;
-  inline void clear_cash();
-  static const int kCashFieldNumber = 5;
-  inline ::google::protobuf::int32 cash() const;
-  inline void set_cash(::google::protobuf::int32 value);
-  
-  // optional int32 droids = 6;
-  inline bool has_droids() const;
-  inline void clear_droids();
-  static const int kDroidsFieldNumber = 6;
-  inline ::google::protobuf::int32 droids() const;
-  inline void set_droids(::google::protobuf::int32 value);
-  
-  // optional int32 coins = 7;
-  inline bool has_coins() const;
-  inline void clear_coins();
-  static const int kCoinsFieldNumber = 7;
-  inline ::google::protobuf::int32 coins() const;
-  inline void set_coins(::google::protobuf::int32 value);
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::google::protobuf::int32 exp_;
-  ::google::protobuf::int32 minerals_;
-  ::std::string* client_;
-  static const ::std::string _default_client_;
-  ::std::string* event_;
-  static const ::std::string _default_event_;
-  ::google::protobuf::int32 cash_;
-  ::google::protobuf::int32 droids_;
-  ::google::protobuf::int32 coins_;
-  friend void  protobuf_AddDesc_RceUpdateMissions_2eproto();
-  friend void protobuf_AssignDesc_RceUpdateMissions_2eproto();
-  friend void protobuf_ShutdownFile_RceUpdateMissions_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static Transaction2* default_instance_;
 };
 // ===================================================================
 
@@ -457,189 +314,21 @@ inline void RceUpdateMissions::set_state(::google::protobuf::int32 value) {
   state_ = value;
 }
 
-// optional .Transaction2 transaction = 5;
+// optional .MsgTransaction transaction = 5;
 inline bool RceUpdateMissions::has_transaction() const {
   return _has_bit(4);
 }
 inline void RceUpdateMissions::clear_transaction() {
-  if (transaction_ != NULL) transaction_->::Transaction2::Clear();
+  if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
   _clear_bit(4);
 }
-inline const ::Transaction2& RceUpdateMissions::transaction() const {
+inline const ::MsgTransaction& RceUpdateMissions::transaction() const {
   return transaction_ != NULL ? *transaction_ : *default_instance_->transaction_;
 }
-inline ::Transaction2* RceUpdateMissions::mutable_transaction() {
+inline ::MsgTransaction* RceUpdateMissions::mutable_transaction() {
   _set_bit(4);
-  if (transaction_ == NULL) transaction_ = new ::Transaction2;
+  if (transaction_ == NULL) transaction_ = new ::MsgTransaction;
   return transaction_;
-}
-
-// -------------------------------------------------------------------
-
-// Transaction2
-
-// optional int32 exp = 1;
-inline bool Transaction2::has_exp() const {
-  return _has_bit(0);
-}
-inline void Transaction2::clear_exp() {
-  exp_ = 0;
-  _clear_bit(0);
-}
-inline ::google::protobuf::int32 Transaction2::exp() const {
-  return exp_;
-}
-inline void Transaction2::set_exp(::google::protobuf::int32 value) {
-  _set_bit(0);
-  exp_ = value;
-}
-
-// optional int32 minerals = 2;
-inline bool Transaction2::has_minerals() const {
-  return _has_bit(1);
-}
-inline void Transaction2::clear_minerals() {
-  minerals_ = 0;
-  _clear_bit(1);
-}
-inline ::google::protobuf::int32 Transaction2::minerals() const {
-  return minerals_;
-}
-inline void Transaction2::set_minerals(::google::protobuf::int32 value) {
-  _set_bit(1);
-  minerals_ = value;
-}
-
-// optional string client = 3;
-inline bool Transaction2::has_client() const {
-  return _has_bit(2);
-}
-inline void Transaction2::clear_client() {
-  if (client_ != &_default_client_) {
-    client_->clear();
-  }
-  _clear_bit(2);
-}
-inline const ::std::string& Transaction2::client() const {
-  return *client_;
-}
-inline void Transaction2::set_client(const ::std::string& value) {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(value);
-}
-inline void Transaction2::set_client(const char* value) {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(value);
-}
-inline void Transaction2::set_client(const char* value, size_t size) {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  client_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* Transaction2::mutable_client() {
-  _set_bit(2);
-  if (client_ == &_default_client_) {
-    client_ = new ::std::string;
-  }
-  return client_;
-}
-
-// optional string event = 4;
-inline bool Transaction2::has_event() const {
-  return _has_bit(3);
-}
-inline void Transaction2::clear_event() {
-  if (event_ != &_default_event_) {
-    event_->clear();
-  }
-  _clear_bit(3);
-}
-inline const ::std::string& Transaction2::event() const {
-  return *event_;
-}
-inline void Transaction2::set_event(const ::std::string& value) {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(value);
-}
-inline void Transaction2::set_event(const char* value) {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(value);
-}
-inline void Transaction2::set_event(const char* value, size_t size) {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  event_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* Transaction2::mutable_event() {
-  _set_bit(3);
-  if (event_ == &_default_event_) {
-    event_ = new ::std::string;
-  }
-  return event_;
-}
-
-// optional int32 cash = 5;
-inline bool Transaction2::has_cash() const {
-  return _has_bit(4);
-}
-inline void Transaction2::clear_cash() {
-  cash_ = 0;
-  _clear_bit(4);
-}
-inline ::google::protobuf::int32 Transaction2::cash() const {
-  return cash_;
-}
-inline void Transaction2::set_cash(::google::protobuf::int32 value) {
-  _set_bit(4);
-  cash_ = value;
-}
-
-// optional int32 droids = 6;
-inline bool Transaction2::has_droids() const {
-  return _has_bit(5);
-}
-inline void Transaction2::clear_droids() {
-  droids_ = 0;
-  _clear_bit(5);
-}
-inline ::google::protobuf::int32 Transaction2::droids() const {
-  return droids_;
-}
-inline void Transaction2::set_droids(::google::protobuf::int32 value) {
-  _set_bit(5);
-  droids_ = value;
-}
-
-// optional int32 coins = 7;
-inline bool Transaction2::has_coins() const {
-  return _has_bit(6);
-}
-inline void Transaction2::clear_coins() {
-  coins_ = 0;
-  _clear_bit(6);
-}
-inline ::google::protobuf::int32 Transaction2::coins() const {
-  return coins_;
-}
-inline void Transaction2::set_coins(::google::protobuf::int32 value) {
-  _set_bit(6);
-  coins_ = value;
 }
 
 

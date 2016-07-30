@@ -99,27 +99,17 @@ class RceQueryGalaxyWindow : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 bottomrightcoordy() const;
   inline void set_bottomrightcoordy(::google::protobuf::int32 value);
   
-  // optional string planetId = 3;
-  inline bool has_planetid() const;
-  inline void clear_planetid();
-  static const int kPlanetIdFieldNumber = 3;
-  inline const ::std::string& planetid() const;
-  inline void set_planetid(const ::std::string& value);
-  inline void set_planetid(const char* value);
-  inline void set_planetid(const char* value, size_t size);
-  inline ::std::string* mutable_planetid();
-  
-  // optional int32 topLeftCoordY = 4;
+  // optional int32 topLeftCoordY = 3;
   inline bool has_topleftcoordy() const;
   inline void clear_topleftcoordy();
-  static const int kTopLeftCoordYFieldNumber = 4;
+  static const int kTopLeftCoordYFieldNumber = 3;
   inline ::google::protobuf::int32 topleftcoordy() const;
   inline void set_topleftcoordy(::google::protobuf::int32 value);
   
-  // optional int32 bottomRightCoordX = 5;
+  // optional int32 bottomRightCoordX = 4;
   inline bool has_bottomrightcoordx() const;
   inline void clear_bottomrightcoordx();
-  static const int kBottomRightCoordXFieldNumber = 5;
+  static const int kBottomRightCoordXFieldNumber = 4;
   inline ::google::protobuf::int32 bottomrightcoordx() const;
   inline void set_bottomrightcoordx(::google::protobuf::int32 value);
   
@@ -129,15 +119,13 @@ class RceQueryGalaxyWindow : public ::google::protobuf::Message {
   
   ::google::protobuf::int32 topleftcoordx_;
   ::google::protobuf::int32 bottomrightcoordy_;
-  ::std::string* planetid_;
-  static const ::std::string _default_planetid_;
   ::google::protobuf::int32 topleftcoordy_;
   ::google::protobuf::int32 bottomrightcoordx_;
   friend void  protobuf_AddDesc_RceQueryGalaxyWindow_2eproto();
   friend void protobuf_AssignDesc_RceQueryGalaxyWindow_2eproto();
   friend void protobuf_ShutdownFile_RceQueryGalaxyWindow_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -195,77 +183,35 @@ inline void RceQueryGalaxyWindow::set_bottomrightcoordy(::google::protobuf::int3
   bottomrightcoordy_ = value;
 }
 
-// optional string planetId = 3;
-inline bool RceQueryGalaxyWindow::has_planetid() const {
-  return _has_bit(2);
-}
-inline void RceQueryGalaxyWindow::clear_planetid() {
-  if (planetid_ != &_default_planetid_) {
-    planetid_->clear();
-  }
-  _clear_bit(2);
-}
-inline const ::std::string& RceQueryGalaxyWindow::planetid() const {
-  return *planetid_;
-}
-inline void RceQueryGalaxyWindow::set_planetid(const ::std::string& value) {
-  _set_bit(2);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryGalaxyWindow::set_planetid(const char* value) {
-  _set_bit(2);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(value);
-}
-inline void RceQueryGalaxyWindow::set_planetid(const char* value, size_t size) {
-  _set_bit(2);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  planetid_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* RceQueryGalaxyWindow::mutable_planetid() {
-  _set_bit(2);
-  if (planetid_ == &_default_planetid_) {
-    planetid_ = new ::std::string;
-  }
-  return planetid_;
-}
-
-// optional int32 topLeftCoordY = 4;
+// optional int32 topLeftCoordY = 3;
 inline bool RceQueryGalaxyWindow::has_topleftcoordy() const {
-  return _has_bit(3);
+  return _has_bit(2);
 }
 inline void RceQueryGalaxyWindow::clear_topleftcoordy() {
   topleftcoordy_ = 0;
-  _clear_bit(3);
+  _clear_bit(2);
 }
 inline ::google::protobuf::int32 RceQueryGalaxyWindow::topleftcoordy() const {
   return topleftcoordy_;
 }
 inline void RceQueryGalaxyWindow::set_topleftcoordy(::google::protobuf::int32 value) {
-  _set_bit(3);
+  _set_bit(2);
   topleftcoordy_ = value;
 }
 
-// optional int32 bottomRightCoordX = 5;
+// optional int32 bottomRightCoordX = 4;
 inline bool RceQueryGalaxyWindow::has_bottomrightcoordx() const {
-  return _has_bit(4);
+  return _has_bit(3);
 }
 inline void RceQueryGalaxyWindow::clear_bottomrightcoordx() {
   bottomrightcoordx_ = 0;
-  _clear_bit(4);
+  _clear_bit(3);
 }
 inline ::google::protobuf::int32 RceQueryGalaxyWindow::bottomrightcoordx() const {
   return bottomrightcoordx_;
 }
 inline void RceQueryGalaxyWindow::set_bottomrightcoordx(::google::protobuf::int32 value) {
-  _set_bit(4);
+  _set_bit(3);
   bottomrightcoordx_ = value;
 }
 

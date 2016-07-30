@@ -25,10 +25,9 @@ void protobuf_AssignDesc_RceQueryGalaxyWindow_2eproto() {
       "RceQueryGalaxyWindow.proto");
   GOOGLE_CHECK(file != NULL);
   RceQueryGalaxyWindow_descriptor_ = file->message_type(0);
-  static const int RceQueryGalaxyWindow_offsets_[5] = {
+  static const int RceQueryGalaxyWindow_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceQueryGalaxyWindow, topleftcoordx_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceQueryGalaxyWindow, bottomrightcoordy_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceQueryGalaxyWindow, planetid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceQueryGalaxyWindow, topleftcoordy_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceQueryGalaxyWindow, bottomrightcoordx_),
   };
@@ -73,11 +72,10 @@ void protobuf_AddDesc_RceQueryGalaxyWindow_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\032RceQueryGalaxyWindow.proto\"\214\001\n\024RceQuer"
-    "yGalaxyWindow\022\025\n\rtopLeftCoordX\030\001 \001(\005\022\031\n\021"
-    "bottomRightCoordY\030\002 \001(\005\022\020\n\010planetId\030\003 \001("
-    "\t\022\025\n\rtopLeftCoordY\030\004 \001(\005\022\031\n\021bottomRightC"
-    "oordX\030\005 \001(\005", 171);
+    "\n\032RceQueryGalaxyWindow.proto\"z\n\024RceQuery"
+    "GalaxyWindow\022\025\n\rtopLeftCoordX\030\001 \001(\005\022\031\n\021b"
+    "ottomRightCoordY\030\002 \001(\005\022\025\n\rtopLeftCoordY\030"
+    "\003 \001(\005\022\031\n\021bottomRightCoordX\030\004 \001(\005", 152);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceQueryGalaxyWindow.proto", &protobuf_RegisterTypes);
   RceQueryGalaxyWindow::default_instance_ = new RceQueryGalaxyWindow();
@@ -95,11 +93,9 @@ struct StaticDescriptorInitializer_RceQueryGalaxyWindow_2eproto {
 
 // ===================================================================
 
-const ::std::string RceQueryGalaxyWindow::_default_planetid_;
 #ifndef _MSC_VER
 const int RceQueryGalaxyWindow::kTopLeftCoordXFieldNumber;
 const int RceQueryGalaxyWindow::kBottomRightCoordYFieldNumber;
-const int RceQueryGalaxyWindow::kPlanetIdFieldNumber;
 const int RceQueryGalaxyWindow::kTopLeftCoordYFieldNumber;
 const int RceQueryGalaxyWindow::kBottomRightCoordXFieldNumber;
 #endif  // !_MSC_VER
@@ -120,7 +116,6 @@ void RceQueryGalaxyWindow::SharedCtor() {
   _cached_size_ = 0;
   topleftcoordx_ = 0;
   bottomrightcoordy_ = 0;
-  planetid_ = const_cast< ::std::string*>(&_default_planetid_);
   topleftcoordy_ = 0;
   bottomrightcoordx_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -131,9 +126,6 @@ RceQueryGalaxyWindow::~RceQueryGalaxyWindow() {
 }
 
 void RceQueryGalaxyWindow::SharedDtor() {
-  if (planetid_ != &_default_planetid_) {
-    delete planetid_;
-  }
   if (this != default_instance_) {
   }
 }
@@ -157,11 +149,6 @@ void RceQueryGalaxyWindow::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     topleftcoordx_ = 0;
     bottomrightcoordy_ = 0;
-    if (_has_bit(2)) {
-      if (planetid_ != &_default_planetid_) {
-        planetid_->clear();
-      }
-    }
     topleftcoordy_ = 0;
     bottomrightcoordx_ = 0;
   }
@@ -198,28 +185,12 @@ bool RceQueryGalaxyWindow::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &bottomrightcoordy_));
         _set_bit(1);
-        if (input->ExpectTag(26)) goto parse_planetId;
+        if (input->ExpectTag(24)) goto parse_topLeftCoordY;
         break;
       }
       
-      // optional string planetId = 3;
+      // optional int32 topLeftCoordY = 3;
       case 3: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_planetId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_planetid()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->planetid().data(), this->planetid().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(32)) goto parse_topLeftCoordY;
-        break;
-      }
-      
-      // optional int32 topLeftCoordY = 4;
-      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
@@ -227,13 +198,13 @@ bool RceQueryGalaxyWindow::MergePartialFromCodedStream(
        parse_topLeftCoordY:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &topleftcoordy_));
-        _set_bit(3);
-        if (input->ExpectTag(40)) goto parse_bottomRightCoordX;
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_bottomRightCoordX;
         break;
       }
       
-      // optional int32 bottomRightCoordX = 5;
-      case 5: {
+      // optional int32 bottomRightCoordX = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
@@ -241,7 +212,7 @@ bool RceQueryGalaxyWindow::MergePartialFromCodedStream(
        parse_bottomRightCoordX:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &bottomrightcoordx_));
-        _set_bit(4);
+        _set_bit(3);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -280,23 +251,14 @@ void RceQueryGalaxyWindow::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->bottomrightcoordy(), output);
   }
   
-  // optional string planetId = 3;
+  // optional int32 topLeftCoordY = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      3, this->planetid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->topleftcoordy(), output);
   }
   
-  // optional int32 topLeftCoordY = 4;
+  // optional int32 bottomRightCoordX = 4;
   if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->topleftcoordy(), output);
-  }
-  
-  // optional int32 bottomRightCoordX = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->bottomrightcoordx(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->bottomrightcoordx(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -317,24 +279,14 @@ void RceQueryGalaxyWindow::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->bottomrightcoordy(), target);
   }
   
-  // optional string planetId = 3;
+  // optional int32 topLeftCoordY = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->planetid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->topleftcoordy(), target);
   }
   
-  // optional int32 topLeftCoordY = 4;
+  // optional int32 bottomRightCoordX = 4;
   if (_has_bit(3)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->topleftcoordy(), target);
-  }
-  
-  // optional int32 bottomRightCoordX = 5;
-  if (_has_bit(4)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->bottomrightcoordx(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->bottomrightcoordx(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -362,21 +314,14 @@ int RceQueryGalaxyWindow::ByteSize() const {
           this->bottomrightcoordy());
     }
     
-    // optional string planetId = 3;
-    if (has_planetid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->planetid());
-    }
-    
-    // optional int32 topLeftCoordY = 4;
+    // optional int32 topLeftCoordY = 3;
     if (has_topleftcoordy()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->topleftcoordy());
     }
     
-    // optional int32 bottomRightCoordX = 5;
+    // optional int32 bottomRightCoordX = 4;
     if (has_bottomrightcoordx()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -415,12 +360,9 @@ void RceQueryGalaxyWindow::MergeFrom(const RceQueryGalaxyWindow& from) {
       set_bottomrightcoordy(from.bottomrightcoordy());
     }
     if (from._has_bit(2)) {
-      set_planetid(from.planetid());
-    }
-    if (from._has_bit(3)) {
       set_topleftcoordy(from.topleftcoordy());
     }
-    if (from._has_bit(4)) {
+    if (from._has_bit(3)) {
       set_bottomrightcoordx(from.bottomrightcoordx());
     }
   }
@@ -448,7 +390,6 @@ void RceQueryGalaxyWindow::Swap(RceQueryGalaxyWindow* other) {
   if (other != this) {
     std::swap(topleftcoordx_, other->topleftcoordx_);
     std::swap(bottomrightcoordy_, other->bottomrightcoordy_);
-    std::swap(planetid_, other->planetid_);
     std::swap(topleftcoordy_, other->topleftcoordy_);
     std::swap(bottomrightcoordx_, other->bottomrightcoordx_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);

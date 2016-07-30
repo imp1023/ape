@@ -102,6 +102,30 @@ class RceObtainUniverse : public ::google::protobuf::Message {
   inline bool firstrequest() const;
   inline void set_firstrequest(bool value);
   
+  // optional int32 planetId = 3;
+  inline bool has_planetid() const;
+  inline void clear_planetid();
+  static const int kPlanetIdFieldNumber = 3;
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
+  
+  // optional int32 attack = 4;
+  inline bool has_attack() const;
+  inline void clear_attack();
+  static const int kAttackFieldNumber = 4;
+  inline ::google::protobuf::int32 attack() const;
+  inline void set_attack(::google::protobuf::int32 value);
+  
+  // optional string targetAdvisorSku = 5;
+  inline bool has_targetadvisorsku() const;
+  inline void clear_targetadvisorsku();
+  static const int kTargetAdvisorSkuFieldNumber = 5;
+  inline const ::std::string& targetadvisorsku() const;
+  inline void set_targetadvisorsku(const ::std::string& value);
+  inline void set_targetadvisorsku(const char* value);
+  inline void set_targetadvisorsku(const char* value, size_t size);
+  inline ::std::string* mutable_targetadvisorsku();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -109,11 +133,15 @@ class RceObtainUniverse : public ::google::protobuf::Message {
   ::std::string* targetaccountid_;
   static const ::std::string _default_targetaccountid_;
   bool firstrequest_;
+  ::google::protobuf::int32 planetid_;
+  ::google::protobuf::int32 attack_;
+  ::std::string* targetadvisorsku_;
+  static const ::std::string _default_targetadvisorsku_;
   friend void  protobuf_AddDesc_RceObtainUniverse_2eproto();
   friend void protobuf_AssignDesc_RceObtainUniverse_2eproto();
   friend void protobuf_ShutdownFile_RceObtainUniverse_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -195,6 +223,80 @@ inline bool RceObtainUniverse::firstrequest() const {
 inline void RceObtainUniverse::set_firstrequest(bool value) {
   _set_bit(1);
   firstrequest_ = value;
+}
+
+// optional int32 planetId = 3;
+inline bool RceObtainUniverse::has_planetid() const {
+  return _has_bit(2);
+}
+inline void RceObtainUniverse::clear_planetid() {
+  planetid_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 RceObtainUniverse::planetid() const {
+  return planetid_;
+}
+inline void RceObtainUniverse::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(2);
+  planetid_ = value;
+}
+
+// optional int32 attack = 4;
+inline bool RceObtainUniverse::has_attack() const {
+  return _has_bit(3);
+}
+inline void RceObtainUniverse::clear_attack() {
+  attack_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 RceObtainUniverse::attack() const {
+  return attack_;
+}
+inline void RceObtainUniverse::set_attack(::google::protobuf::int32 value) {
+  _set_bit(3);
+  attack_ = value;
+}
+
+// optional string targetAdvisorSku = 5;
+inline bool RceObtainUniverse::has_targetadvisorsku() const {
+  return _has_bit(4);
+}
+inline void RceObtainUniverse::clear_targetadvisorsku() {
+  if (targetadvisorsku_ != &_default_targetadvisorsku_) {
+    targetadvisorsku_->clear();
+  }
+  _clear_bit(4);
+}
+inline const ::std::string& RceObtainUniverse::targetadvisorsku() const {
+  return *targetadvisorsku_;
+}
+inline void RceObtainUniverse::set_targetadvisorsku(const ::std::string& value) {
+  _set_bit(4);
+  if (targetadvisorsku_ == &_default_targetadvisorsku_) {
+    targetadvisorsku_ = new ::std::string;
+  }
+  targetadvisorsku_->assign(value);
+}
+inline void RceObtainUniverse::set_targetadvisorsku(const char* value) {
+  _set_bit(4);
+  if (targetadvisorsku_ == &_default_targetadvisorsku_) {
+    targetadvisorsku_ = new ::std::string;
+  }
+  targetadvisorsku_->assign(value);
+}
+inline void RceObtainUniverse::set_targetadvisorsku(const char* value, size_t size) {
+  _set_bit(4);
+  if (targetadvisorsku_ == &_default_targetadvisorsku_) {
+    targetadvisorsku_ = new ::std::string;
+  }
+  targetadvisorsku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceObtainUniverse::mutable_targetadvisorsku() {
+  _set_bit(4);
+  if (targetadvisorsku_ == &_default_targetadvisorsku_) {
+    targetadvisorsku_ = new ::std::string;
+  }
+  return targetadvisorsku_;
 }
 
 

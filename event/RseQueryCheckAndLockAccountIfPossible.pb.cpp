@@ -25,10 +25,12 @@ void protobuf_AssignDesc_RseQueryCheckAndLockAccountIfPossible_2eproto() {
       "RseQueryCheckAndLockAccountIfPossible.proto");
   GOOGLE_CHECK(file != NULL);
   RseQueryCheckAndLockAccountIfPossible_descriptor_ = file->message_type(0);
-  static const int RseQueryCheckAndLockAccountIfPossible_offsets_[3] = {
+  static const int RseQueryCheckAndLockAccountIfPossible_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryCheckAndLockAccountIfPossible, lockrequested_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryCheckAndLockAccountIfPossible, lockapplied_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryCheckAndLockAccountIfPossible, locksuccess_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryCheckAndLockAccountIfPossible, locktype_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryCheckAndLockAccountIfPossible, unlocktimeleft_),
   };
   RseQueryCheckAndLockAccountIfPossible_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -72,9 +74,10 @@ void protobuf_AddDesc_RseQueryCheckAndLockAccountIfPossible_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n+RseQueryCheckAndLockAccountIfPossible."
-    "proto\"h\n%RseQueryCheckAndLockAccountIfPo"
-    "ssible\022\025\n\rlockRequested\030\001 \001(\005\022\023\n\013lockApp"
-    "lied\030\002 \001(\005\022\023\n\013lockSuccess\030\003 \001(\005", 151);
+    "proto\"\222\001\n%RseQueryCheckAndLockAccountIfP"
+    "ossible\022\025\n\rlockRequested\030\001 \001(\005\022\023\n\013lockAp"
+    "plied\030\002 \001(\005\022\023\n\013lockSuccess\030\003 \001(\005\022\020\n\010lock"
+    "Type\030\004 \001(\005\022\026\n\016unlockTimeLeft\030\005 \001(\005", 194);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseQueryCheckAndLockAccountIfPossible.proto", &protobuf_RegisterTypes);
   RseQueryCheckAndLockAccountIfPossible::default_instance_ = new RseQueryCheckAndLockAccountIfPossible();
@@ -96,6 +99,8 @@ struct StaticDescriptorInitializer_RseQueryCheckAndLockAccountIfPossible_2eproto
 const int RseQueryCheckAndLockAccountIfPossible::kLockRequestedFieldNumber;
 const int RseQueryCheckAndLockAccountIfPossible::kLockAppliedFieldNumber;
 const int RseQueryCheckAndLockAccountIfPossible::kLockSuccessFieldNumber;
+const int RseQueryCheckAndLockAccountIfPossible::kLockTypeFieldNumber;
+const int RseQueryCheckAndLockAccountIfPossible::kUnlockTimeLeftFieldNumber;
 #endif  // !_MSC_VER
 
 RseQueryCheckAndLockAccountIfPossible::RseQueryCheckAndLockAccountIfPossible() {
@@ -115,6 +120,8 @@ void RseQueryCheckAndLockAccountIfPossible::SharedCtor() {
   lockrequested_ = 0;
   lockapplied_ = 0;
   locksuccess_ = 0;
+  locktype_ = 0;
+  unlocktimeleft_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -147,6 +154,8 @@ void RseQueryCheckAndLockAccountIfPossible::Clear() {
     lockrequested_ = 0;
     lockapplied_ = 0;
     locksuccess_ = 0;
+    locktype_ = 0;
+    unlocktimeleft_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -195,6 +204,34 @@ bool RseQueryCheckAndLockAccountIfPossible::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &locksuccess_));
         _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_lockType;
+        break;
+      }
+      
+      // optional int32 lockType = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_lockType:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &locktype_));
+        _set_bit(3);
+        if (input->ExpectTag(40)) goto parse_unlockTimeLeft;
+        break;
+      }
+      
+      // optional int32 unlockTimeLeft = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_unlockTimeLeft:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &unlocktimeleft_));
+        _set_bit(4);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -238,6 +275,16 @@ void RseQueryCheckAndLockAccountIfPossible::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->locksuccess(), output);
   }
   
+  // optional int32 lockType = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->locktype(), output);
+  }
+  
+  // optional int32 unlockTimeLeft = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->unlocktimeleft(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -259,6 +306,16 @@ void RseQueryCheckAndLockAccountIfPossible::SerializeWithCachedSizes(
   // optional int32 lockSuccess = 3;
   if (_has_bit(2)) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->locksuccess(), target);
+  }
+  
+  // optional int32 lockType = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->locktype(), target);
+  }
+  
+  // optional int32 unlockTimeLeft = 5;
+  if (_has_bit(4)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->unlocktimeleft(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -291,6 +348,20 @@ int RseQueryCheckAndLockAccountIfPossible::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->locksuccess());
+    }
+    
+    // optional int32 lockType = 4;
+    if (has_locktype()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->locktype());
+    }
+    
+    // optional int32 unlockTimeLeft = 5;
+    if (has_unlocktimeleft()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->unlocktimeleft());
     }
     
   }
@@ -327,6 +398,12 @@ void RseQueryCheckAndLockAccountIfPossible::MergeFrom(const RseQueryCheckAndLock
     if (from._has_bit(2)) {
       set_locksuccess(from.locksuccess());
     }
+    if (from._has_bit(3)) {
+      set_locktype(from.locktype());
+    }
+    if (from._has_bit(4)) {
+      set_unlocktimeleft(from.unlocktimeleft());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -353,6 +430,8 @@ void RseQueryCheckAndLockAccountIfPossible::Swap(RseQueryCheckAndLockAccountIfPo
     std::swap(lockrequested_, other->lockrequested_);
     std::swap(lockapplied_, other->lockapplied_);
     std::swap(locksuccess_, other->locksuccess_);
+    std::swap(locktype_, other->locktype_);
+    std::swap(unlocktimeleft_, other->unlocktimeleft_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

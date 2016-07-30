@@ -99,15 +99,12 @@ class MsgPlanet : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 planettype() const;
   inline void set_planettype(::google::protobuf::int32 value);
   
-  // optional string starName = 3;
+  // optional int32 starName = 3;
   inline bool has_starname() const;
   inline void clear_starname();
   static const int kStarNameFieldNumber = 3;
-  inline const ::std::string& starname() const;
-  inline void set_starname(const ::std::string& value);
-  inline void set_starname(const char* value);
-  inline void set_starname(const char* value, size_t size);
-  inline ::std::string* mutable_starname();
+  inline ::google::protobuf::int32 starname() const;
+  inline void set_starname(::google::protobuf::int32 value);
   
   // optional int32 coinsLimit = 4;
   inline bool has_coinslimit() const;
@@ -178,8 +175,7 @@ class MsgPlanet : public ::google::protobuf::Message {
   
   ::google::protobuf::int32 planetid_;
   ::google::protobuf::int32 planettype_;
-  ::std::string* starname_;
-  static const ::std::string _default_starname_;
+  ::google::protobuf::int32 starname_;
   ::google::protobuf::int32 coinslimit_;
   ::google::protobuf::int32 mineralslimit_;
   ::google::protobuf::int32 starid_;
@@ -251,46 +247,20 @@ inline void MsgPlanet::set_planettype(::google::protobuf::int32 value) {
   planettype_ = value;
 }
 
-// optional string starName = 3;
+// optional int32 starName = 3;
 inline bool MsgPlanet::has_starname() const {
   return _has_bit(2);
 }
 inline void MsgPlanet::clear_starname() {
-  if (starname_ != &_default_starname_) {
-    starname_->clear();
-  }
+  starname_ = 0;
   _clear_bit(2);
 }
-inline const ::std::string& MsgPlanet::starname() const {
-  return *starname_;
-}
-inline void MsgPlanet::set_starname(const ::std::string& value) {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(value);
-}
-inline void MsgPlanet::set_starname(const char* value) {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(value);
-}
-inline void MsgPlanet::set_starname(const char* value, size_t size) {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* MsgPlanet::mutable_starname() {
-  _set_bit(2);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 MsgPlanet::starname() const {
   return starname_;
+}
+inline void MsgPlanet::set_starname(::google::protobuf::int32 value) {
+  _set_bit(2);
+  starname_ = value;
 }
 
 // optional int32 coinsLimit = 4;

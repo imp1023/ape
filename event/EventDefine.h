@@ -214,18 +214,7 @@ enum EVENT_DEFINE
     EVENT_ADMIN_OUTPUTGUILDUSERLIST,
 	EVENT_ADMIN_SITECREDITRELOAD,
 
-	//监控命令
-	EVENT_MONITOR = 2400,
-
-	//空间十年领取礼包
-	EVENT_QZTENYEAR_AWARD,
-	//军备结束后请求自己最后的名次
-	EVENT_ARM_RACE_RANK,
-	EVENT_WEB_REFRESHBLUE,
-	EVENT_WEB_REFRESHBLUE_REBATE,
-	//国战buff
-	EVENT_CITYBUFF_INFO,
-	EVENT_CITYBUFF_RETURNHOME,
+	EVENT_QUERY_STAR_INFO,
 };
 
 enum Status_UpdateWorkingStatus 
@@ -255,7 +244,8 @@ enum Status_UserLogin
 	UserLogin_GP_Req,
 	UserLogin_PG_Rsp,
 
-
+	UserLogin_GCo_Req,
+	UserLogin_CoG_Rsp,
 };
 
 enum Status_NormalStats

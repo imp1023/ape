@@ -47,20 +47,10 @@ void protobuf_AssignDesc_RceQueryCheckAndLockAccountIfPossible_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RceQueryCheckAndLockAccountIfPossible));
   HangarsUnitsInfo_descriptor_ = file->message_type(1);
-  static const int HangarsUnitsInfo_offsets_[13] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, id_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, name1_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, name2_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, name3_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, name4_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, name5_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, name6_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, value1_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, value2_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, value3_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, value4_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, value5_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, value6_),
+  static const int HangarsUnitsInfo_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, sid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, sku_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(HangarsUnitsInfo, num_),
   };
   HangarsUnitsInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -109,15 +99,11 @@ void protobuf_AddDesc_RceQueryCheckAndLockAccountIfPossible_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n+RceQueryCheckAndLockAccountIfPossible."
     "proto\"\251\001\n%RceQueryCheckAndLockAccountIfP"
-    "ossible\022+\n\020hangarsUnitsInfo\030\001 \001(\0132\021.Hang"
-    "arsUnitsInfo\022\020\n\010planetId\030\002 \001(\t\022\021\n\tapplyL"
+    "ossible\022+\n\020hangarsUnitsInfo\030\001 \003(\0132\021.Hang"
+    "arsUnitsInfo\022\020\n\010planetId\030\002 \001(\005\022\021\n\tapplyL"
     "ock\030\003 \001(\005\022\027\n\017targetAccountId\030\004 \001(\t\022\025\n\ris"
-    "AllianceWar\030\005 \001(\005\"\330\001\n\020HangarsUnitsInfo\022\n"
-    "\n\002id\030\001 \001(\005\022\r\n\005name1\030\002 \001(\t\022\r\n\005name2\030\003 \001(\t"
-    "\022\r\n\005name3\030\004 \001(\t\022\r\n\005name4\030\005 \001(\t\022\r\n\005name5\030"
-    "\006 \001(\t\022\r\n\005name6\030\007 \001(\t\022\016\n\006value1\030\010 \001(\005\022\016\n\006"
-    "value2\030\t \001(\005\022\016\n\006value3\030\n \001(\005\022\016\n\006value4\030\013"
-    " \001(\005\022\016\n\006value5\030\014 \001(\005\022\016\n\006value6\030\r \001(\005", 436);
+    "AllianceWar\030\005 \001(\005\"9\n\020HangarsUnitsInfo\022\013\n"
+    "\003sid\030\001 \001(\005\022\013\n\003sku\030\002 \001(\t\022\013\n\003num\030\003 \001(\005", 276);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceQueryCheckAndLockAccountIfPossible.proto", &protobuf_RegisterTypes);
   RceQueryCheckAndLockAccountIfPossible::default_instance_ = new RceQueryCheckAndLockAccountIfPossible();
@@ -137,7 +123,6 @@ struct StaticDescriptorInitializer_RceQueryCheckAndLockAccountIfPossible_2eproto
 
 // ===================================================================
 
-const ::std::string RceQueryCheckAndLockAccountIfPossible::_default_planetid_;
 const ::std::string RceQueryCheckAndLockAccountIfPossible::_default_targetaccountid_;
 #ifndef _MSC_VER
 const int RceQueryCheckAndLockAccountIfPossible::kHangarsUnitsInfoFieldNumber;
@@ -152,7 +137,6 @@ RceQueryCheckAndLockAccountIfPossible::RceQueryCheckAndLockAccountIfPossible() {
 }
 
 void RceQueryCheckAndLockAccountIfPossible::InitAsDefaultInstance() {
-  hangarsunitsinfo_ = const_cast< ::HangarsUnitsInfo*>(&::HangarsUnitsInfo::default_instance());
 }
 
 RceQueryCheckAndLockAccountIfPossible::RceQueryCheckAndLockAccountIfPossible(const RceQueryCheckAndLockAccountIfPossible& from) {
@@ -162,8 +146,7 @@ RceQueryCheckAndLockAccountIfPossible::RceQueryCheckAndLockAccountIfPossible(con
 
 void RceQueryCheckAndLockAccountIfPossible::SharedCtor() {
   _cached_size_ = 0;
-  hangarsunitsinfo_ = NULL;
-  planetid_ = const_cast< ::std::string*>(&_default_planetid_);
+  planetid_ = 0;
   applylock_ = 0;
   targetaccountid_ = const_cast< ::std::string*>(&_default_targetaccountid_);
   isalliancewar_ = 0;
@@ -175,14 +158,10 @@ RceQueryCheckAndLockAccountIfPossible::~RceQueryCheckAndLockAccountIfPossible() 
 }
 
 void RceQueryCheckAndLockAccountIfPossible::SharedDtor() {
-  if (planetid_ != &_default_planetid_) {
-    delete planetid_;
-  }
   if (targetaccountid_ != &_default_targetaccountid_) {
     delete targetaccountid_;
   }
   if (this != default_instance_) {
-    delete hangarsunitsinfo_;
   }
 }
 
@@ -202,15 +181,8 @@ RceQueryCheckAndLockAccountIfPossible* RceQueryCheckAndLockAccountIfPossible::Ne
 }
 
 void RceQueryCheckAndLockAccountIfPossible::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (hangarsunitsinfo_ != NULL) hangarsunitsinfo_->::HangarsUnitsInfo::Clear();
-    }
-    if (_has_bit(1)) {
-      if (planetid_ != &_default_planetid_) {
-        planetid_->clear();
-      }
-    }
+  if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
+    planetid_ = 0;
     applylock_ = 0;
     if (_has_bit(3)) {
       if (targetaccountid_ != &_default_targetaccountid_) {
@@ -219,6 +191,7 @@ void RceQueryCheckAndLockAccountIfPossible::Clear() {
     }
     isalliancewar_ = 0;
   }
+  hangarsunitsinfo_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -229,30 +202,30 @@ bool RceQueryCheckAndLockAccountIfPossible::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .HangarsUnitsInfo hangarsUnitsInfo = 1;
+      // repeated .HangarsUnitsInfo hangarsUnitsInfo = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
+       parse_hangarsUnitsInfo:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_hangarsunitsinfo()));
-        if (input->ExpectTag(18)) goto parse_planetId;
+              input, add_hangarsunitsinfo()));
+        if (input->ExpectTag(10)) goto parse_hangarsUnitsInfo;
+        if (input->ExpectTag(16)) goto parse_planetId;
         break;
       }
       
-      // optional string planetId = 2;
+      // optional int32 planetId = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
        parse_planetId:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_planetid()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->planetid().data(), this->planetid().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planetid_));
+        _set_bit(1);
         if (input->ExpectTag(24)) goto parse_applyLock;
         break;
       }
@@ -325,19 +298,15 @@ void RceQueryCheckAndLockAccountIfPossible::SerializeWithCachedSizes(
     return;
   }
   
-  // optional .HangarsUnitsInfo hangarsUnitsInfo = 1;
-  if (_has_bit(0)) {
+  // repeated .HangarsUnitsInfo hangarsUnitsInfo = 1;
+  for (int i = 0; i < this->hangarsunitsinfo_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      1, this->hangarsunitsinfo(), output);
+      1, this->hangarsunitsinfo(i), output);
   }
   
-  // optional string planetId = 2;
+  // optional int32 planetId = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->planetid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->planetid(), output);
   }
   
   // optional int32 applyLock = 3;
@@ -367,21 +336,16 @@ void RceQueryCheckAndLockAccountIfPossible::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RceQueryCheckAndLockAccountIfPossible::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional .HangarsUnitsInfo hangarsUnitsInfo = 1;
-  if (_has_bit(0)) {
+  // repeated .HangarsUnitsInfo hangarsUnitsInfo = 1;
+  for (int i = 0; i < this->hangarsunitsinfo_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, this->hangarsunitsinfo(), target);
+        1, this->hangarsunitsinfo(i), target);
   }
   
-  // optional string planetId = 2;
+  // optional int32 planetId = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->planetid().data(), this->planetid().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->planetid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->planetid(), target);
   }
   
   // optional int32 applyLock = 3;
@@ -414,18 +378,11 @@ void RceQueryCheckAndLockAccountIfPossible::SerializeWithCachedSizes(
 int RceQueryCheckAndLockAccountIfPossible::ByteSize() const {
   int total_size = 0;
   
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional .HangarsUnitsInfo hangarsUnitsInfo = 1;
-    if (has_hangarsunitsinfo()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->hangarsunitsinfo());
-    }
-    
-    // optional string planetId = 2;
+  if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
+    // optional int32 planetId = 2;
     if (has_planetid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->planetid());
     }
     
@@ -451,6 +408,14 @@ int RceQueryCheckAndLockAccountIfPossible::ByteSize() const {
     }
     
   }
+  // repeated .HangarsUnitsInfo hangarsUnitsInfo = 1;
+  total_size += 1 * this->hangarsunitsinfo_size();
+  for (int i = 0; i < this->hangarsunitsinfo_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->hangarsunitsinfo(i));
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -474,10 +439,8 @@ void RceQueryCheckAndLockAccountIfPossible::MergeFrom(const ::google::protobuf::
 
 void RceQueryCheckAndLockAccountIfPossible::MergeFrom(const RceQueryCheckAndLockAccountIfPossible& from) {
   GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      mutable_hangarsunitsinfo()->::HangarsUnitsInfo::MergeFrom(from.hangarsunitsinfo());
-    }
+  hangarsunitsinfo_.MergeFrom(from.hangarsunitsinfo_);
+  if (from._has_bits_[1 / 32] & (0xffu << (1 % 32))) {
     if (from._has_bit(1)) {
       set_planetid(from.planetid());
     }
@@ -513,7 +476,7 @@ bool RceQueryCheckAndLockAccountIfPossible::IsInitialized() const {
 
 void RceQueryCheckAndLockAccountIfPossible::Swap(RceQueryCheckAndLockAccountIfPossible* other) {
   if (other != this) {
-    std::swap(hangarsunitsinfo_, other->hangarsunitsinfo_);
+    hangarsunitsinfo_.Swap(&other->hangarsunitsinfo_);
     std::swap(planetid_, other->planetid_);
     std::swap(applylock_, other->applylock_);
     std::swap(targetaccountid_, other->targetaccountid_);
@@ -535,26 +498,11 @@ void RceQueryCheckAndLockAccountIfPossible::Swap(RceQueryCheckAndLockAccountIfPo
 
 // ===================================================================
 
-const ::std::string HangarsUnitsInfo::_default_name1_;
-const ::std::string HangarsUnitsInfo::_default_name2_;
-const ::std::string HangarsUnitsInfo::_default_name3_;
-const ::std::string HangarsUnitsInfo::_default_name4_;
-const ::std::string HangarsUnitsInfo::_default_name5_;
-const ::std::string HangarsUnitsInfo::_default_name6_;
+const ::std::string HangarsUnitsInfo::_default_sku_;
 #ifndef _MSC_VER
-const int HangarsUnitsInfo::kIdFieldNumber;
-const int HangarsUnitsInfo::kName1FieldNumber;
-const int HangarsUnitsInfo::kName2FieldNumber;
-const int HangarsUnitsInfo::kName3FieldNumber;
-const int HangarsUnitsInfo::kName4FieldNumber;
-const int HangarsUnitsInfo::kName5FieldNumber;
-const int HangarsUnitsInfo::kName6FieldNumber;
-const int HangarsUnitsInfo::kValue1FieldNumber;
-const int HangarsUnitsInfo::kValue2FieldNumber;
-const int HangarsUnitsInfo::kValue3FieldNumber;
-const int HangarsUnitsInfo::kValue4FieldNumber;
-const int HangarsUnitsInfo::kValue5FieldNumber;
-const int HangarsUnitsInfo::kValue6FieldNumber;
+const int HangarsUnitsInfo::kSidFieldNumber;
+const int HangarsUnitsInfo::kSkuFieldNumber;
+const int HangarsUnitsInfo::kNumFieldNumber;
 #endif  // !_MSC_VER
 
 HangarsUnitsInfo::HangarsUnitsInfo() {
@@ -571,19 +519,9 @@ HangarsUnitsInfo::HangarsUnitsInfo(const HangarsUnitsInfo& from) {
 
 void HangarsUnitsInfo::SharedCtor() {
   _cached_size_ = 0;
-  id_ = 0;
-  name1_ = const_cast< ::std::string*>(&_default_name1_);
-  name2_ = const_cast< ::std::string*>(&_default_name2_);
-  name3_ = const_cast< ::std::string*>(&_default_name3_);
-  name4_ = const_cast< ::std::string*>(&_default_name4_);
-  name5_ = const_cast< ::std::string*>(&_default_name5_);
-  name6_ = const_cast< ::std::string*>(&_default_name6_);
-  value1_ = 0;
-  value2_ = 0;
-  value3_ = 0;
-  value4_ = 0;
-  value5_ = 0;
-  value6_ = 0;
+  sid_ = 0;
+  sku_ = const_cast< ::std::string*>(&_default_sku_);
+  num_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -592,23 +530,8 @@ HangarsUnitsInfo::~HangarsUnitsInfo() {
 }
 
 void HangarsUnitsInfo::SharedDtor() {
-  if (name1_ != &_default_name1_) {
-    delete name1_;
-  }
-  if (name2_ != &_default_name2_) {
-    delete name2_;
-  }
-  if (name3_ != &_default_name3_) {
-    delete name3_;
-  }
-  if (name4_ != &_default_name4_) {
-    delete name4_;
-  }
-  if (name5_ != &_default_name5_) {
-    delete name5_;
-  }
-  if (name6_ != &_default_name6_) {
-    delete name6_;
+  if (sku_ != &_default_sku_) {
+    delete sku_;
   }
   if (this != default_instance_) {
   }
@@ -631,45 +554,13 @@ HangarsUnitsInfo* HangarsUnitsInfo::New() const {
 
 void HangarsUnitsInfo::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    id_ = 0;
+    sid_ = 0;
     if (_has_bit(1)) {
-      if (name1_ != &_default_name1_) {
-        name1_->clear();
+      if (sku_ != &_default_sku_) {
+        sku_->clear();
       }
     }
-    if (_has_bit(2)) {
-      if (name2_ != &_default_name2_) {
-        name2_->clear();
-      }
-    }
-    if (_has_bit(3)) {
-      if (name3_ != &_default_name3_) {
-        name3_->clear();
-      }
-    }
-    if (_has_bit(4)) {
-      if (name4_ != &_default_name4_) {
-        name4_->clear();
-      }
-    }
-    if (_has_bit(5)) {
-      if (name5_ != &_default_name5_) {
-        name5_->clear();
-      }
-    }
-    if (_has_bit(6)) {
-      if (name6_ != &_default_name6_) {
-        name6_->clear();
-      }
-    }
-    value1_ = 0;
-  }
-  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    value2_ = 0;
-    value3_ = 0;
-    value4_ = 0;
-    value5_ = 0;
-    value6_ = 0;
+    num_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -681,195 +572,45 @@ bool HangarsUnitsInfo::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 id = 1;
+      // optional int32 sid = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &id_));
+              input, &sid_));
         _set_bit(0);
-        if (input->ExpectTag(18)) goto parse_name1;
+        if (input->ExpectTag(18)) goto parse_sku;
         break;
       }
       
-      // optional string name1 = 2;
+      // optional string sku = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_name1:
+       parse_sku:
         DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name1()));
+              input, this->mutable_sku()));
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name1().data(), this->name1().length(),
+          this->sku().data(), this->sku().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(26)) goto parse_name2;
+        if (input->ExpectTag(24)) goto parse_num;
         break;
       }
       
-      // optional string name2 = 3;
+      // optional int32 num = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_name2:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name2()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name2().data(), this->name2().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(34)) goto parse_name3;
-        break;
-      }
-      
-      // optional string name3 = 4;
-      case 4: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_name3:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name3()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name3().data(), this->name3().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(42)) goto parse_name4;
-        break;
-      }
-      
-      // optional string name4 = 5;
-      case 5: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_name4:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name4()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name4().data(), this->name4().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(50)) goto parse_name5;
-        break;
-      }
-      
-      // optional string name5 = 6;
-      case 6: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_name5:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name5()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name5().data(), this->name5().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(58)) goto parse_name6;
-        break;
-      }
-      
-      // optional string name6 = 7;
-      case 7: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          goto handle_uninterpreted;
-        }
-       parse_name6:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_name6()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->name6().data(), this->name6().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(64)) goto parse_value1;
-        break;
-      }
-      
-      // optional int32 value1 = 8;
-      case 8: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-       parse_value1:
+       parse_num:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value1_));
-        _set_bit(7);
-        if (input->ExpectTag(72)) goto parse_value2;
-        break;
-      }
-      
-      // optional int32 value2 = 9;
-      case 9: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_value2:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value2_));
-        _set_bit(8);
-        if (input->ExpectTag(80)) goto parse_value3;
-        break;
-      }
-      
-      // optional int32 value3 = 10;
-      case 10: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_value3:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value3_));
-        _set_bit(9);
-        if (input->ExpectTag(88)) goto parse_value4;
-        break;
-      }
-      
-      // optional int32 value4 = 11;
-      case 11: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_value4:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value4_));
-        _set_bit(10);
-        if (input->ExpectTag(96)) goto parse_value5;
-        break;
-      }
-      
-      // optional int32 value5 = 12;
-      case 12: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_value5:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value5_));
-        _set_bit(11);
-        if (input->ExpectTag(104)) goto parse_value6;
-        break;
-      }
-      
-      // optional int32 value6 = 13;
-      case 13: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_value6:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value6_));
-        _set_bit(12);
+              input, &num_));
+        _set_bit(2);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -898,93 +639,23 @@ void HangarsUnitsInfo::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int32 id = 1;
+  // optional int32 sid = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->sid(), output);
   }
   
-  // optional string name1 = 2;
+  // optional string sku = 2;
   if (_has_bit(1)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name1().data(), this->name1().length(),
+      this->sku().data(), this->sku().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->name1(), output);
+      2, this->sku(), output);
   }
   
-  // optional string name2 = 3;
+  // optional int32 num = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name2().data(), this->name2().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      3, this->name2(), output);
-  }
-  
-  // optional string name3 = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name3().data(), this->name3().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      4, this->name3(), output);
-  }
-  
-  // optional string name4 = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name4().data(), this->name4().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->name4(), output);
-  }
-  
-  // optional string name5 = 6;
-  if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name5().data(), this->name5().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      6, this->name5(), output);
-  }
-  
-  // optional string name6 = 7;
-  if (_has_bit(6)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name6().data(), this->name6().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      7, this->name6(), output);
-  }
-  
-  // optional int32 value1 = 8;
-  if (_has_bit(7)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->value1(), output);
-  }
-  
-  // optional int32 value2 = 9;
-  if (_has_bit(8)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->value2(), output);
-  }
-  
-  // optional int32 value3 = 10;
-  if (_has_bit(9)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->value3(), output);
-  }
-  
-  // optional int32 value4 = 11;
-  if (_has_bit(10)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->value4(), output);
-  }
-  
-  // optional int32 value5 = 12;
-  if (_has_bit(11)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->value5(), output);
-  }
-  
-  // optional int32 value6 = 13;
-  if (_has_bit(12)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(13, this->value6(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->num(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -995,99 +666,24 @@ void HangarsUnitsInfo::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* HangarsUnitsInfo::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 id = 1;
+  // optional int32 sid = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->sid(), target);
   }
   
-  // optional string name1 = 2;
+  // optional string sku = 2;
   if (_has_bit(1)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name1().data(), this->name1().length(),
+      this->sku().data(), this->sku().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->name1(), target);
+        2, this->sku(), target);
   }
   
-  // optional string name2 = 3;
+  // optional int32 num = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name2().data(), this->name2().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->name2(), target);
-  }
-  
-  // optional string name3 = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name3().data(), this->name3().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->name3(), target);
-  }
-  
-  // optional string name4 = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name4().data(), this->name4().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->name4(), target);
-  }
-  
-  // optional string name5 = 6;
-  if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name5().data(), this->name5().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        6, this->name5(), target);
-  }
-  
-  // optional string name6 = 7;
-  if (_has_bit(6)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name6().data(), this->name6().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        7, this->name6(), target);
-  }
-  
-  // optional int32 value1 = 8;
-  if (_has_bit(7)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->value1(), target);
-  }
-  
-  // optional int32 value2 = 9;
-  if (_has_bit(8)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->value2(), target);
-  }
-  
-  // optional int32 value3 = 10;
-  if (_has_bit(9)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->value3(), target);
-  }
-  
-  // optional int32 value4 = 11;
-  if (_has_bit(10)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->value4(), target);
-  }
-  
-  // optional int32 value5 = 12;
-  if (_has_bit(11)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->value5(), target);
-  }
-  
-  // optional int32 value6 = 13;
-  if (_has_bit(12)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(13, this->value6(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->num(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1101,97 +697,25 @@ int HangarsUnitsInfo::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 id = 1;
-    if (has_id()) {
+    // optional int32 sid = 1;
+    if (has_sid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->id());
+          this->sid());
     }
     
-    // optional string name1 = 2;
-    if (has_name1()) {
+    // optional string sku = 2;
+    if (has_sku()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name1());
+          this->sku());
     }
     
-    // optional string name2 = 3;
-    if (has_name2()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name2());
-    }
-    
-    // optional string name3 = 4;
-    if (has_name3()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name3());
-    }
-    
-    // optional string name4 = 5;
-    if (has_name4()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name4());
-    }
-    
-    // optional string name5 = 6;
-    if (has_name5()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name5());
-    }
-    
-    // optional string name6 = 7;
-    if (has_name6()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name6());
-    }
-    
-    // optional int32 value1 = 8;
-    if (has_value1()) {
+    // optional int32 num = 3;
+    if (has_num()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->value1());
-    }
-    
-  }
-  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    // optional int32 value2 = 9;
-    if (has_value2()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->value2());
-    }
-    
-    // optional int32 value3 = 10;
-    if (has_value3()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->value3());
-    }
-    
-    // optional int32 value4 = 11;
-    if (has_value4()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->value4());
-    }
-    
-    // optional int32 value5 = 12;
-    if (has_value5()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->value5());
-    }
-    
-    // optional int32 value6 = 13;
-    if (has_value6()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->value6());
+          this->num());
     }
     
   }
@@ -1220,45 +744,13 @@ void HangarsUnitsInfo::MergeFrom(const HangarsUnitsInfo& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      set_id(from.id());
+      set_sid(from.sid());
     }
     if (from._has_bit(1)) {
-      set_name1(from.name1());
+      set_sku(from.sku());
     }
     if (from._has_bit(2)) {
-      set_name2(from.name2());
-    }
-    if (from._has_bit(3)) {
-      set_name3(from.name3());
-    }
-    if (from._has_bit(4)) {
-      set_name4(from.name4());
-    }
-    if (from._has_bit(5)) {
-      set_name5(from.name5());
-    }
-    if (from._has_bit(6)) {
-      set_name6(from.name6());
-    }
-    if (from._has_bit(7)) {
-      set_value1(from.value1());
-    }
-  }
-  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
-    if (from._has_bit(8)) {
-      set_value2(from.value2());
-    }
-    if (from._has_bit(9)) {
-      set_value3(from.value3());
-    }
-    if (from._has_bit(10)) {
-      set_value4(from.value4());
-    }
-    if (from._has_bit(11)) {
-      set_value5(from.value5());
-    }
-    if (from._has_bit(12)) {
-      set_value6(from.value6());
+      set_num(from.num());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1283,19 +775,9 @@ bool HangarsUnitsInfo::IsInitialized() const {
 
 void HangarsUnitsInfo::Swap(HangarsUnitsInfo* other) {
   if (other != this) {
-    std::swap(id_, other->id_);
-    std::swap(name1_, other->name1_);
-    std::swap(name2_, other->name2_);
-    std::swap(name3_, other->name3_);
-    std::swap(name4_, other->name4_);
-    std::swap(name5_, other->name5_);
-    std::swap(name6_, other->name6_);
-    std::swap(value1_, other->value1_);
-    std::swap(value2_, other->value2_);
-    std::swap(value3_, other->value3_);
-    std::swap(value4_, other->value4_);
-    std::swap(value5_, other->value5_);
-    std::swap(value6_, other->value6_);
+    std::swap(sid_, other->sid_);
+    std::swap(sku_, other->sku_);
+    std::swap(num_, other->num_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

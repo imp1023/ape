@@ -303,12 +303,12 @@ void protobuf_AddDesc_RseObtainUniverse_2eproto() {
     "t\030\002 \003(\005\"S\n\tMsgBunker\022\013\n\003sid\030\001 \001(\005\022\031\n\021hel"
     "persAccountIds\030\002 \001(\t\022\036\n\006Bunker\030\003 \003(\0132\016.M"
     "sgBunkerUnit\")\n\rMsgHangarUnit\022\013\n\003sku\030\001 \001"
-    "(\005\022\013\n\003num\030\002 \001(\005\"9\n\nMsgHangars\022\013\n\003sid\030\001 \001"
+    "(\t\022\013\n\003num\030\002 \001(\005\"9\n\nMsgHangars\022\013\n\003sid\030\001 \001"
     "(\005\022\036\n\006Hangar\030\002 \003(\0132\016.MsgHangarUnit\")\n\007Ms"
     "gSlot\022\014\n\004Ship\030\001 \003(\005\022\020\n\010timeLeft\030\002 \001(\005\"=\n"
     "\017MsgShipyardSlot\022\013\n\003sku\030\001 \001(\t\022\013\n\003num\030\002 \001"
     "(\005\022\020\n\010timeLeft\030\003 \001(\005\"w\n\013MsgShipyard\022\021\n\tu"
-    "pdatedAt\030\001 \001(\003\022\013\n\003sid\030\002 \001(\005\022\r\n\005block\030\003 \001"
+    "pdatedAt\030\001 \001(\005\022\013\n\003sid\030\002 \001(\005\022\r\n\005block\030\003 \001"
     "(\005\022\025\n\runlockedSlots\030\004 \001(\005\022\"\n\010Shipyard\030\005 "
     "\003(\0132\020.MsgShipyardSlot\"\351\005\n\021RseObtainUnive"
     "rse\022\013\n\003vip\030\001 \001(\010\022\017\n\007yearVip\030\002 \001(\010\022\020\n\010vip"
@@ -1339,6 +1339,7 @@ void MsgBunker::Swap(MsgBunker* other) {
 
 // ===================================================================
 
+const ::std::string MsgHangarUnit::_default_sku_;
 #ifndef _MSC_VER
 const int MsgHangarUnit::kSkuFieldNumber;
 const int MsgHangarUnit::kNumFieldNumber;
@@ -1358,7 +1359,7 @@ MsgHangarUnit::MsgHangarUnit(const MsgHangarUnit& from) {
 
 void MsgHangarUnit::SharedCtor() {
   _cached_size_ = 0;
-  sku_ = 0;
+  sku_ = const_cast< ::std::string*>(&_default_sku_);
   num_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1368,6 +1369,9 @@ MsgHangarUnit::~MsgHangarUnit() {
 }
 
 void MsgHangarUnit::SharedDtor() {
+  if (sku_ != &_default_sku_) {
+    delete sku_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -1389,7 +1393,11 @@ MsgHangarUnit* MsgHangarUnit::New() const {
 
 void MsgHangarUnit::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    sku_ = 0;
+    if (_has_bit(0)) {
+      if (sku_ != &_default_sku_) {
+        sku_->clear();
+      }
+    }
     num_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1402,15 +1410,17 @@ bool MsgHangarUnit::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 sku = 1;
+      // optional string sku = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &sku_));
-        _set_bit(0);
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_sku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->sku().data(), this->sku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
         if (input->ExpectTag(16)) goto parse_num;
         break;
       }
@@ -1453,9 +1463,13 @@ void MsgHangarUnit::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int32 sku = 1;
+  // optional string sku = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->sku(), output);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->sku(), output);
   }
   
   // optional int32 num = 2;
@@ -1471,9 +1485,14 @@ void MsgHangarUnit::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MsgHangarUnit::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 sku = 1;
+  // optional string sku = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->sku(), target);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->sku(), target);
   }
   
   // optional int32 num = 2;
@@ -1492,10 +1511,10 @@ int MsgHangarUnit::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 sku = 1;
+    // optional string sku = 1;
     if (has_sku()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
+        ::google::protobuf::internal::WireFormatLite::StringSize(
           this->sku());
     }
     
@@ -2384,7 +2403,7 @@ MsgShipyard::MsgShipyard(const MsgShipyard& from) {
 
 void MsgShipyard::SharedCtor() {
   _cached_size_ = 0;
-  updatedat_ = GOOGLE_LONGLONG(0);
+  updatedat_ = 0;
   sid_ = 0;
   block_ = 0;
   unlockedslots_ = 0;
@@ -2417,7 +2436,7 @@ MsgShipyard* MsgShipyard::New() const {
 
 void MsgShipyard::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    updatedat_ = GOOGLE_LONGLONG(0);
+    updatedat_ = 0;
     sid_ = 0;
     block_ = 0;
     unlockedslots_ = 0;
@@ -2433,13 +2452,13 @@ bool MsgShipyard::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int64 updatedAt = 1;
+      // optional int32 updatedAt = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &updatedat_));
         _set_bit(0);
         if (input->ExpectTag(16)) goto parse_sid;
@@ -2526,9 +2545,9 @@ void MsgShipyard::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int64 updatedAt = 1;
+  // optional int32 updatedAt = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->updatedat(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->updatedat(), output);
   }
   
   // optional int32 sid = 2;
@@ -2560,9 +2579,9 @@ void MsgShipyard::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* MsgShipyard::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int64 updatedAt = 1;
+  // optional int32 updatedAt = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->updatedat(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->updatedat(), target);
   }
   
   // optional int32 sid = 2;
@@ -2598,10 +2617,10 @@ int MsgShipyard::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int64 updatedAt = 1;
+    // optional int32 updatedAt = 1;
     if (has_updatedat()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int64Size(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->updatedat());
     }
     
