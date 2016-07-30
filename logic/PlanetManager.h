@@ -58,5 +58,6 @@ private:
 	Player *m_pPlayer;
 	DB_Player *m_pDBPlayer;
 	map<int, Planet*> m_mPlanets;
+	//map<int, DB_Shipyard> m_mShipyard;
 	int m_MaxPlanetId;
 };

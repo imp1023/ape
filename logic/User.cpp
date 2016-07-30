@@ -15,7 +15,7 @@ User::User(int64 id, const string& pid, const string &name,
 		   const string &profile_link, int gender, PLAT_TYPE plat_type,
 		   bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv,
 		   const vector<string> &friends_platid,int nRegion,int nCity,bool bIsHighYellowDmd , bool bIsHighDmdYear, int nBlueTime, int nBlueYearTime,int nHighBlueTime,
-		   int nHighBlueYearTime)
+		   int nHighBlueYearTime, int nID, int nName, int nType, string strSku)
 {
 	Init();
 
@@ -26,7 +26,11 @@ User::User(int64 id, const string& pid, const string &name,
 	m_dbUser.set_region(nRegion);
 	m_dbUser.set_city(nCity);
 	//关联player数据库
-	m_pPlayer->InitPlayerData();
+	m_pPlayer->InitPlayerFlag();
+	m_pPlayer->InitPlayerModel();
+	m_pPlayer->InitPlayerState();
+	m_pPlayer->InitPlayerPlanets(nID, nName, nType, strSku);
+	m_pPlayer->InitPlayerNPC();
 	m_pPlayer->InitDB(m_dbUser.mutable_player());
 	//m_pPlayer->InitNpcDB(&m_dbNPCList);
 	//m_pPlayer->InitNewUserFromCfg();
@@ -99,7 +103,11 @@ void User::Init()
     InitDBUser();
 	m_strRc4Send.clear();
 	m_strRc4Receive.clear();
-
+	
+	m_CurPlanetId = 1;
+	m_TargetPlayerId = 0;
+	m_TargetPlanetId = 1;
+	m_bIsNpc = false;
 }
 
 void User::InitDBUser()
@@ -281,9 +289,9 @@ int User::GetUserRegion(bool bCheckGroup/* =false */)
 	}
 }
 
-void User::InitRc4Key(int nNum,string szSid)
+void	User::InitRc4Key(int nNum,string szSid)
 {
-	int64 nKey = /*m_dbUser.player().level() * */ 100 + nNum;
+	int64 nKey = m_dbUser.player().model().level() * 100 + nNum;
 
 	m_strRc4Send = toString(m_dbUser.id()) + toString(nKey) + szSid;
 
@@ -314,6 +322,14 @@ void User::Logon(GameDataHandler* dh)
 	{
 		//m_pPlayer->_TmpCheckLV();
 		//m_pPlayer->Logon(dh);
+		DB_Model* mod = m_pPlayer->GetDBPlayer()->mutable_model();
+		mod->set_cash(99999999);
+		mod->set_coins(99999999);
+		mod->set_minerals(99999999);
+		mod->set_coinstotal(999999999);
+		mod->set_mineralstotal(99999999);
+		m_pPlayer->GetPlanet(1)->set_coinslimit(9999999999);
+		m_pPlayer->GetPlanet(1)->set_minerallimit(9999999999);
 	}
 	//m_UpdateSaveTime = 0;
 }
@@ -365,4 +381,43 @@ inline void User::SetProfileLink(const string &profile_link, enum PLAT_TYPE nPla
 	{
 		m_dbUser.set_profile_link(nPlatType, profile_link);
 	}
+}
+
+void User::AddOnlineTime(time_t ltNow)
+{
+	if(m_ltResLastTime <=0)
+		m_ltResLastTime = time(NULL);
+	m_nOnlineTime += (ltNow - m_ltResLastTime);
+	m_ltResLastTime = ltNow;
+}
+
+int User::GetOnlineTime()
+{
+	if ( m_nOnlineTime < 0 )
+	{
+		m_nOnlineTime = 0;
+	}
+	return m_nOnlineTime;
+}
+
+bool User::SetAddiction(float fAddiction)
+{
+	if ( fAddiction < 0 || fAddiction > 1.0f )
+	{
+		SYS_LOG(GetUid(), LT_ADDICTION, 0, 0, -1<<-1);
+		return false;
+	}
+
+	SYS_LOG(GetUid(), LT_ADDICTION, 0, 0, fAddiction<<m_fAddiction);
+	m_fAddiction = fAddiction;
+	return true;
+}
+
+int User::GetLogoutTime()
+{
+	if ( m_nLogoutTime < 0 )
+	{
+		m_nLogoutTime = 0;
+	}
+	return m_nLogoutTime;
 }

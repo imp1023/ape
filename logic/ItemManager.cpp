@@ -47,7 +47,7 @@ DB_Item* ItemManager::CreateItem(MsgBuildingItem *pItem)
 	if(!pDBItem){
 		return NULL;
 	}
-	pDBItem->set_id(m_nMaxItemId + 1);
+	pDBItem->set_id(++m_nMaxItemId);
 	pDBItem->set_x(pItem->x());
 	pDBItem->set_y(pItem->y());
 	pDBItem->set_sku(pItem->sku());
@@ -62,6 +62,8 @@ DB_Item* ItemManager::CreateItem(MsgBuildingItem *pItem)
 	pDBItem->set_sid(pItem->sid());
 	pDBItem->set_updateat(time(NULL));
 	m_mDBItems.insert(make_pair(pDBItem->id(), pDBItem));
+	//if(type == )//µØ±¤
+
 	return pDBItem;
 }
 
@@ -71,7 +73,7 @@ DB_Item* ItemManager::CreateItem(CFG_InitItem *pCfgItem)
 	if(!pDBItem){
 		return NULL;
 	}
-	pDBItem->set_id(m_nMaxItemId + 1);
+	pDBItem->set_id(++m_nMaxItemId);
 	pDBItem->set_sid(pCfgItem->sid);
 	pDBItem->set_sku(SkuIDTblInst::instance().GetName(pCfgItem->sku));
 	pDBItem->set_type(pCfgItem->type);
@@ -121,5 +123,6 @@ bool ItemManager::DestroyItem(int nItemId)
 		pLastDbItem->Swap(pItem);
 	}
 	m_pDBPlanet->mutable_items()->RemoveLast();
-	return true;
+	m_mDBItems.erase(iter);
+	return true;	
 }

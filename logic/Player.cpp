@@ -9,6 +9,7 @@
 #include "../common/Clock.h"
 #include "../common/string-util.h"
 #include "../common/rand_util.h"
+#include "ItemTbl.h"
 
 //table
 #include "CountryNameTbl.h"
@@ -19,9 +20,7 @@
 #include "ResourceSilos.h"
 
 //logic
-#include "StarLogic.h"
 #include "PlanetManager.h"
-
 
 #define DELETE_POBJ(pObj) \
 {\
@@ -31,13 +30,14 @@
 		pObj = NULL;\
 	}\
 }
-
+bool bAdd = false;
 Player::Player(User* pParent)//:m_rPVEFightManager(this),m_rCountryArenaMgr(),m_rWorldArenaMgr(),m_rRegionArenaMgr(),m_rHeroArenaMgr()
 {
 	m_pUser = pParent;
 	m_pdbPlayer = NULL;
 	eh_ = NULL;
 	m_pPlanetManager = new PlanetManager(this);
+	m_pBattleManager = new BattleManager(this);
 
 #if 0
 	m_bHasSendInfoToStar = false;
@@ -71,7 +71,11 @@ Player::Player(User* pParent)//:m_rPVEFightManager(this),m_rCountryArenaMgr(),m_
 
 Player::~Player(void)
 {
-	//DELETE_POBJ(m_pBuildMgr);
+	SafeDelete(m_pPlanetManager);
+	SafeDelete(m_pBattleManager);
+
+	m_pdbPlayer = NULL;
+	m_pUser = NULL;
 }
 
 void Player::SetEventHandler(GameEventHandler* eh)
@@ -199,12 +203,12 @@ void Player::SendBroadCastToSelf(int type, int id, vector<string> param)
 // 		eh_->sendDataToUser(m_pUser->fd(), S2C_RseBroadcast, text);
 }
 
-void Player::InitPlayerData()
+void Player::InitPlayerFlag()
 {
-	InitPlayerModel();
-	InitPlayerState();
-	InitPlayerPlanets();
-	InitPlayerNPC();
+	m_pdbPlayer->mutable_flag()->set_music(1);
+	m_pdbPlayer->mutable_flag()->set_effect(1);
+	m_pdbPlayer->mutable_flag()->set_quality(1);
+	m_pdbPlayer->mutable_flag()->set_alliancewelcome(0);
 }
 
 void Player::InitPlayerModel()
@@ -222,12 +226,12 @@ void Player::InitPlayerModel()
 
 void Player::InitPlayerState()
 {
-	m_pdbPlayer->mutable_state()->set_tutorialcompleted(0);
+	m_pdbPlayer->mutable_state()->set_tutorialcompleted(1);
 	m_pdbPlayer->mutable_state()->set_dmgprotectiontimeleft(time(NULL));
 	m_pdbPlayer->mutable_state()->set_dmgprotectiontimetotal(INIT_PLAYER_DMGPROTECTIONTIMETOTAL);
 }
 
-void Player::InitPlayerPlanets()
+void Player::InitPlayerPlanets(int nID, int nName, int nType, string sku)
 {
 	m_pdbPlayer->clear_planets();
 	DB_Planet *pp = m_pdbPlayer->add_planets();
@@ -240,13 +244,12 @@ void Player::InitPlayerPlanets()
 	pp->set_capital(1);
  	pp->set_coinslimit(INIT_PLAYER_TOTALCOINS);
  	pp->set_minerallimit(INIT_PLAYER_TOTALMINERALS);
-	//int nStarId = StarLogicInst::instance().GetNewPlayerStar(m_pUser->GetUid());
 	DB_StarLite *pStar = pp->mutable_star();
 	if(!pStar){return;}
-	pStar->set_starid(1);
-	pStar->set_starname("cn");
-	pStar->set_startype(3);
-	pStar->set_sku("4:0:1");
+	pStar->set_starid(nID);
+	pStar->set_starname(nName);
+	pStar->set_startype(nType);
+	pStar->set_sku(sku);
 
 	//init planet item
 	int num = InitItemTblInst::instance().GetTotalSize();
@@ -291,8 +294,8 @@ void Player::InitPlayerPlanets()
 				pDBUnit->set_sku(pCfgUnit->sku);
 				pDBUnit->set_unlock(pCfgUnit->unlock);
 				pDBUnit->set_upgradeid(0);
-				pDBUnit->set_timeleft(0);
-				pDBUnit->set_updateat(time(NULL));
+				pDBUnit->set_timeleft(-1);
+				pDBUnit->set_updateat(0);
 			}
 		}
 	}
@@ -474,6 +477,7 @@ bool Player::CostRes(UserSource emType,int nCount,bool bLog,UserSource_CostType 
 			}			
 		}
 #endif
+		eh_->getDataHandler()->markUserDirty(m_pUser);
 		return true;
 	}
 	return false;
@@ -506,6 +510,24 @@ int Player::GetRes(UserSource emType)
 	return nOldCnt;
 }
 
+void Player::RemoveSocialItem(string sku)
+{
+	for(int i = 0;i<m_pdbPlayer->socialitems_size();i++)
+	{
+		DB_SocialItem* pDBTmp= m_pdbPlayer->mutable_socialitems(i);
+		if(pDBTmp->sku() == sku)
+		{
+			DB_SocialItem* pDBWI_last = m_pdbPlayer->mutable_socialitems(m_pdbPlayer->socialitems_size() - 1);
+			if(pDBWI_last && pDBWI_last != pDBTmp)
+			{
+				pDBWI_last->Swap(pDBTmp);
+			}
+			m_pdbPlayer->mutable_socialitems()->RemoveLast();
+		}
+	}
+	eh_->getDataHandler()->markUserDirty(m_pUser);
+}
+
 bool Player::SetDroidInUse(DB_Planet *pPlanet, int cnt)
 {
 	if(!pPlanet || pPlanet->droids() < cnt){
@@ -521,9 +543,11 @@ bool Player::CheckDroidInUse(DB_Planet *pPlanet, int cnt)
 		return false;
 	}
 	int nOldDroidInUse = pPlanet->droidinuse();
+	
 	if(nOldDroidInUse + cnt > pPlanet->droids()){
 		return false;
 	}
+	//pPlanet->set_droidinuse(pPlanet->droidinuse() + 1);
 	return true;
 }
 
@@ -548,11 +572,41 @@ bool Player::CostSocialItem(string sku, int cnt)
 	if(!pDbSocialItem || pDbSocialItem->amount() < cnt){
 		return false;
 	}
-	pDbSocialItem->set_amount(cnt - pDbSocialItem->amount());
+	pDbSocialItem->set_amount(pDbSocialItem->amount() - cnt);
 	return true;
 }
 
-int Player::CreateBuilding(int nPlanetId, MsgBuildingItem *pItem)
+bool Player::AddSocialItem(string sku, int cnt)
+{
+	DB_SocialItem *pDbSocialItem = NULL;
+	for (int i = 0; i < m_pdbPlayer->socialitems_size(); i++){
+		DB_SocialItem *pTmp = m_pdbPlayer->mutable_socialitems(i);
+		if(pTmp && pTmp->sku() == sku){
+			pDbSocialItem = pTmp;
+			break;
+		}
+	}
+	if(!pDbSocialItem){
+		pDbSocialItem = m_pdbPlayer->add_socialitems();
+		pDbSocialItem->set_sku(sku);
+	}
+	pDbSocialItem->set_amount(pDbSocialItem->amount() + cnt);
+	return true;
+}
+
+DB_SocialItem* Player::GetSocialItem(string sku)
+{
+	DB_SocialItem *pDbSocialItem = NULL;
+	for (int i = 0; i < m_pdbPlayer->socialitems_size(); i++){
+		DB_SocialItem *pTmp = m_pdbPlayer->mutable_socialitems(i);
+		if(pTmp && pTmp->sku() == sku){
+			return pTmp;
+		}
+	}
+	return NULL;
+}
+
+DB_Item * Player::CreateBuilding(int nPlanetId, MsgBuildingItem *pItem)
 {
 	if(!pItem){
 		return 0;
@@ -560,9 +614,9 @@ int Player::CreateBuilding(int nPlanetId, MsgBuildingItem *pItem)
 	
 	DB_Item *pDBItem = m_pPlanetManager->CreateItem(nPlanetId, pItem);
 	if(pDBItem){
-		return pDBItem->id();
+		return pDBItem;
 	}
-	return 0;
+	return NULL;
 }
 
 int Player::CreateBuilding(int nPlanetId, CFG_InitItem *pCfgItem)
@@ -591,6 +645,54 @@ DB_Planet* Player::GetPlanet(int nPlanetId)
 	return pPlanet->GetDBPlanet();
 }
 
+bool Player::AddStarBookmark(int nStarId, int nStarType, int nStarName, int x, int y)
+{
+	if(!CanUse() || 0 >= nStarId){
+		return false;
+	}
+
+	bool bFind = false;
+	for (int i = 0; i < m_pdbPlayer->bookmarks_size(); i++)
+	{
+		DB_StarsBookmark* pDBBookmark = m_pdbPlayer->mutable_bookmarks(i);
+		if(pDBBookmark && pDBBookmark->starid() == nStarId){
+			bFind = true;
+		}
+	}
+	if(bFind){
+		return false;
+	}
+	DB_StarsBookmark *pBookmark = m_pdbPlayer->add_bookmarks();
+	if(!pBookmark){
+		return false;
+	}
+
+	pBookmark->set_starname(nStarName);
+	pBookmark->set_starid(nStarId);
+	pBookmark->set_startype(nStarType);
+	char sku[128] = {0};
+	sprintf(sku, "%d:%d", x, y);
+	pBookmark->set_sku(sku);
+}
+
+bool Player::DelStarBookmark(int nStarId)
+{
+	if(!CanUse() || 0 >= nStarId){
+		return false;
+	}
+
+	for (int i = 0; i < m_pdbPlayer->bookmarks_size(); i++){
+		DB_StarsBookmark* pDBBookmark = m_pdbPlayer->mutable_bookmarks(i);
+		if(pDBBookmark && pDBBookmark->starid() == nStarId){
+			DB_StarsBookmark* pLast = m_pdbPlayer->mutable_bookmarks(m_pdbPlayer->bookmarks_size() - 1);
+			pLast->Swap(pDBBookmark);
+			m_pdbPlayer->mutable_bookmarks()->RemoveLast();
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Player::DestroyBuilding(int nPlanetId, int id, int sid)
 {
 	if(!CanUse()){
@@ -606,14 +708,53 @@ bool Player::DestroyBuilding(int nPlanetId, int id, int sid)
 	if(!ret){
 		return false;
 	}
-
+	DB_Planet* pPlanet = GetPlanet(nPlanetId);
 	switch(nType)
 	{
 	case 3://清除兵营
+		for(int i = 0;i<pPlanet->shipyard_size();i++)
+		{
+			DB_Shipyard* pDBShipyard = pPlanet->mutable_shipyard(i);
+			if(pDBShipyard->sid() == sid)
+			{
+				DB_Shipyard* pDBShip_last = pPlanet->mutable_shipyard(pPlanet->shipyard_size() - 1);
+				if(pDBShip_last && pDBShip_last != pDBShipyard)
+				{
+					pDBShip_last->Swap(pDBShipyard);
+				}
+				pPlanet->mutable_shipyard()->RemoveLast();
+			}
+		}
 		break;
 	case 7://清除传送门
+		for(int i = 0;i<pPlanet->hangars_size();i++)
+		{
+			DB_Hangar* pDBHangar = pPlanet->mutable_hangars(i);
+			if(pDBHangar->sid() == sid)
+			{
+				DB_Hangar* pDBHangar_last = pPlanet->mutable_hangars(pPlanet->hangars_size() - 1);
+				if(pDBHangar_last && pDBHangar_last != pDBHangar)
+				{
+					pDBHangar_last->Swap(pDBHangar);
+				}
+				pPlanet->mutable_hangars()->RemoveLast();
+			}
+		}
 		break;
 	case 8://地堡
+		for(int i = 0;i<pPlanet->bunkers_size();i++)
+		{
+			DB_Bunker* pDBBunker = pPlanet->mutable_bunkers(i);
+			if(pDBBunker->sid() == sid)
+			{
+				DB_Bunker* pDBBunker_last = pPlanet->mutable_bunkers(pPlanet->bunkers_size() - 1);
+				if(pDBBunker_last && pDBBunker_last != pDBBunker)
+				{
+					pDBBunker_last->Swap(pDBBunker);
+				}
+				pPlanet->mutable_bunkers()->RemoveLast();
+			}
+		}
 		break;
 	case 9://实验室
 		break;
@@ -624,9 +765,7 @@ bool Player::DestroyBuilding(int nPlanetId, int id, int sid)
 	if(pItem->sku() == "rs_002_001")//银行
 	{
 		int lv = pItem->upgradeid() + 1;
-		char mapKey [128] = {0};
-		sprintf(mapKey, "%s_%d", pItem->sku(), lv);
-		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 		int slot = Tbl->slotCapacity;
 		if(!updateCoinsLimit(-slot))
 			return false;
@@ -634,9 +773,7 @@ bool Player::DestroyBuilding(int nPlanetId, int id, int sid)
 	if(pItem->sku() == "rs_001_001")//矿场
 	{
 		int lv = pItem->upgradeid() + 1;
-		char mapKey [128] = {0};
-		sprintf(mapKey, "%s_%d", pItem->sku(), lv);
-		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 		int slot = Tbl->slotCapacity;
 		if(!updateMineralsLimit(-slot))
 			return false;
@@ -659,6 +796,21 @@ bool Player::RotateBuilding(int nPlanetId, int id, int sid, int x, int y, int fl
 bool Player::MoveBuilding(int nPlanetId, int id, int sid, int x, int y)
 {
 	DB_Item *pDBItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	
+	if(!pDBItem)
+	{
+		DB_Planet* pDBPlanet = GetPlanet(nPlanetId);
+		for(int i = 0; i< pDBPlanet->items_size();i++)
+		{
+			DB_Item* pDBItem_sid= pDBPlanet->mutable_items(i);
+			if(pDBItem_sid->sid() == sid)
+			{
+				pDBItem = pDBItem_sid;
+				break;
+			}
+		}
+
+	}
 	if(!pDBItem){
 		return false;
 	}
@@ -678,7 +830,7 @@ bool Player::cancelBuild(int nPlanetId, int id, int sid)
 
 }
 
-bool Player::cancelUpgrade(int nPlanetId, int id, int sid, int64 ntime)
+bool Player::cancelUpgrade(int nPlanetId, int id, int sid, int ntime)
 {
 
 	DB_Item *pDBItem = m_pPlanetManager->GetItem(nPlanetId, id);
@@ -691,7 +843,7 @@ bool Player::cancelUpgrade(int nPlanetId, int id, int sid, int64 ntime)
 	return true;
 }
 
-bool Player::upgradePremium(int nPlanetId, int id, int sid)
+bool Player::upgradePremium(int nPlanetId, int id, int sid, int ntime , int incometorestore)
 {
 	Planet *pPlanet = m_pPlanetManager->GetPlanet(nPlanetId);
 	
@@ -701,21 +853,29 @@ bool Player::upgradePremium(int nPlanetId, int id, int sid)
 	DB_Item *pDBItem = pPlanet->GetItem(id);
 	if(!pDBItem)
 	{
-		return false;
+		DB_Planet* pDBPlanet = GetPlanet(nPlanetId);
+		for(int i = 0; i< pDBPlanet->items_size();i++)
+		{
+			DB_Item* pDBItem_sid= pDBPlanet->mutable_items(i);
+			if(pDBItem_sid->sid() == sid)
+			{
+				pDBItem = pDBItem_sid;
+				break;
+			}
+		}
 	}
+	if(!pDBItem)
+		return false;
 	int sku = SkuIDTblInst::instance().GetSku(pDBItem->sku());
 	if(!pDBItem){
 		return false;
 	}
 	pDBItem->set_state(1);
-	pDBItem->set_updateat(0);
-	pDBItem->set_time(0);
+	pDBItem->set_time(ntime);
 	pDBItem->set_upgradeid(pDBItem->upgradeid() + 1);
 	if (pDBItem->sku() == "rs_002_001") {// 银行
 		int lv = pDBItem->upgradeid() + 1;
-		char mapKey [128] = {0};
-		sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
-		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 		int slot = Tbl->slotCapacity;
 		//修改 上限
 		if(!updateCoinsLimit(slot))
@@ -723,9 +883,7 @@ bool Player::upgradePremium(int nPlanetId, int id, int sid)
 	}
 	if (pDBItem->sku() == "rs_001_001") {// 筒仓
 		int lv = pDBItem->upgradeid() + 1;
-		char mapKey [128] = {0};
-		sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
-		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+		CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 		int slot = Tbl->slotCapacity;
 		if(!updateMineralsLimit(slot))
 			return false;
@@ -733,10 +891,10 @@ bool Player::upgradePremium(int nPlanetId, int id, int sid)
 	if (pDBItem->sku() == "wonders_headquarters") {// 主基地
 		pPlanet->SetHQlevel(pPlanet->GetHQLevel() + 1);
 	}
-	int level = pDBItem->upgradeid() + 2;
+	int level = pDBItem->upgradeid() + 1;
 	int energy = ResourceSilosTblInst::instance().GetEnergy(sku, level);
 	pDBItem->set_energy(energy);
-	//pDBItem->set_incometorestore(incometorestore);
+	pDBItem->set_incometorestore(incometorestore);
 
 	return true;
 }
@@ -759,11 +917,25 @@ bool Player::updateMineralsLimit(int slot)
 	return true;
 }
 
-bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int sid, int64 ntime)
+bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int sid, int ntime, int incomeToRestore)
 {
 	Planet *pPlanet = m_pPlanetManager->GetPlanet(nPlanetId);
 	DB_Planet* pDBPlanet = pPlanet->GetDBPlanet();
 	DB_Item *pDBItem = pPlanet->GetItem(id);
+	if(!pDBItem)
+	{
+		for(int i = 0; i< pDBPlanet->items_size();i++)
+		{
+			DB_Item* pDBItem_sid= pDBPlanet->mutable_items(i);
+			if(pDBItem_sid->sid() == sid)
+			{
+				pDBItem = pDBItem_sid;
+			}
+		}
+		
+	}
+	if(!pDBItem)
+		return false;
 	int sku = SkuIDTblInst::instance().GetSku(pDBItem->sku());
 	if(newState == 1 && oldState == 0)//建筑完成
 	{
@@ -772,16 +944,32 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 
 		// 根据ItemType初始兵营、兵厂、实验室
 
-		if(pDBPlanet->type() == 3)
+		if(pDBPlanet->type() == 3)//shipyard
 		{
+			DB_Shipyard* pDBShipyard = pDBPlanet->add_shipyard();
+			pDBShipyard->set_sid(sid);
+			pDBShipyard->set_unlockedslots(0);
+			pDBShipyard->add_slot();
+			pDBShipyard->add_slot();
+			pDBShipyard->add_slot();
+			//slot空出
+		}
 
+		if(pDBItem->type() == 7)
+		{
+			DB_Hangar* pDBHangar = pDBPlanet->add_hangars();
+			pDBHangar->set_sid(sid);
+		}
+
+		if(pDBItem->type() == 8)
+		{
+			DB_Bunker* pDBBunker = pDBPlanet->add_bunkers();
+			pDBBunker->set_sid(sid);
 		}
 		
-		if (pDBItem->sku() == "rs_002_001") {// 银行
+		if (pDBItem->sku() == "rs_002_001" ) {// 银行
 			int lv = pDBItem->upgradeid() + 1;
-			char mapKey [128] = {0};
-			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
-			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 			int slot = Tbl->slotCapacity;
 			//修改 上限
 			if(!updateCoinsLimit(slot))
@@ -789,9 +977,7 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 		}
 		if (pDBItem->sku() == "rs_001_001") {// 筒仓
 			int lv = pDBItem->upgradeid() + 1;
-			char mapKey [128] = {0};
-			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
-			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 			int slot = Tbl->slotCapacity;
 			if(!updateMineralsLimit(slot))
 				return false;
@@ -800,7 +986,8 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 	else if(oldState == 1 && newState == 2 )//开始升级
 	{
 		pDBItem->set_time(ntime);
-		//pDBItem->incometorestore();不一定有
+		pDBItem->set_updateat(time(NULL));
+		pDBItem->set_incometorestore(incomeToRestore);
 	}
 	else if(oldState == 2 && newState == 1) //升级完成
 	{
@@ -817,9 +1004,7 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 
 		if (pDBItem->sku() == "rs_002_001") {// 银行
 			int lv = pDBItem->upgradeid() + 1;
-			char mapKey [128] = {0};
-			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
-			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 			int slot = Tbl->slotCapacity;
 			//修改 上限
 			if(!updateCoinsLimit(slot))
@@ -827,27 +1012,25 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 		}
 		if (pDBItem->sku() == "rs_001_001") {// 筒仓
 			int lv = pDBItem->upgradeid() + 1;
-			char mapKey [128] = {0};
-			sprintf(mapKey, "%s_%d", pDBItem->sku(), lv);
-			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(mapKey);
+			CFG_ResourceSilos* Tbl = ResourceSilosTblInst::instance().GetInfo(lv);
 			int slot = Tbl->slotCapacity;
 			if(!updateMineralsLimit(slot))
 				return false;
 		}
 	}
-	else
+	else //oldstate = 1 newstate = 1收集资源相关
 	{
 		pDBItem->set_time(ntime);
+		//pDBItem->set_collecttime(time(NULL));
 		pDBItem->set_incometorestore(0);
 	}
 	pDBItem->set_state(newState);
-	time_t ltime = time(NULL);
-	pDBItem->set_updateat(ltime);
+	pDBItem->set_updateat(time(NULL));
 
 	return true;
 }
 
-void Player::FillNpcs(RseObtainNpcList *lst)
+void Player::FillinNpcs(RseObtainNpcList *lst)
 {
 	if(!CanUse() || !lst){
 		return;
@@ -883,18 +1066,20 @@ void Player::FillInMissoin(RseObtainUniverse *rse)
 			if(pMsgParam && pDBParam){
 				pMsgParam->set_sku(pDBParam->sku());
 				pMsgParam->set_endtime(pDBParam->endtime());
-				pMsgParam->set_progress(pDBParam->progress());
+				string progress = pDBParam->sku() + ":" + pDBParam->target();
+				pMsgParam->set_progress(progress);
 			}
 		}
 	}
 }
 
-void Player::FillInPlanet(RseObtainUniverse *rse)
+void Player::FillInPlanet(RseObtainUniverse *rse, int nPlanetId)
 {
 	if(!CanUse() || !rse){
 		return;
 	}
-	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
 	if(!pPlanet){
 		return;
 	}
@@ -905,8 +1090,10 @@ void Player::FillInPlanet(RseObtainUniverse *rse)
 	PMsgPlanet->set_sku(pPlanet->star().sku());
 	PMsgPlanet->set_planetid(pPlanet->id());
 	PMsgPlanet->set_planettype(pPlanet->type());
-	PMsgPlanet->set_coinslimit(pPlanet->coinslimit());
-	PMsgPlanet->set_mineralslimit(pPlanet->minerallimit());
+	//PMsgPlanet->set_coinslimit(pPlanet->coinslimit());
+	//PMsgPlanet->set_mineralslimit(pPlanet->minerallimit());
+	PMsgPlanet->set_coinslimit(99999999999);
+	PMsgPlanet->set_mineralslimit(99999999999);
 	PMsgPlanet->set_hqlevel(pPlanet->hqlevel());
 	PMsgPlanet->set_capital(pPlanet->capital());
 #if 0
@@ -925,13 +1112,13 @@ void Player::FillInPlanet(RseObtainUniverse *rse)
 
 }
 
-void Player::FillinItem(RseObtainUniverse *rse)
+void Player::FillinItem(RseObtainUniverse *rse, int nPlanetId)
 {
 	if(!CanUse() || !rse){
 		return;
 	}
 
-	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
 	if(!pPlanet){
 		return;
 	}
@@ -949,86 +1136,133 @@ void Player::FillinItem(RseObtainUniverse *rse)
 			pMsgItem->set_state(pDBItem->state());
 			pMsgItem->set_energy(pDBItem->energy());
 			pMsgItem->set_energypercent(pDBItem->energypercent());
-			pMsgItem->set_time(pDBItem->time());
 			pMsgItem->set_sku(pDBItem->sku());
 			pMsgItem->set_incometorestore(pDBItem->incometorestore());
 			pMsgItem->set_repairing(pDBItem->repairing());
 			pMsgItem->set_isflipped(pDBItem->isflipped());
 			//pMsgItem->set_updateat(pDBItem->updateat());
+			if(pDBItem->state() == 2)//升级中
+			{
+				time_t ltime = time(NULL);
+				pMsgItem->set_time(pDBItem->time() - (ltime - pDBItem->updateat())*1000);
+
+				//pDBItem->set_time(pMsgItem->time());
+			}
+			else if(pDBItem->state() == 0)
+			{
+				int ntime = pDBItem->time() - (time(NULL) - pDBItem->updateat()) * 1000;
+				if(ntime < 0)
+					ntime = 0;
+				pMsgItem->set_time(ntime);
+			}
+			else//资源相关
+			{	
+				int ntime = pDBItem->time() - (time(NULL) - pDBItem->collecttime()) * 1000;
+				if(ntime < 0)
+					ntime = 0;
+				pMsgItem->set_time(pDBItem->time());
+			}
+				
+			pMsgItem->set_updatedat(pDBItem->updateat());
 		}
 	}
 }
 
-void Player::FillinShipyard(RseObtainUniverse *rse)
+void Player::FillinShipyard(RseObtainUniverse *rse, int nPlanetId)
 {
 	if(!CanUse() || !rse){
 		return;
 	}
 
-	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
 	if(!pPlanet){
 		return;
 	}
 
 	for (int i = 0; i < pPlanet->shipyard_size(); i++){
 		DB_Shipyard *pDBShipyard = pPlanet->mutable_shipyard(i);
-		MsgShipyard *pMsgShipyard = rse->add_shipyards();
-		if(pDBShipyard && pMsgShipyard){
-			pMsgShipyard->set_sid(pDBShipyard->sid());
-			pMsgShipyard->set_updatedat(pDBShipyard->updatedat());
-			pMsgShipyard->set_unlockedslots(pDBShipyard->unlockedslots());
-			pMsgShipyard->set_block(0);
-			for(int i = 0; i < pDBShipyard->slot_size(); i++){
-				MsgShipyardSlot *pMsgSlot = pMsgShipyard->add_shipyard();
-				DB_Slot *pDBSlot = pDBShipyard->mutable_slot(i);
-				if(pDBSlot && pMsgSlot){
-					pMsgSlot->set_sku(pDBSlot->sku());
-					pMsgSlot->set_num(pDBSlot->skunum());
-					pMsgSlot->set_timeleft(pDBSlot->timeleft());
-					if(0 == i && 1 == pDBSlot->skunum() && 0 == pDBSlot->timeleft()){
-						pMsgShipyard->set_block(1);
+		if(pDBShipyard->slot_size()>0)
+		{
+			MsgShipyard *pMsgShipyard = rse->add_shipyards();
+			if(pDBShipyard && pMsgShipyard){
+				pMsgShipyard->set_sid(pDBShipyard->sid());
+				pMsgShipyard->set_updatedat(pDBShipyard->updatedat());
+				pMsgShipyard->set_unlockedslots(pDBShipyard->unlockedslots());
+				pMsgShipyard->set_block(0);
+				for(int i = 0; i < pDBShipyard->slot_size(); i++){
+					if(i == 0)
+					{
+						DB_Slot *pDBSlot = pDBShipyard->mutable_slot(0);
+						int leftTime = pDBSlot->timeleft() - (time(NULL) - pDBShipyard->updatedat())*1000;//下线后第一个兵造完了
+						if(pDBSlot->skunum() == 1 && leftTime < 0)
+						{
+							pDBSlot->set_timeleft(0);
+						}
+					}
+					DB_Slot *pDBSlot = pDBShipyard->mutable_slot(i);
+					if(pDBSlot ){
+						if(pDBSlot->skunum() <= 0)
+						{
+							continue;
+						}
+						else
+						{
+							MsgShipyardSlot *pMsgSlot = pMsgShipyard->add_shipyard();
+							if(!pMsgSlot)
+								continue;
+							pMsgSlot->set_sku(pDBSlot->sku());
+							pMsgSlot->set_num(pDBSlot->skunum());
+							pMsgSlot->set_timeleft(pDBSlot->timeleft());
+						}
+							
+						
+						//if(0 == i && 1 == pDBSlot->skunum() && 0 == pDBSlot->timeleft()){
+							//pMsgShipyard->set_block(1);
+						//}
 					}
 				}
 			}
 		}
+		
 	}
 }
 
-void Player::FillinHangar(RseObtainUniverse *rse)
+void Player::FillinHangar(RseObtainUniverse *rse, int nPlanetId)
 {
 	if(!CanUse() || !rse){
 		return;
 	}
 
-	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
 	if(!pPlanet){
 		return;
 	}
 
 	for (int i = 0; i < pPlanet->hangars_size(); i++){
-		DB_Hangar *pDBBunker = pPlanet->mutable_hangars(i);
-		MsgHangars *pMsgBunker = rse->add_hangars();
-		if(pDBBunker && pMsgBunker){
-			pMsgBunker->set_sid(pDBBunker->sid());
-			for(int j = 0; j < pDBBunker->units_size(); j++){
-				DB_HangarUnit *pBunkerUnit = pDBBunker->mutable_units(i);
-				MsgHangarUnit *pMsgBunkerUnit = pMsgBunker->add_hangar();
-				if(pBunkerUnit && pMsgBunkerUnit){
-					pMsgBunkerUnit->set_sku(pBunkerUnit->sku());
-					pMsgBunkerUnit->set_num(pBunkerUnit->num());
+		DB_Hangar *pDBHangar = pPlanet->mutable_hangars(i);
+		MsgHangars *pMsgHangars = rse->add_hangars();
+		if(pDBHangar && pMsgHangars){
+			pMsgHangars->set_sid(pDBHangar->sid());
+			for(int j = 0; j < pDBHangar->units_size(); j++){
+				DB_HangarUnit *pHangarUnit = pDBHangar->mutable_units(j);
+				MsgHangarUnit *pMsgHangarUnit = pMsgHangars->add_hangar();
+				if(pHangarUnit && pMsgHangarUnit){
+					string sku = SkuIDTblInst::instance().GetName(pHangarUnit->sku());
+					pMsgHangarUnit->set_sku(sku);
+					pMsgHangarUnit->set_num(pHangarUnit->num());
 				}
 			}
 		}
-	}
+	} 
 }
 
-void Player::FillinBunker(RseObtainUniverse *rse)
+void Player::FillinBunker(RseObtainUniverse *rse, int nPlanetId)
 {
 	if(!CanUse() || !rse){
 		return;
 	}
 
-	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
 	if(!pPlanet){
 		return;
 	}
@@ -1040,24 +1274,26 @@ void Player::FillinBunker(RseObtainUniverse *rse)
 			pMsgBunker->set_sid(pDBBunker->sid());
 			pMsgBunker->set_helpersaccountids(pDBBunker->helpersaccountids());
 			for(int j = 0; j < pDBBunker->bunker_size(); j++){
-				DB_BunkerUnit *pBunkerUnit = pDBBunker->mutable_bunker(i);
-				MsgBunkerUnit *pMsgBunkerUnit = pMsgBunker->add_bunker();
-				if(pBunkerUnit && pMsgBunkerUnit){
-					pMsgBunkerUnit->set_sku(pBunkerUnit->sku());
-					//pMsgBunkerUnit->set_unit(pBunkerUnit->unit());
+				DB_BunkerUnit *pBunkerUnit = pDBBunker->mutable_bunker(j);
+				for(int z = 0 ;z < pBunkerUnit->num();z++)
+				{
+					MsgBunkerUnit *pMsgBunkerUnit = pMsgBunker->add_bunker();
+					if(pBunkerUnit && pMsgBunkerUnit){
+						pMsgBunkerUnit->set_sku(pBunkerUnit->sku());
+					}
 				}
 			}
 		}
 	}
 }
 
-void Player::FillinGameUnit(RseObtainUniverse *rse)
+void Player::FillinGameUnit(RseObtainUniverse *rse, int nPlanetId)
 {
 	if(!CanUse() || !rse){
 		return;
 	}
 
-	DB_Planet *pPlanet = m_pdbPlayer->mutable_planets(0);
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
 	if(!pPlanet){
 		return;
 	}
@@ -1069,19 +1305,19 @@ void Player::FillinGameUnit(RseObtainUniverse *rse)
 			string name = SkuIDTblInst::instance().GetName(pDBUnit->sku());
 			pMsgUnit->set_sku(name);
 			pMsgUnit->set_unlocked(pDBUnit->unlock());
-			pMsgUnit->set_timeleft(pDBUnit->timeleft());
+			pMsgUnit->set_timeleft(pDBUnit->timeleft() - (time(NULL)-pDBUnit->updateat())*1000);//-1是没在升级
 			pMsgUnit->set_upgradeid(pDBUnit->upgradeid());
 			pMsgUnit->set_updatedat(pDBUnit->updateat());
 		}
 	}
 }
 
-void Player::FillUniverse(RseObtainUniverse *rse)
+void Player::FillinUniverse(RseObtainUniverse *rse, int nPlanetID)
 {
 	if(!CanUse() || !rse){
 		return;		
 	}
-
+	rse->set_levelbasedonscore(m_pdbPlayer->mutable_model()->level());
 	rse->set_vip(m_pUser->GetIsYellowDmd());
 	rse->set_yearvip(m_pUser->GetIsYearYellowDmd());
 	rse->set_viplevel(m_pUser->GetYearYellowDmdLevel());
@@ -1090,29 +1326,133 @@ void Player::FillUniverse(RseObtainUniverse *rse)
 	rse->set_spycapsulestimeleft(0);
 	rse->set_dcplayername(m_pUser->GetPlatformId());
 	rse->set_dcworldname("");
-	rse->set_levelbasedonscore(1);
 	rse->set_dcplayerrank(1);
+	//rse->set_levelbasedonscore(1);
 	rse->set_dccoins(GetRes(RC_Coin));
 	rse->set_dcminerals(GetRes(RC_Mineral));
+	//rse->set_dccoins(999999999);
+	//rse->set_dcminerals(999999999);
 	rse->set_score(GetRes(RC_Score));
 	rse->set_exp(GetRes(RC_Exp));
 	rse->set_lastvisittime(m_pUser->GetLastLoginTime());
 	rse->set_lastlevelnotified(0);
 	rse->set_dccash(GetRes(RC_Cash));
-	rse->set_dcdroids(2);
+	//rse->set_dccash(999999999);
+	DB_Planet *pp = m_pdbPlayer->mutable_planets(0);//默认登录第一个星球
+	rse->set_dcdroids(pp->droids());
 	rse->set_dcdroidsinuse(0);
 	rse->set_damageprotectiontimeleft(m_pdbPlayer->state().dmgprotectiontimeleft());
 	rse->set_damageprotectiontimetotal(m_pdbPlayer->state().dmgprotectiontimetotal());
 	rse->set_tutorialcompleted(m_pdbPlayer->state().tutorialcompleted());
 	char flag[128];
 	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", m_pdbPlayer->flag().quality(), m_pdbPlayer->flag().music(), m_pdbPlayer->flag().effect(), m_pdbPlayer->flag().alliancewelcome());
+	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", 1, 0, 0, 0);
 	rse->set_flags(flag);
 	FillInMissoin(rse);
-	FillInPlanet(rse);
-	FillinItem(rse);
-	FillinShipyard(rse);
-	FillinHangar(rse);
-	FillinBunker(rse);
-	FillinGameUnit(rse);
+	FillInPlanet(rse, nPlanetID);
+	FillinItem(rse, nPlanetID);
+	FillinShipyard(rse, nPlanetID);
+	FillinHangar(rse, nPlanetID);
+	FillinBunker(rse, nPlanetID);
+	FillinGameUnit(rse, nPlanetID);
 }
 
+void Player::FillInWishList(RseObtainSocialItems* rse)
+{
+	if(!CanUse() || !rse){
+		return;		
+	}
+	string wishlist = "";
+	DB_WishItemList* pDBWIL = m_pdbPlayer->mutable_wishitemlist();
+	for(int i = 0; i< pDBWIL->wishitem_size();i++)
+	{
+		DB_WishItem* pDBWI = pDBWIL->mutable_wishitem(i);
+		if(pDBWI && (pDBWI->sku() != ""))
+		{
+			string tmp = "," + pDBWI->sku();
+			wishlist.append(tmp);
+		}
+	}
+	rse->set_wishlist(wishlist);
+}
+void Player::FillSocialItems(RseObtainSocialItems *rse)
+{
+	if(!CanUse() || !rse){
+		return;		
+	}
+	for(int i = 0;i<m_pdbPlayer->socialitems_size();i++)
+	{
+		DB_SocialItem* pDBSI = m_pdbPlayer->mutable_socialitems(i);
+		MsgItem* MI = rse->add_itemslist();
+		int sku = 0;
+		safe_atoi(pDBSI->sku(),sku);
+		MI->set_sku(sku);
+		//MI->set_position(pDBSI->);
+		//MI->set_sequence(pDBSI->sq);
+		MI->set_counter(pDBSI->counter());
+		MI->set_quantity(pDBSI->amount());
+		MI->set_timeleft(pDBSI->timeleft());
+	}
+	/*if(!bAdd)
+	{
+		for(int i = 1;i<80;i++)
+		{
+			CFG_Item* Tbl = ItemTblInst::instance().GetItem(i);
+			string Sku = Tbl->sku;
+			DB_SocialItem*pDBSI = NULL;
+			if(i >= m_pdbPlayer->socialitems_size())
+				DB_SocialItem*pDBSI = m_pdbPlayer->add_socialitems();
+			if(!pDBSI)
+				return;
+			MsgItem* MI = rse->add_itemslist();
+			int sku = 0;
+			safe_atoi(Sku,sku);
+			pDBSI->set_sku(Sku);
+			pDBSI->set_timeleft(0);
+			pDBSI->set_counter(0);
+			pDBSI->set_amount(2);
+			MI->set_sku(sku);
+			MI->set_counter(pDBSI->counter());
+			MI->set_quantity(pDBSI->amount());
+			MI->set_timeleft(pDBSI->timeleft());
+		}
+		bAdd = true;
+	}*/
+	
+}
+
+void Player::FillinBookmarks(RseQueryStarsBookmarks *rse)
+{
+	if(!CanUse() || !rse){
+		return;
+	}
+
+	for (int i = 0; i < m_pdbPlayer->bookmarks_size(); i++){
+		DB_StarsBookmark *pDBBookmark = m_pdbPlayer->mutable_bookmarks(i);
+		Bookmarks *pMsgBookmark = rse->add_bookmarks();
+		if(pDBBookmark && pMsgBookmark){
+			pMsgBookmark->set_sku(pDBBookmark->sku());
+			pMsgBookmark->set_starid(pDBBookmark->starid());
+			pMsgBookmark->set_starname(pDBBookmark->starname());
+			pMsgBookmark->set_startype(pDBBookmark->startype());
+		}
+	}
+}
+
+
+void Player::NewBattle(int64 nTargetPlayer, int nPlanetId)
+{
+	if(!m_pBattleManager || !CanUse()){
+		return;
+	}
+	m_pBattleManager->NewBattle(nTargetPlayer, nPlanetId);
+}
+
+void Player::FillBattleData(RseObtainUniverse *pRsp)
+{
+	if(!CanUse() || !pRsp || !m_pBattleManager){
+		return;
+	}
+
+	
+}

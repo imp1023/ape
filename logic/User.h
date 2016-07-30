@@ -16,6 +16,7 @@
 #include "../gamed/GameEventHandler.h"
 #include "../gamed/GameNetHandler.h"
 #include "../gamed/Daemon.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -39,15 +40,29 @@ public:
 	User(int64 id, const string &pid, const string &name,
 		const string &profile_link, int gender, PLAT_TYPE plat_type,
 		bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv,
-		const vector<string> &friends_platid,int nRegion,int nCity,bool bIsHighYellowDmd,bool bIsHighDmdYear,int,int,int,int nHighBlueYearTime);
+		const vector<string> &friends_platid,int nRegion,int nCity,bool bIsHighYellowDmd,bool bIsHighDmdYear,int,int,int,int nHighBlueYearTime,
+		int nID, int nName, int nType, string strSku);
 	~User(void);
 
 	void Init();
 	void InitDBUser();
 
-	bool checkSecret(int64 secret, time_t now)
+	inline bool User::checkSecret(int64 secret, time_t now)
 	{
-		int64 defaultSecret = 8613910246800;
+		int64 defaultSecret = 8613296596910ll;
+		if(secret == defaultSecret)
+		{
+			//m_bSendArmyProp = true;
+			m_strRc4Send.clear();
+			m_strRc4Receive.clear();
+		}
+		else
+		{
+			//m_bSendArmyProp = false;
+		}
+#ifdef _WIN32
+		//m_bSendArmyProp = true;
+#endif
 		return (secret == defaultSecret) ||
 			(now < secret_gentime_ + 3600 * 1000 && secret == secret_);
 	}
@@ -107,6 +122,8 @@ public:
 	{
 		m_dbUser.set_regist_time(regist_time);
 	}
+
+	int GetLastAttackedTime(){return 0;}
 
 	DB_BanLogin* GetDBBanLogin()
 	{
@@ -213,6 +230,18 @@ public:
 	string&					GetRc4Send();
 	string&					GetRc4Receive();
 
+	//防沉迷
+	void					SetResFlag(int nFlag){m_nResFlag = nFlag;}
+	int						GetResFlag(){return m_nResFlag;}
+	void					AddOnlineTime(time_t ltNow);
+	int						GetOnlineTime();
+	void					ClearResFlag(){m_nResFlag=0;m_ltResLastTime=0;m_nOnlineTime=0;m_nLogoutTime=0;}
+	int						GetResLastTime(){return (int)m_ltResLastTime;}
+	float					GetAddiction(){return m_fAddiction;};
+	bool					SetAddiction(float fAddiction);
+	int						GetLogoutTime();
+	void					AddLogoutTime(int nAddTime){m_nLogoutTime+=nAddTime;};
+
 private:
 	void                OnSetDbUser();
 
@@ -240,7 +269,20 @@ private:
 
 	string				m_strRc4Send;
 	string				m_strRc4Receive;
-} ;
+
+	//防沉迷
+	time_t				m_ltResLastTime;
+	int					m_nOnlineTime;
+	int					m_nResFlag;		//0:正常 101：减半 102：无资源产出 103:禁止登陆
+	float				m_fAddiction;	//防沉迷倍率
+	int					m_nLogoutTime;
+
+private:
+	int					m_CurPlanetId;
+	int64				m_TargetPlayerId;
+	int					m_TargetPlanetId;
+	bool				m_bIsNpc;
+};
 
 inline void User::SetFd(int fd)
 {

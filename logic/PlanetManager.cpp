@@ -76,6 +76,12 @@ void PlanetManager::Clear()
 	m_pDBPlayer = NULL;
 	m_mPlanets.clear();
 	m_MaxPlanetId = 0;
+	for (map<int, Planet*>::iterator iter = m_mPlanets.begin(); iter != m_mPlanets.end(); iter++){
+		if(iter->second){
+			delete iter->second;
+			iter->second = NULL;
+		}
+	}
 }
 
 void PlanetManager::InitDB(DB_Player* pDBPlaper)
@@ -85,6 +91,20 @@ void PlanetManager::InitDB(DB_Player* pDBPlaper)
 		for (int i = 0; i < pDBPlaper->planets_size(); i++){
 			DB_Planet *pDBPlanet = pDBPlaper->mutable_planets(i);
 			if(pDBPlanet){
+				/*for(int i = 0;i<pDBPlanet->shipyard_size();i++)
+				{
+					DB_Shipyard* pDBShipyard = pDBPlanet->mutable_shipyard(i);
+					if(pDBShipyard)
+					{
+						map<int, DB_Shipyard>::iterator it = m_mShipyard.find(pDBShipyard->sid());
+						if(iter == m_mPlanets.end())
+						{
+							m_mShipyard.insert(make_pair(pDBShipyard->sid(), pDBShipyard));
+						}
+					}
+					
+				}*/
+				
 				map<int, Planet*>::iterator iter = m_mPlanets.find(pDBPlanet->id());
 				if(iter == m_mPlanets.end()){
 					Planet *pPlanet = new Planet(pDBPlanet);

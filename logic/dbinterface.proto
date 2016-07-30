@@ -1,11 +1,11 @@
 import "dbinterface_sub.proto";
 
 /////////////////////////////////////////////////////////////////////////
-//   基础结构                                                          //
+//   禄霉麓隆陆谩鹿鹿                                                          //
 /////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////
-//   玩家数据                                                          //
+//   脥忙录脪脢媒戮脻                                                          //
 /////////////////////////////////////////////////////////////////////////
 
 message DB_Model
@@ -33,16 +33,6 @@ message DB_PlanetLiteInfo
     optional string         planetId                = 2;        
 }
 
-message DB_Galaxy
-{
-    optional int32          id                      = 1;
-    optional int32          type                    = 2;
-    optional int32          name                    = 3;
-    optional int32          x                       = 4;
-    optional int32          y                       = 5;
-    repeated DB_PlanetLiteInfo lite                 = 6;
-}
-
 message DB_Item
 {
     optional int32          sid                     = 1;
@@ -61,7 +51,8 @@ message DB_Item
     optional int64          repairStart             = 14;
     optional int64          updateAt                = 15;
     optional int32          id                      = 16;
-    //repeated item           // 兵厂 // 兵营(传送门) // 地堡
+    optional int32         collecttime              = 17;
+    //repeated item           // 卤酶鲁搂 // 卤酶脫陋(麓芦脣脥脙脜) // 碌脴卤陇
 }
 
 message DB_HangarUnit
@@ -104,6 +95,7 @@ message DB_BunkerUnit
 {
     optional string sku = 1;
     repeated int32 Unit = 2;
+    optional int32 num = 3;
 }
 
 message DB_Bunker
@@ -116,7 +108,7 @@ message DB_Bunker
 message DB_StarLite
 {
     optional int32 starId = 1;
-    optional string starName = 2;
+    optional int32 starName = 2;
     optional int32 starType = 3;
     optional string sku = 4;
 }
@@ -152,14 +144,18 @@ message DB_SocialItem
 {
     optional string         sku                      = 1;
     optional int32          amount                   = 2;  
+    optional int32          counter                  = 3;
+    optional int64          timeLeft                 = 4;
+    optional int64          timeOver                 = 5;
 }
 
 message DB_MissionParam
 {
-    repeated string Target = 1;
+    optional string Target = 1;
     optional int32 endTime = 2;
     optional string sku = 3;
     optional string progress = 4;
+    optional int32 state = 5;
 }
 
 message DB_Mission
@@ -171,21 +167,41 @@ message DB_Mission
     repeated DB_MissionParam Params = 5;
 }
 
+message DB_WishItem
+{
+    optional string sku = 1;
+}
+
+message DB_WishItemList
+{
+    repeated DB_WishItem wishItem = 1;
+}
+
+message DB_StarsBookmark
+{
+    optional int32 starName = 1; //": "毛里求斯",
+    optional string sku = 2; //": "2:0",
+    optional int32 starType = 3; //": 1,
+    optional int32 starId = 4; //": 2031,
+}
+
 message DB_Player
 {
-    optional DB_Model        model                  = 1; //玩家模型
-    optional DB_State        state                  = 2; //玩家状态
-    repeated DB_Planet       planets                = 3; //猩球数据
+    optional DB_Model        model                  = 1; //脥忙录脪脛拢脨脥
+    optional DB_State        state                  = 2; //脥忙录脪脳麓脤卢
+    repeated DB_Planet       planets                = 3; //脨脡脟貌脢媒戮脻
     repeated DB_NPC          npcs                   = 4; //npc(A/B/C/D)
     optional DB_Flag         flag                   = 5; //music sound quality alliance
     repeated DB_SocialItem   socialItems            = 6;
     optional DB_Mission      missions               = 7;
+    optional DB_WishItemList wishItemList           = 8;
+    repeated DB_StarsBookmark bookmarks             = 9;
 }
 
 message DB_DailyLogon
 {
-    optional int32 firstday = 1[default = 0];  // 每日登陆活动的头一天
-    optional int32 daycount = 2[default = 0];  // 每日登陆活动的天数
+    optional int32 firstday = 1[default = 0];  // 脙驴脠脮碌脟脗陆禄卯露炉碌脛脥路脪禄脤矛
+    optional int32 daycount = 2[default = 0];  // 脙驴脠脮碌脟脗陆禄卯露炉碌脛脤矛脢媒
 }
 
 message DB_ActiveContinueLogon
@@ -199,7 +215,7 @@ message DB_User
 {
     required int64          id                      = 1 [default = 0] ;
     required string         platform_id             = 2 [default = ""] ;
-    repeated string         name                    = 3; //名字和链接，分校友空间
+    repeated string         name                    = 3; //脙没脳脰潞脥脕麓陆脫拢卢路脰脨拢脫脩驴脮录盲
     repeated string         profile_link            = 4;
     required int32          gender                  = 5; //性别
     required int64          last_login_time         = 6 [default = 0] ;
@@ -234,25 +250,19 @@ message DB_User
     optional int64          getDayQQGiftDay         = 34 [default = 0];     //获得QQ每日礼包的时间                    
     optional bool           getNewQQGift            = 35 [default = false]; //是否领取了QQ礼包
 
-    optional int32          region                  = 36 [default = 0]; //所属分区  
+    optional int32          region                  = 36 [default = 0]; //脣霉脢么路脰脟酶  
     
-    optional int32        logondaycount             = 37 [default = 0];   //登陆天数，战绩系统记录
-    optional int32        city                      = 38 [default = 0]; //所属城市 1北京2上海3深圳4广州 0 其他    
-    optional bool         isHighYellowDmd           = 39 [default = false]; //是不是豪华黄钻
+    optional int32        logondaycount             = 37 [default = 0];   //碌脟脗陆脤矛脢媒拢卢脮陆录篓脧碌脥鲁录脟脗录
+    optional int32        city                      = 38 [default = 0]; //脣霉脢么鲁脟脢脨 1卤卤戮漏2脡脧潞拢3脡卯脹脷4鹿茫脰脻 0 脝盲脣没    
+    optional bool         isHighYellowDmd           = 39 [default = false]; //脢脟虏禄脢脟潞脌禄陋禄脝脳锚
     optional DB_ActiveContinueLogon activeContinueLogon = 40;
     optional bool          isActiveLogon            = 41[default = false];
-    optional bool          hasGetRecall             = 42[default = false];//是否已经获得回归宝箱
+    optional bool          hasGetRecall             = 42[default = false];//脢脟路帽脪脩戮颅禄帽碌脙禄脴鹿茅卤娄脧盲
     optional int32         lastRepairTime           = 43[default = 0];
     optional int32         landDayCountEx           = 44[default = 0];
     optional int32         landDayGiftEx            = 45[default = 0];
-    optional DB_Officer    officer                  = 46;  //国家官员
-    optional int32         destroynpctime           = 47[default = 0]; // 摧毁NPC基地的次数
-    optional bool          bRegisterNum             = 48[default = false];  //是否登记了qq号
-    optional bool          bAdult                   = 51[default = true];   //是否成年
+    optional DB_Officer    officer                  = 46;  //鹿煤录脪鹿脵脭卤
+    optional int32         destroynpctime           = 47[default = 0]; // 麓脻禄脵NPC禄霉碌脴碌脛麓脦脢媒
+    optional bool          bRegisterNum             = 48[default = false];  //脢脟路帽碌脟录脟脕脣qq潞脜
+    optional bool          bAdult                   = 51[default = true];   //脢脟路帽鲁脡脛锚
 }
-
-message DB_GlobalStarInfo
-{
-    repeated DB_Galaxy     galaxys                  = 1;
-}
-

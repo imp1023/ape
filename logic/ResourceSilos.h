@@ -32,33 +32,22 @@ public:
 	~ResourceSilosTbl();
 	enum{
 		ResourceSilosTbl_id = 0,
-		ResourceSilosTbl_sku = 1,
-		ResourceSilosTbl_level = 2,
 		ResourceSilosTbl_energy = 3,
-		ResourceSilosTbl_energyProgressBar = 4,
-		ResourceSilosTbl_maxNumPerHQLevel = 5,
-		ResourceSilosTbl_constructionCoins = 6,
-		ResourceSilosTbl_constructionMineral = 7,
-		ResourceSilosTbl_constructionTime = 8,
-		ResourceSilosTbl_scoreBuilt = 9,
-		ResourceSilosTbl_scoreAttack= 10,
-		ResourceSilosTbl_repairTime = 11,
 		ResourceSilosTbl_slotCapacity = 12,
-		ResourceSilosTbl_slotCapacityProgressBar = 13,
+
 
 	};
 	void			LoadInfo();
 	void			Clear();
-	CFG_ResourceSilos*		GetInfo(string index);
 	CFG_ResourceSilos*		GetInfo(int index);
 	inline int		GetTotalSize(){return m_mapResSilos.size();}
 	int GetMaxNum(int sku, int HQlevel);
 	int GetEnergy(int sku, int lv);
 
+
 protected:
 	static const char*  szConfigFile;
-	map<string, CFG_ResourceSilos*>	m_mapResSilos;
-	map<int, CFG_ResourceSilos*>	m_mapResSilos_id;
+	map<int, CFG_ResourceSilos*>	m_mapResSilos;
 };
 
 typedef Singleton<ResourceSilosTbl> ResourceSilosTblInst;

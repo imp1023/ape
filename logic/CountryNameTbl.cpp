@@ -11,20 +11,20 @@ CountryNameTbl::~CountryNameTbl(void)
 	Clear();
 }
 
-void CountryNameTbl::LoadInfo()
+bool CountryNameTbl::LoadInfo()
 {
 	Clear();
 
 	DBCFile fileDBC(0);
 	if( fileDBC.OpenFromTXT(szConfigFile) == false)
 	{
-		return;
+		return false;
 	}
 
 	int nRow = fileDBC.GetRecordsNum();
 	if( nRow <= 0 )
 	{
-		return;
+		return false;
 	}
 
 	for (int i = 0; i < nRow; i++)
@@ -33,12 +33,13 @@ void CountryNameTbl::LoadInfo()
 		string name = fileDBC.Search_Posistion(i, 1)->pString;
 		map<int, string>::iterator iter = m_mapCountryName.find(id);
 		if(iter != m_mapCountryName.end()){
-			return;
+			return false;
 		}
 		m_mapCountryName.insert(make_pair(id, name));
 	}
 	
 	printf("Load %s cnt:%d\n", CountryNameTbl::szConfigFile, nRow);
+	return true;
 }
 
 void CountryNameTbl::Clear()

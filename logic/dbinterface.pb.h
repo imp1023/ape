@@ -32,7 +32,6 @@ void protobuf_ShutdownFile_dbinterface_2eproto();
 class DB_Model;
 class DB_State;
 class DB_PlanetLiteInfo;
-class DB_Galaxy;
 class DB_Item;
 class DB_HangarUnit;
 class DB_Hangar;
@@ -47,11 +46,13 @@ class DB_NPC;
 class DB_SocialItem;
 class DB_MissionParam;
 class DB_Mission;
+class DB_WishItem;
+class DB_WishItemList;
+class DB_StarsBookmark;
 class DB_Player;
 class DB_DailyLogon;
 class DB_ActiveContinueLogon;
 class DB_User;
-class DB_GlobalStarInfo;
 
 // ===================================================================
 
@@ -400,136 +401,6 @@ class DB_PlanetLiteInfo : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class DB_Galaxy : public ::google::protobuf::Message {
- public:
-  DB_Galaxy();
-  virtual ~DB_Galaxy();
-  
-  DB_Galaxy(const DB_Galaxy& from);
-  
-  inline DB_Galaxy& operator=(const DB_Galaxy& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const DB_Galaxy& default_instance();
-  void Swap(DB_Galaxy* other);
-  
-  // implements Message ----------------------------------------------
-  
-  DB_Galaxy* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const DB_Galaxy& from);
-  void MergeFrom(const DB_Galaxy& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // optional int32 id = 1;
-  inline bool has_id() const;
-  inline void clear_id();
-  static const int kIdFieldNumber = 1;
-  inline ::google::protobuf::int32 id() const;
-  inline void set_id(::google::protobuf::int32 value);
-  
-  // optional int32 type = 2;
-  inline bool has_type() const;
-  inline void clear_type();
-  static const int kTypeFieldNumber = 2;
-  inline ::google::protobuf::int32 type() const;
-  inline void set_type(::google::protobuf::int32 value);
-  
-  // optional int32 name = 3;
-  inline bool has_name() const;
-  inline void clear_name();
-  static const int kNameFieldNumber = 3;
-  inline ::google::protobuf::int32 name() const;
-  inline void set_name(::google::protobuf::int32 value);
-  
-  // optional int32 x = 4;
-  inline bool has_x() const;
-  inline void clear_x();
-  static const int kXFieldNumber = 4;
-  inline ::google::protobuf::int32 x() const;
-  inline void set_x(::google::protobuf::int32 value);
-  
-  // optional int32 y = 5;
-  inline bool has_y() const;
-  inline void clear_y();
-  static const int kYFieldNumber = 5;
-  inline ::google::protobuf::int32 y() const;
-  inline void set_y(::google::protobuf::int32 value);
-  
-  // repeated .DB_PlanetLiteInfo lite = 6;
-  inline int lite_size() const;
-  inline void clear_lite();
-  static const int kLiteFieldNumber = 6;
-  inline const ::google::protobuf::RepeatedPtrField< ::DB_PlanetLiteInfo >& lite() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DB_PlanetLiteInfo >* mutable_lite();
-  inline const ::DB_PlanetLiteInfo& lite(int index) const;
-  inline ::DB_PlanetLiteInfo* mutable_lite(int index);
-  inline ::DB_PlanetLiteInfo* add_lite();
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::google::protobuf::int32 id_;
-  ::google::protobuf::int32 type_;
-  ::google::protobuf::int32 name_;
-  ::google::protobuf::int32 x_;
-  ::google::protobuf::int32 y_;
-  ::google::protobuf::RepeatedPtrField< ::DB_PlanetLiteInfo > lite_;
-  friend void  protobuf_AddDesc_dbinterface_2eproto();
-  friend void protobuf_AssignDesc_dbinterface_2eproto();
-  friend void protobuf_ShutdownFile_dbinterface_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static DB_Galaxy* default_instance_;
-};
-// -------------------------------------------------------------------
-
 class DB_Item : public ::google::protobuf::Message {
  public:
   DB_Item();
@@ -698,6 +569,13 @@ class DB_Item : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 id() const;
   inline void set_id(::google::protobuf::int32 value);
   
+  // optional int32 collecttime = 17;
+  inline bool has_collecttime() const;
+  inline void clear_collecttime();
+  static const int kCollecttimeFieldNumber = 17;
+  inline ::google::protobuf::int32 collecttime() const;
+  inline void set_collecttime(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -719,11 +597,12 @@ class DB_Item : public ::google::protobuf::Message {
   ::google::protobuf::int64 repairstart_;
   ::google::protobuf::int64 updateat_;
   ::google::protobuf::int32 id_;
+  ::google::protobuf::int32 collecttime_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(16 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(17 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -1348,6 +1227,13 @@ class DB_BunkerUnit : public ::google::protobuf::Message {
   inline void set_unit(int index, ::google::protobuf::int32 value);
   inline void add_unit(::google::protobuf::int32 value);
   
+  // optional int32 num = 3;
+  inline bool has_num() const;
+  inline void clear_num();
+  static const int kNumFieldNumber = 3;
+  inline ::google::protobuf::int32 num() const;
+  inline void set_num(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -1355,11 +1241,12 @@ class DB_BunkerUnit : public ::google::protobuf::Message {
   ::std::string* sku_;
   static const ::std::string _default_sku_;
   ::google::protobuf::RepeatedField< ::google::protobuf::int32 > unit_;
+  ::google::protobuf::int32 num_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -1547,15 +1434,12 @@ class DB_StarLite : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 starid() const;
   inline void set_starid(::google::protobuf::int32 value);
   
-  // optional string starName = 2;
+  // optional int32 starName = 2;
   inline bool has_starname() const;
   inline void clear_starname();
   static const int kStarNameFieldNumber = 2;
-  inline const ::std::string& starname() const;
-  inline void set_starname(const ::std::string& value);
-  inline void set_starname(const char* value);
-  inline void set_starname(const char* value, size_t size);
-  inline ::std::string* mutable_starname();
+  inline ::google::protobuf::int32 starname() const;
+  inline void set_starname(::google::protobuf::int32 value);
   
   // optional int32 starType = 3;
   inline bool has_startype() const;
@@ -1579,8 +1463,7 @@ class DB_StarLite : public ::google::protobuf::Message {
   mutable int _cached_size_;
   
   ::google::protobuf::int32 starid_;
-  ::std::string* starname_;
-  static const ::std::string _default_starname_;
+  ::google::protobuf::int32 starname_;
   ::google::protobuf::int32 startype_;
   ::std::string* sku_;
   static const ::std::string _default_sku_;
@@ -2004,6 +1887,27 @@ class DB_SocialItem : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 amount() const;
   inline void set_amount(::google::protobuf::int32 value);
   
+  // optional int32 counter = 3;
+  inline bool has_counter() const;
+  inline void clear_counter();
+  static const int kCounterFieldNumber = 3;
+  inline ::google::protobuf::int32 counter() const;
+  inline void set_counter(::google::protobuf::int32 value);
+  
+  // optional int64 timeLeft = 4;
+  inline bool has_timeleft() const;
+  inline void clear_timeleft();
+  static const int kTimeLeftFieldNumber = 4;
+  inline ::google::protobuf::int64 timeleft() const;
+  inline void set_timeleft(::google::protobuf::int64 value);
+  
+  // optional int64 timeOver = 5;
+  inline bool has_timeover() const;
+  inline void clear_timeover();
+  static const int kTimeOverFieldNumber = 5;
+  inline ::google::protobuf::int64 timeover() const;
+  inline void set_timeover(::google::protobuf::int64 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -2011,11 +1915,14 @@ class DB_SocialItem : public ::google::protobuf::Message {
   ::std::string* sku_;
   static const ::std::string _default_sku_;
   ::google::protobuf::int32 amount_;
+  ::google::protobuf::int32 counter_;
+  ::google::protobuf::int64 timeleft_;
+  ::google::protobuf::int64 timeover_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -2086,21 +1993,15 @@ class DB_MissionParam : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated string Target = 1;
-  inline int target_size() const;
+  // optional string Target = 1;
+  inline bool has_target() const;
   inline void clear_target();
   static const int kTargetFieldNumber = 1;
-  inline const ::google::protobuf::RepeatedPtrField< ::std::string>& target() const;
-  inline ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_target();
-  inline const ::std::string& target(int index) const;
-  inline ::std::string* mutable_target(int index);
-  inline void set_target(int index, const ::std::string& value);
-  inline void set_target(int index, const char* value);
-  inline void set_target(int index, const char* value, size_t size);
-  inline ::std::string* add_target();
-  inline void add_target(const ::std::string& value);
-  inline void add_target(const char* value);
-  inline void add_target(const char* value, size_t size);
+  inline const ::std::string& target() const;
+  inline void set_target(const ::std::string& value);
+  inline void set_target(const char* value);
+  inline void set_target(const char* value, size_t size);
+  inline ::std::string* mutable_target();
   
   // optional int32 endTime = 2;
   inline bool has_endtime() const;
@@ -2129,21 +2030,30 @@ class DB_MissionParam : public ::google::protobuf::Message {
   inline void set_progress(const char* value, size_t size);
   inline ::std::string* mutable_progress();
   
+  // optional int32 state = 5;
+  inline bool has_state() const;
+  inline void clear_state();
+  static const int kStateFieldNumber = 5;
+  inline ::google::protobuf::int32 state() const;
+  inline void set_state(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::RepeatedPtrField< ::std::string> target_;
+  ::std::string* target_;
+  static const ::std::string _default_target_;
   ::google::protobuf::int32 endtime_;
   ::std::string* sku_;
   static const ::std::string _default_sku_;
   ::std::string* progress_;
   static const ::std::string _default_progress_;
+  ::google::protobuf::int32 state_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -2299,6 +2209,302 @@ class DB_Mission : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class DB_WishItem : public ::google::protobuf::Message {
+ public:
+  DB_WishItem();
+  virtual ~DB_WishItem();
+  
+  DB_WishItem(const DB_WishItem& from);
+  
+  inline DB_WishItem& operator=(const DB_WishItem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_WishItem& default_instance();
+  void Swap(DB_WishItem* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_WishItem* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_WishItem& from);
+  void MergeFrom(const DB_WishItem& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string sku = 1;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 1;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  friend void  protobuf_AddDesc_dbinterface_2eproto();
+  friend void protobuf_AssignDesc_dbinterface_2eproto();
+  friend void protobuf_ShutdownFile_dbinterface_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_WishItem* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_WishItemList : public ::google::protobuf::Message {
+ public:
+  DB_WishItemList();
+  virtual ~DB_WishItemList();
+  
+  DB_WishItemList(const DB_WishItemList& from);
+  
+  inline DB_WishItemList& operator=(const DB_WishItemList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_WishItemList& default_instance();
+  void Swap(DB_WishItemList* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_WishItemList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_WishItemList& from);
+  void MergeFrom(const DB_WishItemList& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // repeated .DB_WishItem wishItem = 1;
+  inline int wishitem_size() const;
+  inline void clear_wishitem();
+  static const int kWishItemFieldNumber = 1;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_WishItem >& wishitem() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_WishItem >* mutable_wishitem();
+  inline const ::DB_WishItem& wishitem(int index) const;
+  inline ::DB_WishItem* mutable_wishitem(int index);
+  inline ::DB_WishItem* add_wishitem();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::RepeatedPtrField< ::DB_WishItem > wishitem_;
+  friend void  protobuf_AddDesc_dbinterface_2eproto();
+  friend void protobuf_AssignDesc_dbinterface_2eproto();
+  friend void protobuf_ShutdownFile_dbinterface_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_WishItemList* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_StarsBookmark : public ::google::protobuf::Message {
+ public:
+  DB_StarsBookmark();
+  virtual ~DB_StarsBookmark();
+  
+  DB_StarsBookmark(const DB_StarsBookmark& from);
+  
+  inline DB_StarsBookmark& operator=(const DB_StarsBookmark& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_StarsBookmark& default_instance();
+  void Swap(DB_StarsBookmark* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_StarsBookmark* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_StarsBookmark& from);
+  void MergeFrom(const DB_StarsBookmark& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 starName = 1;
+  inline bool has_starname() const;
+  inline void clear_starname();
+  static const int kStarNameFieldNumber = 1;
+  inline ::google::protobuf::int32 starname() const;
+  inline void set_starname(::google::protobuf::int32 value);
+  
+  // optional string sku = 2;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 2;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 starType = 3;
+  inline bool has_startype() const;
+  inline void clear_startype();
+  static const int kStarTypeFieldNumber = 3;
+  inline ::google::protobuf::int32 startype() const;
+  inline void set_startype(::google::protobuf::int32 value);
+  
+  // optional int32 starId = 4;
+  inline bool has_starid() const;
+  inline void clear_starid();
+  static const int kStarIdFieldNumber = 4;
+  inline ::google::protobuf::int32 starid() const;
+  inline void set_starid(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 starname_;
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 startype_;
+  ::google::protobuf::int32 starid_;
+  friend void  protobuf_AddDesc_dbinterface_2eproto();
+  friend void protobuf_AssignDesc_dbinterface_2eproto();
+  friend void protobuf_ShutdownFile_dbinterface_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_StarsBookmark* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class DB_Player : public ::google::protobuf::Message {
  public:
   DB_Player();
@@ -2410,6 +2616,23 @@ class DB_Player : public ::google::protobuf::Message {
   inline const ::DB_Mission& missions() const;
   inline ::DB_Mission* mutable_missions();
   
+  // optional .DB_WishItemList wishItemList = 8;
+  inline bool has_wishitemlist() const;
+  inline void clear_wishitemlist();
+  static const int kWishItemListFieldNumber = 8;
+  inline const ::DB_WishItemList& wishitemlist() const;
+  inline ::DB_WishItemList* mutable_wishitemlist();
+  
+  // repeated .DB_StarsBookmark bookmarks = 9;
+  inline int bookmarks_size() const;
+  inline void clear_bookmarks();
+  static const int kBookmarksFieldNumber = 9;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_StarsBookmark >& bookmarks() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_StarsBookmark >* mutable_bookmarks();
+  inline const ::DB_StarsBookmark& bookmarks(int index) const;
+  inline ::DB_StarsBookmark* mutable_bookmarks(int index);
+  inline ::DB_StarsBookmark* add_bookmarks();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -2421,11 +2644,13 @@ class DB_Player : public ::google::protobuf::Message {
   ::DB_Flag* flag_;
   ::google::protobuf::RepeatedPtrField< ::DB_SocialItem > socialitems_;
   ::DB_Mission* missions_;
+  ::DB_WishItemList* wishitemlist_;
+  ::google::protobuf::RepeatedPtrField< ::DB_StarsBookmark > bookmarks_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(9 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -3139,96 +3364,6 @@ class DB_User : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static DB_User* default_instance_;
 };
-// -------------------------------------------------------------------
-
-class DB_GlobalStarInfo : public ::google::protobuf::Message {
- public:
-  DB_GlobalStarInfo();
-  virtual ~DB_GlobalStarInfo();
-  
-  DB_GlobalStarInfo(const DB_GlobalStarInfo& from);
-  
-  inline DB_GlobalStarInfo& operator=(const DB_GlobalStarInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
-    return _unknown_fields_;
-  }
-  
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
-    return &_unknown_fields_;
-  }
-  
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const DB_GlobalStarInfo& default_instance();
-  void Swap(DB_GlobalStarInfo* other);
-  
-  // implements Message ----------------------------------------------
-  
-  DB_GlobalStarInfo* New() const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const DB_GlobalStarInfo& from);
-  void MergeFrom(const DB_GlobalStarInfo& from);
-  void Clear();
-  bool IsInitialized() const;
-  
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const { _cached_size_ = size; }
-  public:
-  
-  ::google::protobuf::Metadata GetMetadata() const;
-  
-  // nested types ----------------------------------------------------
-  
-  // accessors -------------------------------------------------------
-  
-  // repeated .DB_Galaxy galaxys = 1;
-  inline int galaxys_size() const;
-  inline void clear_galaxys();
-  static const int kGalaxysFieldNumber = 1;
-  inline const ::google::protobuf::RepeatedPtrField< ::DB_Galaxy >& galaxys() const;
-  inline ::google::protobuf::RepeatedPtrField< ::DB_Galaxy >* mutable_galaxys();
-  inline const ::DB_Galaxy& galaxys(int index) const;
-  inline ::DB_Galaxy* mutable_galaxys(int index);
-  inline ::DB_Galaxy* add_galaxys();
-  
- private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
-  
-  ::google::protobuf::RepeatedPtrField< ::DB_Galaxy > galaxys_;
-  friend void  protobuf_AddDesc_dbinterface_2eproto();
-  friend void protobuf_AssignDesc_dbinterface_2eproto();
-  friend void protobuf_ShutdownFile_dbinterface_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
-  
-  void InitAsDefaultInstance();
-  static DB_GlobalStarInfo* default_instance_;
-};
 // ===================================================================
 
 
@@ -3479,115 +3614,6 @@ inline ::std::string* DB_PlanetLiteInfo::mutable_planetid() {
     planetid_ = new ::std::string;
   }
   return planetid_;
-}
-
-// -------------------------------------------------------------------
-
-// DB_Galaxy
-
-// optional int32 id = 1;
-inline bool DB_Galaxy::has_id() const {
-  return _has_bit(0);
-}
-inline void DB_Galaxy::clear_id() {
-  id_ = 0;
-  _clear_bit(0);
-}
-inline ::google::protobuf::int32 DB_Galaxy::id() const {
-  return id_;
-}
-inline void DB_Galaxy::set_id(::google::protobuf::int32 value) {
-  _set_bit(0);
-  id_ = value;
-}
-
-// optional int32 type = 2;
-inline bool DB_Galaxy::has_type() const {
-  return _has_bit(1);
-}
-inline void DB_Galaxy::clear_type() {
-  type_ = 0;
-  _clear_bit(1);
-}
-inline ::google::protobuf::int32 DB_Galaxy::type() const {
-  return type_;
-}
-inline void DB_Galaxy::set_type(::google::protobuf::int32 value) {
-  _set_bit(1);
-  type_ = value;
-}
-
-// optional int32 name = 3;
-inline bool DB_Galaxy::has_name() const {
-  return _has_bit(2);
-}
-inline void DB_Galaxy::clear_name() {
-  name_ = 0;
-  _clear_bit(2);
-}
-inline ::google::protobuf::int32 DB_Galaxy::name() const {
-  return name_;
-}
-inline void DB_Galaxy::set_name(::google::protobuf::int32 value) {
-  _set_bit(2);
-  name_ = value;
-}
-
-// optional int32 x = 4;
-inline bool DB_Galaxy::has_x() const {
-  return _has_bit(3);
-}
-inline void DB_Galaxy::clear_x() {
-  x_ = 0;
-  _clear_bit(3);
-}
-inline ::google::protobuf::int32 DB_Galaxy::x() const {
-  return x_;
-}
-inline void DB_Galaxy::set_x(::google::protobuf::int32 value) {
-  _set_bit(3);
-  x_ = value;
-}
-
-// optional int32 y = 5;
-inline bool DB_Galaxy::has_y() const {
-  return _has_bit(4);
-}
-inline void DB_Galaxy::clear_y() {
-  y_ = 0;
-  _clear_bit(4);
-}
-inline ::google::protobuf::int32 DB_Galaxy::y() const {
-  return y_;
-}
-inline void DB_Galaxy::set_y(::google::protobuf::int32 value) {
-  _set_bit(4);
-  y_ = value;
-}
-
-// repeated .DB_PlanetLiteInfo lite = 6;
-inline int DB_Galaxy::lite_size() const {
-  return lite_.size();
-}
-inline void DB_Galaxy::clear_lite() {
-  lite_.Clear();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::DB_PlanetLiteInfo >&
-DB_Galaxy::lite() const {
-  return lite_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::DB_PlanetLiteInfo >*
-DB_Galaxy::mutable_lite() {
-  return &lite_;
-}
-inline const ::DB_PlanetLiteInfo& DB_Galaxy::lite(int index) const {
-  return lite_.Get(index);
-}
-inline ::DB_PlanetLiteInfo* DB_Galaxy::mutable_lite(int index) {
-  return lite_.Mutable(index);
-}
-inline ::DB_PlanetLiteInfo* DB_Galaxy::add_lite() {
-  return lite_.Add();
 }
 
 // -------------------------------------------------------------------
@@ -3874,6 +3900,22 @@ inline ::google::protobuf::int32 DB_Item::id() const {
 inline void DB_Item::set_id(::google::protobuf::int32 value) {
   _set_bit(15);
   id_ = value;
+}
+
+// optional int32 collecttime = 17;
+inline bool DB_Item::has_collecttime() const {
+  return _has_bit(16);
+}
+inline void DB_Item::clear_collecttime() {
+  collecttime_ = 0;
+  _clear_bit(16);
+}
+inline ::google::protobuf::int32 DB_Item::collecttime() const {
+  return collecttime_;
+}
+inline void DB_Item::set_collecttime(::google::protobuf::int32 value) {
+  _set_bit(16);
+  collecttime_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -4267,6 +4309,22 @@ inline void DB_BunkerUnit::add_unit(::google::protobuf::int32 value) {
   unit_.Add(value);
 }
 
+// optional int32 num = 3;
+inline bool DB_BunkerUnit::has_num() const {
+  return _has_bit(2);
+}
+inline void DB_BunkerUnit::clear_num() {
+  num_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_BunkerUnit::num() const {
+  return num_;
+}
+inline void DB_BunkerUnit::set_num(::google::protobuf::int32 value) {
+  _set_bit(2);
+  num_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // DB_Bunker
@@ -4374,46 +4432,20 @@ inline void DB_StarLite::set_starid(::google::protobuf::int32 value) {
   starid_ = value;
 }
 
-// optional string starName = 2;
+// optional int32 starName = 2;
 inline bool DB_StarLite::has_starname() const {
   return _has_bit(1);
 }
 inline void DB_StarLite::clear_starname() {
-  if (starname_ != &_default_starname_) {
-    starname_->clear();
-  }
+  starname_ = 0;
   _clear_bit(1);
 }
-inline const ::std::string& DB_StarLite::starname() const {
-  return *starname_;
-}
-inline void DB_StarLite::set_starname(const ::std::string& value) {
-  _set_bit(1);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(value);
-}
-inline void DB_StarLite::set_starname(const char* value) {
-  _set_bit(1);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(value);
-}
-inline void DB_StarLite::set_starname(const char* value, size_t size) {
-  _set_bit(1);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
-  starname_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* DB_StarLite::mutable_starname() {
-  _set_bit(1);
-  if (starname_ == &_default_starname_) {
-    starname_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 DB_StarLite::starname() const {
   return starname_;
+}
+inline void DB_StarLite::set_starname(::google::protobuf::int32 value) {
+  _set_bit(1);
+  starname_ = value;
 }
 
 // optional int32 starType = 3;
@@ -4903,52 +4935,98 @@ inline void DB_SocialItem::set_amount(::google::protobuf::int32 value) {
   amount_ = value;
 }
 
+// optional int32 counter = 3;
+inline bool DB_SocialItem::has_counter() const {
+  return _has_bit(2);
+}
+inline void DB_SocialItem::clear_counter() {
+  counter_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_SocialItem::counter() const {
+  return counter_;
+}
+inline void DB_SocialItem::set_counter(::google::protobuf::int32 value) {
+  _set_bit(2);
+  counter_ = value;
+}
+
+// optional int64 timeLeft = 4;
+inline bool DB_SocialItem::has_timeleft() const {
+  return _has_bit(3);
+}
+inline void DB_SocialItem::clear_timeleft() {
+  timeleft_ = GOOGLE_LONGLONG(0);
+  _clear_bit(3);
+}
+inline ::google::protobuf::int64 DB_SocialItem::timeleft() const {
+  return timeleft_;
+}
+inline void DB_SocialItem::set_timeleft(::google::protobuf::int64 value) {
+  _set_bit(3);
+  timeleft_ = value;
+}
+
+// optional int64 timeOver = 5;
+inline bool DB_SocialItem::has_timeover() const {
+  return _has_bit(4);
+}
+inline void DB_SocialItem::clear_timeover() {
+  timeover_ = GOOGLE_LONGLONG(0);
+  _clear_bit(4);
+}
+inline ::google::protobuf::int64 DB_SocialItem::timeover() const {
+  return timeover_;
+}
+inline void DB_SocialItem::set_timeover(::google::protobuf::int64 value) {
+  _set_bit(4);
+  timeover_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // DB_MissionParam
 
-// repeated string Target = 1;
-inline int DB_MissionParam::target_size() const {
-  return target_.size();
+// optional string Target = 1;
+inline bool DB_MissionParam::has_target() const {
+  return _has_bit(0);
 }
 inline void DB_MissionParam::clear_target() {
-  target_.Clear();
+  if (target_ != &_default_target_) {
+    target_->clear();
+  }
+  _clear_bit(0);
 }
-inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
-DB_MissionParam::target() const {
+inline const ::std::string& DB_MissionParam::target() const {
+  return *target_;
+}
+inline void DB_MissionParam::set_target(const ::std::string& value) {
+  _set_bit(0);
+  if (target_ == &_default_target_) {
+    target_ = new ::std::string;
+  }
+  target_->assign(value);
+}
+inline void DB_MissionParam::set_target(const char* value) {
+  _set_bit(0);
+  if (target_ == &_default_target_) {
+    target_ = new ::std::string;
+  }
+  target_->assign(value);
+}
+inline void DB_MissionParam::set_target(const char* value, size_t size) {
+  _set_bit(0);
+  if (target_ == &_default_target_) {
+    target_ = new ::std::string;
+  }
+  target_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_MissionParam::mutable_target() {
+  _set_bit(0);
+  if (target_ == &_default_target_) {
+    target_ = new ::std::string;
+  }
   return target_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::std::string>*
-DB_MissionParam::mutable_target() {
-  return &target_;
-}
-inline const ::std::string& DB_MissionParam::target(int index) const {
-  return target_.Get(index);
-}
-inline ::std::string* DB_MissionParam::mutable_target(int index) {
-  return target_.Mutable(index);
-}
-inline void DB_MissionParam::set_target(int index, const ::std::string& value) {
-  target_.Mutable(index)->assign(value);
-}
-inline void DB_MissionParam::set_target(int index, const char* value) {
-  target_.Mutable(index)->assign(value);
-}
-inline void DB_MissionParam::set_target(int index, const char* value, size_t size) {
-  target_.Mutable(index)->assign(
-    reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* DB_MissionParam::add_target() {
-  return target_.Add();
-}
-inline void DB_MissionParam::add_target(const ::std::string& value) {
-  target_.Add()->assign(value);
-}
-inline void DB_MissionParam::add_target(const char* value) {
-  target_.Add()->assign(value);
-}
-inline void DB_MissionParam::add_target(const char* value, size_t size) {
-  target_.Add()->assign(reinterpret_cast<const char*>(value), size);
 }
 
 // optional int32 endTime = 2;
@@ -5049,6 +5127,22 @@ inline ::std::string* DB_MissionParam::mutable_progress() {
     progress_ = new ::std::string;
   }
   return progress_;
+}
+
+// optional int32 state = 5;
+inline bool DB_MissionParam::has_state() const {
+  return _has_bit(4);
+}
+inline void DB_MissionParam::clear_state() {
+  state_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_MissionParam::state() const {
+  return state_;
+}
+inline void DB_MissionParam::set_state(::google::protobuf::int32 value) {
+  _set_bit(4);
+  state_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -5250,6 +5344,175 @@ inline ::DB_MissionParam* DB_Mission::add_params() {
 
 // -------------------------------------------------------------------
 
+// DB_WishItem
+
+// optional string sku = 1;
+inline bool DB_WishItem::has_sku() const {
+  return _has_bit(0);
+}
+inline void DB_WishItem::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& DB_WishItem::sku() const {
+  return *sku_;
+}
+inline void DB_WishItem::set_sku(const ::std::string& value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_WishItem::set_sku(const char* value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_WishItem::set_sku(const char* value, size_t size) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_WishItem::mutable_sku() {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// -------------------------------------------------------------------
+
+// DB_WishItemList
+
+// repeated .DB_WishItem wishItem = 1;
+inline int DB_WishItemList::wishitem_size() const {
+  return wishitem_.size();
+}
+inline void DB_WishItemList::clear_wishitem() {
+  wishitem_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_WishItem >&
+DB_WishItemList::wishitem() const {
+  return wishitem_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_WishItem >*
+DB_WishItemList::mutable_wishitem() {
+  return &wishitem_;
+}
+inline const ::DB_WishItem& DB_WishItemList::wishitem(int index) const {
+  return wishitem_.Get(index);
+}
+inline ::DB_WishItem* DB_WishItemList::mutable_wishitem(int index) {
+  return wishitem_.Mutable(index);
+}
+inline ::DB_WishItem* DB_WishItemList::add_wishitem() {
+  return wishitem_.Add();
+}
+
+// -------------------------------------------------------------------
+
+// DB_StarsBookmark
+
+// optional int32 starName = 1;
+inline bool DB_StarsBookmark::has_starname() const {
+  return _has_bit(0);
+}
+inline void DB_StarsBookmark::clear_starname() {
+  starname_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 DB_StarsBookmark::starname() const {
+  return starname_;
+}
+inline void DB_StarsBookmark::set_starname(::google::protobuf::int32 value) {
+  _set_bit(0);
+  starname_ = value;
+}
+
+// optional string sku = 2;
+inline bool DB_StarsBookmark::has_sku() const {
+  return _has_bit(1);
+}
+inline void DB_StarsBookmark::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& DB_StarsBookmark::sku() const {
+  return *sku_;
+}
+inline void DB_StarsBookmark::set_sku(const ::std::string& value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_StarsBookmark::set_sku(const char* value) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_StarsBookmark::set_sku(const char* value, size_t size) {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_StarsBookmark::mutable_sku() {
+  _set_bit(1);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 starType = 3;
+inline bool DB_StarsBookmark::has_startype() const {
+  return _has_bit(2);
+}
+inline void DB_StarsBookmark::clear_startype() {
+  startype_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_StarsBookmark::startype() const {
+  return startype_;
+}
+inline void DB_StarsBookmark::set_startype(::google::protobuf::int32 value) {
+  _set_bit(2);
+  startype_ = value;
+}
+
+// optional int32 starId = 4;
+inline bool DB_StarsBookmark::has_starid() const {
+  return _has_bit(3);
+}
+inline void DB_StarsBookmark::clear_starid() {
+  starid_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_StarsBookmark::starid() const {
+  return starid_;
+}
+inline void DB_StarsBookmark::set_starid(::google::protobuf::int32 value) {
+  _set_bit(3);
+  starid_ = value;
+}
+
+// -------------------------------------------------------------------
+
 // DB_Player
 
 // optional .DB_Model model = 1;
@@ -5393,6 +5656,48 @@ inline ::DB_Mission* DB_Player::mutable_missions() {
   _set_bit(6);
   if (missions_ == NULL) missions_ = new ::DB_Mission;
   return missions_;
+}
+
+// optional .DB_WishItemList wishItemList = 8;
+inline bool DB_Player::has_wishitemlist() const {
+  return _has_bit(7);
+}
+inline void DB_Player::clear_wishitemlist() {
+  if (wishitemlist_ != NULL) wishitemlist_->::DB_WishItemList::Clear();
+  _clear_bit(7);
+}
+inline const ::DB_WishItemList& DB_Player::wishitemlist() const {
+  return wishitemlist_ != NULL ? *wishitemlist_ : *default_instance_->wishitemlist_;
+}
+inline ::DB_WishItemList* DB_Player::mutable_wishitemlist() {
+  _set_bit(7);
+  if (wishitemlist_ == NULL) wishitemlist_ = new ::DB_WishItemList;
+  return wishitemlist_;
+}
+
+// repeated .DB_StarsBookmark bookmarks = 9;
+inline int DB_Player::bookmarks_size() const {
+  return bookmarks_.size();
+}
+inline void DB_Player::clear_bookmarks() {
+  bookmarks_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_StarsBookmark >&
+DB_Player::bookmarks() const {
+  return bookmarks_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_StarsBookmark >*
+DB_Player::mutable_bookmarks() {
+  return &bookmarks_;
+}
+inline const ::DB_StarsBookmark& DB_Player::bookmarks(int index) const {
+  return bookmarks_.Get(index);
+}
+inline ::DB_StarsBookmark* DB_Player::mutable_bookmarks(int index) {
+  return bookmarks_.Mutable(index);
+}
+inline ::DB_StarsBookmark* DB_Player::add_bookmarks() {
+  return bookmarks_.Add();
 }
 
 // -------------------------------------------------------------------
@@ -6392,35 +6697,6 @@ inline bool DB_User::badult() const {
 inline void DB_User::set_badult(bool value) {
   _set_bit(48);
   badult_ = value;
-}
-
-// -------------------------------------------------------------------
-
-// DB_GlobalStarInfo
-
-// repeated .DB_Galaxy galaxys = 1;
-inline int DB_GlobalStarInfo::galaxys_size() const {
-  return galaxys_.size();
-}
-inline void DB_GlobalStarInfo::clear_galaxys() {
-  galaxys_.Clear();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::DB_Galaxy >&
-DB_GlobalStarInfo::galaxys() const {
-  return galaxys_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::DB_Galaxy >*
-DB_GlobalStarInfo::mutable_galaxys() {
-  return &galaxys_;
-}
-inline const ::DB_Galaxy& DB_GlobalStarInfo::galaxys(int index) const {
-  return galaxys_.Get(index);
-}
-inline ::DB_Galaxy* DB_GlobalStarInfo::mutable_galaxys(int index) {
-  return galaxys_.Mutable(index);
-}
-inline ::DB_Galaxy* DB_GlobalStarInfo::add_galaxys() {
-  return galaxys_.Add();
 }
 
 

@@ -9,6 +9,7 @@
 #include "../common/const_def.h"
 #include "../logic/InitItemTbl.h"
 #include "PlanetManager.h"
+#include "BattleManager.h"
 
 using namespace std;
 
@@ -26,8 +27,6 @@ public:
 
 private:
 	Player(User* pParent);
-	Player();
-	Player(Player&);
 	~Player();
 
 	void		SendBroadCastToSelf(int type, int id, vector<string> param);
@@ -39,6 +38,7 @@ public:
 	inline GameEventHandler*	GetPlayerEh(){return eh_;}
 	inline GameDataHandler*		GetPlayerDh(){return eh_->getDataHandler();}
 
+	int GetCurPlanetId(){return 1;}
 
 	bool CanUse(void) const;
 
@@ -49,41 +49,52 @@ public:
 	bool CheckDroidInUse(DB_Planet *pPlanet, int cnt);
 	bool CheckDroids(DB_Planet *pPlanet, int workingCnt);
 	bool CostSocialItem(string sku, int cnt);
-
+	bool AddSocialItem(string sku, int cnt);
+	DB_SocialItem* GetSocialItem(string sku);
 
 	int CreateBuilding(int nPlanetId, CFG_InitItem *pCfgItem);
-	int CreateBuilding(int nPlanetId, MsgBuildingItem *pItem);
+	DB_Item * CreateBuilding(int nPlanetId, MsgBuildingItem *pItem);
 	bool DestroyBuilding(int nPlanetId, int id, int sid);
 	bool RotateBuilding(int nPlanetId, int id, int sid, int x, int y, int flip);
 	bool MoveBuilding(int nPlanetId, int id, int sid, int x, int y);
 	bool cancelBuild(int nPlanetId, int id, int sid);
-	bool cancelUpgrade(int nPlanetId, int id, int sid, int64 ntime);
-	bool upgradePremium(int nPlanetId, int id, int sid);
-	bool updateNewState(int nPlanetId,int newState, int oldState,int id, int sid, int64 ntime);
-
+	bool cancelUpgrade(int nPlanetId, int id, int sid, int ntime);
+	bool upgradePremium(int nPlanetId, int id, int sid, int ntime,int incometorestore);
+	bool updateNewState(int nPlanetId,int newState, int oldState,int id, int sid, int ntime, int incomeToRestore);
+	void RemoveSocialItem(string sku);
 	bool updateCoinsLimit(int slot);
 	bool updateMineralsLimit(int slot);
 
-	DB_Planet *GetPlanet(int nPlanetId);
-	DB_Item* getBuilding(DB_Planet *pPlanet, int id, int sid);
+	DB_Planet* GetPlanet(int nPlanetId);
+	bool AddStarBookmark(int nStarId, int nStarType, int nStarName, int x, int y);
+	bool DelStarBookmark(int nStarId);
 
 	//npc
-	void FillNpcs(RseObtainNpcList *lst);
-	void FillUniverse(RseObtainUniverse *rse);
+	void FillinNpcs(RseObtainNpcList *lst);
 	void FillInMissoin(RseObtainUniverse *rse);
-	void FillInPlanet(RseObtainUniverse *rse);
-	void FillinItem(RseObtainUniverse *rse);
-	void FillinShipyard(RseObtainUniverse *rse);
-	void FillinHangar(RseObtainUniverse *rse);
-	void FillinBunker(RseObtainUniverse *rse);
-	void FillinGameUnit(RseObtainUniverse *rse);
+	void FillinBookmarks(RseQueryStarsBookmarks *rse);
+	void FillinUniverse(RseObtainUniverse *rse, int nPlanetId);
+	void FillInPlanet(RseObtainUniverse *rse, int nPlanetId);
+	void FillinItem(RseObtainUniverse *rse, int nPlanetId);
+	void FillinShipyard(RseObtainUniverse *rse, int nPlanetId);
+	void FillinHangar(RseObtainUniverse *rse, int nPlanetId);
+	void FillinBunker(RseObtainUniverse *rse, int nPlanetId);
+	void FillinGameUnit(RseObtainUniverse *rse, int nPlanetId);
+	void FillInWishList(RseObtainSocialItems* rse);
+	void FillSocialItems(RseObtainSocialItems *rse);
+	void FillinFlag(RseObtainUniverse* rse);
 
 	//init new default player
-	void InitPlayerData();
 	void InitPlayerModel();
+	void InitPlayerFlag();
 	void InitPlayerState();
-	void InitPlayerPlanets();
+	void InitPlayerPlanets(int nID, int nName, int nType, string sku);
 	void InitPlayerNPC();
+
+	//battle
+	void NewBattle(int64 nTargetPlayer, int nPlanetId);
+	Battle* GetBattle(){return m_pBattleManager->GetBattle();}
+	void FillBattleData(RseObtainUniverse *pRsp);
 
 private:
 	DB_Player*           m_pdbPlayer;
@@ -91,6 +102,7 @@ private:
 	GameEventHandler*    eh_;
 	//manager
 	PlanetManager*		m_pPlanetManager;
+	BattleManager*		m_pBattleManager;
 };
 
 inline User* Player::GetParent() const

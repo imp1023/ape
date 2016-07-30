@@ -4,7 +4,6 @@
 
 StarLoigc::StarLoigc()
 {
-	m_mGlobalStarInfo.clear();
 	m_FindStarKeyVal.clear();
 	m_FindStarKeyVal.insert(make_pair(1,30));
 	m_FindStarKeyVal.insert(make_pair(2,30));
@@ -17,64 +16,32 @@ int StarLoigc::GetStarName()
 	return rand() % num + 1;
 }
 
-int StarLoigc::GetNewPlayerStar(int64 uid)
+int StarLoigc::GetStarType()
 {
-	Star star;
-	int nNum = m_mGlobalStarInfo.size();
-	if(0 == nNum){
-		star.id = 1;
-		star.x = 0;
-		star.y = 0;
-		star.type = rand() % STAR_TYPE_MAX;
-		PlanetLiteInfo lite;
-		lite.uid = uid;
-		lite.planetId = 1;
-		star.pli.push_back(lite);
-		star.name = GetStarName();
-		m_mGlobalStarInfo.insert(make_pair(star.id, star));
-		return star.id;
-	}else{
-		star = m_mGlobalStarInfo[nNum];
-		if(star.pli.size() < STAR_ALLOCATE_OCCUPIED){
-			PlanetLiteInfo lite;
-			lite.uid = uid;
-			lite.planetId = 1;
-			star.pli.push_back(lite);
-			return star.id;
-		}else{
-			int ran = rand() % 100;
-			int totalProb = 0, number = 0;
-			for(map<int,int>::iterator iter = m_FindStarKeyVal.begin(); iter != m_FindStarKeyVal.end(); iter++){
-				number++;
-				totalProb += iter->second;
-				if(ran <= totalProb){
-					break;
-				}
-			}
-			
-			int x = star.x;
-			int y = star.y;
-			Star newStar;
-			for(int i = 0; i < number; i++){
-				newStar = GetNearbyStar(x, y);
-				x = newStar.x;
-				y = newStar.y;
-			}
-			
-			star.id = nNum + 1;
-			star.x = newStar.x;
-			star.y = newStar.y;
-			star.type = rand() % STAR_TYPE_MAX;
-			PlanetLiteInfo lite;
-			lite.uid = uid;
-			lite.planetId = 1;
-			star.pli.push_back(lite);
-			star.name = GetStarName();
-			m_mGlobalStarInfo.insert(make_pair(star.id, star));
-			return star.id;
+	return rand()%STAR_TYPE_MAX;
+}
+
+void StarLoigc::GetNewStar(int x, int y, int &newx, int &newy)
+{	
+	int ran = rand() % 100;
+	int totalProb = 0, number = 0;
+	for(map<int,int>::iterator iter = m_FindStarKeyVal.begin(); iter != m_FindStarKeyVal.end(); iter++){
+		number++;
+		totalProb += iter->second;
+		if(ran <= totalProb){
+			break;
 		}
 	}
-	return 0;
+	
+	Star newStar;
+	for(int i = 0; i < number; i++){
+		newStar = GetNearbyStar(x, y);
+		x = newStar.x;
+		y = newStar.y;
+	}
+	
+	newx = newStar.x;
+	newy = newStar.y;
 }
 
 Star StarLoigc::GetNearbyStar(int x, int y)
@@ -189,6 +156,7 @@ Area StarLoigc::GetNewPoint(int x, int y, Area hwxy)
 	return hwxy;
 }
 
+#if 0
 void StarLoigc::serizlize(DB_GlobalStarInfo &db)
 {
 	db.Clear();
@@ -235,3 +203,4 @@ bool StarLoigc::unserialize(DB_GlobalStarInfo db)
 	}
 	return true;
 }
+#endif

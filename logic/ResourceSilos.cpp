@@ -7,6 +7,7 @@
 #include "../logic/ResourcesTbl.h"
 #include "../logic/DefensesTbl.h"
 #include "../logic/ShipyardsTbl.h"
+#include "../logic/WonderDefinitionsTbl.h"
 
 const char* ResourceSilosTbl::szConfigFile = "Config/Resourcessilos.dat";
 
@@ -39,34 +40,17 @@ void ResourceSilosTbl::LoadInfo()
 	{
 		CFG_ResourceSilos *pItem = new CFG_ResourceSilos;
 		int id = fileDBC.Search_Posistion(i, ResourceSilosTbl_id)->iValue;
-		pItem->sku = fileDBC.Search_Posistion(i, ResourceSilosTbl_sku)->pString;
-		pItem->level = fileDBC.Search_Posistion(i, ResourceSilosTbl_level)->iValue;
-		int lv = fileDBC.Search_Posistion(i, ResourceSilosTbl_level)->iValue;
+		pItem->id = fileDBC.Search_Posistion(i, ResourceSilosTbl_id)->iValue;
 		pItem->energy =fileDBC.Search_Posistion(i, ResourceSilosTbl_energy)->iValue;
-		pItem->energyProgressBar =fileDBC.Search_Posistion(i, ResourceSilosTbl_energyProgressBar)->iValue;
-		pItem->maxNumPerHQLevel = fileDBC.Search_Posistion(i, ResourceSilosTbl_maxNumPerHQLevel)->iValue;
-		pItem->constructionCoins = fileDBC.Search_Posistion(i, ResourceSilosTbl_constructionCoins)->iValue;
-		pItem->constructionMineral = fileDBC.Search_Posistion(i, ResourceSilosTbl_constructionMineral)->iValue;
-		pItem->constructionTime =fileDBC.Search_Posistion(i, ResourceSilosTbl_constructionTime)->iValue;
-		pItem->scoreBuilt =fileDBC.Search_Posistion(i, ResourceSilosTbl_scoreBuilt)->iValue;
-		pItem->scoreAttack =fileDBC.Search_Posistion(i, ResourceSilosTbl_scoreAttack)->iValue;
-		pItem->repairTime =fileDBC.Search_Posistion(i, ResourceSilosTbl_repairTime)->iValue;
 		pItem->slotCapacity =fileDBC.Search_Posistion(i, ResourceSilosTbl_slotCapacity)->iValue;
-		pItem->slotCapacityProgressBar =fileDBC.Search_Posistion(i, ResourceSilosTbl_slotCapacityProgressBar)->iValue;
+		
 
-		char mapKey [128] = {0};
-		sprintf(mapKey, "%s_%d", pItem->sku, lv);
- 		map<string, CFG_ResourceSilos*>::iterator iter = m_mapResSilos.find(mapKey);
+
+		map<int,CFG_ResourceSilos*>::iterator iter = m_mapResSilos.find(id);
 		if(iter != m_mapResSilos.end()){
- 			return;
+ 			return ;
  		}
- 		m_mapResSilos.insert(make_pair(mapKey, pItem));
-
-		map<int, CFG_ResourceSilos*>::iterator iter_ = m_mapResSilos_id.find(id);
-		if(iter_ != m_mapResSilos_id.end()){
-			return;
-		}
-		m_mapResSilos_id.insert(make_pair(id, pItem));
+		m_mapResSilos.insert(make_pair(id, pItem));
 	}
 	
 	printf("Load %s cnt:%d\n", ResourceSilosTbl::szConfigFile, nRow);
@@ -74,7 +58,7 @@ void ResourceSilosTbl::LoadInfo()
 
 void ResourceSilosTbl::Clear()
 {
-	for (map<string,CFG_ResourceSilos*>::iterator iter = m_mapResSilos.begin(); iter != m_mapResSilos.end(); ++iter)
+	for (map<int,CFG_ResourceSilos*>::iterator iter = m_mapResSilos.begin(); iter != m_mapResSilos.end(); ++iter)
 	{
 		if (iter->second != NULL)
 		{
@@ -83,19 +67,12 @@ void ResourceSilosTbl::Clear()
 	}
 	m_mapResSilos.clear();
 
-	for (map<int,CFG_ResourceSilos*>::iterator iter_ = m_mapResSilos_id.begin(); iter_ != m_mapResSilos_id.end(); ++iter_)
-	{
-		if (iter_->second != NULL)
-		{
-			delete iter_->second;
-		}
-	}
-	m_mapResSilos.clear();
 }
 
-CFG_ResourceSilos* ResourceSilosTbl::GetInfo(string nIndex)
+
+CFG_ResourceSilos* ResourceSilosTbl::GetInfo(int nIndex)
 {
-	map<string, CFG_ResourceSilos*>::iterator iterFind = m_mapResSilos.find(nIndex);
+	map<int, CFG_ResourceSilos*>::iterator iterFind = m_mapResSilos.find(nIndex);
 	if (iterFind != m_mapResSilos.end())
 	{
 		return iterFind->second;
@@ -103,15 +80,6 @@ CFG_ResourceSilos* ResourceSilosTbl::GetInfo(string nIndex)
 	return NULL;
 }
 
-CFG_ResourceSilos* ResourceSilosTbl::GetInfo(int nIndex)
-{
-	map<int, CFG_ResourceSilos*>::iterator iterFind = m_mapResSilos_id.find(nIndex);
-	if (iterFind != m_mapResSilos_id.end())
-	{
-		return iterFind->second;
-	}
-	return NULL;
-}
 
 int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 {
@@ -211,6 +179,10 @@ int ResourceSilosTbl::GetEnergy(int sku, int lv)
 	int energy = 0;
 	switch(sku)
 	{
+	case SKU_wonders_headquarters:
+		{
+			return WonderDefinitionsTblInst::instance().GetHQEnergy(lv);
+		}
 	case SKU_hangar_001_001:
 		{
 			CFG_Hangar* tbl =  HangarTblInst::instance().GetInfo(lv);
@@ -238,7 +210,7 @@ int ResourceSilosTbl::GetEnergy(int sku, int lv)
 	case SKU_rs_002_001:
 		{
 			CFG_ResourceSilos* tbl =  ResourceSilosTblInst::instance().GetInfo(lv);
-			energy = tbl->energy;
+			energy =  tbl->energy;
 			return energy;
 		}
 	case SKU_barracks_001_001:

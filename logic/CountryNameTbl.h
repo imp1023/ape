@@ -13,7 +13,7 @@ public:
 	CountryNameTbl();
 	~CountryNameTbl();
 
-	void			LoadInfo();
+	bool			LoadInfo();
 	void			Clear();
 	string			GetInfo(int nIndex);
 	inline int		GetTotalSize(){return m_mapCountryName.size();}
