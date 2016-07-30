@@ -25,6 +25,8 @@ void DealWorldEvent::registHandler()
 	eh_->getEventHandler()->registHandler(EVENT_GWG_FRIEND_REQUEST, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(EVETN_GWG_GAMESTAR_REQUEST, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(EVENT_UPDATE_FRIEND_CACHE, ((ProcessRoutine) DealWorldEvent::handle_));
+	eh_->getEventHandler()->registHandler(C2S_RceObtainUniverse, ((ProcessRoutine) DealWorldEvent::handle_));
+	eh_->getEventHandler()->registHandler(C2S_RceFinished, ((ProcessRoutine) DealWorldEvent::handle_));
 }
 
 void DealWorldEvent::handle(Event* e)
@@ -56,7 +58,7 @@ void DealWorldEvent::processEventForward(Event* e)
         return;
     if (e->state() == (int) Status_Normal_To_World)
     {
-        int64 uid = 0;//e->forwardinfo().uid();
+        int64 uid = e->forwardinfo().uid();
         if (uid > 0)
         {
             processEventForwardByUid(e);
@@ -86,7 +88,7 @@ void DealWorldEvent::processEventForwardByUid(Event* e)
     if (e->state() == (int) Status_Normal_To_World)
     {
         e->set_state(Status_Normal_Logic_Game);
-        eh_->sendEventToUser(e, 0);//e->forwardinfo().uid());
+        eh_->sendEventToUser(e, e->forwardinfo().uid());
     }
     else if (e->state() == (int) Status_Normal_Back_World)
     {
