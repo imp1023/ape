@@ -2,10 +2,13 @@
 #define _AUTOEVENTHEAD_H_
 #pragma once
 //该文件为使用工具自动生成，请不要在文件中修改，如需要修改，请与sskylin联系。
+#include "RceBattleDamagesPackHandle.h"
 #include "RceCustomizedActivityHandle.h"
-#include "RceDeployUnitsHandle.h"
-#include "RceItemDamagedHandle.h"
+#include "RceFinishedHandle.h"
+#include "RceHeartbeatHandle.h"
+#include "RceItemMineExplodedHandle.h"
 #include "RceLoginHandle.h"
+#include "RceNpcAttackStartHandle.h"
 #include "RceObtainAskForHelpHandle.h"
 #include "RceObtainAttackerListHandle.h"
 #include "RceObtainBattleReplayHandle.h"
@@ -29,7 +32,6 @@
 #include "RceQueryStarInfoHandle.h"
 #include "RceQueryStarsBookmarksHandle.h"
 #include "RceQueryVisitHelpsGiftUnitsOnBunkerHandle.h"
-#include "RceUnitDamagedHandle.h"
 #include "RceUpdateAlliancesHandle.h"
 #include "RceUpdateGameUnitsHandle.h"
 #include "RceUpdateItemHandle.h"

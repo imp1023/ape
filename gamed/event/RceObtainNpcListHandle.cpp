@@ -39,7 +39,7 @@ void RceObtainNpcListHandle::handle(Event* e)
 	}
 
 	RseObtainNpcList rse;
-	pPlayer->FillNpcs(&rse);
+	pPlayer->FillinNpcs(&rse);
 	string text;
 	rse.SerializeToString(&text);
 	eh_->sendDataToUser(pUser->fd(), S2C_RseObtainNpcList,text);

@@ -9,6 +9,8 @@ public:
 	RceUpdateSocialItemHandle();
 	~RceUpdateSocialItemHandle();
 	RegistEvent(RceUpdateSocialItemHandle,C2S_RceUpdateSocialItem)
+	void SendRet2User(User* pUser,int nRet,RseUpdateSocialItem& rseUpdateSocialItem);
+	vector<string> split( string str, string pattern);
 
 private:
 	void handle(Event* e);

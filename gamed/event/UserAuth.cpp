@@ -128,8 +128,7 @@ void UserAuth::handle_CG_Req(Event* e)
 		eh_->createUserFdMap(fd, uid);
 		user->setFd(fd);
 		user->setOnline(true);
-
-		//user->Logon(dh);
+		user->Logon(dh);
 		dh->PushOnlineUserID(user->GetUid());
 #if 0
 		BattleManager* pBtlMgr = user->GetBattleManager();

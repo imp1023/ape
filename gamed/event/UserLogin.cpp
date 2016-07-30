@@ -71,8 +71,27 @@ void UserLogin::HandleUserLogin(Event* e)
     }
 	else if(e->state() == UserLogin_PG_Rsp)
 	{
-		handle_WG_UserLogin(e);
+		if (!e->has_userlogin_req())
+		{
+			return;
+		}
+		const UserLogin_Req& req = e->userlogin_req();
+		if(req.isnewplayer()){
+			NewStar_Req *pReq = e->mutable_newstarreq();
+			pReq->set_accountid(req.uid());
+			pReq->set_planetid(1);
+			pReq->set_name(req.platform_id());
+			pReq->set_url(req.profile_link());
+			e->set_state(UserLogin_GCo_Req);
+			eh_->sendEventToCountry(e, req.region());
+		}else{
+			handle_WG_UserLogin(e);
+		}
 	}
+	else if(e->state() == UserLogin_CoG_Rsp)
+	{
+		handle_WG_UserLogin(e);
+ 	}
     else
     {
         LOG4CXX_ERROR(logger_, "Invalid Event.\n" << e->DebugString());
@@ -81,7 +100,7 @@ void UserLogin::HandleUserLogin(Event* e)
 
 void UserLogin::HandleUserLogout(Event* e)
 {
-#if 0
+
     int64 nUserID = e->uid();
     switch (e->state())
     {
@@ -93,88 +112,88 @@ void UserLogin::HandleUserLogout(Event* e)
             {
                 return;
             }
-			if(!pUser->GetPlayer()->HasSendInfo2Star())
-			{
-				eh_->SendUserInfo2Star(pUser);
-			}
+// 			if(!pUser->GetPlayer()->HasSendInfo2Star())
+// 			{
+// 				eh_->SendUserInfo2Star(pUser);
+// 			}
 
 
             WG_UserLeave* pUserLeave = e->mutable_wg_userleave();
             if (pUserLeave->fd() != pUser->fd())
                 return;
             pUser->setOnline(false);
-			pUser->OnUserOnOffLine();
+//			pUser->OnUserOnOffLine();
 			dh->PopOnlineUserID(pUser->GetUid());
-			pUser->GetPlayer()->SetInviteUserID(0,false);
+//			pUser->GetPlayer()->SetInviteUserID(0,false);
 
 			//pUser->SetFriendCache(pUser->GetPlattype(), dh);
-			pUser->SetGameStarCache(pUser->GetPlattype(),dh,true);
+//			pUser->SetGameStarCache(pUser->GetPlattype(),dh,true);
 			
-			BattleManager* pBtlMgr = pUser->GetBattleManager();
-			if(pBtlMgr)
-			{
-				if(pBtlMgr->IsAttacking())
-				{//正在攻击别人
-					eh_->PushEventAttackFalse(pUser,pBtlMgr->GetAtkBtlType());
-				}
-
-				if(pBtlMgr->BtlIsDefenseNpc())
-				{
-					eh_->PushEventDefenseNpcFalse(pUser);
-				}
-			}
+// 			BattleManager* pBtlMgr = pUser->GetBattleManager();
+// 			if(pBtlMgr)
+// 			{
+// 				if(pBtlMgr->IsAttacking())
+// 				{//正在攻击别人
+// 					eh_->PushEventAttackFalse(pUser,pBtlMgr->GetAtkBtlType());
+// 				}
+// 
+// 				if(pBtlMgr->BtlIsDefenseNpc())
+// 				{
+// 					eh_->PushEventDefenseNpcFalse(pUser);
+// 				}
+// 			}
 
 			pUser->setFd(0);
            
             time_t lt = time(NULL) - pUser->GetLastLoginTime();
 
 			//设置离线保护时间
-			if ( pUser->GetPlayer() != NULL )
-			{
-				GameDataHandler* pUserManager = eh_->getDataHandler();
-				GameStarInfo* pStar = pUserManager->getGameStarInfo(pUser->GetUid());
-				if( pStar == NULL )
-				{
-					return;
-				}
-				int nProtectTm = 60;
-				pStar->m_pPlayerBase->set_logoutsafetime((int)(time(NULL) + nProtectTm));
-				pUser->GetPlayer()->SetLogoutProtectTm( nProtectTm );
-			}
-			
-			SYS_LOG(nUserID, LT_LogOut, 0, 0, lt << pUser->GetUserLevel()
-				<<pUser->GetPlayer()->GetBaseValue()<<pUser->GetPlayer()->GetBasePoint()
-				<<pUser->GetPlayer()->GetResCnt(RC_Metal)<<pUser->GetPlayer()->GetResCnt(RC_Oil)
-				<<pUser->GetPlayer()->GetCredit());
-			SYS_UserStat(pUser,false,"LogOut","","","",lt,
-				pUser->GetResStat()->m_nAddMedal,pUser->GetResStat()->m_nAddOil
-				,pUser->GetResStat()->m_nCostMedal,pUser->GetResStat()->m_nCostOil,
-				pUser->GetResStat()->m_nPickMedal,pUser->GetResStat()->m_nPickOil);
-			int nTotalLV = pUser->GetPlayer()->CacuScienceTotalLV();
-			/*if(nTotalLV>20)
-			{
-				SYS_UserStat4WebRank(pUser,"RankScience","",nTotalLV);
-			}*/
-
-			CMsg2QQ::GetInstance()->TellMsg(MQ_Logout,pUser,0,0,0);
-
-			Player* pPlayer = pUser->GetPlayer();
-			
-			if ( ServerStatMgr::Instance().GetStatUser(nUserID) )
-			{
-				pPlayer->SendServerStat( lt );
-			}
-
-            HttpRequireHandler::Instance().SafePushHttpLogOutToQQ(pUser, pUser->GetPlattype());
+// 			if ( pUser->GetPlayer() != NULL )
+// 			{
+// 				GameDataHandler* pUserManager = eh_->getDataHandler();
+// 				GameStarInfo* pStar = pUserManager->getGameStarInfo(pUser->GetUid());
+// 				if( pStar == NULL )
+// 				{
+// 					return;
+// 				}
+// 				int nProtectTm = 60;
+// 				pStar->m_pPlayerBase->set_logoutsafetime((int)(time(NULL) + nProtectTm));
+// 				pUser->GetPlayer()->SetLogoutProtectTm( nProtectTm );
+// 			}
+// 			
+// 			SYS_LOG(nUserID, LT_LogOut, 0, 0, lt << pUser->GetUserLevel()
+// 				<<pUser->GetPlayer()->GetBaseValue()<<pUser->GetPlayer()->GetBasePoint()
+// 				<<pUser->GetPlayer()->GetResCnt(RC_Metal)<<pUser->GetPlayer()->GetResCnt(RC_Oil)
+// 				<<pUser->GetPlayer()->GetCredit());
+// 			SYS_UserStat(pUser,false,"LogOut","","","",lt,
+// 				pUser->GetResStat()->m_nAddMedal,pUser->GetResStat()->m_nAddOil
+// 				,pUser->GetResStat()->m_nCostMedal,pUser->GetResStat()->m_nCostOil,
+// 				pUser->GetResStat()->m_nPickMedal,pUser->GetResStat()->m_nPickOil);
+// 			int nTotalLV = pUser->GetPlayer()->CacuScienceTotalLV();
+// 			/*if(nTotalLV>20)
+// 			{
+// 				SYS_UserStat4WebRank(pUser,"RankScience","",nTotalLV);
+// 			}*/
+// 
+// 			CMsg2QQ::GetInstance()->TellMsg(MQ_Logout,pUser,0,0,0);
+// 
+// 			Player* pPlayer = pUser->GetPlayer();
+// 			
+// 			if ( ServerStatMgr::Instance().GetStatUser(nUserID) )
+// 			{
+// 				pPlayer->SendServerStat( lt );
+// 			}
+// 
+//             HttpRequireHandler::Instance().SafePushHttpLogOutToQQ(pUser, pUser->GetPlattype());
 
 			dh->markUserDirty(pUser);
 		}
 	}
-#endif
 }
 
 void UserLogin::handle_WG_UserLogin(Event* e)
 {
+	const NewStar_Rsp& rsp = e->newstarrsp();
 	const UserLogin_Req& req = e->userlogin_req();
 	int64 uid = req.uid();
 	if(uid<=0)
@@ -223,7 +242,8 @@ void UserLogin::handle_WG_UserLogin(Event* e)
 	LoadStatus state = LOAD_INVALID;
 	User* user = processUserLogin(uid,platid, siteid, name, profile_link, gender,
 		friends_platid, isYellowDmd, isYellowDmdYear, lvlYellowDmd, state,
-		region,nCity,req.isnewplayer(),strVIA,isHighYellowDmd,strChanel,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighYearTime);
+		region,nCity,req.isnewplayer(),strVIA,isHighYellowDmd,strChanel,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighYearTime,
+		rsp.id(), rsp.name(), rsp.type(), rsp.sku());
 	if (user != NULL)
 	{
 		UserLogin_Rsp* rsp = e->mutable_userlogin_rsp();
@@ -392,7 +412,8 @@ User* UserLogin::processUserLogin(int64 uid,const string& platid, int siteid, co
         vector<string> friends_platid, bool isYellowDmd,
         bool isYellowDmdYear, int lvlYellowDmd, LoadStatus& state,
 		int region,int nCity,bool bIsNewUser,string strVIA,bool isHighYellowDmd,
-		string strChannel,bool isHighDmdYear, int nBlueTime ,  int nBlueYearTime,  int nHighBlueTime,  int nHighBlueYearTime)
+		string strChannel,bool isHighDmdYear, int nBlueTime ,  int nBlueYearTime,  int nHighBlueTime,  int nHighBlueYearTime,
+		int nID, int nName, int nType, string strSku)
 {
 	GameDataHandler* dh = eh_->getDataHandler();
 	User *pUser = dh->getUser(uid, &state, true);
@@ -401,7 +422,8 @@ User* UserLogin::processUserLogin(int64 uid,const string& platid, int siteid, co
 		if(state == LOAD_EMPTY)
 		{
 			pUser = dh->createUser(uid,platid, name, profile_link, gender, (PLAT_TYPE)siteid,
-				isYellowDmd, isYellowDmdYear, lvlYellowDmd, friends_platid,region,nCity,bIsNewUser,strVIA,isHighYellowDmd,eh_,strChannel,isHighDmdYear,nBlueTime, nBlueYearTime, nHighBlueTime, nHighBlueYearTime);
+				isYellowDmd, isYellowDmdYear, lvlYellowDmd, friends_platid,region,nCity,bIsNewUser,strVIA,isHighYellowDmd,eh_,strChannel,isHighDmdYear,nBlueTime, nBlueYearTime, nHighBlueTime, nHighBlueYearTime,
+				nID, nName, nType, strSku);
 		}
 	}
 	else

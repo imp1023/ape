@@ -39,6 +39,8 @@ void RceObtainSocialItemsHandle::handle(Event* e)
 	}
 
 	RseObtainSocialItems rse;
+	pPlayer->FillSocialItems(&rse);
+	pPlayer->FillInWishList(&rse);
 	string text;
 	rse.SerializeToString(&text);
 	eh_->sendDataToUser(pUser->fd(), S2C_RseObtainSocialItems,text);

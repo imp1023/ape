@@ -8,6 +8,8 @@ enum S2C_EVENT
 	S2C_RseAuthState,		//^s^RseAuthState#
 	S2C_RseCustomizedActivity,		//^s^RseCustomizedActivity#
 	S2C_RseDeployUnits,		//^s^RseDeployUnits#
+	S2C_RseError,		//^s^RseError#
+	S2C_RseHeartbeat,		//^s^RseHeartbeat#
 	S2C_RseItemDamaged,		//^s^RseItemDamaged#
 	S2C_RseLogin,		//^s^RseLogin#
 	S2C_RseObtainAskForHelp,		//^s^RseObtainAskForHelp#
@@ -43,14 +45,20 @@ enum S2C_EVENT
 	S2C_RseUpdateSocialItem,		//^s^RseUpdateSocialItem#
 	S2C_RseUpdateStarsBookmarks,		//^s^RseUpdateStarsBookmarks#
 	S2C_RseUpdateTargets,		//^s^RseUpdateTargets#
+	S2C_RseBattleDamagesPack,		//^s^RseBattleDamagesPack#
+	S2C_RseItemMineExploded,		//^s^RseItemMineExploded#
+	S2C_RseFinished,		//^s^RseFinished#
 };
 enum C2S_EVENT
 {
 	C2S_EVENT_BASE = 1023,
+	C2S_RceBattleDamagesPack,		//^c^RceBattleDamagesPack#
 	C2S_RceCustomizedActivity,		//^c^RceCustomizedActivity#
-	C2S_RceDeployUnits,		//^c^RceDeployUnits#
-	C2S_RceItemDamaged,		//^c^RceItemDamaged#
+	C2S_RceFinished,		//^c^RceFinished#
+	C2S_RceHeartbeat,		//^c^RceHeartbeat#
+	C2S_RceItemMineExploded,		//^c^RceItemMineExploded#
 	C2S_RceLogin,		//^c^RceLogin#
+	C2S_RceNpcAttackStart,		//^c^RceNpcAttackStart#
 	C2S_RceObtainAskForHelp,		//^c^RceObtainAskForHelp#
 	C2S_RceObtainAttackerList,		//^c^RceObtainAttackerList#
 	C2S_RceObtainBattleReplay,		//^c^RceObtainBattleReplay#
@@ -74,7 +82,6 @@ enum C2S_EVENT
 	C2S_RceQueryStarInfo,		//^c^RceQueryStarInfo#
 	C2S_RceQueryStarsBookmarks,		//^c^RceQueryStarsBookmarks#
 	C2S_RceQueryVisitHelpsGiftUnitsOnBunker,		//^c^RceQueryVisitHelpsGiftUnitsOnBunker#
-	C2S_RceUnitDamaged,		//^c^RceUnitDamaged#
 	C2S_RceUpdateAlliances,		//^c^RceUpdateAlliances#
 	C2S_RceUpdateGameUnits,		//^c^RceUpdateGameUnits#
 	C2S_RceUpdateItem,		//^c^RceUpdateItem#

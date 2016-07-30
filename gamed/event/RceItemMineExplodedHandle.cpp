@@ -4,20 +4,20 @@
 #include "../../common/json/json.h"
 #include "../../common/string-util.h"
 #include "../../logic/User.h"
-#include "RceUnitDamagedHandle.h"
+#include "RceItemMineExplodedHandle.h"
 
 
-RceUnitDamagedHandle::RceUnitDamagedHandle()
+RceItemMineExplodedHandle::RceItemMineExplodedHandle()
 :CBaseEvent()
 {
 
 }
-RceUnitDamagedHandle::~RceUnitDamagedHandle()
+RceItemMineExplodedHandle::~RceItemMineExplodedHandle()
 {
 
 }
 
-void RceUnitDamagedHandle::handle(Event* e)
+void RceItemMineExplodedHandle::handle(Event* e)
 {
 
 }

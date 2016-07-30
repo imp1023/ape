@@ -9,7 +9,9 @@ public:
 	RceUpdateTargetsHandle();
 	~RceUpdateTargetsHandle();
 	RegistEvent(RceUpdateTargetsHandle,C2S_RceUpdateTargets)
-
+	void SendRet2User(User* pUser,int nRet,RseUpdateTargets& rseUpdateTargets);
+	string progressToString(string progress, int index, int amount);
+	string getStringBySize(int size);
 private:
 	void handle(Event* e);
 };

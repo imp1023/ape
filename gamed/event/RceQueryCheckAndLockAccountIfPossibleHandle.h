@@ -12,6 +12,9 @@ public:
 
 private:
 	void handle(Event* e);
+	void handle_selfload(Event* e);
+	void handle_romateload(Event* e);
+	void handle_romatereturn(Event* e);
 };
 #endif
 

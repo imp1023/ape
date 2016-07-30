@@ -12,6 +12,8 @@ public:
 
 private:
 	void handle(Event* e);
+	void handle_c2country(Event *e);
+	void handle_country2s(Event *e);
 };
 #endif
 

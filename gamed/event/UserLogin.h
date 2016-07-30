@@ -52,7 +52,8 @@ private:
 private:
     User* processUserLogin(int64 uid,const string& platid, int siteid, const string& name,
                            const string& profile_link, int gender, vector<string> friends_platid,
-                           bool isYellowDmd, bool isYellowDmdYear, int lvlYellowDmd, LoadStatus& status,int region,int nCity,bool bIsNewUser,string strVIA,bool isHighYellowDmd,string strChannel,bool isHighDmdYear, int, int, int, int nHighBlueYearTime);
+                           bool isYellowDmd, bool isYellowDmdYear, int lvlYellowDmd, LoadStatus& status,int region,int nCity,bool bIsNewUser,string strVIA,bool isHighYellowDmd,string strChannel,bool isHighDmdYear, int, int, int, int nHighBlueYearTime,
+						   int nID, int nName, int nType, string strSku);
     void handle(Event* e);
 	//void handle_WG_UserPreLogin_Psp(Event* e);
 	//void handle_WG_UserPreLogin(Event* e);

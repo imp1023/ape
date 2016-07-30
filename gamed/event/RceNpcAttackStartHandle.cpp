@@ -4,20 +4,20 @@
 #include "../../common/json/json.h"
 #include "../../common/string-util.h"
 #include "../../logic/User.h"
-#include "RceItemDamagedHandle.h"
+#include "RceNpcAttackStartHandle.h"
 
 
-RceItemDamagedHandle::RceItemDamagedHandle()
+RceNpcAttackStartHandle::RceNpcAttackStartHandle()
 :CBaseEvent()
 {
 
 }
-RceItemDamagedHandle::~RceItemDamagedHandle()
+RceNpcAttackStartHandle::~RceNpcAttackStartHandle()
 {
 
 }
 
-void RceItemDamagedHandle::handle(Event* e)
+void RceNpcAttackStartHandle::handle(Event* e)
 {
-
+	
 }

@@ -9,6 +9,9 @@ public:
 	RceUpdateMissionsHandle();
 	~RceUpdateMissionsHandle();
 	RegistEvent(RceUpdateMissionsHandle,C2S_RceUpdateMissions)
+	void SendRet2User(User* pUser,int nRet,RseUpdateMissions& rseUpdateMissions);
+	string progressToString(string progress, int index, int amount);
+	string getStringBySize(int size);
 
 private:
 	void handle(Event* e);

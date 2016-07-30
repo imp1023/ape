@@ -9,7 +9,12 @@ public:
 	RceUpdateProfileHandle();
 	~RceUpdateProfileHandle();
 	RegistEvent(RceUpdateProfileHandle,C2S_RceUpdateProfile)
+	void SendRet2User(User* pUser,int nRet,RseUpdateProfile& rseUpdateProfile);
+enum
+{
+	RseUpdateProfileRet_Success = 0,
 
+};
 private:
 	void handle(Event* e);
 };
