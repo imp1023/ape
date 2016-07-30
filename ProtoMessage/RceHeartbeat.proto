@@ -1,8 +1,5 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
+//·¢ËÍĞÄÌø
 
-
-
-message RceQueryStarInfo
-{
-	optional int32 starId = 1;
+message RceHeartbeat {
 }

@@ -1,7 +1,7 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
 
-message RceUnitDamaged
+message RceNpcAttackStart
 {
 	optional int32 planetId = 1;
     optional int32 energyBeforeShot = 2;//": 250,

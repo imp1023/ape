@@ -17,7 +17,7 @@ message MsgNeighbor
     optional string wishlist = 10;
     optional int64 damageProtectionTimeLeft = 11;
     optional int32 tutorialCompleted = 12;
-    optional MsgPlanet neighbor = 13;
+    repeated MsgPlanet neighbor = 13;
 }
 
 message RseObtainNeighborsList

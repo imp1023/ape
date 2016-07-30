@@ -8,5 +8,8 @@ message RseQueryStarsBookmarks
 
 message Bookmarks
 {
-	optional int32 ret = 1;
+    optional int32 starName = 1; //": "毛里求斯",
+    optional string sku = 2; //": "2:0",
+    optional int32 starType = 3; //": 1,
+    optional int32 starId = 4; //": 2031,
 }

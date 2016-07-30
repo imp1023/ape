@@ -1,8 +1,8 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
 
-
-message RceQueryStarInfo
+message RseBattleDamagesPack
 {
-	optional int32 starId = 1;
+    optional int32 ret = 1;
 }
+

@@ -1,0 +1,8 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+import "MsgTransaction.proto";
+
+message RceFinished
+{
+	optional int32 ret = 1;
+}

@@ -1,9 +1,10 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
+import "MsgTransaction.proto";
 
 message RceUpdateSocialItem
 {
-	optional string planetId = 1;
+	optional int32 planetId = 1;
 	optional int32 currentSequence = 2;
 	optional int32 currentCount = 3;
 	optional string sku = 4;
@@ -11,4 +12,6 @@ message RceUpdateSocialItem
 	optional int32 sequence = 6;
 	optional string action = 7;
 	optional int32 postion = 8;
+	optional MsgTransaction transaction = 9;
+	optional string num = 10; 
 }

@@ -3,5 +3,5 @@
  
 message RceQueryStarsBookmarks
 {
-	optional string planetId = 1;
+
 }

@@ -1,30 +1,14 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
+import "MsgSocialItems.proto";
+import "MsgTransaction.proto";
 
 message RceUpdateProfile
 {
-	optional Transaction3 transaction = 1;
+	optional MsgTransaction transaction = 1;
 	optional string sku = 2;
-	optional string value = 3;
+	optional int32 value = 3;
 	optional string key = 4;
-	optional string planetId = 5;
+	optional int32 planetId = 5;
 	optional string action = 6; //buyDroid setFlag
-}
-
-message Transaction3
-{
-	optional int32 exp = 1;
-	optional int32 minerals = 2;
-	repeated SocialItems socialItems = 3;
-	optional string client = 4;
-	optional string event = 5;
-	optional int32 cash = 6;
-	optional int32 droids = 7;
-	optional int32 coins = 8;
-}
-
-message SocialItems
-{
-	optional string sku = 1;
-	optional int32 amount = 2;
 }

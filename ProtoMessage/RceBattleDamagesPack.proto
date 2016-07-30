@@ -1,0 +1,58 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+import "MsgTransaction.proto";
+
+message MsgDeployUnits
+{
+	optional int32 planetId = 1;//": "1", 
+    optional int32 x = 2;//": 732,
+    repeated int32 unitsIds = 3;
+    optional int32 hangarSid = 4;//": 40,
+    optional int32 y = 5;//": 1165,
+    repeated int32 skuSD = 6;
+    repeated int32 skuE = 7;
+    optional int32 millis = 8;//": 73524,
+    repeated int32 skuSWT = 9;
+    optional string unitsSkus = 10;
+}
+
+message MsgUnitDamaged
+{
+    optional int32 planetId = 1;
+    optional int32 energyBeforeShot = 2;//": 250,
+    optional int32 unitId = 3;//": 974,
+    optional string unitSku = 4;//": "groundUnits_001_001",
+    optional int32 fromBunkerSid = 5;//": -1,
+    optional int32 damage = 6;//": 300,
+    optional int32 destroyed = 7;//": 1,
+    repeated string attackers = 8;//": ["300:i:332"]
+}
+
+message MsgItemDamaged
+{
+    optional int32 planetId = 1;//": "1",
+    optional int32 energyBeforeShot = 2;//": 1000,
+    optional MsgTransaction transaction = 3;
+    optional int32 destroyed = 4;//": 0,
+    optional int32 damage = 5;//": 110,
+    optional MsgTransaction transactionTarget= 6;
+    repeated string attackers = 7;//": ["55:u:975","55:u:976"],
+    optional int32 itemSid = 8;//": 587
+}
+
+message MsgSpecialAttack
+{
+    optional int32 x = 1; //": 1618,
+    optional int32 y = 2; //": 1064,
+    optional int32 millis = 3; //": 9961,
+    optional string socialItemSku = 4; //": "7000",
+    optional MsgTransaction transaction = 5;
+}
+
+message RceBattleDamagesPack
+{
+    repeated MsgDeployUnits deployUnits = 1;
+    repeated MsgUnitDamaged unitDamaged = 2;
+    repeated MsgItemDamaged itemDamaged = 3;
+    repeated MsgSpecialAttack specialAttack = 4;
+}

@@ -1,5 +1,6 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
+import "MsgTransaction.proto";
 
 message RceUpdateMissions
 {
@@ -7,16 +8,6 @@ message RceUpdateMissions
 	optional string sku = 2;
 	optional string acton = 3;//newState
 	optional int32 state = 4;
-	optional Transaction2 transaction = 5;
+	optional MsgTransaction transaction = 5;
 }
 
-message Transaction2
-{
-	optional int32 exp = 1;
-	optional int32 minerals = 2;
-	optional string client = 3;
-	optional string event = 4;
-	optional int32 cash = 5;
-	optional int32 droids = 6;
-	optional int32 coins = 7;
-}

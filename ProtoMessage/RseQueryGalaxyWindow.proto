@@ -4,25 +4,20 @@
 
 message RseQueryGalaxyWindow
 {
-	repeated GalaxyWindow galaxyWindow = 1;
-	optional int32 topLeftCoorX = 2;
-	optional int32 topLeftCoorY = 3;
-	optional int32 bottomRightCoorX = 4;
-	optional int32 bottomRightCoorY = 5;
+	optional int32	ret = 1;
+	repeated GalaxyWindow galaxyWindow = 2;
+	optional int32 topLeftCoorX = 3;
+	optional int32 topLeftCoorY = 4;
+	optional int32 bottomRightCoorX = 5;
+	optional int32 bottomRightCoorY = 6;
 }
 
 message GalaxyWindow
 {
-	repeated SpaceStar SpaceStar = 1;
-	optional int32 planetsFree = 2;
-	optional int32 planetsOccupied = 3;
-	optional string sku = 4;
-	optional int32  starId = 5;
-	optional int32 type = 6;
-	optional string name = 7;
-}
-
-message SpaceStar
-{
-	optional int32 ret = 1;
+	optional int32 planetsFree = 1;
+	optional int32 planetsOccupied = 2;
+	optional string sku = 3;
+	optional int32  starId = 4;
+	optional int32 type = 5;
+	optional int32 name = 6;
 }

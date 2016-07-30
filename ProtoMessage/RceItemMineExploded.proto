@@ -1,8 +1,7 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
-
-message RseItemDamaged
+message RceItemMineExploded
 {
-    optional int32 ret = 1;
+
 }
 

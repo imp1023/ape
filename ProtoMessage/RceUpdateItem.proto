@@ -7,17 +7,18 @@ import "MsgTransaction.proto";
 message RceUpdateItem
 {
 	optional int32 sid = 1;
-	optional int64 time = 2;
+	optional int32 time = 2;
 	optional MsgTransaction transaction = 3;
 	optional MsgBuildingItem item = 4;
 	optional int32 oldState = 5;
-	optional int64 id = 6;
+	optional int32 id = 6;
 	optional int32 planetId = 7;
 	optional int32 newState = 8;
 	optional string action = 9;//newState newItem rotate
-	optional int64 timePassed = 10;
+	optional int32 timePassed = 10;
 	optional int32 x = 11;
 	optional int32 y = 12;
 	optional int32 flip = 13;
 	optional int32 role = 14;//预留 不知道是干啥的
+	optional int32 incomeToRestore = 15;
 }

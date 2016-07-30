@@ -1,12 +1,9 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
-
-
-
 message RceQueryCheckAndLockAccountIfPossible
 {
-	optional HangarsUnitsInfo hangarsUnitsInfo = 1;
-	optional string planetId = 2;
+	repeated HangarsUnitsInfo hangarsUnitsInfo = 1;
+	optional int32 planetId = 2;
 	optional int32 applyLock = 3;
 	optional string targetAccountId = 4;
 	optional int32 isAllianceWar = 5;
@@ -14,17 +11,7 @@ message RceQueryCheckAndLockAccountIfPossible
 
 message HangarsUnitsInfo
 {
-	optional int32 id = 1;
-	optional string name1 = 2;
-	optional string name2 = 3;
-	optional string name3 = 4;
-	optional string name4 = 5;
-	optional string name5 = 6;
-	optional string name6 = 7;
-	optional int32 value1 = 8;
-	optional int32 value2 = 9;
-	optional int32 value3 = 10;
-	optional int32 value4 = 11;
-	optional int32 value5 = 12;
-	optional int32 value6 = 13;
+	optional int32 sid = 1;
+	optional string sku = 2;
+	optional int32 num = 3;
 }

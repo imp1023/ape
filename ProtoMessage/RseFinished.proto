@@ -1,8 +1,6 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
-
-message RseUnitDamaged
+message RseFinished
 {
-    optional int32 ret = 1;
+	optional int32 ret = 1;
 }
-

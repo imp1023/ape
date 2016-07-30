@@ -29,7 +29,7 @@ message MsgBunker
 
 message MsgHangarUnit
 {
-    optional int32 sku = 1;
+    optional string sku = 1;
     optional int32 num = 2;
 }
 
@@ -54,7 +54,7 @@ message MsgShipyardSlot
 
 message MsgShipyard
 {
-    optional int64 updatedAt = 1;
+    optional int32 updatedAt = 1;
     optional int32 sid = 2;
     optional int32 block = 3;
     optional int32 unlockedSlots = 4;

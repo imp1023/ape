@@ -1,0 +1,7 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RseError{
+    required int32 	errorID = 1;        //¥ÌŒÛID
+    optional string sessionID = 2;      //‘§¡Ù
+}
