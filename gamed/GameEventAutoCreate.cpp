@@ -6,10 +6,13 @@
 
 void GameEventHandler::initAutoEventProcessors()
 {
+	RceBattleDamagesPackHandle::createInstance(this);
 	RceCustomizedActivityHandle::createInstance(this);
-	RceDeployUnitsHandle::createInstance(this);
-	RceItemDamagedHandle::createInstance(this);
+	RceFinishedHandle::createInstance(this);
+	RceHeartbeatHandle::createInstance(this);
+	RceItemMineExplodedHandle::createInstance(this);
 	RceLoginHandle::createInstance(this);
+	RceNpcAttackStartHandle::createInstance(this);
 	RceObtainAskForHelpHandle::createInstance(this);
 	RceObtainAttackerListHandle::createInstance(this);
 	RceObtainBattleReplayHandle::createInstance(this);
@@ -33,7 +36,6 @@ void GameEventHandler::initAutoEventProcessors()
 	RceQueryStarInfoHandle::createInstance(this);
 	RceQueryStarsBookmarksHandle::createInstance(this);
 	RceQueryVisitHelpsGiftUnitsOnBunkerHandle::createInstance(this);
-	RceUnitDamagedHandle::createInstance(this);
 	RceUpdateAlliancesHandle::createInstance(this);
 	RceUpdateGameUnitsHandle::createInstance(this);
 	RceUpdateItemHandle::createInstance(this);

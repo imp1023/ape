@@ -901,12 +901,13 @@ User* GameDataHandler::createUser(int64 uid,const string& pid, const string &nam
 								  PLAT_TYPE plat_type, bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv, 
 								  const vector<string> &fpid,int nRegion, int nCity,bool bIsNewUser,string strVIA,
 								  bool isHighYellowDmd,GameEventHandler* eh_,string strChannel,bool isHighDmdYear, int nBlueTime, int nBlueYearTime, int nHighBlueTime,
-								   int nHighBlueYearTime)
+								  int nHighBlueYearTime, int nID, int nName, int nType, string strSku)
 {
 	//int64 uid = allocateUserID(pid);
 
     User* u = newUser(uid, pid, name, profile_link, gender, plat_type,
-		bIsYellowDmd, bIsYellowDmdYear, i4YellowDmdLv, fpid,nRegion,nCity,isHighYellowDmd,eh_,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighBlueYearTime);
+		bIsYellowDmd, bIsYellowDmdYear, i4YellowDmdLv, fpid,nRegion,nCity,isHighYellowDmd,eh_,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighBlueYearTime,
+		nID, nName, nType, strSku);
 	u->GetPlayer()->SetEventHandler(eh_);
 
      markUserDirty(u);
@@ -928,10 +929,12 @@ User* GameDataHandler::newUser(int64 uid, const string& pid,
 							   bool bIsYellowDmd, bool bIsYellowDmdYear, 
 							   int i4YellowDmdLv, const vector<string> &fpid,int nRegion,
 							   int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear,
-							    int nBlueTime, int nBlueYearTime, int nHighBlueTime, int nHighBlueYearTime)
+							    int nBlueTime, int nBlueYearTime, int nHighBlueTime, int nHighBlueYearTime,
+								int nID, int nName, int nType, string strSku)
 {
     User *u = new User(uid, pid, name, profile_link, gender, plat_type,
-            bIsYellowDmd, bIsYellowDmdYear, i4YellowDmdLv, fpid,nRegion,nCity,isHighYellowDmd,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighBlueYearTime);
+            bIsYellowDmd, bIsYellowDmdYear, i4YellowDmdLv, fpid,nRegion,nCity,isHighYellowDmd,isHighDmdYear,nBlueTime,nBlueYearTime,nHighBlueTime,nHighBlueYearTime,
+			nID, nName, nType, strSku);
     mapUidToUser(uid, u);
     return u;
 }

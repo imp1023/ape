@@ -194,6 +194,43 @@ void GameEventHandler::SendToAllOnlineUser(int cmd, const string& text,int nRegi
 	}
 }
 
+void GameEventHandler::sendEventToCountry(Event* e,int nRegion)
+{
+	int nNum = serverConfig.country_num();
+	if(nNum<=0)
+		return;
+	LOG4CXX_DEBUG(logger_, "send event " << e->cmd() << ", state " << e->state() << " to country.");
+	int nSrvID = nRegion%nNum+1;
+	GCG_CountryNeed* pArgs = e->mutable_countryneed();
+	pArgs->set_countrysrvid(nSrvID);
+	pArgs->set_gamesrvid(nid_);
+	pArgs->set_region(nRegion);
+
+	string text;
+	e->SerializeToString(&text);
+	text = "ev," + text;
+	nh_->sendToCountry(nSrvID, text);
+}
+
+void GameEventHandler::sendEventToAllCountry(Event* e)
+{
+	for (int i=0;i<serverConfig.country_num();i++)
+	{
+		LOG4CXX_DEBUG(logger_, "send event " << e->cmd() << ", state " << e->state() << " to country.");
+
+		int nSrvID = i+1;
+		GCG_CountryNeed* pArgs = e->mutable_countryneed();
+		pArgs->set_countrysrvid(nSrvID);
+		pArgs->set_gamesrvid(nid_);
+		pArgs->set_region(-1);
+
+		string text;
+		e->SerializeToString(&text);
+		text = "ev," + text;
+		nh_->sendToCountry(nSrvID, text);
+	}
+}
+
 // void GameEventHandler::sendEventToStar(Event* e,int nStarID)
 // {
 // 	e->set_starsrvid(nStarID);
@@ -234,43 +271,6 @@ void GameEventHandler::SendToAllOnlineUser(int cmd, const string& text,int nRegi
 // 	}
 // }
 
-// void GameEventHandler::sendEventToCountry(Event* e,int nRegion)
-// {
-// 	int nNum = serverConfig.country_num();
-// 	if(nNum<=0)
-// 		return;
-// 	LOG4CXX_DEBUG(logger_, "send event " << e->cmd() << ", state " << e->state() << " to country.");
-// 	int nSrvID = nRegion%nNum+1;
-// 	GCG_CountryNeed* pArgs = e->mutable_countryneed();
-// 	pArgs->set_countrysrvid(nSrvID);
-// 	pArgs->set_gamesrvid(nid_);
-// 	pArgs->set_region(nRegion);
-// 
-// 	string text;
-// 	e->SerializeToString(&text);
-// 	text = "ev," + text;
-// 	nh_->sendToCountry(nSrvID, text);
-// }
-// 
-// void GameEventHandler::sendEventToAllCountry(Event* e)
-// {
-// 	for (int i=0;i<serverConfig.country_num();i++)
-// 	{
-// 		LOG4CXX_DEBUG(logger_, "send event " << e->cmd() << ", state " << e->state() << " to country.");
-// 		
-// 		int nSrvID = i+1;
-// 		GCG_CountryNeed* pArgs = e->mutable_countryneed();
-// 		pArgs->set_countrysrvid(nSrvID);
-// 		pArgs->set_gamesrvid(nid_);
-// 		pArgs->set_region(-1);
-// 
-// 		string text;
-// 		e->SerializeToString(&text);
-// 		text = "ev," + text;
-// 		nh_->sendToCountry(nSrvID, text);
-// 	}
-// }
-// 
 // void GameEventHandler::sendEventToRegion(Event* e,int nRegion)
 // {
 // 	int nNum = serverConfig.regionsrv_num();

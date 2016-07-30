@@ -313,6 +313,14 @@
 				Name="logic"
 				>
 				<File
+					RelativePath="..\logic\BattleManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\BattleManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\logic\dbinterface.pb.cpp"
 					>
 				</File>
@@ -369,14 +377,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\logic\StarLogic.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\logic\StarLogic.h"
-					>
-				</File>
-				<File
 					RelativePath="..\logic\User.cpp"
 					>
 				</File>
@@ -387,6 +387,14 @@
 				<Filter
 					Name="table"
 					>
+					<File
+						RelativePath="..\logic\CollectablesTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\CollectablesTbl.h"
+						>
+					</File>
 					<File
 						RelativePath="..\logic\CountryNameTbl.cpp"
 						>
@@ -460,11 +468,27 @@
 						>
 					</File>
 					<File
+						RelativePath="..\logic\ItemTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\ItemTbl.h"
+						>
+					</File>
+					<File
 						RelativePath="..\logic\LaboratoryTbl.cpp"
 						>
 					</File>
 					<File
 						RelativePath="..\logic\LaboratoryTbl.h"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\MissionsTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\MissionsTbl.h"
 						>
 					</File>
 					<File
@@ -507,6 +531,14 @@
 						RelativePath="..\logic\SkuIdTbl.h"
 						>
 					</File>
+					<File
+						RelativePath="..\logic\WonderDefinitionsTbl.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\logic\WonderDefinitionsTbl.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 			<Filter
@@ -522,6 +554,14 @@
 				</File>
 				<File
 					RelativePath=".\event\BaseEvent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\DealCountryHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\DealCountryHandle.h"
 					>
 				</File>
 				<File
@@ -565,6 +605,14 @@
 				Name="event_auto_handle"
 				>
 				<File
+					RelativePath=".\event\RceBattleDamagesPackHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceBattleDamagesPackHandle.h"
+					>
+				</File>
+				<File
 					RelativePath=".\event\RceCustomizedActivityHandle.cpp"
 					>
 				</File>
@@ -573,19 +621,27 @@
 					>
 				</File>
 				<File
-					RelativePath=".\event\RceDeployUnitsHandle.cpp"
+					RelativePath=".\event\RceFinishedHandle.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\event\RceDeployUnitsHandle.h"
+					RelativePath=".\event\RceFinishedHandle.h"
 					>
 				</File>
 				<File
-					RelativePath=".\event\RceItemDamagedHandle.cpp"
+					RelativePath=".\event\RceHeartbeatHandle.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\event\RceItemDamagedHandle.h"
+					RelativePath=".\event\RceHeartbeatHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceItemMineExplodedHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceItemMineExplodedHandle.h"
 					>
 				</File>
 				<File
@@ -594,6 +650,14 @@
 				</File>
 				<File
 					RelativePath=".\event\RceLoginHandle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceNpcAttackStartHandle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\RceNpcAttackStartHandle.h"
 					>
 				</File>
 				<File
@@ -778,14 +842,6 @@
 				</File>
 				<File
 					RelativePath=".\event\RceQueryVisitHelpsGiftUnitsOnBunkerHandle.h"
-					>
-				</File>
-				<File
-					RelativePath=".\event\RceUnitDamagedHandle.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\event\RceUnitDamagedHandle.h"
 					>
 				</File>
 				<File

@@ -29,9 +29,9 @@ enum ConnectSrvType
 {
 	CST_Begin = 0,
 	CST_World = CST_Begin,
-	//CST_Star,
-	//CST_Country,
+	CST_Country,
 	CST_Plat,
+	//CST_Star,
 	//CST_Fight,
 	//CST_Region,
 	//CST_Transfer,
@@ -75,7 +75,7 @@ public:
 	//bool sendToWorld(int fd, const string& str);
 	bool sendToWorld(int nWorldSrvID,const string& str);
 	//bool sendToStar(int nStarSrvID,const string& str);
-	//bool sendToCountry(int nCountrySrvID,const string& str);
+	bool sendToCountry(int nCountrySrvID,const string& str);
 	bool sendToPlat(int nPlatSrvID,const string& str);
 	//bool sendToFight(int nFightSrvID,const string& str);
 	//bool sendToTransfer(int nTransferID,const string& str);

@@ -82,11 +82,11 @@ bool GameNetHandler::sendToPlat(int nPlatSrvID,const string& str)
 	return sendToServer(nPlatSrvID,CST_Plat,str);
 }
 
-// bool GameNetHandler::sendToCountry(int nCountrySrvID,const string& str)
-// {
-// 	return sendToServer(nCountrySrvID,CST_Country,str);
-// }
-// 
+bool GameNetHandler::sendToCountry(int nCountrySrvID,const string& str)
+{
+	return sendToServer(nCountrySrvID,CST_Country,str);
+}
+
 // bool GameNetHandler::sendToRegion(int nRegionSrvID,const string& str)
 // {
 // 	return sendToServer(nRegionSrvID,CST_Region,str);
@@ -131,6 +131,7 @@ bool GameNetHandler::sendToServer(int nSrvID,ConnectSrvType emType,const string&
 	}
 	return false;
 }
+
 bool GameNetHandler::sendToWorld(int nWorldSrvID,const string& str)
 {
 	if(m_ServerLst[CST_World].size()<=0)
@@ -239,7 +240,6 @@ bool GameNetHandler::connectSuccess(int fd)
 			}
 		}
 	}
-
     return true;
 }
 
@@ -355,21 +355,21 @@ int GameNetHandler::connectFailed(int connectFd)
 						connectToWorld();
 					}
 					break;
-// 				case CST_Star:
-// 					{
-// 						connectToStarSrv();
-// 					}
-// 					break;
-// 				case CST_Country:
-// 					{
-// 						connectToCountry();
-// 					}
-// 					break;
+				case CST_Country:
+					{
+						connectToCountry();
+					}
+					break;
 				case CST_Plat:
 					{
 						connectToPlatSrv();
 					}
 					break;
+// 				case CST_Star:
+// 					{
+// 						connectToStarSrv();
+// 					}
+// 					break;
 // 				case CST_Fight:
 // 					{
 // 						connectToFightSrv();
@@ -537,55 +537,54 @@ bool GameNetHandler::connectToPlatSrv()
 	return true;
 }
 
-// bool GameNetHandler::connectToCountry()
-// {
-// 	if ( m_ServerLst[CST_Country].size() == 0 )
-// 	{
-// 		for ( int i = 0; i < serverConfig.country_num(); i++)
-// 		{
-// 			NetSockState worldd;
-// 			memset( &worldd, 0, sizeof ( worldd ) );
-// 			worldd.Status = NET_DOWN;
-// 			m_ServerLst[CST_Country].push_back( worldd );
-// 		}
-// 	}
-// 
-// 
-// 	for (size_t i = 0; i < m_ServerLst[CST_Country].size(); i++)
-// 	{
-// 		time_t  tNow = time( NULL );
-// 		if ( (m_ServerLst[CST_Country][i].Status == NET_DOWN ||
-// 			m_ServerLst[CST_Country][i].Status == NET_CONNECTING )
-// 			&& tNow - m_ServerLst[CST_Country][i].tLastTry > 5 )
-// 		{
-// 			m_ServerLst[CST_Country][i].tLastTry = tNow;
-// 			int iID = serverConfig.countryID( i );
-// 			m_ServerLst[CST_Country][i].id = iID;
-// 			struct addrinfo sa;
-// 			LOG4CXX_DEBUG(logger_, "Connecting to pksrv server, ID=" << iID);
-// 			int fd = createConnectSocket("pkfd", serverConfig.country_server_address(iID),
-// 				toString(serverConfig.country_gamed_Port(iID)), sa);
-// 			if (fd < 0)
-// 			{
-// 				LOG4CXX_ERROR(logger_, "Connect to pksrv server failed! ID=" << iID);
-// 				continue;
-// 			}
-// 
-// 			NetCache *cache = addConnection(fd, *(sockaddr_in*) sa.ai_addr,
-// 				DEFAULT_SERVER_SIZE);
-// 			cache->ph = new CountryHandler(eq, fd, this);
-// 			m_ServerLst[CST_Country][i].iFd = fd;
-// 			m_ServerLst[CST_Country][i].Status = NET_CONNECTING;
-// 
-// #ifdef _WIN32
-// 			connectSuccess(fd);
-// #endif
-// 		}
-// 	}
-// 
-// 	return true;
-// }
-// 
+bool GameNetHandler::connectToCountry()
+{
+	if ( m_ServerLst[CST_Country].size() == 0 )
+	{
+		for ( int i = 0; i < serverConfig.country_num(); i++)
+		{
+			NetSockState worldd;
+			memset( &worldd, 0, sizeof ( worldd ) );
+			worldd.Status = NET_DOWN;
+			m_ServerLst[CST_Country].push_back( worldd );
+		}
+	}
+
+
+	for (size_t i = 0; i < m_ServerLst[CST_Country].size(); i++)
+	{
+		time_t  tNow = time( NULL );
+		if ( (m_ServerLst[CST_Country][i].Status == NET_DOWN ||
+			m_ServerLst[CST_Country][i].Status == NET_CONNECTING )
+			&& tNow - m_ServerLst[CST_Country][i].tLastTry > 5 )
+		{
+			m_ServerLst[CST_Country][i].tLastTry = tNow;
+			int iID = serverConfig.countryID( i );
+			m_ServerLst[CST_Country][i].id = iID;
+			struct addrinfo sa;
+			LOG4CXX_DEBUG(logger_, "Connecting to country server, ID=" << iID);
+			int fd = createConnectSocket("countryfd", serverConfig.country_server_address(iID),
+				toString(serverConfig.country_gamed_Port(iID)), sa);
+			if (fd < 0)
+			{
+				LOG4CXX_ERROR(logger_, "Connect to country server failed! ID=" << iID);
+				continue;
+			}
+
+			NetCache *cache = addConnection(fd, *(sockaddr_in*) sa.ai_addr,
+				DEFAULT_SERVER_SIZE);
+			cache->ph = new CountryHandler(eq, fd, this);
+			m_ServerLst[CST_Country][i].iFd = fd;
+			m_ServerLst[CST_Country][i].Status = NET_CONNECTING;
+
+#ifdef _WIN32
+			connectSuccess(fd);
+#endif
+		}
+	}
+	return true;
+}
+
 // bool GameNetHandler::connectTransferSrv()
 // {
 // 	if ( m_ServerLst[CST_Transfer].size() == 0 )
@@ -934,11 +933,11 @@ void GameNetHandler::keepAliveWithWordAndPKSrv(time_t now)
 	if ((now-last_keepalive_check)>10000)
 	{
 		connectToWorld(); // reconnect
-		//connectToStarSrv();
 		connectToPlatSrv();
+		connectToCountry();
+		//connectToStarSrv();
 		//connectToFightSrv();
 		//connectTransferSrv();
-		//connectToCountry();
 		//connectToRegion();
 		//connectToMonitor();
 		//connectToRankSrv();

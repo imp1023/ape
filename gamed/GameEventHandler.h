@@ -29,8 +29,8 @@ public:
 	void sendEventToWorld(Event *e);
 	void sendEventToPlat(Event *e,int nPlatID);
 	void sendEventToAllPlat(Event* e);
-// 	void sendEventToCountry(Event* e,int nRegion);
-// 	void sendEventToAllCountry(Event* e);
+	void sendEventToCountry(Event* e,int nRegion);
+	void sendEventToAllCountry(Event* e);
 // 	void sendEventToFight(Event *e,int nFightID);
 // 	void sendEventToAllFight(Event* e);
 // 	void sendEventToStar(Event* e,int nStarID);

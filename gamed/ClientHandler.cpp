@@ -71,11 +71,11 @@ void ClientHandler::HandleAutoEvent(int64 uid,int nType,string& req)
 		//m_rc4Receive.ReadProcess(strRet);
 		switch(nType)
 		{
-// 		case C2S_RceHeartbeat:
+ 		case C2S_RceHeartbeat:
 // 		case C2S_RceInit:
 // 		case C2S_RceLoad:
 // 		case C2S_RceDebug:
-// 			break;
+ 			break;
 		default:
 			{
 				m_Parent->m_rc4Receive.ReadProcess(req);

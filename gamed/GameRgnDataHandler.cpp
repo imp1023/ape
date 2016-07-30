@@ -51,6 +51,7 @@ void GameRgnDataHandler::Init()
 
 CLiteCountry* GameRgnDataHandler::GetLiteCountryInfo(int nCountry,bool bCreateIfNotExit)
 {
+
 	map<int,CLiteCountry*>::iterator iter;
 
 	iter = m_mapLiteCountry.find(nCountry);

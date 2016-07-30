@@ -101,11 +101,13 @@ public:
                     int i4YellowDmdLv, const vector<string> &fpid,int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear,int , int , int , int nHighBlueYearTime);
     User* createUser(int64 uid,const string& pid, const string &name, const string& profile_link,
                      int gender, PLAT_TYPE plat_type, bool bIsYellowDmd, bool bIsYellowDmdYear,
-                     int i4YellowDmdLv, const vector<string> &fpid,int nRegion,int nCity,bool bIsNewUser,string strVIA,bool isHighYellowDmd,GameEventHandler* eh_,string strChannel,bool isHighDmdYear, int, int, int, int nHighBlueYearTime);
+                     int i4YellowDmdLv, const vector<string> &fpid,int nRegion,int nCity,bool bIsNewUser,string strVIA,bool isHighYellowDmd,GameEventHandler* eh_,string strChannel,bool isHighDmdYear, int, int, int, int nHighBlueYearTime,
+					 int nID, int nName, int nType, string strSku);
     User* newUser(int64 uid, const string& pid, const string &name,
                   const string &profile_link, int gender, PLAT_TYPE plat_type,
                   bool bIsYellowDmd, bool bIsYellowDmdYear, int i4YellowDmdLv,
-                  const vector<string> &fpid,int nRegion,int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear, int, int, int, int nHighBlueYearTime);
+                  const vector<string> &fpid,int nRegion,int nCity,bool isHighYellowDmd,GameEventHandler* eh_,bool isHighDmdYear, int, int, int, int nHighBlueYearTime,
+				  int nID, int nName, int nType, string strSku);
 
     User* getUser(int64 uid, LoadStatus* status = NULL, bool load = true);
 	int64 GetUserID(const string& pid,int nRegion)
