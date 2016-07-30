@@ -262,6 +262,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\event\RceBattleDamagesPack.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RceBattleDamagesPack.pb.h"
+					>
+				</File>
+				<File
 					RelativePath="..\event\RceCustomizedActivity.pb.cpp"
 					>
 				</File>
@@ -270,19 +278,23 @@
 					>
 				</File>
 				<File
-					RelativePath="..\event\RceDeployUnits.pb.cpp"
+					RelativePath="..\event\RceFinished.pb.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\event\RceDeployUnits.pb.h"
+					RelativePath="..\event\RceFinished.pb.h"
 					>
 				</File>
 				<File
-					RelativePath="..\event\RceItemDamaged.pb.cpp"
+					RelativePath="..\event\RceHeartbeat.pb.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\event\RceItemDamaged.pb.h"
+					RelativePath="..\event\RceItemMineExploded.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RceItemMineExploded.pb.h"
 					>
 				</File>
 				<File
@@ -291,6 +303,14 @@
 				</File>
 				<File
 					RelativePath="..\event\RceLogin.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RceNpcAttackStart.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RceNpcAttackStart.pb.h"
 					>
 				</File>
 				<File
@@ -478,14 +498,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\event\RceUnitDamaged.pb.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\event\RceUnitDamaged.pb.h"
-					>
-				</File>
-				<File
 					RelativePath="..\event\RceUpdateAlliances.pb.cpp"
 					>
 				</File>
@@ -582,6 +594,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\event\RseBattleDamagesPack.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseBattleDamagesPack.pb.h"
+					>
+				</File>
+				<File
 					RelativePath="..\event\RseCustomizedActivity.pb.cpp"
 					>
 				</File>
@@ -590,19 +610,35 @@
 					>
 				</File>
 				<File
-					RelativePath="..\event\RseDeployUnits.pb.cpp"
+					RelativePath="..\event\RseError.pb.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\event\RseDeployUnits.pb.h"
+					RelativePath="..\event\RseError.pb.h"
 					>
 				</File>
 				<File
-					RelativePath="..\event\RseItemDamaged.pb.cpp"
+					RelativePath="..\event\RseFinished.pb.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\event\RseItemDamaged.pb.h"
+					RelativePath="..\event\RseFinished.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseHeartbeat.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseHeartbeat.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseItemMineExploded.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseItemMineExploded.pb.h"
 					>
 				</File>
 				<File
@@ -783,18 +819,6 @@
 				</File>
 				<File
 					RelativePath="..\event\RseQueryVisitHelpsGiftUnitsOnBunker.pb.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\event\RseQueryVisitHelpsGiftUnitsOnBunker.pb.h"
-					>
-				</File>
-				<File
-					RelativePath="..\event\RseUnitDamaged.pb.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\event\RseUnitDamaged.pb.h"
 					>
 				</File>
 				<File
