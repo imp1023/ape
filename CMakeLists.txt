@@ -1,103 +1,24 @@
 # CMakeLists file
+cmake_minimum_required(VERSION 2.6)
 
-add_library(plat  
-event/DataHandler.cpp
-event/event.pb.cpp
-event/event_sub.pb.cpp
-event/EventHandler.cpp
-event/EventQueue.cpp
-event/FriendInfoLite.pb.cpp
-event/MsgBuildingItem.pb.cpp
-event/MsgBunker.pb.cpp
-event/MsgCommon.pb.cpp
-event/MsgGameUnit.pb.cpp
-event/MsgHangars.pb.cpp
-event/MsgMission.pb.cpp
-event/MsgPlanet.pb.cpp
-event/MsgShipyard.pb.cpp
-event/MsgSocialItems.pb.cpp
-event/MsgTransaction.pb.cpp
-event/RceBattleDamagesPack.pb.cpp
-event/RceCustomizedActivity.pb.cpp
-event/RceFinished.pb.cpp
-event/RceHeartbeat.pb.cpp
-event/RceItemMineExploded.pb.cpp
-event/RceLogin.pb.cpp
-event/RceNpcAttackStart.pb.cpp
-event/RceObtainAskForHelp.pb.cpp
-event/RceObtainAttackerList.pb.cpp
-event/RceObtainBattleReplay.pb.cpp
-event/RceObtainCustomizer.pb.cpp
-event/RceObtainHangarsHelp.pb.cpp
-event/RceObtainMessagesList.pb.cpp
-event/RceObtainNeighborsList.pb.cpp
-event/RceObtainNpcList.pb.cpp
-event/RceObtainPayUrlParame.pb.cpp
-event/RceObtainRandomTargets.pb.cpp
-event/RceObtainSocialItems.pb.cpp
-event/RceObtainSocialUserInfo.pb.cpp
-event/RceObtainUniverse.pb.cpp
-event/RceObtainVisitHelps.pb.cpp
-event/RceOnlineReward.pb.cpp
-event/RceQueryCheckAndLockAccountIfPossible.pb.cpp
-event/RceQueryGalaxyWindow.pb.cpp
-event/RceQueryPvE.pb.cpp
-event/RceQueryReceiveWishItem.pb.cpp
-event/RceQueryRefuseReceiveWishItem.pb.cpp
-event/RceQuerySendWishItem.pb.cpp
-event/RceQueryStarInfo.pb.cpp
-event/RceQueryStarsBookmarks.pb.cpp
-event/RceQueryVisitHelpsGiftUnitsOnBunker.pb.cpp
-event/RceUpdateAlliances.pb.cpp
-event/RceUpdateGameUnits.pb.cpp
-event/RceUpdateItem.pb.cpp
-event/RceUpdateMisc.pb.cpp
-event/RceUpdateMissions.pb.cpp
-event/RceUpdateProfile.pb.cpp
-event/RceUpdateShips.pb.cpp
-event/RceUpdateSocialItem.pb.cpp
-event/RceUpdateStarsBookmarks.pb.cpp
-event/RceUpdateTargets.pb.cpp
-event/RceUpdateVisitHelp.pb.cpp
-event/RseAuthState.pb.cpp
-event/RseBattleDamagesPack.pb.cpp
-event/RseCustomizedActivity.pb.cpp
-event/RseError.pb.cpp
-event/RseFinished.pb.cpp
-event/RseHeartbeat.pb.cpp
-event/RseItemMineExploded.pb.cpp
-event/RseLogin.pb.cpp
-event/RseObtainAskForHelp.pb.cpp
-event/RseObtainAttackerList.pb.cpp
-event/RseObtainBattleReplay.pb.cpp
-event/RseObtainCustomizer.pb.cpp
-event/RseObtainHangarsHelp.pb.cpp
-event/RseObtainMessagesList.pb.cpp
-event/RseObtainNeighborsList.pb.cpp
-event/RseObtainNpcList.pb.cpp
-event/RseObtainPayUrlParame.pb.cpp
-event/RseObtainRandomTargets.pb.cpp
-event/RseObtainSocialItems.pb.cpp
-event/RseObtainSocialUserInfo.pb.cpp
-event/RseObtainUniverse.pb.cpp
-event/RseObtainVisitHelps.pb.cpp
-event/RseQueryCheckAndLockAccountIfPossible.pb.cpp
-event/RseQueryGalaxyWindow.pb.cpp
-event/RseQueryPvE.pb.cpp
-event/RseQueryReceiveWishItem.pb.cpp
-event/RseQueryRefuseReceiveWishItem.pb.cpp
-event/RseQuerySendWishItem.pb.cpp
-event/RseQueryStarInfo.pb.cpp
-event/RseQueryStarsBookmarks.pb.cpp
-event/RseQueryVisitHelpsGiftUnitsOnBunker.pb.cpp
-event/RseUpdateAlliances.pb.cpp
-event/RseUpdateGameUnits.pb.cpp
-event/RseUpdateItem.pb.cpp
-event/RseUpdateMisc.pb.cpp
-event/RseUpdateMissions.pb.cpp
-event/RseUpdateProfile.pb.cpp
-event/RseUpdateShips.pb.cpp
-event/RseUpdateSocialItem.pb.cpp
-event/RseUpdateStarsBookmarks.pb.cpp
-event/RseUpdateTargets.pb.cpp
-) 
+project (server)
+
+SET(CMAKE_CXX_FLAGS_DEBUG "-g -ggdb -Wall -Wno-unknown-pragmas")
+SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2")
+SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--hash-style=sysv")
+
+include_directories ("${PROJECT_SOURCE_DIR}/lib/linux/include" "${PROJECT_SOURCE_DIR}/event" "${PROJECT_SOURCE_DIR}/lib/boost_1_53_0" )
+link_directories ("${PROJECT_SOURCE_DIR}/lib/linux/lib")
+
+add_subdirectory (common)
+add_subdirectory (event)
+add_subdirectory (logic)
+add_subdirectory (net)
+add_subdirectory (worldd)
+add_subdirectory (gamed)
+
+add_executable (gamed gamed/Daemon.cpp)
+add_executable (worldd worldd/worldd.cpp)
+
+target_link_libraries (gamed game logic event common net protobuf log4cxx config++ tokyotyrant )
+target_link_libraries (worldd world logic event common net protobuf log4cxx config++ tokyotyrant)
