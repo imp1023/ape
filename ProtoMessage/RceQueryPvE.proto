@@ -1,0 +1,9 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message RceQueryPvE
+{
+	optional int32 type = 1; //1：查询pve信息 2：查询关卡信息
+	optional int32 pass = 2;
+}
+

@@ -1,0 +1,14 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgHangarUnit
+{
+    optional string sku = 1;
+    optional int32 num = 2;
+}
+
+message MsgHangars
+{
+    optional int32 sid = 1;
+    repeated MsgHangarUnit Hangar = 2;
+}

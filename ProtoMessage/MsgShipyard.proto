@@ -1,0 +1,17 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgShipyardSlot
+{
+    optional string sku = 1;
+    optional int32 num = 2;
+    optional int32 timeLeft = 3;
+}
+
+message MsgShipyard
+{
+    optional int32 updatedAt = 1;
+    optional int32 sid = 2;
+    optional int32 block = 3;
+    optional int32 unlockedSlots = 4;
+    repeated MsgShipyardSlot Shipyard = 5;
+}

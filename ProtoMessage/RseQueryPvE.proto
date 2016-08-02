@@ -1,0 +1,19 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+import "MsgCommon.proto";
+import "MsgBuildingItem.proto";
+
+message MsgNpcJson
+{
+	repeated MsgBuildingItem item = 1;
+	repeated MsgKeyValue bunker = 2;
+	repeated MsgKeyValue gameUnit = 3;
+}
+
+message RseQueryPvE
+{
+	optional int32 ret = 1; //1：找不到对应关卡 2：找不到对应npc 
+	repeated MsgKeyValue pve = 2;
+	optional MsgNpcJson npc = 3;
+}
+

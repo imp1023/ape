@@ -1,0 +1,15 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgBunkerUnit
+{
+    optional string sku = 1;
+    repeated int32 Unit = 2;
+}
+
+message MsgBunker
+{
+    optional int32 sid = 1;
+    optional string helpersAccountIds = 2;
+    repeated MsgBunkerUnit Bunker = 3;
+}

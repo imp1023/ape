@@ -1,0 +1,8 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+message MsgKeyValue
+{
+	optional int32 key = 1;
+	optional int32 value = 2;
+}
+

@@ -1,0 +1,12 @@
+//package com.sincetimes.redwar.game.comnunicate.protocol;
+
+
+message MsgGameUnit
+{
+    optional int32 updatedAt = 1;
+    optional int32 unlocked = 2;
+    optional int32 timeLeft = 3;
+    repeated int32 GameUnit = 4;
+    optional string sku = 5;
+    optional int32 upgradeId = 6;
+}
