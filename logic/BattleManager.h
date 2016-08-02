@@ -79,7 +79,7 @@ public:
 		}
 	}
 	void AddUnitDamaged(BunkerUnit bu){
-		map<int, map<string, int>>::iterator iter = m_mBunkerUnits.find(bu.sid);
+		map<int, DefBunkerUnit>::iterator iter = m_mBunkerUnits.find(bu.sid);
 		if(iter == m_mBunkerUnits.end()){
 			map<string, int> mUnits;
 			mUnits.insert(make_pair(bu.sku, bu.num));
