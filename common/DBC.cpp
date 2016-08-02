@@ -1,4 +1,5 @@
 #include <string>
+#include <string.h>
 #include <map>
 #include <assert.h>
 #include "DBC.h"
