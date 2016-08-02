@@ -122,7 +122,7 @@ inline bool Player::CanUse() const
 template <class T1,class V1,class V2,class V3,class V4,class V5,class V6,class V7>
 void SYS_UserStat(User* pUser,int logType,T1 subTp1,V1 val1,V2 nVal2=0,V3 nVal3=0,V4 nVal4=0,V5 nVal5=0,V6 nVal6=0,V7 nVal7=0)
 {
-	Player* pPlayer = pUser->GetPlayer();
+	//Player* pPlayer = pUser->GetPlayer();
 	//SYS_STAT(pUser->uid(),logType,pUser->GetUserLevel(),pUser->GetLogOpenID(),pPlayer->GetTotalPercharge(),pUser->GetLogRegDays(),pPlayer->GetCash(),
 	//	distribution::getRegion(pUser->uid()), pUser->getChannel(),pPlayer->GetVIPLevel(), subTp1,val1,nVal2,nVal3,nVal4,nVal5,nVal6,nVal7);
 	//SYS_STAT(pUser->uid(), logType, pUser->GetUserLevel(), pUser->GetLogOpenID(), 0, "", 0,
