@@ -130,7 +130,8 @@ private:
 	vector<DeployUnits> m_mDeployUnits;
 	vector<SpecialAttack> m_mSpecialAttack;
 	map<int, ItemEnergy> m_mItemEnergys;
-	map<int, map<string, int>> m_mBunkerUnits;
+	typedef map<string, int> DefBunkerUnit;
+	map<int, DefBunkerUnit > m_mBunkerUnits;
 };
 
 class BattleManager
