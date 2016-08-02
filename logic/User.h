@@ -47,7 +47,7 @@ public:
 	void Init();
 	void InitDBUser();
 
-	inline bool User::checkSecret(int64 secret, time_t now)
+	inline bool checkSecret(int64 secret, time_t now)
 	{
 		int64 defaultSecret = 8613296596910ll;
 		if(secret == defaultSecret)
