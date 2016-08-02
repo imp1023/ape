@@ -48,6 +48,7 @@ enum S2C_EVENT
 	S2C_RseBattleDamagesPack,		//^s^RseBattleDamagesPack#
 	S2C_RseItemMineExploded,		//^s^RseItemMineExploded#
 	S2C_RseFinished,		//^s^RseFinished#
+	S2C_RseQueryPvE,		//^s^RseQueryPvE#
 };
 enum C2S_EVENT
 {
@@ -93,6 +94,7 @@ enum C2S_EVENT
 	C2S_RceUpdateStarsBookmarks,		//^c^RceUpdateStarsBookmarks#
 	C2S_RceUpdateTargets,		//^c^RceUpdateTargets#
 	C2S_RceUpdateVisitHelp,		//^c^RceUpdateVisitHelp#
+	C2S_RceQueryPvE,		//^c^RceQueryPvE#
 	C2S_EVENT_MAX,
 };
 #endif

@@ -64,6 +64,8 @@ public:
 
 	inline int GetCurrentPlanetId(){return m_nCurrentPlanetId;}
 	inline int64 GetTargetUId(){return m_UIdTarget;}
+	inline int GetTargetPlanetId(){return m_nTargetPlanetId;}
+	inline int64 GetTime(){return m_time;}
 
 	void AddDeployUnits(DeployUnits unit){m_mDeployUnits.push_back(unit);}
 	void AddSpecialAttack(SpecialAttack sa){m_mSpecialAttack.push_back(sa);}
@@ -137,7 +139,7 @@ public:
 	BattleManager(Player *pPlayer);
 	~BattleManager();
 	
-	void NewBattle(int64 nTargetPlayer, int nPlanetId);
+	void NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time);
 	Battle* GetBattle(){return m_pBattle;}
 
 private:

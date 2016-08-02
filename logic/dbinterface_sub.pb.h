@@ -125,6 +125,7 @@ class DB_HappyLib;
 class DB_BossBtlMsg;
 class DB_MedalHonorInfo;
 class DB_MedalHonor;
+class DB_KeyValue;
 
 // ===================================================================
 
@@ -13630,6 +13631,101 @@ class DB_MedalHonor : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static DB_MedalHonor* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class DB_KeyValue : public ::google::protobuf::Message {
+ public:
+  DB_KeyValue();
+  virtual ~DB_KeyValue();
+  
+  DB_KeyValue(const DB_KeyValue& from);
+  
+  inline DB_KeyValue& operator=(const DB_KeyValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_KeyValue& default_instance();
+  void Swap(DB_KeyValue* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_KeyValue* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_KeyValue& from);
+  void MergeFrom(const DB_KeyValue& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 key = 1;
+  inline bool has_key() const;
+  inline void clear_key();
+  static const int kKeyFieldNumber = 1;
+  inline ::google::protobuf::int32 key() const;
+  inline void set_key(::google::protobuf::int32 value);
+  
+  // optional int32 value = 2;
+  inline bool has_value() const;
+  inline void clear_value();
+  static const int kValueFieldNumber = 2;
+  inline ::google::protobuf::int32 value() const;
+  inline void set_value(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 key_;
+  ::google::protobuf::int32 value_;
+  friend void  protobuf_AddDesc_dbinterface_5fsub_2eproto();
+  friend void protobuf_AssignDesc_dbinterface_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_dbinterface_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_KeyValue* default_instance_;
+};
 // ===================================================================
 
 
@@ -26435,6 +26531,42 @@ inline bool DB_MedalHonor::block() const {
 inline void DB_MedalHonor::set_block(bool value) {
   _set_bit(6);
   block_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DB_KeyValue
+
+// optional int32 key = 1;
+inline bool DB_KeyValue::has_key() const {
+  return _has_bit(0);
+}
+inline void DB_KeyValue::clear_key() {
+  key_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 DB_KeyValue::key() const {
+  return key_;
+}
+inline void DB_KeyValue::set_key(::google::protobuf::int32 value) {
+  _set_bit(0);
+  key_ = value;
+}
+
+// optional int32 value = 2;
+inline bool DB_KeyValue::has_value() const {
+  return _has_bit(1);
+}
+inline void DB_KeyValue::clear_value() {
+  value_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 DB_KeyValue::value() const {
+  return value_;
+}
+inline void DB_KeyValue::set_value(::google::protobuf::int32 value) {
+  _set_bit(1);
+  value_ = value;
 }
 
 

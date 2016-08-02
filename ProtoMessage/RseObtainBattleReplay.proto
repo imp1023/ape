@@ -1,19 +1,51 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
+import "MsgBuildingItem.proto";
+import "MsgPlanet.proto";
+import "MsgMission.proto";
+import "MsgShipyard.proto";
+import "MsgHangars.proto";
+import "MsgBunker.proto";
+import "MsgGameUnit.proto";
 
-message MsgBattle
+message BattleUniverse
 {
-	optional int32 planetId = 1;
-    repeated int32 Universe = 2;
-    optional int32 accountId = 3;
-    optional string name = 4;
-    optional string url = 5;
-    optional int32 Deploys = 6;
-    optional int32 AttackerGameUnits = 7;
+    optional string DCPlayerName = 1;
+    optional string DCWorldName = 2;
+    optional int32 DCPlayerRank = 3;
+    optional int32 DCCoins = 4;
+    optional int32 DCMinerals = 5;
+    optional int32 DCCash = 6;
+    optional int32 DCDroids = 7;
+    optional bool tutorialCompleted = 8;
+    optional int32 damageProtectionTimeLeft = 9;
+    optional int32 damageProtectionTimeTotal = 10;
+    optional string flags = 11;
+    optional MsgMissionState Missions = 12;
+    repeated MsgPlanet Planets = 13;
+    repeated MsgBuildingItem Items = 14;
+    repeated MsgShipyard Shipyards = 15;
+    repeated MsgHangars Hangars = 16;
+    repeated MsgBunker Bunkers = 17;
+    repeated MsgGameUnit GameUnits = 18;
+}
+
+message MsgDeployUnit
+{
+	optional string sku = 1;
+	optional int32 x = 2;
+	optional int32 y = 3;
+	optional int32 millis = 4;
 }
 
 message RseObtainBattleReplay
 {
-	repeated MsgBattle Battle = 1;
+	optional int32 planetId = 1;
+    optional BattleUniverse Universe = 2;
+    optional int32 accountId = 3;
+    optional string name = 4;
+    optional string url = 5;
+    repeated MsgDeployUnit Deploys = 6;
+    repeated MsgGameUnit AttackerGameUnits = 7;
 }
 

@@ -11,4 +11,5 @@ message RceUpdateProfile
 	optional string key = 4;
 	optional int32 planetId = 5;
 	optional string action = 6; //buyDroid setFlag
+	optional int32 level = 7;
 }

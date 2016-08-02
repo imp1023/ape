@@ -95,7 +95,7 @@ void RceUpdateProfileHandle::handle(Event* e)
 	else if(strAction == "levelUp")
 	{
 		DB_Model* model = pPlayer->GetDBPlayer()->mutable_model();
-		model->set_level(model->level() + 1);
+		model->set_level(req->level());
 		eh_->getDataHandler()->markUserDirty(pUser);
 		SendRet2User(pUser,RseUpdateProfileRet_Success,rse);
 	}

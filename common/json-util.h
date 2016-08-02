@@ -7,15 +7,15 @@
 using namespace std;
 using namespace Json;
 
-inline string getJsonStr(Value &json)
+inline string getJsonStr(Json::Value &json)
 {
 	StyledWriter writer;  
 	return writer.write(json);  
 }
-inline Value parseJsonStr(const string &str) {
+inline Json::Value parseJsonStr(const string &str,bool& bSuc) {
 	Reader reader;
-	Value json(arrayValue);
-	bool succ = reader.parse(str, json);
-	if (!succ) json.clear();
+	Json::Value json(arrayValue);
+	bSuc = reader.parse(str, json);
+	if (!bSuc) json.clear();
 	return json;
 }

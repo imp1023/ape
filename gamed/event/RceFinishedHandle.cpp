@@ -88,11 +88,6 @@ void RceFinishedHandle::handle_selfload(Event* e)
 	}
 	else
 	{
-		pPlayer->CostRes(RC_Coin, pBattle->GetSourceCoins());
-		pPlayer->CostRes(RC_Coin, pBattle->GetSourceMinerals());
-
-		
-
 		RseFinished rsp;
 		string text;
 		rsp.SerializeToString(&text);
@@ -119,10 +114,6 @@ void RceFinishedHandle::handle_romateload(Event* e)
 		}
 		return;
 	}
-
-
-// 	pTUser->GetPlayer()->CostRes(RC_Coin, pBattle->GetSourceCoins());
-// 	pPlayer->CostRes(RC_Coin, pBattle->GetSourceMinerals());
 
 	e->set_state(Status_Normal_Back_World);
 	eh_->sendEventToWorld(e);

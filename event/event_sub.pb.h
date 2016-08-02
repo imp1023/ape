@@ -50,8 +50,8 @@ class HttpAskMsg;
 class HttpAnswerMsg;
 class NewStar_Req;
 class NewStar_Rsp;
-class GWG_BattleItemEnergy;
-class GWG_Battle;
+class GWG_GameUnit;
+class GWG_BattleInfo;
 
 // ===================================================================
 
@@ -2915,14 +2915,14 @@ class NewStar_Rsp : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class GWG_BattleItemEnergy : public ::google::protobuf::Message {
+class GWG_GameUnit : public ::google::protobuf::Message {
  public:
-  GWG_BattleItemEnergy();
-  virtual ~GWG_BattleItemEnergy();
+  GWG_GameUnit();
+  virtual ~GWG_GameUnit();
   
-  GWG_BattleItemEnergy(const GWG_BattleItemEnergy& from);
+  GWG_GameUnit(const GWG_GameUnit& from);
   
-  inline GWG_BattleItemEnergy& operator=(const GWG_BattleItemEnergy& from) {
+  inline GWG_GameUnit& operator=(const GWG_GameUnit& from) {
     CopyFrom(from);
     return *this;
   }
@@ -2936,16 +2936,16 @@ class GWG_BattleItemEnergy : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const GWG_BattleItemEnergy& default_instance();
-  void Swap(GWG_BattleItemEnergy* other);
+  static const GWG_GameUnit& default_instance();
+  void Swap(GWG_GameUnit* other);
   
   // implements Message ----------------------------------------------
   
-  GWG_BattleItemEnergy* New() const;
+  GWG_GameUnit* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const GWG_BattleItemEnergy& from);
-  void MergeFrom(const GWG_BattleItemEnergy& from);
+  void CopyFrom(const GWG_GameUnit& from);
+  void MergeFrom(const GWG_GameUnit& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -2968,43 +2968,55 @@ class GWG_BattleItemEnergy : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 sid = 1;
-  inline bool has_sid() const;
-  inline void clear_sid();
-  static const int kSidFieldNumber = 1;
-  inline ::google::protobuf::int32 sid() const;
-  inline void set_sid(::google::protobuf::int32 value);
-  
-  // optional string sku = 2;
+  // optional int32 sku = 1;
   inline bool has_sku() const;
   inline void clear_sku();
-  static const int kSkuFieldNumber = 2;
-  inline const ::std::string& sku() const;
-  inline void set_sku(const ::std::string& value);
-  inline void set_sku(const char* value);
-  inline void set_sku(const char* value, size_t size);
-  inline ::std::string* mutable_sku();
+  static const int kSkuFieldNumber = 1;
+  inline ::google::protobuf::int32 sku() const;
+  inline void set_sku(::google::protobuf::int32 value);
   
-  // optional int32 num = 3;
-  inline bool has_num() const;
-  inline void clear_num();
-  static const int kNumFieldNumber = 3;
-  inline ::google::protobuf::int32 num() const;
-  inline void set_num(::google::protobuf::int32 value);
+  // optional int32 unlock = 2;
+  inline bool has_unlock() const;
+  inline void clear_unlock();
+  static const int kUnlockFieldNumber = 2;
+  inline ::google::protobuf::int32 unlock() const;
+  inline void set_unlock(::google::protobuf::int32 value);
+  
+  // optional int32 upgradeId = 3;
+  inline bool has_upgradeid() const;
+  inline void clear_upgradeid();
+  static const int kUpgradeIdFieldNumber = 3;
+  inline ::google::protobuf::int32 upgradeid() const;
+  inline void set_upgradeid(::google::protobuf::int32 value);
+  
+  // optional int32 timeLeft = 4;
+  inline bool has_timeleft() const;
+  inline void clear_timeleft();
+  static const int kTimeLeftFieldNumber = 4;
+  inline ::google::protobuf::int32 timeleft() const;
+  inline void set_timeleft(::google::protobuf::int32 value);
+  
+  // optional int64 updateAt = 5;
+  inline bool has_updateat() const;
+  inline void clear_updateat();
+  static const int kUpdateAtFieldNumber = 5;
+  inline ::google::protobuf::int64 updateat() const;
+  inline void set_updateat(::google::protobuf::int64 value);
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 sid_;
-  ::std::string* sku_;
-  static const ::std::string _default_sku_;
-  ::google::protobuf::int32 num_;
+  ::google::protobuf::int32 sku_;
+  ::google::protobuf::int32 unlock_;
+  ::google::protobuf::int32 upgradeid_;
+  ::google::protobuf::int32 timeleft_;
+  ::google::protobuf::int64 updateat_;
   friend void  protobuf_AddDesc_event_5fsub_2eproto();
   friend void protobuf_AssignDesc_event_5fsub_2eproto();
   friend void protobuf_ShutdownFile_event_5fsub_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -3018,18 +3030,18 @@ class GWG_BattleItemEnergy : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static GWG_BattleItemEnergy* default_instance_;
+  static GWG_GameUnit* default_instance_;
 };
 // -------------------------------------------------------------------
 
-class GWG_Battle : public ::google::protobuf::Message {
+class GWG_BattleInfo : public ::google::protobuf::Message {
  public:
-  GWG_Battle();
-  virtual ~GWG_Battle();
+  GWG_BattleInfo();
+  virtual ~GWG_BattleInfo();
   
-  GWG_Battle(const GWG_Battle& from);
+  GWG_BattleInfo(const GWG_BattleInfo& from);
   
-  inline GWG_Battle& operator=(const GWG_Battle& from) {
+  inline GWG_BattleInfo& operator=(const GWG_BattleInfo& from) {
     CopyFrom(from);
     return *this;
   }
@@ -3043,16 +3055,16 @@ class GWG_Battle : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const GWG_Battle& default_instance();
-  void Swap(GWG_Battle* other);
+  static const GWG_BattleInfo& default_instance();
+  void Swap(GWG_BattleInfo* other);
   
   // implements Message ----------------------------------------------
   
-  GWG_Battle* New() const;
+  GWG_BattleInfo* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const GWG_Battle& from);
-  void MergeFrom(const GWG_Battle& from);
+  void CopyFrom(const GWG_BattleInfo& from);
+  void MergeFrom(const GWG_BattleInfo& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -3075,42 +3087,78 @@ class GWG_Battle : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 coins = 1;
-  inline bool has_coins() const;
-  inline void clear_coins();
-  static const int kCoinsFieldNumber = 1;
-  inline ::google::protobuf::int32 coins() const;
-  inline void set_coins(::google::protobuf::int32 value);
+  // optional int64 time = 1;
+  inline bool has_time() const;
+  inline void clear_time();
+  static const int kTimeFieldNumber = 1;
+  inline ::google::protobuf::int64 time() const;
+  inline void set_time(::google::protobuf::int64 value);
   
-  // optional int32 minerals = 2;
-  inline bool has_minerals() const;
-  inline void clear_minerals();
-  static const int kMineralsFieldNumber = 2;
-  inline ::google::protobuf::int32 minerals() const;
-  inline void set_minerals(::google::protobuf::int32 value);
+  // optional int64 accountId = 2;
+  inline bool has_accountid() const;
+  inline void clear_accountid();
+  static const int kAccountIdFieldNumber = 2;
+  inline ::google::protobuf::int64 accountid() const;
+  inline void set_accountid(::google::protobuf::int64 value);
   
-  // repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
-  inline int battleitemenergy_size() const;
-  inline void clear_battleitemenergy();
-  static const int kBattleItemEnergyFieldNumber = 3;
-  inline const ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >& battleitemenergy() const;
-  inline ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >* mutable_battleitemenergy();
-  inline const ::GWG_BattleItemEnergy& battleitemenergy(int index) const;
-  inline ::GWG_BattleItemEnergy* mutable_battleitemenergy(int index);
-  inline ::GWG_BattleItemEnergy* add_battleitemenergy();
+  // optional string starSku = 3;
+  inline bool has_starsku() const;
+  inline void clear_starsku();
+  static const int kStarSkuFieldNumber = 3;
+  inline const ::std::string& starsku() const;
+  inline void set_starsku(const ::std::string& value);
+  inline void set_starsku(const char* value);
+  inline void set_starsku(const char* value, size_t size);
+  inline ::std::string* mutable_starsku();
+  
+  // optional string name = 4;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 4;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string url = 5;
+  inline bool has_url() const;
+  inline void clear_url();
+  static const int kUrlFieldNumber = 5;
+  inline const ::std::string& url() const;
+  inline void set_url(const ::std::string& value);
+  inline void set_url(const char* value);
+  inline void set_url(const char* value, size_t size);
+  inline ::std::string* mutable_url();
+  
+  // repeated .GWG_GameUnit units = 6;
+  inline int units_size() const;
+  inline void clear_units();
+  static const int kUnitsFieldNumber = 6;
+  inline const ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >& units() const;
+  inline ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >* mutable_units();
+  inline const ::GWG_GameUnit& units(int index) const;
+  inline ::GWG_GameUnit* mutable_units(int index);
+  inline ::GWG_GameUnit* add_units();
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 coins_;
-  ::google::protobuf::int32 minerals_;
-  ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy > battleitemenergy_;
+  ::google::protobuf::int64 time_;
+  ::google::protobuf::int64 accountid_;
+  ::std::string* starsku_;
+  static const ::std::string _default_starsku_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* url_;
+  static const ::std::string _default_url_;
+  ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit > units_;
   friend void  protobuf_AddDesc_event_5fsub_2eproto();
   friend void protobuf_AssignDesc_event_5fsub_2eproto();
   friend void protobuf_ShutdownFile_event_5fsub_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -3124,7 +3172,7 @@ class GWG_Battle : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static GWG_Battle* default_instance_;
+  static GWG_BattleInfo* default_instance_;
 };
 // ===================================================================
 
@@ -6169,141 +6217,273 @@ inline void NewStar_Rsp::set_name(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
-// GWG_BattleItemEnergy
+// GWG_GameUnit
 
-// optional int32 sid = 1;
-inline bool GWG_BattleItemEnergy::has_sid() const {
+// optional int32 sku = 1;
+inline bool GWG_GameUnit::has_sku() const {
   return _has_bit(0);
 }
-inline void GWG_BattleItemEnergy::clear_sid() {
-  sid_ = 0;
+inline void GWG_GameUnit::clear_sku() {
+  sku_ = 0;
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 GWG_BattleItemEnergy::sid() const {
-  return sid_;
-}
-inline void GWG_BattleItemEnergy::set_sid(::google::protobuf::int32 value) {
-  _set_bit(0);
-  sid_ = value;
-}
-
-// optional string sku = 2;
-inline bool GWG_BattleItemEnergy::has_sku() const {
-  return _has_bit(1);
-}
-inline void GWG_BattleItemEnergy::clear_sku() {
-  if (sku_ != &_default_sku_) {
-    sku_->clear();
-  }
-  _clear_bit(1);
-}
-inline const ::std::string& GWG_BattleItemEnergy::sku() const {
-  return *sku_;
-}
-inline void GWG_BattleItemEnergy::set_sku(const ::std::string& value) {
-  _set_bit(1);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(value);
-}
-inline void GWG_BattleItemEnergy::set_sku(const char* value) {
-  _set_bit(1);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(value);
-}
-inline void GWG_BattleItemEnergy::set_sku(const char* value, size_t size) {
-  _set_bit(1);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
-  sku_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* GWG_BattleItemEnergy::mutable_sku() {
-  _set_bit(1);
-  if (sku_ == &_default_sku_) {
-    sku_ = new ::std::string;
-  }
+inline ::google::protobuf::int32 GWG_GameUnit::sku() const {
   return sku_;
 }
+inline void GWG_GameUnit::set_sku(::google::protobuf::int32 value) {
+  _set_bit(0);
+  sku_ = value;
+}
 
-// optional int32 num = 3;
-inline bool GWG_BattleItemEnergy::has_num() const {
+// optional int32 unlock = 2;
+inline bool GWG_GameUnit::has_unlock() const {
+  return _has_bit(1);
+}
+inline void GWG_GameUnit::clear_unlock() {
+  unlock_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 GWG_GameUnit::unlock() const {
+  return unlock_;
+}
+inline void GWG_GameUnit::set_unlock(::google::protobuf::int32 value) {
+  _set_bit(1);
+  unlock_ = value;
+}
+
+// optional int32 upgradeId = 3;
+inline bool GWG_GameUnit::has_upgradeid() const {
   return _has_bit(2);
 }
-inline void GWG_BattleItemEnergy::clear_num() {
-  num_ = 0;
+inline void GWG_GameUnit::clear_upgradeid() {
+  upgradeid_ = 0;
   _clear_bit(2);
 }
-inline ::google::protobuf::int32 GWG_BattleItemEnergy::num() const {
-  return num_;
+inline ::google::protobuf::int32 GWG_GameUnit::upgradeid() const {
+  return upgradeid_;
 }
-inline void GWG_BattleItemEnergy::set_num(::google::protobuf::int32 value) {
+inline void GWG_GameUnit::set_upgradeid(::google::protobuf::int32 value) {
   _set_bit(2);
-  num_ = value;
+  upgradeid_ = value;
+}
+
+// optional int32 timeLeft = 4;
+inline bool GWG_GameUnit::has_timeleft() const {
+  return _has_bit(3);
+}
+inline void GWG_GameUnit::clear_timeleft() {
+  timeleft_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 GWG_GameUnit::timeleft() const {
+  return timeleft_;
+}
+inline void GWG_GameUnit::set_timeleft(::google::protobuf::int32 value) {
+  _set_bit(3);
+  timeleft_ = value;
+}
+
+// optional int64 updateAt = 5;
+inline bool GWG_GameUnit::has_updateat() const {
+  return _has_bit(4);
+}
+inline void GWG_GameUnit::clear_updateat() {
+  updateat_ = GOOGLE_LONGLONG(0);
+  _clear_bit(4);
+}
+inline ::google::protobuf::int64 GWG_GameUnit::updateat() const {
+  return updateat_;
+}
+inline void GWG_GameUnit::set_updateat(::google::protobuf::int64 value) {
+  _set_bit(4);
+  updateat_ = value;
 }
 
 // -------------------------------------------------------------------
 
-// GWG_Battle
+// GWG_BattleInfo
 
-// optional int32 coins = 1;
-inline bool GWG_Battle::has_coins() const {
+// optional int64 time = 1;
+inline bool GWG_BattleInfo::has_time() const {
   return _has_bit(0);
 }
-inline void GWG_Battle::clear_coins() {
-  coins_ = 0;
+inline void GWG_BattleInfo::clear_time() {
+  time_ = GOOGLE_LONGLONG(0);
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 GWG_Battle::coins() const {
-  return coins_;
+inline ::google::protobuf::int64 GWG_BattleInfo::time() const {
+  return time_;
 }
-inline void GWG_Battle::set_coins(::google::protobuf::int32 value) {
+inline void GWG_BattleInfo::set_time(::google::protobuf::int64 value) {
   _set_bit(0);
-  coins_ = value;
+  time_ = value;
 }
 
-// optional int32 minerals = 2;
-inline bool GWG_Battle::has_minerals() const {
+// optional int64 accountId = 2;
+inline bool GWG_BattleInfo::has_accountid() const {
   return _has_bit(1);
 }
-inline void GWG_Battle::clear_minerals() {
-  minerals_ = 0;
+inline void GWG_BattleInfo::clear_accountid() {
+  accountid_ = GOOGLE_LONGLONG(0);
   _clear_bit(1);
 }
-inline ::google::protobuf::int32 GWG_Battle::minerals() const {
-  return minerals_;
+inline ::google::protobuf::int64 GWG_BattleInfo::accountid() const {
+  return accountid_;
 }
-inline void GWG_Battle::set_minerals(::google::protobuf::int32 value) {
+inline void GWG_BattleInfo::set_accountid(::google::protobuf::int64 value) {
   _set_bit(1);
-  minerals_ = value;
+  accountid_ = value;
 }
 
-// repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
-inline int GWG_Battle::battleitemenergy_size() const {
-  return battleitemenergy_.size();
+// optional string starSku = 3;
+inline bool GWG_BattleInfo::has_starsku() const {
+  return _has_bit(2);
 }
-inline void GWG_Battle::clear_battleitemenergy() {
-  battleitemenergy_.Clear();
+inline void GWG_BattleInfo::clear_starsku() {
+  if (starsku_ != &_default_starsku_) {
+    starsku_->clear();
+  }
+  _clear_bit(2);
 }
-inline const ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >&
-GWG_Battle::battleitemenergy() const {
-  return battleitemenergy_;
+inline const ::std::string& GWG_BattleInfo::starsku() const {
+  return *starsku_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::GWG_BattleItemEnergy >*
-GWG_Battle::mutable_battleitemenergy() {
-  return &battleitemenergy_;
+inline void GWG_BattleInfo::set_starsku(const ::std::string& value) {
+  _set_bit(2);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  starsku_->assign(value);
 }
-inline const ::GWG_BattleItemEnergy& GWG_Battle::battleitemenergy(int index) const {
-  return battleitemenergy_.Get(index);
+inline void GWG_BattleInfo::set_starsku(const char* value) {
+  _set_bit(2);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  starsku_->assign(value);
 }
-inline ::GWG_BattleItemEnergy* GWG_Battle::mutable_battleitemenergy(int index) {
-  return battleitemenergy_.Mutable(index);
+inline void GWG_BattleInfo::set_starsku(const char* value, size_t size) {
+  _set_bit(2);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  starsku_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::GWG_BattleItemEnergy* GWG_Battle::add_battleitemenergy() {
-  return battleitemenergy_.Add();
+inline ::std::string* GWG_BattleInfo::mutable_starsku() {
+  _set_bit(2);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  return starsku_;
+}
+
+// optional string name = 4;
+inline bool GWG_BattleInfo::has_name() const {
+  return _has_bit(3);
+}
+inline void GWG_BattleInfo::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(3);
+}
+inline const ::std::string& GWG_BattleInfo::name() const {
+  return *name_;
+}
+inline void GWG_BattleInfo::set_name(const ::std::string& value) {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void GWG_BattleInfo::set_name(const char* value) {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void GWG_BattleInfo::set_name(const char* value, size_t size) {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GWG_BattleInfo::mutable_name() {
+  _set_bit(3);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string url = 5;
+inline bool GWG_BattleInfo::has_url() const {
+  return _has_bit(4);
+}
+inline void GWG_BattleInfo::clear_url() {
+  if (url_ != &_default_url_) {
+    url_->clear();
+  }
+  _clear_bit(4);
+}
+inline const ::std::string& GWG_BattleInfo::url() const {
+  return *url_;
+}
+inline void GWG_BattleInfo::set_url(const ::std::string& value) {
+  _set_bit(4);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void GWG_BattleInfo::set_url(const char* value) {
+  _set_bit(4);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void GWG_BattleInfo::set_url(const char* value, size_t size) {
+  _set_bit(4);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* GWG_BattleInfo::mutable_url() {
+  _set_bit(4);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  return url_;
+}
+
+// repeated .GWG_GameUnit units = 6;
+inline int GWG_BattleInfo::units_size() const {
+  return units_.size();
+}
+inline void GWG_BattleInfo::clear_units() {
+  units_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >&
+GWG_BattleInfo::units() const {
+  return units_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >*
+GWG_BattleInfo::mutable_units() {
+  return &units_;
+}
+inline const ::GWG_GameUnit& GWG_BattleInfo::units(int index) const {
+  return units_.Get(index);
+}
+inline ::GWG_GameUnit* GWG_BattleInfo::mutable_units(int index) {
+  return units_.Mutable(index);
+}
+inline ::GWG_GameUnit* GWG_BattleInfo::add_units() {
+  return units_.Add();
 }
 
 

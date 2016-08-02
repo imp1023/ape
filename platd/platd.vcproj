@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\event\;..\lib\boost_1_53_0;..\lib\windows\include"
+				AdditionalIncludeDirectories="..\event\;..\lib\windows\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"

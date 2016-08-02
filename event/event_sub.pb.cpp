@@ -74,12 +74,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* NewStar_Rsp_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   NewStar_Rsp_reflection_ = NULL;
-const ::google::protobuf::Descriptor* GWG_BattleItemEnergy_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* GWG_GameUnit_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  GWG_BattleItemEnergy_reflection_ = NULL;
-const ::google::protobuf::Descriptor* GWG_Battle_descriptor_ = NULL;
+  GWG_GameUnit_reflection_ = NULL;
+const ::google::protobuf::Descriptor* GWG_BattleInfo_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  GWG_Battle_reflection_ = NULL;
+  GWG_BattleInfo_reflection_ = NULL;
 
 }  // namespace
 
@@ -516,40 +516,45 @@ void protobuf_AssignDesc_event_5fsub_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(NewStar_Rsp));
-  GWG_BattleItemEnergy_descriptor_ = file->message_type(21);
-  static const int GWG_BattleItemEnergy_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleItemEnergy, sid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleItemEnergy, sku_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleItemEnergy, num_),
+  GWG_GameUnit_descriptor_ = file->message_type(21);
+  static const int GWG_GameUnit_offsets_[5] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, sku_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, unlock_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, upgradeid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, timeleft_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, updateat_),
   };
-  GWG_BattleItemEnergy_reflection_ =
+  GWG_GameUnit_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      GWG_BattleItemEnergy_descriptor_,
-      GWG_BattleItemEnergy::default_instance_,
-      GWG_BattleItemEnergy_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleItemEnergy, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleItemEnergy, _unknown_fields_),
+      GWG_GameUnit_descriptor_,
+      GWG_GameUnit::default_instance_,
+      GWG_GameUnit_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_GameUnit, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(GWG_BattleItemEnergy));
-  GWG_Battle_descriptor_ = file->message_type(22);
-  static const int GWG_Battle_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_Battle, coins_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_Battle, minerals_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_Battle, battleitemenergy_),
+      sizeof(GWG_GameUnit));
+  GWG_BattleInfo_descriptor_ = file->message_type(22);
+  static const int GWG_BattleInfo_offsets_[6] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, time_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, accountid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, starsku_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, url_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, units_),
   };
-  GWG_Battle_reflection_ =
+  GWG_BattleInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      GWG_Battle_descriptor_,
-      GWG_Battle::default_instance_,
-      GWG_Battle_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_Battle, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_Battle, _unknown_fields_),
+      GWG_BattleInfo_descriptor_,
+      GWG_BattleInfo::default_instance_,
+      GWG_BattleInfo_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(GWG_Battle));
+      sizeof(GWG_BattleInfo));
 }
 
 namespace {
@@ -605,9 +610,9 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     NewStar_Rsp_descriptor_, &NewStar_Rsp::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    GWG_BattleItemEnergy_descriptor_, &GWG_BattleItemEnergy::default_instance());
+    GWG_GameUnit_descriptor_, &GWG_GameUnit::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    GWG_Battle_descriptor_, &GWG_Battle::default_instance());
+    GWG_BattleInfo_descriptor_, &GWG_BattleInfo::default_instance());
 }
 
 }  // namespace
@@ -655,10 +660,10 @@ void protobuf_ShutdownFile_event_5fsub_2eproto() {
   delete NewStar_Req_reflection_;
   delete NewStar_Rsp::default_instance_;
   delete NewStar_Rsp_reflection_;
-  delete GWG_BattleItemEnergy::default_instance_;
-  delete GWG_BattleItemEnergy_reflection_;
-  delete GWG_Battle::default_instance_;
-  delete GWG_Battle_reflection_;
+  delete GWG_GameUnit::default_instance_;
+  delete GWG_GameUnit_reflection_;
+  delete GWG_BattleInfo::default_instance_;
+  delete GWG_BattleInfo_reflection_;
 }
 
 void protobuf_AddDesc_event_5fsub_2eproto() {
@@ -742,11 +747,13 @@ void protobuf_AddDesc_event_5fsub_2eproto() {
     "\013NewStar_Req\022\014\n\004name\030\001 \001(\t\022\013\n\003url\030\002 \001(\t\022"
     "\020\n\010planetId\030\003 \001(\005\022\021\n\taccountId\030\004 \001(\003\"B\n\013"
     "NewStar_Rsp\022\n\n\002id\030\001 \001(\005\022\013\n\003sku\030\002 \001(\t\022\014\n\004"
-    "type\030\003 \001(\005\022\014\n\004name\030\004 \001(\005\"=\n\024GWG_BattleIt"
-    "emEnergy\022\013\n\003sid\030\001 \001(\005\022\013\n\003sku\030\002 \001(\t\022\013\n\003nu"
-    "m\030\003 \001(\005\"^\n\nGWG_Battle\022\r\n\005coins\030\001 \001(\005\022\020\n\010"
-    "minerals\030\002 \001(\005\022/\n\020BattleItemEnergy\030\003 \003(\013"
-    "2\025.GWG_BattleItemEnergy", 3103);
+    "type\030\003 \001(\005\022\014\n\004name\030\004 \001(\005\"b\n\014GWG_GameUnit"
+    "\022\013\n\003sku\030\001 \001(\005\022\016\n\006unlock\030\002 \001(\005\022\021\n\tupgrade"
+    "Id\030\003 \001(\005\022\020\n\010timeLeft\030\004 \001(\005\022\020\n\010updateAt\030\005"
+    " \001(\003\"{\n\016GWG_BattleInfo\022\014\n\004time\030\001 \001(\003\022\021\n\t"
+    "accountId\030\002 \001(\003\022\017\n\007starSku\030\003 \001(\t\022\014\n\004name"
+    "\030\004 \001(\t\022\013\n\003url\030\005 \001(\t\022\034\n\005units\030\006 \003(\0132\r.GWG"
+    "_GameUnit", 3169);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "event_sub.proto", &protobuf_RegisterTypes);
   WebCrossPromotion::default_instance_ = new WebCrossPromotion();
@@ -770,8 +777,8 @@ void protobuf_AddDesc_event_5fsub_2eproto() {
   HttpAnswerMsg::default_instance_ = new HttpAnswerMsg();
   NewStar_Req::default_instance_ = new NewStar_Req();
   NewStar_Rsp::default_instance_ = new NewStar_Rsp();
-  GWG_BattleItemEnergy::default_instance_ = new GWG_BattleItemEnergy();
-  GWG_Battle::default_instance_ = new GWG_Battle();
+  GWG_GameUnit::default_instance_ = new GWG_GameUnit();
+  GWG_BattleInfo::default_instance_ = new GWG_BattleInfo();
   WebCrossPromotion::default_instance_->InitAsDefaultInstance();
   UserLogin_Req::default_instance_->InitAsDefaultInstance();
   UserLogin_Rsp::default_instance_->InitAsDefaultInstance();
@@ -793,8 +800,8 @@ void protobuf_AddDesc_event_5fsub_2eproto() {
   HttpAnswerMsg::default_instance_->InitAsDefaultInstance();
   NewStar_Req::default_instance_->InitAsDefaultInstance();
   NewStar_Rsp::default_instance_->InitAsDefaultInstance();
-  GWG_BattleItemEnergy::default_instance_->InitAsDefaultInstance();
-  GWG_Battle::default_instance_->InitAsDefaultInstance();
+  GWG_GameUnit::default_instance_->InitAsDefaultInstance();
+  GWG_BattleInfo::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_event_5fsub_2eproto);
 }
 
@@ -9889,119 +9896,143 @@ void NewStar_Rsp::Swap(NewStar_Rsp* other) {
 
 // ===================================================================
 
-const ::std::string GWG_BattleItemEnergy::_default_sku_;
 #ifndef _MSC_VER
-const int GWG_BattleItemEnergy::kSidFieldNumber;
-const int GWG_BattleItemEnergy::kSkuFieldNumber;
-const int GWG_BattleItemEnergy::kNumFieldNumber;
+const int GWG_GameUnit::kSkuFieldNumber;
+const int GWG_GameUnit::kUnlockFieldNumber;
+const int GWG_GameUnit::kUpgradeIdFieldNumber;
+const int GWG_GameUnit::kTimeLeftFieldNumber;
+const int GWG_GameUnit::kUpdateAtFieldNumber;
 #endif  // !_MSC_VER
 
-GWG_BattleItemEnergy::GWG_BattleItemEnergy() {
+GWG_GameUnit::GWG_GameUnit() {
   SharedCtor();
 }
 
-void GWG_BattleItemEnergy::InitAsDefaultInstance() {
+void GWG_GameUnit::InitAsDefaultInstance() {
 }
 
-GWG_BattleItemEnergy::GWG_BattleItemEnergy(const GWG_BattleItemEnergy& from) {
+GWG_GameUnit::GWG_GameUnit(const GWG_GameUnit& from) {
   SharedCtor();
   MergeFrom(from);
 }
 
-void GWG_BattleItemEnergy::SharedCtor() {
+void GWG_GameUnit::SharedCtor() {
   _cached_size_ = 0;
-  sid_ = 0;
-  sku_ = const_cast< ::std::string*>(&_default_sku_);
-  num_ = 0;
+  sku_ = 0;
+  unlock_ = 0;
+  upgradeid_ = 0;
+  timeleft_ = 0;
+  updateat_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-GWG_BattleItemEnergy::~GWG_BattleItemEnergy() {
+GWG_GameUnit::~GWG_GameUnit() {
   SharedDtor();
 }
 
-void GWG_BattleItemEnergy::SharedDtor() {
-  if (sku_ != &_default_sku_) {
-    delete sku_;
-  }
+void GWG_GameUnit::SharedDtor() {
   if (this != default_instance_) {
   }
 }
 
-const ::google::protobuf::Descriptor* GWG_BattleItemEnergy::descriptor() {
+const ::google::protobuf::Descriptor* GWG_GameUnit::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return GWG_BattleItemEnergy_descriptor_;
+  return GWG_GameUnit_descriptor_;
 }
 
-const GWG_BattleItemEnergy& GWG_BattleItemEnergy::default_instance() {
+const GWG_GameUnit& GWG_GameUnit::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_event_5fsub_2eproto();  return *default_instance_;
 }
 
-GWG_BattleItemEnergy* GWG_BattleItemEnergy::default_instance_ = NULL;
+GWG_GameUnit* GWG_GameUnit::default_instance_ = NULL;
 
-GWG_BattleItemEnergy* GWG_BattleItemEnergy::New() const {
-  return new GWG_BattleItemEnergy;
+GWG_GameUnit* GWG_GameUnit::New() const {
+  return new GWG_GameUnit;
 }
 
-void GWG_BattleItemEnergy::Clear() {
+void GWG_GameUnit::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    sid_ = 0;
-    if (_has_bit(1)) {
-      if (sku_ != &_default_sku_) {
-        sku_->clear();
-      }
-    }
-    num_ = 0;
+    sku_ = 0;
+    unlock_ = 0;
+    upgradeid_ = 0;
+    timeleft_ = 0;
+    updateat_ = GOOGLE_LONGLONG(0);
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
 
-bool GWG_BattleItemEnergy::MergePartialFromCodedStream(
+bool GWG_GameUnit::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) return false
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 sid = 1;
+      // optional int32 sku = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &sid_));
+              input, &sku_));
         _set_bit(0);
-        if (input->ExpectTag(18)) goto parse_sku;
+        if (input->ExpectTag(16)) goto parse_unlock;
         break;
       }
       
-      // optional string sku = 2;
+      // optional int32 unlock = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-       parse_sku:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_sku()));
-        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->sku().data(), this->sku().length(),
-          ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(24)) goto parse_num;
+       parse_unlock:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &unlock_));
+        _set_bit(1);
+        if (input->ExpectTag(24)) goto parse_upgradeId;
         break;
       }
       
-      // optional int32 num = 3;
+      // optional int32 upgradeId = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-       parse_num:
+       parse_upgradeId:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &num_));
+              input, &upgradeid_));
         _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_timeLeft;
+        break;
+      }
+      
+      // optional int32 timeLeft = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_timeLeft:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &timeleft_));
+        _set_bit(3);
+        if (input->ExpectTag(40)) goto parse_updateAt;
+        break;
+      }
+      
+      // optional int64 updateAt = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_updateAt:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+              input, &updateat_));
+        _set_bit(4);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -10022,31 +10053,37 @@ bool GWG_BattleItemEnergy::MergePartialFromCodedStream(
 #undef DO_
 }
 
-void GWG_BattleItemEnergy::SerializeWithCachedSizes(
+void GWG_GameUnit::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
   if (raw_buffer != NULL) {
-    GWG_BattleItemEnergy::SerializeWithCachedSizesToArray(raw_buffer);
+    GWG_GameUnit::SerializeWithCachedSizesToArray(raw_buffer);
     return;
   }
   
-  // optional int32 sid = 1;
+  // optional int32 sku = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->sid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->sku(), output);
   }
   
-  // optional string sku = 2;
+  // optional int32 unlock = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->sku().data(), this->sku().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->sku(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->unlock(), output);
   }
   
-  // optional int32 num = 3;
+  // optional int32 upgradeId = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->num(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->upgradeid(), output);
+  }
+  
+  // optional int32 timeLeft = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->timeleft(), output);
+  }
+  
+  // optional int64 updateAt = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(5, this->updateat(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -10055,26 +10092,31 @@ void GWG_BattleItemEnergy::SerializeWithCachedSizes(
   }
 }
 
-::google::protobuf::uint8* GWG_BattleItemEnergy::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* GWG_GameUnit::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 sid = 1;
+  // optional int32 sku = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->sid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->sku(), target);
   }
   
-  // optional string sku = 2;
+  // optional int32 unlock = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->sku().data(), this->sku().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->sku(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->unlock(), target);
   }
   
-  // optional int32 num = 3;
+  // optional int32 upgradeId = 3;
   if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->num(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->upgradeid(), target);
+  }
+  
+  // optional int32 timeLeft = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->timeleft(), target);
+  }
+  
+  // optional int64 updateAt = 5;
+  if (_has_bit(4)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(5, this->updateat(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -10084,29 +10126,43 @@ void GWG_BattleItemEnergy::SerializeWithCachedSizes(
   return target;
 }
 
-int GWG_BattleItemEnergy::ByteSize() const {
+int GWG_GameUnit::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 sid = 1;
-    if (has_sid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->sid());
-    }
-    
-    // optional string sku = 2;
+    // optional int32 sku = 1;
     if (has_sku()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->sku());
     }
     
-    // optional int32 num = 3;
-    if (has_num()) {
+    // optional int32 unlock = 2;
+    if (has_unlock()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->num());
+          this->unlock());
+    }
+    
+    // optional int32 upgradeId = 3;
+    if (has_upgradeid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->upgradeid());
+    }
+    
+    // optional int32 timeLeft = 4;
+    if (has_timeleft()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->timeleft());
+    }
+    
+    // optional int64 updateAt = 5;
+    if (has_updateat()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->updateat());
     }
     
   }
@@ -10119,10 +10175,10 @@ int GWG_BattleItemEnergy::ByteSize() const {
   return total_size;
 }
 
-void GWG_BattleItemEnergy::MergeFrom(const ::google::protobuf::Message& from) {
+void GWG_GameUnit::MergeFrom(const ::google::protobuf::Message& from) {
   GOOGLE_CHECK_NE(&from, this);
-  const GWG_BattleItemEnergy* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const GWG_BattleItemEnergy*>(
+  const GWG_GameUnit* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GWG_GameUnit*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -10131,163 +10187,252 @@ void GWG_BattleItemEnergy::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void GWG_BattleItemEnergy::MergeFrom(const GWG_BattleItemEnergy& from) {
+void GWG_GameUnit::MergeFrom(const GWG_GameUnit& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      set_sid(from.sid());
-    }
-    if (from._has_bit(1)) {
       set_sku(from.sku());
     }
+    if (from._has_bit(1)) {
+      set_unlock(from.unlock());
+    }
     if (from._has_bit(2)) {
-      set_num(from.num());
+      set_upgradeid(from.upgradeid());
+    }
+    if (from._has_bit(3)) {
+      set_timeleft(from.timeleft());
+    }
+    if (from._has_bit(4)) {
+      set_updateat(from.updateat());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
-void GWG_BattleItemEnergy::CopyFrom(const ::google::protobuf::Message& from) {
+void GWG_GameUnit::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void GWG_BattleItemEnergy::CopyFrom(const GWG_BattleItemEnergy& from) {
+void GWG_GameUnit::CopyFrom(const GWG_GameUnit& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GWG_BattleItemEnergy::IsInitialized() const {
+bool GWG_GameUnit::IsInitialized() const {
   
   return true;
 }
 
-void GWG_BattleItemEnergy::Swap(GWG_BattleItemEnergy* other) {
+void GWG_GameUnit::Swap(GWG_GameUnit* other) {
   if (other != this) {
-    std::swap(sid_, other->sid_);
     std::swap(sku_, other->sku_);
-    std::swap(num_, other->num_);
+    std::swap(unlock_, other->unlock_);
+    std::swap(upgradeid_, other->upgradeid_);
+    std::swap(timeleft_, other->timeleft_);
+    std::swap(updateat_, other->updateat_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::google::protobuf::Metadata GWG_BattleItemEnergy::GetMetadata() const {
+::google::protobuf::Metadata GWG_GameUnit::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = GWG_BattleItemEnergy_descriptor_;
-  metadata.reflection = GWG_BattleItemEnergy_reflection_;
+  metadata.descriptor = GWG_GameUnit_descriptor_;
+  metadata.reflection = GWG_GameUnit_reflection_;
   return metadata;
 }
 
 
 // ===================================================================
 
+const ::std::string GWG_BattleInfo::_default_starsku_;
+const ::std::string GWG_BattleInfo::_default_name_;
+const ::std::string GWG_BattleInfo::_default_url_;
 #ifndef _MSC_VER
-const int GWG_Battle::kCoinsFieldNumber;
-const int GWG_Battle::kMineralsFieldNumber;
-const int GWG_Battle::kBattleItemEnergyFieldNumber;
+const int GWG_BattleInfo::kTimeFieldNumber;
+const int GWG_BattleInfo::kAccountIdFieldNumber;
+const int GWG_BattleInfo::kStarSkuFieldNumber;
+const int GWG_BattleInfo::kNameFieldNumber;
+const int GWG_BattleInfo::kUrlFieldNumber;
+const int GWG_BattleInfo::kUnitsFieldNumber;
 #endif  // !_MSC_VER
 
-GWG_Battle::GWG_Battle() {
+GWG_BattleInfo::GWG_BattleInfo() {
   SharedCtor();
 }
 
-void GWG_Battle::InitAsDefaultInstance() {
+void GWG_BattleInfo::InitAsDefaultInstance() {
 }
 
-GWG_Battle::GWG_Battle(const GWG_Battle& from) {
+GWG_BattleInfo::GWG_BattleInfo(const GWG_BattleInfo& from) {
   SharedCtor();
   MergeFrom(from);
 }
 
-void GWG_Battle::SharedCtor() {
+void GWG_BattleInfo::SharedCtor() {
   _cached_size_ = 0;
-  coins_ = 0;
-  minerals_ = 0;
+  time_ = GOOGLE_LONGLONG(0);
+  accountid_ = GOOGLE_LONGLONG(0);
+  starsku_ = const_cast< ::std::string*>(&_default_starsku_);
+  name_ = const_cast< ::std::string*>(&_default_name_);
+  url_ = const_cast< ::std::string*>(&_default_url_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-GWG_Battle::~GWG_Battle() {
+GWG_BattleInfo::~GWG_BattleInfo() {
   SharedDtor();
 }
 
-void GWG_Battle::SharedDtor() {
+void GWG_BattleInfo::SharedDtor() {
+  if (starsku_ != &_default_starsku_) {
+    delete starsku_;
+  }
+  if (name_ != &_default_name_) {
+    delete name_;
+  }
+  if (url_ != &_default_url_) {
+    delete url_;
+  }
   if (this != default_instance_) {
   }
 }
 
-const ::google::protobuf::Descriptor* GWG_Battle::descriptor() {
+const ::google::protobuf::Descriptor* GWG_BattleInfo::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return GWG_Battle_descriptor_;
+  return GWG_BattleInfo_descriptor_;
 }
 
-const GWG_Battle& GWG_Battle::default_instance() {
+const GWG_BattleInfo& GWG_BattleInfo::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_event_5fsub_2eproto();  return *default_instance_;
 }
 
-GWG_Battle* GWG_Battle::default_instance_ = NULL;
+GWG_BattleInfo* GWG_BattleInfo::default_instance_ = NULL;
 
-GWG_Battle* GWG_Battle::New() const {
-  return new GWG_Battle;
+GWG_BattleInfo* GWG_BattleInfo::New() const {
+  return new GWG_BattleInfo;
 }
 
-void GWG_Battle::Clear() {
+void GWG_BattleInfo::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    coins_ = 0;
-    minerals_ = 0;
+    time_ = GOOGLE_LONGLONG(0);
+    accountid_ = GOOGLE_LONGLONG(0);
+    if (_has_bit(2)) {
+      if (starsku_ != &_default_starsku_) {
+        starsku_->clear();
+      }
+    }
+    if (_has_bit(3)) {
+      if (name_ != &_default_name_) {
+        name_->clear();
+      }
+    }
+    if (_has_bit(4)) {
+      if (url_ != &_default_url_) {
+        url_->clear();
+      }
+    }
   }
-  battleitemenergy_.Clear();
+  units_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
 
-bool GWG_Battle::MergePartialFromCodedStream(
+bool GWG_BattleInfo::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) return false
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 coins = 1;
+      // optional int64 time = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &coins_));
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+              input, &time_));
         _set_bit(0);
-        if (input->ExpectTag(16)) goto parse_minerals;
+        if (input->ExpectTag(16)) goto parse_accountId;
         break;
       }
       
-      // optional int32 minerals = 2;
+      // optional int64 accountId = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-       parse_minerals:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &minerals_));
+       parse_accountId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt64(
+              input, &accountid_));
         _set_bit(1);
-        if (input->ExpectTag(26)) goto parse_BattleItemEnergy;
+        if (input->ExpectTag(26)) goto parse_starSku;
         break;
       }
       
-      // repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
+      // optional string starSku = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_BattleItemEnergy:
+       parse_starSku:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_starsku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->starsku().data(), this->starsku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(34)) goto parse_name;
+        break;
+      }
+      
+      // optional string name = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_name:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_name()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->name().data(), this->name().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(42)) goto parse_url;
+        break;
+      }
+      
+      // optional string url = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_url:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_url()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->url().data(), this->url().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(50)) goto parse_units;
+        break;
+      }
+      
+      // repeated .GWG_GameUnit units = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_units:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, add_battleitemenergy()));
-        if (input->ExpectTag(26)) goto parse_BattleItemEnergy;
+              input, add_units()));
+        if (input->ExpectTag(50)) goto parse_units;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -10308,28 +10453,55 @@ bool GWG_Battle::MergePartialFromCodedStream(
 #undef DO_
 }
 
-void GWG_Battle::SerializeWithCachedSizes(
+void GWG_BattleInfo::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
   if (raw_buffer != NULL) {
-    GWG_Battle::SerializeWithCachedSizesToArray(raw_buffer);
+    GWG_BattleInfo::SerializeWithCachedSizesToArray(raw_buffer);
     return;
   }
   
-  // optional int32 coins = 1;
+  // optional int64 time = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->coins(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->time(), output);
   }
   
-  // optional int32 minerals = 2;
+  // optional int64 accountId = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->minerals(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->accountid(), output);
   }
   
-  // repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
-  for (int i = 0; i < this->battleitemenergy_size(); i++) {
+  // optional string starSku = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->starsku().data(), this->starsku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      3, this->starsku(), output);
+  }
+  
+  // optional string name = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      4, this->name(), output);
+  }
+  
+  // optional string url = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->url().data(), this->url().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->url(), output);
+  }
+  
+  // repeated .GWG_GameUnit units = 6;
+  for (int i = 0; i < this->units_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      3, this->battleitemenergy(i), output);
+      6, this->units(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -10338,23 +10510,53 @@ void GWG_Battle::SerializeWithCachedSizes(
   }
 }
 
-::google::protobuf::uint8* GWG_Battle::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* GWG_BattleInfo::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 coins = 1;
+  // optional int64 time = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->coins(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->time(), target);
   }
   
-  // optional int32 minerals = 2;
+  // optional int64 accountId = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->minerals(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->accountid(), target);
   }
   
-  // repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
-  for (int i = 0; i < this->battleitemenergy_size(); i++) {
+  // optional string starSku = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->starsku().data(), this->starsku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->starsku(), target);
+  }
+  
+  // optional string name = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->name(), target);
+  }
+  
+  // optional string url = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->url().data(), this->url().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->url(), target);
+  }
+  
+  // repeated .GWG_GameUnit units = 6;
+  for (int i = 0; i < this->units_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->battleitemenergy(i), target);
+        6, this->units(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -10364,31 +10566,52 @@ void GWG_Battle::SerializeWithCachedSizes(
   return target;
 }
 
-int GWG_Battle::ByteSize() const {
+int GWG_BattleInfo::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 coins = 1;
-    if (has_coins()) {
+    // optional int64 time = 1;
+    if (has_time()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->coins());
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->time());
     }
     
-    // optional int32 minerals = 2;
-    if (has_minerals()) {
+    // optional int64 accountId = 2;
+    if (has_accountid()) {
       total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->minerals());
+        ::google::protobuf::internal::WireFormatLite::Int64Size(
+          this->accountid());
+    }
+    
+    // optional string starSku = 3;
+    if (has_starsku()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->starsku());
+    }
+    
+    // optional string name = 4;
+    if (has_name()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->name());
+    }
+    
+    // optional string url = 5;
+    if (has_url()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->url());
     }
     
   }
-  // repeated .GWG_BattleItemEnergy BattleItemEnergy = 3;
-  total_size += 1 * this->battleitemenergy_size();
-  for (int i = 0; i < this->battleitemenergy_size(); i++) {
+  // repeated .GWG_GameUnit units = 6;
+  total_size += 1 * this->units_size();
+  for (int i = 0; i < this->units_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->battleitemenergy(i));
+        this->units(i));
   }
   
   if (!unknown_fields().empty()) {
@@ -10400,10 +10623,10 @@ int GWG_Battle::ByteSize() const {
   return total_size;
 }
 
-void GWG_Battle::MergeFrom(const ::google::protobuf::Message& from) {
+void GWG_BattleInfo::MergeFrom(const ::google::protobuf::Message& from) {
   GOOGLE_CHECK_NE(&from, this);
-  const GWG_Battle* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const GWG_Battle*>(
+  const GWG_BattleInfo* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const GWG_BattleInfo*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -10412,53 +10635,65 @@ void GWG_Battle::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void GWG_Battle::MergeFrom(const GWG_Battle& from) {
+void GWG_BattleInfo::MergeFrom(const GWG_BattleInfo& from) {
   GOOGLE_CHECK_NE(&from, this);
-  battleitemenergy_.MergeFrom(from.battleitemenergy_);
+  units_.MergeFrom(from.units_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      set_coins(from.coins());
+      set_time(from.time());
     }
     if (from._has_bit(1)) {
-      set_minerals(from.minerals());
+      set_accountid(from.accountid());
+    }
+    if (from._has_bit(2)) {
+      set_starsku(from.starsku());
+    }
+    if (from._has_bit(3)) {
+      set_name(from.name());
+    }
+    if (from._has_bit(4)) {
+      set_url(from.url());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
-void GWG_Battle::CopyFrom(const ::google::protobuf::Message& from) {
+void GWG_BattleInfo::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void GWG_Battle::CopyFrom(const GWG_Battle& from) {
+void GWG_BattleInfo::CopyFrom(const GWG_BattleInfo& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GWG_Battle::IsInitialized() const {
+bool GWG_BattleInfo::IsInitialized() const {
   
   return true;
 }
 
-void GWG_Battle::Swap(GWG_Battle* other) {
+void GWG_BattleInfo::Swap(GWG_BattleInfo* other) {
   if (other != this) {
-    std::swap(coins_, other->coins_);
-    std::swap(minerals_, other->minerals_);
-    battleitemenergy_.Swap(&other->battleitemenergy_);
+    std::swap(time_, other->time_);
+    std::swap(accountid_, other->accountid_);
+    std::swap(starsku_, other->starsku_);
+    std::swap(name_, other->name_);
+    std::swap(url_, other->url_);
+    units_.Swap(&other->units_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
   }
 }
 
-::google::protobuf::Metadata GWG_Battle::GetMetadata() const {
+::google::protobuf::Metadata GWG_BattleInfo::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = GWG_Battle_descriptor_;
-  metadata.reflection = GWG_Battle_reflection_;
+  metadata.descriptor = GWG_BattleInfo_descriptor_;
+  metadata.reflection = GWG_BattleInfo_reflection_;
   return metadata;
 }
 

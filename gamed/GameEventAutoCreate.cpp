@@ -47,4 +47,5 @@ void GameEventHandler::initAutoEventProcessors()
 	RceUpdateStarsBookmarksHandle::createInstance(this);
 	RceUpdateTargetsHandle::createInstance(this);
 	RceUpdateVisitHelpHandle::createInstance(this);
+	RceQueryPvEHandle::createInstance(this);
 }

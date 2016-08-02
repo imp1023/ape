@@ -211,16 +211,21 @@ message NewStar_Rsp
 	optional int32 name = 4; 
 }
 
-message GWG_BattleItemEnergy
+message GWG_GameUnit
 {
-	optional int32 sid = 1;
-	optional string sku = 2;
-	optional int32 num = 3;	
+    optional int32          sku                     = 1;
+    optional int32          unlock                  = 2;
+    optional int32          upgradeId               = 3;
+    optional int32          timeLeft                = 4;
+    optional int64          updateAt                = 5;    
 }
 
-message GWG_Battle
+message GWG_BattleInfo
 {
-	optional int32 coins = 1;
-	optional int32 minerals = 2;
-	repeated GWG_BattleItemEnergy BattleItemEnergy = 3;
+	optional int64 time = 1;
+	optional int64 accountId = 2;
+	optional string starSku = 3;
+    optional string name = 4;
+    optional string url = 5;
+    repeated GWG_GameUnit units = 6;
 }

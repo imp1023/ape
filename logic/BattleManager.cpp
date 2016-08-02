@@ -47,7 +47,7 @@ BattleManager::~BattleManager()
 	m_pPlayer = NULL;
 }
 
-void BattleManager::NewBattle(int64 nTargetPlayer, int nPlanetId)
+void BattleManager::NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time)
 {
 	if(!m_pBattle){
 		m_pBattle = new Battle();
@@ -57,5 +57,5 @@ void BattleManager::NewBattle(int64 nTargetPlayer, int nPlanetId)
 	m_pBattle->SetCurPlanetId(m_pPlayer->GetCurPlanetId());
 	m_pBattle->SetTargetUId(nTargetPlayer);
 	m_pBattle->SetTargetPlanetId(nPlanetId);
-	m_pBattle->SetTime(time(NULL));
+	m_pBattle->SetTime(time);
 }

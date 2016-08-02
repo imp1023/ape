@@ -19,6 +19,7 @@
 #include "ItemTbl.h"
 #include "CollectablesTbl.h"
 #include "CountryNameTbl.h"
+#include "NPCInfoCfg.h"
 
 GameConfigMgr* GameConfigMgr::_sMgr = NULL;
 
@@ -50,6 +51,7 @@ void GameConfigMgr::LoadGameConfigInfo()
 	WonderDefinitionsTblInst::instance().LoadInfo();
 	ItemTblInst::instance().LoadInfo();
 	CollectablesTblInst::instance().LoadInfo();
+	NPCInfoCfg::Instance().LoadTbl();
 	fflush(stdout);
 }
 
@@ -73,4 +75,5 @@ void GameConfigMgr::ClearGameConfigInfo()
 	WonderDefinitionsTblInst::instance().Clear();
 	ItemTblInst::instance().Clear();
 	CollectablesTblInst::instance().Clear();
+	NPCInfoCfg::Instance().ClearTbl();
 }

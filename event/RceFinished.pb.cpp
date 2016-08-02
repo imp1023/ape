@@ -25,8 +25,22 @@ void protobuf_AssignDesc_RceFinished_2eproto() {
       "RceFinished.proto");
   GOOGLE_CHECK(file != NULL);
   RceFinished_descriptor_ = file->message_type(0);
-  static const int RceFinished_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, ret_),
+  static const int RceFinished_offsets_[15] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, planetid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, energybeforeshot_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, transaction_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, destroyed_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, damage_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, transactiontarget_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, attackers_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, itemsid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, npcsuccess_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, millis_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, damageprotectiontime_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, coins_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, mineral_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, rewardflag_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceFinished, rewardsku_),
   };
   RceFinished_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -71,7 +85,15 @@ void protobuf_AddDesc_RceFinished_2eproto() {
   ::protobuf_AddDesc_MsgTransaction_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\021RceFinished.proto\032\024MsgTransaction.prot"
-    "o\"\032\n\013RceFinished\022\013\n\003ret\030\001 \001(\005", 69);
+    "o\"\333\002\n\013RceFinished\022\020\n\010planetId\030\001 \001(\005\022\030\n\020e"
+    "nergyBeforeShot\030\002 \001(\005\022$\n\013transaction\030\003 \001"
+    "(\0132\017.MsgTransaction\022\021\n\tdestroyed\030\004 \001(\005\022\016"
+    "\n\006damage\030\005 \001(\005\022*\n\021transactionTarget\030\006 \001("
+    "\0132\017.MsgTransaction\022\021\n\tattackers\030\007 \003(\t\022\017\n"
+    "\007itemSid\030\010 \001(\005\022\022\n\nnpcSuccess\030\t \001(\010\022\016\n\006mi"
+    "llis\030\n \001(\005\022\034\n\024damageProtectionTime\030\013 \001(\005"
+    "\022\r\n\005coins\030\014 \001(\005\022\017\n\007mineral\030\r \001(\005\022\022\n\nrewa"
+    "rdFlag\030\016 \001(\010\022\021\n\trewardSku\030\017 \001(\t", 391);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceFinished.proto", &protobuf_RegisterTypes);
   RceFinished::default_instance_ = new RceFinished();
@@ -89,8 +111,23 @@ struct StaticDescriptorInitializer_RceFinished_2eproto {
 
 // ===================================================================
 
+const ::std::string RceFinished::_default_rewardsku_;
 #ifndef _MSC_VER
-const int RceFinished::kRetFieldNumber;
+const int RceFinished::kPlanetIdFieldNumber;
+const int RceFinished::kEnergyBeforeShotFieldNumber;
+const int RceFinished::kTransactionFieldNumber;
+const int RceFinished::kDestroyedFieldNumber;
+const int RceFinished::kDamageFieldNumber;
+const int RceFinished::kTransactionTargetFieldNumber;
+const int RceFinished::kAttackersFieldNumber;
+const int RceFinished::kItemSidFieldNumber;
+const int RceFinished::kNpcSuccessFieldNumber;
+const int RceFinished::kMillisFieldNumber;
+const int RceFinished::kDamageProtectionTimeFieldNumber;
+const int RceFinished::kCoinsFieldNumber;
+const int RceFinished::kMineralFieldNumber;
+const int RceFinished::kRewardFlagFieldNumber;
+const int RceFinished::kRewardSkuFieldNumber;
 #endif  // !_MSC_VER
 
 RceFinished::RceFinished() {
@@ -98,6 +135,8 @@ RceFinished::RceFinished() {
 }
 
 void RceFinished::InitAsDefaultInstance() {
+  transaction_ = const_cast< ::MsgTransaction*>(&::MsgTransaction::default_instance());
+  transactiontarget_ = const_cast< ::MsgTransaction*>(&::MsgTransaction::default_instance());
 }
 
 RceFinished::RceFinished(const RceFinished& from) {
@@ -107,7 +146,20 @@ RceFinished::RceFinished(const RceFinished& from) {
 
 void RceFinished::SharedCtor() {
   _cached_size_ = 0;
-  ret_ = 0;
+  planetid_ = 0;
+  energybeforeshot_ = 0;
+  transaction_ = NULL;
+  destroyed_ = 0;
+  damage_ = 0;
+  transactiontarget_ = NULL;
+  itemsid_ = 0;
+  npcsuccess_ = false;
+  millis_ = 0;
+  damageprotectiontime_ = 0;
+  coins_ = 0;
+  mineral_ = 0;
+  rewardflag_ = false;
+  rewardsku_ = const_cast< ::std::string*>(&_default_rewardsku_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -116,7 +168,12 @@ RceFinished::~RceFinished() {
 }
 
 void RceFinished::SharedDtor() {
+  if (rewardsku_ != &_default_rewardsku_) {
+    delete rewardsku_;
+  }
   if (this != default_instance_) {
+    delete transaction_;
+    delete transactiontarget_;
   }
 }
 
@@ -137,8 +194,32 @@ RceFinished* RceFinished::New() const {
 
 void RceFinished::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    ret_ = 0;
+    planetid_ = 0;
+    energybeforeshot_ = 0;
+    if (_has_bit(2)) {
+      if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
+    }
+    destroyed_ = 0;
+    damage_ = 0;
+    if (_has_bit(5)) {
+      if (transactiontarget_ != NULL) transactiontarget_->::MsgTransaction::Clear();
+    }
+    itemsid_ = 0;
   }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    npcsuccess_ = false;
+    millis_ = 0;
+    damageprotectiontime_ = 0;
+    coins_ = 0;
+    mineral_ = 0;
+    rewardflag_ = false;
+    if (_has_bit(14)) {
+      if (rewardsku_ != &_default_rewardsku_) {
+        rewardsku_->clear();
+      }
+    }
+  }
+  attackers_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -149,15 +230,214 @@ bool RceFinished::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 ret = 1;
+      // optional int32 planetId = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &ret_));
+              input, &planetid_));
         _set_bit(0);
+        if (input->ExpectTag(16)) goto parse_energyBeforeShot;
+        break;
+      }
+      
+      // optional int32 energyBeforeShot = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_energyBeforeShot:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &energybeforeshot_));
+        _set_bit(1);
+        if (input->ExpectTag(26)) goto parse_transaction;
+        break;
+      }
+      
+      // optional .MsgTransaction transaction = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_transaction:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_transaction()));
+        if (input->ExpectTag(32)) goto parse_destroyed;
+        break;
+      }
+      
+      // optional int32 destroyed = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_destroyed:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &destroyed_));
+        _set_bit(3);
+        if (input->ExpectTag(40)) goto parse_damage;
+        break;
+      }
+      
+      // optional int32 damage = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_damage:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &damage_));
+        _set_bit(4);
+        if (input->ExpectTag(50)) goto parse_transactionTarget;
+        break;
+      }
+      
+      // optional .MsgTransaction transactionTarget = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_transactionTarget:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_transactiontarget()));
+        if (input->ExpectTag(58)) goto parse_attackers;
+        break;
+      }
+      
+      // repeated string attackers = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_attackers:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->add_attackers()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->attackers(0).data(), this->attackers(0).length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(58)) goto parse_attackers;
+        if (input->ExpectTag(64)) goto parse_itemSid;
+        break;
+      }
+      
+      // optional int32 itemSid = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_itemSid:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &itemsid_));
+        _set_bit(7);
+        if (input->ExpectTag(72)) goto parse_npcSuccess;
+        break;
+      }
+      
+      // optional bool npcSuccess = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_npcSuccess:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
+              input, &npcsuccess_));
+        _set_bit(8);
+        if (input->ExpectTag(80)) goto parse_millis;
+        break;
+      }
+      
+      // optional int32 millis = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_millis:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &millis_));
+        _set_bit(9);
+        if (input->ExpectTag(88)) goto parse_damageProtectionTime;
+        break;
+      }
+      
+      // optional int32 damageProtectionTime = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_damageProtectionTime:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &damageprotectiontime_));
+        _set_bit(10);
+        if (input->ExpectTag(96)) goto parse_coins;
+        break;
+      }
+      
+      // optional int32 coins = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_coins:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &coins_));
+        _set_bit(11);
+        if (input->ExpectTag(104)) goto parse_mineral;
+        break;
+      }
+      
+      // optional int32 mineral = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_mineral:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &mineral_));
+        _set_bit(12);
+        if (input->ExpectTag(112)) goto parse_rewardFlag;
+        break;
+      }
+      
+      // optional bool rewardFlag = 14;
+      case 14: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_rewardFlag:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
+              input, &rewardflag_));
+        _set_bit(13);
+        if (input->ExpectTag(122)) goto parse_rewardSku;
+        break;
+      }
+      
+      // optional string rewardSku = 15;
+      case 15: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_rewardSku:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_rewardsku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->rewardsku().data(), this->rewardsku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -186,9 +466,89 @@ void RceFinished::SerializeWithCachedSizes(
     return;
   }
   
-  // optional int32 ret = 1;
+  // optional int32 planetId = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->planetid(), output);
+  }
+  
+  // optional int32 energyBeforeShot = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->energybeforeshot(), output);
+  }
+  
+  // optional .MsgTransaction transaction = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      3, this->transaction(), output);
+  }
+  
+  // optional int32 destroyed = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->destroyed(), output);
+  }
+  
+  // optional int32 damage = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->damage(), output);
+  }
+  
+  // optional .MsgTransaction transactionTarget = 6;
+  if (_has_bit(5)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      6, this->transactiontarget(), output);
+  }
+  
+  // repeated string attackers = 7;
+  for (int i = 0; i < this->attackers_size(); i++) {
+  ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+    this->attackers(i).data(), this->attackers(i).length(),
+    ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      7, this->attackers(i), output);
+  }
+  
+  // optional int32 itemSid = 8;
+  if (_has_bit(7)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->itemsid(), output);
+  }
+  
+  // optional bool npcSuccess = 9;
+  if (_has_bit(8)) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(9, this->npcsuccess(), output);
+  }
+  
+  // optional int32 millis = 10;
+  if (_has_bit(9)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->millis(), output);
+  }
+  
+  // optional int32 damageProtectionTime = 11;
+  if (_has_bit(10)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(11, this->damageprotectiontime(), output);
+  }
+  
+  // optional int32 coins = 12;
+  if (_has_bit(11)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->coins(), output);
+  }
+  
+  // optional int32 mineral = 13;
+  if (_has_bit(12)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(13, this->mineral(), output);
+  }
+  
+  // optional bool rewardFlag = 14;
+  if (_has_bit(13)) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(14, this->rewardflag(), output);
+  }
+  
+  // optional string rewardSku = 15;
+  if (_has_bit(14)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->rewardsku().data(), this->rewardsku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      15, this->rewardsku(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -199,9 +559,92 @@ void RceFinished::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RceFinished::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional int32 ret = 1;
+  // optional int32 planetId = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->planetid(), target);
+  }
+  
+  // optional int32 energyBeforeShot = 2;
+  if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->energybeforeshot(), target);
+  }
+  
+  // optional .MsgTransaction transaction = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        3, this->transaction(), target);
+  }
+  
+  // optional int32 destroyed = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->destroyed(), target);
+  }
+  
+  // optional int32 damage = 5;
+  if (_has_bit(4)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->damage(), target);
+  }
+  
+  // optional .MsgTransaction transactionTarget = 6;
+  if (_has_bit(5)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, this->transactiontarget(), target);
+  }
+  
+  // repeated string attackers = 7;
+  for (int i = 0; i < this->attackers_size(); i++) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->attackers(i).data(), this->attackers(i).length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(7, this->attackers(i), target);
+  }
+  
+  // optional int32 itemSid = 8;
+  if (_has_bit(7)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->itemsid(), target);
+  }
+  
+  // optional bool npcSuccess = 9;
+  if (_has_bit(8)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(9, this->npcsuccess(), target);
+  }
+  
+  // optional int32 millis = 10;
+  if (_has_bit(9)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->millis(), target);
+  }
+  
+  // optional int32 damageProtectionTime = 11;
+  if (_has_bit(10)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(11, this->damageprotectiontime(), target);
+  }
+  
+  // optional int32 coins = 12;
+  if (_has_bit(11)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->coins(), target);
+  }
+  
+  // optional int32 mineral = 13;
+  if (_has_bit(12)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(13, this->mineral(), target);
+  }
+  
+  // optional bool rewardFlag = 14;
+  if (_has_bit(13)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(14, this->rewardflag(), target);
+  }
+  
+  // optional string rewardSku = 15;
+  if (_has_bit(14)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->rewardsku().data(), this->rewardsku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        15, this->rewardsku(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -215,14 +658,110 @@ int RceFinished::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 ret = 1;
-    if (has_ret()) {
+    // optional int32 planetId = 1;
+    if (has_planetid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->ret());
+          this->planetid());
+    }
+    
+    // optional int32 energyBeforeShot = 2;
+    if (has_energybeforeshot()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->energybeforeshot());
+    }
+    
+    // optional .MsgTransaction transaction = 3;
+    if (has_transaction()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->transaction());
+    }
+    
+    // optional int32 destroyed = 4;
+    if (has_destroyed()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->destroyed());
+    }
+    
+    // optional int32 damage = 5;
+    if (has_damage()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->damage());
+    }
+    
+    // optional .MsgTransaction transactionTarget = 6;
+    if (has_transactiontarget()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->transactiontarget());
+    }
+    
+    // optional int32 itemSid = 8;
+    if (has_itemsid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->itemsid());
     }
     
   }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // optional bool npcSuccess = 9;
+    if (has_npcsuccess()) {
+      total_size += 1 + 1;
+    }
+    
+    // optional int32 millis = 10;
+    if (has_millis()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->millis());
+    }
+    
+    // optional int32 damageProtectionTime = 11;
+    if (has_damageprotectiontime()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->damageprotectiontime());
+    }
+    
+    // optional int32 coins = 12;
+    if (has_coins()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->coins());
+    }
+    
+    // optional int32 mineral = 13;
+    if (has_mineral()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->mineral());
+    }
+    
+    // optional bool rewardFlag = 14;
+    if (has_rewardflag()) {
+      total_size += 1 + 1;
+    }
+    
+    // optional string rewardSku = 15;
+    if (has_rewardsku()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->rewardsku());
+    }
+    
+  }
+  // repeated string attackers = 7;
+  total_size += 1 * this->attackers_size();
+  for (int i = 0; i < this->attackers_size(); i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->attackers(i));
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -246,9 +785,51 @@ void RceFinished::MergeFrom(const ::google::protobuf::Message& from) {
 
 void RceFinished::MergeFrom(const RceFinished& from) {
   GOOGLE_CHECK_NE(&from, this);
+  attackers_.MergeFrom(from.attackers_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      set_ret(from.ret());
+      set_planetid(from.planetid());
+    }
+    if (from._has_bit(1)) {
+      set_energybeforeshot(from.energybeforeshot());
+    }
+    if (from._has_bit(2)) {
+      mutable_transaction()->::MsgTransaction::MergeFrom(from.transaction());
+    }
+    if (from._has_bit(3)) {
+      set_destroyed(from.destroyed());
+    }
+    if (from._has_bit(4)) {
+      set_damage(from.damage());
+    }
+    if (from._has_bit(5)) {
+      mutable_transactiontarget()->::MsgTransaction::MergeFrom(from.transactiontarget());
+    }
+    if (from._has_bit(7)) {
+      set_itemsid(from.itemsid());
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    if (from._has_bit(8)) {
+      set_npcsuccess(from.npcsuccess());
+    }
+    if (from._has_bit(9)) {
+      set_millis(from.millis());
+    }
+    if (from._has_bit(10)) {
+      set_damageprotectiontime(from.damageprotectiontime());
+    }
+    if (from._has_bit(11)) {
+      set_coins(from.coins());
+    }
+    if (from._has_bit(12)) {
+      set_mineral(from.mineral());
+    }
+    if (from._has_bit(13)) {
+      set_rewardflag(from.rewardflag());
+    }
+    if (from._has_bit(14)) {
+      set_rewardsku(from.rewardsku());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -273,7 +854,21 @@ bool RceFinished::IsInitialized() const {
 
 void RceFinished::Swap(RceFinished* other) {
   if (other != this) {
-    std::swap(ret_, other->ret_);
+    std::swap(planetid_, other->planetid_);
+    std::swap(energybeforeshot_, other->energybeforeshot_);
+    std::swap(transaction_, other->transaction_);
+    std::swap(destroyed_, other->destroyed_);
+    std::swap(damage_, other->damage_);
+    std::swap(transactiontarget_, other->transactiontarget_);
+    attackers_.Swap(&other->attackers_);
+    std::swap(itemsid_, other->itemsid_);
+    std::swap(npcsuccess_, other->npcsuccess_);
+    std::swap(millis_, other->millis_);
+    std::swap(damageprotectiontime_, other->damageprotectiontime_);
+    std::swap(coins_, other->coins_);
+    std::swap(mineral_, other->mineral_);
+    std::swap(rewardflag_, other->rewardflag_);
+    std::swap(rewardsku_, other->rewardsku_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

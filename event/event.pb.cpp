@@ -25,7 +25,7 @@ void protobuf_AssignDesc_event_2eproto() {
       "event.proto");
   GOOGLE_CHECK(file != NULL);
   Event_descriptor_ = file->message_type(0);
-  static const int Event_offsets_[110] = {
+  static const int Event_offsets_[113] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, cmd_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, state_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, time_),
@@ -53,6 +53,7 @@ void protobuf_AssignDesc_event_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, statneed_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, newstarreq_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, newstarrsp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, battleinfo_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, httpaskmsg_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, httpanswermsg_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcebattledamagespack_),
@@ -96,6 +97,7 @@ void protobuf_AssignDesc_event_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatestarsbookmarks_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatetargets_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rceupdatevisithelp_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, ce_rcequerypve_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseauthstate_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsecustomizedactivity_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseerror_),
@@ -136,6 +138,7 @@ void protobuf_AssignDesc_event_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsebattledamagespack_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rseitemmineexploded_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsefinished_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Event, se_rsequerypve_),
   };
   Event_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -201,6 +204,7 @@ void protobuf_AddDesc_event_2eproto() {
   ::protobuf_AddDesc_RceOnlineReward_2eproto();
   ::protobuf_AddDesc_RceQueryCheckAndLockAccountIfPossible_2eproto();
   ::protobuf_AddDesc_RceQueryGalaxyWindow_2eproto();
+  ::protobuf_AddDesc_RceQueryPvE_2eproto();
   ::protobuf_AddDesc_RceQueryReceiveWishItem_2eproto();
   ::protobuf_AddDesc_RceQueryRefuseReceiveWishItem_2eproto();
   ::protobuf_AddDesc_RceQuerySendWishItem_2eproto();
@@ -242,6 +246,7 @@ void protobuf_AddDesc_event_2eproto() {
   ::protobuf_AddDesc_RseObtainVisitHelps_2eproto();
   ::protobuf_AddDesc_RseQueryCheckAndLockAccountIfPossible_2eproto();
   ::protobuf_AddDesc_RseQueryGalaxyWindow_2eproto();
+  ::protobuf_AddDesc_RseQueryPvE_2eproto();
   ::protobuf_AddDesc_RseQueryReceiveWishItem_2eproto();
   ::protobuf_AddDesc_RseQueryRefuseReceiveWishItem_2eproto();
   ::protobuf_AddDesc_RseQuerySendWishItem_2eproto();
@@ -276,180 +281,184 @@ void protobuf_AddDesc_event_2eproto() {
     "RceObtainUniverse.proto\032\031RceObtainVisitH"
     "elps.proto\032\025RceOnlineReward.proto\032+RceQu"
     "eryCheckAndLockAccountIfPossible.proto\032\032"
-    "RceQueryGalaxyWindow.proto\032\035RceQueryRece"
-    "iveWishItem.proto\032#RceQueryRefuseReceive"
-    "WishItem.proto\032\032RceQuerySendWishItem.pro"
-    "to\032\026RceQueryStarInfo.proto\032\034RceQueryStar"
-    "sBookmarks.proto\032)RceQueryVisitHelpsGift"
-    "UnitsOnBunker.proto\032\030RceUpdateAlliances."
-    "proto\032\030RceUpdateGameUnits.proto\032\023RceUpda"
-    "teItem.proto\032\023RceUpdateMisc.proto\032\027RceUp"
-    "dateMissions.proto\032\026RceUpdateProfile.pro"
-    "to\032\024RceUpdateShips.proto\032\031RceUpdateSocia"
-    "lItem.proto\032\035RceUpdateStarsBookmarks.pro"
-    "to\032\026RceUpdateTargets.proto\032\030RceUpdateVis"
-    "itHelp.proto\032\022RseAuthState.proto\032\032RseBat"
-    "tleDamagesPack.proto\032\033RseCustomizedActiv"
-    "ity.proto\032\016RseError.proto\032\021RseFinished.p"
-    "roto\032\022RseHeartbeat.proto\032\031RseItemMineExp"
-    "loded.proto\032\016RseLogin.proto\032\031RseObtainAs"
-    "kForHelp.proto\032\033RseObtainAttackerList.pr"
-    "oto\032\033RseObtainBattleReplay.proto\032\031RseObt"
-    "ainCustomizer.proto\032\032RseObtainHangarsHel"
-    "p.proto\032\033RseObtainMessagesList.proto\032\034Rs"
-    "eObtainNeighborsList.proto\032\026RseObtainNpc"
-    "List.proto\032\033RseObtainPayUrlParame.proto\032"
-    "\034RseObtainRandomTargets.proto\032\032RseObtain"
-    "SocialItems.proto\032\035RseObtainSocialUserIn"
-    "fo.proto\032\027RseObtainUniverse.proto\032\031RseOb"
-    "tainVisitHelps.proto\032+RseQueryCheckAndLo"
-    "ckAccountIfPossible.proto\032\032RseQueryGalax"
-    "yWindow.proto\032\035RseQueryReceiveWishItem.p"
-    "roto\032#RseQueryRefuseReceiveWishItem.prot"
-    "o\032\032RseQuerySendWishItem.proto\032\026RseQueryS"
-    "tarInfo.proto\032\034RseQueryStarsBookmarks.pr"
-    "oto\032)RseQueryVisitHelpsGiftUnitsOnBunker"
-    ".proto\032\030RseUpdateAlliances.proto\032\030RseUpd"
-    "ateGameUnits.proto\032\023RseUpdateItem.proto\032"
-    "\023RseUpdateMisc.proto\032\027RseUpdateMissions."
-    "proto\032\026RseUpdateProfile.proto\032\024RseUpdate"
-    "Ships.proto\032\031RseUpdateSocialItem.proto\032\035"
-    "RseUpdateStarsBookmarks.proto\032\026RseUpdate"
-    "Targets.proto\032\017event_sub.proto\"\363)\n\005Event"
-    "\022\013\n\003cmd\030\001 \002(\005\022\r\n\005state\030\002 \002(\005\022\014\n\004time\030\003 \002"
-    "(\003\022\013\n\003uid\030\004 \001(\003\022\024\n\014fromworld_fd\030\005 \001(\005\022-\n"
-    "\021workingStatus_req\030\006 \001(\0132\022.WorkingStatus"
-    "_Req\022%\n\ruserLogin_req\030\007 \001(\0132\016.UserLogin_"
-    "Req\022%\n\ruserLogin_rsp\030\010 \001(\0132\016.UserLogin_R"
-    "sp\022#\n\014userAuth_req\030\t \001(\0132\r.UserAuth_Req\022"
-    "#\n\014userAuth_rsp\030\n \001(\0132\r.UserAuth_Rsp\022/\n\022"
-    "sendRemoteUser_req\030\013 \001(\0132\023.SendRemoteUse"
-    "r_Req\022#\n\014wg_UserLeave\030\014 \001(\0132\r.WG_UserLea"
-    "ve\022&\n\nfriendinfo\030\r \001(\0132\022.GWG_FriendReque"
-    "st\022!\n\013forwardinfo\030\016 \001(\0132\014.ForwardInfo\022\021\n"
-    "\tstarSrvID\030\017 \001(\005\022\025\n\rtransferSrvID\030\022 \001(\005\022"
-    "#\n\014webGetRegion\030\023 \001(\0132\r.WebGetRegion\022\021\n\t"
-    "platSrvID\030\024 \001(\005\022\020\n\010userPlat\030\025 \001(\t\022\022\n\nwor"
-    "ldSrvID\030\026 \001(\005\022\022\n\nfightSrvID\030\027 \001(\005\022%\n\013cou"
-    "ntryNeed\030\030 \001(\0132\020.GCG_CountryNeed\022#\n\nregi"
-    "onNeed\030\031 \001(\0132\017.GRG_RegionNeed\022\037\n\010rankNee"
-    "d\030\032 \001(\0132\r.GRG_RankNeed\022\037\n\010statNeed\030\033 \001(\013"
-    "2\r.GSG_StatNeed\022 \n\nnewStarReq\030\034 \001(\0132\014.Ne"
-    "wStar_Req\022 \n\nnewStarRsp\030\035 \001(\0132\014.NewStar_"
-    "Rsp\022\037\n\nhttpaskmsg\030r \001(\0132\013.HttpAskMsg\022%\n\r"
-    "httpanswermsg\030s \001(\0132\016.HttpAnswerMsg\0227\n\027c"
-    "e_RceBattleDamagesPack\030\310\001 \001(\0132\025.RceBattl"
-    "eDamagesPack\0229\n\030ce_RceCustomizedActivity"
-    "\030\311\001 \001(\0132\026.RceCustomizedActivity\022%\n\016ce_Rc"
-    "eFinished\030\312\001 \001(\0132\014.RceFinished\022\'\n\017ce_Rce"
-    "Heartbeat\030\313\001 \001(\0132\r.RceHeartbeat\0225\n\026ce_Rc"
-    "eItemMineExploded\030\314\001 \001(\0132\024.RceItemMineEx"
-    "ploded\022\037\n\013ce_RceLogin\030\315\001 \001(\0132\t.RceLogin\022"
-    "1\n\024ce_RceNpcAttackStart\030\316\001 \001(\0132\022.RceNpcA"
-    "ttackStart\0225\n\026ce_RceObtainAskForHelp\030\317\001 "
-    "\001(\0132\024.RceObtainAskForHelp\0229\n\030ce_RceObtai"
-    "nAttackerList\030\320\001 \001(\0132\026.RceObtainAttacker"
-    "List\0229\n\030ce_RceObtainBattleReplay\030\321\001 \001(\0132"
-    "\026.RceObtainBattleReplay\0225\n\026ce_RceObtainC"
-    "ustomizer\030\322\001 \001(\0132\024.RceObtainCustomizer\0227"
-    "\n\027ce_RceObtainHangarsHelp\030\323\001 \001(\0132\025.RceOb"
-    "tainHangarsHelp\0229\n\030ce_RceObtainMessagesL"
-    "ist\030\324\001 \001(\0132\026.RceObtainMessagesList\022;\n\031ce"
-    "_RceObtainNeighborsList\030\325\001 \001(\0132\027.RceObta"
-    "inNeighborsList\022/\n\023ce_RceObtainNpcList\030\326"
-    "\001 \001(\0132\021.RceObtainNpcList\0229\n\030ce_RceObtain"
-    "PayUrlParame\030\327\001 \001(\0132\026.RceObtainPayUrlPar"
-    "ame\022;\n\031ce_RceObtainRandomTargets\030\330\001 \001(\0132"
-    "\027.RceObtainRandomTargets\0227\n\027ce_RceObtain"
-    "SocialItems\030\331\001 \001(\0132\025.RceObtainSocialItem"
-    "s\022=\n\032ce_RceObtainSocialUserInfo\030\332\001 \001(\0132\030"
-    ".RceObtainSocialUserInfo\0221\n\024ce_RceObtain"
-    "Universe\030\333\001 \001(\0132\022.RceObtainUniverse\0225\n\026c"
-    "e_RceObtainVisitHelps\030\334\001 \001(\0132\024.RceObtain"
-    "VisitHelps\022-\n\022ce_RceOnlineReward\030\335\001 \001(\0132"
-    "\020.RceOnlineReward\022Y\n(ce_RceQueryCheckAnd"
-    "LockAccountIfPossible\030\336\001 \001(\0132&.RceQueryC"
-    "heckAndLockAccountIfPossible\0227\n\027ce_RceQu"
-    "eryGalaxyWindow\030\337\001 \001(\0132\025.RceQueryGalaxyW"
-    "indow\022=\n\032ce_RceQueryReceiveWishItem\030\340\001 \001"
-    "(\0132\030.RceQueryReceiveWishItem\022I\n ce_RceQu"
-    "eryRefuseReceiveWishItem\030\341\001 \001(\0132\036.RceQue"
-    "ryRefuseReceiveWishItem\0227\n\027ce_RceQuerySe"
-    "ndWishItem\030\342\001 \001(\0132\025.RceQuerySendWishItem"
-    "\022/\n\023ce_RceQueryStarInfo\030\343\001 \001(\0132\021.RceQuer"
-    "yStarInfo\022;\n\031ce_RceQueryStarsBookmarks\030\344"
-    "\001 \001(\0132\027.RceQueryStarsBookmarks\022U\n&ce_Rce"
-    "QueryVisitHelpsGiftUnitsOnBunker\030\345\001 \001(\0132"
-    "$.RceQueryVisitHelpsGiftUnitsOnBunker\0223\n"
-    "\025ce_RceUpdateAlliances\030\346\001 \001(\0132\023.RceUpdat"
-    "eAlliances\0223\n\025ce_RceUpdateGameUnits\030\347\001 \001"
-    "(\0132\023.RceUpdateGameUnits\022)\n\020ce_RceUpdateI"
-    "tem\030\350\001 \001(\0132\016.RceUpdateItem\022)\n\020ce_RceUpda"
-    "teMisc\030\351\001 \001(\0132\016.RceUpdateMisc\0221\n\024ce_RceU"
-    "pdateMissions\030\352\001 \001(\0132\022.RceUpdateMissions"
-    "\022/\n\023ce_RceUpdateProfile\030\353\001 \001(\0132\021.RceUpda"
-    "teProfile\022+\n\021ce_RceUpdateShips\030\354\001 \001(\0132\017."
-    "RceUpdateShips\0225\n\026ce_RceUpdateSocialItem"
-    "\030\355\001 \001(\0132\024.RceUpdateSocialItem\022=\n\032ce_RceU"
-    "pdateStarsBookmarks\030\356\001 \001(\0132\030.RceUpdateSt"
-    "arsBookmarks\022/\n\023ce_RceUpdateTargets\030\357\001 \001"
-    "(\0132\021.RceUpdateTargets\0223\n\025ce_RceUpdateVis"
-    "itHelp\030\360\001 \001(\0132\023.RceUpdateVisitHelp\022\'\n\017se"
-    "_RseAuthState\030\364\003 \001(\0132\r.RseAuthState\0229\n\030s"
-    "e_RseCustomizedActivity\030\365\003 \001(\0132\026.RseCust"
-    "omizedActivity\022\037\n\013se_RseError\030\367\003 \001(\0132\t.R"
-    "seError\022\'\n\017se_RseHeartbeat\030\370\003 \001(\0132\r.RseH"
-    "eartbeat\022\037\n\013se_RseLogin\030\372\003 \001(\0132\t.RseLogi"
-    "n\0225\n\026se_RseObtainAskForHelp\030\373\003 \001(\0132\024.Rse"
-    "ObtainAskForHelp\0229\n\030se_RseObtainAttacker"
-    "List\030\374\003 \001(\0132\026.RseObtainAttackerList\0229\n\030s"
-    "e_RseObtainBattleReplay\030\375\003 \001(\0132\026.RseObta"
-    "inBattleReplay\0225\n\026se_RseObtainCustomizer"
-    "\030\376\003 \001(\0132\024.RseObtainCustomizer\0227\n\027se_RseO"
-    "btainHangarsHelp\030\377\003 \001(\0132\025.RseObtainHanga"
-    "rsHelp\0229\n\030se_RseObtainMessagesList\030\200\004 \001("
-    "\0132\026.RseObtainMessagesList\022;\n\031se_RseObtai"
-    "nNeighborsList\030\201\004 \001(\0132\027.RseObtainNeighbo"
-    "rsList\022/\n\023se_RseObtainNpcList\030\202\004 \001(\0132\021.R"
-    "seObtainNpcList\0229\n\030se_RseObtainPayUrlPar"
-    "ame\030\203\004 \001(\0132\026.RseObtainPayUrlParame\022;\n\031se"
-    "_RseObtainRandomTargets\030\204\004 \001(\0132\027.RseObta"
-    "inRandomTargets\0227\n\027se_RseObtainSocialIte"
-    "ms\030\205\004 \001(\0132\025.RseObtainSocialItems\022=\n\032se_R"
-    "seObtainSocialUserInfo\030\206\004 \001(\0132\030.RseObtai"
-    "nSocialUserInfo\0221\n\024se_RseObtainUniverse\030"
-    "\207\004 \001(\0132\022.RseObtainUniverse\0225\n\026se_RseObta"
-    "inVisitHelps\030\210\004 \001(\0132\024.RseObtainVisitHelp"
-    "s\022Y\n(se_RseQueryCheckAndLockAccountIfPos"
-    "sible\030\211\004 \001(\0132&.RseQueryCheckAndLockAccou"
-    "ntIfPossible\0227\n\027se_RseQueryGalaxyWindow\030"
-    "\212\004 \001(\0132\025.RseQueryGalaxyWindow\022=\n\032se_RseQ"
-    "ueryReceiveWishItem\030\213\004 \001(\0132\030.RseQueryRec"
-    "eiveWishItem\022I\n se_RseQueryRefuseReceive"
-    "WishItem\030\214\004 \001(\0132\036.RseQueryRefuseReceiveW"
-    "ishItem\0227\n\027se_RseQuerySendWishItem\030\215\004 \001("
-    "\0132\025.RseQuerySendWishItem\022/\n\023se_RseQueryS"
-    "tarInfo\030\216\004 \001(\0132\021.RseQueryStarInfo\022;\n\031se_"
-    "RseQueryStarsBookmarks\030\217\004 \001(\0132\027.RseQuery"
-    "StarsBookmarks\022U\n&se_RseQueryVisitHelpsG"
-    "iftUnitsOnBunker\030\220\004 \001(\0132$.RseQueryVisitH"
-    "elpsGiftUnitsOnBunker\0223\n\025se_RseUpdateAll"
-    "iances\030\222\004 \001(\0132\023.RseUpdateAlliances\0223\n\025se"
-    "_RseUpdateGameUnits\030\223\004 \001(\0132\023.RseUpdateGa"
-    "meUnits\022)\n\020se_RseUpdateItem\030\224\004 \001(\0132\016.Rse"
-    "UpdateItem\022)\n\020se_RseUpdateMisc\030\225\004 \001(\0132\016."
-    "RseUpdateMisc\0221\n\024se_RseUpdateMissions\030\226\004"
-    " \001(\0132\022.RseUpdateMissions\022/\n\023se_RseUpdate"
-    "Profile\030\227\004 \001(\0132\021.RseUpdateProfile\022+\n\021se_"
-    "RseUpdateShips\030\230\004 \001(\0132\017.RseUpdateShips\0225"
-    "\n\026se_RseUpdateSocialItem\030\231\004 \001(\0132\024.RseUpd"
-    "ateSocialItem\022=\n\032se_RseUpdateStarsBookma"
-    "rks\030\232\004 \001(\0132\030.RseUpdateStarsBookmarks\022/\n\023"
-    "se_RseUpdateTargets\030\233\004 \001(\0132\021.RseUpdateTa"
-    "rgets\0227\n\027se_RseBattleDamagesPack\030\234\004 \001(\0132"
-    "\025.RseBattleDamagesPack\0225\n\026se_RseItemMine"
-    "Exploded\030\235\004 \001(\0132\024.RseItemMineExploded\022%\n"
-    "\016se_RseFinished\030\236\004 \001(\0132\014.RseFinished", 7596);
+    "RceQueryGalaxyWindow.proto\032\021RceQueryPvE."
+    "proto\032\035RceQueryReceiveWishItem.proto\032#Rc"
+    "eQueryRefuseReceiveWishItem.proto\032\032RceQu"
+    "erySendWishItem.proto\032\026RceQueryStarInfo."
+    "proto\032\034RceQueryStarsBookmarks.proto\032)Rce"
+    "QueryVisitHelpsGiftUnitsOnBunker.proto\032\030"
+    "RceUpdateAlliances.proto\032\030RceUpdateGameU"
+    "nits.proto\032\023RceUpdateItem.proto\032\023RceUpda"
+    "teMisc.proto\032\027RceUpdateMissions.proto\032\026R"
+    "ceUpdateProfile.proto\032\024RceUpdateShips.pr"
+    "oto\032\031RceUpdateSocialItem.proto\032\035RceUpdat"
+    "eStarsBookmarks.proto\032\026RceUpdateTargets."
+    "proto\032\030RceUpdateVisitHelp.proto\032\022RseAuth"
+    "State.proto\032\032RseBattleDamagesPack.proto\032"
+    "\033RseCustomizedActivity.proto\032\016RseError.p"
+    "roto\032\021RseFinished.proto\032\022RseHeartbeat.pr"
+    "oto\032\031RseItemMineExploded.proto\032\016RseLogin"
+    ".proto\032\031RseObtainAskForHelp.proto\032\033RseOb"
+    "tainAttackerList.proto\032\033RseObtainBattleR"
+    "eplay.proto\032\031RseObtainCustomizer.proto\032\032"
+    "RseObtainHangarsHelp.proto\032\033RseObtainMes"
+    "sagesList.proto\032\034RseObtainNeighborsList."
+    "proto\032\026RseObtainNpcList.proto\032\033RseObtain"
+    "PayUrlParame.proto\032\034RseObtainRandomTarge"
+    "ts.proto\032\032RseObtainSocialItems.proto\032\035Rs"
+    "eObtainSocialUserInfo.proto\032\027RseObtainUn"
+    "iverse.proto\032\031RseObtainVisitHelps.proto\032"
+    "+RseQueryCheckAndLockAccountIfPossible.p"
+    "roto\032\032RseQueryGalaxyWindow.proto\032\021RseQue"
+    "ryPvE.proto\032\035RseQueryReceiveWishItem.pro"
+    "to\032#RseQueryRefuseReceiveWishItem.proto\032"
+    "\032RseQuerySendWishItem.proto\032\026RseQuerySta"
+    "rInfo.proto\032\034RseQueryStarsBookmarks.prot"
+    "o\032)RseQueryVisitHelpsGiftUnitsOnBunker.p"
+    "roto\032\030RseUpdateAlliances.proto\032\030RseUpdat"
+    "eGameUnits.proto\032\023RseUpdateItem.proto\032\023R"
+    "seUpdateMisc.proto\032\027RseUpdateMissions.pr"
+    "oto\032\026RseUpdateProfile.proto\032\024RseUpdateSh"
+    "ips.proto\032\031RseUpdateSocialItem.proto\032\035Rs"
+    "eUpdateStarsBookmarks.proto\032\026RseUpdateTa"
+    "rgets.proto\032\017event_sub.proto\"\346*\n\005Event\022\013"
+    "\n\003cmd\030\001 \002(\005\022\r\n\005state\030\002 \002(\005\022\014\n\004time\030\003 \002(\003"
+    "\022\013\n\003uid\030\004 \001(\003\022\024\n\014fromworld_fd\030\005 \001(\005\022-\n\021w"
+    "orkingStatus_req\030\006 \001(\0132\022.WorkingStatus_R"
+    "eq\022%\n\ruserLogin_req\030\007 \001(\0132\016.UserLogin_Re"
+    "q\022%\n\ruserLogin_rsp\030\010 \001(\0132\016.UserLogin_Rsp"
+    "\022#\n\014userAuth_req\030\t \001(\0132\r.UserAuth_Req\022#\n"
+    "\014userAuth_rsp\030\n \001(\0132\r.UserAuth_Rsp\022/\n\022se"
+    "ndRemoteUser_req\030\013 \001(\0132\023.SendRemoteUser_"
+    "Req\022#\n\014wg_UserLeave\030\014 \001(\0132\r.WG_UserLeave"
+    "\022&\n\nfriendinfo\030\r \001(\0132\022.GWG_FriendRequest"
+    "\022!\n\013forwardinfo\030\016 \001(\0132\014.ForwardInfo\022\021\n\ts"
+    "tarSrvID\030\017 \001(\005\022\025\n\rtransferSrvID\030\022 \001(\005\022#\n"
+    "\014webGetRegion\030\023 \001(\0132\r.WebGetRegion\022\021\n\tpl"
+    "atSrvID\030\024 \001(\005\022\020\n\010userPlat\030\025 \001(\t\022\022\n\nworld"
+    "SrvID\030\026 \001(\005\022\022\n\nfightSrvID\030\027 \001(\005\022%\n\013count"
+    "ryNeed\030\030 \001(\0132\020.GCG_CountryNeed\022#\n\nregion"
+    "Need\030\031 \001(\0132\017.GRG_RegionNeed\022\037\n\010rankNeed\030"
+    "\032 \001(\0132\r.GRG_RankNeed\022\037\n\010statNeed\030\033 \001(\0132\r"
+    ".GSG_StatNeed\022 \n\nnewStarReq\030\034 \001(\0132\014.NewS"
+    "tar_Req\022 \n\nnewStarRsp\030\035 \001(\0132\014.NewStar_Rs"
+    "p\022#\n\nbattleInfo\030\036 \001(\0132\017.GWG_BattleInfo\022\037"
+    "\n\nhttpaskmsg\030r \001(\0132\013.HttpAskMsg\022%\n\rhttpa"
+    "nswermsg\030s \001(\0132\016.HttpAnswerMsg\0227\n\027ce_Rce"
+    "BattleDamagesPack\030\310\001 \001(\0132\025.RceBattleDama"
+    "gesPack\0229\n\030ce_RceCustomizedActivity\030\311\001 \001"
+    "(\0132\026.RceCustomizedActivity\022%\n\016ce_RceFini"
+    "shed\030\312\001 \001(\0132\014.RceFinished\022\'\n\017ce_RceHeart"
+    "beat\030\313\001 \001(\0132\r.RceHeartbeat\0225\n\026ce_RceItem"
+    "MineExploded\030\314\001 \001(\0132\024.RceItemMineExplode"
+    "d\022\037\n\013ce_RceLogin\030\315\001 \001(\0132\t.RceLogin\0221\n\024ce"
+    "_RceNpcAttackStart\030\316\001 \001(\0132\022.RceNpcAttack"
+    "Start\0225\n\026ce_RceObtainAskForHelp\030\317\001 \001(\0132\024"
+    ".RceObtainAskForHelp\0229\n\030ce_RceObtainAtta"
+    "ckerList\030\320\001 \001(\0132\026.RceObtainAttackerList\022"
+    "9\n\030ce_RceObtainBattleReplay\030\321\001 \001(\0132\026.Rce"
+    "ObtainBattleReplay\0225\n\026ce_RceObtainCustom"
+    "izer\030\322\001 \001(\0132\024.RceObtainCustomizer\0227\n\027ce_"
+    "RceObtainHangarsHelp\030\323\001 \001(\0132\025.RceObtainH"
+    "angarsHelp\0229\n\030ce_RceObtainMessagesList\030\324"
+    "\001 \001(\0132\026.RceObtainMessagesList\022;\n\031ce_RceO"
+    "btainNeighborsList\030\325\001 \001(\0132\027.RceObtainNei"
+    "ghborsList\022/\n\023ce_RceObtainNpcList\030\326\001 \001(\013"
+    "2\021.RceObtainNpcList\0229\n\030ce_RceObtainPayUr"
+    "lParame\030\327\001 \001(\0132\026.RceObtainPayUrlParame\022;"
+    "\n\031ce_RceObtainRandomTargets\030\330\001 \001(\0132\027.Rce"
+    "ObtainRandomTargets\0227\n\027ce_RceObtainSocia"
+    "lItems\030\331\001 \001(\0132\025.RceObtainSocialItems\022=\n\032"
+    "ce_RceObtainSocialUserInfo\030\332\001 \001(\0132\030.RceO"
+    "btainSocialUserInfo\0221\n\024ce_RceObtainUnive"
+    "rse\030\333\001 \001(\0132\022.RceObtainUniverse\0225\n\026ce_Rce"
+    "ObtainVisitHelps\030\334\001 \001(\0132\024.RceObtainVisit"
+    "Helps\022-\n\022ce_RceOnlineReward\030\335\001 \001(\0132\020.Rce"
+    "OnlineReward\022Y\n(ce_RceQueryCheckAndLockA"
+    "ccountIfPossible\030\336\001 \001(\0132&.RceQueryCheckA"
+    "ndLockAccountIfPossible\0227\n\027ce_RceQueryGa"
+    "laxyWindow\030\337\001 \001(\0132\025.RceQueryGalaxyWindow"
+    "\022=\n\032ce_RceQueryReceiveWishItem\030\340\001 \001(\0132\030."
+    "RceQueryReceiveWishItem\022I\n ce_RceQueryRe"
+    "fuseReceiveWishItem\030\341\001 \001(\0132\036.RceQueryRef"
+    "useReceiveWishItem\0227\n\027ce_RceQuerySendWis"
+    "hItem\030\342\001 \001(\0132\025.RceQuerySendWishItem\022/\n\023c"
+    "e_RceQueryStarInfo\030\343\001 \001(\0132\021.RceQueryStar"
+    "Info\022;\n\031ce_RceQueryStarsBookmarks\030\344\001 \001(\013"
+    "2\027.RceQueryStarsBookmarks\022U\n&ce_RceQuery"
+    "VisitHelpsGiftUnitsOnBunker\030\345\001 \001(\0132$.Rce"
+    "QueryVisitHelpsGiftUnitsOnBunker\0223\n\025ce_R"
+    "ceUpdateAlliances\030\346\001 \001(\0132\023.RceUpdateAlli"
+    "ances\0223\n\025ce_RceUpdateGameUnits\030\347\001 \001(\0132\023."
+    "RceUpdateGameUnits\022)\n\020ce_RceUpdateItem\030\350"
+    "\001 \001(\0132\016.RceUpdateItem\022)\n\020ce_RceUpdateMis"
+    "c\030\351\001 \001(\0132\016.RceUpdateMisc\0221\n\024ce_RceUpdate"
+    "Missions\030\352\001 \001(\0132\022.RceUpdateMissions\022/\n\023c"
+    "e_RceUpdateProfile\030\353\001 \001(\0132\021.RceUpdatePro"
+    "file\022+\n\021ce_RceUpdateShips\030\354\001 \001(\0132\017.RceUp"
+    "dateShips\0225\n\026ce_RceUpdateSocialItem\030\355\001 \001"
+    "(\0132\024.RceUpdateSocialItem\022=\n\032ce_RceUpdate"
+    "StarsBookmarks\030\356\001 \001(\0132\030.RceUpdateStarsBo"
+    "okmarks\022/\n\023ce_RceUpdateTargets\030\357\001 \001(\0132\021."
+    "RceUpdateTargets\0223\n\025ce_RceUpdateVisitHel"
+    "p\030\360\001 \001(\0132\023.RceUpdateVisitHelp\022%\n\016ce_RceQ"
+    "ueryPvE\030\361\001 \001(\0132\014.RceQueryPvE\022\'\n\017se_RseAu"
+    "thState\030\364\003 \001(\0132\r.RseAuthState\0229\n\030se_RseC"
+    "ustomizedActivity\030\365\003 \001(\0132\026.RseCustomized"
+    "Activity\022\037\n\013se_RseError\030\367\003 \001(\0132\t.RseErro"
+    "r\022\'\n\017se_RseHeartbeat\030\370\003 \001(\0132\r.RseHeartbe"
+    "at\022\037\n\013se_RseLogin\030\372\003 \001(\0132\t.RseLogin\0225\n\026s"
+    "e_RseObtainAskForHelp\030\373\003 \001(\0132\024.RseObtain"
+    "AskForHelp\0229\n\030se_RseObtainAttackerList\030\374"
+    "\003 \001(\0132\026.RseObtainAttackerList\0229\n\030se_RseO"
+    "btainBattleReplay\030\375\003 \001(\0132\026.RseObtainBatt"
+    "leReplay\0225\n\026se_RseObtainCustomizer\030\376\003 \001("
+    "\0132\024.RseObtainCustomizer\0227\n\027se_RseObtainH"
+    "angarsHelp\030\377\003 \001(\0132\025.RseObtainHangarsHelp"
+    "\0229\n\030se_RseObtainMessagesList\030\200\004 \001(\0132\026.Rs"
+    "eObtainMessagesList\022;\n\031se_RseObtainNeigh"
+    "borsList\030\201\004 \001(\0132\027.RseObtainNeighborsList"
+    "\022/\n\023se_RseObtainNpcList\030\202\004 \001(\0132\021.RseObta"
+    "inNpcList\0229\n\030se_RseObtainPayUrlParame\030\203\004"
+    " \001(\0132\026.RseObtainPayUrlParame\022;\n\031se_RseOb"
+    "tainRandomTargets\030\204\004 \001(\0132\027.RseObtainRand"
+    "omTargets\0227\n\027se_RseObtainSocialItems\030\205\004 "
+    "\001(\0132\025.RseObtainSocialItems\022=\n\032se_RseObta"
+    "inSocialUserInfo\030\206\004 \001(\0132\030.RseObtainSocia"
+    "lUserInfo\0221\n\024se_RseObtainUniverse\030\207\004 \001(\013"
+    "2\022.RseObtainUniverse\0225\n\026se_RseObtainVisi"
+    "tHelps\030\210\004 \001(\0132\024.RseObtainVisitHelps\022Y\n(s"
+    "e_RseQueryCheckAndLockAccountIfPossible\030"
+    "\211\004 \001(\0132&.RseQueryCheckAndLockAccountIfPo"
+    "ssible\0227\n\027se_RseQueryGalaxyWindow\030\212\004 \001(\013"
+    "2\025.RseQueryGalaxyWindow\022=\n\032se_RseQueryRe"
+    "ceiveWishItem\030\213\004 \001(\0132\030.RseQueryReceiveWi"
+    "shItem\022I\n se_RseQueryRefuseReceiveWishIt"
+    "em\030\214\004 \001(\0132\036.RseQueryRefuseReceiveWishIte"
+    "m\0227\n\027se_RseQuerySendWishItem\030\215\004 \001(\0132\025.Rs"
+    "eQuerySendWishItem\022/\n\023se_RseQueryStarInf"
+    "o\030\216\004 \001(\0132\021.RseQueryStarInfo\022;\n\031se_RseQue"
+    "ryStarsBookmarks\030\217\004 \001(\0132\027.RseQueryStarsB"
+    "ookmarks\022U\n&se_RseQueryVisitHelpsGiftUni"
+    "tsOnBunker\030\220\004 \001(\0132$.RseQueryVisitHelpsGi"
+    "ftUnitsOnBunker\0223\n\025se_RseUpdateAlliances"
+    "\030\222\004 \001(\0132\023.RseUpdateAlliances\0223\n\025se_RseUp"
+    "dateGameUnits\030\223\004 \001(\0132\023.RseUpdateGameUnit"
+    "s\022)\n\020se_RseUpdateItem\030\224\004 \001(\0132\016.RseUpdate"
+    "Item\022)\n\020se_RseUpdateMisc\030\225\004 \001(\0132\016.RseUpd"
+    "ateMisc\0221\n\024se_RseUpdateMissions\030\226\004 \001(\0132\022"
+    ".RseUpdateMissions\022/\n\023se_RseUpdateProfil"
+    "e\030\227\004 \001(\0132\021.RseUpdateProfile\022+\n\021se_RseUpd"
+    "ateShips\030\230\004 \001(\0132\017.RseUpdateShips\0225\n\026se_R"
+    "seUpdateSocialItem\030\231\004 \001(\0132\024.RseUpdateSoc"
+    "ialItem\022=\n\032se_RseUpdateStarsBookmarks\030\232\004"
+    " \001(\0132\030.RseUpdateStarsBookmarks\022/\n\023se_Rse"
+    "UpdateTargets\030\233\004 \001(\0132\021.RseUpdateTargets\022"
+    "7\n\027se_RseBattleDamagesPack\030\234\004 \001(\0132\025.RseB"
+    "attleDamagesPack\0225\n\026se_RseItemMineExplod"
+    "ed\030\235\004 \001(\0132\024.RseItemMineExploded\022%\n\016se_Rs"
+    "eFinished\030\236\004 \001(\0132\014.RseFinished\022%\n\016se_Rse"
+    "QueryPvE\030\237\004 \001(\0132\014.RseQueryPvE", 7749);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "event.proto", &protobuf_RegisterTypes);
   Event::default_instance_ = new Event();
@@ -496,6 +505,7 @@ const int Event::kRankNeedFieldNumber;
 const int Event::kStatNeedFieldNumber;
 const int Event::kNewStarReqFieldNumber;
 const int Event::kNewStarRspFieldNumber;
+const int Event::kBattleInfoFieldNumber;
 const int Event::kHttpaskmsgFieldNumber;
 const int Event::kHttpanswermsgFieldNumber;
 const int Event::kCeRceBattleDamagesPackFieldNumber;
@@ -539,6 +549,7 @@ const int Event::kCeRceUpdateSocialItemFieldNumber;
 const int Event::kCeRceUpdateStarsBookmarksFieldNumber;
 const int Event::kCeRceUpdateTargetsFieldNumber;
 const int Event::kCeRceUpdateVisitHelpFieldNumber;
+const int Event::kCeRceQueryPvEFieldNumber;
 const int Event::kSeRseAuthStateFieldNumber;
 const int Event::kSeRseCustomizedActivityFieldNumber;
 const int Event::kSeRseErrorFieldNumber;
@@ -579,6 +590,7 @@ const int Event::kSeRseUpdateTargetsFieldNumber;
 const int Event::kSeRseBattleDamagesPackFieldNumber;
 const int Event::kSeRseItemMineExplodedFieldNumber;
 const int Event::kSeRseFinishedFieldNumber;
+const int Event::kSeRseQueryPvEFieldNumber;
 #endif  // !_MSC_VER
 
 Event::Event() {
@@ -602,6 +614,7 @@ void Event::InitAsDefaultInstance() {
   statneed_ = const_cast< ::GSG_StatNeed*>(&::GSG_StatNeed::default_instance());
   newstarreq_ = const_cast< ::NewStar_Req*>(&::NewStar_Req::default_instance());
   newstarrsp_ = const_cast< ::NewStar_Rsp*>(&::NewStar_Rsp::default_instance());
+  battleinfo_ = const_cast< ::GWG_BattleInfo*>(&::GWG_BattleInfo::default_instance());
   httpaskmsg_ = const_cast< ::HttpAskMsg*>(&::HttpAskMsg::default_instance());
   httpanswermsg_ = const_cast< ::HttpAnswerMsg*>(&::HttpAnswerMsg::default_instance());
   ce_rcebattledamagespack_ = const_cast< ::RceBattleDamagesPack*>(&::RceBattleDamagesPack::default_instance());
@@ -645,6 +658,7 @@ void Event::InitAsDefaultInstance() {
   ce_rceupdatestarsbookmarks_ = const_cast< ::RceUpdateStarsBookmarks*>(&::RceUpdateStarsBookmarks::default_instance());
   ce_rceupdatetargets_ = const_cast< ::RceUpdateTargets*>(&::RceUpdateTargets::default_instance());
   ce_rceupdatevisithelp_ = const_cast< ::RceUpdateVisitHelp*>(&::RceUpdateVisitHelp::default_instance());
+  ce_rcequerypve_ = const_cast< ::RceQueryPvE*>(&::RceQueryPvE::default_instance());
   se_rseauthstate_ = const_cast< ::RseAuthState*>(&::RseAuthState::default_instance());
   se_rsecustomizedactivity_ = const_cast< ::RseCustomizedActivity*>(&::RseCustomizedActivity::default_instance());
   se_rseerror_ = const_cast< ::RseError*>(&::RseError::default_instance());
@@ -685,6 +699,7 @@ void Event::InitAsDefaultInstance() {
   se_rsebattledamagespack_ = const_cast< ::RseBattleDamagesPack*>(&::RseBattleDamagesPack::default_instance());
   se_rseitemmineexploded_ = const_cast< ::RseItemMineExploded*>(&::RseItemMineExploded::default_instance());
   se_rsefinished_ = const_cast< ::RseFinished*>(&::RseFinished::default_instance());
+  se_rsequerypve_ = const_cast< ::RseQueryPvE*>(&::RseQueryPvE::default_instance());
 }
 
 Event::Event(const Event& from) {
@@ -721,6 +736,7 @@ void Event::SharedCtor() {
   statneed_ = NULL;
   newstarreq_ = NULL;
   newstarrsp_ = NULL;
+  battleinfo_ = NULL;
   httpaskmsg_ = NULL;
   httpanswermsg_ = NULL;
   ce_rcebattledamagespack_ = NULL;
@@ -764,6 +780,7 @@ void Event::SharedCtor() {
   ce_rceupdatestarsbookmarks_ = NULL;
   ce_rceupdatetargets_ = NULL;
   ce_rceupdatevisithelp_ = NULL;
+  ce_rcequerypve_ = NULL;
   se_rseauthstate_ = NULL;
   se_rsecustomizedactivity_ = NULL;
   se_rseerror_ = NULL;
@@ -804,6 +821,7 @@ void Event::SharedCtor() {
   se_rsebattledamagespack_ = NULL;
   se_rseitemmineexploded_ = NULL;
   se_rsefinished_ = NULL;
+  se_rsequerypve_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -832,6 +850,7 @@ void Event::SharedDtor() {
     delete statneed_;
     delete newstarreq_;
     delete newstarrsp_;
+    delete battleinfo_;
     delete httpaskmsg_;
     delete httpanswermsg_;
     delete ce_rcebattledamagespack_;
@@ -875,6 +894,7 @@ void Event::SharedDtor() {
     delete ce_rceupdatestarsbookmarks_;
     delete ce_rceupdatetargets_;
     delete ce_rceupdatevisithelp_;
+    delete ce_rcequerypve_;
     delete se_rseauthstate_;
     delete se_rsecustomizedactivity_;
     delete se_rseerror_;
@@ -915,6 +935,7 @@ void Event::SharedDtor() {
     delete se_rsebattledamagespack_;
     delete se_rseitemmineexploded_;
     delete se_rsefinished_;
+    delete se_rsequerypve_;
   }
 }
 
@@ -1005,273 +1026,284 @@ void Event::Clear() {
       if (newstarrsp_ != NULL) newstarrsp_->::NewStar_Rsp::Clear();
     }
     if (_has_bit(27)) {
-      if (httpaskmsg_ != NULL) httpaskmsg_->::HttpAskMsg::Clear();
+      if (battleinfo_ != NULL) battleinfo_->::GWG_BattleInfo::Clear();
     }
     if (_has_bit(28)) {
-      if (httpanswermsg_ != NULL) httpanswermsg_->::HttpAnswerMsg::Clear();
+      if (httpaskmsg_ != NULL) httpaskmsg_->::HttpAskMsg::Clear();
     }
     if (_has_bit(29)) {
-      if (ce_rcebattledamagespack_ != NULL) ce_rcebattledamagespack_->::RceBattleDamagesPack::Clear();
+      if (httpanswermsg_ != NULL) httpanswermsg_->::HttpAnswerMsg::Clear();
     }
     if (_has_bit(30)) {
-      if (ce_rcecustomizedactivity_ != NULL) ce_rcecustomizedactivity_->::RceCustomizedActivity::Clear();
+      if (ce_rcebattledamagespack_ != NULL) ce_rcebattledamagespack_->::RceBattleDamagesPack::Clear();
     }
     if (_has_bit(31)) {
-      if (ce_rcefinished_ != NULL) ce_rcefinished_->::RceFinished::Clear();
+      if (ce_rcecustomizedactivity_ != NULL) ce_rcecustomizedactivity_->::RceCustomizedActivity::Clear();
     }
   }
   if (_has_bits_[32 / 32] & (0xffu << (32 % 32))) {
     if (_has_bit(32)) {
-      if (ce_rceheartbeat_ != NULL) ce_rceheartbeat_->::RceHeartbeat::Clear();
+      if (ce_rcefinished_ != NULL) ce_rcefinished_->::RceFinished::Clear();
     }
     if (_has_bit(33)) {
-      if (ce_rceitemmineexploded_ != NULL) ce_rceitemmineexploded_->::RceItemMineExploded::Clear();
+      if (ce_rceheartbeat_ != NULL) ce_rceheartbeat_->::RceHeartbeat::Clear();
     }
     if (_has_bit(34)) {
-      if (ce_rcelogin_ != NULL) ce_rcelogin_->::RceLogin::Clear();
+      if (ce_rceitemmineexploded_ != NULL) ce_rceitemmineexploded_->::RceItemMineExploded::Clear();
     }
     if (_has_bit(35)) {
-      if (ce_rcenpcattackstart_ != NULL) ce_rcenpcattackstart_->::RceNpcAttackStart::Clear();
+      if (ce_rcelogin_ != NULL) ce_rcelogin_->::RceLogin::Clear();
     }
     if (_has_bit(36)) {
-      if (ce_rceobtainaskforhelp_ != NULL) ce_rceobtainaskforhelp_->::RceObtainAskForHelp::Clear();
+      if (ce_rcenpcattackstart_ != NULL) ce_rcenpcattackstart_->::RceNpcAttackStart::Clear();
     }
     if (_has_bit(37)) {
-      if (ce_rceobtainattackerlist_ != NULL) ce_rceobtainattackerlist_->::RceObtainAttackerList::Clear();
+      if (ce_rceobtainaskforhelp_ != NULL) ce_rceobtainaskforhelp_->::RceObtainAskForHelp::Clear();
     }
     if (_has_bit(38)) {
-      if (ce_rceobtainbattlereplay_ != NULL) ce_rceobtainbattlereplay_->::RceObtainBattleReplay::Clear();
+      if (ce_rceobtainattackerlist_ != NULL) ce_rceobtainattackerlist_->::RceObtainAttackerList::Clear();
     }
     if (_has_bit(39)) {
-      if (ce_rceobtaincustomizer_ != NULL) ce_rceobtaincustomizer_->::RceObtainCustomizer::Clear();
+      if (ce_rceobtainbattlereplay_ != NULL) ce_rceobtainbattlereplay_->::RceObtainBattleReplay::Clear();
     }
   }
   if (_has_bits_[40 / 32] & (0xffu << (40 % 32))) {
     if (_has_bit(40)) {
-      if (ce_rceobtainhangarshelp_ != NULL) ce_rceobtainhangarshelp_->::RceObtainHangarsHelp::Clear();
+      if (ce_rceobtaincustomizer_ != NULL) ce_rceobtaincustomizer_->::RceObtainCustomizer::Clear();
     }
     if (_has_bit(41)) {
-      if (ce_rceobtainmessageslist_ != NULL) ce_rceobtainmessageslist_->::RceObtainMessagesList::Clear();
+      if (ce_rceobtainhangarshelp_ != NULL) ce_rceobtainhangarshelp_->::RceObtainHangarsHelp::Clear();
     }
     if (_has_bit(42)) {
-      if (ce_rceobtainneighborslist_ != NULL) ce_rceobtainneighborslist_->::RceObtainNeighborsList::Clear();
+      if (ce_rceobtainmessageslist_ != NULL) ce_rceobtainmessageslist_->::RceObtainMessagesList::Clear();
     }
     if (_has_bit(43)) {
-      if (ce_rceobtainnpclist_ != NULL) ce_rceobtainnpclist_->::RceObtainNpcList::Clear();
+      if (ce_rceobtainneighborslist_ != NULL) ce_rceobtainneighborslist_->::RceObtainNeighborsList::Clear();
     }
     if (_has_bit(44)) {
-      if (ce_rceobtainpayurlparame_ != NULL) ce_rceobtainpayurlparame_->::RceObtainPayUrlParame::Clear();
+      if (ce_rceobtainnpclist_ != NULL) ce_rceobtainnpclist_->::RceObtainNpcList::Clear();
     }
     if (_has_bit(45)) {
-      if (ce_rceobtainrandomtargets_ != NULL) ce_rceobtainrandomtargets_->::RceObtainRandomTargets::Clear();
+      if (ce_rceobtainpayurlparame_ != NULL) ce_rceobtainpayurlparame_->::RceObtainPayUrlParame::Clear();
     }
     if (_has_bit(46)) {
-      if (ce_rceobtainsocialitems_ != NULL) ce_rceobtainsocialitems_->::RceObtainSocialItems::Clear();
+      if (ce_rceobtainrandomtargets_ != NULL) ce_rceobtainrandomtargets_->::RceObtainRandomTargets::Clear();
     }
     if (_has_bit(47)) {
-      if (ce_rceobtainsocialuserinfo_ != NULL) ce_rceobtainsocialuserinfo_->::RceObtainSocialUserInfo::Clear();
+      if (ce_rceobtainsocialitems_ != NULL) ce_rceobtainsocialitems_->::RceObtainSocialItems::Clear();
     }
   }
   if (_has_bits_[48 / 32] & (0xffu << (48 % 32))) {
     if (_has_bit(48)) {
-      if (ce_rceobtainuniverse_ != NULL) ce_rceobtainuniverse_->::RceObtainUniverse::Clear();
+      if (ce_rceobtainsocialuserinfo_ != NULL) ce_rceobtainsocialuserinfo_->::RceObtainSocialUserInfo::Clear();
     }
     if (_has_bit(49)) {
-      if (ce_rceobtainvisithelps_ != NULL) ce_rceobtainvisithelps_->::RceObtainVisitHelps::Clear();
+      if (ce_rceobtainuniverse_ != NULL) ce_rceobtainuniverse_->::RceObtainUniverse::Clear();
     }
     if (_has_bit(50)) {
-      if (ce_rceonlinereward_ != NULL) ce_rceonlinereward_->::RceOnlineReward::Clear();
+      if (ce_rceobtainvisithelps_ != NULL) ce_rceobtainvisithelps_->::RceObtainVisitHelps::Clear();
     }
     if (_has_bit(51)) {
-      if (ce_rcequerycheckandlockaccountifpossible_ != NULL) ce_rcequerycheckandlockaccountifpossible_->::RceQueryCheckAndLockAccountIfPossible::Clear();
+      if (ce_rceonlinereward_ != NULL) ce_rceonlinereward_->::RceOnlineReward::Clear();
     }
     if (_has_bit(52)) {
-      if (ce_rcequerygalaxywindow_ != NULL) ce_rcequerygalaxywindow_->::RceQueryGalaxyWindow::Clear();
+      if (ce_rcequerycheckandlockaccountifpossible_ != NULL) ce_rcequerycheckandlockaccountifpossible_->::RceQueryCheckAndLockAccountIfPossible::Clear();
     }
     if (_has_bit(53)) {
-      if (ce_rcequeryreceivewishitem_ != NULL) ce_rcequeryreceivewishitem_->::RceQueryReceiveWishItem::Clear();
+      if (ce_rcequerygalaxywindow_ != NULL) ce_rcequerygalaxywindow_->::RceQueryGalaxyWindow::Clear();
     }
     if (_has_bit(54)) {
-      if (ce_rcequeryrefusereceivewishitem_ != NULL) ce_rcequeryrefusereceivewishitem_->::RceQueryRefuseReceiveWishItem::Clear();
+      if (ce_rcequeryreceivewishitem_ != NULL) ce_rcequeryreceivewishitem_->::RceQueryReceiveWishItem::Clear();
     }
     if (_has_bit(55)) {
-      if (ce_rcequerysendwishitem_ != NULL) ce_rcequerysendwishitem_->::RceQuerySendWishItem::Clear();
+      if (ce_rcequeryrefusereceivewishitem_ != NULL) ce_rcequeryrefusereceivewishitem_->::RceQueryRefuseReceiveWishItem::Clear();
     }
   }
   if (_has_bits_[56 / 32] & (0xffu << (56 % 32))) {
     if (_has_bit(56)) {
-      if (ce_rcequerystarinfo_ != NULL) ce_rcequerystarinfo_->::RceQueryStarInfo::Clear();
+      if (ce_rcequerysendwishitem_ != NULL) ce_rcequerysendwishitem_->::RceQuerySendWishItem::Clear();
     }
     if (_has_bit(57)) {
-      if (ce_rcequerystarsbookmarks_ != NULL) ce_rcequerystarsbookmarks_->::RceQueryStarsBookmarks::Clear();
+      if (ce_rcequerystarinfo_ != NULL) ce_rcequerystarinfo_->::RceQueryStarInfo::Clear();
     }
     if (_has_bit(58)) {
-      if (ce_rcequeryvisithelpsgiftunitsonbunker_ != NULL) ce_rcequeryvisithelpsgiftunitsonbunker_->::RceQueryVisitHelpsGiftUnitsOnBunker::Clear();
+      if (ce_rcequerystarsbookmarks_ != NULL) ce_rcequerystarsbookmarks_->::RceQueryStarsBookmarks::Clear();
     }
     if (_has_bit(59)) {
-      if (ce_rceupdatealliances_ != NULL) ce_rceupdatealliances_->::RceUpdateAlliances::Clear();
+      if (ce_rcequeryvisithelpsgiftunitsonbunker_ != NULL) ce_rcequeryvisithelpsgiftunitsonbunker_->::RceQueryVisitHelpsGiftUnitsOnBunker::Clear();
     }
     if (_has_bit(60)) {
-      if (ce_rceupdategameunits_ != NULL) ce_rceupdategameunits_->::RceUpdateGameUnits::Clear();
+      if (ce_rceupdatealliances_ != NULL) ce_rceupdatealliances_->::RceUpdateAlliances::Clear();
     }
     if (_has_bit(61)) {
-      if (ce_rceupdateitem_ != NULL) ce_rceupdateitem_->::RceUpdateItem::Clear();
+      if (ce_rceupdategameunits_ != NULL) ce_rceupdategameunits_->::RceUpdateGameUnits::Clear();
     }
     if (_has_bit(62)) {
-      if (ce_rceupdatemisc_ != NULL) ce_rceupdatemisc_->::RceUpdateMisc::Clear();
+      if (ce_rceupdateitem_ != NULL) ce_rceupdateitem_->::RceUpdateItem::Clear();
     }
     if (_has_bit(63)) {
-      if (ce_rceupdatemissions_ != NULL) ce_rceupdatemissions_->::RceUpdateMissions::Clear();
+      if (ce_rceupdatemisc_ != NULL) ce_rceupdatemisc_->::RceUpdateMisc::Clear();
     }
   }
   if (_has_bits_[64 / 32] & (0xffu << (64 % 32))) {
     if (_has_bit(64)) {
-      if (ce_rceupdateprofile_ != NULL) ce_rceupdateprofile_->::RceUpdateProfile::Clear();
+      if (ce_rceupdatemissions_ != NULL) ce_rceupdatemissions_->::RceUpdateMissions::Clear();
     }
     if (_has_bit(65)) {
-      if (ce_rceupdateships_ != NULL) ce_rceupdateships_->::RceUpdateShips::Clear();
+      if (ce_rceupdateprofile_ != NULL) ce_rceupdateprofile_->::RceUpdateProfile::Clear();
     }
     if (_has_bit(66)) {
-      if (ce_rceupdatesocialitem_ != NULL) ce_rceupdatesocialitem_->::RceUpdateSocialItem::Clear();
+      if (ce_rceupdateships_ != NULL) ce_rceupdateships_->::RceUpdateShips::Clear();
     }
     if (_has_bit(67)) {
-      if (ce_rceupdatestarsbookmarks_ != NULL) ce_rceupdatestarsbookmarks_->::RceUpdateStarsBookmarks::Clear();
+      if (ce_rceupdatesocialitem_ != NULL) ce_rceupdatesocialitem_->::RceUpdateSocialItem::Clear();
     }
     if (_has_bit(68)) {
-      if (ce_rceupdatetargets_ != NULL) ce_rceupdatetargets_->::RceUpdateTargets::Clear();
+      if (ce_rceupdatestarsbookmarks_ != NULL) ce_rceupdatestarsbookmarks_->::RceUpdateStarsBookmarks::Clear();
     }
     if (_has_bit(69)) {
-      if (ce_rceupdatevisithelp_ != NULL) ce_rceupdatevisithelp_->::RceUpdateVisitHelp::Clear();
+      if (ce_rceupdatetargets_ != NULL) ce_rceupdatetargets_->::RceUpdateTargets::Clear();
     }
     if (_has_bit(70)) {
-      if (se_rseauthstate_ != NULL) se_rseauthstate_->::RseAuthState::Clear();
+      if (ce_rceupdatevisithelp_ != NULL) ce_rceupdatevisithelp_->::RceUpdateVisitHelp::Clear();
     }
     if (_has_bit(71)) {
-      if (se_rsecustomizedactivity_ != NULL) se_rsecustomizedactivity_->::RseCustomizedActivity::Clear();
+      if (ce_rcequerypve_ != NULL) ce_rcequerypve_->::RceQueryPvE::Clear();
     }
   }
   if (_has_bits_[72 / 32] & (0xffu << (72 % 32))) {
     if (_has_bit(72)) {
-      if (se_rseerror_ != NULL) se_rseerror_->::RseError::Clear();
+      if (se_rseauthstate_ != NULL) se_rseauthstate_->::RseAuthState::Clear();
     }
     if (_has_bit(73)) {
-      if (se_rseheartbeat_ != NULL) se_rseheartbeat_->::RseHeartbeat::Clear();
+      if (se_rsecustomizedactivity_ != NULL) se_rsecustomizedactivity_->::RseCustomizedActivity::Clear();
     }
     if (_has_bit(74)) {
-      if (se_rselogin_ != NULL) se_rselogin_->::RseLogin::Clear();
+      if (se_rseerror_ != NULL) se_rseerror_->::RseError::Clear();
     }
     if (_has_bit(75)) {
-      if (se_rseobtainaskforhelp_ != NULL) se_rseobtainaskforhelp_->::RseObtainAskForHelp::Clear();
+      if (se_rseheartbeat_ != NULL) se_rseheartbeat_->::RseHeartbeat::Clear();
     }
     if (_has_bit(76)) {
-      if (se_rseobtainattackerlist_ != NULL) se_rseobtainattackerlist_->::RseObtainAttackerList::Clear();
+      if (se_rselogin_ != NULL) se_rselogin_->::RseLogin::Clear();
     }
     if (_has_bit(77)) {
-      if (se_rseobtainbattlereplay_ != NULL) se_rseobtainbattlereplay_->::RseObtainBattleReplay::Clear();
+      if (se_rseobtainaskforhelp_ != NULL) se_rseobtainaskforhelp_->::RseObtainAskForHelp::Clear();
     }
     if (_has_bit(78)) {
-      if (se_rseobtaincustomizer_ != NULL) se_rseobtaincustomizer_->::RseObtainCustomizer::Clear();
+      if (se_rseobtainattackerlist_ != NULL) se_rseobtainattackerlist_->::RseObtainAttackerList::Clear();
     }
     if (_has_bit(79)) {
-      if (se_rseobtainhangarshelp_ != NULL) se_rseobtainhangarshelp_->::RseObtainHangarsHelp::Clear();
+      if (se_rseobtainbattlereplay_ != NULL) se_rseobtainbattlereplay_->::RseObtainBattleReplay::Clear();
     }
   }
   if (_has_bits_[80 / 32] & (0xffu << (80 % 32))) {
     if (_has_bit(80)) {
-      if (se_rseobtainmessageslist_ != NULL) se_rseobtainmessageslist_->::RseObtainMessagesList::Clear();
+      if (se_rseobtaincustomizer_ != NULL) se_rseobtaincustomizer_->::RseObtainCustomizer::Clear();
     }
     if (_has_bit(81)) {
-      if (se_rseobtainneighborslist_ != NULL) se_rseobtainneighborslist_->::RseObtainNeighborsList::Clear();
+      if (se_rseobtainhangarshelp_ != NULL) se_rseobtainhangarshelp_->::RseObtainHangarsHelp::Clear();
     }
     if (_has_bit(82)) {
-      if (se_rseobtainnpclist_ != NULL) se_rseobtainnpclist_->::RseObtainNpcList::Clear();
+      if (se_rseobtainmessageslist_ != NULL) se_rseobtainmessageslist_->::RseObtainMessagesList::Clear();
     }
     if (_has_bit(83)) {
-      if (se_rseobtainpayurlparame_ != NULL) se_rseobtainpayurlparame_->::RseObtainPayUrlParame::Clear();
+      if (se_rseobtainneighborslist_ != NULL) se_rseobtainneighborslist_->::RseObtainNeighborsList::Clear();
     }
     if (_has_bit(84)) {
-      if (se_rseobtainrandomtargets_ != NULL) se_rseobtainrandomtargets_->::RseObtainRandomTargets::Clear();
+      if (se_rseobtainnpclist_ != NULL) se_rseobtainnpclist_->::RseObtainNpcList::Clear();
     }
     if (_has_bit(85)) {
-      if (se_rseobtainsocialitems_ != NULL) se_rseobtainsocialitems_->::RseObtainSocialItems::Clear();
+      if (se_rseobtainpayurlparame_ != NULL) se_rseobtainpayurlparame_->::RseObtainPayUrlParame::Clear();
     }
     if (_has_bit(86)) {
-      if (se_rseobtainsocialuserinfo_ != NULL) se_rseobtainsocialuserinfo_->::RseObtainSocialUserInfo::Clear();
+      if (se_rseobtainrandomtargets_ != NULL) se_rseobtainrandomtargets_->::RseObtainRandomTargets::Clear();
     }
     if (_has_bit(87)) {
-      if (se_rseobtainuniverse_ != NULL) se_rseobtainuniverse_->::RseObtainUniverse::Clear();
+      if (se_rseobtainsocialitems_ != NULL) se_rseobtainsocialitems_->::RseObtainSocialItems::Clear();
     }
   }
   if (_has_bits_[88 / 32] & (0xffu << (88 % 32))) {
     if (_has_bit(88)) {
-      if (se_rseobtainvisithelps_ != NULL) se_rseobtainvisithelps_->::RseObtainVisitHelps::Clear();
+      if (se_rseobtainsocialuserinfo_ != NULL) se_rseobtainsocialuserinfo_->::RseObtainSocialUserInfo::Clear();
     }
     if (_has_bit(89)) {
-      if (se_rsequerycheckandlockaccountifpossible_ != NULL) se_rsequerycheckandlockaccountifpossible_->::RseQueryCheckAndLockAccountIfPossible::Clear();
+      if (se_rseobtainuniverse_ != NULL) se_rseobtainuniverse_->::RseObtainUniverse::Clear();
     }
     if (_has_bit(90)) {
-      if (se_rsequerygalaxywindow_ != NULL) se_rsequerygalaxywindow_->::RseQueryGalaxyWindow::Clear();
+      if (se_rseobtainvisithelps_ != NULL) se_rseobtainvisithelps_->::RseObtainVisitHelps::Clear();
     }
     if (_has_bit(91)) {
-      if (se_rsequeryreceivewishitem_ != NULL) se_rsequeryreceivewishitem_->::RseQueryReceiveWishItem::Clear();
+      if (se_rsequerycheckandlockaccountifpossible_ != NULL) se_rsequerycheckandlockaccountifpossible_->::RseQueryCheckAndLockAccountIfPossible::Clear();
     }
     if (_has_bit(92)) {
-      if (se_rsequeryrefusereceivewishitem_ != NULL) se_rsequeryrefusereceivewishitem_->::RseQueryRefuseReceiveWishItem::Clear();
+      if (se_rsequerygalaxywindow_ != NULL) se_rsequerygalaxywindow_->::RseQueryGalaxyWindow::Clear();
     }
     if (_has_bit(93)) {
-      if (se_rsequerysendwishitem_ != NULL) se_rsequerysendwishitem_->::RseQuerySendWishItem::Clear();
+      if (se_rsequeryreceivewishitem_ != NULL) se_rsequeryreceivewishitem_->::RseQueryReceiveWishItem::Clear();
     }
     if (_has_bit(94)) {
-      if (se_rsequerystarinfo_ != NULL) se_rsequerystarinfo_->::RseQueryStarInfo::Clear();
+      if (se_rsequeryrefusereceivewishitem_ != NULL) se_rsequeryrefusereceivewishitem_->::RseQueryRefuseReceiveWishItem::Clear();
     }
     if (_has_bit(95)) {
-      if (se_rsequerystarsbookmarks_ != NULL) se_rsequerystarsbookmarks_->::RseQueryStarsBookmarks::Clear();
+      if (se_rsequerysendwishitem_ != NULL) se_rsequerysendwishitem_->::RseQuerySendWishItem::Clear();
     }
   }
   if (_has_bits_[96 / 32] & (0xffu << (96 % 32))) {
     if (_has_bit(96)) {
-      if (se_rsequeryvisithelpsgiftunitsonbunker_ != NULL) se_rsequeryvisithelpsgiftunitsonbunker_->::RseQueryVisitHelpsGiftUnitsOnBunker::Clear();
+      if (se_rsequerystarinfo_ != NULL) se_rsequerystarinfo_->::RseQueryStarInfo::Clear();
     }
     if (_has_bit(97)) {
-      if (se_rseupdatealliances_ != NULL) se_rseupdatealliances_->::RseUpdateAlliances::Clear();
+      if (se_rsequerystarsbookmarks_ != NULL) se_rsequerystarsbookmarks_->::RseQueryStarsBookmarks::Clear();
     }
     if (_has_bit(98)) {
-      if (se_rseupdategameunits_ != NULL) se_rseupdategameunits_->::RseUpdateGameUnits::Clear();
+      if (se_rsequeryvisithelpsgiftunitsonbunker_ != NULL) se_rsequeryvisithelpsgiftunitsonbunker_->::RseQueryVisitHelpsGiftUnitsOnBunker::Clear();
     }
     if (_has_bit(99)) {
-      if (se_rseupdateitem_ != NULL) se_rseupdateitem_->::RseUpdateItem::Clear();
+      if (se_rseupdatealliances_ != NULL) se_rseupdatealliances_->::RseUpdateAlliances::Clear();
     }
     if (_has_bit(100)) {
-      if (se_rseupdatemisc_ != NULL) se_rseupdatemisc_->::RseUpdateMisc::Clear();
+      if (se_rseupdategameunits_ != NULL) se_rseupdategameunits_->::RseUpdateGameUnits::Clear();
     }
     if (_has_bit(101)) {
-      if (se_rseupdatemissions_ != NULL) se_rseupdatemissions_->::RseUpdateMissions::Clear();
+      if (se_rseupdateitem_ != NULL) se_rseupdateitem_->::RseUpdateItem::Clear();
     }
     if (_has_bit(102)) {
-      if (se_rseupdateprofile_ != NULL) se_rseupdateprofile_->::RseUpdateProfile::Clear();
+      if (se_rseupdatemisc_ != NULL) se_rseupdatemisc_->::RseUpdateMisc::Clear();
     }
     if (_has_bit(103)) {
-      if (se_rseupdateships_ != NULL) se_rseupdateships_->::RseUpdateShips::Clear();
+      if (se_rseupdatemissions_ != NULL) se_rseupdatemissions_->::RseUpdateMissions::Clear();
     }
   }
   if (_has_bits_[104 / 32] & (0xffu << (104 % 32))) {
     if (_has_bit(104)) {
-      if (se_rseupdatesocialitem_ != NULL) se_rseupdatesocialitem_->::RseUpdateSocialItem::Clear();
+      if (se_rseupdateprofile_ != NULL) se_rseupdateprofile_->::RseUpdateProfile::Clear();
     }
     if (_has_bit(105)) {
-      if (se_rseupdatestarsbookmarks_ != NULL) se_rseupdatestarsbookmarks_->::RseUpdateStarsBookmarks::Clear();
+      if (se_rseupdateships_ != NULL) se_rseupdateships_->::RseUpdateShips::Clear();
     }
     if (_has_bit(106)) {
-      if (se_rseupdatetargets_ != NULL) se_rseupdatetargets_->::RseUpdateTargets::Clear();
+      if (se_rseupdatesocialitem_ != NULL) se_rseupdatesocialitem_->::RseUpdateSocialItem::Clear();
     }
     if (_has_bit(107)) {
-      if (se_rsebattledamagespack_ != NULL) se_rsebattledamagespack_->::RseBattleDamagesPack::Clear();
+      if (se_rseupdatestarsbookmarks_ != NULL) se_rseupdatestarsbookmarks_->::RseUpdateStarsBookmarks::Clear();
     }
     if (_has_bit(108)) {
-      if (se_rseitemmineexploded_ != NULL) se_rseitemmineexploded_->::RseItemMineExploded::Clear();
+      if (se_rseupdatetargets_ != NULL) se_rseupdatetargets_->::RseUpdateTargets::Clear();
     }
     if (_has_bit(109)) {
+      if (se_rsebattledamagespack_ != NULL) se_rsebattledamagespack_->::RseBattleDamagesPack::Clear();
+    }
+    if (_has_bit(110)) {
+      if (se_rseitemmineexploded_ != NULL) se_rseitemmineexploded_->::RseItemMineExploded::Clear();
+    }
+    if (_has_bit(111)) {
       if (se_rsefinished_ != NULL) se_rsefinished_->::RseFinished::Clear();
+    }
+  }
+  if (_has_bits_[112 / 32] & (0xffu << (112 % 32))) {
+    if (_has_bit(112)) {
+      if (se_rsequerypve_ != NULL) se_rsequerypve_->::RseQueryPvE::Clear();
     }
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1643,6 +1675,19 @@ bool Event::MergePartialFromCodedStream(
        parse_newStarRsp:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
              input, mutable_newstarrsp()));
+        if (input->ExpectTag(242)) goto parse_battleInfo;
+        break;
+      }
+      
+      // optional .GWG_BattleInfo battleInfo = 30;
+      case 30: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_battleInfo:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_battleinfo()));
         if (input->ExpectTag(914)) goto parse_httpaskmsg;
         break;
       }
@@ -2202,6 +2247,19 @@ bool Event::MergePartialFromCodedStream(
        parse_ce_RceUpdateVisitHelp:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
              input, mutable_ce_rceupdatevisithelp()));
+        if (input->ExpectTag(1930)) goto parse_ce_RceQueryPvE;
+        break;
+      }
+      
+      // optional .RceQueryPvE ce_RceQueryPvE = 241;
+      case 241: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_ce_RceQueryPvE:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_ce_rcequerypve()));
         if (input->ExpectTag(4002)) goto parse_se_RseAuthState;
         break;
       }
@@ -2722,6 +2780,19 @@ bool Event::MergePartialFromCodedStream(
        parse_se_RseFinished:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
              input, mutable_se_rsefinished()));
+        if (input->ExpectTag(4346)) goto parse_se_RseQueryPvE;
+        break;
+      }
+      
+      // optional .RseQueryPvE se_RseQueryPvE = 543;
+      case 543: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_se_RseQueryPvE:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_se_rsequerypve()));
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -2905,502 +2976,520 @@ void Event::SerializeWithCachedSizes(
       29, this->newstarrsp(), output);
   }
   
-  // optional .HttpAskMsg httpaskmsg = 114;
+  // optional .GWG_BattleInfo battleInfo = 30;
   if (_has_bit(27)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      30, this->battleinfo(), output);
+  }
+  
+  // optional .HttpAskMsg httpaskmsg = 114;
+  if (_has_bit(28)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       114, this->httpaskmsg(), output);
   }
   
   // optional .HttpAnswerMsg httpanswermsg = 115;
-  if (_has_bit(28)) {
+  if (_has_bit(29)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       115, this->httpanswermsg(), output);
   }
   
   // optional .RceBattleDamagesPack ce_RceBattleDamagesPack = 200;
-  if (_has_bit(29)) {
+  if (_has_bit(30)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       200, this->ce_rcebattledamagespack(), output);
   }
   
   // optional .RceCustomizedActivity ce_RceCustomizedActivity = 201;
-  if (_has_bit(30)) {
+  if (_has_bit(31)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       201, this->ce_rcecustomizedactivity(), output);
   }
   
   // optional .RceFinished ce_RceFinished = 202;
-  if (_has_bit(31)) {
+  if (_has_bit(32)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       202, this->ce_rcefinished(), output);
   }
   
   // optional .RceHeartbeat ce_RceHeartbeat = 203;
-  if (_has_bit(32)) {
+  if (_has_bit(33)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       203, this->ce_rceheartbeat(), output);
   }
   
   // optional .RceItemMineExploded ce_RceItemMineExploded = 204;
-  if (_has_bit(33)) {
+  if (_has_bit(34)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       204, this->ce_rceitemmineexploded(), output);
   }
   
   // optional .RceLogin ce_RceLogin = 205;
-  if (_has_bit(34)) {
+  if (_has_bit(35)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       205, this->ce_rcelogin(), output);
   }
   
   // optional .RceNpcAttackStart ce_RceNpcAttackStart = 206;
-  if (_has_bit(35)) {
+  if (_has_bit(36)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       206, this->ce_rcenpcattackstart(), output);
   }
   
   // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 207;
-  if (_has_bit(36)) {
+  if (_has_bit(37)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       207, this->ce_rceobtainaskforhelp(), output);
   }
   
   // optional .RceObtainAttackerList ce_RceObtainAttackerList = 208;
-  if (_has_bit(37)) {
+  if (_has_bit(38)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       208, this->ce_rceobtainattackerlist(), output);
   }
   
   // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 209;
-  if (_has_bit(38)) {
+  if (_has_bit(39)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       209, this->ce_rceobtainbattlereplay(), output);
   }
   
   // optional .RceObtainCustomizer ce_RceObtainCustomizer = 210;
-  if (_has_bit(39)) {
+  if (_has_bit(40)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       210, this->ce_rceobtaincustomizer(), output);
   }
   
   // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 211;
-  if (_has_bit(40)) {
+  if (_has_bit(41)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       211, this->ce_rceobtainhangarshelp(), output);
   }
   
   // optional .RceObtainMessagesList ce_RceObtainMessagesList = 212;
-  if (_has_bit(41)) {
+  if (_has_bit(42)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       212, this->ce_rceobtainmessageslist(), output);
   }
   
   // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 213;
-  if (_has_bit(42)) {
+  if (_has_bit(43)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       213, this->ce_rceobtainneighborslist(), output);
   }
   
   // optional .RceObtainNpcList ce_RceObtainNpcList = 214;
-  if (_has_bit(43)) {
+  if (_has_bit(44)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       214, this->ce_rceobtainnpclist(), output);
   }
   
   // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 215;
-  if (_has_bit(44)) {
+  if (_has_bit(45)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       215, this->ce_rceobtainpayurlparame(), output);
   }
   
   // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 216;
-  if (_has_bit(45)) {
+  if (_has_bit(46)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       216, this->ce_rceobtainrandomtargets(), output);
   }
   
   // optional .RceObtainSocialItems ce_RceObtainSocialItems = 217;
-  if (_has_bit(46)) {
+  if (_has_bit(47)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       217, this->ce_rceobtainsocialitems(), output);
   }
   
   // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 218;
-  if (_has_bit(47)) {
+  if (_has_bit(48)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       218, this->ce_rceobtainsocialuserinfo(), output);
   }
   
   // optional .RceObtainUniverse ce_RceObtainUniverse = 219;
-  if (_has_bit(48)) {
+  if (_has_bit(49)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       219, this->ce_rceobtainuniverse(), output);
   }
   
   // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 220;
-  if (_has_bit(49)) {
+  if (_has_bit(50)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       220, this->ce_rceobtainvisithelps(), output);
   }
   
   // optional .RceOnlineReward ce_RceOnlineReward = 221;
-  if (_has_bit(50)) {
+  if (_has_bit(51)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       221, this->ce_rceonlinereward(), output);
   }
   
   // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 222;
-  if (_has_bit(51)) {
+  if (_has_bit(52)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       222, this->ce_rcequerycheckandlockaccountifpossible(), output);
   }
   
   // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 223;
-  if (_has_bit(52)) {
+  if (_has_bit(53)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       223, this->ce_rcequerygalaxywindow(), output);
   }
   
   // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 224;
-  if (_has_bit(53)) {
+  if (_has_bit(54)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       224, this->ce_rcequeryreceivewishitem(), output);
   }
   
   // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 225;
-  if (_has_bit(54)) {
+  if (_has_bit(55)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       225, this->ce_rcequeryrefusereceivewishitem(), output);
   }
   
   // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 226;
-  if (_has_bit(55)) {
+  if (_has_bit(56)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       226, this->ce_rcequerysendwishitem(), output);
   }
   
   // optional .RceQueryStarInfo ce_RceQueryStarInfo = 227;
-  if (_has_bit(56)) {
+  if (_has_bit(57)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       227, this->ce_rcequerystarinfo(), output);
   }
   
   // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 228;
-  if (_has_bit(57)) {
+  if (_has_bit(58)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       228, this->ce_rcequerystarsbookmarks(), output);
   }
   
   // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 229;
-  if (_has_bit(58)) {
+  if (_has_bit(59)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       229, this->ce_rcequeryvisithelpsgiftunitsonbunker(), output);
   }
   
   // optional .RceUpdateAlliances ce_RceUpdateAlliances = 230;
-  if (_has_bit(59)) {
+  if (_has_bit(60)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       230, this->ce_rceupdatealliances(), output);
   }
   
   // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 231;
-  if (_has_bit(60)) {
+  if (_has_bit(61)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       231, this->ce_rceupdategameunits(), output);
   }
   
   // optional .RceUpdateItem ce_RceUpdateItem = 232;
-  if (_has_bit(61)) {
+  if (_has_bit(62)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       232, this->ce_rceupdateitem(), output);
   }
   
   // optional .RceUpdateMisc ce_RceUpdateMisc = 233;
-  if (_has_bit(62)) {
+  if (_has_bit(63)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       233, this->ce_rceupdatemisc(), output);
   }
   
   // optional .RceUpdateMissions ce_RceUpdateMissions = 234;
-  if (_has_bit(63)) {
+  if (_has_bit(64)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       234, this->ce_rceupdatemissions(), output);
   }
   
   // optional .RceUpdateProfile ce_RceUpdateProfile = 235;
-  if (_has_bit(64)) {
+  if (_has_bit(65)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       235, this->ce_rceupdateprofile(), output);
   }
   
   // optional .RceUpdateShips ce_RceUpdateShips = 236;
-  if (_has_bit(65)) {
+  if (_has_bit(66)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       236, this->ce_rceupdateships(), output);
   }
   
   // optional .RceUpdateSocialItem ce_RceUpdateSocialItem = 237;
-  if (_has_bit(66)) {
+  if (_has_bit(67)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       237, this->ce_rceupdatesocialitem(), output);
   }
   
   // optional .RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 238;
-  if (_has_bit(67)) {
+  if (_has_bit(68)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       238, this->ce_rceupdatestarsbookmarks(), output);
   }
   
   // optional .RceUpdateTargets ce_RceUpdateTargets = 239;
-  if (_has_bit(68)) {
+  if (_has_bit(69)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       239, this->ce_rceupdatetargets(), output);
   }
   
   // optional .RceUpdateVisitHelp ce_RceUpdateVisitHelp = 240;
-  if (_has_bit(69)) {
+  if (_has_bit(70)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       240, this->ce_rceupdatevisithelp(), output);
   }
   
+  // optional .RceQueryPvE ce_RceQueryPvE = 241;
+  if (_has_bit(71)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      241, this->ce_rcequerypve(), output);
+  }
+  
   // optional .RseAuthState se_RseAuthState = 500;
-  if (_has_bit(70)) {
+  if (_has_bit(72)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       500, this->se_rseauthstate(), output);
   }
   
   // optional .RseCustomizedActivity se_RseCustomizedActivity = 501;
-  if (_has_bit(71)) {
+  if (_has_bit(73)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       501, this->se_rsecustomizedactivity(), output);
   }
   
   // optional .RseError se_RseError = 503;
-  if (_has_bit(72)) {
+  if (_has_bit(74)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       503, this->se_rseerror(), output);
   }
   
   // optional .RseHeartbeat se_RseHeartbeat = 504;
-  if (_has_bit(73)) {
+  if (_has_bit(75)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       504, this->se_rseheartbeat(), output);
   }
   
   // optional .RseLogin se_RseLogin = 506;
-  if (_has_bit(74)) {
+  if (_has_bit(76)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       506, this->se_rselogin(), output);
   }
   
   // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 507;
-  if (_has_bit(75)) {
+  if (_has_bit(77)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       507, this->se_rseobtainaskforhelp(), output);
   }
   
   // optional .RseObtainAttackerList se_RseObtainAttackerList = 508;
-  if (_has_bit(76)) {
+  if (_has_bit(78)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       508, this->se_rseobtainattackerlist(), output);
   }
   
   // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 509;
-  if (_has_bit(77)) {
+  if (_has_bit(79)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       509, this->se_rseobtainbattlereplay(), output);
   }
   
   // optional .RseObtainCustomizer se_RseObtainCustomizer = 510;
-  if (_has_bit(78)) {
+  if (_has_bit(80)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       510, this->se_rseobtaincustomizer(), output);
   }
   
   // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 511;
-  if (_has_bit(79)) {
+  if (_has_bit(81)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       511, this->se_rseobtainhangarshelp(), output);
   }
   
   // optional .RseObtainMessagesList se_RseObtainMessagesList = 512;
-  if (_has_bit(80)) {
+  if (_has_bit(82)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       512, this->se_rseobtainmessageslist(), output);
   }
   
   // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 513;
-  if (_has_bit(81)) {
+  if (_has_bit(83)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       513, this->se_rseobtainneighborslist(), output);
   }
   
   // optional .RseObtainNpcList se_RseObtainNpcList = 514;
-  if (_has_bit(82)) {
+  if (_has_bit(84)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       514, this->se_rseobtainnpclist(), output);
   }
   
   // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 515;
-  if (_has_bit(83)) {
+  if (_has_bit(85)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       515, this->se_rseobtainpayurlparame(), output);
   }
   
   // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 516;
-  if (_has_bit(84)) {
+  if (_has_bit(86)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       516, this->se_rseobtainrandomtargets(), output);
   }
   
   // optional .RseObtainSocialItems se_RseObtainSocialItems = 517;
-  if (_has_bit(85)) {
+  if (_has_bit(87)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       517, this->se_rseobtainsocialitems(), output);
   }
   
   // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 518;
-  if (_has_bit(86)) {
+  if (_has_bit(88)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       518, this->se_rseobtainsocialuserinfo(), output);
   }
   
   // optional .RseObtainUniverse se_RseObtainUniverse = 519;
-  if (_has_bit(87)) {
+  if (_has_bit(89)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       519, this->se_rseobtainuniverse(), output);
   }
   
   // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 520;
-  if (_has_bit(88)) {
+  if (_has_bit(90)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       520, this->se_rseobtainvisithelps(), output);
   }
   
   // optional .RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 521;
-  if (_has_bit(89)) {
+  if (_has_bit(91)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       521, this->se_rsequerycheckandlockaccountifpossible(), output);
   }
   
   // optional .RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 522;
-  if (_has_bit(90)) {
+  if (_has_bit(92)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       522, this->se_rsequerygalaxywindow(), output);
   }
   
   // optional .RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 523;
-  if (_has_bit(91)) {
+  if (_has_bit(93)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       523, this->se_rsequeryreceivewishitem(), output);
   }
   
   // optional .RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 524;
-  if (_has_bit(92)) {
+  if (_has_bit(94)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       524, this->se_rsequeryrefusereceivewishitem(), output);
   }
   
   // optional .RseQuerySendWishItem se_RseQuerySendWishItem = 525;
-  if (_has_bit(93)) {
+  if (_has_bit(95)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       525, this->se_rsequerysendwishitem(), output);
   }
   
   // optional .RseQueryStarInfo se_RseQueryStarInfo = 526;
-  if (_has_bit(94)) {
+  if (_has_bit(96)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       526, this->se_rsequerystarinfo(), output);
   }
   
   // optional .RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 527;
-  if (_has_bit(95)) {
+  if (_has_bit(97)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       527, this->se_rsequerystarsbookmarks(), output);
   }
   
   // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 528;
-  if (_has_bit(96)) {
+  if (_has_bit(98)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       528, this->se_rsequeryvisithelpsgiftunitsonbunker(), output);
   }
   
   // optional .RseUpdateAlliances se_RseUpdateAlliances = 530;
-  if (_has_bit(97)) {
+  if (_has_bit(99)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       530, this->se_rseupdatealliances(), output);
   }
   
   // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 531;
-  if (_has_bit(98)) {
+  if (_has_bit(100)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       531, this->se_rseupdategameunits(), output);
   }
   
   // optional .RseUpdateItem se_RseUpdateItem = 532;
-  if (_has_bit(99)) {
+  if (_has_bit(101)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       532, this->se_rseupdateitem(), output);
   }
   
   // optional .RseUpdateMisc se_RseUpdateMisc = 533;
-  if (_has_bit(100)) {
+  if (_has_bit(102)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       533, this->se_rseupdatemisc(), output);
   }
   
   // optional .RseUpdateMissions se_RseUpdateMissions = 534;
-  if (_has_bit(101)) {
+  if (_has_bit(103)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       534, this->se_rseupdatemissions(), output);
   }
   
   // optional .RseUpdateProfile se_RseUpdateProfile = 535;
-  if (_has_bit(102)) {
+  if (_has_bit(104)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       535, this->se_rseupdateprofile(), output);
   }
   
   // optional .RseUpdateShips se_RseUpdateShips = 536;
-  if (_has_bit(103)) {
+  if (_has_bit(105)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       536, this->se_rseupdateships(), output);
   }
   
   // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 537;
-  if (_has_bit(104)) {
+  if (_has_bit(106)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       537, this->se_rseupdatesocialitem(), output);
   }
   
   // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 538;
-  if (_has_bit(105)) {
+  if (_has_bit(107)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       538, this->se_rseupdatestarsbookmarks(), output);
   }
   
   // optional .RseUpdateTargets se_RseUpdateTargets = 539;
-  if (_has_bit(106)) {
+  if (_has_bit(108)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       539, this->se_rseupdatetargets(), output);
   }
   
   // optional .RseBattleDamagesPack se_RseBattleDamagesPack = 540;
-  if (_has_bit(107)) {
+  if (_has_bit(109)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       540, this->se_rsebattledamagespack(), output);
   }
   
   // optional .RseItemMineExploded se_RseItemMineExploded = 541;
-  if (_has_bit(108)) {
+  if (_has_bit(110)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       541, this->se_rseitemmineexploded(), output);
   }
   
   // optional .RseFinished se_RseFinished = 542;
-  if (_has_bit(109)) {
+  if (_has_bit(111)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       542, this->se_rsefinished(), output);
+  }
+  
+  // optional .RseQueryPvE se_RseQueryPvE = 543;
+  if (_has_bit(112)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      543, this->se_rsequerypve(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -3583,585 +3672,606 @@ void Event::SerializeWithCachedSizes(
         29, this->newstarrsp(), target);
   }
   
-  // optional .HttpAskMsg httpaskmsg = 114;
+  // optional .GWG_BattleInfo battleInfo = 30;
   if (_has_bit(27)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        30, this->battleinfo(), target);
+  }
+  
+  // optional .HttpAskMsg httpaskmsg = 114;
+  if (_has_bit(28)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         114, this->httpaskmsg(), target);
   }
   
   // optional .HttpAnswerMsg httpanswermsg = 115;
-  if (_has_bit(28)) {
+  if (_has_bit(29)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         115, this->httpanswermsg(), target);
   }
   
   // optional .RceBattleDamagesPack ce_RceBattleDamagesPack = 200;
-  if (_has_bit(29)) {
+  if (_has_bit(30)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         200, this->ce_rcebattledamagespack(), target);
   }
   
   // optional .RceCustomizedActivity ce_RceCustomizedActivity = 201;
-  if (_has_bit(30)) {
+  if (_has_bit(31)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         201, this->ce_rcecustomizedactivity(), target);
   }
   
   // optional .RceFinished ce_RceFinished = 202;
-  if (_has_bit(31)) {
+  if (_has_bit(32)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         202, this->ce_rcefinished(), target);
   }
   
   // optional .RceHeartbeat ce_RceHeartbeat = 203;
-  if (_has_bit(32)) {
+  if (_has_bit(33)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         203, this->ce_rceheartbeat(), target);
   }
   
   // optional .RceItemMineExploded ce_RceItemMineExploded = 204;
-  if (_has_bit(33)) {
+  if (_has_bit(34)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         204, this->ce_rceitemmineexploded(), target);
   }
   
   // optional .RceLogin ce_RceLogin = 205;
-  if (_has_bit(34)) {
+  if (_has_bit(35)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         205, this->ce_rcelogin(), target);
   }
   
   // optional .RceNpcAttackStart ce_RceNpcAttackStart = 206;
-  if (_has_bit(35)) {
+  if (_has_bit(36)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         206, this->ce_rcenpcattackstart(), target);
   }
   
   // optional .RceObtainAskForHelp ce_RceObtainAskForHelp = 207;
-  if (_has_bit(36)) {
+  if (_has_bit(37)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         207, this->ce_rceobtainaskforhelp(), target);
   }
   
   // optional .RceObtainAttackerList ce_RceObtainAttackerList = 208;
-  if (_has_bit(37)) {
+  if (_has_bit(38)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         208, this->ce_rceobtainattackerlist(), target);
   }
   
   // optional .RceObtainBattleReplay ce_RceObtainBattleReplay = 209;
-  if (_has_bit(38)) {
+  if (_has_bit(39)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         209, this->ce_rceobtainbattlereplay(), target);
   }
   
   // optional .RceObtainCustomizer ce_RceObtainCustomizer = 210;
-  if (_has_bit(39)) {
+  if (_has_bit(40)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         210, this->ce_rceobtaincustomizer(), target);
   }
   
   // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 211;
-  if (_has_bit(40)) {
+  if (_has_bit(41)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         211, this->ce_rceobtainhangarshelp(), target);
   }
   
   // optional .RceObtainMessagesList ce_RceObtainMessagesList = 212;
-  if (_has_bit(41)) {
+  if (_has_bit(42)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         212, this->ce_rceobtainmessageslist(), target);
   }
   
   // optional .RceObtainNeighborsList ce_RceObtainNeighborsList = 213;
-  if (_has_bit(42)) {
+  if (_has_bit(43)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         213, this->ce_rceobtainneighborslist(), target);
   }
   
   // optional .RceObtainNpcList ce_RceObtainNpcList = 214;
-  if (_has_bit(43)) {
+  if (_has_bit(44)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         214, this->ce_rceobtainnpclist(), target);
   }
   
   // optional .RceObtainPayUrlParame ce_RceObtainPayUrlParame = 215;
-  if (_has_bit(44)) {
+  if (_has_bit(45)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         215, this->ce_rceobtainpayurlparame(), target);
   }
   
   // optional .RceObtainRandomTargets ce_RceObtainRandomTargets = 216;
-  if (_has_bit(45)) {
+  if (_has_bit(46)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         216, this->ce_rceobtainrandomtargets(), target);
   }
   
   // optional .RceObtainSocialItems ce_RceObtainSocialItems = 217;
-  if (_has_bit(46)) {
+  if (_has_bit(47)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         217, this->ce_rceobtainsocialitems(), target);
   }
   
   // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 218;
-  if (_has_bit(47)) {
+  if (_has_bit(48)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         218, this->ce_rceobtainsocialuserinfo(), target);
   }
   
   // optional .RceObtainUniverse ce_RceObtainUniverse = 219;
-  if (_has_bit(48)) {
+  if (_has_bit(49)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         219, this->ce_rceobtainuniverse(), target);
   }
   
   // optional .RceObtainVisitHelps ce_RceObtainVisitHelps = 220;
-  if (_has_bit(49)) {
+  if (_has_bit(50)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         220, this->ce_rceobtainvisithelps(), target);
   }
   
   // optional .RceOnlineReward ce_RceOnlineReward = 221;
-  if (_has_bit(50)) {
+  if (_has_bit(51)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         221, this->ce_rceonlinereward(), target);
   }
   
   // optional .RceQueryCheckAndLockAccountIfPossible ce_RceQueryCheckAndLockAccountIfPossible = 222;
-  if (_has_bit(51)) {
+  if (_has_bit(52)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         222, this->ce_rcequerycheckandlockaccountifpossible(), target);
   }
   
   // optional .RceQueryGalaxyWindow ce_RceQueryGalaxyWindow = 223;
-  if (_has_bit(52)) {
+  if (_has_bit(53)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         223, this->ce_rcequerygalaxywindow(), target);
   }
   
   // optional .RceQueryReceiveWishItem ce_RceQueryReceiveWishItem = 224;
-  if (_has_bit(53)) {
+  if (_has_bit(54)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         224, this->ce_rcequeryreceivewishitem(), target);
   }
   
   // optional .RceQueryRefuseReceiveWishItem ce_RceQueryRefuseReceiveWishItem = 225;
-  if (_has_bit(54)) {
+  if (_has_bit(55)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         225, this->ce_rcequeryrefusereceivewishitem(), target);
   }
   
   // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 226;
-  if (_has_bit(55)) {
+  if (_has_bit(56)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         226, this->ce_rcequerysendwishitem(), target);
   }
   
   // optional .RceQueryStarInfo ce_RceQueryStarInfo = 227;
-  if (_has_bit(56)) {
+  if (_has_bit(57)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         227, this->ce_rcequerystarinfo(), target);
   }
   
   // optional .RceQueryStarsBookmarks ce_RceQueryStarsBookmarks = 228;
-  if (_has_bit(57)) {
+  if (_has_bit(58)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         228, this->ce_rcequerystarsbookmarks(), target);
   }
   
   // optional .RceQueryVisitHelpsGiftUnitsOnBunker ce_RceQueryVisitHelpsGiftUnitsOnBunker = 229;
-  if (_has_bit(58)) {
+  if (_has_bit(59)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         229, this->ce_rcequeryvisithelpsgiftunitsonbunker(), target);
   }
   
   // optional .RceUpdateAlliances ce_RceUpdateAlliances = 230;
-  if (_has_bit(59)) {
+  if (_has_bit(60)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         230, this->ce_rceupdatealliances(), target);
   }
   
   // optional .RceUpdateGameUnits ce_RceUpdateGameUnits = 231;
-  if (_has_bit(60)) {
+  if (_has_bit(61)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         231, this->ce_rceupdategameunits(), target);
   }
   
   // optional .RceUpdateItem ce_RceUpdateItem = 232;
-  if (_has_bit(61)) {
+  if (_has_bit(62)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         232, this->ce_rceupdateitem(), target);
   }
   
   // optional .RceUpdateMisc ce_RceUpdateMisc = 233;
-  if (_has_bit(62)) {
+  if (_has_bit(63)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         233, this->ce_rceupdatemisc(), target);
   }
   
   // optional .RceUpdateMissions ce_RceUpdateMissions = 234;
-  if (_has_bit(63)) {
+  if (_has_bit(64)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         234, this->ce_rceupdatemissions(), target);
   }
   
   // optional .RceUpdateProfile ce_RceUpdateProfile = 235;
-  if (_has_bit(64)) {
+  if (_has_bit(65)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         235, this->ce_rceupdateprofile(), target);
   }
   
   // optional .RceUpdateShips ce_RceUpdateShips = 236;
-  if (_has_bit(65)) {
+  if (_has_bit(66)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         236, this->ce_rceupdateships(), target);
   }
   
   // optional .RceUpdateSocialItem ce_RceUpdateSocialItem = 237;
-  if (_has_bit(66)) {
+  if (_has_bit(67)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         237, this->ce_rceupdatesocialitem(), target);
   }
   
   // optional .RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 238;
-  if (_has_bit(67)) {
+  if (_has_bit(68)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         238, this->ce_rceupdatestarsbookmarks(), target);
   }
   
   // optional .RceUpdateTargets ce_RceUpdateTargets = 239;
-  if (_has_bit(68)) {
+  if (_has_bit(69)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         239, this->ce_rceupdatetargets(), target);
   }
   
   // optional .RceUpdateVisitHelp ce_RceUpdateVisitHelp = 240;
-  if (_has_bit(69)) {
+  if (_has_bit(70)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         240, this->ce_rceupdatevisithelp(), target);
   }
   
+  // optional .RceQueryPvE ce_RceQueryPvE = 241;
+  if (_has_bit(71)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        241, this->ce_rcequerypve(), target);
+  }
+  
   // optional .RseAuthState se_RseAuthState = 500;
-  if (_has_bit(70)) {
+  if (_has_bit(72)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         500, this->se_rseauthstate(), target);
   }
   
   // optional .RseCustomizedActivity se_RseCustomizedActivity = 501;
-  if (_has_bit(71)) {
+  if (_has_bit(73)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         501, this->se_rsecustomizedactivity(), target);
   }
   
   // optional .RseError se_RseError = 503;
-  if (_has_bit(72)) {
+  if (_has_bit(74)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         503, this->se_rseerror(), target);
   }
   
   // optional .RseHeartbeat se_RseHeartbeat = 504;
-  if (_has_bit(73)) {
+  if (_has_bit(75)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         504, this->se_rseheartbeat(), target);
   }
   
   // optional .RseLogin se_RseLogin = 506;
-  if (_has_bit(74)) {
+  if (_has_bit(76)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         506, this->se_rselogin(), target);
   }
   
   // optional .RseObtainAskForHelp se_RseObtainAskForHelp = 507;
-  if (_has_bit(75)) {
+  if (_has_bit(77)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         507, this->se_rseobtainaskforhelp(), target);
   }
   
   // optional .RseObtainAttackerList se_RseObtainAttackerList = 508;
-  if (_has_bit(76)) {
+  if (_has_bit(78)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         508, this->se_rseobtainattackerlist(), target);
   }
   
   // optional .RseObtainBattleReplay se_RseObtainBattleReplay = 509;
-  if (_has_bit(77)) {
+  if (_has_bit(79)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         509, this->se_rseobtainbattlereplay(), target);
   }
   
   // optional .RseObtainCustomizer se_RseObtainCustomizer = 510;
-  if (_has_bit(78)) {
+  if (_has_bit(80)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         510, this->se_rseobtaincustomizer(), target);
   }
   
   // optional .RseObtainHangarsHelp se_RseObtainHangarsHelp = 511;
-  if (_has_bit(79)) {
+  if (_has_bit(81)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         511, this->se_rseobtainhangarshelp(), target);
   }
   
   // optional .RseObtainMessagesList se_RseObtainMessagesList = 512;
-  if (_has_bit(80)) {
+  if (_has_bit(82)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         512, this->se_rseobtainmessageslist(), target);
   }
   
   // optional .RseObtainNeighborsList se_RseObtainNeighborsList = 513;
-  if (_has_bit(81)) {
+  if (_has_bit(83)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         513, this->se_rseobtainneighborslist(), target);
   }
   
   // optional .RseObtainNpcList se_RseObtainNpcList = 514;
-  if (_has_bit(82)) {
+  if (_has_bit(84)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         514, this->se_rseobtainnpclist(), target);
   }
   
   // optional .RseObtainPayUrlParame se_RseObtainPayUrlParame = 515;
-  if (_has_bit(83)) {
+  if (_has_bit(85)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         515, this->se_rseobtainpayurlparame(), target);
   }
   
   // optional .RseObtainRandomTargets se_RseObtainRandomTargets = 516;
-  if (_has_bit(84)) {
+  if (_has_bit(86)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         516, this->se_rseobtainrandomtargets(), target);
   }
   
   // optional .RseObtainSocialItems se_RseObtainSocialItems = 517;
-  if (_has_bit(85)) {
+  if (_has_bit(87)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         517, this->se_rseobtainsocialitems(), target);
   }
   
   // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 518;
-  if (_has_bit(86)) {
+  if (_has_bit(88)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         518, this->se_rseobtainsocialuserinfo(), target);
   }
   
   // optional .RseObtainUniverse se_RseObtainUniverse = 519;
-  if (_has_bit(87)) {
+  if (_has_bit(89)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         519, this->se_rseobtainuniverse(), target);
   }
   
   // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 520;
-  if (_has_bit(88)) {
+  if (_has_bit(90)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         520, this->se_rseobtainvisithelps(), target);
   }
   
   // optional .RseQueryCheckAndLockAccountIfPossible se_RseQueryCheckAndLockAccountIfPossible = 521;
-  if (_has_bit(89)) {
+  if (_has_bit(91)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         521, this->se_rsequerycheckandlockaccountifpossible(), target);
   }
   
   // optional .RseQueryGalaxyWindow se_RseQueryGalaxyWindow = 522;
-  if (_has_bit(90)) {
+  if (_has_bit(92)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         522, this->se_rsequerygalaxywindow(), target);
   }
   
   // optional .RseQueryReceiveWishItem se_RseQueryReceiveWishItem = 523;
-  if (_has_bit(91)) {
+  if (_has_bit(93)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         523, this->se_rsequeryreceivewishitem(), target);
   }
   
   // optional .RseQueryRefuseReceiveWishItem se_RseQueryRefuseReceiveWishItem = 524;
-  if (_has_bit(92)) {
+  if (_has_bit(94)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         524, this->se_rsequeryrefusereceivewishitem(), target);
   }
   
   // optional .RseQuerySendWishItem se_RseQuerySendWishItem = 525;
-  if (_has_bit(93)) {
+  if (_has_bit(95)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         525, this->se_rsequerysendwishitem(), target);
   }
   
   // optional .RseQueryStarInfo se_RseQueryStarInfo = 526;
-  if (_has_bit(94)) {
+  if (_has_bit(96)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         526, this->se_rsequerystarinfo(), target);
   }
   
   // optional .RseQueryStarsBookmarks se_RseQueryStarsBookmarks = 527;
-  if (_has_bit(95)) {
+  if (_has_bit(97)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         527, this->se_rsequerystarsbookmarks(), target);
   }
   
   // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 528;
-  if (_has_bit(96)) {
+  if (_has_bit(98)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         528, this->se_rsequeryvisithelpsgiftunitsonbunker(), target);
   }
   
   // optional .RseUpdateAlliances se_RseUpdateAlliances = 530;
-  if (_has_bit(97)) {
+  if (_has_bit(99)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         530, this->se_rseupdatealliances(), target);
   }
   
   // optional .RseUpdateGameUnits se_RseUpdateGameUnits = 531;
-  if (_has_bit(98)) {
+  if (_has_bit(100)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         531, this->se_rseupdategameunits(), target);
   }
   
   // optional .RseUpdateItem se_RseUpdateItem = 532;
-  if (_has_bit(99)) {
+  if (_has_bit(101)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         532, this->se_rseupdateitem(), target);
   }
   
   // optional .RseUpdateMisc se_RseUpdateMisc = 533;
-  if (_has_bit(100)) {
+  if (_has_bit(102)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         533, this->se_rseupdatemisc(), target);
   }
   
   // optional .RseUpdateMissions se_RseUpdateMissions = 534;
-  if (_has_bit(101)) {
+  if (_has_bit(103)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         534, this->se_rseupdatemissions(), target);
   }
   
   // optional .RseUpdateProfile se_RseUpdateProfile = 535;
-  if (_has_bit(102)) {
+  if (_has_bit(104)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         535, this->se_rseupdateprofile(), target);
   }
   
   // optional .RseUpdateShips se_RseUpdateShips = 536;
-  if (_has_bit(103)) {
+  if (_has_bit(105)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         536, this->se_rseupdateships(), target);
   }
   
   // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 537;
-  if (_has_bit(104)) {
+  if (_has_bit(106)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         537, this->se_rseupdatesocialitem(), target);
   }
   
   // optional .RseUpdateStarsBookmarks se_RseUpdateStarsBookmarks = 538;
-  if (_has_bit(105)) {
+  if (_has_bit(107)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         538, this->se_rseupdatestarsbookmarks(), target);
   }
   
   // optional .RseUpdateTargets se_RseUpdateTargets = 539;
-  if (_has_bit(106)) {
+  if (_has_bit(108)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         539, this->se_rseupdatetargets(), target);
   }
   
   // optional .RseBattleDamagesPack se_RseBattleDamagesPack = 540;
-  if (_has_bit(107)) {
+  if (_has_bit(109)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         540, this->se_rsebattledamagespack(), target);
   }
   
   // optional .RseItemMineExploded se_RseItemMineExploded = 541;
-  if (_has_bit(108)) {
+  if (_has_bit(110)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         541, this->se_rseitemmineexploded(), target);
   }
   
   // optional .RseFinished se_RseFinished = 542;
-  if (_has_bit(109)) {
+  if (_has_bit(111)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
         542, this->se_rsefinished(), target);
+  }
+  
+  // optional .RseQueryPvE se_RseQueryPvE = 543;
+  if (_has_bit(112)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        543, this->se_rsequerypve(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -4370,6 +4480,13 @@ int Event::ByteSize() const {
           this->newstarrsp());
     }
     
+    // optional .GWG_BattleInfo battleInfo = 30;
+    if (has_battleinfo()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->battleinfo());
+    }
+    
     // optional .HttpAskMsg httpaskmsg = 114;
     if (has_httpaskmsg()) {
       total_size += 2 +
@@ -4398,6 +4515,8 @@ int Event::ByteSize() const {
           this->ce_rcecustomizedactivity());
     }
     
+  }
+  if (_has_bits_[32 / 32] & (0xffu << (32 % 32))) {
     // optional .RceFinished ce_RceFinished = 202;
     if (has_ce_rcefinished()) {
       total_size += 2 +
@@ -4405,8 +4524,6 @@ int Event::ByteSize() const {
           this->ce_rcefinished());
     }
     
-  }
-  if (_has_bits_[32 / 32] & (0xffu << (32 % 32))) {
     // optional .RceHeartbeat ce_RceHeartbeat = 203;
     if (has_ce_rceheartbeat()) {
       total_size += 2 +
@@ -4456,6 +4573,8 @@ int Event::ByteSize() const {
           this->ce_rceobtainbattlereplay());
     }
     
+  }
+  if (_has_bits_[40 / 32] & (0xffu << (40 % 32))) {
     // optional .RceObtainCustomizer ce_RceObtainCustomizer = 210;
     if (has_ce_rceobtaincustomizer()) {
       total_size += 2 +
@@ -4463,8 +4582,6 @@ int Event::ByteSize() const {
           this->ce_rceobtaincustomizer());
     }
     
-  }
-  if (_has_bits_[40 / 32] & (0xffu << (40 % 32))) {
     // optional .RceObtainHangarsHelp ce_RceObtainHangarsHelp = 211;
     if (has_ce_rceobtainhangarshelp()) {
       total_size += 2 +
@@ -4514,6 +4631,8 @@ int Event::ByteSize() const {
           this->ce_rceobtainsocialitems());
     }
     
+  }
+  if (_has_bits_[48 / 32] & (0xffu << (48 % 32))) {
     // optional .RceObtainSocialUserInfo ce_RceObtainSocialUserInfo = 218;
     if (has_ce_rceobtainsocialuserinfo()) {
       total_size += 2 +
@@ -4521,8 +4640,6 @@ int Event::ByteSize() const {
           this->ce_rceobtainsocialuserinfo());
     }
     
-  }
-  if (_has_bits_[48 / 32] & (0xffu << (48 % 32))) {
     // optional .RceObtainUniverse ce_RceObtainUniverse = 219;
     if (has_ce_rceobtainuniverse()) {
       total_size += 2 +
@@ -4572,6 +4689,8 @@ int Event::ByteSize() const {
           this->ce_rcequeryrefusereceivewishitem());
     }
     
+  }
+  if (_has_bits_[56 / 32] & (0xffu << (56 % 32))) {
     // optional .RceQuerySendWishItem ce_RceQuerySendWishItem = 226;
     if (has_ce_rcequerysendwishitem()) {
       total_size += 2 +
@@ -4579,8 +4698,6 @@ int Event::ByteSize() const {
           this->ce_rcequerysendwishitem());
     }
     
-  }
-  if (_has_bits_[56 / 32] & (0xffu << (56 % 32))) {
     // optional .RceQueryStarInfo ce_RceQueryStarInfo = 227;
     if (has_ce_rcequerystarinfo()) {
       total_size += 2 +
@@ -4630,6 +4747,8 @@ int Event::ByteSize() const {
           this->ce_rceupdatemisc());
     }
     
+  }
+  if (_has_bits_[64 / 32] & (0xffu << (64 % 32))) {
     // optional .RceUpdateMissions ce_RceUpdateMissions = 234;
     if (has_ce_rceupdatemissions()) {
       total_size += 2 +
@@ -4637,8 +4756,6 @@ int Event::ByteSize() const {
           this->ce_rceupdatemissions());
     }
     
-  }
-  if (_has_bits_[64 / 32] & (0xffu << (64 % 32))) {
     // optional .RceUpdateProfile ce_RceUpdateProfile = 235;
     if (has_ce_rceupdateprofile()) {
       total_size += 2 +
@@ -4681,6 +4798,15 @@ int Event::ByteSize() const {
           this->ce_rceupdatevisithelp());
     }
     
+    // optional .RceQueryPvE ce_RceQueryPvE = 241;
+    if (has_ce_rcequerypve()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->ce_rcequerypve());
+    }
+    
+  }
+  if (_has_bits_[72 / 32] & (0xffu << (72 % 32))) {
     // optional .RseAuthState se_RseAuthState = 500;
     if (has_se_rseauthstate()) {
       total_size += 2 +
@@ -4695,8 +4821,6 @@ int Event::ByteSize() const {
           this->se_rsecustomizedactivity());
     }
     
-  }
-  if (_has_bits_[72 / 32] & (0xffu << (72 % 32))) {
     // optional .RseError se_RseError = 503;
     if (has_se_rseerror()) {
       total_size += 2 +
@@ -4739,6 +4863,8 @@ int Event::ByteSize() const {
           this->se_rseobtainbattlereplay());
     }
     
+  }
+  if (_has_bits_[80 / 32] & (0xffu << (80 % 32))) {
     // optional .RseObtainCustomizer se_RseObtainCustomizer = 510;
     if (has_se_rseobtaincustomizer()) {
       total_size += 2 +
@@ -4753,8 +4879,6 @@ int Event::ByteSize() const {
           this->se_rseobtainhangarshelp());
     }
     
-  }
-  if (_has_bits_[80 / 32] & (0xffu << (80 % 32))) {
     // optional .RseObtainMessagesList se_RseObtainMessagesList = 512;
     if (has_se_rseobtainmessageslist()) {
       total_size += 2 +
@@ -4797,6 +4921,8 @@ int Event::ByteSize() const {
           this->se_rseobtainsocialitems());
     }
     
+  }
+  if (_has_bits_[88 / 32] & (0xffu << (88 % 32))) {
     // optional .RseObtainSocialUserInfo se_RseObtainSocialUserInfo = 518;
     if (has_se_rseobtainsocialuserinfo()) {
       total_size += 2 +
@@ -4811,8 +4937,6 @@ int Event::ByteSize() const {
           this->se_rseobtainuniverse());
     }
     
-  }
-  if (_has_bits_[88 / 32] & (0xffu << (88 % 32))) {
     // optional .RseObtainVisitHelps se_RseObtainVisitHelps = 520;
     if (has_se_rseobtainvisithelps()) {
       total_size += 2 +
@@ -4855,6 +4979,8 @@ int Event::ByteSize() const {
           this->se_rsequerysendwishitem());
     }
     
+  }
+  if (_has_bits_[96 / 32] & (0xffu << (96 % 32))) {
     // optional .RseQueryStarInfo se_RseQueryStarInfo = 526;
     if (has_se_rsequerystarinfo()) {
       total_size += 2 +
@@ -4869,8 +4995,6 @@ int Event::ByteSize() const {
           this->se_rsequerystarsbookmarks());
     }
     
-  }
-  if (_has_bits_[96 / 32] & (0xffu << (96 % 32))) {
     // optional .RseQueryVisitHelpsGiftUnitsOnBunker se_RseQueryVisitHelpsGiftUnitsOnBunker = 528;
     if (has_se_rsequeryvisithelpsgiftunitsonbunker()) {
       total_size += 2 +
@@ -4913,6 +5037,8 @@ int Event::ByteSize() const {
           this->se_rseupdatemissions());
     }
     
+  }
+  if (_has_bits_[104 / 32] & (0xffu << (104 % 32))) {
     // optional .RseUpdateProfile se_RseUpdateProfile = 535;
     if (has_se_rseupdateprofile()) {
       total_size += 2 +
@@ -4927,8 +5053,6 @@ int Event::ByteSize() const {
           this->se_rseupdateships());
     }
     
-  }
-  if (_has_bits_[104 / 32] & (0xffu << (104 % 32))) {
     // optional .RseUpdateSocialItem se_RseUpdateSocialItem = 537;
     if (has_se_rseupdatesocialitem()) {
       total_size += 2 +
@@ -4969,6 +5093,15 @@ int Event::ByteSize() const {
       total_size += 2 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
           this->se_rsefinished());
+    }
+    
+  }
+  if (_has_bits_[112 / 32] & (0xffu << (112 % 32))) {
+    // optional .RseQueryPvE se_RseQueryPvE = 543;
+    if (has_se_rsequerypve()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->se_rsequerypve());
     }
     
   }
@@ -5084,273 +5217,284 @@ void Event::MergeFrom(const Event& from) {
       mutable_newstarrsp()->::NewStar_Rsp::MergeFrom(from.newstarrsp());
     }
     if (from._has_bit(27)) {
-      mutable_httpaskmsg()->::HttpAskMsg::MergeFrom(from.httpaskmsg());
+      mutable_battleinfo()->::GWG_BattleInfo::MergeFrom(from.battleinfo());
     }
     if (from._has_bit(28)) {
-      mutable_httpanswermsg()->::HttpAnswerMsg::MergeFrom(from.httpanswermsg());
+      mutable_httpaskmsg()->::HttpAskMsg::MergeFrom(from.httpaskmsg());
     }
     if (from._has_bit(29)) {
-      mutable_ce_rcebattledamagespack()->::RceBattleDamagesPack::MergeFrom(from.ce_rcebattledamagespack());
+      mutable_httpanswermsg()->::HttpAnswerMsg::MergeFrom(from.httpanswermsg());
     }
     if (from._has_bit(30)) {
-      mutable_ce_rcecustomizedactivity()->::RceCustomizedActivity::MergeFrom(from.ce_rcecustomizedactivity());
+      mutable_ce_rcebattledamagespack()->::RceBattleDamagesPack::MergeFrom(from.ce_rcebattledamagespack());
     }
     if (from._has_bit(31)) {
-      mutable_ce_rcefinished()->::RceFinished::MergeFrom(from.ce_rcefinished());
+      mutable_ce_rcecustomizedactivity()->::RceCustomizedActivity::MergeFrom(from.ce_rcecustomizedactivity());
     }
   }
   if (from._has_bits_[32 / 32] & (0xffu << (32 % 32))) {
     if (from._has_bit(32)) {
-      mutable_ce_rceheartbeat()->::RceHeartbeat::MergeFrom(from.ce_rceheartbeat());
+      mutable_ce_rcefinished()->::RceFinished::MergeFrom(from.ce_rcefinished());
     }
     if (from._has_bit(33)) {
-      mutable_ce_rceitemmineexploded()->::RceItemMineExploded::MergeFrom(from.ce_rceitemmineexploded());
+      mutable_ce_rceheartbeat()->::RceHeartbeat::MergeFrom(from.ce_rceheartbeat());
     }
     if (from._has_bit(34)) {
-      mutable_ce_rcelogin()->::RceLogin::MergeFrom(from.ce_rcelogin());
+      mutable_ce_rceitemmineexploded()->::RceItemMineExploded::MergeFrom(from.ce_rceitemmineexploded());
     }
     if (from._has_bit(35)) {
-      mutable_ce_rcenpcattackstart()->::RceNpcAttackStart::MergeFrom(from.ce_rcenpcattackstart());
+      mutable_ce_rcelogin()->::RceLogin::MergeFrom(from.ce_rcelogin());
     }
     if (from._has_bit(36)) {
-      mutable_ce_rceobtainaskforhelp()->::RceObtainAskForHelp::MergeFrom(from.ce_rceobtainaskforhelp());
+      mutable_ce_rcenpcattackstart()->::RceNpcAttackStart::MergeFrom(from.ce_rcenpcattackstart());
     }
     if (from._has_bit(37)) {
-      mutable_ce_rceobtainattackerlist()->::RceObtainAttackerList::MergeFrom(from.ce_rceobtainattackerlist());
+      mutable_ce_rceobtainaskforhelp()->::RceObtainAskForHelp::MergeFrom(from.ce_rceobtainaskforhelp());
     }
     if (from._has_bit(38)) {
-      mutable_ce_rceobtainbattlereplay()->::RceObtainBattleReplay::MergeFrom(from.ce_rceobtainbattlereplay());
+      mutable_ce_rceobtainattackerlist()->::RceObtainAttackerList::MergeFrom(from.ce_rceobtainattackerlist());
     }
     if (from._has_bit(39)) {
-      mutable_ce_rceobtaincustomizer()->::RceObtainCustomizer::MergeFrom(from.ce_rceobtaincustomizer());
+      mutable_ce_rceobtainbattlereplay()->::RceObtainBattleReplay::MergeFrom(from.ce_rceobtainbattlereplay());
     }
   }
   if (from._has_bits_[40 / 32] & (0xffu << (40 % 32))) {
     if (from._has_bit(40)) {
-      mutable_ce_rceobtainhangarshelp()->::RceObtainHangarsHelp::MergeFrom(from.ce_rceobtainhangarshelp());
+      mutable_ce_rceobtaincustomizer()->::RceObtainCustomizer::MergeFrom(from.ce_rceobtaincustomizer());
     }
     if (from._has_bit(41)) {
-      mutable_ce_rceobtainmessageslist()->::RceObtainMessagesList::MergeFrom(from.ce_rceobtainmessageslist());
+      mutable_ce_rceobtainhangarshelp()->::RceObtainHangarsHelp::MergeFrom(from.ce_rceobtainhangarshelp());
     }
     if (from._has_bit(42)) {
-      mutable_ce_rceobtainneighborslist()->::RceObtainNeighborsList::MergeFrom(from.ce_rceobtainneighborslist());
+      mutable_ce_rceobtainmessageslist()->::RceObtainMessagesList::MergeFrom(from.ce_rceobtainmessageslist());
     }
     if (from._has_bit(43)) {
-      mutable_ce_rceobtainnpclist()->::RceObtainNpcList::MergeFrom(from.ce_rceobtainnpclist());
+      mutable_ce_rceobtainneighborslist()->::RceObtainNeighborsList::MergeFrom(from.ce_rceobtainneighborslist());
     }
     if (from._has_bit(44)) {
-      mutable_ce_rceobtainpayurlparame()->::RceObtainPayUrlParame::MergeFrom(from.ce_rceobtainpayurlparame());
+      mutable_ce_rceobtainnpclist()->::RceObtainNpcList::MergeFrom(from.ce_rceobtainnpclist());
     }
     if (from._has_bit(45)) {
-      mutable_ce_rceobtainrandomtargets()->::RceObtainRandomTargets::MergeFrom(from.ce_rceobtainrandomtargets());
+      mutable_ce_rceobtainpayurlparame()->::RceObtainPayUrlParame::MergeFrom(from.ce_rceobtainpayurlparame());
     }
     if (from._has_bit(46)) {
-      mutable_ce_rceobtainsocialitems()->::RceObtainSocialItems::MergeFrom(from.ce_rceobtainsocialitems());
+      mutable_ce_rceobtainrandomtargets()->::RceObtainRandomTargets::MergeFrom(from.ce_rceobtainrandomtargets());
     }
     if (from._has_bit(47)) {
-      mutable_ce_rceobtainsocialuserinfo()->::RceObtainSocialUserInfo::MergeFrom(from.ce_rceobtainsocialuserinfo());
+      mutable_ce_rceobtainsocialitems()->::RceObtainSocialItems::MergeFrom(from.ce_rceobtainsocialitems());
     }
   }
   if (from._has_bits_[48 / 32] & (0xffu << (48 % 32))) {
     if (from._has_bit(48)) {
-      mutable_ce_rceobtainuniverse()->::RceObtainUniverse::MergeFrom(from.ce_rceobtainuniverse());
+      mutable_ce_rceobtainsocialuserinfo()->::RceObtainSocialUserInfo::MergeFrom(from.ce_rceobtainsocialuserinfo());
     }
     if (from._has_bit(49)) {
-      mutable_ce_rceobtainvisithelps()->::RceObtainVisitHelps::MergeFrom(from.ce_rceobtainvisithelps());
+      mutable_ce_rceobtainuniverse()->::RceObtainUniverse::MergeFrom(from.ce_rceobtainuniverse());
     }
     if (from._has_bit(50)) {
-      mutable_ce_rceonlinereward()->::RceOnlineReward::MergeFrom(from.ce_rceonlinereward());
+      mutable_ce_rceobtainvisithelps()->::RceObtainVisitHelps::MergeFrom(from.ce_rceobtainvisithelps());
     }
     if (from._has_bit(51)) {
-      mutable_ce_rcequerycheckandlockaccountifpossible()->::RceQueryCheckAndLockAccountIfPossible::MergeFrom(from.ce_rcequerycheckandlockaccountifpossible());
+      mutable_ce_rceonlinereward()->::RceOnlineReward::MergeFrom(from.ce_rceonlinereward());
     }
     if (from._has_bit(52)) {
-      mutable_ce_rcequerygalaxywindow()->::RceQueryGalaxyWindow::MergeFrom(from.ce_rcequerygalaxywindow());
+      mutable_ce_rcequerycheckandlockaccountifpossible()->::RceQueryCheckAndLockAccountIfPossible::MergeFrom(from.ce_rcequerycheckandlockaccountifpossible());
     }
     if (from._has_bit(53)) {
-      mutable_ce_rcequeryreceivewishitem()->::RceQueryReceiveWishItem::MergeFrom(from.ce_rcequeryreceivewishitem());
+      mutable_ce_rcequerygalaxywindow()->::RceQueryGalaxyWindow::MergeFrom(from.ce_rcequerygalaxywindow());
     }
     if (from._has_bit(54)) {
-      mutable_ce_rcequeryrefusereceivewishitem()->::RceQueryRefuseReceiveWishItem::MergeFrom(from.ce_rcequeryrefusereceivewishitem());
+      mutable_ce_rcequeryreceivewishitem()->::RceQueryReceiveWishItem::MergeFrom(from.ce_rcequeryreceivewishitem());
     }
     if (from._has_bit(55)) {
-      mutable_ce_rcequerysendwishitem()->::RceQuerySendWishItem::MergeFrom(from.ce_rcequerysendwishitem());
+      mutable_ce_rcequeryrefusereceivewishitem()->::RceQueryRefuseReceiveWishItem::MergeFrom(from.ce_rcequeryrefusereceivewishitem());
     }
   }
   if (from._has_bits_[56 / 32] & (0xffu << (56 % 32))) {
     if (from._has_bit(56)) {
-      mutable_ce_rcequerystarinfo()->::RceQueryStarInfo::MergeFrom(from.ce_rcequerystarinfo());
+      mutable_ce_rcequerysendwishitem()->::RceQuerySendWishItem::MergeFrom(from.ce_rcequerysendwishitem());
     }
     if (from._has_bit(57)) {
-      mutable_ce_rcequerystarsbookmarks()->::RceQueryStarsBookmarks::MergeFrom(from.ce_rcequerystarsbookmarks());
+      mutable_ce_rcequerystarinfo()->::RceQueryStarInfo::MergeFrom(from.ce_rcequerystarinfo());
     }
     if (from._has_bit(58)) {
-      mutable_ce_rcequeryvisithelpsgiftunitsonbunker()->::RceQueryVisitHelpsGiftUnitsOnBunker::MergeFrom(from.ce_rcequeryvisithelpsgiftunitsonbunker());
+      mutable_ce_rcequerystarsbookmarks()->::RceQueryStarsBookmarks::MergeFrom(from.ce_rcequerystarsbookmarks());
     }
     if (from._has_bit(59)) {
-      mutable_ce_rceupdatealliances()->::RceUpdateAlliances::MergeFrom(from.ce_rceupdatealliances());
+      mutable_ce_rcequeryvisithelpsgiftunitsonbunker()->::RceQueryVisitHelpsGiftUnitsOnBunker::MergeFrom(from.ce_rcequeryvisithelpsgiftunitsonbunker());
     }
     if (from._has_bit(60)) {
-      mutable_ce_rceupdategameunits()->::RceUpdateGameUnits::MergeFrom(from.ce_rceupdategameunits());
+      mutable_ce_rceupdatealliances()->::RceUpdateAlliances::MergeFrom(from.ce_rceupdatealliances());
     }
     if (from._has_bit(61)) {
-      mutable_ce_rceupdateitem()->::RceUpdateItem::MergeFrom(from.ce_rceupdateitem());
+      mutable_ce_rceupdategameunits()->::RceUpdateGameUnits::MergeFrom(from.ce_rceupdategameunits());
     }
     if (from._has_bit(62)) {
-      mutable_ce_rceupdatemisc()->::RceUpdateMisc::MergeFrom(from.ce_rceupdatemisc());
+      mutable_ce_rceupdateitem()->::RceUpdateItem::MergeFrom(from.ce_rceupdateitem());
     }
     if (from._has_bit(63)) {
-      mutable_ce_rceupdatemissions()->::RceUpdateMissions::MergeFrom(from.ce_rceupdatemissions());
+      mutable_ce_rceupdatemisc()->::RceUpdateMisc::MergeFrom(from.ce_rceupdatemisc());
     }
   }
   if (from._has_bits_[64 / 32] & (0xffu << (64 % 32))) {
     if (from._has_bit(64)) {
-      mutable_ce_rceupdateprofile()->::RceUpdateProfile::MergeFrom(from.ce_rceupdateprofile());
+      mutable_ce_rceupdatemissions()->::RceUpdateMissions::MergeFrom(from.ce_rceupdatemissions());
     }
     if (from._has_bit(65)) {
-      mutable_ce_rceupdateships()->::RceUpdateShips::MergeFrom(from.ce_rceupdateships());
+      mutable_ce_rceupdateprofile()->::RceUpdateProfile::MergeFrom(from.ce_rceupdateprofile());
     }
     if (from._has_bit(66)) {
-      mutable_ce_rceupdatesocialitem()->::RceUpdateSocialItem::MergeFrom(from.ce_rceupdatesocialitem());
+      mutable_ce_rceupdateships()->::RceUpdateShips::MergeFrom(from.ce_rceupdateships());
     }
     if (from._has_bit(67)) {
-      mutable_ce_rceupdatestarsbookmarks()->::RceUpdateStarsBookmarks::MergeFrom(from.ce_rceupdatestarsbookmarks());
+      mutable_ce_rceupdatesocialitem()->::RceUpdateSocialItem::MergeFrom(from.ce_rceupdatesocialitem());
     }
     if (from._has_bit(68)) {
-      mutable_ce_rceupdatetargets()->::RceUpdateTargets::MergeFrom(from.ce_rceupdatetargets());
+      mutable_ce_rceupdatestarsbookmarks()->::RceUpdateStarsBookmarks::MergeFrom(from.ce_rceupdatestarsbookmarks());
     }
     if (from._has_bit(69)) {
-      mutable_ce_rceupdatevisithelp()->::RceUpdateVisitHelp::MergeFrom(from.ce_rceupdatevisithelp());
+      mutable_ce_rceupdatetargets()->::RceUpdateTargets::MergeFrom(from.ce_rceupdatetargets());
     }
     if (from._has_bit(70)) {
-      mutable_se_rseauthstate()->::RseAuthState::MergeFrom(from.se_rseauthstate());
+      mutable_ce_rceupdatevisithelp()->::RceUpdateVisitHelp::MergeFrom(from.ce_rceupdatevisithelp());
     }
     if (from._has_bit(71)) {
-      mutable_se_rsecustomizedactivity()->::RseCustomizedActivity::MergeFrom(from.se_rsecustomizedactivity());
+      mutable_ce_rcequerypve()->::RceQueryPvE::MergeFrom(from.ce_rcequerypve());
     }
   }
   if (from._has_bits_[72 / 32] & (0xffu << (72 % 32))) {
     if (from._has_bit(72)) {
-      mutable_se_rseerror()->::RseError::MergeFrom(from.se_rseerror());
+      mutable_se_rseauthstate()->::RseAuthState::MergeFrom(from.se_rseauthstate());
     }
     if (from._has_bit(73)) {
-      mutable_se_rseheartbeat()->::RseHeartbeat::MergeFrom(from.se_rseheartbeat());
+      mutable_se_rsecustomizedactivity()->::RseCustomizedActivity::MergeFrom(from.se_rsecustomizedactivity());
     }
     if (from._has_bit(74)) {
-      mutable_se_rselogin()->::RseLogin::MergeFrom(from.se_rselogin());
+      mutable_se_rseerror()->::RseError::MergeFrom(from.se_rseerror());
     }
     if (from._has_bit(75)) {
-      mutable_se_rseobtainaskforhelp()->::RseObtainAskForHelp::MergeFrom(from.se_rseobtainaskforhelp());
+      mutable_se_rseheartbeat()->::RseHeartbeat::MergeFrom(from.se_rseheartbeat());
     }
     if (from._has_bit(76)) {
-      mutable_se_rseobtainattackerlist()->::RseObtainAttackerList::MergeFrom(from.se_rseobtainattackerlist());
+      mutable_se_rselogin()->::RseLogin::MergeFrom(from.se_rselogin());
     }
     if (from._has_bit(77)) {
-      mutable_se_rseobtainbattlereplay()->::RseObtainBattleReplay::MergeFrom(from.se_rseobtainbattlereplay());
+      mutable_se_rseobtainaskforhelp()->::RseObtainAskForHelp::MergeFrom(from.se_rseobtainaskforhelp());
     }
     if (from._has_bit(78)) {
-      mutable_se_rseobtaincustomizer()->::RseObtainCustomizer::MergeFrom(from.se_rseobtaincustomizer());
+      mutable_se_rseobtainattackerlist()->::RseObtainAttackerList::MergeFrom(from.se_rseobtainattackerlist());
     }
     if (from._has_bit(79)) {
-      mutable_se_rseobtainhangarshelp()->::RseObtainHangarsHelp::MergeFrom(from.se_rseobtainhangarshelp());
+      mutable_se_rseobtainbattlereplay()->::RseObtainBattleReplay::MergeFrom(from.se_rseobtainbattlereplay());
     }
   }
   if (from._has_bits_[80 / 32] & (0xffu << (80 % 32))) {
     if (from._has_bit(80)) {
-      mutable_se_rseobtainmessageslist()->::RseObtainMessagesList::MergeFrom(from.se_rseobtainmessageslist());
+      mutable_se_rseobtaincustomizer()->::RseObtainCustomizer::MergeFrom(from.se_rseobtaincustomizer());
     }
     if (from._has_bit(81)) {
-      mutable_se_rseobtainneighborslist()->::RseObtainNeighborsList::MergeFrom(from.se_rseobtainneighborslist());
+      mutable_se_rseobtainhangarshelp()->::RseObtainHangarsHelp::MergeFrom(from.se_rseobtainhangarshelp());
     }
     if (from._has_bit(82)) {
-      mutable_se_rseobtainnpclist()->::RseObtainNpcList::MergeFrom(from.se_rseobtainnpclist());
+      mutable_se_rseobtainmessageslist()->::RseObtainMessagesList::MergeFrom(from.se_rseobtainmessageslist());
     }
     if (from._has_bit(83)) {
-      mutable_se_rseobtainpayurlparame()->::RseObtainPayUrlParame::MergeFrom(from.se_rseobtainpayurlparame());
+      mutable_se_rseobtainneighborslist()->::RseObtainNeighborsList::MergeFrom(from.se_rseobtainneighborslist());
     }
     if (from._has_bit(84)) {
-      mutable_se_rseobtainrandomtargets()->::RseObtainRandomTargets::MergeFrom(from.se_rseobtainrandomtargets());
+      mutable_se_rseobtainnpclist()->::RseObtainNpcList::MergeFrom(from.se_rseobtainnpclist());
     }
     if (from._has_bit(85)) {
-      mutable_se_rseobtainsocialitems()->::RseObtainSocialItems::MergeFrom(from.se_rseobtainsocialitems());
+      mutable_se_rseobtainpayurlparame()->::RseObtainPayUrlParame::MergeFrom(from.se_rseobtainpayurlparame());
     }
     if (from._has_bit(86)) {
-      mutable_se_rseobtainsocialuserinfo()->::RseObtainSocialUserInfo::MergeFrom(from.se_rseobtainsocialuserinfo());
+      mutable_se_rseobtainrandomtargets()->::RseObtainRandomTargets::MergeFrom(from.se_rseobtainrandomtargets());
     }
     if (from._has_bit(87)) {
-      mutable_se_rseobtainuniverse()->::RseObtainUniverse::MergeFrom(from.se_rseobtainuniverse());
+      mutable_se_rseobtainsocialitems()->::RseObtainSocialItems::MergeFrom(from.se_rseobtainsocialitems());
     }
   }
   if (from._has_bits_[88 / 32] & (0xffu << (88 % 32))) {
     if (from._has_bit(88)) {
-      mutable_se_rseobtainvisithelps()->::RseObtainVisitHelps::MergeFrom(from.se_rseobtainvisithelps());
+      mutable_se_rseobtainsocialuserinfo()->::RseObtainSocialUserInfo::MergeFrom(from.se_rseobtainsocialuserinfo());
     }
     if (from._has_bit(89)) {
-      mutable_se_rsequerycheckandlockaccountifpossible()->::RseQueryCheckAndLockAccountIfPossible::MergeFrom(from.se_rsequerycheckandlockaccountifpossible());
+      mutable_se_rseobtainuniverse()->::RseObtainUniverse::MergeFrom(from.se_rseobtainuniverse());
     }
     if (from._has_bit(90)) {
-      mutable_se_rsequerygalaxywindow()->::RseQueryGalaxyWindow::MergeFrom(from.se_rsequerygalaxywindow());
+      mutable_se_rseobtainvisithelps()->::RseObtainVisitHelps::MergeFrom(from.se_rseobtainvisithelps());
     }
     if (from._has_bit(91)) {
-      mutable_se_rsequeryreceivewishitem()->::RseQueryReceiveWishItem::MergeFrom(from.se_rsequeryreceivewishitem());
+      mutable_se_rsequerycheckandlockaccountifpossible()->::RseQueryCheckAndLockAccountIfPossible::MergeFrom(from.se_rsequerycheckandlockaccountifpossible());
     }
     if (from._has_bit(92)) {
-      mutable_se_rsequeryrefusereceivewishitem()->::RseQueryRefuseReceiveWishItem::MergeFrom(from.se_rsequeryrefusereceivewishitem());
+      mutable_se_rsequerygalaxywindow()->::RseQueryGalaxyWindow::MergeFrom(from.se_rsequerygalaxywindow());
     }
     if (from._has_bit(93)) {
-      mutable_se_rsequerysendwishitem()->::RseQuerySendWishItem::MergeFrom(from.se_rsequerysendwishitem());
+      mutable_se_rsequeryreceivewishitem()->::RseQueryReceiveWishItem::MergeFrom(from.se_rsequeryreceivewishitem());
     }
     if (from._has_bit(94)) {
-      mutable_se_rsequerystarinfo()->::RseQueryStarInfo::MergeFrom(from.se_rsequerystarinfo());
+      mutable_se_rsequeryrefusereceivewishitem()->::RseQueryRefuseReceiveWishItem::MergeFrom(from.se_rsequeryrefusereceivewishitem());
     }
     if (from._has_bit(95)) {
-      mutable_se_rsequerystarsbookmarks()->::RseQueryStarsBookmarks::MergeFrom(from.se_rsequerystarsbookmarks());
+      mutable_se_rsequerysendwishitem()->::RseQuerySendWishItem::MergeFrom(from.se_rsequerysendwishitem());
     }
   }
   if (from._has_bits_[96 / 32] & (0xffu << (96 % 32))) {
     if (from._has_bit(96)) {
-      mutable_se_rsequeryvisithelpsgiftunitsonbunker()->::RseQueryVisitHelpsGiftUnitsOnBunker::MergeFrom(from.se_rsequeryvisithelpsgiftunitsonbunker());
+      mutable_se_rsequerystarinfo()->::RseQueryStarInfo::MergeFrom(from.se_rsequerystarinfo());
     }
     if (from._has_bit(97)) {
-      mutable_se_rseupdatealliances()->::RseUpdateAlliances::MergeFrom(from.se_rseupdatealliances());
+      mutable_se_rsequerystarsbookmarks()->::RseQueryStarsBookmarks::MergeFrom(from.se_rsequerystarsbookmarks());
     }
     if (from._has_bit(98)) {
-      mutable_se_rseupdategameunits()->::RseUpdateGameUnits::MergeFrom(from.se_rseupdategameunits());
+      mutable_se_rsequeryvisithelpsgiftunitsonbunker()->::RseQueryVisitHelpsGiftUnitsOnBunker::MergeFrom(from.se_rsequeryvisithelpsgiftunitsonbunker());
     }
     if (from._has_bit(99)) {
-      mutable_se_rseupdateitem()->::RseUpdateItem::MergeFrom(from.se_rseupdateitem());
+      mutable_se_rseupdatealliances()->::RseUpdateAlliances::MergeFrom(from.se_rseupdatealliances());
     }
     if (from._has_bit(100)) {
-      mutable_se_rseupdatemisc()->::RseUpdateMisc::MergeFrom(from.se_rseupdatemisc());
+      mutable_se_rseupdategameunits()->::RseUpdateGameUnits::MergeFrom(from.se_rseupdategameunits());
     }
     if (from._has_bit(101)) {
-      mutable_se_rseupdatemissions()->::RseUpdateMissions::MergeFrom(from.se_rseupdatemissions());
+      mutable_se_rseupdateitem()->::RseUpdateItem::MergeFrom(from.se_rseupdateitem());
     }
     if (from._has_bit(102)) {
-      mutable_se_rseupdateprofile()->::RseUpdateProfile::MergeFrom(from.se_rseupdateprofile());
+      mutable_se_rseupdatemisc()->::RseUpdateMisc::MergeFrom(from.se_rseupdatemisc());
     }
     if (from._has_bit(103)) {
-      mutable_se_rseupdateships()->::RseUpdateShips::MergeFrom(from.se_rseupdateships());
+      mutable_se_rseupdatemissions()->::RseUpdateMissions::MergeFrom(from.se_rseupdatemissions());
     }
   }
   if (from._has_bits_[104 / 32] & (0xffu << (104 % 32))) {
     if (from._has_bit(104)) {
-      mutable_se_rseupdatesocialitem()->::RseUpdateSocialItem::MergeFrom(from.se_rseupdatesocialitem());
+      mutable_se_rseupdateprofile()->::RseUpdateProfile::MergeFrom(from.se_rseupdateprofile());
     }
     if (from._has_bit(105)) {
-      mutable_se_rseupdatestarsbookmarks()->::RseUpdateStarsBookmarks::MergeFrom(from.se_rseupdatestarsbookmarks());
+      mutable_se_rseupdateships()->::RseUpdateShips::MergeFrom(from.se_rseupdateships());
     }
     if (from._has_bit(106)) {
-      mutable_se_rseupdatetargets()->::RseUpdateTargets::MergeFrom(from.se_rseupdatetargets());
+      mutable_se_rseupdatesocialitem()->::RseUpdateSocialItem::MergeFrom(from.se_rseupdatesocialitem());
     }
     if (from._has_bit(107)) {
-      mutable_se_rsebattledamagespack()->::RseBattleDamagesPack::MergeFrom(from.se_rsebattledamagespack());
+      mutable_se_rseupdatestarsbookmarks()->::RseUpdateStarsBookmarks::MergeFrom(from.se_rseupdatestarsbookmarks());
     }
     if (from._has_bit(108)) {
-      mutable_se_rseitemmineexploded()->::RseItemMineExploded::MergeFrom(from.se_rseitemmineexploded());
+      mutable_se_rseupdatetargets()->::RseUpdateTargets::MergeFrom(from.se_rseupdatetargets());
     }
     if (from._has_bit(109)) {
+      mutable_se_rsebattledamagespack()->::RseBattleDamagesPack::MergeFrom(from.se_rsebattledamagespack());
+    }
+    if (from._has_bit(110)) {
+      mutable_se_rseitemmineexploded()->::RseItemMineExploded::MergeFrom(from.se_rseitemmineexploded());
+    }
+    if (from._has_bit(111)) {
       mutable_se_rsefinished()->::RseFinished::MergeFrom(from.se_rsefinished());
+    }
+  }
+  if (from._has_bits_[112 / 32] & (0xffu << (112 % 32))) {
+    if (from._has_bit(112)) {
+      mutable_se_rsequerypve()->::RseQueryPvE::MergeFrom(from.se_rsequerypve());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -5436,6 +5580,7 @@ void Event::Swap(Event* other) {
     std::swap(statneed_, other->statneed_);
     std::swap(newstarreq_, other->newstarreq_);
     std::swap(newstarrsp_, other->newstarrsp_);
+    std::swap(battleinfo_, other->battleinfo_);
     std::swap(httpaskmsg_, other->httpaskmsg_);
     std::swap(httpanswermsg_, other->httpanswermsg_);
     std::swap(ce_rcebattledamagespack_, other->ce_rcebattledamagespack_);
@@ -5479,6 +5624,7 @@ void Event::Swap(Event* other) {
     std::swap(ce_rceupdatestarsbookmarks_, other->ce_rceupdatestarsbookmarks_);
     std::swap(ce_rceupdatetargets_, other->ce_rceupdatetargets_);
     std::swap(ce_rceupdatevisithelp_, other->ce_rceupdatevisithelp_);
+    std::swap(ce_rcequerypve_, other->ce_rcequerypve_);
     std::swap(se_rseauthstate_, other->se_rseauthstate_);
     std::swap(se_rsecustomizedactivity_, other->se_rsecustomizedactivity_);
     std::swap(se_rseerror_, other->se_rseerror_);
@@ -5519,6 +5665,7 @@ void Event::Swap(Event* other) {
     std::swap(se_rsebattledamagespack_, other->se_rsebattledamagespack_);
     std::swap(se_rseitemmineexploded_, other->se_rseitemmineexploded_);
     std::swap(se_rsefinished_, other->se_rsefinished_);
+    std::swap(se_rsequerypve_, other->se_rsequerypve_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     std::swap(_has_bits_[1], other->_has_bits_[1]);
     std::swap(_has_bits_[2], other->_has_bits_[2]);

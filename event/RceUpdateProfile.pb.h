@@ -138,6 +138,13 @@ class RceUpdateProfile : public ::google::protobuf::Message {
   inline void set_action(const char* value, size_t size);
   inline ::std::string* mutable_action();
   
+  // optional int32 level = 7;
+  inline bool has_level() const;
+  inline void clear_level();
+  static const int kLevelFieldNumber = 7;
+  inline ::google::protobuf::int32 level() const;
+  inline void set_level(::google::protobuf::int32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -151,11 +158,12 @@ class RceUpdateProfile : public ::google::protobuf::Message {
   ::google::protobuf::int32 planetid_;
   ::std::string* action_;
   static const ::std::string _default_action_;
+  ::google::protobuf::int32 level_;
   friend void  protobuf_AddDesc_RceUpdateProfile_2eproto();
   friend void protobuf_AssignDesc_RceUpdateProfile_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateProfile_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -354,6 +362,22 @@ inline ::std::string* RceUpdateProfile::mutable_action() {
     action_ = new ::std::string;
   }
   return action_;
+}
+
+// optional int32 level = 7;
+inline bool RceUpdateProfile::has_level() const {
+  return _has_bit(6);
+}
+inline void RceUpdateProfile::clear_level() {
+  level_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 RceUpdateProfile::level() const {
+  return level_;
+}
+inline void RceUpdateProfile::set_level(::google::protobuf::int32 value) {
+  _set_bit(6);
+  level_ = value;
 }
 
 

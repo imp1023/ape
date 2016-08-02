@@ -302,6 +302,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* DB_MedalHonor_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   DB_MedalHonor_reflection_ = NULL;
+const ::google::protobuf::Descriptor* DB_KeyValue_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  DB_KeyValue_reflection_ = NULL;
 
 }  // namespace
 
@@ -2322,6 +2325,22 @@ void protobuf_AssignDesc_dbinterface_5fsub_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DB_MedalHonor));
+  DB_KeyValue_descriptor_ = file->message_type(97);
+  static const int DB_KeyValue_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_KeyValue, key_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_KeyValue, value_),
+  };
+  DB_KeyValue_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      DB_KeyValue_descriptor_,
+      DB_KeyValue::default_instance_,
+      DB_KeyValue_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_KeyValue, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DB_KeyValue, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(DB_KeyValue));
 }
 
 namespace {
@@ -2528,6 +2547,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
     DB_MedalHonorInfo_descriptor_, &DB_MedalHonorInfo::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     DB_MedalHonor_descriptor_, &DB_MedalHonor::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    DB_KeyValue_descriptor_, &DB_KeyValue::default_instance());
 }
 
 }  // namespace
@@ -2727,6 +2748,8 @@ void protobuf_ShutdownFile_dbinterface_5fsub_2eproto() {
   delete DB_MedalHonorInfo_reflection_;
   delete DB_MedalHonor::default_instance_;
   delete DB_MedalHonor_reflection_;
+  delete DB_KeyValue::default_instance_;
+  delete DB_KeyValue_reflection_;
 }
 
 void protobuf_AddDesc_dbinterface_5fsub_2eproto() {
@@ -3127,7 +3150,8 @@ void protobuf_AddDesc_dbinterface_5fsub_2eproto() {
     "lHonor\022\016\n\003nID\030\001 \001(\005:\0010\022\027\n\014medalHonorID\030\002"
     " \001(\005:\0010\022\017\n\004nExp\030\003 \001(\005:\0010\022\016\n\003nLV\030\004 \001(\005:\0010"
     "\022\023\n\010nBagType\030\005 \001(\005:\0010\022\025\n\nnAdmiralID\030\006 \001("
-    "\005:\0010\022\024\n\005bLock\030\007 \001(\010:\005false", 15666);
+    "\005:\0010\022\024\n\005bLock\030\007 \001(\010:\005false\")\n\013DB_KeyValu"
+    "e\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\005", 15709);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "dbinterface_sub.proto", &protobuf_RegisterTypes);
   DB_UserLiteBase::default_instance_ = new DB_UserLiteBase();
@@ -3227,6 +3251,7 @@ void protobuf_AddDesc_dbinterface_5fsub_2eproto() {
   DB_BossBtlMsg::default_instance_ = new DB_BossBtlMsg();
   DB_MedalHonorInfo::default_instance_ = new DB_MedalHonorInfo();
   DB_MedalHonor::default_instance_ = new DB_MedalHonor();
+  DB_KeyValue::default_instance_ = new DB_KeyValue();
   DB_UserLiteBase::default_instance_->InitAsDefaultInstance();
   DB_CityUserLite::default_instance_->InitAsDefaultInstance();
   DB_RegionCityUserLite::default_instance_->InitAsDefaultInstance();
@@ -3324,6 +3349,7 @@ void protobuf_AddDesc_dbinterface_5fsub_2eproto() {
   DB_BossBtlMsg::default_instance_->InitAsDefaultInstance();
   DB_MedalHonorInfo::default_instance_->InitAsDefaultInstance();
   DB_MedalHonor::default_instance_->InitAsDefaultInstance();
+  DB_KeyValue::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_dbinterface_5fsub_2eproto);
 }
 
@@ -45082,6 +45108,246 @@ void DB_MedalHonor::Swap(DB_MedalHonor* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = DB_MedalHonor_descriptor_;
   metadata.reflection = DB_MedalHonor_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int DB_KeyValue::kKeyFieldNumber;
+const int DB_KeyValue::kValueFieldNumber;
+#endif  // !_MSC_VER
+
+DB_KeyValue::DB_KeyValue() {
+  SharedCtor();
+}
+
+void DB_KeyValue::InitAsDefaultInstance() {
+}
+
+DB_KeyValue::DB_KeyValue(const DB_KeyValue& from) {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void DB_KeyValue::SharedCtor() {
+  _cached_size_ = 0;
+  key_ = 0;
+  value_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+DB_KeyValue::~DB_KeyValue() {
+  SharedDtor();
+}
+
+void DB_KeyValue::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+const ::google::protobuf::Descriptor* DB_KeyValue::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return DB_KeyValue_descriptor_;
+}
+
+const DB_KeyValue& DB_KeyValue::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_dbinterface_5fsub_2eproto();  return *default_instance_;
+}
+
+DB_KeyValue* DB_KeyValue::default_instance_ = NULL;
+
+DB_KeyValue* DB_KeyValue::New() const {
+  return new DB_KeyValue;
+}
+
+void DB_KeyValue::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    key_ = 0;
+    value_ = 0;
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool DB_KeyValue::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 key = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &key_));
+        _set_bit(0);
+        if (input->ExpectTag(16)) goto parse_value;
+        break;
+      }
+      
+      // optional int32 value = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_value:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &value_));
+        _set_bit(1);
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void DB_KeyValue::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
+  if (raw_buffer != NULL) {
+    DB_KeyValue::SerializeWithCachedSizesToArray(raw_buffer);
+    return;
+  }
+  
+  // optional int32 key = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->key(), output);
+  }
+  
+  // optional int32 value = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->value(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* DB_KeyValue::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional int32 key = 1;
+  if (_has_bit(0)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->key(), target);
+  }
+  
+  // optional int32 value = 2;
+  if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->value(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int DB_KeyValue::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional int32 key = 1;
+    if (has_key()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->key());
+    }
+    
+    // optional int32 value = 2;
+    if (has_value()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->value());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  _cached_size_ = total_size;
+  return total_size;
+}
+
+void DB_KeyValue::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const DB_KeyValue* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const DB_KeyValue*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void DB_KeyValue::MergeFrom(const DB_KeyValue& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from._has_bit(0)) {
+      set_key(from.key());
+    }
+    if (from._has_bit(1)) {
+      set_value(from.value());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void DB_KeyValue::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void DB_KeyValue::CopyFrom(const DB_KeyValue& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DB_KeyValue::IsInitialized() const {
+  
+  return true;
+}
+
+void DB_KeyValue::Swap(DB_KeyValue* other) {
+  if (other != this) {
+    std::swap(key_, other->key_);
+    std::swap(value_, other->value_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata DB_KeyValue::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = DB_KeyValue_descriptor_;
+  metadata.reflection = DB_KeyValue_reflection_;
   return metadata;
 }
 

@@ -25,13 +25,14 @@ void protobuf_AssignDesc_RceUpdateProfile_2eproto() {
       "RceUpdateProfile.proto");
   GOOGLE_CHECK(file != NULL);
   RceUpdateProfile_descriptor_ = file->message_type(0);
-  static const int RceUpdateProfile_offsets_[6] = {
+  static const int RceUpdateProfile_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, transaction_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, sku_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, value_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, key_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, planetid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, action_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateProfile, level_),
   };
   RceUpdateProfile_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -77,11 +78,11 @@ void protobuf_AddDesc_RceUpdateProfile_2eproto() {
   ::protobuf_AddDesc_MsgTransaction_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\026RceUpdateProfile.proto\032\024MsgSocialItems"
-    ".proto\032\024MsgTransaction.proto\"\203\001\n\020RceUpda"
+    ".proto\032\024MsgTransaction.proto\"\222\001\n\020RceUpda"
     "teProfile\022$\n\013transaction\030\001 \001(\0132\017.MsgTran"
     "saction\022\013\n\003sku\030\002 \001(\t\022\r\n\005value\030\003 \001(\005\022\013\n\003k"
     "ey\030\004 \001(\t\022\020\n\010planetId\030\005 \001(\005\022\016\n\006action\030\006 \001"
-    "(\t", 202);
+    "(\t\022\r\n\005level\030\007 \001(\005", 217);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceUpdateProfile.proto", &protobuf_RegisterTypes);
   RceUpdateProfile::default_instance_ = new RceUpdateProfile();
@@ -109,6 +110,7 @@ const int RceUpdateProfile::kValueFieldNumber;
 const int RceUpdateProfile::kKeyFieldNumber;
 const int RceUpdateProfile::kPlanetIdFieldNumber;
 const int RceUpdateProfile::kActionFieldNumber;
+const int RceUpdateProfile::kLevelFieldNumber;
 #endif  // !_MSC_VER
 
 RceUpdateProfile::RceUpdateProfile() {
@@ -132,6 +134,7 @@ void RceUpdateProfile::SharedCtor() {
   key_ = const_cast< ::std::string*>(&_default_key_);
   planetid_ = 0;
   action_ = const_cast< ::std::string*>(&_default_action_);
+  level_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -191,6 +194,7 @@ void RceUpdateProfile::Clear() {
         action_->clear();
       }
     }
+    level_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -286,6 +290,20 @@ bool RceUpdateProfile::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->action().data(), this->action().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(56)) goto parse_level;
+        break;
+      }
+      
+      // optional int32 level = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_level:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &level_));
+        _set_bit(6);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -357,6 +375,11 @@ void RceUpdateProfile::SerializeWithCachedSizes(
       6, this->action(), output);
   }
   
+  // optional int32 level = 7;
+  if (_has_bit(6)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->level(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -412,6 +435,11 @@ void RceUpdateProfile::SerializeWithCachedSizes(
         6, this->action(), target);
   }
   
+  // optional int32 level = 7;
+  if (_has_bit(6)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->level(), target);
+  }
+  
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -465,6 +493,13 @@ int RceUpdateProfile::ByteSize() const {
           this->action());
     }
     
+    // optional int32 level = 7;
+    if (has_level()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->level());
+    }
+    
   }
   if (!unknown_fields().empty()) {
     total_size +=
@@ -508,6 +543,9 @@ void RceUpdateProfile::MergeFrom(const RceUpdateProfile& from) {
     if (from._has_bit(5)) {
       set_action(from.action());
     }
+    if (from._has_bit(6)) {
+      set_level(from.level());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -537,6 +575,7 @@ void RceUpdateProfile::Swap(RceUpdateProfile* other) {
     std::swap(key_, other->key_);
     std::swap(planetid_, other->planetid_);
     std::swap(action_, other->action_);
+    std::swap(level_, other->level_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

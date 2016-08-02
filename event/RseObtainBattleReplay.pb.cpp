@@ -11,9 +11,12 @@
 
 namespace {
 
-const ::google::protobuf::Descriptor* MsgBattle_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* BattleUniverse_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgBattle_reflection_ = NULL;
+  BattleUniverse_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgDeployUnit_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  MsgDeployUnit_reflection_ = NULL;
 const ::google::protobuf::Descriptor* RseObtainBattleReplay_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   RseObtainBattleReplay_reflection_ = NULL;
@@ -27,30 +30,65 @@ void protobuf_AssignDesc_RseObtainBattleReplay_2eproto() {
     ::google::protobuf::DescriptorPool::generated_pool()->FindFileByName(
       "RseObtainBattleReplay.proto");
   GOOGLE_CHECK(file != NULL);
-  MsgBattle_descriptor_ = file->message_type(0);
-  static const int MsgBattle_offsets_[7] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, planetid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, universe_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, accountid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, url_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, deploys_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, attackergameunits_),
+  BattleUniverse_descriptor_ = file->message_type(0);
+  static const int BattleUniverse_offsets_[18] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dcplayername_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dcworldname_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dcplayerrank_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dccoins_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dcminerals_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dccash_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, dcdroids_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, tutorialcompleted_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, damageprotectiontimeleft_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, damageprotectiontimetotal_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, flags_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, missions_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, planets_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, items_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, shipyards_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, hangars_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, bunkers_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, gameunits_),
   };
-  MsgBattle_reflection_ =
+  BattleUniverse_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      MsgBattle_descriptor_,
-      MsgBattle::default_instance_,
-      MsgBattle_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgBattle, _unknown_fields_),
+      BattleUniverse_descriptor_,
+      BattleUniverse::default_instance_,
+      BattleUniverse_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(BattleUniverse, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(MsgBattle));
-  RseObtainBattleReplay_descriptor_ = file->message_type(1);
-  static const int RseObtainBattleReplay_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, battle_),
+      sizeof(BattleUniverse));
+  MsgDeployUnit_descriptor_ = file->message_type(1);
+  static const int MsgDeployUnit_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgDeployUnit, sku_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgDeployUnit, x_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgDeployUnit, y_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgDeployUnit, millis_),
+  };
+  MsgDeployUnit_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      MsgDeployUnit_descriptor_,
+      MsgDeployUnit::default_instance_,
+      MsgDeployUnit_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgDeployUnit, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgDeployUnit, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(MsgDeployUnit));
+  RseObtainBattleReplay_descriptor_ = file->message_type(2);
+  static const int RseObtainBattleReplay_offsets_[7] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, planetid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, universe_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, accountid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, url_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, deploys_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseObtainBattleReplay, attackergameunits_),
   };
   RseObtainBattleReplay_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -76,7 +114,9 @@ inline void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    MsgBattle_descriptor_, &MsgBattle::default_instance());
+    BattleUniverse_descriptor_, &BattleUniverse::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    MsgDeployUnit_descriptor_, &MsgDeployUnit::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     RseObtainBattleReplay_descriptor_, &RseObtainBattleReplay::default_instance());
 }
@@ -84,8 +124,10 @@ void protobuf_RegisterTypes(const ::std::string&) {
 }  // namespace
 
 void protobuf_ShutdownFile_RseObtainBattleReplay_2eproto() {
-  delete MsgBattle::default_instance_;
-  delete MsgBattle_reflection_;
+  delete BattleUniverse::default_instance_;
+  delete BattleUniverse_reflection_;
+  delete MsgDeployUnit::default_instance_;
+  delete MsgDeployUnit_reflection_;
   delete RseObtainBattleReplay::default_instance_;
   delete RseObtainBattleReplay_reflection_;
 }
@@ -96,18 +138,44 @@ void protobuf_AddDesc_RseObtainBattleReplay_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::protobuf_AddDesc_MsgBuildingItem_2eproto();
+  ::protobuf_AddDesc_MsgPlanet_2eproto();
+  ::protobuf_AddDesc_MsgMission_2eproto();
+  ::protobuf_AddDesc_MsgShipyard_2eproto();
+  ::protobuf_AddDesc_MsgHangars_2eproto();
+  ::protobuf_AddDesc_MsgBunker_2eproto();
+  ::protobuf_AddDesc_MsgGameUnit_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\033RseObtainBattleReplay.proto\"\211\001\n\tMsgBat"
-    "tle\022\020\n\010planetId\030\001 \001(\005\022\020\n\010Universe\030\002 \003(\005\022"
-    "\021\n\taccountId\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022\013\n\003url\030"
-    "\005 \001(\t\022\017\n\007Deploys\030\006 \001(\005\022\031\n\021AttackerGameUn"
-    "its\030\007 \001(\005\"3\n\025RseObtainBattleReplay\022\032\n\006Ba"
-    "ttle\030\001 \003(\0132\n.MsgBattle", 222);
+    "\n\033RseObtainBattleReplay.proto\032\025MsgBuildi"
+    "ngItem.proto\032\017MsgPlanet.proto\032\020MsgMissio"
+    "n.proto\032\021MsgShipyard.proto\032\020MsgHangars.p"
+    "roto\032\017MsgBunker.proto\032\021MsgGameUnit.proto"
+    "\"\346\003\n\016BattleUniverse\022\024\n\014DCPlayerName\030\001 \001("
+    "\t\022\023\n\013DCWorldName\030\002 \001(\t\022\024\n\014DCPlayerRank\030\003"
+    " \001(\005\022\017\n\007DCCoins\030\004 \001(\005\022\022\n\nDCMinerals\030\005 \001("
+    "\005\022\016\n\006DCCash\030\006 \001(\005\022\020\n\010DCDroids\030\007 \001(\005\022\031\n\021t"
+    "utorialCompleted\030\010 \001(\010\022 \n\030damageProtecti"
+    "onTimeLeft\030\t \001(\005\022!\n\031damageProtectionTime"
+    "Total\030\n \001(\005\022\r\n\005flags\030\013 \001(\t\022\"\n\010Missions\030\014"
+    " \001(\0132\020.MsgMissionState\022\033\n\007Planets\030\r \003(\0132"
+    "\n.MsgPlanet\022\037\n\005Items\030\016 \003(\0132\020.MsgBuilding"
+    "Item\022\037\n\tShipyards\030\017 \003(\0132\014.MsgShipyard\022\034\n"
+    "\007Hangars\030\020 \003(\0132\013.MsgHangars\022\033\n\007Bunkers\030\021"
+    " \003(\0132\n.MsgBunker\022\037\n\tGameUnits\030\022 \003(\0132\014.Ms"
+    "gGameUnit\"B\n\rMsgDeployUnit\022\013\n\003sku\030\001 \001(\t\022"
+    "\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\022\016\n\006millis\030\004 \001(\005\"\304\001"
+    "\n\025RseObtainBattleReplay\022\020\n\010planetId\030\001 \001("
+    "\005\022!\n\010Universe\030\002 \001(\0132\017.BattleUniverse\022\021\n\t"
+    "accountId\030\003 \001(\005\022\014\n\004name\030\004 \001(\t\022\013\n\003url\030\005 \001"
+    "(\t\022\037\n\007Deploys\030\006 \003(\0132\016.MsgDeployUnit\022\'\n\021A"
+    "ttackerGameUnits\030\007 \003(\0132\014.MsgGameUnit", 916);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseObtainBattleReplay.proto", &protobuf_RegisterTypes);
-  MsgBattle::default_instance_ = new MsgBattle();
+  BattleUniverse::default_instance_ = new BattleUniverse();
+  MsgDeployUnit::default_instance_ = new MsgDeployUnit();
   RseObtainBattleReplay::default_instance_ = new RseObtainBattleReplay();
-  MsgBattle::default_instance_->InitAsDefaultInstance();
+  BattleUniverse::default_instance_->InitAsDefaultInstance();
+  MsgDeployUnit::default_instance_->InitAsDefaultInstance();
   RseObtainBattleReplay::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_RseObtainBattleReplay_2eproto);
 }
@@ -122,46 +190,1302 @@ struct StaticDescriptorInitializer_RseObtainBattleReplay_2eproto {
 
 // ===================================================================
 
-const ::std::string MsgBattle::_default_name_;
-const ::std::string MsgBattle::_default_url_;
+const ::std::string BattleUniverse::_default_dcplayername_;
+const ::std::string BattleUniverse::_default_dcworldname_;
+const ::std::string BattleUniverse::_default_flags_;
 #ifndef _MSC_VER
-const int MsgBattle::kPlanetIdFieldNumber;
-const int MsgBattle::kUniverseFieldNumber;
-const int MsgBattle::kAccountIdFieldNumber;
-const int MsgBattle::kNameFieldNumber;
-const int MsgBattle::kUrlFieldNumber;
-const int MsgBattle::kDeploysFieldNumber;
-const int MsgBattle::kAttackerGameUnitsFieldNumber;
+const int BattleUniverse::kDCPlayerNameFieldNumber;
+const int BattleUniverse::kDCWorldNameFieldNumber;
+const int BattleUniverse::kDCPlayerRankFieldNumber;
+const int BattleUniverse::kDCCoinsFieldNumber;
+const int BattleUniverse::kDCMineralsFieldNumber;
+const int BattleUniverse::kDCCashFieldNumber;
+const int BattleUniverse::kDCDroidsFieldNumber;
+const int BattleUniverse::kTutorialCompletedFieldNumber;
+const int BattleUniverse::kDamageProtectionTimeLeftFieldNumber;
+const int BattleUniverse::kDamageProtectionTimeTotalFieldNumber;
+const int BattleUniverse::kFlagsFieldNumber;
+const int BattleUniverse::kMissionsFieldNumber;
+const int BattleUniverse::kPlanetsFieldNumber;
+const int BattleUniverse::kItemsFieldNumber;
+const int BattleUniverse::kShipyardsFieldNumber;
+const int BattleUniverse::kHangarsFieldNumber;
+const int BattleUniverse::kBunkersFieldNumber;
+const int BattleUniverse::kGameUnitsFieldNumber;
 #endif  // !_MSC_VER
 
-MsgBattle::MsgBattle() {
+BattleUniverse::BattleUniverse() {
   SharedCtor();
 }
 
-void MsgBattle::InitAsDefaultInstance() {
+void BattleUniverse::InitAsDefaultInstance() {
+  missions_ = const_cast< ::MsgMissionState*>(&::MsgMissionState::default_instance());
 }
 
-MsgBattle::MsgBattle(const MsgBattle& from) {
+BattleUniverse::BattleUniverse(const BattleUniverse& from) {
   SharedCtor();
   MergeFrom(from);
 }
 
-void MsgBattle::SharedCtor() {
+void BattleUniverse::SharedCtor() {
   _cached_size_ = 0;
-  planetid_ = 0;
-  accountid_ = 0;
-  name_ = const_cast< ::std::string*>(&_default_name_);
-  url_ = const_cast< ::std::string*>(&_default_url_);
-  deploys_ = 0;
-  attackergameunits_ = 0;
+  dcplayername_ = const_cast< ::std::string*>(&_default_dcplayername_);
+  dcworldname_ = const_cast< ::std::string*>(&_default_dcworldname_);
+  dcplayerrank_ = 0;
+  dccoins_ = 0;
+  dcminerals_ = 0;
+  dccash_ = 0;
+  dcdroids_ = 0;
+  tutorialcompleted_ = false;
+  damageprotectiontimeleft_ = 0;
+  damageprotectiontimetotal_ = 0;
+  flags_ = const_cast< ::std::string*>(&_default_flags_);
+  missions_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-MsgBattle::~MsgBattle() {
+BattleUniverse::~BattleUniverse() {
   SharedDtor();
 }
 
-void MsgBattle::SharedDtor() {
+void BattleUniverse::SharedDtor() {
+  if (dcplayername_ != &_default_dcplayername_) {
+    delete dcplayername_;
+  }
+  if (dcworldname_ != &_default_dcworldname_) {
+    delete dcworldname_;
+  }
+  if (flags_ != &_default_flags_) {
+    delete flags_;
+  }
+  if (this != default_instance_) {
+    delete missions_;
+  }
+}
+
+const ::google::protobuf::Descriptor* BattleUniverse::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return BattleUniverse_descriptor_;
+}
+
+const BattleUniverse& BattleUniverse::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_RseObtainBattleReplay_2eproto();  return *default_instance_;
+}
+
+BattleUniverse* BattleUniverse::default_instance_ = NULL;
+
+BattleUniverse* BattleUniverse::New() const {
+  return new BattleUniverse;
+}
+
+void BattleUniverse::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (_has_bit(0)) {
+      if (dcplayername_ != &_default_dcplayername_) {
+        dcplayername_->clear();
+      }
+    }
+    if (_has_bit(1)) {
+      if (dcworldname_ != &_default_dcworldname_) {
+        dcworldname_->clear();
+      }
+    }
+    dcplayerrank_ = 0;
+    dccoins_ = 0;
+    dcminerals_ = 0;
+    dccash_ = 0;
+    dcdroids_ = 0;
+    tutorialcompleted_ = false;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    damageprotectiontimeleft_ = 0;
+    damageprotectiontimetotal_ = 0;
+    if (_has_bit(10)) {
+      if (flags_ != &_default_flags_) {
+        flags_->clear();
+      }
+    }
+    if (_has_bit(11)) {
+      if (missions_ != NULL) missions_->::MsgMissionState::Clear();
+    }
+  }
+  planets_.Clear();
+  items_.Clear();
+  shipyards_.Clear();
+  hangars_.Clear();
+  bunkers_.Clear();
+  gameunits_.Clear();
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool BattleUniverse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string DCPlayerName = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_dcplayername()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->dcplayername().data(), this->dcplayername().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(18)) goto parse_DCWorldName;
+        break;
+      }
+      
+      // optional string DCWorldName = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_DCWorldName:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_dcworldname()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->dcworldname().data(), this->dcworldname().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(24)) goto parse_DCPlayerRank;
+        break;
+      }
+      
+      // optional int32 DCPlayerRank = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_DCPlayerRank:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &dcplayerrank_));
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_DCCoins;
+        break;
+      }
+      
+      // optional int32 DCCoins = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_DCCoins:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &dccoins_));
+        _set_bit(3);
+        if (input->ExpectTag(40)) goto parse_DCMinerals;
+        break;
+      }
+      
+      // optional int32 DCMinerals = 5;
+      case 5: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_DCMinerals:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &dcminerals_));
+        _set_bit(4);
+        if (input->ExpectTag(48)) goto parse_DCCash;
+        break;
+      }
+      
+      // optional int32 DCCash = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_DCCash:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &dccash_));
+        _set_bit(5);
+        if (input->ExpectTag(56)) goto parse_DCDroids;
+        break;
+      }
+      
+      // optional int32 DCDroids = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_DCDroids:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &dcdroids_));
+        _set_bit(6);
+        if (input->ExpectTag(64)) goto parse_tutorialCompleted;
+        break;
+      }
+      
+      // optional bool tutorialCompleted = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_tutorialCompleted:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
+              input, &tutorialcompleted_));
+        _set_bit(7);
+        if (input->ExpectTag(72)) goto parse_damageProtectionTimeLeft;
+        break;
+      }
+      
+      // optional int32 damageProtectionTimeLeft = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_damageProtectionTimeLeft:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &damageprotectiontimeleft_));
+        _set_bit(8);
+        if (input->ExpectTag(80)) goto parse_damageProtectionTimeTotal;
+        break;
+      }
+      
+      // optional int32 damageProtectionTimeTotal = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_damageProtectionTimeTotal:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &damageprotectiontimetotal_));
+        _set_bit(9);
+        if (input->ExpectTag(90)) goto parse_flags;
+        break;
+      }
+      
+      // optional string flags = 11;
+      case 11: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_flags:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_flags()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->flags().data(), this->flags().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(98)) goto parse_Missions;
+        break;
+      }
+      
+      // optional .MsgMissionState Missions = 12;
+      case 12: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Missions:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_missions()));
+        if (input->ExpectTag(106)) goto parse_Planets;
+        break;
+      }
+      
+      // repeated .MsgPlanet Planets = 13;
+      case 13: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Planets:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_planets()));
+        if (input->ExpectTag(106)) goto parse_Planets;
+        if (input->ExpectTag(114)) goto parse_Items;
+        break;
+      }
+      
+      // repeated .MsgBuildingItem Items = 14;
+      case 14: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Items:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_items()));
+        if (input->ExpectTag(114)) goto parse_Items;
+        if (input->ExpectTag(122)) goto parse_Shipyards;
+        break;
+      }
+      
+      // repeated .MsgShipyard Shipyards = 15;
+      case 15: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Shipyards:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_shipyards()));
+        if (input->ExpectTag(122)) goto parse_Shipyards;
+        if (input->ExpectTag(130)) goto parse_Hangars;
+        break;
+      }
+      
+      // repeated .MsgHangars Hangars = 16;
+      case 16: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Hangars:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_hangars()));
+        if (input->ExpectTag(130)) goto parse_Hangars;
+        if (input->ExpectTag(138)) goto parse_Bunkers;
+        break;
+      }
+      
+      // repeated .MsgBunker Bunkers = 17;
+      case 17: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_Bunkers:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_bunkers()));
+        if (input->ExpectTag(138)) goto parse_Bunkers;
+        if (input->ExpectTag(146)) goto parse_GameUnits;
+        break;
+      }
+      
+      // repeated .MsgGameUnit GameUnits = 18;
+      case 18: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_GameUnits:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_gameunits()));
+        if (input->ExpectTag(146)) goto parse_GameUnits;
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void BattleUniverse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
+  if (raw_buffer != NULL) {
+    BattleUniverse::SerializeWithCachedSizesToArray(raw_buffer);
+    return;
+  }
+  
+  // optional string DCPlayerName = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->dcplayername().data(), this->dcplayername().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->dcplayername(), output);
+  }
+  
+  // optional string DCWorldName = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->dcworldname().data(), this->dcworldname().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      2, this->dcworldname(), output);
+  }
+  
+  // optional int32 DCPlayerRank = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->dcplayerrank(), output);
+  }
+  
+  // optional int32 DCCoins = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->dccoins(), output);
+  }
+  
+  // optional int32 DCMinerals = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->dcminerals(), output);
+  }
+  
+  // optional int32 DCCash = 6;
+  if (_has_bit(5)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->dccash(), output);
+  }
+  
+  // optional int32 DCDroids = 7;
+  if (_has_bit(6)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->dcdroids(), output);
+  }
+  
+  // optional bool tutorialCompleted = 8;
+  if (_has_bit(7)) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->tutorialcompleted(), output);
+  }
+  
+  // optional int32 damageProtectionTimeLeft = 9;
+  if (_has_bit(8)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->damageprotectiontimeleft(), output);
+  }
+  
+  // optional int32 damageProtectionTimeTotal = 10;
+  if (_has_bit(9)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->damageprotectiontimetotal(), output);
+  }
+  
+  // optional string flags = 11;
+  if (_has_bit(10)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->flags().data(), this->flags().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      11, this->flags(), output);
+  }
+  
+  // optional .MsgMissionState Missions = 12;
+  if (_has_bit(11)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      12, this->missions(), output);
+  }
+  
+  // repeated .MsgPlanet Planets = 13;
+  for (int i = 0; i < this->planets_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      13, this->planets(i), output);
+  }
+  
+  // repeated .MsgBuildingItem Items = 14;
+  for (int i = 0; i < this->items_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      14, this->items(i), output);
+  }
+  
+  // repeated .MsgShipyard Shipyards = 15;
+  for (int i = 0; i < this->shipyards_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      15, this->shipyards(i), output);
+  }
+  
+  // repeated .MsgHangars Hangars = 16;
+  for (int i = 0; i < this->hangars_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      16, this->hangars(i), output);
+  }
+  
+  // repeated .MsgBunker Bunkers = 17;
+  for (int i = 0; i < this->bunkers_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      17, this->bunkers(i), output);
+  }
+  
+  // repeated .MsgGameUnit GameUnits = 18;
+  for (int i = 0; i < this->gameunits_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      18, this->gameunits(i), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* BattleUniverse::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional string DCPlayerName = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->dcplayername().data(), this->dcplayername().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->dcplayername(), target);
+  }
+  
+  // optional string DCWorldName = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->dcworldname().data(), this->dcworldname().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->dcworldname(), target);
+  }
+  
+  // optional int32 DCPlayerRank = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->dcplayerrank(), target);
+  }
+  
+  // optional int32 DCCoins = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->dccoins(), target);
+  }
+  
+  // optional int32 DCMinerals = 5;
+  if (_has_bit(4)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->dcminerals(), target);
+  }
+  
+  // optional int32 DCCash = 6;
+  if (_has_bit(5)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->dccash(), target);
+  }
+  
+  // optional int32 DCDroids = 7;
+  if (_has_bit(6)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->dcdroids(), target);
+  }
+  
+  // optional bool tutorialCompleted = 8;
+  if (_has_bit(7)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->tutorialcompleted(), target);
+  }
+  
+  // optional int32 damageProtectionTimeLeft = 9;
+  if (_has_bit(8)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->damageprotectiontimeleft(), target);
+  }
+  
+  // optional int32 damageProtectionTimeTotal = 10;
+  if (_has_bit(9)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->damageprotectiontimetotal(), target);
+  }
+  
+  // optional string flags = 11;
+  if (_has_bit(10)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->flags().data(), this->flags().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        11, this->flags(), target);
+  }
+  
+  // optional .MsgMissionState Missions = 12;
+  if (_has_bit(11)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        12, this->missions(), target);
+  }
+  
+  // repeated .MsgPlanet Planets = 13;
+  for (int i = 0; i < this->planets_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        13, this->planets(i), target);
+  }
+  
+  // repeated .MsgBuildingItem Items = 14;
+  for (int i = 0; i < this->items_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        14, this->items(i), target);
+  }
+  
+  // repeated .MsgShipyard Shipyards = 15;
+  for (int i = 0; i < this->shipyards_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        15, this->shipyards(i), target);
+  }
+  
+  // repeated .MsgHangars Hangars = 16;
+  for (int i = 0; i < this->hangars_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        16, this->hangars(i), target);
+  }
+  
+  // repeated .MsgBunker Bunkers = 17;
+  for (int i = 0; i < this->bunkers_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        17, this->bunkers(i), target);
+  }
+  
+  // repeated .MsgGameUnit GameUnits = 18;
+  for (int i = 0; i < this->gameunits_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        18, this->gameunits(i), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int BattleUniverse::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional string DCPlayerName = 1;
+    if (has_dcplayername()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->dcplayername());
+    }
+    
+    // optional string DCWorldName = 2;
+    if (has_dcworldname()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->dcworldname());
+    }
+    
+    // optional int32 DCPlayerRank = 3;
+    if (has_dcplayerrank()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->dcplayerrank());
+    }
+    
+    // optional int32 DCCoins = 4;
+    if (has_dccoins()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->dccoins());
+    }
+    
+    // optional int32 DCMinerals = 5;
+    if (has_dcminerals()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->dcminerals());
+    }
+    
+    // optional int32 DCCash = 6;
+    if (has_dccash()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->dccash());
+    }
+    
+    // optional int32 DCDroids = 7;
+    if (has_dcdroids()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->dcdroids());
+    }
+    
+    // optional bool tutorialCompleted = 8;
+    if (has_tutorialcompleted()) {
+      total_size += 1 + 1;
+    }
+    
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // optional int32 damageProtectionTimeLeft = 9;
+    if (has_damageprotectiontimeleft()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->damageprotectiontimeleft());
+    }
+    
+    // optional int32 damageProtectionTimeTotal = 10;
+    if (has_damageprotectiontimetotal()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->damageprotectiontimetotal());
+    }
+    
+    // optional string flags = 11;
+    if (has_flags()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->flags());
+    }
+    
+    // optional .MsgMissionState Missions = 12;
+    if (has_missions()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->missions());
+    }
+    
+  }
+  // repeated .MsgPlanet Planets = 13;
+  total_size += 1 * this->planets_size();
+  for (int i = 0; i < this->planets_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->planets(i));
+  }
+  
+  // repeated .MsgBuildingItem Items = 14;
+  total_size += 1 * this->items_size();
+  for (int i = 0; i < this->items_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->items(i));
+  }
+  
+  // repeated .MsgShipyard Shipyards = 15;
+  total_size += 1 * this->shipyards_size();
+  for (int i = 0; i < this->shipyards_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->shipyards(i));
+  }
+  
+  // repeated .MsgHangars Hangars = 16;
+  total_size += 2 * this->hangars_size();
+  for (int i = 0; i < this->hangars_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->hangars(i));
+  }
+  
+  // repeated .MsgBunker Bunkers = 17;
+  total_size += 2 * this->bunkers_size();
+  for (int i = 0; i < this->bunkers_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->bunkers(i));
+  }
+  
+  // repeated .MsgGameUnit GameUnits = 18;
+  total_size += 2 * this->gameunits_size();
+  for (int i = 0; i < this->gameunits_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->gameunits(i));
+  }
+  
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  _cached_size_ = total_size;
+  return total_size;
+}
+
+void BattleUniverse::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const BattleUniverse* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const BattleUniverse*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void BattleUniverse::MergeFrom(const BattleUniverse& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  planets_.MergeFrom(from.planets_);
+  items_.MergeFrom(from.items_);
+  shipyards_.MergeFrom(from.shipyards_);
+  hangars_.MergeFrom(from.hangars_);
+  bunkers_.MergeFrom(from.bunkers_);
+  gameunits_.MergeFrom(from.gameunits_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from._has_bit(0)) {
+      set_dcplayername(from.dcplayername());
+    }
+    if (from._has_bit(1)) {
+      set_dcworldname(from.dcworldname());
+    }
+    if (from._has_bit(2)) {
+      set_dcplayerrank(from.dcplayerrank());
+    }
+    if (from._has_bit(3)) {
+      set_dccoins(from.dccoins());
+    }
+    if (from._has_bit(4)) {
+      set_dcminerals(from.dcminerals());
+    }
+    if (from._has_bit(5)) {
+      set_dccash(from.dccash());
+    }
+    if (from._has_bit(6)) {
+      set_dcdroids(from.dcdroids());
+    }
+    if (from._has_bit(7)) {
+      set_tutorialcompleted(from.tutorialcompleted());
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    if (from._has_bit(8)) {
+      set_damageprotectiontimeleft(from.damageprotectiontimeleft());
+    }
+    if (from._has_bit(9)) {
+      set_damageprotectiontimetotal(from.damageprotectiontimetotal());
+    }
+    if (from._has_bit(10)) {
+      set_flags(from.flags());
+    }
+    if (from._has_bit(11)) {
+      mutable_missions()->::MsgMissionState::MergeFrom(from.missions());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void BattleUniverse::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void BattleUniverse::CopyFrom(const BattleUniverse& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool BattleUniverse::IsInitialized() const {
+  
+  return true;
+}
+
+void BattleUniverse::Swap(BattleUniverse* other) {
+  if (other != this) {
+    std::swap(dcplayername_, other->dcplayername_);
+    std::swap(dcworldname_, other->dcworldname_);
+    std::swap(dcplayerrank_, other->dcplayerrank_);
+    std::swap(dccoins_, other->dccoins_);
+    std::swap(dcminerals_, other->dcminerals_);
+    std::swap(dccash_, other->dccash_);
+    std::swap(dcdroids_, other->dcdroids_);
+    std::swap(tutorialcompleted_, other->tutorialcompleted_);
+    std::swap(damageprotectiontimeleft_, other->damageprotectiontimeleft_);
+    std::swap(damageprotectiontimetotal_, other->damageprotectiontimetotal_);
+    std::swap(flags_, other->flags_);
+    std::swap(missions_, other->missions_);
+    planets_.Swap(&other->planets_);
+    items_.Swap(&other->items_);
+    shipyards_.Swap(&other->shipyards_);
+    hangars_.Swap(&other->hangars_);
+    bunkers_.Swap(&other->bunkers_);
+    gameunits_.Swap(&other->gameunits_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata BattleUniverse::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = BattleUniverse_descriptor_;
+  metadata.reflection = BattleUniverse_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+const ::std::string MsgDeployUnit::_default_sku_;
+#ifndef _MSC_VER
+const int MsgDeployUnit::kSkuFieldNumber;
+const int MsgDeployUnit::kXFieldNumber;
+const int MsgDeployUnit::kYFieldNumber;
+const int MsgDeployUnit::kMillisFieldNumber;
+#endif  // !_MSC_VER
+
+MsgDeployUnit::MsgDeployUnit() {
+  SharedCtor();
+}
+
+void MsgDeployUnit::InitAsDefaultInstance() {
+}
+
+MsgDeployUnit::MsgDeployUnit(const MsgDeployUnit& from) {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void MsgDeployUnit::SharedCtor() {
+  _cached_size_ = 0;
+  sku_ = const_cast< ::std::string*>(&_default_sku_);
+  x_ = 0;
+  y_ = 0;
+  millis_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+MsgDeployUnit::~MsgDeployUnit() {
+  SharedDtor();
+}
+
+void MsgDeployUnit::SharedDtor() {
+  if (sku_ != &_default_sku_) {
+    delete sku_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+const ::google::protobuf::Descriptor* MsgDeployUnit::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgDeployUnit_descriptor_;
+}
+
+const MsgDeployUnit& MsgDeployUnit::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_RseObtainBattleReplay_2eproto();  return *default_instance_;
+}
+
+MsgDeployUnit* MsgDeployUnit::default_instance_ = NULL;
+
+MsgDeployUnit* MsgDeployUnit::New() const {
+  return new MsgDeployUnit;
+}
+
+void MsgDeployUnit::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (_has_bit(0)) {
+      if (sku_ != &_default_sku_) {
+        sku_->clear();
+      }
+    }
+    x_ = 0;
+    y_ = 0;
+    millis_ = 0;
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool MsgDeployUnit::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string sku = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_sku()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->sku().data(), this->sku().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(16)) goto parse_x;
+        break;
+      }
+      
+      // optional int32 x = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_x:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &x_));
+        _set_bit(1);
+        if (input->ExpectTag(24)) goto parse_y;
+        break;
+      }
+      
+      // optional int32 y = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_y:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &y_));
+        _set_bit(2);
+        if (input->ExpectTag(32)) goto parse_millis;
+        break;
+      }
+      
+      // optional int32 millis = 4;
+      case 4: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_millis:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &millis_));
+        _set_bit(3);
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+      
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void MsgDeployUnit::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
+  if (raw_buffer != NULL) {
+    MsgDeployUnit::SerializeWithCachedSizesToArray(raw_buffer);
+    return;
+  }
+  
+  // optional string sku = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->sku(), output);
+  }
+  
+  // optional int32 x = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->x(), output);
+  }
+  
+  // optional int32 y = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->y(), output);
+  }
+  
+  // optional int32 millis = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->millis(), output);
+  }
+  
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* MsgDeployUnit::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // optional string sku = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->sku().data(), this->sku().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->sku(), target);
+  }
+  
+  // optional int32 x = 2;
+  if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->x(), target);
+  }
+  
+  // optional int32 y = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->y(), target);
+  }
+  
+  // optional int32 millis = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->millis(), target);
+  }
+  
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int MsgDeployUnit::ByteSize() const {
+  int total_size = 0;
+  
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional string sku = 1;
+    if (has_sku()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->sku());
+    }
+    
+    // optional int32 x = 2;
+    if (has_x()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->x());
+    }
+    
+    // optional int32 y = 3;
+    if (has_y()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->y());
+    }
+    
+    // optional int32 millis = 4;
+    if (has_millis()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->millis());
+    }
+    
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  _cached_size_ = total_size;
+  return total_size;
+}
+
+void MsgDeployUnit::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const MsgDeployUnit* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const MsgDeployUnit*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void MsgDeployUnit::MergeFrom(const MsgDeployUnit& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from._has_bit(0)) {
+      set_sku(from.sku());
+    }
+    if (from._has_bit(1)) {
+      set_x(from.x());
+    }
+    if (from._has_bit(2)) {
+      set_y(from.y());
+    }
+    if (from._has_bit(3)) {
+      set_millis(from.millis());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void MsgDeployUnit::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MsgDeployUnit::CopyFrom(const MsgDeployUnit& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MsgDeployUnit::IsInitialized() const {
+  
+  return true;
+}
+
+void MsgDeployUnit::Swap(MsgDeployUnit* other) {
+  if (other != this) {
+    std::swap(sku_, other->sku_);
+    std::swap(x_, other->x_);
+    std::swap(y_, other->y_);
+    std::swap(millis_, other->millis_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata MsgDeployUnit::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MsgDeployUnit_descriptor_;
+  metadata.reflection = MsgDeployUnit_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+const ::std::string RseObtainBattleReplay::_default_name_;
+const ::std::string RseObtainBattleReplay::_default_url_;
+#ifndef _MSC_VER
+const int RseObtainBattleReplay::kPlanetIdFieldNumber;
+const int RseObtainBattleReplay::kUniverseFieldNumber;
+const int RseObtainBattleReplay::kAccountIdFieldNumber;
+const int RseObtainBattleReplay::kNameFieldNumber;
+const int RseObtainBattleReplay::kUrlFieldNumber;
+const int RseObtainBattleReplay::kDeploysFieldNumber;
+const int RseObtainBattleReplay::kAttackerGameUnitsFieldNumber;
+#endif  // !_MSC_VER
+
+RseObtainBattleReplay::RseObtainBattleReplay() {
+  SharedCtor();
+}
+
+void RseObtainBattleReplay::InitAsDefaultInstance() {
+  universe_ = const_cast< ::BattleUniverse*>(&::BattleUniverse::default_instance());
+}
+
+RseObtainBattleReplay::RseObtainBattleReplay(const RseObtainBattleReplay& from) {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void RseObtainBattleReplay::SharedCtor() {
+  _cached_size_ = 0;
+  planetid_ = 0;
+  universe_ = NULL;
+  accountid_ = 0;
+  name_ = const_cast< ::std::string*>(&_default_name_);
+  url_ = const_cast< ::std::string*>(&_default_url_);
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+RseObtainBattleReplay::~RseObtainBattleReplay() {
+  SharedDtor();
+}
+
+void RseObtainBattleReplay::SharedDtor() {
   if (name_ != &_default_name_) {
     delete name_;
   }
@@ -169,27 +1493,31 @@ void MsgBattle::SharedDtor() {
     delete url_;
   }
   if (this != default_instance_) {
+    delete universe_;
   }
 }
 
-const ::google::protobuf::Descriptor* MsgBattle::descriptor() {
+const ::google::protobuf::Descriptor* RseObtainBattleReplay::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgBattle_descriptor_;
+  return RseObtainBattleReplay_descriptor_;
 }
 
-const MsgBattle& MsgBattle::default_instance() {
+const RseObtainBattleReplay& RseObtainBattleReplay::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_RseObtainBattleReplay_2eproto();  return *default_instance_;
 }
 
-MsgBattle* MsgBattle::default_instance_ = NULL;
+RseObtainBattleReplay* RseObtainBattleReplay::default_instance_ = NULL;
 
-MsgBattle* MsgBattle::New() const {
-  return new MsgBattle;
+RseObtainBattleReplay* RseObtainBattleReplay::New() const {
+  return new RseObtainBattleReplay;
 }
 
-void MsgBattle::Clear() {
+void RseObtainBattleReplay::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     planetid_ = 0;
+    if (_has_bit(1)) {
+      if (universe_ != NULL) universe_->::BattleUniverse::Clear();
+    }
     accountid_ = 0;
     if (_has_bit(3)) {
       if (name_ != &_default_name_) {
@@ -201,15 +1529,14 @@ void MsgBattle::Clear() {
         url_->clear();
       }
     }
-    deploys_ = 0;
-    attackergameunits_ = 0;
   }
-  universe_.Clear();
+  deploys_.Clear();
+  attackergameunits_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
 
-bool MsgBattle::MergePartialFromCodedStream(
+bool RseObtainBattleReplay::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) return false
   ::google::protobuf::uint32 tag;
@@ -224,22 +1551,19 @@ bool MsgBattle::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &planetid_));
         _set_bit(0);
-        if (input->ExpectTag(16)) goto parse_Universe;
+        if (input->ExpectTag(18)) goto parse_Universe;
         break;
       }
       
-      // repeated int32 Universe = 2;
+      // optional .BattleUniverse Universe = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
        parse_Universe:
-        ::google::protobuf::int32 value;
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &value));
-        add_universe(value);
-        if (input->ExpectTag(16)) goto parse_Universe;
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_universe()));
         if (input->ExpectTag(24)) goto parse_accountId;
         break;
       }
@@ -286,381 +1610,34 @@ bool MsgBattle::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->url().data(), this->url().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(48)) goto parse_Deploys;
+        if (input->ExpectTag(50)) goto parse_Deploys;
         break;
       }
       
-      // optional int32 Deploys = 6;
+      // repeated .MsgDeployUnit Deploys = 6;
       case 6: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_Deploys:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &deploys_));
-        _set_bit(5);
-        if (input->ExpectTag(56)) goto parse_AttackerGameUnits;
-        break;
-      }
-      
-      // optional int32 AttackerGameUnits = 7;
-      case 7: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-          goto handle_uninterpreted;
-        }
-       parse_AttackerGameUnits:
-        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
-              input, &attackergameunits_));
-        _set_bit(6);
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void MsgBattle::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  ::google::protobuf::uint8* raw_buffer = output->GetDirectBufferForNBytesAndAdvance(_cached_size_);
-  if (raw_buffer != NULL) {
-    MsgBattle::SerializeWithCachedSizesToArray(raw_buffer);
-    return;
-  }
-  
-  // optional int32 planetId = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->planetid(), output);
-  }
-  
-  // repeated int32 Universe = 2;
-  for (int i = 0; i < this->universe_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
-      2, this->universe(i), output);
-  }
-  
-  // optional int32 accountId = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->accountid(), output);
-  }
-  
-  // optional string name = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      4, this->name(), output);
-  }
-  
-  // optional string url = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->url().data(), this->url().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      5, this->url(), output);
-  }
-  
-  // optional int32 Deploys = 6;
-  if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->deploys(), output);
-  }
-  
-  // optional int32 AttackerGameUnits = 7;
-  if (_has_bit(6)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->attackergameunits(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* MsgBattle::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional int32 planetId = 1;
-  if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->planetid(), target);
-  }
-  
-  // repeated int32 Universe = 2;
-  for (int i = 0; i < this->universe_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(2, this->universe(i), target);
-  }
-  
-  // optional int32 accountId = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->accountid(), target);
-  }
-  
-  // optional string name = 4;
-  if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->name().data(), this->name().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->name(), target);
-  }
-  
-  // optional string url = 5;
-  if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->url().data(), this->url().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->url(), target);
-  }
-  
-  // optional int32 Deploys = 6;
-  if (_has_bit(5)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->deploys(), target);
-  }
-  
-  // optional int32 AttackerGameUnits = 7;
-  if (_has_bit(6)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->attackergameunits(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int MsgBattle::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional int32 planetId = 1;
-    if (has_planetid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->planetid());
-    }
-    
-    // optional int32 accountId = 3;
-    if (has_accountid()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->accountid());
-    }
-    
-    // optional string name = 4;
-    if (has_name()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->name());
-    }
-    
-    // optional string url = 5;
-    if (has_url()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->url());
-    }
-    
-    // optional int32 Deploys = 6;
-    if (has_deploys()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->deploys());
-    }
-    
-    // optional int32 AttackerGameUnits = 7;
-    if (has_attackergameunits()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->attackergameunits());
-    }
-    
-  }
-  // repeated int32 Universe = 2;
-  {
-    int data_size = 0;
-    for (int i = 0; i < this->universe_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->universe(i));
-    }
-    total_size += 1 * this->universe_size() + data_size;
-  }
-  
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  _cached_size_ = total_size;
-  return total_size;
-}
-
-void MsgBattle::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const MsgBattle* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const MsgBattle*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void MsgBattle::MergeFrom(const MsgBattle& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  universe_.MergeFrom(from.universe_);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_planetid(from.planetid());
-    }
-    if (from._has_bit(2)) {
-      set_accountid(from.accountid());
-    }
-    if (from._has_bit(3)) {
-      set_name(from.name());
-    }
-    if (from._has_bit(4)) {
-      set_url(from.url());
-    }
-    if (from._has_bit(5)) {
-      set_deploys(from.deploys());
-    }
-    if (from._has_bit(6)) {
-      set_attackergameunits(from.attackergameunits());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void MsgBattle::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void MsgBattle::CopyFrom(const MsgBattle& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MsgBattle::IsInitialized() const {
-  
-  return true;
-}
-
-void MsgBattle::Swap(MsgBattle* other) {
-  if (other != this) {
-    std::swap(planetid_, other->planetid_);
-    universe_.Swap(&other->universe_);
-    std::swap(accountid_, other->accountid_);
-    std::swap(name_, other->name_);
-    std::swap(url_, other->url_);
-    std::swap(deploys_, other->deploys_);
-    std::swap(attackergameunits_, other->attackergameunits_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata MsgBattle::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgBattle_descriptor_;
-  metadata.reflection = MsgBattle_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-#ifndef _MSC_VER
-const int RseObtainBattleReplay::kBattleFieldNumber;
-#endif  // !_MSC_VER
-
-RseObtainBattleReplay::RseObtainBattleReplay() {
-  SharedCtor();
-}
-
-void RseObtainBattleReplay::InitAsDefaultInstance() {
-}
-
-RseObtainBattleReplay::RseObtainBattleReplay(const RseObtainBattleReplay& from) {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void RseObtainBattleReplay::SharedCtor() {
-  _cached_size_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-RseObtainBattleReplay::~RseObtainBattleReplay() {
-  SharedDtor();
-}
-
-void RseObtainBattleReplay::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-const ::google::protobuf::Descriptor* RseObtainBattleReplay::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return RseObtainBattleReplay_descriptor_;
-}
-
-const RseObtainBattleReplay& RseObtainBattleReplay::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_RseObtainBattleReplay_2eproto();  return *default_instance_;
-}
-
-RseObtainBattleReplay* RseObtainBattleReplay::default_instance_ = NULL;
-
-RseObtainBattleReplay* RseObtainBattleReplay::New() const {
-  return new RseObtainBattleReplay;
-}
-
-void RseObtainBattleReplay::Clear() {
-  battle_.Clear();
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool RseObtainBattleReplay::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .MsgBattle Battle = 1;
-      case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_Battle:
+       parse_Deploys:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, add_battle()));
-        if (input->ExpectTag(10)) goto parse_Battle;
+              input, add_deploys()));
+        if (input->ExpectTag(50)) goto parse_Deploys;
+        if (input->ExpectTag(58)) goto parse_AttackerGameUnits;
+        break;
+      }
+      
+      // repeated .MsgGameUnit AttackerGameUnits = 7;
+      case 7: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_AttackerGameUnits:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, add_attackergameunits()));
+        if (input->ExpectTag(58)) goto parse_AttackerGameUnits;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -689,10 +1666,50 @@ void RseObtainBattleReplay::SerializeWithCachedSizes(
     return;
   }
   
-  // repeated .MsgBattle Battle = 1;
-  for (int i = 0; i < this->battle_size(); i++) {
+  // optional int32 planetId = 1;
+  if (_has_bit(0)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->planetid(), output);
+  }
+  
+  // optional .BattleUniverse Universe = 2;
+  if (_has_bit(1)) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      1, this->battle(i), output);
+      2, this->universe(), output);
+  }
+  
+  // optional int32 accountId = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->accountid(), output);
+  }
+  
+  // optional string name = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      4, this->name(), output);
+  }
+  
+  // optional string url = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->url().data(), this->url().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      5, this->url(), output);
+  }
+  
+  // repeated .MsgDeployUnit Deploys = 6;
+  for (int i = 0; i < this->deploys_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      6, this->deploys(i), output);
+  }
+  
+  // repeated .MsgGameUnit AttackerGameUnits = 7;
+  for (int i = 0; i < this->attackergameunits_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      7, this->attackergameunits(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -703,11 +1720,55 @@ void RseObtainBattleReplay::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RseObtainBattleReplay::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .MsgBattle Battle = 1;
-  for (int i = 0; i < this->battle_size(); i++) {
+  // optional int32 planetId = 1;
+  if (_has_bit(0)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->planetid(), target);
+  }
+  
+  // optional .BattleUniverse Universe = 2;
+  if (_has_bit(1)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, this->battle(i), target);
+        2, this->universe(), target);
+  }
+  
+  // optional int32 accountId = 3;
+  if (_has_bit(2)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->accountid(), target);
+  }
+  
+  // optional string name = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->name(), target);
+  }
+  
+  // optional string url = 5;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->url().data(), this->url().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        5, this->url(), target);
+  }
+  
+  // repeated .MsgDeployUnit Deploys = 6;
+  for (int i = 0; i < this->deploys_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, this->deploys(i), target);
+  }
+  
+  // repeated .MsgGameUnit AttackerGameUnits = 7;
+  for (int i = 0; i < this->attackergameunits_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        7, this->attackergameunits(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -720,12 +1781,57 @@ void RseObtainBattleReplay::SerializeWithCachedSizes(
 int RseObtainBattleReplay::ByteSize() const {
   int total_size = 0;
   
-  // repeated .MsgBattle Battle = 1;
-  total_size += 1 * this->battle_size();
-  for (int i = 0; i < this->battle_size(); i++) {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional int32 planetId = 1;
+    if (has_planetid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->planetid());
+    }
+    
+    // optional .BattleUniverse Universe = 2;
+    if (has_universe()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->universe());
+    }
+    
+    // optional int32 accountId = 3;
+    if (has_accountid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->accountid());
+    }
+    
+    // optional string name = 4;
+    if (has_name()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->name());
+    }
+    
+    // optional string url = 5;
+    if (has_url()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->url());
+    }
+    
+  }
+  // repeated .MsgDeployUnit Deploys = 6;
+  total_size += 1 * this->deploys_size();
+  for (int i = 0; i < this->deploys_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->battle(i));
+        this->deploys(i));
+  }
+  
+  // repeated .MsgGameUnit AttackerGameUnits = 7;
+  total_size += 1 * this->attackergameunits_size();
+  for (int i = 0; i < this->attackergameunits_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->attackergameunits(i));
   }
   
   if (!unknown_fields().empty()) {
@@ -751,7 +1857,25 @@ void RseObtainBattleReplay::MergeFrom(const ::google::protobuf::Message& from) {
 
 void RseObtainBattleReplay::MergeFrom(const RseObtainBattleReplay& from) {
   GOOGLE_CHECK_NE(&from, this);
-  battle_.MergeFrom(from.battle_);
+  deploys_.MergeFrom(from.deploys_);
+  attackergameunits_.MergeFrom(from.attackergameunits_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from._has_bit(0)) {
+      set_planetid(from.planetid());
+    }
+    if (from._has_bit(1)) {
+      mutable_universe()->::BattleUniverse::MergeFrom(from.universe());
+    }
+    if (from._has_bit(2)) {
+      set_accountid(from.accountid());
+    }
+    if (from._has_bit(3)) {
+      set_name(from.name());
+    }
+    if (from._has_bit(4)) {
+      set_url(from.url());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -774,7 +1898,13 @@ bool RseObtainBattleReplay::IsInitialized() const {
 
 void RseObtainBattleReplay::Swap(RseObtainBattleReplay* other) {
   if (other != this) {
-    battle_.Swap(&other->battle_);
+    std::swap(planetid_, other->planetid_);
+    std::swap(universe_, other->universe_);
+    std::swap(accountid_, other->accountid_);
+    std::swap(name_, other->name_);
+    std::swap(url_, other->url_);
+    deploys_.Swap(&other->deploys_);
+    attackergameunits_.Swap(&other->attackergameunits_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

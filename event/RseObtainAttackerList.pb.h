@@ -100,12 +100,15 @@ class MsgAttacker : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 attackdate() const;
   inline void set_attackdate(::google::protobuf::int32 value);
   
-  // optional int32 accountId = 3;
+  // optional string accountId = 3;
   inline bool has_accountid() const;
   inline void clear_accountid();
   static const int kAccountIdFieldNumber = 3;
-  inline ::google::protobuf::int32 accountid() const;
-  inline void set_accountid(::google::protobuf::int32 value);
+  inline const ::std::string& accountid() const;
+  inline void set_accountid(const ::std::string& value);
+  inline void set_accountid(const char* value);
+  inline void set_accountid(const char* value, size_t size);
+  inline ::std::string* mutable_accountid();
   
   // optional string planetSku = 4;
   inline bool has_planetsku() const;
@@ -131,52 +134,41 @@ class MsgAttacker : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 planetdamage() const;
   inline void set_planetdamage(::google::protobuf::int32 value);
   
-  // repeated int32 attacker = 7;
-  inline int attacker_size() const;
-  inline void clear_attacker();
-  static const int kAttackerFieldNumber = 7;
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >& attacker() const
-      ;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >* mutable_attacker();
-  inline ::google::protobuf::int32 attacker(int index) const;
-  inline void set_attacker(int index, ::google::protobuf::int32 value);
-  inline void add_attacker(::google::protobuf::int32 value);
-  
-  // optional int32 mineralsTaken = 8;
+  // optional int32 mineralsTaken = 7;
   inline bool has_mineralstaken() const;
   inline void clear_mineralstaken();
-  static const int kMineralsTakenFieldNumber = 8;
+  static const int kMineralsTakenFieldNumber = 7;
   inline ::google::protobuf::int32 mineralstaken() const;
   inline void set_mineralstaken(::google::protobuf::int32 value);
   
-  // optional int32 coinsTaken = 9;
+  // optional int32 coinsTaken = 8;
   inline bool has_coinstaken() const;
   inline void clear_coinstaken();
-  static const int kCoinsTakenFieldNumber = 9;
+  static const int kCoinsTakenFieldNumber = 8;
   inline ::google::protobuf::int32 coinstaken() const;
   inline void set_coinstaken(::google::protobuf::int32 value);
   
-  // optional int32 obtainedDamageProtectionTime = 10;
+  // optional int32 obtainedDamageProtectionTime = 9;
   inline bool has_obtaineddamageprotectiontime() const;
   inline void clear_obtaineddamageprotectiontime();
-  static const int kObtainedDamageProtectionTimeFieldNumber = 10;
+  static const int kObtainedDamageProtectionTimeFieldNumber = 9;
   inline ::google::protobuf::int32 obtaineddamageprotectiontime() const;
   inline void set_obtaineddamageprotectiontime(::google::protobuf::int32 value);
   
-  // optional string name = 11;
+  // optional string name = 10;
   inline bool has_name() const;
   inline void clear_name();
-  static const int kNameFieldNumber = 11;
+  static const int kNameFieldNumber = 10;
   inline const ::std::string& name() const;
   inline void set_name(const ::std::string& value);
   inline void set_name(const char* value);
   inline void set_name(const char* value, size_t size);
   inline ::std::string* mutable_name();
   
-  // optional string url = 12;
+  // optional string url = 11;
   inline bool has_url() const;
   inline void clear_url();
-  static const int kUrlFieldNumber = 12;
+  static const int kUrlFieldNumber = 11;
   inline const ::std::string& url() const;
   inline void set_url(const ::std::string& value);
   inline void set_url(const char* value);
@@ -189,12 +181,12 @@ class MsgAttacker : public ::google::protobuf::Message {
   
   ::google::protobuf::int32 id_;
   ::google::protobuf::int32 attackdate_;
-  ::google::protobuf::int32 accountid_;
+  ::std::string* accountid_;
+  static const ::std::string _default_accountid_;
   ::std::string* planetsku_;
   static const ::std::string _default_planetsku_;
   ::google::protobuf::int32 damage_;
   ::google::protobuf::int32 planetdamage_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > attacker_;
   ::google::protobuf::int32 mineralstaken_;
   ::google::protobuf::int32 coinstaken_;
   ::google::protobuf::int32 obtaineddamageprotectiontime_;
@@ -206,7 +198,7 @@ class MsgAttacker : public ::google::protobuf::Message {
   friend void protobuf_AssignDesc_RseObtainAttackerList_2eproto();
   friend void protobuf_ShutdownFile_RseObtainAttackerList_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(12 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -277,24 +269,17 @@ class RseObtainAttackerList : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 idCount = 1;
-  inline bool has_idcount() const;
-  inline void clear_idcount();
-  static const int kIdCountFieldNumber = 1;
-  inline ::google::protobuf::int32 idcount() const;
-  inline void set_idcount(::google::protobuf::int32 value);
-  
-  // optional int32 damageProtectionAppliedAt = 2;
+  // optional int32 damageProtectionAppliedAt = 1;
   inline bool has_damageprotectionappliedat() const;
   inline void clear_damageprotectionappliedat();
-  static const int kDamageProtectionAppliedAtFieldNumber = 2;
+  static const int kDamageProtectionAppliedAtFieldNumber = 1;
   inline ::google::protobuf::int32 damageprotectionappliedat() const;
   inline void set_damageprotectionappliedat(::google::protobuf::int32 value);
   
-  // repeated .MsgAttacker attackerList = 3;
+  // repeated .MsgAttacker attackerList = 2;
   inline int attackerlist_size() const;
   inline void clear_attackerlist();
-  static const int kAttackerListFieldNumber = 3;
+  static const int kAttackerListFieldNumber = 2;
   inline const ::google::protobuf::RepeatedPtrField< ::MsgAttacker >& attackerlist() const;
   inline ::google::protobuf::RepeatedPtrField< ::MsgAttacker >* mutable_attackerlist();
   inline const ::MsgAttacker& attackerlist(int index) const;
@@ -305,14 +290,13 @@ class RseObtainAttackerList : public ::google::protobuf::Message {
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 idcount_;
   ::google::protobuf::int32 damageprotectionappliedat_;
   ::google::protobuf::RepeatedPtrField< ::MsgAttacker > attackerlist_;
   friend void  protobuf_AddDesc_RseObtainAttackerList_2eproto();
   friend void protobuf_AssignDesc_RseObtainAttackerList_2eproto();
   friend void protobuf_ShutdownFile_RseObtainAttackerList_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -370,20 +354,46 @@ inline void MsgAttacker::set_attackdate(::google::protobuf::int32 value) {
   attackdate_ = value;
 }
 
-// optional int32 accountId = 3;
+// optional string accountId = 3;
 inline bool MsgAttacker::has_accountid() const {
   return _has_bit(2);
 }
 inline void MsgAttacker::clear_accountid() {
-  accountid_ = 0;
+  if (accountid_ != &_default_accountid_) {
+    accountid_->clear();
+  }
   _clear_bit(2);
 }
-inline ::google::protobuf::int32 MsgAttacker::accountid() const {
-  return accountid_;
+inline const ::std::string& MsgAttacker::accountid() const {
+  return *accountid_;
 }
-inline void MsgAttacker::set_accountid(::google::protobuf::int32 value) {
+inline void MsgAttacker::set_accountid(const ::std::string& value) {
   _set_bit(2);
-  accountid_ = value;
+  if (accountid_ == &_default_accountid_) {
+    accountid_ = new ::std::string;
+  }
+  accountid_->assign(value);
+}
+inline void MsgAttacker::set_accountid(const char* value) {
+  _set_bit(2);
+  if (accountid_ == &_default_accountid_) {
+    accountid_ = new ::std::string;
+  }
+  accountid_->assign(value);
+}
+inline void MsgAttacker::set_accountid(const char* value, size_t size) {
+  _set_bit(2);
+  if (accountid_ == &_default_accountid_) {
+    accountid_ = new ::std::string;
+  }
+  accountid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* MsgAttacker::mutable_accountid() {
+  _set_bit(2);
+  if (accountid_ == &_default_accountid_) {
+    accountid_ = new ::std::string;
+  }
+  return accountid_;
 }
 
 // optional string planetSku = 4;
@@ -460,157 +470,132 @@ inline void MsgAttacker::set_planetdamage(::google::protobuf::int32 value) {
   planetdamage_ = value;
 }
 
-// repeated int32 attacker = 7;
-inline int MsgAttacker::attacker_size() const {
-  return attacker_.size();
-}
-inline void MsgAttacker::clear_attacker() {
-  attacker_.Clear();
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-MsgAttacker::attacker() const {
-  return attacker_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-MsgAttacker::mutable_attacker() {
-  return &attacker_;
-}
-inline ::google::protobuf::int32 MsgAttacker::attacker(int index) const {
-  return attacker_.Get(index);
-}
-inline void MsgAttacker::set_attacker(int index, ::google::protobuf::int32 value) {
-  attacker_.Set(index, value);
-}
-inline void MsgAttacker::add_attacker(::google::protobuf::int32 value) {
-  attacker_.Add(value);
-}
-
-// optional int32 mineralsTaken = 8;
+// optional int32 mineralsTaken = 7;
 inline bool MsgAttacker::has_mineralstaken() const {
-  return _has_bit(7);
+  return _has_bit(6);
 }
 inline void MsgAttacker::clear_mineralstaken() {
   mineralstaken_ = 0;
-  _clear_bit(7);
+  _clear_bit(6);
 }
 inline ::google::protobuf::int32 MsgAttacker::mineralstaken() const {
   return mineralstaken_;
 }
 inline void MsgAttacker::set_mineralstaken(::google::protobuf::int32 value) {
-  _set_bit(7);
+  _set_bit(6);
   mineralstaken_ = value;
 }
 
-// optional int32 coinsTaken = 9;
+// optional int32 coinsTaken = 8;
 inline bool MsgAttacker::has_coinstaken() const {
-  return _has_bit(8);
+  return _has_bit(7);
 }
 inline void MsgAttacker::clear_coinstaken() {
   coinstaken_ = 0;
-  _clear_bit(8);
+  _clear_bit(7);
 }
 inline ::google::protobuf::int32 MsgAttacker::coinstaken() const {
   return coinstaken_;
 }
 inline void MsgAttacker::set_coinstaken(::google::protobuf::int32 value) {
-  _set_bit(8);
+  _set_bit(7);
   coinstaken_ = value;
 }
 
-// optional int32 obtainedDamageProtectionTime = 10;
+// optional int32 obtainedDamageProtectionTime = 9;
 inline bool MsgAttacker::has_obtaineddamageprotectiontime() const {
-  return _has_bit(9);
+  return _has_bit(8);
 }
 inline void MsgAttacker::clear_obtaineddamageprotectiontime() {
   obtaineddamageprotectiontime_ = 0;
-  _clear_bit(9);
+  _clear_bit(8);
 }
 inline ::google::protobuf::int32 MsgAttacker::obtaineddamageprotectiontime() const {
   return obtaineddamageprotectiontime_;
 }
 inline void MsgAttacker::set_obtaineddamageprotectiontime(::google::protobuf::int32 value) {
-  _set_bit(9);
+  _set_bit(8);
   obtaineddamageprotectiontime_ = value;
 }
 
-// optional string name = 11;
+// optional string name = 10;
 inline bool MsgAttacker::has_name() const {
-  return _has_bit(10);
+  return _has_bit(9);
 }
 inline void MsgAttacker::clear_name() {
   if (name_ != &_default_name_) {
     name_->clear();
   }
-  _clear_bit(10);
+  _clear_bit(9);
 }
 inline const ::std::string& MsgAttacker::name() const {
   return *name_;
 }
 inline void MsgAttacker::set_name(const ::std::string& value) {
-  _set_bit(10);
+  _set_bit(9);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   name_->assign(value);
 }
 inline void MsgAttacker::set_name(const char* value) {
-  _set_bit(10);
+  _set_bit(9);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   name_->assign(value);
 }
 inline void MsgAttacker::set_name(const char* value, size_t size) {
-  _set_bit(10);
+  _set_bit(9);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   name_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* MsgAttacker::mutable_name() {
-  _set_bit(10);
+  _set_bit(9);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   return name_;
 }
 
-// optional string url = 12;
+// optional string url = 11;
 inline bool MsgAttacker::has_url() const {
-  return _has_bit(11);
+  return _has_bit(10);
 }
 inline void MsgAttacker::clear_url() {
   if (url_ != &_default_url_) {
     url_->clear();
   }
-  _clear_bit(11);
+  _clear_bit(10);
 }
 inline const ::std::string& MsgAttacker::url() const {
   return *url_;
 }
 inline void MsgAttacker::set_url(const ::std::string& value) {
-  _set_bit(11);
+  _set_bit(10);
   if (url_ == &_default_url_) {
     url_ = new ::std::string;
   }
   url_->assign(value);
 }
 inline void MsgAttacker::set_url(const char* value) {
-  _set_bit(11);
+  _set_bit(10);
   if (url_ == &_default_url_) {
     url_ = new ::std::string;
   }
   url_->assign(value);
 }
 inline void MsgAttacker::set_url(const char* value, size_t size) {
-  _set_bit(11);
+  _set_bit(10);
   if (url_ == &_default_url_) {
     url_ = new ::std::string;
   }
   url_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* MsgAttacker::mutable_url() {
-  _set_bit(11);
+  _set_bit(10);
   if (url_ == &_default_url_) {
     url_ = new ::std::string;
   }
@@ -621,39 +606,23 @@ inline ::std::string* MsgAttacker::mutable_url() {
 
 // RseObtainAttackerList
 
-// optional int32 idCount = 1;
-inline bool RseObtainAttackerList::has_idcount() const {
-  return _has_bit(0);
-}
-inline void RseObtainAttackerList::clear_idcount() {
-  idcount_ = 0;
-  _clear_bit(0);
-}
-inline ::google::protobuf::int32 RseObtainAttackerList::idcount() const {
-  return idcount_;
-}
-inline void RseObtainAttackerList::set_idcount(::google::protobuf::int32 value) {
-  _set_bit(0);
-  idcount_ = value;
-}
-
-// optional int32 damageProtectionAppliedAt = 2;
+// optional int32 damageProtectionAppliedAt = 1;
 inline bool RseObtainAttackerList::has_damageprotectionappliedat() const {
-  return _has_bit(1);
+  return _has_bit(0);
 }
 inline void RseObtainAttackerList::clear_damageprotectionappliedat() {
   damageprotectionappliedat_ = 0;
-  _clear_bit(1);
+  _clear_bit(0);
 }
 inline ::google::protobuf::int32 RseObtainAttackerList::damageprotectionappliedat() const {
   return damageprotectionappliedat_;
 }
 inline void RseObtainAttackerList::set_damageprotectionappliedat(::google::protobuf::int32 value) {
-  _set_bit(1);
+  _set_bit(0);
   damageprotectionappliedat_ = value;
 }
 
-// repeated .MsgAttacker attackerList = 3;
+// repeated .MsgAttacker attackerList = 2;
 inline int RseObtainAttackerList::attackerlist_size() const {
   return attackerlist_.size();
 }

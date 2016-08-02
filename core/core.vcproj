@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\lib\windows\include;..\lib\boost_1_53_0"
+				AdditionalIncludeDirectories="..\lib\windows\include;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -230,6 +230,38 @@
 					>
 				</File>
 				<File
+					RelativePath="..\event\MsgBunker.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgBunker.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgCommon.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgCommon.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgGameUnit.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgGameUnit.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgHangars.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgHangars.pb.h"
+					>
+				</File>
+				<File
 					RelativePath="..\event\MsgMission.pb.cpp"
 					>
 				</File>
@@ -243,6 +275,14 @@
 				</File>
 				<File
 					RelativePath="..\event\MsgPlanet.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgShipyard.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\MsgShipyard.pb.h"
 					>
 				</File>
 				<File
@@ -447,6 +487,14 @@
 				</File>
 				<File
 					RelativePath="..\event\RceQueryGalaxyWindow.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RceQueryPvE.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RceQueryPvE.pb.h"
 					>
 				</File>
 				<File
@@ -775,6 +823,14 @@
 				</File>
 				<File
 					RelativePath="..\event\RseQueryGalaxyWindow.pb.h"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseQueryPvE.pb.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\event\RseQueryPvE.pb.h"
 					>
 				</File>
 				<File

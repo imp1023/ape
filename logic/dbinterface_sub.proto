@@ -29,6 +29,7 @@ message DB_RegionCityUserLite
 	optional int32 morale				= 1[default = 0];	//士气
 	optional int32 region				= 2[default = 0]; //分区
 }
+
 message DB_GuildUserLite
 {//城市玩家lite数据
 	optional int32 position					= 1;	//职位	
@@ -52,6 +53,7 @@ message DB_StarUserLite
 	optional int32 finishCaptureTm 	= 7; //结束被占领时间
 	optional int32 logoutsafetime	= 8;
 }
+
 message DB_UserLite
 {
 	optional DB_UserLiteBase userLite   = 1;
@@ -1175,4 +1177,10 @@ message DB_MedalHonor
 	optional int32 nBagType	= 5[default = 0];				//当前状态 0：背包中 1：装配
 	optional int32 nAdmiralID = 6[default = 0];		//将领的ID
 	optional bool  bLock = 7[default = false];				//是否锁定
+}
+
+message DB_KeyValue
+{
+	optional int32 key = 1;
+	optional int32 value = 2;
 }

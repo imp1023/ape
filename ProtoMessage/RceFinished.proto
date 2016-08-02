@@ -4,5 +4,19 @@ import "MsgTransaction.proto";
 
 message RceFinished
 {
-	optional int32 ret = 1;
+	optional int32 planetId = 1;//": "1",
+    optional int32 energyBeforeShot = 2;//": 1000,
+    optional MsgTransaction transaction = 3;
+    optional int32 destroyed = 4;//": 0,
+    optional int32 damage = 5;//": 110,
+    optional MsgTransaction transactionTarget= 6;
+    repeated string attackers = 7;//": ["55:u:975","55:u:976"],
+    optional int32 itemSid = 8;//": 587
+    optional bool npcSuccess = 9;
+    optional int32 millis = 10;
+    optional int32 damageProtectionTime = 11;
+    optional int32 coins = 12;
+    optional int32 mineral = 13;
+    optional bool rewardFlag = 14;
+    optional string rewardSku = 15;
 }

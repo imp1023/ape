@@ -43,6 +43,7 @@
 #include "RceUpdateStarsBookmarksHandle.h"
 #include "RceUpdateTargetsHandle.h"
 #include "RceUpdateVisitHelpHandle.h"
+#include "RceQueryPvEHandle.h"
 #endif
 
 

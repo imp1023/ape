@@ -27,6 +27,7 @@ void DealWorldEvent::registHandler()
 	eh_->getEventHandler()->registHandler(EVENT_UPDATE_FRIEND_CACHE, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(C2S_RceObtainUniverse, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(C2S_RceFinished, ((ProcessRoutine) DealWorldEvent::handle_));
+	eh_->getEventHandler()->registHandler(C2S_RceBattleDamagesPack, ((ProcessRoutine) DealWorldEvent::handle_));
 }
 
 void DealWorldEvent::handle(Event* e)

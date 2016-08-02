@@ -76,6 +76,31 @@ message DB_GameUnit
     optional int64          updateAt                = 5;    
 }
 
+message DB_BattleDeployUnit
+{
+    optional string sku = 1;
+    optional int32 x = 2;
+    optional int32 y = 3;
+    optional int32 millis = 4;  
+}
+
+message DB_BattleReplay
+{
+    optional int64 time = 1;
+    optional int64 accountId = 2;
+    optional int32 planetId = 3;
+    optional string starSku = 4;
+    optional string name = 5;
+    optional string url = 6;
+    optional int32 damage = 7;
+    optional int32 planetDamage = 8;
+    optional int32 coinsTaken = 9;
+    optional int32 mineralsTaken = 10;
+    repeated DB_BattleDeployUnit deployUnits = 11;
+    repeated DB_GameUnit units = 12;
+    optional DB_User copyUser = 13;
+}
+
 message DB_Shipyard
 {
     optional int32 sid = 1;
@@ -94,8 +119,7 @@ message DB_Slot
 message DB_BunkerUnit
 {
     optional string sku = 1;
-    repeated int32 Unit = 2;
-    optional int32 num = 3;
+    optional int32 num = 2;
 }
 
 message DB_Bunker
@@ -196,6 +220,8 @@ message DB_Player
     optional DB_Mission      missions               = 7;
     optional DB_WishItemList wishItemList           = 8;
     repeated DB_StarsBookmark bookmarks             = 9;
+    repeated DB_BattleReplay battleReplay           = 10;
+    repeated DB_KeyValue     pve                    = 11;
 }
 
 message DB_DailyLogon
@@ -213,21 +239,21 @@ message DB_ActiveContinueLogon
 
 message DB_User
 {
-    required int64          id                      = 1 [default = 0] ;
-    required string         platform_id             = 2 [default = ""] ;
+    optional int64          id                      = 1 [default = 0] ;
+    optional string         platform_id             = 2 [default = ""] ;
     repeated string         name                    = 3; //脙没脳脰潞脥脕麓陆脫拢卢路脰脨拢脫脩驴脮录盲
     repeated string         profile_link            = 4;
-    required int32          gender                  = 5; //性别
-    required int64          last_login_time         = 6 [default = 0] ;
-    required string         last_login_ip           = 7 [default = ""] ;
-    required int64          regist_time             = 8 [default = 0] ;
+    optional int32          gender                  = 5; //性别
+    optional int64          last_login_time         = 6 [default = 0] ;
+    optional string         last_login_ip           = 7 [default = ""] ;
+    optional int64          regist_time             = 8 [default = 0] ;
     optional int32          yellowDmdLvl            = 9  [default = 0];     //黄钻等级
     optional bool           isYellowDmd             = 10 [default = false]; //是不是黄钻
     optional bool           isYellowDmdYear         = 11 [default = false]; //是不是年费黄钻
     optional int64          getDayYellowGiftDay     = 12[default = 0];  //获得黄钻每日礼包的时间                    
     optional bool           getNewYellowGift        = 13 [default = false];    //是否领取了黄钻礼包
     optional int64          last_logout_time        = 14;
-    required DB_Player      player                  = 15;
+    optional DB_Player      player                  = 15;
     optional DB_BanLogin    banlogin                = 16;  //是否禁止登陆
     optional bool           transferbymysql         = 17 [default = false]; //是不是从mysq中导入用户
     optional int32          mysqluserid             = 18 [default = 0];        //mysql中导入用户ID

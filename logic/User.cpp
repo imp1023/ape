@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "../common/Clock.h"
 #include "../common/SysLog.h"
-#include "../../logic/GameConstantSetCfg.h"
+#include "GameConstantSetCfg.h"
 //#include "../event/EventDefine.h"
 
 extern ServerConfig serverConfig;
@@ -108,6 +108,8 @@ void User::Init()
 	m_TargetPlayerId = 0;
 	m_TargetPlanetId = 1;
 	m_bIsNpc = false;
+
+	ClearResFlag();
 }
 
 void User::InitDBUser()

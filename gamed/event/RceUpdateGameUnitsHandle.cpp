@@ -100,6 +100,7 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 		{
 			SendRet2User(pUser,RceUpdateGameUnitsRet_ResNotEnough,rse);
 		}
+		bool bFind = false;
 		for(int i = 0;i<pDBPlanet->units_size();i++)
 		{
 			DB_GameUnit* pDBGU = pDBPlanet->mutable_units(i);
@@ -108,10 +109,10 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 				pDBGU->set_timeleft(-1);
 				pDBGU->set_updateat(time(NULL));
 			}
-			else
-			{
-				SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
-			}
+		}
+		if(!bFind)
+		{
+			SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
 		}
 
 
@@ -123,6 +124,7 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 		{
 			SendRet2User(pUser,RceUpdateGameUnitsRet_ResNotEnough,rse);
 		}
+		bool bFind = false;
 		for(int i = 0;i<pDBPlanet->units_size();i++)
 		{
 			DB_GameUnit* pDBGU = pDBPlanet->mutable_units(i);
@@ -132,11 +134,12 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 				pDBGU->set_unlock(1);
 				pDBGU->set_updateat(time(NULL));
 				pDBGU->set_upgradeid(0);
+				bFind = true;
 			}
-			else
-			{
-				SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
-			}
+		}
+		if(!bFind)
+		{
+			SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
 		}
 
 	}
@@ -147,6 +150,7 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 		{
 			SendRet2User(pUser,RceUpdateGameUnitsRet_ResNotEnough,rse);
 		}
+		bool bFind = false;
 		for(int i = 0;i<pDBPlanet->units_size();i++)
 		{
 			DB_GameUnit* pDBGU = pDBPlanet->mutable_units(i);
@@ -154,15 +158,17 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 			{
 				pDBGU->set_timeleft(req->timeleft());
 				pDBGU->set_updateat(time(NULL));
+				bFind = true;
 			}
-			else
-			{
-				SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
-			}
+		}
+		if(!bFind)
+		{
+			SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
 		}
 	}
 	else if(strAction == "upgradeCancel")
 	{
+		bool bFind = false;
 		for(int i = 0;i<pDBPlanet->units_size();i++)
 		{
 			DB_GameUnit* pDBGU = pDBPlanet->mutable_units(i);
@@ -170,15 +176,17 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 			{
 				pDBGU->set_timeleft(-1);
 				pDBGU->set_updateat(time(NULL));
+					bFind = true;
 			}
-			else
-			{
-				SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
-			}
+		}
+		if(!bFind)
+		{
+			SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
 		}
 	}
 	else if(strAction == "upgradeCompleted")
 	{
+				bool bFind = false;
 		MsgTransaction* MT = req->mutable_transaction();//秒科技消耗现金
 		if(!pPlayer->CostRes(RC_Cash,MT->cash()))
 		{
@@ -193,11 +201,12 @@ void RceUpdateGameUnitsHandle::handle(Event* e)
 				pDBGU->set_timeleft(-1);
 				pDBGU->set_updateat(now);
 				pDBGU->set_upgradeid(pDBGU->upgradeid() + 1);
+				bFind = true;
 			}
-			else
-			{
-				SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
-			}
+		}
+		if(!bFind)
+		{
+			SendRet2User(pUser,RceUpdateGameUnitsRet_UnitNotFind,rse);
 		}
 	}
 	eh_->getDataHandler()->markUserDirty(pUser);

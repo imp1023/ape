@@ -32,9 +32,10 @@ public:
 	~ResourceSilosTbl();
 	enum{
 		ResourceSilosTbl_id = 0,
+		ResourceSilosTbl_level = 2,
 		ResourceSilosTbl_energy = 3,
+		ResourceSilosTbl_maxNumPerHQLevel = 5,
 		ResourceSilosTbl_slotCapacity = 12,
-
 
 	};
 	void			LoadInfo();

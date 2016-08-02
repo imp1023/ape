@@ -1021,7 +1021,7 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 	else //oldstate = 1 newstate = 1收集资源相关
 	{
 		pDBItem->set_time(ntime);
-		//pDBItem->set_collecttime(time(NULL));
+		pDBItem->set_collecttime(time(NULL));
 		pDBItem->set_incometorestore(0);
 	}
 	pDBItem->set_state(newState);
@@ -1090,10 +1090,10 @@ void Player::FillInPlanet(RseObtainUniverse *rse, int nPlanetId)
 	PMsgPlanet->set_sku(pPlanet->star().sku());
 	PMsgPlanet->set_planetid(pPlanet->id());
 	PMsgPlanet->set_planettype(pPlanet->type());
-	//PMsgPlanet->set_coinslimit(pPlanet->coinslimit());
-	//PMsgPlanet->set_mineralslimit(pPlanet->minerallimit());
-	PMsgPlanet->set_coinslimit(99999999999);
-	PMsgPlanet->set_mineralslimit(99999999999);
+	PMsgPlanet->set_coinslimit(pPlanet->coinslimit());
+	PMsgPlanet->set_mineralslimit(pPlanet->minerallimit());
+	//PMsgPlanet->set_coinslimit(99999999999);
+	//PMsgPlanet->set_mineralslimit(99999999999);
 	PMsgPlanet->set_hqlevel(pPlanet->hqlevel());
 	PMsgPlanet->set_capital(pPlanet->capital());
 #if 0
@@ -1146,7 +1146,6 @@ void Player::FillinItem(RseObtainUniverse *rse, int nPlanetId)
 				time_t ltime = time(NULL);
 				pMsgItem->set_time(pDBItem->time() - (ltime - pDBItem->updateat())*1000);
 
-				//pDBItem->set_time(pMsgItem->time());
 			}
 			else if(pDBItem->state() == 0)
 			{
@@ -1160,7 +1159,7 @@ void Player::FillinItem(RseObtainUniverse *rse, int nPlanetId)
 				int ntime = pDBItem->time() - (time(NULL) - pDBItem->collecttime()) * 1000;
 				if(ntime < 0)
 					ntime = 0;
-				pMsgItem->set_time(pDBItem->time());
+				pMsgItem->set_time(ntime);
 			}
 				
 			pMsgItem->set_updatedat(pDBItem->updateat());
@@ -1223,7 +1222,6 @@ void Player::FillinShipyard(RseObtainUniverse *rse, int nPlanetId)
 				}
 			}
 		}
-		
 	}
 }
 
@@ -1317,7 +1315,7 @@ void Player::FillinUniverse(RseObtainUniverse *rse, int nPlanetID)
 	if(!CanUse() || !rse){
 		return;		
 	}
-	rse->set_levelbasedonscore(m_pdbPlayer->mutable_model()->level());
+	rse->set_levelbasedonscore(1);
 	rse->set_vip(m_pUser->GetIsYellowDmd());
 	rse->set_yearvip(m_pUser->GetIsYearYellowDmd());
 	rse->set_viplevel(m_pUser->GetYearYellowDmdLevel());
@@ -1346,7 +1344,7 @@ void Player::FillinUniverse(RseObtainUniverse *rse, int nPlanetID)
 	rse->set_tutorialcompleted(m_pdbPlayer->state().tutorialcompleted());
 	char flag[128];
 	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", m_pdbPlayer->flag().quality(), m_pdbPlayer->flag().music(), m_pdbPlayer->flag().effect(), m_pdbPlayer->flag().alliancewelcome());
-	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", 1, 0, 0, 0);
+	//sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", 1, 0, 0, 0);
 	rse->set_flags(flag);
 	FillInMissoin(rse);
 	FillInPlanet(rse, nPlanetID);
@@ -1440,12 +1438,12 @@ void Player::FillinBookmarks(RseQueryStarsBookmarks *rse)
 }
 
 
-void Player::NewBattle(int64 nTargetPlayer, int nPlanetId)
+void Player::NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time)
 {
 	if(!m_pBattleManager || !CanUse()){
 		return;
 	}
-	m_pBattleManager->NewBattle(nTargetPlayer, nPlanetId);
+	m_pBattleManager->NewBattle(nTargetPlayer, nPlanetId, time);
 }
 
 void Player::FillBattleData(RseObtainUniverse *pRsp)
@@ -1456,3 +1454,20 @@ void Player::FillBattleData(RseObtainUniverse *pRsp)
 
 	
 }
+
+void Player::FillinPvELite(RseQueryPvE* rsp)
+{
+	if(!CanUse() || !rsp){
+		return;
+	}
+
+	for(int i = 0; i < m_pdbPlayer->pve_size(); i++){
+		DB_KeyValue *pDBPvE = m_pdbPlayer->mutable_pve(i);
+		MsgKeyValue *pMsgPvE = rsp->add_pve();
+		if(pDBPvE && pMsgPvE){
+			pMsgPvE->set_key(pDBPvE->key());
+			pMsgPvE->set_value(pDBPvE->value());
+		}
+	}
+}
+

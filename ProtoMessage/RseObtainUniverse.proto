@@ -3,62 +3,15 @@
 import "MsgBuildingItem.proto";
 import "MsgPlanet.proto";
 import "MsgMission.proto";
-
-message MsgGameUnit
-{
-    optional int32 updatedAt = 1;
-    optional int32 unlocked = 2;
-    optional int32 timeLeft = 3;
-    repeated int32 GameUnit = 4;
-    optional string sku = 5;
-    optional int32 upgradeId = 6;
-}
-
-message MsgBunkerUnit
-{
-    optional string sku = 1;
-    repeated int32 Unit = 2;
-}
-
-message MsgBunker
-{
-    optional int32 sid = 1;
-    optional string helpersAccountIds = 2;
-    repeated MsgBunkerUnit Bunker = 3;
-}
-
-message MsgHangarUnit
-{
-    optional string sku = 1;
-    optional int32 num = 2;
-}
-
-message MsgHangars
-{
-    optional int32 sid = 1;
-    repeated MsgHangarUnit Hangar = 2;
-}
+import "MsgShipyard.proto";
+import "MsgHangars.proto";
+import "MsgBunker.proto";
+import "MsgGameUnit.proto";
 
 message MsgSlot
 {
     repeated int32 Ship = 1;
     optional int32 timeLeft = 2;
-}
-
-message MsgShipyardSlot
-{
-    optional string sku = 1;
-    optional int32 num = 2;
-    optional int32 timeLeft = 3;
-}
-
-message MsgShipyard
-{
-    optional int32 updatedAt = 1;
-    optional int32 sid = 2;
-    optional int32 block = 3;
-    optional int32 unlockedSlots = 4;
-    repeated MsgShipyardSlot Shipyard = 5;
 }
 
 message RseObtainUniverse
@@ -93,5 +46,6 @@ message RseObtainUniverse
     repeated MsgHangars Hangars = 28;
     repeated MsgBunker Bunkers = 29;
     repeated MsgGameUnit GameUnits = 30;
+    optional string npc = 31; //": "npc_B"
 }
 

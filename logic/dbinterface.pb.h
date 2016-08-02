@@ -36,6 +36,8 @@ class DB_Item;
 class DB_HangarUnit;
 class DB_Hangar;
 class DB_GameUnit;
+class DB_BattleDeployUnit;
+class DB_BattleReplay;
 class DB_Shipyard;
 class DB_Slot;
 class DB_BunkerUnit;
@@ -932,6 +934,322 @@ class DB_GameUnit : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class DB_BattleDeployUnit : public ::google::protobuf::Message {
+ public:
+  DB_BattleDeployUnit();
+  virtual ~DB_BattleDeployUnit();
+  
+  DB_BattleDeployUnit(const DB_BattleDeployUnit& from);
+  
+  inline DB_BattleDeployUnit& operator=(const DB_BattleDeployUnit& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_BattleDeployUnit& default_instance();
+  void Swap(DB_BattleDeployUnit* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_BattleDeployUnit* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_BattleDeployUnit& from);
+  void MergeFrom(const DB_BattleDeployUnit& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string sku = 1;
+  inline bool has_sku() const;
+  inline void clear_sku();
+  static const int kSkuFieldNumber = 1;
+  inline const ::std::string& sku() const;
+  inline void set_sku(const ::std::string& value);
+  inline void set_sku(const char* value);
+  inline void set_sku(const char* value, size_t size);
+  inline ::std::string* mutable_sku();
+  
+  // optional int32 x = 2;
+  inline bool has_x() const;
+  inline void clear_x();
+  static const int kXFieldNumber = 2;
+  inline ::google::protobuf::int32 x() const;
+  inline void set_x(::google::protobuf::int32 value);
+  
+  // optional int32 y = 3;
+  inline bool has_y() const;
+  inline void clear_y();
+  static const int kYFieldNumber = 3;
+  inline ::google::protobuf::int32 y() const;
+  inline void set_y(::google::protobuf::int32 value);
+  
+  // optional int32 millis = 4;
+  inline bool has_millis() const;
+  inline void clear_millis();
+  static const int kMillisFieldNumber = 4;
+  inline ::google::protobuf::int32 millis() const;
+  inline void set_millis(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* sku_;
+  static const ::std::string _default_sku_;
+  ::google::protobuf::int32 x_;
+  ::google::protobuf::int32 y_;
+  ::google::protobuf::int32 millis_;
+  friend void  protobuf_AddDesc_dbinterface_2eproto();
+  friend void protobuf_AssignDesc_dbinterface_2eproto();
+  friend void protobuf_ShutdownFile_dbinterface_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_BattleDeployUnit* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_BattleReplay : public ::google::protobuf::Message {
+ public:
+  DB_BattleReplay();
+  virtual ~DB_BattleReplay();
+  
+  DB_BattleReplay(const DB_BattleReplay& from);
+  
+  inline DB_BattleReplay& operator=(const DB_BattleReplay& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_BattleReplay& default_instance();
+  void Swap(DB_BattleReplay* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_BattleReplay* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_BattleReplay& from);
+  void MergeFrom(const DB_BattleReplay& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int64 time = 1;
+  inline bool has_time() const;
+  inline void clear_time();
+  static const int kTimeFieldNumber = 1;
+  inline ::google::protobuf::int64 time() const;
+  inline void set_time(::google::protobuf::int64 value);
+  
+  // optional int64 accountId = 2;
+  inline bool has_accountid() const;
+  inline void clear_accountid();
+  static const int kAccountIdFieldNumber = 2;
+  inline ::google::protobuf::int64 accountid() const;
+  inline void set_accountid(::google::protobuf::int64 value);
+  
+  // optional int32 planetId = 3;
+  inline bool has_planetid() const;
+  inline void clear_planetid();
+  static const int kPlanetIdFieldNumber = 3;
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
+  
+  // optional string starSku = 4;
+  inline bool has_starsku() const;
+  inline void clear_starsku();
+  static const int kStarSkuFieldNumber = 4;
+  inline const ::std::string& starsku() const;
+  inline void set_starsku(const ::std::string& value);
+  inline void set_starsku(const char* value);
+  inline void set_starsku(const char* value, size_t size);
+  inline ::std::string* mutable_starsku();
+  
+  // optional string name = 5;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 5;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string url = 6;
+  inline bool has_url() const;
+  inline void clear_url();
+  static const int kUrlFieldNumber = 6;
+  inline const ::std::string& url() const;
+  inline void set_url(const ::std::string& value);
+  inline void set_url(const char* value);
+  inline void set_url(const char* value, size_t size);
+  inline ::std::string* mutable_url();
+  
+  // optional int32 damage = 7;
+  inline bool has_damage() const;
+  inline void clear_damage();
+  static const int kDamageFieldNumber = 7;
+  inline ::google::protobuf::int32 damage() const;
+  inline void set_damage(::google::protobuf::int32 value);
+  
+  // optional int32 planetDamage = 8;
+  inline bool has_planetdamage() const;
+  inline void clear_planetdamage();
+  static const int kPlanetDamageFieldNumber = 8;
+  inline ::google::protobuf::int32 planetdamage() const;
+  inline void set_planetdamage(::google::protobuf::int32 value);
+  
+  // optional int32 coinsTaken = 9;
+  inline bool has_coinstaken() const;
+  inline void clear_coinstaken();
+  static const int kCoinsTakenFieldNumber = 9;
+  inline ::google::protobuf::int32 coinstaken() const;
+  inline void set_coinstaken(::google::protobuf::int32 value);
+  
+  // optional int32 mineralsTaken = 10;
+  inline bool has_mineralstaken() const;
+  inline void clear_mineralstaken();
+  static const int kMineralsTakenFieldNumber = 10;
+  inline ::google::protobuf::int32 mineralstaken() const;
+  inline void set_mineralstaken(::google::protobuf::int32 value);
+  
+  // repeated .DB_BattleDeployUnit deployUnits = 11;
+  inline int deployunits_size() const;
+  inline void clear_deployunits();
+  static const int kDeployUnitsFieldNumber = 11;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_BattleDeployUnit >& deployunits() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_BattleDeployUnit >* mutable_deployunits();
+  inline const ::DB_BattleDeployUnit& deployunits(int index) const;
+  inline ::DB_BattleDeployUnit* mutable_deployunits(int index);
+  inline ::DB_BattleDeployUnit* add_deployunits();
+  
+  // repeated .DB_GameUnit units = 12;
+  inline int units_size() const;
+  inline void clear_units();
+  static const int kUnitsFieldNumber = 12;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_GameUnit >& units() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_GameUnit >* mutable_units();
+  inline const ::DB_GameUnit& units(int index) const;
+  inline ::DB_GameUnit* mutable_units(int index);
+  inline ::DB_GameUnit* add_units();
+  
+  // optional .DB_User copyUser = 13;
+  inline bool has_copyuser() const;
+  inline void clear_copyuser();
+  static const int kCopyUserFieldNumber = 13;
+  inline const ::DB_User& copyuser() const;
+  inline ::DB_User* mutable_copyuser();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int64 time_;
+  ::google::protobuf::int64 accountid_;
+  ::google::protobuf::int32 planetid_;
+  ::std::string* starsku_;
+  static const ::std::string _default_starsku_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* url_;
+  static const ::std::string _default_url_;
+  ::google::protobuf::int32 damage_;
+  ::google::protobuf::int32 planetdamage_;
+  ::google::protobuf::int32 coinstaken_;
+  ::google::protobuf::int32 mineralstaken_;
+  ::google::protobuf::RepeatedPtrField< ::DB_BattleDeployUnit > deployunits_;
+  ::google::protobuf::RepeatedPtrField< ::DB_GameUnit > units_;
+  ::DB_User* copyuser_;
+  friend void  protobuf_AddDesc_dbinterface_2eproto();
+  friend void protobuf_AssignDesc_dbinterface_2eproto();
+  friend void protobuf_ShutdownFile_dbinterface_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(13 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_BattleReplay* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class DB_Shipyard : public ::google::protobuf::Message {
  public:
   DB_Shipyard();
@@ -1216,21 +1534,10 @@ class DB_BunkerUnit : public ::google::protobuf::Message {
   inline void set_sku(const char* value, size_t size);
   inline ::std::string* mutable_sku();
   
-  // repeated int32 Unit = 2;
-  inline int unit_size() const;
-  inline void clear_unit();
-  static const int kUnitFieldNumber = 2;
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >& unit() const
-      ;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >* mutable_unit();
-  inline ::google::protobuf::int32 unit(int index) const;
-  inline void set_unit(int index, ::google::protobuf::int32 value);
-  inline void add_unit(::google::protobuf::int32 value);
-  
-  // optional int32 num = 3;
+  // optional int32 num = 2;
   inline bool has_num() const;
   inline void clear_num();
-  static const int kNumFieldNumber = 3;
+  static const int kNumFieldNumber = 2;
   inline ::google::protobuf::int32 num() const;
   inline void set_num(::google::protobuf::int32 value);
   
@@ -1240,13 +1547,12 @@ class DB_BunkerUnit : public ::google::protobuf::Message {
   
   ::std::string* sku_;
   static const ::std::string _default_sku_;
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > unit_;
   ::google::protobuf::int32 num_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -2633,6 +2939,26 @@ class DB_Player : public ::google::protobuf::Message {
   inline ::DB_StarsBookmark* mutable_bookmarks(int index);
   inline ::DB_StarsBookmark* add_bookmarks();
   
+  // repeated .DB_BattleReplay battleReplay = 10;
+  inline int battlereplay_size() const;
+  inline void clear_battlereplay();
+  static const int kBattleReplayFieldNumber = 10;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_BattleReplay >& battlereplay() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_BattleReplay >* mutable_battlereplay();
+  inline const ::DB_BattleReplay& battlereplay(int index) const;
+  inline ::DB_BattleReplay* mutable_battlereplay(int index);
+  inline ::DB_BattleReplay* add_battlereplay();
+  
+  // repeated .DB_KeyValue pve = 11;
+  inline int pve_size() const;
+  inline void clear_pve();
+  static const int kPveFieldNumber = 11;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_KeyValue >& pve() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_KeyValue >* mutable_pve();
+  inline const ::DB_KeyValue& pve(int index) const;
+  inline ::DB_KeyValue* mutable_pve(int index);
+  inline ::DB_KeyValue* add_pve();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -2646,11 +2972,13 @@ class DB_Player : public ::google::protobuf::Message {
   ::DB_Mission* missions_;
   ::DB_WishItemList* wishitemlist_;
   ::google::protobuf::RepeatedPtrField< ::DB_StarsBookmark > bookmarks_;
+  ::google::protobuf::RepeatedPtrField< ::DB_BattleReplay > battlereplay_;
+  ::google::protobuf::RepeatedPtrField< ::DB_KeyValue > pve_;
   friend void  protobuf_AddDesc_dbinterface_2eproto();
   friend void protobuf_AssignDesc_dbinterface_2eproto();
   friend void protobuf_ShutdownFile_dbinterface_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(9 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -2919,14 +3247,14 @@ class DB_User : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required int64 id = 1 [default = 0];
+  // optional int64 id = 1 [default = 0];
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 1;
   inline ::google::protobuf::int64 id() const;
   inline void set_id(::google::protobuf::int64 value);
   
-  // required string platform_id = 2 [default = ""];
+  // optional string platform_id = 2 [default = ""];
   inline bool has_platform_id() const;
   inline void clear_platform_id();
   static const int kPlatformIdFieldNumber = 2;
@@ -2968,21 +3296,21 @@ class DB_User : public ::google::protobuf::Message {
   inline void add_profile_link(const char* value);
   inline void add_profile_link(const char* value, size_t size);
   
-  // required int32 gender = 5;
+  // optional int32 gender = 5;
   inline bool has_gender() const;
   inline void clear_gender();
   static const int kGenderFieldNumber = 5;
   inline ::google::protobuf::int32 gender() const;
   inline void set_gender(::google::protobuf::int32 value);
   
-  // required int64 last_login_time = 6 [default = 0];
+  // optional int64 last_login_time = 6 [default = 0];
   inline bool has_last_login_time() const;
   inline void clear_last_login_time();
   static const int kLastLoginTimeFieldNumber = 6;
   inline ::google::protobuf::int64 last_login_time() const;
   inline void set_last_login_time(::google::protobuf::int64 value);
   
-  // required string last_login_ip = 7 [default = ""];
+  // optional string last_login_ip = 7 [default = ""];
   inline bool has_last_login_ip() const;
   inline void clear_last_login_ip();
   static const int kLastLoginIpFieldNumber = 7;
@@ -2992,7 +3320,7 @@ class DB_User : public ::google::protobuf::Message {
   inline void set_last_login_ip(const char* value, size_t size);
   inline ::std::string* mutable_last_login_ip();
   
-  // required int64 regist_time = 8 [default = 0];
+  // optional int64 regist_time = 8 [default = 0];
   inline bool has_regist_time() const;
   inline void clear_regist_time();
   static const int kRegistTimeFieldNumber = 8;
@@ -3041,7 +3369,7 @@ class DB_User : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 last_logout_time() const;
   inline void set_last_logout_time(::google::protobuf::int64 value);
   
-  // required .DB_Player player = 15;
+  // optional .DB_Player player = 15;
   inline bool has_player() const;
   inline void clear_player();
   static const int kPlayerFieldNumber = 15;
@@ -4085,6 +4413,409 @@ inline void DB_GameUnit::set_updateat(::google::protobuf::int64 value) {
 
 // -------------------------------------------------------------------
 
+// DB_BattleDeployUnit
+
+// optional string sku = 1;
+inline bool DB_BattleDeployUnit::has_sku() const {
+  return _has_bit(0);
+}
+inline void DB_BattleDeployUnit::clear_sku() {
+  if (sku_ != &_default_sku_) {
+    sku_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& DB_BattleDeployUnit::sku() const {
+  return *sku_;
+}
+inline void DB_BattleDeployUnit::set_sku(const ::std::string& value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_BattleDeployUnit::set_sku(const char* value) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(value);
+}
+inline void DB_BattleDeployUnit::set_sku(const char* value, size_t size) {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  sku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_BattleDeployUnit::mutable_sku() {
+  _set_bit(0);
+  if (sku_ == &_default_sku_) {
+    sku_ = new ::std::string;
+  }
+  return sku_;
+}
+
+// optional int32 x = 2;
+inline bool DB_BattleDeployUnit::has_x() const {
+  return _has_bit(1);
+}
+inline void DB_BattleDeployUnit::clear_x() {
+  x_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 DB_BattleDeployUnit::x() const {
+  return x_;
+}
+inline void DB_BattleDeployUnit::set_x(::google::protobuf::int32 value) {
+  _set_bit(1);
+  x_ = value;
+}
+
+// optional int32 y = 3;
+inline bool DB_BattleDeployUnit::has_y() const {
+  return _has_bit(2);
+}
+inline void DB_BattleDeployUnit::clear_y() {
+  y_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_BattleDeployUnit::y() const {
+  return y_;
+}
+inline void DB_BattleDeployUnit::set_y(::google::protobuf::int32 value) {
+  _set_bit(2);
+  y_ = value;
+}
+
+// optional int32 millis = 4;
+inline bool DB_BattleDeployUnit::has_millis() const {
+  return _has_bit(3);
+}
+inline void DB_BattleDeployUnit::clear_millis() {
+  millis_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_BattleDeployUnit::millis() const {
+  return millis_;
+}
+inline void DB_BattleDeployUnit::set_millis(::google::protobuf::int32 value) {
+  _set_bit(3);
+  millis_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DB_BattleReplay
+
+// optional int64 time = 1;
+inline bool DB_BattleReplay::has_time() const {
+  return _has_bit(0);
+}
+inline void DB_BattleReplay::clear_time() {
+  time_ = GOOGLE_LONGLONG(0);
+  _clear_bit(0);
+}
+inline ::google::protobuf::int64 DB_BattleReplay::time() const {
+  return time_;
+}
+inline void DB_BattleReplay::set_time(::google::protobuf::int64 value) {
+  _set_bit(0);
+  time_ = value;
+}
+
+// optional int64 accountId = 2;
+inline bool DB_BattleReplay::has_accountid() const {
+  return _has_bit(1);
+}
+inline void DB_BattleReplay::clear_accountid() {
+  accountid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(1);
+}
+inline ::google::protobuf::int64 DB_BattleReplay::accountid() const {
+  return accountid_;
+}
+inline void DB_BattleReplay::set_accountid(::google::protobuf::int64 value) {
+  _set_bit(1);
+  accountid_ = value;
+}
+
+// optional int32 planetId = 3;
+inline bool DB_BattleReplay::has_planetid() const {
+  return _has_bit(2);
+}
+inline void DB_BattleReplay::clear_planetid() {
+  planetid_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_BattleReplay::planetid() const {
+  return planetid_;
+}
+inline void DB_BattleReplay::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(2);
+  planetid_ = value;
+}
+
+// optional string starSku = 4;
+inline bool DB_BattleReplay::has_starsku() const {
+  return _has_bit(3);
+}
+inline void DB_BattleReplay::clear_starsku() {
+  if (starsku_ != &_default_starsku_) {
+    starsku_->clear();
+  }
+  _clear_bit(3);
+}
+inline const ::std::string& DB_BattleReplay::starsku() const {
+  return *starsku_;
+}
+inline void DB_BattleReplay::set_starsku(const ::std::string& value) {
+  _set_bit(3);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  starsku_->assign(value);
+}
+inline void DB_BattleReplay::set_starsku(const char* value) {
+  _set_bit(3);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  starsku_->assign(value);
+}
+inline void DB_BattleReplay::set_starsku(const char* value, size_t size) {
+  _set_bit(3);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  starsku_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_BattleReplay::mutable_starsku() {
+  _set_bit(3);
+  if (starsku_ == &_default_starsku_) {
+    starsku_ = new ::std::string;
+  }
+  return starsku_;
+}
+
+// optional string name = 5;
+inline bool DB_BattleReplay::has_name() const {
+  return _has_bit(4);
+}
+inline void DB_BattleReplay::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(4);
+}
+inline const ::std::string& DB_BattleReplay::name() const {
+  return *name_;
+}
+inline void DB_BattleReplay::set_name(const ::std::string& value) {
+  _set_bit(4);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_BattleReplay::set_name(const char* value) {
+  _set_bit(4);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_BattleReplay::set_name(const char* value, size_t size) {
+  _set_bit(4);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_BattleReplay::mutable_name() {
+  _set_bit(4);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string url = 6;
+inline bool DB_BattleReplay::has_url() const {
+  return _has_bit(5);
+}
+inline void DB_BattleReplay::clear_url() {
+  if (url_ != &_default_url_) {
+    url_->clear();
+  }
+  _clear_bit(5);
+}
+inline const ::std::string& DB_BattleReplay::url() const {
+  return *url_;
+}
+inline void DB_BattleReplay::set_url(const ::std::string& value) {
+  _set_bit(5);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void DB_BattleReplay::set_url(const char* value) {
+  _set_bit(5);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(value);
+}
+inline void DB_BattleReplay::set_url(const char* value, size_t size) {
+  _set_bit(5);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  url_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_BattleReplay::mutable_url() {
+  _set_bit(5);
+  if (url_ == &_default_url_) {
+    url_ = new ::std::string;
+  }
+  return url_;
+}
+
+// optional int32 damage = 7;
+inline bool DB_BattleReplay::has_damage() const {
+  return _has_bit(6);
+}
+inline void DB_BattleReplay::clear_damage() {
+  damage_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 DB_BattleReplay::damage() const {
+  return damage_;
+}
+inline void DB_BattleReplay::set_damage(::google::protobuf::int32 value) {
+  _set_bit(6);
+  damage_ = value;
+}
+
+// optional int32 planetDamage = 8;
+inline bool DB_BattleReplay::has_planetdamage() const {
+  return _has_bit(7);
+}
+inline void DB_BattleReplay::clear_planetdamage() {
+  planetdamage_ = 0;
+  _clear_bit(7);
+}
+inline ::google::protobuf::int32 DB_BattleReplay::planetdamage() const {
+  return planetdamage_;
+}
+inline void DB_BattleReplay::set_planetdamage(::google::protobuf::int32 value) {
+  _set_bit(7);
+  planetdamage_ = value;
+}
+
+// optional int32 coinsTaken = 9;
+inline bool DB_BattleReplay::has_coinstaken() const {
+  return _has_bit(8);
+}
+inline void DB_BattleReplay::clear_coinstaken() {
+  coinstaken_ = 0;
+  _clear_bit(8);
+}
+inline ::google::protobuf::int32 DB_BattleReplay::coinstaken() const {
+  return coinstaken_;
+}
+inline void DB_BattleReplay::set_coinstaken(::google::protobuf::int32 value) {
+  _set_bit(8);
+  coinstaken_ = value;
+}
+
+// optional int32 mineralsTaken = 10;
+inline bool DB_BattleReplay::has_mineralstaken() const {
+  return _has_bit(9);
+}
+inline void DB_BattleReplay::clear_mineralstaken() {
+  mineralstaken_ = 0;
+  _clear_bit(9);
+}
+inline ::google::protobuf::int32 DB_BattleReplay::mineralstaken() const {
+  return mineralstaken_;
+}
+inline void DB_BattleReplay::set_mineralstaken(::google::protobuf::int32 value) {
+  _set_bit(9);
+  mineralstaken_ = value;
+}
+
+// repeated .DB_BattleDeployUnit deployUnits = 11;
+inline int DB_BattleReplay::deployunits_size() const {
+  return deployunits_.size();
+}
+inline void DB_BattleReplay::clear_deployunits() {
+  deployunits_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_BattleDeployUnit >&
+DB_BattleReplay::deployunits() const {
+  return deployunits_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_BattleDeployUnit >*
+DB_BattleReplay::mutable_deployunits() {
+  return &deployunits_;
+}
+inline const ::DB_BattleDeployUnit& DB_BattleReplay::deployunits(int index) const {
+  return deployunits_.Get(index);
+}
+inline ::DB_BattleDeployUnit* DB_BattleReplay::mutable_deployunits(int index) {
+  return deployunits_.Mutable(index);
+}
+inline ::DB_BattleDeployUnit* DB_BattleReplay::add_deployunits() {
+  return deployunits_.Add();
+}
+
+// repeated .DB_GameUnit units = 12;
+inline int DB_BattleReplay::units_size() const {
+  return units_.size();
+}
+inline void DB_BattleReplay::clear_units() {
+  units_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_GameUnit >&
+DB_BattleReplay::units() const {
+  return units_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_GameUnit >*
+DB_BattleReplay::mutable_units() {
+  return &units_;
+}
+inline const ::DB_GameUnit& DB_BattleReplay::units(int index) const {
+  return units_.Get(index);
+}
+inline ::DB_GameUnit* DB_BattleReplay::mutable_units(int index) {
+  return units_.Mutable(index);
+}
+inline ::DB_GameUnit* DB_BattleReplay::add_units() {
+  return units_.Add();
+}
+
+// optional .DB_User copyUser = 13;
+inline bool DB_BattleReplay::has_copyuser() const {
+  return _has_bit(12);
+}
+inline void DB_BattleReplay::clear_copyuser() {
+  if (copyuser_ != NULL) copyuser_->::DB_User::Clear();
+  _clear_bit(12);
+}
+inline const ::DB_User& DB_BattleReplay::copyuser() const {
+  return copyuser_ != NULL ? *copyuser_ : *default_instance_->copyuser_;
+}
+inline ::DB_User* DB_BattleReplay::mutable_copyuser() {
+  _set_bit(12);
+  if (copyuser_ == NULL) copyuser_ = new ::DB_User;
+  return copyuser_;
+}
+
+// -------------------------------------------------------------------
+
 // DB_Shipyard
 
 // optional int32 sid = 1;
@@ -4284,44 +5015,19 @@ inline ::std::string* DB_BunkerUnit::mutable_sku() {
   return sku_;
 }
 
-// repeated int32 Unit = 2;
-inline int DB_BunkerUnit::unit_size() const {
-  return unit_.size();
-}
-inline void DB_BunkerUnit::clear_unit() {
-  unit_.Clear();
-}
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-DB_BunkerUnit::unit() const {
-  return unit_;
-}
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-DB_BunkerUnit::mutable_unit() {
-  return &unit_;
-}
-inline ::google::protobuf::int32 DB_BunkerUnit::unit(int index) const {
-  return unit_.Get(index);
-}
-inline void DB_BunkerUnit::set_unit(int index, ::google::protobuf::int32 value) {
-  unit_.Set(index, value);
-}
-inline void DB_BunkerUnit::add_unit(::google::protobuf::int32 value) {
-  unit_.Add(value);
-}
-
-// optional int32 num = 3;
+// optional int32 num = 2;
 inline bool DB_BunkerUnit::has_num() const {
-  return _has_bit(2);
+  return _has_bit(1);
 }
 inline void DB_BunkerUnit::clear_num() {
   num_ = 0;
-  _clear_bit(2);
+  _clear_bit(1);
 }
 inline ::google::protobuf::int32 DB_BunkerUnit::num() const {
   return num_;
 }
 inline void DB_BunkerUnit::set_num(::google::protobuf::int32 value) {
-  _set_bit(2);
+  _set_bit(1);
   num_ = value;
 }
 
@@ -5700,6 +6406,56 @@ inline ::DB_StarsBookmark* DB_Player::add_bookmarks() {
   return bookmarks_.Add();
 }
 
+// repeated .DB_BattleReplay battleReplay = 10;
+inline int DB_Player::battlereplay_size() const {
+  return battlereplay_.size();
+}
+inline void DB_Player::clear_battlereplay() {
+  battlereplay_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_BattleReplay >&
+DB_Player::battlereplay() const {
+  return battlereplay_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_BattleReplay >*
+DB_Player::mutable_battlereplay() {
+  return &battlereplay_;
+}
+inline const ::DB_BattleReplay& DB_Player::battlereplay(int index) const {
+  return battlereplay_.Get(index);
+}
+inline ::DB_BattleReplay* DB_Player::mutable_battlereplay(int index) {
+  return battlereplay_.Mutable(index);
+}
+inline ::DB_BattleReplay* DB_Player::add_battlereplay() {
+  return battlereplay_.Add();
+}
+
+// repeated .DB_KeyValue pve = 11;
+inline int DB_Player::pve_size() const {
+  return pve_.size();
+}
+inline void DB_Player::clear_pve() {
+  pve_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_KeyValue >&
+DB_Player::pve() const {
+  return pve_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_KeyValue >*
+DB_Player::mutable_pve() {
+  return &pve_;
+}
+inline const ::DB_KeyValue& DB_Player::pve(int index) const {
+  return pve_.Get(index);
+}
+inline ::DB_KeyValue* DB_Player::mutable_pve(int index) {
+  return pve_.Mutable(index);
+}
+inline ::DB_KeyValue* DB_Player::add_pve() {
+  return pve_.Add();
+}
+
 // -------------------------------------------------------------------
 
 // DB_DailyLogon
@@ -5792,7 +6548,7 @@ inline void DB_ActiveContinueLogon::set_lastlogontime(::google::protobuf::int32 
 
 // DB_User
 
-// required int64 id = 1 [default = 0];
+// optional int64 id = 1 [default = 0];
 inline bool DB_User::has_id() const {
   return _has_bit(0);
 }
@@ -5808,7 +6564,7 @@ inline void DB_User::set_id(::google::protobuf::int64 value) {
   id_ = value;
 }
 
-// required string platform_id = 2 [default = ""];
+// optional string platform_id = 2 [default = ""];
 inline bool DB_User::has_platform_id() const {
   return _has_bit(1);
 }
@@ -5938,7 +6694,7 @@ inline void DB_User::add_profile_link(const char* value, size_t size) {
   profile_link_.Add()->assign(reinterpret_cast<const char*>(value), size);
 }
 
-// required int32 gender = 5;
+// optional int32 gender = 5;
 inline bool DB_User::has_gender() const {
   return _has_bit(4);
 }
@@ -5954,7 +6710,7 @@ inline void DB_User::set_gender(::google::protobuf::int32 value) {
   gender_ = value;
 }
 
-// required int64 last_login_time = 6 [default = 0];
+// optional int64 last_login_time = 6 [default = 0];
 inline bool DB_User::has_last_login_time() const {
   return _has_bit(5);
 }
@@ -5970,7 +6726,7 @@ inline void DB_User::set_last_login_time(::google::protobuf::int64 value) {
   last_login_time_ = value;
 }
 
-// required string last_login_ip = 7 [default = ""];
+// optional string last_login_ip = 7 [default = ""];
 inline bool DB_User::has_last_login_ip() const {
   return _has_bit(6);
 }
@@ -6012,7 +6768,7 @@ inline ::std::string* DB_User::mutable_last_login_ip() {
   return last_login_ip_;
 }
 
-// required int64 regist_time = 8 [default = 0];
+// optional int64 regist_time = 8 [default = 0];
 inline bool DB_User::has_regist_time() const {
   return _has_bit(7);
 }
@@ -6124,7 +6880,7 @@ inline void DB_User::set_last_logout_time(::google::protobuf::int64 value) {
   last_logout_time_ = value;
 }
 
-// required .DB_Player player = 15;
+// optional .DB_Player player = 15;
 inline bool DB_User::has_player() const {
   return _has_bit(14);
 }

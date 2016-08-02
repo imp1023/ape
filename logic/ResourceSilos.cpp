@@ -41,6 +41,8 @@ void ResourceSilosTbl::LoadInfo()
 		CFG_ResourceSilos *pItem = new CFG_ResourceSilos;
 		int id = fileDBC.Search_Posistion(i, ResourceSilosTbl_id)->iValue;
 		pItem->id = fileDBC.Search_Posistion(i, ResourceSilosTbl_id)->iValue;
+		pItem->level = fileDBC.Search_Posistion(i, ResourceSilosTbl_level)->iValue;
+		pItem->maxNumPerHQLevel = fileDBC.Search_Posistion(i, ResourceSilosTbl_maxNumPerHQLevel)->pString;
 		pItem->energy =fileDBC.Search_Posistion(i, ResourceSilosTbl_energy)->iValue;
 		pItem->slotCapacity =fileDBC.Search_Posistion(i, ResourceSilosTbl_slotCapacity)->iValue;
 		
@@ -86,7 +88,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 	if(HQlevel > 7)
 		HQlevel = 7;
 
-	if(sku >= SKU_d_001_013 || sku <= SKU_d_001_010)
+	if(sku >= SKU_d_001_013 && sku <= SKU_d_001_010)
 	{
 		return 4;//允许装饰品最大数量为4 后期补define
 	}
@@ -101,7 +103,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 			static string delims = ",";
 			tokenize(tbl->maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel - 1], nlv);
+			safe_atoi(vec[HQlevel], nlv);
 			return nlv;
 		}
 	case SKU_labs_observatory:
@@ -115,7 +117,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 			static string delims = ",";
 			tokenize(tbl->maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel - 1], nlv);
+			safe_atoi(vec[HQlevel], nlv);
 			return nlv;
 		}
 	case SKU_rc_001_001:
@@ -126,7 +128,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 			static string delims = ",";
 			tokenize(tbl->maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel - 1], nlv);
+			safe_atoi(vec[HQlevel], nlv);
 			return nlv;
 		}
 	case SKU_rs_001_001:
@@ -137,7 +139,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 			static string delims = ",";
 			tokenize(tbl->maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel - 1], nlv);
+			safe_atoi(vec[HQlevel], nlv);
 			return nlv;
 		}
 	case SKU_barracks_001_001:
@@ -149,7 +151,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 			static string delims = ",";
 			tokenize(tbl->maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel - 1], nlv);
+			safe_atoi(vec[HQlevel], nlv);
 			return nlv;
 		}
 	case SKU_df_001_004:
@@ -168,7 +170,7 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 			static string delims = ",";
 			tokenize(tbl->maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel - 1], nlv);
+			safe_atoi(vec[HQlevel], nlv);
 			return nlv;
 		}
 	}

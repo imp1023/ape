@@ -23,6 +23,7 @@ import "RceObtainVisitHelps.proto";
 import "RceOnlineReward.proto"; 
 import "RceQueryCheckAndLockAccountIfPossible.proto"; 
 import "RceQueryGalaxyWindow.proto"; 
+import "RceQueryPvE.proto"; 
 import "RceQueryReceiveWishItem.proto"; 
 import "RceQueryRefuseReceiveWishItem.proto"; 
 import "RceQuerySendWishItem.proto"; 
@@ -64,6 +65,7 @@ import "RseObtainUniverse.proto";
 import "RseObtainVisitHelps.proto"; 
 import "RseQueryCheckAndLockAccountIfPossible.proto"; 
 import "RseQueryGalaxyWindow.proto"; 
+import "RseQueryPvE.proto"; 
 import "RseQueryReceiveWishItem.proto"; 
 import "RseQueryRefuseReceiveWishItem.proto"; 
 import "RseQuerySendWishItem.proto"; 
@@ -115,6 +117,7 @@ message Event {
 	optional GSG_StatNeed  		statNeed					  = 27;		//统计服务器需要的参数8;
 	optional NewStar_Req	newStarReq 			= 28;
 	optional NewStar_Rsp	newStarRsp 			= 29;
+	optional GWG_BattleInfo battleInfo = 30;
 	
 	optional HttpAskMsg		httpaskmsg		=	114;	//HTTP请求
 	optional HttpAnswerMsg	httpanswermsg	=	115;	//HTTP返回	
@@ -163,6 +166,7 @@ message Event {
 	optional RceUpdateStarsBookmarks ce_RceUpdateStarsBookmarks = 238;
 	optional RceUpdateTargets ce_RceUpdateTargets = 239;
 	optional RceUpdateVisitHelp ce_RceUpdateVisitHelp = 240;
+	optional RceQueryPvE ce_RceQueryPvE = 241;
 
 
 
@@ -209,4 +213,5 @@ message Event {
 	optional RseBattleDamagesPack se_RseBattleDamagesPack = 540;
 	optional RseItemMineExploded se_RseItemMineExploded = 541;
 	optional RseFinished se_RseFinished = 542;
+	optional RseQueryPvE se_RseQueryPvE = 543;
 }

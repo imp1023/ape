@@ -84,6 +84,9 @@ public:
 	void FillSocialItems(RseObtainSocialItems *rse);
 	void FillinFlag(RseObtainUniverse* rse);
 
+	//pve
+	void FillinPvELite(RseQueryPvE* rsp);
+
 	//init new default player
 	void InitPlayerModel();
 	void InitPlayerFlag();
@@ -92,7 +95,7 @@ public:
 	void InitPlayerNPC();
 
 	//battle
-	void NewBattle(int64 nTargetPlayer, int nPlanetId);
+	void NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time);
 	Battle* GetBattle(){return m_pBattleManager->GetBattle();}
 	void FillBattleData(RseObtainUniverse *pRsp);
 
