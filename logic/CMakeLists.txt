@@ -15,7 +15,6 @@ FriendInfoCfg.cpp
 GameConfigMgr.cpp
 GameConstantSetCfg.cpp
 GameConstantSetLogic.cpp
-GameServerConfig.cpp
 GameSrvCfg.cpp
 GameUnitsTbl.cpp
 HangarTbl.cpp

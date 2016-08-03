@@ -1,5 +1,4 @@
 #include "GameConfigMgr.h"
-#include "GameServerConfig.h"
 //table
 #include "InitItemTbl.h"
 #include "GameUnitsTbl.h"
