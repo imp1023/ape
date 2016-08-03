@@ -1,0 +1,51 @@
+INT	STRING	INT	INT	INT	INT	STRING
+id	sku	size	finishTime	rewardCoins	rewardMinerals	rewardItemSku
+1	mission_000	0	0	0	0	
+2	mission_001	2	0	0	1000	
+3	mission_021	1	0	0	2000	
+4	mission_004	2	0	0	6000	
+5	mission_005	3	0	0	9500	
+6	mission_006	2	0	0	12500	
+7	mission_022	2	0	0	5000	
+8	mission_007	3	0	0	15500	
+9	mission_008	3	0	0	6000	
+10	mission_023	3	0	0	6000	
+11	mission_010	2	0	0	18500	
+12	mission_011	3	0	2000	0	
+13	mission_012	2	0	2000	0	
+14	mission_013	2	0	3000	0	
+15	mission_014	2	0	1500	0	
+16	mission_015	2	0	1000	0	
+17	mission_016	2	0	4500	0	
+18	mission_028	2	0	6000	0	
+19	mission_017	3	0	9500	0	
+20	mission_029	3	0	9500	0	
+21	mission_024	3	0	2000	0	
+22	mission_020	3	0	3000	0	
+23	mission_025	3	0	6000	0	
+24	mission_041	3	0	20000	0	
+25	mission_026	1	0	1000	0	
+26	mission_027	3	0	12500	0	
+27	mission_030	2	0	1000	0	
+28	mission_033	2	0	3000	0	
+29	mission_031	2	0	5000	0	
+30	mission_037	3	0	2000	0	
+31	mission_042	2	0	0	2500	
+33	mission_032	2	0	0	5000	
+34	mission_043	3	0	0	5000	
+35	mission_044	3	0	0	5000	
+36	mission_046	3	0	0	31000	
+37	mission_002	2	0	0	3000	
+38	mission_045	2	0	0	9500	
+39	mission_047	3	0	0	0	26:01:00
+40	mission_048	2	0	0	155000	
+41	mission_049	2	0	124000	0	
+42	mission_050	3	432000000	0	217000	
+43	mission_051	3	0	170500	0	
+44	mission_052	3	0	0	310000	
+45	mission_053	3	432000000	186000	0	
+46	mission_054	3	0	201500	0	
+47	mission_055	3	432000000	217000	0	
+48	mission_056	3	0	0	0	25:05:00
+49	mission_057	1	0	0	0	
+50	active_001	0	0	0	0	

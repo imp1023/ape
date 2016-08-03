@@ -1,0 +1,8 @@
+INT	STRING	INT	INT	STRING	STRING	INT	INT	INT	INT	INT	INT	INT
+id	sku	level	energy	energyProgressBar	maxNumPerHQLevel	constructionTime	constructionCoins	constructionMineral	scoreBuilt	scoreAttack	repairTime	slotCapacity
+1	barracks_001_001	1	4000	4000	"1,1,2,2,2,2,2,2"	15	1300	0	4	4	240	15
+2	barracks_001_001	2	16000	16000	3	3600	3300	0	18	11	960	20
+3	barracks_001_001	3	32000	32000	4	43200	19300	0	154	54	1576	25
+4	mechas_001_001	1	4000	4000	"0,1,1,2,2,2,2,2"	900	8100	0	24	22	240	10
+5	mechas_001_001	2	16000	16000	4	3600	26700	0	78	72	960	15
+6	mechas_001_001	3	32000	32000	5	43200	145100	0	479	379	1576	20
