@@ -1,5 +1,8 @@
 #include "rand_util.h"
 #include <string>
+#ifndef WIN32
+#include <stdlib.h>
+#endif
 
 //·µ»Ø[0,1)Ëæ»úÊı
 double get_rand()

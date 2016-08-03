@@ -1,6 +1,7 @@
 #ifndef _SERVERCONFIG_H_
 #define _SERVERCONFIG_H_
 #pragma once
+#include <stdlib.h>
 #include <vector>
 #include <string>
 #include <set>

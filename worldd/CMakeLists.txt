@@ -9,8 +9,8 @@ event/UpdateWorkingStatus.cpp
 event/UserLogin.cpp
 GameHandler.cpp
 WebServerHandler.cpp
-worldd.cpp
 WorldDataHandler.cpp
+worldd.cpp
 WorldEventHandler.cpp
 WorldNetHandler.cpp
 ) 

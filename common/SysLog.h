@@ -6,6 +6,8 @@
 #include <WinSock2.h>
 #include "wtypes.h"
 #include <Windows.h>
+#else
+#include <string.h>
 #endif
 
 #include <pthread.h> 

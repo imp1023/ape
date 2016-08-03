@@ -11,6 +11,7 @@
 #include <pthread.h>
 #include <map>
 #include <string>
+#include <string.h>
 #include <list>
 #include "../net/NetHandler.h"
 #include "const_def.h"

@@ -1,6 +1,8 @@
 #ifndef _DBC_H_
 #define _DBC_H_
 
+#include <string.h>
+#include <stdio.h>
 #include <vector>
 #ifdef WIN32
 	#define		tsnprintf		_snprintf

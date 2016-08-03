@@ -8,6 +8,7 @@
 #include<iconv.h>
 #include <stdio.h>
 #include<iconv.h>
+#include <string.h>
 #endif
 
 using namespace std;

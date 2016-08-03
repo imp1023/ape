@@ -1,6 +1,10 @@
 #pragma once
 #include "const_def.h"
 #include <string>
+#ifndef WIN32
+#include <string.h>
+#include <stdio.h>
+#endif
 using namespace std;
 
 int getPlatidHash(const string& platid);

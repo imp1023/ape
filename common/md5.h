@@ -3,6 +3,9 @@
 
 #include <string>
 #include <fstream>
+#ifndef WIN32
+#include <string.h>
+#endif
 
 /* Type define */
 typedef unsigned char byte;

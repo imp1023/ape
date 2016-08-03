@@ -2,10 +2,10 @@
 
 add_library(event  
 DataHandler.cpp
-event.pb.cpp
-event_sub.pb.cpp
 EventHandler.cpp
+event.pb.cpp
 EventQueue.cpp
+event_sub.pb.cpp
 FriendInfoLite.pb.cpp
 MsgBuildingItem.pb.cpp
 MsgBunker.pb.cpp
