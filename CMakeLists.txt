@@ -8,7 +8,7 @@ SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2")
 SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--hash-style=sysv")
 
 include_directories ("${PROJECT_SOURCE_DIR}/lib/linux/include" "${PROJECT_SOURCE_DIR}/event" )
-link_directories ("${PROJECT_SOURCE_DIR}/lib/linux/lib")
+link_directories ("/usr/local/services/lib")
 
 add_subdirectory (common)
 add_subdirectory (event)

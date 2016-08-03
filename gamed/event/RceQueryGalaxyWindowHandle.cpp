@@ -4,7 +4,7 @@
 #include "../../common/json/json.h"
 #include "../../common/string-util.h"
 #include "../../logic/User.h"
-#include "../../logic/player.h"
+#include "../../logic/Player.h"
 #include "RceQueryGalaxyWindowHandle.h"
 #include "RseQueryGalaxyWindow.pb.h"
 

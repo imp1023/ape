@@ -1009,8 +1009,10 @@ enum LOG_TYPE
 struct Log_Msg_Unit
 {
 	int		nKey;
-	char*	szId;
-	char*	szWords;
+	//char*	szId;
+	//char*	szWords;
+	string szId;
+	string szWords;
 };
 
 const Log_Msg_Unit LOG_MSG[] = 
