@@ -367,17 +367,17 @@ bool ServerConfig::loadFromFile()
 // 			star_log_stat_port_			= (const char *)star["statsrv_port"];
 // 		}
 // 
-// 		Setting &country = srv.lookup("app.country");
-// 		{
-// 
-// 			country_log_start_				= (int)country["log_file_start"];
-// 			country_log_dir_				= (const char *)country["log_file_dir"];
-// 			country_log_name_				= (const char *)country["log_file_name"];
-// 			country_log_stat_level_			= (int)country["send_lv"];
-// 			country_log_stat_addr_			= (const char *)country["statsrv_addr"];
-// 			country_log_stat_port_			= (const char *)country["statsrv_port"];
-// 		}
-// 
+ 		Setting &country = srv.lookup("app.country");
+ 		{
+ 
+ 			country_log_start_				= (int)country["log_file_start"];
+ 			country_log_dir_				= (const char *)country["log_file_dir"];
+ 			country_log_name_				= (const char *)country["log_file_name"];
+ 			country_log_stat_level_			= (int)country["send_lv"];
+ 			country_log_stat_addr_			= (const char *)country["statsrv_addr"];
+ 			country_log_stat_port_			= (const char *)country["statsrv_port"];
+ 		}
+ 
 // 		Setting &region = srv.lookup("app.region");
 // 		{
 // 
