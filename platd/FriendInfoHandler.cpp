@@ -6,7 +6,9 @@
 #include "../logic/FriendInfoCfg.h"
 #include "../logic/GameSrvCfg.h"
 #include "EventDefine.h"
-
+#ifndef WIN32
+#include <unistd.h>
+#endif
 
 
 FriendInfoHandler::FriendInfoHandler(void)
