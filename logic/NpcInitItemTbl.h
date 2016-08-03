@@ -38,12 +38,12 @@ public:
 	void			LoadInfo();
 	void			Clear();
 	bool GetItems(string npc, int npcId, vector<CFG_NPCInitItem*>& items);
-
+	typedef vector<CFG_NPCInitItem*> VecCfgNpcInitItem;
 protected:
 	static const char*  szConfigFile;
-	map<int, vector<CFG_NPCInitItem*>>	m_mNpcBInitItems;
-	map<int, vector<CFG_NPCInitItem*>>	m_mNpcCInitItems;
-	map<int, vector<CFG_NPCInitItem*>>	m_mNpcDInitItems;
+	map<int, VecCfgNpcInitItem>	m_mNpcBInitItems;
+	map<int, VecCfgNpcInitItem>	m_mNpcCInitItems;
+	map<int, VecCfgNpcInitItem>	m_mNpcDInitItems;
 };
 
 typedef Singleton<NPCInitItemTbl> NPCInitItemTblInst;

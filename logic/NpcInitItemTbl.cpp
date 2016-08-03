@@ -49,7 +49,7 @@ void NPCInitItemTbl::LoadInfo()
 		int nNpcId = 0;
 		safe_atoi(pItem->npcId.substr(5,1), nNpcId);
 		if("npc_B" == strNpc){
-			map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcBInitItems.find(nNpcId);
+			map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcBInitItems.find(nNpcId);
 			if(iter == m_mNpcBInitItems.end()){
 				vector<CFG_NPCInitItem*> vec;
 				vec.push_back(pItem);
@@ -58,7 +58,7 @@ void NPCInitItemTbl::LoadInfo()
 				iter->second.push_back(pItem);
 			}
 		}else if("npc_C" == strNpc){
-			map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcCInitItems.find(nNpcId);
+			map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcCInitItems.find(nNpcId);
 			if(iter == m_mNpcCInitItems.end()){
 				vector<CFG_NPCInitItem*> vec;
 				vec.push_back(pItem);
@@ -67,9 +67,9 @@ void NPCInitItemTbl::LoadInfo()
 				iter->second.push_back(pItem);
 			}
 		}else if("npc_D" == strNpc){
-			map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcDInitItems.find(nNpcId);
+			map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcDInitItems.find(nNpcId);
 			if(iter == m_mNpcDInitItems.end()){
-				vector<CFG_NPCInitItem*> vec;
+				VecCfgNpcInitItem vec;
 				vec.push_back(pItem);
 				m_mNpcDInitItems.insert(make_pair(nNpcId, vec));
 			}else{
@@ -82,21 +82,21 @@ void NPCInitItemTbl::LoadInfo()
 
 void NPCInitItemTbl::Clear()
 {
-	for(map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcBInitItems.begin(); iter != m_mNpcBInitItems.end(); iter++){
+	for(map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcBInitItems.begin(); iter != m_mNpcBInitItems.end(); iter++){
 		vector<CFG_NPCInitItem*>& vec = iter->second;
 		for(int i = 0; i < vec.size(); i++){
 			delete vec[i];
 		}
 	}
 	m_mNpcBInitItems.clear();
-	for(map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcCInitItems.begin(); iter != m_mNpcCInitItems.end(); iter++){
+	for(map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcCInitItems.begin(); iter != m_mNpcCInitItems.end(); iter++){
 		vector<CFG_NPCInitItem*>& vec = iter->second;
 		for(int i = 0; i < vec.size(); i++){
 			delete vec[i];
 		}
 	}
 	m_mNpcCInitItems.clear();
-	for(map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcDInitItems.begin(); iter != m_mNpcDInitItems.end(); iter++){
+	for(map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcDInitItems.begin(); iter != m_mNpcDInitItems.end(); iter++){
 		vector<CFG_NPCInitItem*>& vec = iter->second;
 		for(int i = 0; i < vec.size(); i++){
 			delete vec[i];
@@ -111,7 +111,7 @@ bool NPCInitItemTbl::GetItems(string npc, int npcId, vector<CFG_NPCInitItem*>& i
 		if(npcId < 0 || npcId > NPC_B_MAX_NPCID){
 			return false;
 		}
-		map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcBInitItems.find(npcId);
+		map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcBInitItems.find(npcId);
 		if(iter == m_mNpcBInitItems.end()){
 			return false;
 		}
@@ -121,7 +121,7 @@ bool NPCInitItemTbl::GetItems(string npc, int npcId, vector<CFG_NPCInitItem*>& i
 		if(npcId < 0 || npcId > NPC_C_MAX_NPCID){
 			return false;
 		}
-		map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcCInitItems.find(npcId);
+		map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcCInitItems.find(npcId);
 		if(iter == m_mNpcCInitItems.end()){
 			return false;
 		}
@@ -131,7 +131,7 @@ bool NPCInitItemTbl::GetItems(string npc, int npcId, vector<CFG_NPCInitItem*>& i
 		if(npcId < 0 || npcId > NPC_D_MAX_NPCID){
 			return false;
 		}
-		map<int, vector<CFG_NPCInitItem*>>::iterator iter = m_mNpcDInitItems.find(npcId);
+		map<int, VecCfgNpcInitItem>::iterator iter = m_mNpcDInitItems.find(npcId);
 		if(iter == m_mNpcDInitItems.end()){
 			return false;
 		}
