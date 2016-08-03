@@ -24,7 +24,7 @@ add_executable (worldd worldd/worldd.cpp)
 add_executable (countryd countryd/country.cpp)
 add_executable (platd platd/plat.cpp)
 
-target_link_libraries (gamed game logic event common net protobuf log4cxx config++ tokyotyrant )
+target_link_libraries (gamed game logic event common net protobuf log4cxx config++ tokyotyrant curl)
 target_link_libraries (worldd world logic event common net protobuf log4cxx config++ tokyotyrant)
 target_link_libraries (countryd country logic event common net protobuf log4cxx config++ tokyotyrant )
 target_link_libraries (platd plat logic event common net protobuf log4cxx config++ tokyotyrant)

@@ -9,6 +9,7 @@ GameDataHandler.cpp
 GameDataSaver.cpp
 GameEventAutoCreate.cpp
 GameEventHandler.cpp
+GameHttpHandler.cpp
 GameNetHandler.cpp
 GameRgnDataHandler.cpp
 GameSrvCfg.cpp
