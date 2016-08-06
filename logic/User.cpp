@@ -103,11 +103,6 @@ void User::Init()
     InitDBUser();
 	m_strRc4Send.clear();
 	m_strRc4Receive.clear();
-	
-	m_CurPlanetId = 1;
-	m_TargetPlayerId = 0;
-	m_TargetPlanetId = 1;
-	m_bIsNpc = false;
 
 	ClearResFlag();
 }
@@ -334,55 +329,6 @@ void User::Logon(GameDataHandler* dh)
 		m_pPlayer->GetPlanet(1)->set_minerallimit(9999999999);
 	}
 	//m_UpdateSaveTime = 0;
-}
-
-inline string User::GetProfileLink(PLAT_TYPE nPlatType) const 
-{
-	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX)
-	{
-		return m_dbUser.profile_link(nPlatType);
-	}
-	else
-	{
-		return m_dbUser.profile_link(0);
-	}
-}
-
-inline string User::GetProfileLinkAnyWay(PLAT_TYPE nPlatType) const 
-{
-	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX && nPlatType < m_dbUser.profile_link_size())
-	{
-		string _tmpLink = m_dbUser.profile_link(nPlatType);
-		if (_tmpLink.size() > 0)
-		{
-			return _tmpLink;
-		}
-	}
-
-	for (int i=0;i<PLAT_TYPE_MAX && i < m_dbUser.profile_link_size();i++)
-	{
-		string _tmpLink = m_dbUser.profile_link(i);
-		if (_tmpLink.size() > 0)
-		{
-			return _tmpLink;
-		}
-	}
-	return m_dbUser.profile_link(0);
-}
-
-inline void User::SetProfileLink(const string &profile_link, enum PLAT_TYPE nPlatType) 
-{
-	if(nPlatType < 0 || nPlatType >= PLAT_TYPE_MAX)
-		return;
-
-	if (m_dbUser.profile_link_size() == 0)
-	{
-		m_dbUser.set_profile_link(0, "");
-	}
-	else
-	{
-		m_dbUser.set_profile_link(nPlatType, profile_link);
-	}
 }
 
 void User::AddOnlineTime(time_t ltNow)

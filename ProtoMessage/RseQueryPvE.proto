@@ -6,7 +6,7 @@ import "MsgBuildingItem.proto";
 message MsgNpcJson
 {
 	repeated MsgBuildingItem item = 1;
-	repeated MsgKeyValue bunker = 2;
+	repeated MsgSidSkuNum bunker = 2;
 	repeated MsgKeyValue gameUnit = 3;
 }
 

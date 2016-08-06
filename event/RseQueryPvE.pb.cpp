@@ -98,12 +98,12 @@ void protobuf_AddDesc_RseQueryPvE_2eproto() {
   ::protobuf_AddDesc_MsgBuildingItem_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\021RseQueryPvE.proto\032\017MsgCommon.proto\032\025Ms"
-    "gBuildingItem.proto\"j\n\nMsgNpcJson\022\036\n\004ite"
-    "m\030\001 \003(\0132\020.MsgBuildingItem\022\034\n\006bunker\030\002 \003("
-    "\0132\014.MsgKeyValue\022\036\n\010gameUnit\030\003 \003(\0132\014.MsgK"
-    "eyValue\"O\n\013RseQueryPvE\022\013\n\003ret\030\001 \001(\005\022\031\n\003p"
-    "ve\030\002 \003(\0132\014.MsgKeyValue\022\030\n\003npc\030\003 \001(\0132\013.Ms"
-    "gNpcJson", 248);
+    "gBuildingItem.proto\"k\n\nMsgNpcJson\022\036\n\004ite"
+    "m\030\001 \003(\0132\020.MsgBuildingItem\022\035\n\006bunker\030\002 \003("
+    "\0132\r.MsgSidSkuNum\022\036\n\010gameUnit\030\003 \003(\0132\014.Msg"
+    "KeyValue\"O\n\013RseQueryPvE\022\013\n\003ret\030\001 \001(\005\022\031\n\003"
+    "pve\030\002 \003(\0132\014.MsgKeyValue\022\030\n\003npc\030\003 \001(\0132\013.M"
+    "sgNpcJson", 249);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseQueryPvE.proto", &protobuf_RegisterTypes);
   MsgNpcJson::default_instance_ = new MsgNpcJson();
@@ -198,7 +198,7 @@ bool MsgNpcJson::MergePartialFromCodedStream(
         break;
       }
       
-      // repeated .MsgKeyValue bunker = 2;
+      // repeated .MsgSidSkuNum bunker = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -256,7 +256,7 @@ void MsgNpcJson::SerializeWithCachedSizes(
       1, this->item(i), output);
   }
   
-  // repeated .MsgKeyValue bunker = 2;
+  // repeated .MsgSidSkuNum bunker = 2;
   for (int i = 0; i < this->bunker_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
       2, this->bunker(i), output);
@@ -283,7 +283,7 @@ void MsgNpcJson::SerializeWithCachedSizes(
         1, this->item(i), target);
   }
   
-  // repeated .MsgKeyValue bunker = 2;
+  // repeated .MsgSidSkuNum bunker = 2;
   for (int i = 0; i < this->bunker_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -315,7 +315,7 @@ int MsgNpcJson::ByteSize() const {
         this->item(i));
   }
   
-  // repeated .MsgKeyValue bunker = 2;
+  // repeated .MsgSidSkuNum bunker = 2;
   total_size += 1 * this->bunker_size();
   for (int i = 0; i < this->bunker_size(); i++) {
     total_size +=

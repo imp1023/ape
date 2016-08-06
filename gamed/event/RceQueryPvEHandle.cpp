@@ -83,8 +83,9 @@ void RceQueryPvEHandle::handle(Event* e)
 				pMsgItem->set_energypercent(pCfgItem.energyPercent);
 			}
 			for(int i = 0; i < pNpcCfg->bunkers.size(); i++){
-				MsgKeyValue *pMsgItem = pMsgNpc->add_bunker();
+				MsgSidSkuNum *pMsgItem = pMsgNpc->add_bunker();
 				BunkerJson pCfgItem = pNpcCfg->bunkers[i];
+				pMsgItem->set_sid(pCfgItem.sid);
 				pMsgItem->set_key(pCfgItem.skuId);
 				pMsgItem->set_value(pCfgItem.num);
 			}

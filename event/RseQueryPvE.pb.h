@@ -98,15 +98,15 @@ class MsgNpcJson : public ::google::protobuf::Message {
   inline ::MsgBuildingItem* mutable_item(int index);
   inline ::MsgBuildingItem* add_item();
   
-  // repeated .MsgKeyValue bunker = 2;
+  // repeated .MsgSidSkuNum bunker = 2;
   inline int bunker_size() const;
   inline void clear_bunker();
   static const int kBunkerFieldNumber = 2;
-  inline const ::google::protobuf::RepeatedPtrField< ::MsgKeyValue >& bunker() const;
-  inline ::google::protobuf::RepeatedPtrField< ::MsgKeyValue >* mutable_bunker();
-  inline const ::MsgKeyValue& bunker(int index) const;
-  inline ::MsgKeyValue* mutable_bunker(int index);
-  inline ::MsgKeyValue* add_bunker();
+  inline const ::google::protobuf::RepeatedPtrField< ::MsgSidSkuNum >& bunker() const;
+  inline ::google::protobuf::RepeatedPtrField< ::MsgSidSkuNum >* mutable_bunker();
+  inline const ::MsgSidSkuNum& bunker(int index) const;
+  inline ::MsgSidSkuNum* mutable_bunker(int index);
+  inline ::MsgSidSkuNum* add_bunker();
   
   // repeated .MsgKeyValue gameUnit = 3;
   inline int gameunit_size() const;
@@ -123,7 +123,7 @@ class MsgNpcJson : public ::google::protobuf::Message {
   mutable int _cached_size_;
   
   ::google::protobuf::RepeatedPtrField< ::MsgBuildingItem > item_;
-  ::google::protobuf::RepeatedPtrField< ::MsgKeyValue > bunker_;
+  ::google::protobuf::RepeatedPtrField< ::MsgSidSkuNum > bunker_;
   ::google::protobuf::RepeatedPtrField< ::MsgKeyValue > gameunit_;
   friend void  protobuf_AddDesc_RseQueryPvE_2eproto();
   friend void protobuf_AssignDesc_RseQueryPvE_2eproto();
@@ -286,28 +286,28 @@ inline ::MsgBuildingItem* MsgNpcJson::add_item() {
   return item_.Add();
 }
 
-// repeated .MsgKeyValue bunker = 2;
+// repeated .MsgSidSkuNum bunker = 2;
 inline int MsgNpcJson::bunker_size() const {
   return bunker_.size();
 }
 inline void MsgNpcJson::clear_bunker() {
   bunker_.Clear();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::MsgKeyValue >&
+inline const ::google::protobuf::RepeatedPtrField< ::MsgSidSkuNum >&
 MsgNpcJson::bunker() const {
   return bunker_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::MsgKeyValue >*
+inline ::google::protobuf::RepeatedPtrField< ::MsgSidSkuNum >*
 MsgNpcJson::mutable_bunker() {
   return &bunker_;
 }
-inline const ::MsgKeyValue& MsgNpcJson::bunker(int index) const {
+inline const ::MsgSidSkuNum& MsgNpcJson::bunker(int index) const {
   return bunker_.Get(index);
 }
-inline ::MsgKeyValue* MsgNpcJson::mutable_bunker(int index) {
+inline ::MsgSidSkuNum* MsgNpcJson::mutable_bunker(int index) {
   return bunker_.Mutable(index);
 }
-inline ::MsgKeyValue* MsgNpcJson::add_bunker() {
+inline ::MsgSidSkuNum* MsgNpcJson::add_bunker() {
   return bunker_.Add();
 }
 

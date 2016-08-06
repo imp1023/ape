@@ -536,13 +536,14 @@ void protobuf_AssignDesc_event_5fsub_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(GWG_GameUnit));
   GWG_BattleInfo_descriptor_ = file->message_type(22);
-  static const int GWG_BattleInfo_offsets_[6] = {
+  static const int GWG_BattleInfo_offsets_[7] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, time_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, accountid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, starsku_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, url_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, units_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, planetid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(GWG_BattleInfo, gameunits_),
   };
   GWG_BattleInfo_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -750,10 +751,10 @@ void protobuf_AddDesc_event_5fsub_2eproto() {
     "type\030\003 \001(\005\022\014\n\004name\030\004 \001(\005\"b\n\014GWG_GameUnit"
     "\022\013\n\003sku\030\001 \001(\005\022\016\n\006unlock\030\002 \001(\005\022\021\n\tupgrade"
     "Id\030\003 \001(\005\022\020\n\010timeLeft\030\004 \001(\005\022\020\n\010updateAt\030\005"
-    " \001(\003\"{\n\016GWG_BattleInfo\022\014\n\004time\030\001 \001(\003\022\021\n\t"
-    "accountId\030\002 \001(\003\022\017\n\007starSku\030\003 \001(\t\022\014\n\004name"
-    "\030\004 \001(\t\022\013\n\003url\030\005 \001(\t\022\034\n\005units\030\006 \003(\0132\r.GWG"
-    "_GameUnit", 3169);
+    " \001(\003\"\221\001\n\016GWG_BattleInfo\022\014\n\004time\030\001 \001(\003\022\021\n"
+    "\taccountId\030\002 \001(\003\022\017\n\007starSku\030\003 \001(\t\022\014\n\004nam"
+    "e\030\004 \001(\t\022\013\n\003url\030\005 \001(\t\022\020\n\010planetId\030\006 \001(\005\022 "
+    "\n\tgameUnits\030\007 \003(\0132\r.GWG_GameUnit", 3192);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "event_sub.proto", &protobuf_RegisterTypes);
   WebCrossPromotion::default_instance_ = new WebCrossPromotion();
@@ -10259,7 +10260,8 @@ const int GWG_BattleInfo::kAccountIdFieldNumber;
 const int GWG_BattleInfo::kStarSkuFieldNumber;
 const int GWG_BattleInfo::kNameFieldNumber;
 const int GWG_BattleInfo::kUrlFieldNumber;
-const int GWG_BattleInfo::kUnitsFieldNumber;
+const int GWG_BattleInfo::kPlanetIdFieldNumber;
+const int GWG_BattleInfo::kGameUnitsFieldNumber;
 #endif  // !_MSC_VER
 
 GWG_BattleInfo::GWG_BattleInfo() {
@@ -10281,6 +10283,7 @@ void GWG_BattleInfo::SharedCtor() {
   starsku_ = const_cast< ::std::string*>(&_default_starsku_);
   name_ = const_cast< ::std::string*>(&_default_name_);
   url_ = const_cast< ::std::string*>(&_default_url_);
+  planetid_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -10336,8 +10339,9 @@ void GWG_BattleInfo::Clear() {
         url_->clear();
       }
     }
+    planetid_ = 0;
   }
-  units_.Clear();
+  gameunits_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -10419,20 +10423,34 @@ bool GWG_BattleInfo::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->url().data(), this->url().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(50)) goto parse_units;
+        if (input->ExpectTag(48)) goto parse_planetId;
         break;
       }
       
-      // repeated .GWG_GameUnit units = 6;
+      // optional int32 planetId = 6;
       case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_planetId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &planetid_));
+        _set_bit(5);
+        if (input->ExpectTag(58)) goto parse_gameUnits;
+        break;
+      }
+      
+      // repeated .GWG_GameUnit gameUnits = 7;
+      case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_units:
+       parse_gameUnits:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-              input, add_units()));
-        if (input->ExpectTag(50)) goto parse_units;
+              input, add_gameunits()));
+        if (input->ExpectTag(58)) goto parse_gameUnits;
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -10498,10 +10516,15 @@ void GWG_BattleInfo::SerializeWithCachedSizes(
       5, this->url(), output);
   }
   
-  // repeated .GWG_GameUnit units = 6;
-  for (int i = 0; i < this->units_size(); i++) {
+  // optional int32 planetId = 6;
+  if (_has_bit(5)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->planetid(), output);
+  }
+  
+  // repeated .GWG_GameUnit gameUnits = 7;
+  for (int i = 0; i < this->gameunits_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      6, this->units(i), output);
+      7, this->gameunits(i), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -10552,11 +10575,16 @@ void GWG_BattleInfo::SerializeWithCachedSizes(
         5, this->url(), target);
   }
   
-  // repeated .GWG_GameUnit units = 6;
-  for (int i = 0; i < this->units_size(); i++) {
+  // optional int32 planetId = 6;
+  if (_has_bit(5)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->planetid(), target);
+  }
+  
+  // repeated .GWG_GameUnit gameUnits = 7;
+  for (int i = 0; i < this->gameunits_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        6, this->units(i), target);
+        7, this->gameunits(i), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -10605,13 +10633,20 @@ int GWG_BattleInfo::ByteSize() const {
           this->url());
     }
     
+    // optional int32 planetId = 6;
+    if (has_planetid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->planetid());
+    }
+    
   }
-  // repeated .GWG_GameUnit units = 6;
-  total_size += 1 * this->units_size();
-  for (int i = 0; i < this->units_size(); i++) {
+  // repeated .GWG_GameUnit gameUnits = 7;
+  total_size += 1 * this->gameunits_size();
+  for (int i = 0; i < this->gameunits_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->units(i));
+        this->gameunits(i));
   }
   
   if (!unknown_fields().empty()) {
@@ -10637,7 +10672,7 @@ void GWG_BattleInfo::MergeFrom(const ::google::protobuf::Message& from) {
 
 void GWG_BattleInfo::MergeFrom(const GWG_BattleInfo& from) {
   GOOGLE_CHECK_NE(&from, this);
-  units_.MergeFrom(from.units_);
+  gameunits_.MergeFrom(from.gameunits_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
       set_time(from.time());
@@ -10653,6 +10688,9 @@ void GWG_BattleInfo::MergeFrom(const GWG_BattleInfo& from) {
     }
     if (from._has_bit(4)) {
       set_url(from.url());
+    }
+    if (from._has_bit(5)) {
+      set_planetid(from.planetid());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -10682,7 +10720,8 @@ void GWG_BattleInfo::Swap(GWG_BattleInfo* other) {
     std::swap(starsku_, other->starsku_);
     std::swap(name_, other->name_);
     std::swap(url_, other->url_);
-    units_.Swap(&other->units_);
+    std::swap(planetid_, other->planetid_);
+    gameunits_.Swap(&other->gameunits_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

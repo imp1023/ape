@@ -171,9 +171,6 @@ const int MEDALHONOR_MAX_LEVEL = 50;        //荣誉勋章最高等级
 const int MEDALHONOR_JOKER_COUNTRY = 0;       //荣誉勋章中的无国家勋章
 const int MEDALHONOR_EXP_TYPE = 7;         //经验荣誉勋章
 
-/** 每天秒数 */
-const int TIME_DAY_SECOND = 86400;
-
 #ifndef PIcons
 const int MAX_ARMY_GRADE = 3; //兵种最大阶级
 const int MAX_ARMY_GROUP = 3; //兵种组类
@@ -3127,23 +3124,8 @@ enum E_GUILD_REDENVELOPE_OWNELOG
     E_GUILD_REDENVELOPE_OWNELOG_WITHDRAWAL,
 };
 
-enum E_CITYBUFF_DEFINE
-{
-	E_CITYBUFF_STATE_INVALID = 0,
-	E_CITYBUFF_STATE_PRE = 1,
-	E_CITYBUFF_STATE_ACTIVE = 2,
-	E_CITYBUFF_COUNT = 4,
-	E_CITYBUFF_FANDIGANG = 7301,
-	E_CITYBUFF_MADELI= 7302,
-	E_CITYBUFF_RINEIWA = 7303,
-	E_CITYBUFF_BOERNI = 7304,
-};
-//英雄回归活动
-enum
-{
-	ONE_DAY_SECONDS = 24*60*60,
-	CLEAR_DATA_DAY = 3,			//英雄回归活动清除数据的天数
-};
+/** 每天秒数 */
+const int TIME_DAY_SECOND = 86400;
 
 enum
 {
@@ -3161,7 +3143,7 @@ enum
 enum
 {
 	MAX_HQ_LEVEL = 8,
-
+	ID_CAPITAL_PLANET = 1,
 };
 
 enum
@@ -3381,7 +3363,3 @@ enum
 	SKU_pumpkin	=	4001	,
 };
 
-const int REDENEVELOPE_SENDRANK = 30;
-const int REDENEVELOPE_ADJTYPENUM = 6;      //形容词的种类最大个数 0：大吉大利  1：壕气冲天: 2：一掷千金 3：挥金如土: 4：金玉满堂: 5：霸气外露
-
-const int ONE_YUAN_PURCHASE_CNT = 6;	//一元购的档数

@@ -235,8 +235,9 @@ void NPCInfoCfg::FillBunkerData(const Json::Value& jsBld,vector<BunkerJson>& bun
 		{
 			BunkerJson bij;
 			const Json::Value& subData = jsBld[i];
-			bij.skuId = subData[(UINT)0].asInt();
-			bij.num = subData[(UINT)1].asInt();
+			bij.sid = subData[(UINT)0].asInt();
+			bij.skuId = subData[(UINT)1].asInt();
+			bij.num = subData[(UINT)2].asInt();
 			bunkerJson.push_back(bij);
 		}
 	}

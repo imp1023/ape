@@ -54,7 +54,27 @@ bool Planet::SetHQlevel(int nLvl)
 
 int Planet::GetHQLevel()
 {
-	return m_pDBPlanet->hqlevel();	
+	return m_pDBPlanet->hqlevel();
+}
+
+void Planet::GetGWGBattleInfo(GWG_BattleInfo *pInfo)
+{
+	if(!m_pDBPlanet || !pInfo){
+		return;
+	}
+
+	pInfo->set_starsku(m_pDBPlanet->star().sku());
+	for(int idx = 0; idx < m_pDBPlanet->units_size(); idx++){
+		DB_GameUnit *pDBGameUnit = m_pDBPlanet->mutable_units(idx);
+		GWG_GameUnit *pMsgGameUnit = pInfo->add_gameunits();
+		if(pDBGameUnit && pMsgGameUnit){
+			pMsgGameUnit->set_sku(pDBGameUnit->sku());
+			pMsgGameUnit->set_unlock(pDBGameUnit->unlock());
+			pMsgGameUnit->set_upgradeid(pDBGameUnit->upgradeid());
+			pMsgGameUnit->set_timeleft(pDBGameUnit->timeleft());
+			pMsgGameUnit->set_updateat(pDBGameUnit->updateat());
+		}
+	}
 }
 
 PlanetManager::PlanetManager(Player *pPlayer)

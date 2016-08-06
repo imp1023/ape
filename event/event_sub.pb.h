@@ -3131,15 +3131,22 @@ class GWG_BattleInfo : public ::google::protobuf::Message {
   inline void set_url(const char* value, size_t size);
   inline ::std::string* mutable_url();
   
-  // repeated .GWG_GameUnit units = 6;
-  inline int units_size() const;
-  inline void clear_units();
-  static const int kUnitsFieldNumber = 6;
-  inline const ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >& units() const;
-  inline ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >* mutable_units();
-  inline const ::GWG_GameUnit& units(int index) const;
-  inline ::GWG_GameUnit* mutable_units(int index);
-  inline ::GWG_GameUnit* add_units();
+  // optional int32 planetId = 6;
+  inline bool has_planetid() const;
+  inline void clear_planetid();
+  static const int kPlanetIdFieldNumber = 6;
+  inline ::google::protobuf::int32 planetid() const;
+  inline void set_planetid(::google::protobuf::int32 value);
+  
+  // repeated .GWG_GameUnit gameUnits = 7;
+  inline int gameunits_size() const;
+  inline void clear_gameunits();
+  static const int kGameUnitsFieldNumber = 7;
+  inline const ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >& gameunits() const;
+  inline ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >* mutable_gameunits();
+  inline const ::GWG_GameUnit& gameunits(int index) const;
+  inline ::GWG_GameUnit* mutable_gameunits(int index);
+  inline ::GWG_GameUnit* add_gameunits();
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -3153,12 +3160,13 @@ class GWG_BattleInfo : public ::google::protobuf::Message {
   static const ::std::string _default_name_;
   ::std::string* url_;
   static const ::std::string _default_url_;
-  ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit > units_;
+  ::google::protobuf::int32 planetid_;
+  ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit > gameunits_;
   friend void  protobuf_AddDesc_event_5fsub_2eproto();
   friend void protobuf_AssignDesc_event_5fsub_2eproto();
   friend void protobuf_ShutdownFile_event_5fsub_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -6461,29 +6469,45 @@ inline ::std::string* GWG_BattleInfo::mutable_url() {
   return url_;
 }
 
-// repeated .GWG_GameUnit units = 6;
-inline int GWG_BattleInfo::units_size() const {
-  return units_.size();
+// optional int32 planetId = 6;
+inline bool GWG_BattleInfo::has_planetid() const {
+  return _has_bit(5);
 }
-inline void GWG_BattleInfo::clear_units() {
-  units_.Clear();
+inline void GWG_BattleInfo::clear_planetid() {
+  planetid_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 GWG_BattleInfo::planetid() const {
+  return planetid_;
+}
+inline void GWG_BattleInfo::set_planetid(::google::protobuf::int32 value) {
+  _set_bit(5);
+  planetid_ = value;
+}
+
+// repeated .GWG_GameUnit gameUnits = 7;
+inline int GWG_BattleInfo::gameunits_size() const {
+  return gameunits_.size();
+}
+inline void GWG_BattleInfo::clear_gameunits() {
+  gameunits_.Clear();
 }
 inline const ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >&
-GWG_BattleInfo::units() const {
-  return units_;
+GWG_BattleInfo::gameunits() const {
+  return gameunits_;
 }
 inline ::google::protobuf::RepeatedPtrField< ::GWG_GameUnit >*
-GWG_BattleInfo::mutable_units() {
-  return &units_;
+GWG_BattleInfo::mutable_gameunits() {
+  return &gameunits_;
 }
-inline const ::GWG_GameUnit& GWG_BattleInfo::units(int index) const {
-  return units_.Get(index);
+inline const ::GWG_GameUnit& GWG_BattleInfo::gameunits(int index) const {
+  return gameunits_.Get(index);
 }
-inline ::GWG_GameUnit* GWG_BattleInfo::mutable_units(int index) {
-  return units_.Mutable(index);
+inline ::GWG_GameUnit* GWG_BattleInfo::mutable_gameunits(int index) {
+  return gameunits_.Mutable(index);
 }
-inline ::GWG_GameUnit* GWG_BattleInfo::add_units() {
-  return units_.Add();
+inline ::GWG_GameUnit* GWG_BattleInfo::add_gameunits() {
+  return gameunits_.Add();
 }
 
 

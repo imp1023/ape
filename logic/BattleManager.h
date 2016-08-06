@@ -6,6 +6,7 @@
 using namespace std;
 
 class Player;
+class DB_BattleReplay;
 
 struct SpecialAttack
 {
@@ -52,8 +53,17 @@ struct TransactionBattle
 class Battle
 {
 public:
-	Battle();
+	Battle(DB_BattleReplay *pbr);
 	~Battle();
+
+	enum{
+		BATTLE_TYPE_UNKNOWN,
+		BATTLE_TYPE_PVP,
+		BATTLE_TYPE_PVE,
+		BATTLE_TYPE_NPC,
+		BATTLE_TYPE_ALLIANCE,
+		BATTLE_TYPE_MAX
+	};
 
 	void clear();
 	inline void SetTargetUId(int64 TID){m_UIdTarget = TID;}
@@ -62,8 +72,9 @@ public:
 	inline void SetTargetPlanetId(int nPlanetId){m_nTargetPlanetId = nPlanetId;}
 	inline void SetTime(int64 nTime){m_time = nTime;}
 
-	inline int GetCurrentPlanetId(){return m_nCurrentPlanetId;}
+	inline int64 GetAttackUId(){return m_UIdAttack;}
 	inline int64 GetTargetUId(){return m_UIdTarget;}
+	inline int GetAttackerPlanetId(){return m_nCurrentPlanetId;}
 	inline int GetTargetPlanetId(){return m_nTargetPlanetId;}
 	inline int64 GetTime(){return m_time;}
 
@@ -104,7 +115,12 @@ public:
 		m_TransactonTarget.exp += target.exp;
 		m_TransactonTarget.cash += target.cash;
 	}
-
+	inline void SetBattleType(int nType){
+		if(nType > BATTLE_TYPE_UNKNOWN && nType < BATTLE_TYPE_MAX){
+			m_nBattleType = nType;
+		}
+	}
+	inline int GetBattleType(){return m_nBattleType;}
 	int GetSourceCoins(){return m_TransationSource.coins;}
 	int GetSourceMinerals(){return m_TransationSource.minerals;}
 	int GetTargetCoins(){return m_TransationSource.coins;}
@@ -125,6 +141,8 @@ private:
 	int64 m_time;
 	int m_obtainDamageProtectionTime;
 
+	int m_nBattleType;
+
 	TransactionBattle m_TransationSource;
 	TransactionBattle m_TransactonTarget;
 	vector<DeployUnits> m_mDeployUnits;
@@ -132,6 +150,9 @@ private:
 	map<int, ItemEnergy> m_mItemEnergys;
 	typedef map<string, int> DefBunkerUnit;
 	map<int, DefBunkerUnit > m_mBunkerUnits;
+
+private:
+	DB_BattleReplay* m_pbr;
 };
 
 class BattleManager
@@ -140,8 +161,10 @@ public:
 	BattleManager(Player *pPlayer);
 	~BattleManager();
 	
-	void NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time);
+	void BeginBattle(int64 nAttacker, int nFromPlanet, int64 nTargetPlayer, int nPlanetId, time_t time);
 	Battle* GetBattle(){return m_pBattle;}
+	void CopyUniverse();
+	void SetBattleType(int nType);
 
 private:
 	Player *m_pPlayer;

@@ -59,7 +59,7 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
 		return;
 	}
 
-	DB_Planet *pPlanet = pPlayer->GetPlanet(pBattle->GetCurrentPlanetId());
+	DB_Planet *pPlanet = pPlayer->GetPlanet(pBattle->GetAttackerPlanetId());
 	if(!pPlanet){
 		return;
 	}
@@ -114,6 +114,15 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
  				}
  			}
 		}
+	}
+	if(Battle::BATTLE_TYPE_PVE == pBattle->GetBattleType() 
+		|| Battle::BATTLE_TYPE_NPC == pBattle->GetBattleType()){
+		RseBattleDamagesPack rsp;
+		rsp.set_ret(0);
+		string text;
+		rsp.SerializeToString(&text);
+		eh_->sendDataToUser(pUser->fd(), S2C_RseBattleDamagesPack, text);
+		return;
 	}
 	pUserManager->markUserDirty(pUser);
 
@@ -265,61 +274,55 @@ void RceBattleDamagesPackHandle::handle_romateload(Event* e)
 		return;
 	}
 
-	DB_Player *pDBPlayer = pTUser->GetDBPlayer();
-	for(int i = 0; i < pDBPlayer->battlereplay_size(); i++){
-		DB_BattleReplay *pDBReplay = pDBPlayer->mutable_battlereplay(i);
-		if(pDBReplay && pDBReplay->time() == e->battleinfo().time()){
-			for(int i = 0; i < pReq->deployunits_size(); i++){
-				MsgDeployUnits *pMsgDeploy = pReq->mutable_deployunits(i);
-				if(pMsgDeploy){
-					DB_BattleDeployUnit *pDBDeplyUnit = pDBReplay->add_deployunits();
-					pDBDeplyUnit->set_sku(pMsgDeploy->unitsskus());
-					pDBDeplyUnit->set_x(pMsgDeploy->x());
-					pDBDeplyUnit->set_y(pMsgDeploy->y());
-					pDBDeplyUnit->set_millis(pMsgDeploy->millis());
-				}
-			}
+	DB_BattleReplay *pDBBattleReplay = pPlayer->GetDBPlayer()->mutable_battlereplay();
+	for(int i = 0; i < pReq->deployunits_size(); i++){
+		MsgDeployUnits *pMsgDeploy = pReq->mutable_deployunits(i);
+		if(pMsgDeploy){
+			DB_BattleDeployUnit *pDBDeplyUnit = pDBBattleReplay->add_deployunits();
+			pDBDeplyUnit->set_sku(pMsgDeploy->unitsskus());
+			pDBDeplyUnit->set_x(pMsgDeploy->x());
+			pDBDeplyUnit->set_y(pMsgDeploy->y());
+			pDBDeplyUnit->set_millis(pMsgDeploy->millis());
+		}
+	}
 
-			for (int i = 0; i < pReq->itemdamaged_size(); i++){
-				MsgItemDamaged *pMsgItem = pReq->mutable_itemdamaged(i);
-				if(pMsgItem){
-					if(pMsgItem->destroyed()){
-						MsgTransaction *pMsgTransaction = pMsgItem->mutable_transactiontarget();
-						if(pMsgTransaction){
-							pPlayer->CostRes(RC_Cash,  pMsgTransaction->cash());
-							pPlayer->CostRes(RC_Coin,  pMsgTransaction->coins());
-							pPlayer->CostRes(RC_Mineral,  pMsgTransaction->minerals());
-							pPlayer->CostRes(RC_Score, pMsgTransaction->score());
-							pPlayer->CostRes(RC_Exp, pMsgTransaction->exp());
-							//pPlayer->CheckDroids()
+	for (int i = 0; i < pReq->itemdamaged_size(); i++){
+		MsgItemDamaged *pMsgItem = pReq->mutable_itemdamaged(i);
+		if(pMsgItem){
+			if(pMsgItem->destroyed()){
+				MsgTransaction *pMsgTransaction = pMsgItem->mutable_transactiontarget();
+				if(pMsgTransaction){
+					pPlayer->CostRes(RC_Cash,  pMsgTransaction->cash());
+					pPlayer->CostRes(RC_Coin,  pMsgTransaction->coins());
+					pPlayer->CostRes(RC_Mineral,  pMsgTransaction->minerals());
+					pPlayer->CostRes(RC_Score, pMsgTransaction->score());
+					pPlayer->CostRes(RC_Exp, pMsgTransaction->exp());
+					//pPlayer->CheckDroids()
+				}
+				DB_Planet *pDBPlanet = pTUser->GetPlayer()->GetPlanet(pPlayer->GetBattle()->GetTargetPlanetId());
+				for(int i = 0; i < pDBPlanet->items_size(); i++){
+					DB_Item *pDBItem = pDBPlanet->mutable_items(i);
+					if(pDBItem && pDBItem->sid() == pMsgItem->itemsid()){
+						pDBItem->set_energy(0);
+						pDBItem->set_energypercent(0);
+					}
+				}
+			}else{
+				DB_Planet *pDBPlanet = pTUser->GetPlayer()->GetPlanet(pPlayer->GetBattle()->GetTargetPlanetId());
+				for(int i = 0; i < pDBPlanet->items_size(); i++){
+					DB_Item *pDBItem = pDBPlanet->mutable_items(i);
+					if(pDBItem && pDBItem->sid() == pMsgItem->itemsid()){
+						int nCurEnergy = pMsgItem->energybeforeshot() - pMsgItem->damage();
+						if(nCurEnergy < 0){
+							nCurEnergy = 0;
 						}
-						DB_Planet *pDBPlanet = pTUser->GetPlayer()->GetPlanet(pDBReplay->planetid());
-						for(int i = 0; i < pDBPlanet->items_size(); i++){
-							DB_Item *pDBItem = pDBPlanet->mutable_items(i);
-							if(pDBItem && pDBItem->sid() == pMsgItem->itemsid()){
-								pDBItem->set_energy(0);
-								pDBItem->set_energypercent(0);
-							}
-						}
-					}else{
-						DB_Planet *pDBPlanet = pTUser->GetPlayer()->GetPlanet(pDBReplay->planetid());
-						for(int i = 0; i < pDBPlanet->items_size(); i++){
-							DB_Item *pDBItem = pDBPlanet->mutable_items(i);
-							if(pDBItem && pDBItem->sid() == pMsgItem->itemsid()){
-								int nCurEnergy = pMsgItem->energybeforeshot() - pMsgItem->damage();
-								if(nCurEnergy < 0){
-									nCurEnergy = 0;
-								}
-								pDBItem->set_energy(nCurEnergy);
-							}
-						}
+						pDBItem->set_energy(nCurEnergy);
 					}
 				}
 			}
 		}
 	}
 	pUserManager->markUserDirty(pTUser);
-
 	e->set_state(Status_Normal_Back_World);
 	eh_->sendEventToWorld(e);
 }
@@ -376,7 +379,7 @@ void RceBattleDamagesPackHandle::handle_romatereturn(Event* e)
 		return;
 	}
 
-	DB_Planet *pPlanet = pPlayer->GetPlanet(pBattle->GetCurrentPlanetId());
+	DB_Planet *pPlanet = pPlayer->GetPlanet(pBattle->GetAttackerPlanetId());
 	if(!pPlanet){
 		return;
 	}

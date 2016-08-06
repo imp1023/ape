@@ -164,6 +164,11 @@ public:
 		return m_dbUser.platform_id(); 
 	}
 
+	inline void SetPlatformId(string val) 
+	{
+		m_dbUser.set_platform_id(val);
+	}
+
 	inline int GetGender() const 
 	{ 
 		return m_dbUser.gender();
@@ -172,11 +177,6 @@ public:
 	inline void SetGender(int val)
 	{
 		m_dbUser.set_gender(val);
-	}
-
-	inline void SetPlatformId(string val) 
-	{
-		m_dbUser.set_platform_id(val);
 	}
 
 	void setOnline(bool bOnline)
@@ -211,6 +211,7 @@ public:
 	void				SetProfileLink(const string &profile_link, enum PLAT_TYPE nPlatType);
 	string				GetProfileLink(PLAT_TYPE nPlatType) const;
 	string				GetProfileLinkAnyWay(PLAT_TYPE nPlatType) const;
+	inline PLAT_TYPE	GetPlatType(){return plat_type_;}
 
 	void				SetFd(int fd);
 	Player*				GetPlayer(void);
@@ -276,12 +277,6 @@ private:
 	int					m_nResFlag;		//0:正常 101：减半 102：无资源产出 103:禁止登陆
 	float				m_fAddiction;	//防沉迷倍率
 	int					m_nLogoutTime;
-
-private:
-	int					m_CurPlanetId;
-	int64				m_TargetPlayerId;
-	int					m_TargetPlanetId;
-	bool				m_bIsNpc;
 };
 
 inline void User::SetFd(int fd)
@@ -347,4 +342,53 @@ inline int User::GetIsYearYellowDmd()
 inline int User::GetYearYellowDmdLevel()
 {
 	return m_dbUser.yellowdmdlvl();
+}
+
+inline string User::GetProfileLink(PLAT_TYPE nPlatType) const 
+{
+	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX)
+	{
+		return m_dbUser.profile_link(nPlatType);
+	}
+	else
+	{
+		return m_dbUser.profile_link(0);
+	}
+}
+
+inline string User::GetProfileLinkAnyWay(PLAT_TYPE nPlatType) const 
+{
+	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX && nPlatType < m_dbUser.profile_link_size())
+	{
+		string _tmpLink = m_dbUser.profile_link(nPlatType);
+		if (_tmpLink.size() > 0)
+		{
+			return _tmpLink;
+		}
+	}
+
+	for (int i=0;i<PLAT_TYPE_MAX && i < m_dbUser.profile_link_size();i++)
+	{
+		string _tmpLink = m_dbUser.profile_link(i);
+		if (_tmpLink.size() > 0)
+		{
+			return _tmpLink;
+		}
+	}
+	return m_dbUser.profile_link(0);
+}
+
+inline void User::SetProfileLink(const string &profile_link, enum PLAT_TYPE nPlatType) 
+{
+	if(nPlatType < 0 || nPlatType >= PLAT_TYPE_MAX)
+	return;
+
+	if (m_dbUser.profile_link_size() == 0)
+	{
+		m_dbUser.set_profile_link(0, "");
+	}
+	else
+	{
+		m_dbUser.set_profile_link(nPlatType, profile_link);
+	}
 }

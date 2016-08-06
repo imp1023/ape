@@ -36,6 +36,7 @@ Player::Player(User* pParent)//:m_rPVEFightManager(this),m_rCountryArenaMgr(),m_
 	m_pUser = pParent;
 	m_pdbPlayer = NULL;
 	eh_ = NULL;
+	m_nCurrentPlanetId = ID_CAPITAL_PLANET;
 	m_pPlanetManager = new PlanetManager(this);
 	m_pBattleManager = new BattleManager(this);
 
@@ -645,6 +646,14 @@ DB_Planet* Player::GetPlanet(int nPlanetId)
 	return pPlanet->GetDBPlanet();
 }
 
+Planet* Player::GetRealPlanet(int nPlanetId)
+{
+	if(!CanUse() || 0 >= nPlanetId){
+		return NULL;
+	}
+	return m_pPlanetManager->GetPlanet(nPlanetId);
+}
+
 bool Player::AddStarBookmark(int nStarId, int nStarType, int nStarName, int x, int y)
 {
 	if(!CanUse() || 0 >= nStarId){
@@ -1049,6 +1058,45 @@ void Player::FillinNpcs(RseObtainNpcList *lst)
 	}
 }
 
+void Player::FillinNpcs(RseObtainUniverse *rse, int skuId)
+{
+	if(!rse || !CanUse() || 0 > skuId){
+		return;
+	}
+
+	for(int i = 0; i < m_pdbPlayer->npcs_size(); i++){
+		DB_NPC *pDBNpc = m_pdbPlayer->mutable_npcs(i);
+		if(pDBNpc && skuId == pDBNpc->sku()){
+			MsgPlanet *pMsgPlanet = rse->add_planets();
+			if(!pMsgPlanet){
+				continue;
+			}
+			pMsgPlanet->set_hqlevel(pDBNpc->hqlevel());
+			for(int k = 0; k < pDBNpc->items_size(); k++){
+				DB_Item* pDBItem = pDBNpc->mutable_items(k);
+				MsgBuildingItem *pMsgItem = rse->add_items();
+				if(!pDBItem || !pMsgItem){
+					continue;
+				}
+				pMsgItem->set_id(k+1);
+				pMsgItem->set_sid(pDBItem->sid());
+				pMsgItem->set_type(pDBItem->type());
+				pMsgItem->set_upgradeid(pDBItem->upgradeid());
+				pMsgItem->set_x(pDBItem->x());
+				pMsgItem->set_y(pDBItem->y());
+				pMsgItem->set_sku(pDBItem->sku());
+				pMsgItem->set_state(pDBItem->state());
+				pMsgItem->set_isflipped(pDBItem->isflipped());
+				pMsgItem->set_incometorestore(pDBItem->incometorestore());
+				pMsgItem->set_energy(pDBItem->energy());
+				pMsgItem->set_energypercent(pDBItem->energypercent());
+				pMsgItem->set_time(pDBItem->time());
+				pMsgItem->set_repairing(pDBItem->repairing());
+			}
+		}
+	}
+}
+
 void Player::FillInMissoin(RseObtainUniverse *rse)
 {
 	if(!CanUse() || !rse){
@@ -1373,6 +1421,7 @@ void Player::FillInWishList(RseObtainSocialItems* rse)
 	}
 	rse->set_wishlist(wishlist);
 }
+
 void Player::FillSocialItems(RseObtainSocialItems *rse)
 {
 	if(!CanUse() || !rse){
@@ -1437,22 +1486,55 @@ void Player::FillinBookmarks(RseQueryStarsBookmarks *rse)
 	}
 }
 
-
-void Player::NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time)
+void Player::BeginBattle(int64 nAttacker, int nFromPlanet, int64 nTargetPlayer, int nPlanetId, time_t nTime)
 {
 	if(!m_pBattleManager || !CanUse()){
 		return;
 	}
-	m_pBattleManager->NewBattle(nTargetPlayer, nPlanetId, time);
+	m_pBattleManager->BeginBattle(nAttacker, nFromPlanet, nTargetPlayer, nPlanetId, nTime);
 }
 
-void Player::FillBattleData(RseObtainUniverse *pRsp)
+void Player::GetGWGBattleInfo(GWG_BattleInfo *pBattleInfo)
 {
-	if(!CanUse() || !pRsp || !m_pBattleManager){
+	if(!CanUse() || !pBattleInfo || !m_pBattleManager){
 		return;
 	}
 
-	
+	pBattleInfo->set_accountid(m_pUser->GetUid());
+	pBattleInfo->set_planetid(GetCurPlanetId());
+	pBattleInfo->set_name(m_pUser->GetPlatformId());
+	pBattleInfo->set_url(m_pUser->GetProfileLink(m_pUser->GetPlatType()));
+	pBattleInfo->set_time(time(NULL));
+	Planet *pPlanet = GetRealPlanet(m_nCurrentPlanetId);
+	if(pPlanet){
+		pPlanet->GetGWGBattleInfo(pBattleInfo);
+	}
+}
+
+void Player::FillBattleLogAttackerInfo(GWG_BattleInfo *pBattleInfo)
+{
+	DB_BattleReplay *pDBBattleReplay = m_pdbPlayer->mutable_battlereplay();
+	DB_BattleLog *pDBBattleLog = pDBBattleReplay->add_battlelog();
+	pDBBattleLog->set_time(pBattleInfo->time());
+	pDBBattleLog->set_planetid(pBattleInfo->planetid());
+	pDBBattleLog->set_accountid(pBattleInfo->accountid());
+	pDBBattleLog->set_starsku(pBattleInfo->starsku());
+	pDBBattleLog->set_name(pBattleInfo->name());
+	pDBBattleLog->set_url(pBattleInfo->url());
+	//attacker gameunit
+	pBattleInfo->clear_gameunits();
+	for(int idx = 0; idx < pBattleInfo->gameunits_size(); idx++){
+		DB_GameUnit *pDBGameUnit = pDBBattleReplay->add_gameunits();//->CopyFrom(pBattleInfo->gameunits(idx));
+		GWG_GameUnit *pGWGGameUnit = pBattleInfo->mutable_gameunits(idx);
+		if(!pDBGameUnit || !pGWGGameUnit){
+			continue;
+		}
+		pDBGameUnit->set_sku(pGWGGameUnit->sku());
+		pDBGameUnit->set_unlock(pGWGGameUnit->unlock());
+		pDBGameUnit->set_upgradeid(pGWGGameUnit->upgradeid());
+		pDBGameUnit->set_timeleft(pGWGGameUnit->timeleft());
+		pDBGameUnit->set_updateat(pGWGGameUnit->updateat());
+	}
 }
 
 void Player::FillinPvELite(RseQueryPvE* rsp)
@@ -1471,3 +1553,15 @@ void Player::FillinPvELite(RseQueryPvE* rsp)
 	}
 }
 
+void Player::CopyUniverse()
+{
+	if(!CanUse() || !m_pBattleManager){
+		return;
+	}
+	m_pBattleManager->CopyUniverse();
+}
+
+void Player::SetBattleType(int nType)
+{
+	m_pBattleManager->SetBattleType(nType);
+}

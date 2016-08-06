@@ -29,6 +29,7 @@ void protobuf_AssignDesc_MsgCommon_2eproto();
 void protobuf_ShutdownFile_MsgCommon_2eproto();
 
 class MsgKeyValue;
+class MsgSidSkuNum;
 
 // ===================================================================
 
@@ -125,6 +126,109 @@ class MsgKeyValue : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static MsgKeyValue* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class MsgSidSkuNum : public ::google::protobuf::Message {
+ public:
+  MsgSidSkuNum();
+  virtual ~MsgSidSkuNum();
+  
+  MsgSidSkuNum(const MsgSidSkuNum& from);
+  
+  inline MsgSidSkuNum& operator=(const MsgSidSkuNum& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgSidSkuNum& default_instance();
+  void Swap(MsgSidSkuNum* other);
+  
+  // implements Message ----------------------------------------------
+  
+  MsgSidSkuNum* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgSidSkuNum& from);
+  void MergeFrom(const MsgSidSkuNum& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 sid = 1;
+  inline bool has_sid() const;
+  inline void clear_sid();
+  static const int kSidFieldNumber = 1;
+  inline ::google::protobuf::int32 sid() const;
+  inline void set_sid(::google::protobuf::int32 value);
+  
+  // optional int32 key = 2;
+  inline bool has_key() const;
+  inline void clear_key();
+  static const int kKeyFieldNumber = 2;
+  inline ::google::protobuf::int32 key() const;
+  inline void set_key(::google::protobuf::int32 value);
+  
+  // optional int32 value = 3;
+  inline bool has_value() const;
+  inline void clear_value();
+  static const int kValueFieldNumber = 3;
+  inline ::google::protobuf::int32 value() const;
+  inline void set_value(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 sid_;
+  ::google::protobuf::int32 key_;
+  ::google::protobuf::int32 value_;
+  friend void  protobuf_AddDesc_MsgCommon_2eproto();
+  friend void protobuf_AssignDesc_MsgCommon_2eproto();
+  friend void protobuf_ShutdownFile_MsgCommon_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static MsgSidSkuNum* default_instance_;
+};
 // ===================================================================
 
 
@@ -164,6 +268,58 @@ inline ::google::protobuf::int32 MsgKeyValue::value() const {
 }
 inline void MsgKeyValue::set_value(::google::protobuf::int32 value) {
   _set_bit(1);
+  value_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// MsgSidSkuNum
+
+// optional int32 sid = 1;
+inline bool MsgSidSkuNum::has_sid() const {
+  return _has_bit(0);
+}
+inline void MsgSidSkuNum::clear_sid() {
+  sid_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 MsgSidSkuNum::sid() const {
+  return sid_;
+}
+inline void MsgSidSkuNum::set_sid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  sid_ = value;
+}
+
+// optional int32 key = 2;
+inline bool MsgSidSkuNum::has_key() const {
+  return _has_bit(1);
+}
+inline void MsgSidSkuNum::clear_key() {
+  key_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 MsgSidSkuNum::key() const {
+  return key_;
+}
+inline void MsgSidSkuNum::set_key(::google::protobuf::int32 value) {
+  _set_bit(1);
+  key_ = value;
+}
+
+// optional int32 value = 3;
+inline bool MsgSidSkuNum::has_value() const {
+  return _has_bit(2);
+}
+inline void MsgSidSkuNum::clear_value() {
+  value_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 MsgSidSkuNum::value() const {
+  return value_;
+}
+inline void MsgSidSkuNum::set_value(::google::protobuf::int32 value) {
+  _set_bit(2);
   value_ = value;
 }
 

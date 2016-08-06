@@ -227,5 +227,6 @@ message GWG_BattleInfo
 	optional string starSku = 3;
     optional string name = 4;
     optional string url = 5;
-    repeated GWG_GameUnit units = 6;
+    optional int32 planetId = 6;
+    repeated GWG_GameUnit gameUnits = 7;
 }

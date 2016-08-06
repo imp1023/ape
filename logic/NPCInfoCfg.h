@@ -52,6 +52,7 @@ struct  BuildingItemJson
 
 struct BunkerJson 
 {
+	int sid;
 	int skuId;
 	int num;
 };

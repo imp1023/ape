@@ -45,26 +45,22 @@ void RceObtainBattleReplayHandle::handle(Event* e)
 	}
 
 	RseObtainBattleReplay rse;
-	if(pDBPlayer->battlereplay_size() == 0){
+	DB_BattleReplay *pDBReplay = pDBPlayer->mutable_battlereplay();
+	if(pDBReplay->battlelog_size() <= 0){
 		string text;
 		rse.SerializeToString(&text);
 		eh_->sendDataToUser(pUser->fd(), S2C_RseObtainBattleReplay,text);
 		return;
 	}
 
-	DB_BattleReplay *pDBBattleReplaye = pDBPlayer->mutable_battlereplay(0);
-	if(!pDBBattleReplaye){
-		return;
-	}
-
-	rse.set_planetid(pDBBattleReplaye->planetid());
-	rse.set_accountid(pDBBattleReplaye->accountid());
-	rse.set_name(pDBBattleReplaye->name());
-	rse.set_url(pDBBattleReplaye->url());
-	for(int i = 0; i < pDBBattleReplaye->deployunits_size(); i++){
-		//rse.add_deploys()->CopyFrom(pDBBattleReplaye->deployunits(i));
+	DB_BattleLog *pDBBattleLog = pDBReplay->mutable_battlelog(pDBReplay->battlelog_size() - 1);
+	rse.set_planetid(pDBBattleLog->planetid());
+	rse.set_accountid(pDBBattleLog->accountid());
+	rse.set_name(pDBBattleLog->name());
+	rse.set_url(pDBBattleLog->url());
+	for(int i = 0; i < pDBReplay->deployunits_size(); i++){
 		MsgDeployUnit *pMsgUnit = rse.add_deploys();
-		DB_BattleDeployUnit *pDBUnit = pDBBattleReplaye->mutable_deployunits(i);
+		DB_BattleDeployUnit *pDBUnit = pDBReplay->mutable_deployunits(i);
 		if(pMsgUnit && pDBUnit){
 			pMsgUnit->set_sku(pDBUnit->sku());
 			pMsgUnit->set_x(pDBUnit->x());
@@ -72,8 +68,8 @@ void RceObtainBattleReplayHandle::handle(Event* e)
 			pMsgUnit->set_millis(pDBUnit->millis());
 		}
 	}
-	for(int i = 0; i < pDBBattleReplaye->units_size(); i++){
-		DB_GameUnit *pDBGameUnit = pDBBattleReplaye->mutable_units(i);
+	for(int i = 0; i < pDBReplay->gameunits_size(); i++){
+		DB_GameUnit *pDBGameUnit = pDBReplay->mutable_gameunits(i);
 		MsgGameUnit *pMsgGameUnit = rse.add_attackergameunits();
 		if(pDBGameUnit && pMsgGameUnit){
 			pMsgGameUnit->set_updatedat(pDBGameUnit->updateat());
@@ -87,8 +83,8 @@ void RceObtainBattleReplayHandle::handle(Event* e)
 	//db_player
 	BattleUniverse *pMsgBattleUniverse = rse.mutable_universe();
 	if(pMsgBattleUniverse){
-		DB_Player pTP = pDBBattleReplaye->copyuser().player();
-		pMsgBattleUniverse->set_dcplayername(pDBBattleReplaye->copyuser().platform_id());
+		DB_Player pTP = pDBReplay->copyuser().player();
+		pMsgBattleUniverse->set_dcplayername(pDBReplay->copyuser().platform_id());
 		pMsgBattleUniverse->set_dcworldname("world_name");
 		pMsgBattleUniverse->set_dcplayerrank(1);
 		pMsgBattleUniverse->set_dccoins(0);

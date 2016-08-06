@@ -6,3 +6,9 @@ message MsgKeyValue
 	optional int32 value = 2;
 }
 
+message MsgSidSkuNum
+{
+	optional int32 sid = 1;
+	optional int32 key = 2;
+	optional int32 value = 3;
+}

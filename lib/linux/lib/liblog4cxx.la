@@ -14,7 +14,7 @@ library_names='liblog4cxx.so.10.0.0 liblog4cxx.so.10 liblog4cxx.so'
 old_library='liblog4cxx.a'
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/usr/lib64 -L/lib64 -L/usr/local/services/lib /usr/local/services/lib/libaprutil-1.la /usr/lib64/libexpat.la /usr/local/services/lib/libapr-1.la -luuid -lrt -lcrypt -lpthread -ldl'
+dependency_libs=' -L/usr/local/services/lib /usr/local/services/lib/libaprutil-1.la /usr/local/services/lib/libexpat.la /usr/local/services/lib/libapr-1.la -lrt -lcrypt -lpthread'
 
 # Version information for liblog4cxx.
 current=10

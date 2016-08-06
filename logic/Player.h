@@ -38,7 +38,8 @@ public:
 	inline GameEventHandler*	GetPlayerEh(){return eh_;}
 	inline GameDataHandler*		GetPlayerDh(){return eh_->getDataHandler();}
 
-	int GetCurPlanetId(){return 1;}
+	int GetCurPlanetId();
+	void SetCurPlaentId(int nPlanetId);
 
 	bool CanUse(void) const;
 
@@ -66,11 +67,13 @@ public:
 	bool updateMineralsLimit(int slot);
 
 	DB_Planet* GetPlanet(int nPlanetId);
+	Planet* GetRealPlanet(int nPlanetId);
 	bool AddStarBookmark(int nStarId, int nStarType, int nStarName, int x, int y);
 	bool DelStarBookmark(int nStarId);
 
 	//npc
 	void FillinNpcs(RseObtainNpcList *lst);
+	void FillinNpcs(RseObtainUniverse *rse, int skuId);
 	void FillInMissoin(RseObtainUniverse *rse);
 	void FillinBookmarks(RseQueryStarsBookmarks *rse);
 	void FillinUniverse(RseObtainUniverse *rse, int nPlanetId);
@@ -95,9 +98,12 @@ public:
 	void InitPlayerNPC();
 
 	//battle
-	void NewBattle(int64 nTargetPlayer, int nPlanetId, time_t time);
+	void BeginBattle(int64 nAttacker, int nFromPlanet, int64 nTargetPlayer, int nPlanetId, time_t nTime);
 	Battle* GetBattle(){return m_pBattleManager->GetBattle();}
-	void FillBattleData(RseObtainUniverse *pRsp);
+	void GetGWGBattleInfo(GWG_BattleInfo *pBattleInfo);
+	void FillBattleLogAttackerInfo(GWG_BattleInfo *pBattleInfo);
+	void CopyUniverse();
+	void SetBattleType(int nType);
 
 private:
 	DB_Player*           m_pdbPlayer;
@@ -106,6 +112,8 @@ private:
 	//manager
 	PlanetManager*		m_pPlanetManager;
 	BattleManager*		m_pBattleManager;
+	//variable
+	int					m_nCurrentPlanetId;
 };
 
 inline User* Player::GetParent() const
@@ -116,6 +124,19 @@ inline User* Player::GetParent() const
 inline bool Player::CanUse() const
 {
 	return m_pdbPlayer != NULL && m_pUser != NULL;
+}
+
+inline int Player::GetCurPlanetId()
+{
+	return m_nCurrentPlanetId;
+}
+
+inline void Player::SetCurPlaentId(int nPlanetId)
+{
+	if(nPlanetId == m_nCurrentPlanetId || 0 >= nPlanetId || !GetPlanet(nPlanetId)){
+		return;
+	}
+	m_nCurrentPlanetId = nPlanetId;
 }
 
 //向统计服务器发送统计信息

@@ -237,6 +237,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\GameHttpHandler.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GameHttpHandler.h"
+					>
+				</File>
+				<File
 					RelativePath=".\PlatHandler.cpp"
 					>
 				</File>
@@ -282,14 +290,6 @@
 				</File>
 				<File
 					RelativePath=".\GameEventHandler.h"
-					>
-				</File>
-				<File
-					RelativePath=".\GameHttpHandler.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\GameHttpHandler.h"
 					>
 				</File>
 				<File

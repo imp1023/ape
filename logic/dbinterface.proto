@@ -67,40 +67,6 @@ message DB_Hangar
     repeated DB_HangarUnit  units                   = 2;
 }
 
-message DB_GameUnit
-{
-    optional int32          sku                     = 1;
-    optional int32          unlock                  = 2;
-    optional int32          upgradeId               = 3;
-    optional int32          timeLeft                = 4;
-    optional int64          updateAt                = 5;    
-}
-
-message DB_BattleDeployUnit
-{
-    optional string sku = 1;
-    optional int32 x = 2;
-    optional int32 y = 3;
-    optional int32 millis = 4;  
-}
-
-message DB_BattleReplay
-{
-    optional int64 time = 1;
-    optional int64 accountId = 2;
-    optional int32 planetId = 3;
-    optional string starSku = 4;
-    optional string name = 5;
-    optional string url = 6;
-    optional int32 damage = 7;
-    optional int32 planetDamage = 8;
-    optional int32 coinsTaken = 9;
-    optional int32 mineralsTaken = 10;
-    repeated DB_BattleDeployUnit deployUnits = 11;
-    repeated DB_GameUnit units = 12;
-    optional DB_User copyUser = 13;
-}
-
 message DB_Shipyard
 {
     optional int32 sid = 1;
@@ -209,6 +175,45 @@ message DB_StarsBookmark
     optional int32 starId = 4; //": 2031,
 }
 
+message DB_GameUnit
+{
+    optional int32          sku                     = 1;
+    optional int32          unlock                  = 2;
+    optional int32          upgradeId               = 3;
+    optional int32          timeLeft                = 4;
+    optional int64          updateAt                = 5;    
+}
+
+message DB_BattleDeployUnit
+{
+    optional string sku = 1;
+    optional int32 x = 2;
+    optional int32 y = 3;
+    optional int32 millis = 4;  
+}
+
+message DB_BattleLog
+{
+    optional int64 time = 1;
+    optional int64 accountId = 2;
+    optional int32 planetId = 3;
+    optional string starSku = 4;
+    optional string name = 5;
+    optional string url = 6;
+    optional int32 damage = 7;
+    optional int32 planetDamage = 8;
+    optional int32 coinsTaken = 9;
+    optional int32 mineralsTaken = 10;
+}
+
+message DB_BattleReplay
+{
+    repeated DB_BattleLog battleLog = 1;
+    repeated DB_BattleDeployUnit deployUnits = 2;
+    repeated DB_GameUnit gameUnits = 3;
+    optional DB_User copyUser = 4;
+}
+
 message DB_Player
 {
     optional DB_Model        model                  = 1; //Íæ¼ÒÄ£ÐÍ
@@ -220,7 +225,7 @@ message DB_Player
     optional DB_Mission      missions               = 7;
     optional DB_WishItemList wishItemList           = 8;
     repeated DB_StarsBookmark bookmarks             = 9;
-    repeated DB_BattleReplay battleReplay           = 10;
+    optional DB_BattleReplay battleReplay           = 10;
     repeated DB_KeyValue     pve                    = 11;
 }
 
