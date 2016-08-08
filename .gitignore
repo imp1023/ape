@@ -37,6 +37,16 @@ countryd/countryd.vcproj.hq-PC.Administrator.user
 gamed/gamed.vcproj.hq-PC.Administrator.user
 platd/platd.vcproj.hq-PC.Administrator.user
 worldd/worldd.vcproj.hq-PC.Administrator.user
+ape.ncb
+ape.suo
+build/
+core/core.vcproj.DESKTOP-FEBCRQP.dplxl.user
+countryd/countryd.vcproj.DESKTOP-FEBCRQP.dplxl.user
+gamed/gamed.vcproj.DESKTOP-FEBCRQP.dplxl.user
+lastProto.bak
+lib/boost_1_53_0.rar
+platd/platd.vcproj.DESKTOP-FEBCRQP.dplxl.user
+worldd/worldd.vcproj.DESKTOP-FEBCRQP.dplxl.user
 0DEBUG
 CMakeCache.txt
 CMakeFiles/
