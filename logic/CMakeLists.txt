@@ -35,6 +35,7 @@ ResourceSilos.cpp
 ResourcesTbl.cpp
 ShipyardsTbl.cpp
 SkuIdTbl.cpp
+SocialItemManager.cpp
 StarLogic.cpp
 User.cpp
 WonderDefinitionsTbl.cpp

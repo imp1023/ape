@@ -18,6 +18,7 @@ PlatHandler.cpp
 PolicyHandler.cpp
 WorldHandler.cpp
 event/BaseEvent.cpp
+event/DealAdminEvent.cpp
 event/DealCountryHandle.cpp
 event/RceBattleDamagesPackHandle.cpp
 event/RceCustomizedActivityHandle.cpp

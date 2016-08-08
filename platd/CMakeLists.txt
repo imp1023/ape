@@ -4,8 +4,8 @@ add_library(plat
 FriendInfoHandler.cpp
 GameHandler.cpp
 MemCacheServerHandler.cpp
-plat.cpp
 PlatConfigMgr.cpp
+plat.cpp
 PlatDataHandler.cpp
 PlatDataSaver.cpp
 platDB.pb.cpp
