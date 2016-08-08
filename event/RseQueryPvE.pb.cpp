@@ -45,8 +45,9 @@ void protobuf_AssignDesc_RseQueryPvE_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(MsgNpcJson));
   RseQueryPvE_descriptor_ = file->message_type(1);
-  static const int RseQueryPvE_offsets_[3] = {
+  static const int RseQueryPvE_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryPvE, ret_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryPvE, type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryPvE, pve_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RseQueryPvE, npc_),
   };
@@ -101,9 +102,9 @@ void protobuf_AddDesc_RseQueryPvE_2eproto() {
     "gBuildingItem.proto\"k\n\nMsgNpcJson\022\036\n\004ite"
     "m\030\001 \003(\0132\020.MsgBuildingItem\022\035\n\006bunker\030\002 \003("
     "\0132\r.MsgSidSkuNum\022\036\n\010gameUnit\030\003 \003(\0132\014.Msg"
-    "KeyValue\"O\n\013RseQueryPvE\022\013\n\003ret\030\001 \001(\005\022\031\n\003"
-    "pve\030\002 \003(\0132\014.MsgKeyValue\022\030\n\003npc\030\003 \001(\0132\013.M"
-    "sgNpcJson", 249);
+    "KeyValue\"]\n\013RseQueryPvE\022\013\n\003ret\030\001 \001(\005\022\014\n\004"
+    "type\030\002 \001(\005\022\031\n\003pve\030\003 \003(\0132\014.MsgKeyValue\022\030\n"
+    "\003npc\030\004 \001(\0132\013.MsgNpcJson", 263);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RseQueryPvE.proto", &protobuf_RegisterTypes);
   MsgNpcJson::default_instance_ = new MsgNpcJson();
@@ -401,6 +402,7 @@ void MsgNpcJson::Swap(MsgNpcJson* other) {
 
 #ifndef _MSC_VER
 const int RseQueryPvE::kRetFieldNumber;
+const int RseQueryPvE::kTypeFieldNumber;
 const int RseQueryPvE::kPveFieldNumber;
 const int RseQueryPvE::kNpcFieldNumber;
 #endif  // !_MSC_VER
@@ -421,6 +423,7 @@ RseQueryPvE::RseQueryPvE(const RseQueryPvE& from) {
 void RseQueryPvE::SharedCtor() {
   _cached_size_ = 0;
   ret_ = 0;
+  type_ = 0;
   npc_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -453,7 +456,8 @@ RseQueryPvE* RseQueryPvE::New() const {
 void RseQueryPvE::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     ret_ = 0;
-    if (_has_bit(2)) {
+    type_ = 0;
+    if (_has_bit(3)) {
       if (npc_ != NULL) npc_->::MsgNpcJson::Clear();
     }
   }
@@ -477,12 +481,26 @@ bool RseQueryPvE::MergePartialFromCodedStream(
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &ret_));
         _set_bit(0);
-        if (input->ExpectTag(18)) goto parse_pve;
+        if (input->ExpectTag(16)) goto parse_type;
         break;
       }
       
-      // repeated .MsgKeyValue pve = 2;
+      // optional int32 type = 2;
       case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_type:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &type_));
+        _set_bit(1);
+        if (input->ExpectTag(26)) goto parse_pve;
+        break;
+      }
+      
+      // repeated .MsgKeyValue pve = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
@@ -490,13 +508,13 @@ bool RseQueryPvE::MergePartialFromCodedStream(
        parse_pve:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
               input, add_pve()));
-        if (input->ExpectTag(18)) goto parse_pve;
-        if (input->ExpectTag(26)) goto parse_npc;
+        if (input->ExpectTag(26)) goto parse_pve;
+        if (input->ExpectTag(34)) goto parse_npc;
         break;
       }
       
-      // optional .MsgNpcJson npc = 3;
-      case 3: {
+      // optional .MsgNpcJson npc = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
@@ -537,16 +555,21 @@ void RseQueryPvE::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->ret(), output);
   }
   
-  // repeated .MsgKeyValue pve = 2;
-  for (int i = 0; i < this->pve_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      2, this->pve(i), output);
+  // optional int32 type = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->type(), output);
   }
   
-  // optional .MsgNpcJson npc = 3;
-  if (_has_bit(2)) {
+  // repeated .MsgKeyValue pve = 3;
+  for (int i = 0; i < this->pve_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      3, this->npc(), output);
+      3, this->pve(i), output);
+  }
+  
+  // optional .MsgNpcJson npc = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      4, this->npc(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -562,18 +585,23 @@ void RseQueryPvE::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->ret(), target);
   }
   
-  // repeated .MsgKeyValue pve = 2;
+  // optional int32 type = 2;
+  if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->type(), target);
+  }
+  
+  // repeated .MsgKeyValue pve = 3;
   for (int i = 0; i < this->pve_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        2, this->pve(i), target);
+        3, this->pve(i), target);
   }
   
-  // optional .MsgNpcJson npc = 3;
-  if (_has_bit(2)) {
+  // optional .MsgNpcJson npc = 4;
+  if (_has_bit(3)) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        3, this->npc(), target);
+        4, this->npc(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -594,7 +622,14 @@ int RseQueryPvE::ByteSize() const {
           this->ret());
     }
     
-    // optional .MsgNpcJson npc = 3;
+    // optional int32 type = 2;
+    if (has_type()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->type());
+    }
+    
+    // optional .MsgNpcJson npc = 4;
     if (has_npc()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -602,7 +637,7 @@ int RseQueryPvE::ByteSize() const {
     }
     
   }
-  // repeated .MsgKeyValue pve = 2;
+  // repeated .MsgKeyValue pve = 3;
   total_size += 1 * this->pve_size();
   for (int i = 0; i < this->pve_size(); i++) {
     total_size +=
@@ -638,7 +673,10 @@ void RseQueryPvE::MergeFrom(const RseQueryPvE& from) {
     if (from._has_bit(0)) {
       set_ret(from.ret());
     }
-    if (from._has_bit(2)) {
+    if (from._has_bit(1)) {
+      set_type(from.type());
+    }
+    if (from._has_bit(3)) {
       mutable_npc()->::MsgNpcJson::MergeFrom(from.npc());
     }
   }
@@ -665,6 +703,7 @@ bool RseQueryPvE::IsInitialized() const {
 void RseQueryPvE::Swap(RseQueryPvE* other) {
   if (other != this) {
     std::swap(ret_, other->ret_);
+    std::swap(type_, other->type_);
     pve_.Swap(&other->pve_);
     std::swap(npc_, other->npc_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);

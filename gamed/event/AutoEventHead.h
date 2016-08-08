@@ -26,6 +26,7 @@
 #include "RceOnlineRewardHandle.h"
 #include "RceQueryCheckAndLockAccountIfPossibleHandle.h"
 #include "RceQueryGalaxyWindowHandle.h"
+#include "RceQueryPvEHandle.h"
 #include "RceQueryReceiveWishItemHandle.h"
 #include "RceQueryRefuseReceiveWishItemHandle.h"
 #include "RceQuerySendWishItemHandle.h"
@@ -43,7 +44,6 @@
 #include "RceUpdateStarsBookmarksHandle.h"
 #include "RceUpdateTargetsHandle.h"
 #include "RceUpdateVisitHelpHandle.h"
-#include "RceQueryPvEHandle.h"
 #endif
 
 

@@ -17,6 +17,7 @@ void ItemManager::Clear()
 {
 	m_pDBPlanet = NULL;
 	m_mDBItems.clear();
+	m_mDBItemsSid.clear();
 	m_nMaxItemId = 0;
 }
 
@@ -36,6 +37,16 @@ void ItemManager::init(DB_Planet *pDBPlanet)
 				if(pDBItem->id() > m_nMaxItemId){
 					m_nMaxItemId = pDBItem->id();
 				}
+			}
+		}
+	}
+
+	for (int i = 0; i < pDBPlanet->items_size(); i++){
+		DB_Item *pDBItem = pDBPlanet->mutable_items(i);
+		if(pDBItem){
+			map<int, DB_Item*>::iterator iter = m_mDBItemsSid.find(pDBItem->sid());
+			if(iter == m_mDBItemsSid.end()){
+				m_mDBItemsSid.insert(make_pair(pDBItem->sid(), pDBItem));
 			}
 		}
 	}
@@ -62,6 +73,7 @@ DB_Item* ItemManager::CreateItem(MsgBuildingItem *pItem)
 	pDBItem->set_sid(pItem->sid());
 	pDBItem->set_updateat(time(NULL));
 	m_mDBItems.insert(make_pair(pDBItem->id(), pDBItem));
+	m_mDBItemsSid.insert(make_pair(pDBItem->sid(), pDBItem));
 	//if(type == )//µØ±¤
 
 	return pDBItem;
@@ -90,6 +102,7 @@ DB_Item* ItemManager::CreateItem(CFG_InitItem *pCfgItem)
 	pDBItem->set_repairstart(0);
 	pDBItem->set_updateat(time(NULL));
 	m_mDBItems.insert(make_pair(pDBItem->id(), pDBItem));
+	m_mDBItemsSid.insert(make_pair(pDBItem->sid(), pDBItem));
 	return pDBItem;
 }
 
@@ -102,13 +115,22 @@ DB_Item* ItemManager::GetItem(int nItemId)
 	return iter->second;
 }
 
+DB_Item* ItemManager::GetItemBySid(int sid)
+{
+	map<int, DB_Item*>::iterator iter = m_mDBItemsSid.find(sid);
+	if(iter == m_mDBItemsSid.end()){
+		return NULL;
+	}
+	return iter->second;
+}
+
 bool ItemManager::DestroyItem(int nItemId)
 {
 	if(!m_pDBPlanet || nItemId < 0){
 		return false;
 	}
 	
-	if(!m_pDBPlanet->items_size() || !m_mDBItems.size()){
+	if(!m_pDBPlanet->items_size() || !m_mDBItems.size() || !m_mDBItemsSid.size()){
 		return false;
 	}
 
@@ -116,13 +138,21 @@ bool ItemManager::DestroyItem(int nItemId)
 	if(iter == m_mDBItems.end() || !iter->second){
 		return false;
 	}
-
+	
+	
 	DB_Item* pItem = iter->second;
+
+	map<int, DB_Item*>::iterator iter1 = m_mDBItemsSid.find(pItem->sid());
+	if(iter1 == m_mDBItemsSid.end() || !iter1->second){
+		return false;
+	}
+
 	DB_Item *pLastDbItem = m_pDBPlanet->mutable_items(m_pDBPlanet->items_size() - 1);
 	if(pLastDbItem && pLastDbItem != pItem){
 		pLastDbItem->Swap(pItem);
 	}
 	m_pDBPlanet->mutable_items()->RemoveLast();
 	m_mDBItems.erase(iter);
+	m_mDBItemsSid.erase(iter1);
 	return true;	
 }

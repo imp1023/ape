@@ -56,8 +56,13 @@ void RceUpdateItemHandle::handle(Event* e)
 	}
 
 	string strAction = req->action();
-	MsgBuildingItem* pMsgBuildingItem = req->mutable_item();
-	rse.set_sid(pMsgBuildingItem->sid());
+	MsgBuildingItem* pMsgBuildingItem = NULL;
+	if(req->item_size() > 0)
+	{
+		pMsgBuildingItem = req->mutable_item(0);
+		rse.set_sid(pMsgBuildingItem->sid());
+	}
+	
 	if(req->sid()!=0)
 		rse.set_sid(req->sid());
 	MsgTransaction* pmt = req->mutable_transaction();
@@ -87,7 +92,7 @@ void RceUpdateItemHandle::handle(Event* e)
 			}
 		}
 		
-	
+		
 		int sku = SkuIDTblInst::instance().GetSku(pMsgBuildingItem->sku());
 		int maxNum = ResourceSilosTblInst::instance().GetMaxNum(sku,pPlanet->hqlevel());//最大能造几个
 		int count = 0;
@@ -187,11 +192,43 @@ void RceUpdateItemHandle::handle(Event* e)
 	} 
 	else if ("repairingStart"== strAction)
 	{
-		
+		if (!pPlayer->CostRes(RC_Cash, pmt->cash()) ||
+			!pPlayer->CostRes(RC_Coin, pmt->coins()) ||
+			!pPlayer->CostRes(RC_Mineral, pmt->minerals()) ||
+			!pPlayer->CostRes(RC_Exp, pmt->exp()) ||
+			!pPlayer->CostRes(RC_Score, pmt->score()))
+		{
+			SendRet2User(pUser,RseUpdateItemRet_ResNotEnough,rse);
+			return;	
+		}
+		if(!pPlayer->repairingStart(nPlanetId, req->sid(), req->time(), req->id()))
+		{
+			SendRet2User(pUser,RseUpdateItemRet_RepairingStartFailure,rse);
+			return ;
+		}
+		eh_->getDataHandler()->markUserDirty(pUser);
+		SendRet2User(pUser,RseUpdateItemRet_Success,rse);
+		return;
 	} 
 	else if ("repairingCompleted"== strAction) 
 	{
-
+		if (!pPlayer->CostRes(RC_Cash, pmt->cash()) ||
+			!pPlayer->CostRes(RC_Coin, pmt->coins()) ||
+			!pPlayer->CostRes(RC_Mineral, pmt->minerals()) ||
+			!pPlayer->CostRes(RC_Exp, pmt->exp()) ||
+			!pPlayer->CostRes(RC_Score, pmt->score()))
+		{
+			SendRet2User(pUser,RseUpdateItemRet_ResNotEnough,rse);
+			return;	
+		}
+		if(!pPlayer->repairingCompleted(nPlanetId, req->sid(), req->id()))
+		{
+			SendRet2User(pUser,RseUpdateItemRet_RepairingCompletedFailure,rse);
+			return ;
+		}
+		eh_->getDataHandler()->markUserDirty(pUser);
+		SendRet2User(pUser,RseUpdateItemRet_Success,rse);
+		return;
 	}
 	else if ("upgradePremium"== strAction) 
 	{
@@ -240,7 +277,6 @@ void RceUpdateItemHandle::handle(Event* e)
 			SendRet2User(pUser,RseUpdateItemRet_CancelUpgradeFailure,rse);
 			return;
 		}
-
 		if(!pPlayer->cancelUpgrade(nPlanetId, req->id(), req->sid(), req->time())){
 			SendRet2User(pUser,RseUpdateItemRet_CancelUpgradeFailure,rse);
 			return;
@@ -250,7 +286,25 @@ void RceUpdateItemHandle::handle(Event* e)
 	} 
 	else if ("instantRepairAll"== strAction)
 	{
-
+		if (!pPlayer->CostRes(RC_Cash, pmt->cash()) ||
+			!pPlayer->CostRes(RC_Coin, pmt->coins()) ||
+			!pPlayer->CostRes(RC_Mineral, pmt->minerals()) ||
+			!pPlayer->CostRes(RC_Exp, pmt->exp()) ||
+			!pPlayer->CostRes(RC_Score, pmt->score()))
+		{
+			SendRet2User(pUser,RseUpdateItemRet_ResNotEnough,rse);
+			return;	
+		}
+		for(int i = 0; i < req->item_size();i++)
+		{
+			MsgBuildingItem* item = req->mutable_item(i);
+			if(!item)
+				break;
+			pPlayer->repairingCompleted(nPlanetId,item->sid(),item->id());
+		}
+		eh_->getDataHandler()->markUserDirty(pUser);
+		SendRet2User(pUser,RseUpdateItemRet_Success,rse);
+		return;
 	}
 }
 

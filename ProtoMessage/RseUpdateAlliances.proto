@@ -1,15 +1,83 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
-
-message MsgProfile
+message Member
 {
-		
+	optional string id = 1;
+	optional string pictureUrl = 2;
+	optional string name = 3;
+	optional int32 score = 4;
+	optional int32 role = 5;
+	optional int32 currentWarScore = 6;
+	optional int32 totalWarScore = 7;
+}
+
+message AlnProfile
+{
+	optional string invitesSent  = 1;
+	optional string joinsSent = 2;
+}
+
+message Alliance
+{
+	optional int32 id = 1;
+	optional string logo = 2;
+	optional int32 publicRecruit = 3;
+	optional int32 createdAt = 4;
+	optional string description = 5;
+	optional string name = 6;
+	optional int32 totalMembers = 7;
+	optional int32 totalWarScore = 8;
+	optional int32 warsWon = 9;
+	optional int32 warsLost = 10;
+	optional int32 currentWarScore = 11;
+	optional int32 enemyAllianceId = 12;
+	optional int32 rank = 13;
+	optional int32 warStartTime = 14;
+	optional int32 postWarShield = 15;
+	optional int32 warEndTime = 16;
+	optional int32 knockoutPoints = 17;
+	optional int32 unreadNews = 18;
+	optional int32 totalNews = 19;
+	repeated Member member = 20;
+	optional string guid = 21;
+	optional int32 allianceId = 22;
+}
+
+message MsgAlliancesWar
+{
+	optional int32 winnerId = 1;
+	optional bool onKnockout = 2;
+	optional string enemyAllianceLogo = 3;
+	optional string enemyAllianceName = 4;
+	optional int32 warStartTime = 5;
+	optional int32 warEndTime = 6;
+	optional int32 myAllianceWarScore = 7;
+	optional int32 enemyAllianceWarScore = 8;
+	optional int32 enemyAllianceId = 9; 
+}
+
+message MsgAllianceNews
+{
+	optional int32 allianceId = 1;
+	optional string guid = 2;
+	optional int32 level = 3;
+	optional int32 type = 4;
+	optional int32 subtype = 5;
+	optional string name = 6;
+	optional string content = 7;
+	optional int32 timestamp = 8;
+	optional string pictureUrl = 9;
 }
 
 message RseUpdateAlliances
 {
-	optional bool result = 1;//": false,
-    optional int32 error = 2;//": 8,
-    optional MsgProfile profile = 3;//": {}
+	repeated Alliance alliance = 1;
+	optional int32 ret = 2;
+	optional AlnProfile profile = 3;
+	optional string action = 4;
+	optional int32 totalSize = 5;
+	repeated MsgAlliancesWar allianceWar = 6;
+	repeated MsgAllianceNews allianceNews = 7;
+	optional string memberId = 8;
+	optional int32 enemyallianceid = 9;
 }
-

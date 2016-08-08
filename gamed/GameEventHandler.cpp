@@ -451,3 +451,17 @@ void GameEventHandler::SendToAllOnlineUserByLevel(int cmd, const string& text, i
 		}
 	}
 }
+
+void GameEventHandler::PushEventAttackFalse(User* pUser)
+{
+	if(!pUser)
+		return;
+
+	Event* pEvn = getEventQueue()->allocateEvent();
+	pEvn->set_cmd(C2S_RceFinished);
+	pEvn->set_time(0);
+	pEvn->set_state(Status_Normal_Game);
+	pEvn->set_uid(pUser->GetUid());
+	RceFinished* req = pEvn->mutable_ce_rcefinished();
+	getEventQueue()->safePushEvent(pEvn);
+}

@@ -90,7 +90,7 @@ void protobuf_AddDesc_RceUpdateItem_2eproto() {
     "roto\032\024MsgSocialItems.proto\032\024MsgTransacti"
     "on.proto\"\241\002\n\rRceUpdateItem\022\013\n\003sid\030\001 \001(\005\022"
     "\014\n\004time\030\002 \001(\005\022$\n\013transaction\030\003 \001(\0132\017.Msg"
-    "Transaction\022\036\n\004item\030\004 \001(\0132\020.MsgBuildingI"
+    "Transaction\022\036\n\004item\030\004 \003(\0132\020.MsgBuildingI"
     "tem\022\020\n\010oldState\030\005 \001(\005\022\n\n\002id\030\006 \001(\005\022\020\n\010pla"
     "netId\030\007 \001(\005\022\020\n\010newState\030\010 \001(\005\022\016\n\006action\030"
     "\t \001(\t\022\022\n\ntimePassed\030\n \001(\005\022\t\n\001x\030\013 \001(\005\022\t\n\001"
@@ -138,7 +138,6 @@ RceUpdateItem::RceUpdateItem() {
 
 void RceUpdateItem::InitAsDefaultInstance() {
   transaction_ = const_cast< ::MsgTransaction*>(&::MsgTransaction::default_instance());
-  item_ = const_cast< ::MsgBuildingItem*>(&::MsgBuildingItem::default_instance());
 }
 
 RceUpdateItem::RceUpdateItem(const RceUpdateItem& from) {
@@ -151,7 +150,6 @@ void RceUpdateItem::SharedCtor() {
   sid_ = 0;
   time_ = 0;
   transaction_ = NULL;
-  item_ = NULL;
   oldstate_ = 0;
   id_ = 0;
   planetid_ = 0;
@@ -176,7 +174,6 @@ void RceUpdateItem::SharedDtor() {
   }
   if (this != default_instance_) {
     delete transaction_;
-    delete item_;
   }
 }
 
@@ -202,9 +199,6 @@ void RceUpdateItem::Clear() {
     if (_has_bit(2)) {
       if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
     }
-    if (_has_bit(3)) {
-      if (item_ != NULL) item_->::MsgBuildingItem::Clear();
-    }
     oldstate_ = 0;
     id_ = 0;
     planetid_ = 0;
@@ -223,6 +217,7 @@ void RceUpdateItem::Clear() {
     role_ = 0;
     incometorestore_ = 0;
   }
+  item_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -273,7 +268,7 @@ bool RceUpdateItem::MergePartialFromCodedStream(
         break;
       }
       
-      // optional .MsgBuildingItem item = 4;
+      // repeated .MsgBuildingItem item = 4;
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -281,7 +276,8 @@ bool RceUpdateItem::MergePartialFromCodedStream(
         }
        parse_item:
         DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-             input, mutable_item()));
+              input, add_item()));
+        if (input->ExpectTag(34)) goto parse_item;
         if (input->ExpectTag(40)) goto parse_oldState;
         break;
       }
@@ -482,10 +478,10 @@ void RceUpdateItem::SerializeWithCachedSizes(
       3, this->transaction(), output);
   }
   
-  // optional .MsgBuildingItem item = 4;
-  if (_has_bit(3)) {
+  // repeated .MsgBuildingItem item = 4;
+  for (int i = 0; i < this->item_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
-      4, this->item(), output);
+      4, this->item(i), output);
   }
   
   // optional int32 oldState = 5;
@@ -572,11 +568,11 @@ void RceUpdateItem::SerializeWithCachedSizes(
         3, this->transaction(), target);
   }
   
-  // optional .MsgBuildingItem item = 4;
-  if (_has_bit(3)) {
+  // repeated .MsgBuildingItem item = 4;
+  for (int i = 0; i < this->item_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        4, this->item(), target);
+        4, this->item(i), target);
   }
   
   // optional int32 oldState = 5;
@@ -671,13 +667,6 @@ int RceUpdateItem::ByteSize() const {
           this->transaction());
     }
     
-    // optional .MsgBuildingItem item = 4;
-    if (has_item()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->item());
-    }
-    
     // optional int32 oldState = 5;
     if (has_oldstate()) {
       total_size += 1 +
@@ -758,6 +747,14 @@ int RceUpdateItem::ByteSize() const {
     }
     
   }
+  // repeated .MsgBuildingItem item = 4;
+  total_size += 1 * this->item_size();
+  for (int i = 0; i < this->item_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->item(i));
+  }
+  
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -781,6 +778,7 @@ void RceUpdateItem::MergeFrom(const ::google::protobuf::Message& from) {
 
 void RceUpdateItem::MergeFrom(const RceUpdateItem& from) {
   GOOGLE_CHECK_NE(&from, this);
+  item_.MergeFrom(from.item_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
       set_sid(from.sid());
@@ -790,9 +788,6 @@ void RceUpdateItem::MergeFrom(const RceUpdateItem& from) {
     }
     if (from._has_bit(2)) {
       mutable_transaction()->::MsgTransaction::MergeFrom(from.transaction());
-    }
-    if (from._has_bit(3)) {
-      mutable_item()->::MsgBuildingItem::MergeFrom(from.item());
     }
     if (from._has_bit(4)) {
       set_oldstate(from.oldstate());
@@ -855,7 +850,7 @@ void RceUpdateItem::Swap(RceUpdateItem* other) {
     std::swap(sid_, other->sid_);
     std::swap(time_, other->time_);
     std::swap(transaction_, other->transaction_);
-    std::swap(item_, other->item_);
+    item_.Swap(&other->item_);
     std::swap(oldstate_, other->oldstate_);
     std::swap(id_, other->id_);
     std::swap(planetid_, other->planetid_);

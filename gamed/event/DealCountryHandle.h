@@ -32,6 +32,7 @@ private:
     void    handle(Event* e);
 	void	HandleCountryLite(Event* e);
 	void	HandleQueyrStarInfo(Event* e);
+	void	HandleUpdateAlliances(Event *e);
 
 private:
     GameEventHandler* eh_;

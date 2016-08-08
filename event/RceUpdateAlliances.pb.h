@@ -22,6 +22,7 @@
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include "MsgTransaction.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_RceUpdateAlliances_2eproto();
@@ -85,55 +86,267 @@ class RceUpdateAlliances : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional bool paramsOk = 1;
-  inline bool has_paramsok() const;
-  inline void clear_paramsok();
-  static const int kParamsOkFieldNumber = 1;
-  inline bool paramsok() const;
-  inline void set_paramsok(bool value);
+  // optional string logo = 1;
+  inline bool has_logo() const;
+  inline void clear_logo();
+  static const int kLogoFieldNumber = 1;
+  inline const ::std::string& logo() const;
+  inline void set_logo(const ::std::string& value);
+  inline void set_logo(const char* value);
+  inline void set_logo(const char* value, size_t size);
+  inline ::std::string* mutable_logo();
   
-  // optional string action = 2;
+  // optional string name = 2;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 2;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string description = 3;
+  inline bool has_description() const;
+  inline void clear_description();
+  static const int kDescriptionFieldNumber = 3;
+  inline const ::std::string& description() const;
+  inline void set_description(const ::std::string& value);
+  inline void set_description(const char* value);
+  inline void set_description(const char* value, size_t size);
+  inline ::std::string* mutable_description();
+  
+  // optional int32 publicRecruit = 4;
+  inline bool has_publicrecruit() const;
+  inline void clear_publicrecruit();
+  static const int kPublicRecruitFieldNumber = 4;
+  inline ::google::protobuf::int32 publicrecruit() const;
+  inline void set_publicrecruit(::google::protobuf::int32 value);
+  
+  // optional string guid = 8;
+  inline bool has_guid() const;
+  inline void clear_guid();
+  static const int kGuidFieldNumber = 8;
+  inline const ::std::string& guid() const;
+  inline void set_guid(const ::std::string& value);
+  inline void set_guid(const char* value);
+  inline void set_guid(const char* value, size_t size);
+  inline ::std::string* mutable_guid();
+  
+  // optional int32 allianceId = 9;
+  inline bool has_allianceid() const;
+  inline void clear_allianceid();
+  static const int kAllianceIdFieldNumber = 9;
+  inline ::google::protobuf::int32 allianceid() const;
+  inline void set_allianceid(::google::protobuf::int32 value);
+  
+  // optional int32 level = 10;
+  inline bool has_level() const;
+  inline void clear_level();
+  static const int kLevelFieldNumber = 10;
+  inline ::google::protobuf::int32 level() const;
+  inline void set_level(::google::protobuf::int32 value);
+  
+  // optional string action = 11;
   inline bool has_action() const;
   inline void clear_action();
-  static const int kActionFieldNumber = 2;
+  static const int kActionFieldNumber = 11;
   inline const ::std::string& action() const;
   inline void set_action(const ::std::string& value);
   inline void set_action(const char* value);
   inline void set_action(const char* value, size_t size);
   inline ::std::string* mutable_action();
   
-  // optional int32 planetId = 3;
+  // optional int32 planetId = 12;
   inline bool has_planetid() const;
   inline void clear_planetid();
-  static const int kPlanetIdFieldNumber = 3;
+  static const int kPlanetIdFieldNumber = 12;
   inline ::google::protobuf::int32 planetid() const;
   inline void set_planetid(::google::protobuf::int32 value);
   
-  // optional string clientCmd = 4;
-  inline bool has_clientcmd() const;
-  inline void clear_clientcmd();
-  static const int kClientCmdFieldNumber = 4;
-  inline const ::std::string& clientcmd() const;
-  inline void set_clientcmd(const ::std::string& value);
-  inline void set_clientcmd(const char* value);
-  inline void set_clientcmd(const char* value, size_t size);
-  inline ::std::string* mutable_clientcmd();
+  // optional .MsgTransaction transaction = 13;
+  inline bool has_transaction() const;
+  inline void clear_transaction();
+  static const int kTransactionFieldNumber = 13;
+  inline const ::MsgTransaction& transaction() const;
+  inline ::MsgTransaction* mutable_transaction();
+  
+  // optional int32 limit = 14;
+  inline bool has_limit() const;
+  inline void clear_limit();
+  static const int kLimitFieldNumber = 14;
+  inline ::google::protobuf::int32 limit() const;
+  inline void set_limit(::google::protobuf::int32 value);
+  
+  // optional int32 role = 15;
+  inline bool has_role() const;
+  inline void clear_role();
+  static const int kRoleFieldNumber = 15;
+  inline ::google::protobuf::int32 role() const;
+  inline void set_role(::google::protobuf::int32 value);
+  
+  // optional int32 attackScore = 16;
+  inline bool has_attackscore() const;
+  inline void clear_attackscore();
+  static const int kAttackScoreFieldNumber = 16;
+  inline ::google::protobuf::int32 attackscore() const;
+  inline void set_attackscore(::google::protobuf::int32 value);
+  
+  // optional int32 warScore = 17;
+  inline bool has_warscore() const;
+  inline void clear_warscore();
+  static const int kWarScoreFieldNumber = 17;
+  inline ::google::protobuf::int32 warscore() const;
+  inline void set_warscore(::google::protobuf::int32 value);
+  
+  // optional string playerId = 18;
+  inline bool has_playerid() const;
+  inline void clear_playerid();
+  static const int kPlayerIdFieldNumber = 18;
+  inline const ::std::string& playerid() const;
+  inline void set_playerid(const ::std::string& value);
+  inline void set_playerid(const char* value);
+  inline void set_playerid(const char* value, size_t size);
+  inline ::std::string* mutable_playerid();
+  
+  // optional string adminId = 19;
+  inline bool has_adminid() const;
+  inline void clear_adminid();
+  static const int kAdminIdFieldNumber = 19;
+  inline const ::std::string& adminid() const;
+  inline void set_adminid(const ::std::string& value);
+  inline void set_adminid(const char* value);
+  inline void set_adminid(const char* value, size_t size);
+  inline ::std::string* mutable_adminid();
+  
+  // optional string memberId = 20;
+  inline bool has_memberid() const;
+  inline void clear_memberid();
+  static const int kMemberIdFieldNumber = 20;
+  inline const ::std::string& memberid() const;
+  inline void set_memberid(const ::std::string& value);
+  inline void set_memberid(const char* value);
+  inline void set_memberid(const char* value, size_t size);
+  inline ::std::string* mutable_memberid();
+  
+  // optional int32 count = 21;
+  inline bool has_count() const;
+  inline void clear_count();
+  static const int kCountFieldNumber = 21;
+  inline ::google::protobuf::int32 count() const;
+  inline void set_count(::google::protobuf::int32 value);
+  
+  // optional int32 from = 22;
+  inline bool has_from() const;
+  inline void clear_from();
+  static const int kFromFieldNumber = 22;
+  inline ::google::protobuf::int32 from() const;
+  inline void set_from(::google::protobuf::int32 value);
+  
+  // optional string searchKey = 23;
+  inline bool has_searchkey() const;
+  inline void clear_searchkey();
+  static const int kSearchKeyFieldNumber = 23;
+  inline const ::std::string& searchkey() const;
+  inline void set_searchkey(const ::std::string& value);
+  inline void set_searchkey(const char* value);
+  inline void set_searchkey(const char* value, size_t size);
+  inline ::std::string* mutable_searchkey();
+  
+  // optional bool userPage = 24;
+  inline bool has_userpage() const;
+  inline void clear_userpage();
+  static const int kUserPageFieldNumber = 24;
+  inline bool userpage() const;
+  inline void set_userpage(bool value);
+  
+  // optional int32 startIndex = 25;
+  inline bool has_startindex() const;
+  inline void clear_startindex();
+  static const int kStartIndexFieldNumber = 25;
+  inline ::google::protobuf::int32 startindex() const;
+  inline void set_startindex(::google::protobuf::int32 value);
+  
+  // optional bool includemembers = 26;
+  inline bool has_includemembers() const;
+  inline void clear_includemembers();
+  static const int kIncludemembersFieldNumber = 26;
+  inline bool includemembers() const;
+  inline void set_includemembers(bool value);
+  
+  // optional int32 reward = 27;
+  inline bool has_reward() const;
+  inline void clear_reward();
+  static const int kRewardFieldNumber = 27;
+  inline ::google::protobuf::int32 reward() const;
+  inline void set_reward(::google::protobuf::int32 value);
+  
+  // optional int32 alliancesbattleswon = 28;
+  inline bool has_alliancesbattleswon() const;
+  inline void clear_alliancesbattleswon();
+  static const int kAlliancesbattleswonFieldNumber = 28;
+  inline ::google::protobuf::int32 alliancesbattleswon() const;
+  inline void set_alliancesbattleswon(::google::protobuf::int32 value);
+  
+  // optional int32 warpoints = 29;
+  inline bool has_warpoints() const;
+  inline void clear_warpoints();
+  static const int kWarpointsFieldNumber = 29;
+  inline ::google::protobuf::int32 warpoints() const;
+  inline void set_warpoints(::google::protobuf::int32 value);
+  
+  // optional int32 fromIndex = 30;
+  inline bool has_fromindex() const;
+  inline void clear_fromindex();
+  static const int kFromIndexFieldNumber = 30;
+  inline ::google::protobuf::int32 fromindex() const;
+  inline void set_fromindex(::google::protobuf::int32 value);
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  bool paramsok_;
+  ::std::string* logo_;
+  static const ::std::string _default_logo_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* description_;
+  static const ::std::string _default_description_;
+  ::google::protobuf::int32 publicrecruit_;
+  ::std::string* guid_;
+  static const ::std::string _default_guid_;
+  ::google::protobuf::int32 allianceid_;
+  ::google::protobuf::int32 level_;
   ::std::string* action_;
   static const ::std::string _default_action_;
   ::google::protobuf::int32 planetid_;
-  ::std::string* clientcmd_;
-  static const ::std::string _default_clientcmd_;
+  ::MsgTransaction* transaction_;
+  ::google::protobuf::int32 limit_;
+  ::google::protobuf::int32 role_;
+  ::google::protobuf::int32 attackscore_;
+  ::google::protobuf::int32 warscore_;
+  ::std::string* playerid_;
+  static const ::std::string _default_playerid_;
+  ::std::string* adminid_;
+  static const ::std::string _default_adminid_;
+  ::std::string* memberid_;
+  static const ::std::string _default_memberid_;
+  ::google::protobuf::int32 count_;
+  ::google::protobuf::int32 from_;
+  ::std::string* searchkey_;
+  static const ::std::string _default_searchkey_;
+  bool userpage_;
+  ::google::protobuf::int32 startindex_;
+  bool includemembers_;
+  ::google::protobuf::int32 reward_;
+  ::google::protobuf::int32 alliancesbattleswon_;
+  ::google::protobuf::int32 warpoints_;
+  ::google::protobuf::int32 fromindex_;
   friend void  protobuf_AddDesc_RceUpdateAlliances_2eproto();
   friend void protobuf_AssignDesc_RceUpdateAlliances_2eproto();
   friend void protobuf_ShutdownFile_RceUpdateAlliances_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(27 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -159,120 +372,671 @@ class RceUpdateAlliances : public ::google::protobuf::Message {
 
 // RceUpdateAlliances
 
-// optional bool paramsOk = 1;
-inline bool RceUpdateAlliances::has_paramsok() const {
+// optional string logo = 1;
+inline bool RceUpdateAlliances::has_logo() const {
   return _has_bit(0);
 }
-inline void RceUpdateAlliances::clear_paramsok() {
-  paramsok_ = false;
+inline void RceUpdateAlliances::clear_logo() {
+  if (logo_ != &_default_logo_) {
+    logo_->clear();
+  }
   _clear_bit(0);
 }
-inline bool RceUpdateAlliances::paramsok() const {
-  return paramsok_;
+inline const ::std::string& RceUpdateAlliances::logo() const {
+  return *logo_;
 }
-inline void RceUpdateAlliances::set_paramsok(bool value) {
+inline void RceUpdateAlliances::set_logo(const ::std::string& value) {
   _set_bit(0);
-  paramsok_ = value;
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  logo_->assign(value);
+}
+inline void RceUpdateAlliances::set_logo(const char* value) {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  logo_->assign(value);
+}
+inline void RceUpdateAlliances::set_logo(const char* value, size_t size) {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  logo_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_logo() {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  return logo_;
 }
 
-// optional string action = 2;
-inline bool RceUpdateAlliances::has_action() const {
+// optional string name = 2;
+inline bool RceUpdateAlliances::has_name() const {
   return _has_bit(1);
+}
+inline void RceUpdateAlliances::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& RceUpdateAlliances::name() const {
+  return *name_;
+}
+inline void RceUpdateAlliances::set_name(const ::std::string& value) {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void RceUpdateAlliances::set_name(const char* value) {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void RceUpdateAlliances::set_name(const char* value, size_t size) {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_name() {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string description = 3;
+inline bool RceUpdateAlliances::has_description() const {
+  return _has_bit(2);
+}
+inline void RceUpdateAlliances::clear_description() {
+  if (description_ != &_default_description_) {
+    description_->clear();
+  }
+  _clear_bit(2);
+}
+inline const ::std::string& RceUpdateAlliances::description() const {
+  return *description_;
+}
+inline void RceUpdateAlliances::set_description(const ::std::string& value) {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void RceUpdateAlliances::set_description(const char* value) {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void RceUpdateAlliances::set_description(const char* value, size_t size) {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_description() {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  return description_;
+}
+
+// optional int32 publicRecruit = 4;
+inline bool RceUpdateAlliances::has_publicrecruit() const {
+  return _has_bit(3);
+}
+inline void RceUpdateAlliances::clear_publicrecruit() {
+  publicrecruit_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::publicrecruit() const {
+  return publicrecruit_;
+}
+inline void RceUpdateAlliances::set_publicrecruit(::google::protobuf::int32 value) {
+  _set_bit(3);
+  publicrecruit_ = value;
+}
+
+// optional string guid = 8;
+inline bool RceUpdateAlliances::has_guid() const {
+  return _has_bit(4);
+}
+inline void RceUpdateAlliances::clear_guid() {
+  if (guid_ != &_default_guid_) {
+    guid_->clear();
+  }
+  _clear_bit(4);
+}
+inline const ::std::string& RceUpdateAlliances::guid() const {
+  return *guid_;
+}
+inline void RceUpdateAlliances::set_guid(const ::std::string& value) {
+  _set_bit(4);
+  if (guid_ == &_default_guid_) {
+    guid_ = new ::std::string;
+  }
+  guid_->assign(value);
+}
+inline void RceUpdateAlliances::set_guid(const char* value) {
+  _set_bit(4);
+  if (guid_ == &_default_guid_) {
+    guid_ = new ::std::string;
+  }
+  guid_->assign(value);
+}
+inline void RceUpdateAlliances::set_guid(const char* value, size_t size) {
+  _set_bit(4);
+  if (guid_ == &_default_guid_) {
+    guid_ = new ::std::string;
+  }
+  guid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_guid() {
+  _set_bit(4);
+  if (guid_ == &_default_guid_) {
+    guid_ = new ::std::string;
+  }
+  return guid_;
+}
+
+// optional int32 allianceId = 9;
+inline bool RceUpdateAlliances::has_allianceid() const {
+  return _has_bit(5);
+}
+inline void RceUpdateAlliances::clear_allianceid() {
+  allianceid_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::allianceid() const {
+  return allianceid_;
+}
+inline void RceUpdateAlliances::set_allianceid(::google::protobuf::int32 value) {
+  _set_bit(5);
+  allianceid_ = value;
+}
+
+// optional int32 level = 10;
+inline bool RceUpdateAlliances::has_level() const {
+  return _has_bit(6);
+}
+inline void RceUpdateAlliances::clear_level() {
+  level_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::level() const {
+  return level_;
+}
+inline void RceUpdateAlliances::set_level(::google::protobuf::int32 value) {
+  _set_bit(6);
+  level_ = value;
+}
+
+// optional string action = 11;
+inline bool RceUpdateAlliances::has_action() const {
+  return _has_bit(7);
 }
 inline void RceUpdateAlliances::clear_action() {
   if (action_ != &_default_action_) {
     action_->clear();
   }
-  _clear_bit(1);
+  _clear_bit(7);
 }
 inline const ::std::string& RceUpdateAlliances::action() const {
   return *action_;
 }
 inline void RceUpdateAlliances::set_action(const ::std::string& value) {
-  _set_bit(1);
+  _set_bit(7);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   action_->assign(value);
 }
 inline void RceUpdateAlliances::set_action(const char* value) {
-  _set_bit(1);
+  _set_bit(7);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   action_->assign(value);
 }
 inline void RceUpdateAlliances::set_action(const char* value, size_t size) {
-  _set_bit(1);
+  _set_bit(7);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   action_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* RceUpdateAlliances::mutable_action() {
-  _set_bit(1);
+  _set_bit(7);
   if (action_ == &_default_action_) {
     action_ = new ::std::string;
   }
   return action_;
 }
 
-// optional int32 planetId = 3;
+// optional int32 planetId = 12;
 inline bool RceUpdateAlliances::has_planetid() const {
-  return _has_bit(2);
+  return _has_bit(8);
 }
 inline void RceUpdateAlliances::clear_planetid() {
   planetid_ = 0;
-  _clear_bit(2);
+  _clear_bit(8);
 }
 inline ::google::protobuf::int32 RceUpdateAlliances::planetid() const {
   return planetid_;
 }
 inline void RceUpdateAlliances::set_planetid(::google::protobuf::int32 value) {
-  _set_bit(2);
+  _set_bit(8);
   planetid_ = value;
 }
 
-// optional string clientCmd = 4;
-inline bool RceUpdateAlliances::has_clientcmd() const {
-  return _has_bit(3);
+// optional .MsgTransaction transaction = 13;
+inline bool RceUpdateAlliances::has_transaction() const {
+  return _has_bit(9);
 }
-inline void RceUpdateAlliances::clear_clientcmd() {
-  if (clientcmd_ != &_default_clientcmd_) {
-    clientcmd_->clear();
+inline void RceUpdateAlliances::clear_transaction() {
+  if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
+  _clear_bit(9);
+}
+inline const ::MsgTransaction& RceUpdateAlliances::transaction() const {
+  return transaction_ != NULL ? *transaction_ : *default_instance_->transaction_;
+}
+inline ::MsgTransaction* RceUpdateAlliances::mutable_transaction() {
+  _set_bit(9);
+  if (transaction_ == NULL) transaction_ = new ::MsgTransaction;
+  return transaction_;
+}
+
+// optional int32 limit = 14;
+inline bool RceUpdateAlliances::has_limit() const {
+  return _has_bit(10);
+}
+inline void RceUpdateAlliances::clear_limit() {
+  limit_ = 0;
+  _clear_bit(10);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::limit() const {
+  return limit_;
+}
+inline void RceUpdateAlliances::set_limit(::google::protobuf::int32 value) {
+  _set_bit(10);
+  limit_ = value;
+}
+
+// optional int32 role = 15;
+inline bool RceUpdateAlliances::has_role() const {
+  return _has_bit(11);
+}
+inline void RceUpdateAlliances::clear_role() {
+  role_ = 0;
+  _clear_bit(11);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::role() const {
+  return role_;
+}
+inline void RceUpdateAlliances::set_role(::google::protobuf::int32 value) {
+  _set_bit(11);
+  role_ = value;
+}
+
+// optional int32 attackScore = 16;
+inline bool RceUpdateAlliances::has_attackscore() const {
+  return _has_bit(12);
+}
+inline void RceUpdateAlliances::clear_attackscore() {
+  attackscore_ = 0;
+  _clear_bit(12);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::attackscore() const {
+  return attackscore_;
+}
+inline void RceUpdateAlliances::set_attackscore(::google::protobuf::int32 value) {
+  _set_bit(12);
+  attackscore_ = value;
+}
+
+// optional int32 warScore = 17;
+inline bool RceUpdateAlliances::has_warscore() const {
+  return _has_bit(13);
+}
+inline void RceUpdateAlliances::clear_warscore() {
+  warscore_ = 0;
+  _clear_bit(13);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::warscore() const {
+  return warscore_;
+}
+inline void RceUpdateAlliances::set_warscore(::google::protobuf::int32 value) {
+  _set_bit(13);
+  warscore_ = value;
+}
+
+// optional string playerId = 18;
+inline bool RceUpdateAlliances::has_playerid() const {
+  return _has_bit(14);
+}
+inline void RceUpdateAlliances::clear_playerid() {
+  if (playerid_ != &_default_playerid_) {
+    playerid_->clear();
   }
-  _clear_bit(3);
+  _clear_bit(14);
 }
-inline const ::std::string& RceUpdateAlliances::clientcmd() const {
-  return *clientcmd_;
+inline const ::std::string& RceUpdateAlliances::playerid() const {
+  return *playerid_;
 }
-inline void RceUpdateAlliances::set_clientcmd(const ::std::string& value) {
-  _set_bit(3);
-  if (clientcmd_ == &_default_clientcmd_) {
-    clientcmd_ = new ::std::string;
+inline void RceUpdateAlliances::set_playerid(const ::std::string& value) {
+  _set_bit(14);
+  if (playerid_ == &_default_playerid_) {
+    playerid_ = new ::std::string;
   }
-  clientcmd_->assign(value);
+  playerid_->assign(value);
 }
-inline void RceUpdateAlliances::set_clientcmd(const char* value) {
-  _set_bit(3);
-  if (clientcmd_ == &_default_clientcmd_) {
-    clientcmd_ = new ::std::string;
+inline void RceUpdateAlliances::set_playerid(const char* value) {
+  _set_bit(14);
+  if (playerid_ == &_default_playerid_) {
+    playerid_ = new ::std::string;
   }
-  clientcmd_->assign(value);
+  playerid_->assign(value);
 }
-inline void RceUpdateAlliances::set_clientcmd(const char* value, size_t size) {
-  _set_bit(3);
-  if (clientcmd_ == &_default_clientcmd_) {
-    clientcmd_ = new ::std::string;
+inline void RceUpdateAlliances::set_playerid(const char* value, size_t size) {
+  _set_bit(14);
+  if (playerid_ == &_default_playerid_) {
+    playerid_ = new ::std::string;
   }
-  clientcmd_->assign(reinterpret_cast<const char*>(value), size);
+  playerid_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* RceUpdateAlliances::mutable_clientcmd() {
-  _set_bit(3);
-  if (clientcmd_ == &_default_clientcmd_) {
-    clientcmd_ = new ::std::string;
+inline ::std::string* RceUpdateAlliances::mutable_playerid() {
+  _set_bit(14);
+  if (playerid_ == &_default_playerid_) {
+    playerid_ = new ::std::string;
   }
-  return clientcmd_;
+  return playerid_;
+}
+
+// optional string adminId = 19;
+inline bool RceUpdateAlliances::has_adminid() const {
+  return _has_bit(15);
+}
+inline void RceUpdateAlliances::clear_adminid() {
+  if (adminid_ != &_default_adminid_) {
+    adminid_->clear();
+  }
+  _clear_bit(15);
+}
+inline const ::std::string& RceUpdateAlliances::adminid() const {
+  return *adminid_;
+}
+inline void RceUpdateAlliances::set_adminid(const ::std::string& value) {
+  _set_bit(15);
+  if (adminid_ == &_default_adminid_) {
+    adminid_ = new ::std::string;
+  }
+  adminid_->assign(value);
+}
+inline void RceUpdateAlliances::set_adminid(const char* value) {
+  _set_bit(15);
+  if (adminid_ == &_default_adminid_) {
+    adminid_ = new ::std::string;
+  }
+  adminid_->assign(value);
+}
+inline void RceUpdateAlliances::set_adminid(const char* value, size_t size) {
+  _set_bit(15);
+  if (adminid_ == &_default_adminid_) {
+    adminid_ = new ::std::string;
+  }
+  adminid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_adminid() {
+  _set_bit(15);
+  if (adminid_ == &_default_adminid_) {
+    adminid_ = new ::std::string;
+  }
+  return adminid_;
+}
+
+// optional string memberId = 20;
+inline bool RceUpdateAlliances::has_memberid() const {
+  return _has_bit(16);
+}
+inline void RceUpdateAlliances::clear_memberid() {
+  if (memberid_ != &_default_memberid_) {
+    memberid_->clear();
+  }
+  _clear_bit(16);
+}
+inline const ::std::string& RceUpdateAlliances::memberid() const {
+  return *memberid_;
+}
+inline void RceUpdateAlliances::set_memberid(const ::std::string& value) {
+  _set_bit(16);
+  if (memberid_ == &_default_memberid_) {
+    memberid_ = new ::std::string;
+  }
+  memberid_->assign(value);
+}
+inline void RceUpdateAlliances::set_memberid(const char* value) {
+  _set_bit(16);
+  if (memberid_ == &_default_memberid_) {
+    memberid_ = new ::std::string;
+  }
+  memberid_->assign(value);
+}
+inline void RceUpdateAlliances::set_memberid(const char* value, size_t size) {
+  _set_bit(16);
+  if (memberid_ == &_default_memberid_) {
+    memberid_ = new ::std::string;
+  }
+  memberid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_memberid() {
+  _set_bit(16);
+  if (memberid_ == &_default_memberid_) {
+    memberid_ = new ::std::string;
+  }
+  return memberid_;
+}
+
+// optional int32 count = 21;
+inline bool RceUpdateAlliances::has_count() const {
+  return _has_bit(17);
+}
+inline void RceUpdateAlliances::clear_count() {
+  count_ = 0;
+  _clear_bit(17);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::count() const {
+  return count_;
+}
+inline void RceUpdateAlliances::set_count(::google::protobuf::int32 value) {
+  _set_bit(17);
+  count_ = value;
+}
+
+// optional int32 from = 22;
+inline bool RceUpdateAlliances::has_from() const {
+  return _has_bit(18);
+}
+inline void RceUpdateAlliances::clear_from() {
+  from_ = 0;
+  _clear_bit(18);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::from() const {
+  return from_;
+}
+inline void RceUpdateAlliances::set_from(::google::protobuf::int32 value) {
+  _set_bit(18);
+  from_ = value;
+}
+
+// optional string searchKey = 23;
+inline bool RceUpdateAlliances::has_searchkey() const {
+  return _has_bit(19);
+}
+inline void RceUpdateAlliances::clear_searchkey() {
+  if (searchkey_ != &_default_searchkey_) {
+    searchkey_->clear();
+  }
+  _clear_bit(19);
+}
+inline const ::std::string& RceUpdateAlliances::searchkey() const {
+  return *searchkey_;
+}
+inline void RceUpdateAlliances::set_searchkey(const ::std::string& value) {
+  _set_bit(19);
+  if (searchkey_ == &_default_searchkey_) {
+    searchkey_ = new ::std::string;
+  }
+  searchkey_->assign(value);
+}
+inline void RceUpdateAlliances::set_searchkey(const char* value) {
+  _set_bit(19);
+  if (searchkey_ == &_default_searchkey_) {
+    searchkey_ = new ::std::string;
+  }
+  searchkey_->assign(value);
+}
+inline void RceUpdateAlliances::set_searchkey(const char* value, size_t size) {
+  _set_bit(19);
+  if (searchkey_ == &_default_searchkey_) {
+    searchkey_ = new ::std::string;
+  }
+  searchkey_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* RceUpdateAlliances::mutable_searchkey() {
+  _set_bit(19);
+  if (searchkey_ == &_default_searchkey_) {
+    searchkey_ = new ::std::string;
+  }
+  return searchkey_;
+}
+
+// optional bool userPage = 24;
+inline bool RceUpdateAlliances::has_userpage() const {
+  return _has_bit(20);
+}
+inline void RceUpdateAlliances::clear_userpage() {
+  userpage_ = false;
+  _clear_bit(20);
+}
+inline bool RceUpdateAlliances::userpage() const {
+  return userpage_;
+}
+inline void RceUpdateAlliances::set_userpage(bool value) {
+  _set_bit(20);
+  userpage_ = value;
+}
+
+// optional int32 startIndex = 25;
+inline bool RceUpdateAlliances::has_startindex() const {
+  return _has_bit(21);
+}
+inline void RceUpdateAlliances::clear_startindex() {
+  startindex_ = 0;
+  _clear_bit(21);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::startindex() const {
+  return startindex_;
+}
+inline void RceUpdateAlliances::set_startindex(::google::protobuf::int32 value) {
+  _set_bit(21);
+  startindex_ = value;
+}
+
+// optional bool includemembers = 26;
+inline bool RceUpdateAlliances::has_includemembers() const {
+  return _has_bit(22);
+}
+inline void RceUpdateAlliances::clear_includemembers() {
+  includemembers_ = false;
+  _clear_bit(22);
+}
+inline bool RceUpdateAlliances::includemembers() const {
+  return includemembers_;
+}
+inline void RceUpdateAlliances::set_includemembers(bool value) {
+  _set_bit(22);
+  includemembers_ = value;
+}
+
+// optional int32 reward = 27;
+inline bool RceUpdateAlliances::has_reward() const {
+  return _has_bit(23);
+}
+inline void RceUpdateAlliances::clear_reward() {
+  reward_ = 0;
+  _clear_bit(23);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::reward() const {
+  return reward_;
+}
+inline void RceUpdateAlliances::set_reward(::google::protobuf::int32 value) {
+  _set_bit(23);
+  reward_ = value;
+}
+
+// optional int32 alliancesbattleswon = 28;
+inline bool RceUpdateAlliances::has_alliancesbattleswon() const {
+  return _has_bit(24);
+}
+inline void RceUpdateAlliances::clear_alliancesbattleswon() {
+  alliancesbattleswon_ = 0;
+  _clear_bit(24);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::alliancesbattleswon() const {
+  return alliancesbattleswon_;
+}
+inline void RceUpdateAlliances::set_alliancesbattleswon(::google::protobuf::int32 value) {
+  _set_bit(24);
+  alliancesbattleswon_ = value;
+}
+
+// optional int32 warpoints = 29;
+inline bool RceUpdateAlliances::has_warpoints() const {
+  return _has_bit(25);
+}
+inline void RceUpdateAlliances::clear_warpoints() {
+  warpoints_ = 0;
+  _clear_bit(25);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::warpoints() const {
+  return warpoints_;
+}
+inline void RceUpdateAlliances::set_warpoints(::google::protobuf::int32 value) {
+  _set_bit(25);
+  warpoints_ = value;
+}
+
+// optional int32 fromIndex = 30;
+inline bool RceUpdateAlliances::has_fromindex() const {
+  return _has_bit(26);
+}
+inline void RceUpdateAlliances::clear_fromindex() {
+  fromindex_ = 0;
+  _clear_bit(26);
+}
+inline ::google::protobuf::int32 RceUpdateAlliances::fromindex() const {
+  return fromindex_;
+}
+inline void RceUpdateAlliances::set_fromindex(::google::protobuf::int32 value) {
+  _set_bit(26);
+  fromindex_ = value;
 }
 
 

@@ -80,7 +80,6 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
 				pPlayer->CostRes(RC_Mineral,  pMsgTransaction->minerals());
 				pPlayer->CostRes(RC_Score, pMsgTransaction->score());
 				pPlayer->CostRes(RC_Exp, pMsgTransaction->exp());
-				//pPlayer->CheckDroids()
 			}
 		}
 	}
@@ -115,7 +114,8 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
  			}
 		}
 	}
-	if(Battle::BATTLE_TYPE_PVE == pBattle->GetBattleType() 
+	if(Battle::BATTLE_TYPE_PVE_ATTACK == pBattle->GetBattleType() 
+		|| Battle::BATTLE_TYPE_PVE_DEFENSE == pBattle->GetBattleType()
 		|| Battle::BATTLE_TYPE_NPC == pBattle->GetBattleType()){
 		RseBattleDamagesPack rsp;
 		rsp.set_ret(0);
@@ -146,6 +146,18 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
 	}
 	else
 	{
+		DB_BattleReplay *pDBBattleReplay = pTUser->GetPlayer()->GetDBPlayer()->mutable_battlereplay();
+		for(int i = 0; i < req->deployunits_size(); i++){
+			MsgDeployUnits *pMsgDeploy = req->mutable_deployunits(i);
+			if(pMsgDeploy){
+				DB_BattleDeployUnit *pDBDeplyUnit = pDBBattleReplay->add_deployunits();
+				pDBDeplyUnit->set_sku(pMsgDeploy->unitsskus());
+				pDBDeplyUnit->set_x(pMsgDeploy->x());
+				pDBDeplyUnit->set_y(pMsgDeploy->y());
+				pDBDeplyUnit->set_millis(pMsgDeploy->millis());
+			}
+		}
+
 		for (int i = 0; i < req->itemdamaged_size(); i++){
 			MsgItemDamaged *pMsgItem = req->mutable_itemdamaged(i);
 			if(pMsgItem){
@@ -184,7 +196,6 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
 							pDBItem->set_energypercent(0);
 						}
 					}
-					pUserManager->markUserDirty(pTUser);
 				}else{
 					DB_Planet *pDBPlanet = pTUser->GetPlayer()->GetPlanet(pBattle->GetTargetPlanetId());
 					for(int i = 0; i < pDBPlanet->items_size(); i++){
@@ -197,10 +208,10 @@ void RceBattleDamagesPackHandle::handle_selfload(Event* e)
 							pDBItem->set_energy(nCurEnergy);
 						}
 					}
-					pUserManager->markUserDirty(pTUser);
 				}
 			}
 		}
+		pUserManager->markUserDirty(pTUser);
 		RseBattleDamagesPack rsp;
 		rsp.set_ret(0);
 		string text;

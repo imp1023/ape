@@ -109,12 +109,15 @@ class RceUpdateItem : public ::google::protobuf::Message {
   inline const ::MsgTransaction& transaction() const;
   inline ::MsgTransaction* mutable_transaction();
   
-  // optional .MsgBuildingItem item = 4;
-  inline bool has_item() const;
+  // repeated .MsgBuildingItem item = 4;
+  inline int item_size() const;
   inline void clear_item();
   static const int kItemFieldNumber = 4;
-  inline const ::MsgBuildingItem& item() const;
-  inline ::MsgBuildingItem* mutable_item();
+  inline const ::google::protobuf::RepeatedPtrField< ::MsgBuildingItem >& item() const;
+  inline ::google::protobuf::RepeatedPtrField< ::MsgBuildingItem >* mutable_item();
+  inline const ::MsgBuildingItem& item(int index) const;
+  inline ::MsgBuildingItem* mutable_item(int index);
+  inline ::MsgBuildingItem* add_item();
   
   // optional int32 oldState = 5;
   inline bool has_oldstate() const;
@@ -203,7 +206,7 @@ class RceUpdateItem : public ::google::protobuf::Message {
   ::google::protobuf::int32 sid_;
   ::google::protobuf::int32 time_;
   ::MsgTransaction* transaction_;
-  ::MsgBuildingItem* item_;
+  ::google::protobuf::RepeatedPtrField< ::MsgBuildingItem > item_;
   ::google::protobuf::int32 oldstate_;
   ::google::protobuf::int32 id_;
   ::google::protobuf::int32 planetid_;
@@ -295,21 +298,29 @@ inline ::MsgTransaction* RceUpdateItem::mutable_transaction() {
   return transaction_;
 }
 
-// optional .MsgBuildingItem item = 4;
-inline bool RceUpdateItem::has_item() const {
-  return _has_bit(3);
+// repeated .MsgBuildingItem item = 4;
+inline int RceUpdateItem::item_size() const {
+  return item_.size();
 }
 inline void RceUpdateItem::clear_item() {
-  if (item_ != NULL) item_->::MsgBuildingItem::Clear();
-  _clear_bit(3);
+  item_.Clear();
 }
-inline const ::MsgBuildingItem& RceUpdateItem::item() const {
-  return item_ != NULL ? *item_ : *default_instance_->item_;
-}
-inline ::MsgBuildingItem* RceUpdateItem::mutable_item() {
-  _set_bit(3);
-  if (item_ == NULL) item_ = new ::MsgBuildingItem;
+inline const ::google::protobuf::RepeatedPtrField< ::MsgBuildingItem >&
+RceUpdateItem::item() const {
   return item_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::MsgBuildingItem >*
+RceUpdateItem::mutable_item() {
+  return &item_;
+}
+inline const ::MsgBuildingItem& RceUpdateItem::item(int index) const {
+  return item_.Get(index);
+}
+inline ::MsgBuildingItem* RceUpdateItem::mutable_item(int index) {
+  return item_.Mutable(index);
+}
+inline ::MsgBuildingItem* RceUpdateItem::add_item() {
+  return item_.Add();
 }
 
 // optional int32 oldState = 5;

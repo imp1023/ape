@@ -52,6 +52,7 @@ message DB_Item
     optional int64          updateAt                = 15;
     optional int32          id                      = 16;
     optional int32         collecttime              = 17;
+    optional int64          upgradetime             = 18;
     //repeated item           // ±ø³§ // ±øÓª(´«ËÍÃÅ) // µØ±¤
 }
 
@@ -214,6 +215,17 @@ message DB_BattleReplay
     optional DB_User copyUser = 4;
 }
 
+message DB_Alliance
+{
+    optional int32 allianceId = 1;
+    optional int32 currentWarScore = 2;
+    optional int32 totalWarScore = 3;
+    optional int32 guid = 4;
+    optional string gname = 5;
+    optional string pictureUrl = 6;
+    optional int32 role = 7;
+}
+
 message DB_Player
 {
     optional DB_Model        model                  = 1; //Íæ¼ÒÄ£ÐÍ
@@ -227,6 +239,8 @@ message DB_Player
     repeated DB_StarsBookmark bookmarks             = 9;
     optional DB_BattleReplay battleReplay           = 10;
     repeated DB_KeyValue     pve                    = 11;
+	optional DB_Alliance     alliance               = 12;
+
 }
 
 message DB_DailyLogon

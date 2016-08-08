@@ -1,11 +1,34 @@
 //package com.sincetimes.redwar.game.comnunicate.protocol;
 
+import "MsgTransaction.proto";
 
 message RceUpdateAlliances
 {
-    optional bool paramsOk = 1;
-    optional string action = 2;//": "getMyAlliance",
-    optional int32 planetId = 3;
-    optional string clientCmd = 4;//": "requestMyAlliance"
+	optional string logo = 1;
+	optional string name = 2;
+	optional string description = 3;
+	optional int32 publicRecruit = 4;
+	optional string guid = 8;
+	optional int32 allianceId = 9;
+	optional int32 level = 10;
+	optional string action = 11;
+	optional int32 planetId = 12;
+	optional MsgTransaction transaction = 13;
+	optional int32 limit = 14;
+	optional int32 role = 15;
+	optional int32 attackScore = 16;
+	optional int32 warScore = 17;
+	optional string playerId = 18;
+	optional string adminId = 19;
+	optional string memberId = 20;
+	optional int32 count = 21;
+	optional int32 from = 22;
+	optional string searchKey = 23;
+	optional bool userPage = 24;
+	optional int32 startIndex = 25;
+	optional bool includemembers = 26;	
+	optional int32 reward = 27;
+	optional int32 alliancesbattleswon = 28;
+	optional int32 warpoints = 29;
+	optional int32 fromIndex = 30;
 }
-

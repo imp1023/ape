@@ -25,11 +25,34 @@ void protobuf_AssignDesc_RceUpdateAlliances_2eproto() {
       "RceUpdateAlliances.proto");
   GOOGLE_CHECK(file != NULL);
   RceUpdateAlliances_descriptor_ = file->message_type(0);
-  static const int RceUpdateAlliances_offsets_[4] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, paramsok_),
+  static const int RceUpdateAlliances_offsets_[27] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, logo_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, description_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, publicrecruit_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, guid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, allianceid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, level_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, action_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, planetid_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, clientcmd_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, transaction_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, limit_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, role_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, attackscore_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, warscore_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, playerid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, adminid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, memberid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, count_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, from_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, searchkey_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, userpage_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, startindex_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, includemembers_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, reward_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, alliancesbattleswon_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, warpoints_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RceUpdateAlliances, fromindex_),
   };
   RceUpdateAlliances_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -71,10 +94,23 @@ void protobuf_AddDesc_RceUpdateAlliances_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::protobuf_AddDesc_MsgTransaction_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\030RceUpdateAlliances.proto\"[\n\022RceUpdateA"
-    "lliances\022\020\n\010paramsOk\030\001 \001(\010\022\016\n\006action\030\002 \001"
-    "(\t\022\020\n\010planetId\030\003 \001(\005\022\021\n\tclientCmd\030\004 \001(\t", 119);
+    "\n\030RceUpdateAlliances.proto\032\024MsgTransacti"
+    "on.proto\"\217\004\n\022RceUpdateAlliances\022\014\n\004logo\030"
+    "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(\t"
+    "\022\025\n\rpublicRecruit\030\004 \001(\005\022\014\n\004guid\030\010 \001(\t\022\022\n"
+    "\nallianceId\030\t \001(\005\022\r\n\005level\030\n \001(\005\022\016\n\006acti"
+    "on\030\013 \001(\t\022\020\n\010planetId\030\014 \001(\005\022$\n\013transactio"
+    "n\030\r \001(\0132\017.MsgTransaction\022\r\n\005limit\030\016 \001(\005\022"
+    "\014\n\004role\030\017 \001(\005\022\023\n\013attackScore\030\020 \001(\005\022\020\n\010wa"
+    "rScore\030\021 \001(\005\022\020\n\010playerId\030\022 \001(\t\022\017\n\007adminI"
+    "d\030\023 \001(\t\022\020\n\010memberId\030\024 \001(\t\022\r\n\005count\030\025 \001(\005"
+    "\022\014\n\004from\030\026 \001(\005\022\021\n\tsearchKey\030\027 \001(\t\022\020\n\010use"
+    "rPage\030\030 \001(\010\022\022\n\nstartIndex\030\031 \001(\005\022\026\n\016inclu"
+    "demembers\030\032 \001(\010\022\016\n\006reward\030\033 \001(\005\022\033\n\023allia"
+    "ncesbattleswon\030\034 \001(\005\022\021\n\twarpoints\030\035 \001(\005\022"
+    "\021\n\tfromIndex\030\036 \001(\005", 578);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RceUpdateAlliances.proto", &protobuf_RegisterTypes);
   RceUpdateAlliances::default_instance_ = new RceUpdateAlliances();
@@ -92,13 +128,43 @@ struct StaticDescriptorInitializer_RceUpdateAlliances_2eproto {
 
 // ===================================================================
 
+const ::std::string RceUpdateAlliances::_default_logo_;
+const ::std::string RceUpdateAlliances::_default_name_;
+const ::std::string RceUpdateAlliances::_default_description_;
+const ::std::string RceUpdateAlliances::_default_guid_;
 const ::std::string RceUpdateAlliances::_default_action_;
-const ::std::string RceUpdateAlliances::_default_clientcmd_;
+const ::std::string RceUpdateAlliances::_default_playerid_;
+const ::std::string RceUpdateAlliances::_default_adminid_;
+const ::std::string RceUpdateAlliances::_default_memberid_;
+const ::std::string RceUpdateAlliances::_default_searchkey_;
 #ifndef _MSC_VER
-const int RceUpdateAlliances::kParamsOkFieldNumber;
+const int RceUpdateAlliances::kLogoFieldNumber;
+const int RceUpdateAlliances::kNameFieldNumber;
+const int RceUpdateAlliances::kDescriptionFieldNumber;
+const int RceUpdateAlliances::kPublicRecruitFieldNumber;
+const int RceUpdateAlliances::kGuidFieldNumber;
+const int RceUpdateAlliances::kAllianceIdFieldNumber;
+const int RceUpdateAlliances::kLevelFieldNumber;
 const int RceUpdateAlliances::kActionFieldNumber;
 const int RceUpdateAlliances::kPlanetIdFieldNumber;
-const int RceUpdateAlliances::kClientCmdFieldNumber;
+const int RceUpdateAlliances::kTransactionFieldNumber;
+const int RceUpdateAlliances::kLimitFieldNumber;
+const int RceUpdateAlliances::kRoleFieldNumber;
+const int RceUpdateAlliances::kAttackScoreFieldNumber;
+const int RceUpdateAlliances::kWarScoreFieldNumber;
+const int RceUpdateAlliances::kPlayerIdFieldNumber;
+const int RceUpdateAlliances::kAdminIdFieldNumber;
+const int RceUpdateAlliances::kMemberIdFieldNumber;
+const int RceUpdateAlliances::kCountFieldNumber;
+const int RceUpdateAlliances::kFromFieldNumber;
+const int RceUpdateAlliances::kSearchKeyFieldNumber;
+const int RceUpdateAlliances::kUserPageFieldNumber;
+const int RceUpdateAlliances::kStartIndexFieldNumber;
+const int RceUpdateAlliances::kIncludemembersFieldNumber;
+const int RceUpdateAlliances::kRewardFieldNumber;
+const int RceUpdateAlliances::kAlliancesbattleswonFieldNumber;
+const int RceUpdateAlliances::kWarpointsFieldNumber;
+const int RceUpdateAlliances::kFromIndexFieldNumber;
 #endif  // !_MSC_VER
 
 RceUpdateAlliances::RceUpdateAlliances() {
@@ -106,6 +172,7 @@ RceUpdateAlliances::RceUpdateAlliances() {
 }
 
 void RceUpdateAlliances::InitAsDefaultInstance() {
+  transaction_ = const_cast< ::MsgTransaction*>(&::MsgTransaction::default_instance());
 }
 
 RceUpdateAlliances::RceUpdateAlliances(const RceUpdateAlliances& from) {
@@ -115,10 +182,33 @@ RceUpdateAlliances::RceUpdateAlliances(const RceUpdateAlliances& from) {
 
 void RceUpdateAlliances::SharedCtor() {
   _cached_size_ = 0;
-  paramsok_ = false;
+  logo_ = const_cast< ::std::string*>(&_default_logo_);
+  name_ = const_cast< ::std::string*>(&_default_name_);
+  description_ = const_cast< ::std::string*>(&_default_description_);
+  publicrecruit_ = 0;
+  guid_ = const_cast< ::std::string*>(&_default_guid_);
+  allianceid_ = 0;
+  level_ = 0;
   action_ = const_cast< ::std::string*>(&_default_action_);
   planetid_ = 0;
-  clientcmd_ = const_cast< ::std::string*>(&_default_clientcmd_);
+  transaction_ = NULL;
+  limit_ = 0;
+  role_ = 0;
+  attackscore_ = 0;
+  warscore_ = 0;
+  playerid_ = const_cast< ::std::string*>(&_default_playerid_);
+  adminid_ = const_cast< ::std::string*>(&_default_adminid_);
+  memberid_ = const_cast< ::std::string*>(&_default_memberid_);
+  count_ = 0;
+  from_ = 0;
+  searchkey_ = const_cast< ::std::string*>(&_default_searchkey_);
+  userpage_ = false;
+  startindex_ = 0;
+  includemembers_ = false;
+  reward_ = 0;
+  alliancesbattleswon_ = 0;
+  warpoints_ = 0;
+  fromindex_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -127,13 +217,35 @@ RceUpdateAlliances::~RceUpdateAlliances() {
 }
 
 void RceUpdateAlliances::SharedDtor() {
+  if (logo_ != &_default_logo_) {
+    delete logo_;
+  }
+  if (name_ != &_default_name_) {
+    delete name_;
+  }
+  if (description_ != &_default_description_) {
+    delete description_;
+  }
+  if (guid_ != &_default_guid_) {
+    delete guid_;
+  }
   if (action_ != &_default_action_) {
     delete action_;
   }
-  if (clientcmd_ != &_default_clientcmd_) {
-    delete clientcmd_;
+  if (playerid_ != &_default_playerid_) {
+    delete playerid_;
+  }
+  if (adminid_ != &_default_adminid_) {
+    delete adminid_;
+  }
+  if (memberid_ != &_default_memberid_) {
+    delete memberid_;
+  }
+  if (searchkey_ != &_default_searchkey_) {
+    delete searchkey_;
   }
   if (this != default_instance_) {
+    delete transaction_;
   }
 }
 
@@ -154,18 +266,77 @@ RceUpdateAlliances* RceUpdateAlliances::New() const {
 
 void RceUpdateAlliances::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    paramsok_ = false;
+    if (_has_bit(0)) {
+      if (logo_ != &_default_logo_) {
+        logo_->clear();
+      }
+    }
     if (_has_bit(1)) {
+      if (name_ != &_default_name_) {
+        name_->clear();
+      }
+    }
+    if (_has_bit(2)) {
+      if (description_ != &_default_description_) {
+        description_->clear();
+      }
+    }
+    publicrecruit_ = 0;
+    if (_has_bit(4)) {
+      if (guid_ != &_default_guid_) {
+        guid_->clear();
+      }
+    }
+    allianceid_ = 0;
+    level_ = 0;
+    if (_has_bit(7)) {
       if (action_ != &_default_action_) {
         action_->clear();
       }
     }
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
     planetid_ = 0;
-    if (_has_bit(3)) {
-      if (clientcmd_ != &_default_clientcmd_) {
-        clientcmd_->clear();
+    if (_has_bit(9)) {
+      if (transaction_ != NULL) transaction_->::MsgTransaction::Clear();
+    }
+    limit_ = 0;
+    role_ = 0;
+    attackscore_ = 0;
+    warscore_ = 0;
+    if (_has_bit(14)) {
+      if (playerid_ != &_default_playerid_) {
+        playerid_->clear();
       }
     }
+    if (_has_bit(15)) {
+      if (adminid_ != &_default_adminid_) {
+        adminid_->clear();
+      }
+    }
+  }
+  if (_has_bits_[16 / 32] & (0xffu << (16 % 32))) {
+    if (_has_bit(16)) {
+      if (memberid_ != &_default_memberid_) {
+        memberid_->clear();
+      }
+    }
+    count_ = 0;
+    from_ = 0;
+    if (_has_bit(19)) {
+      if (searchkey_ != &_default_searchkey_) {
+        searchkey_->clear();
+      }
+    }
+    userpage_ = false;
+    startindex_ = 0;
+    includemembers_ = false;
+    reward_ = 0;
+  }
+  if (_has_bits_[24 / 32] & (0xffu << (24 % 32))) {
+    alliancesbattleswon_ = 0;
+    warpoints_ = 0;
+    fromindex_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -177,21 +348,113 @@ bool RceUpdateAlliances::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bool paramsOk = 1;
+      // optional string logo = 1;
       case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_logo()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->logo().data(), this->logo().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(18)) goto parse_name;
+        break;
+      }
+      
+      // optional string name = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_name:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_name()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->name().data(), this->name().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(26)) goto parse_description;
+        break;
+      }
+      
+      // optional string description = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_description:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_description()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->description().data(), this->description().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(32)) goto parse_publicRecruit;
+        break;
+      }
+      
+      // optional int32 publicRecruit = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
         }
-        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
-              input, &paramsok_));
-        _set_bit(0);
-        if (input->ExpectTag(18)) goto parse_action;
+       parse_publicRecruit:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &publicrecruit_));
+        _set_bit(3);
+        if (input->ExpectTag(66)) goto parse_guid;
         break;
       }
       
-      // optional string action = 2;
-      case 2: {
+      // optional string guid = 8;
+      case 8: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_guid:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_guid()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->guid().data(), this->guid().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(72)) goto parse_allianceId;
+        break;
+      }
+      
+      // optional int32 allianceId = 9;
+      case 9: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_allianceId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &allianceid_));
+        _set_bit(5);
+        if (input->ExpectTag(80)) goto parse_level;
+        break;
+      }
+      
+      // optional int32 level = 10;
+      case 10: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_level:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &level_));
+        _set_bit(6);
+        if (input->ExpectTag(90)) goto parse_action;
+        break;
+      }
+      
+      // optional string action = 11;
+      case 11: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
@@ -202,12 +465,12 @@ bool RceUpdateAlliances::MergePartialFromCodedStream(
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
           this->action().data(), this->action().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
-        if (input->ExpectTag(24)) goto parse_planetId;
+        if (input->ExpectTag(96)) goto parse_planetId;
         break;
       }
       
-      // optional int32 planetId = 3;
-      case 3: {
+      // optional int32 planetId = 12;
+      case 12: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
           goto handle_uninterpreted;
@@ -215,23 +478,266 @@ bool RceUpdateAlliances::MergePartialFromCodedStream(
        parse_planetId:
         DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
               input, &planetid_));
-        _set_bit(2);
-        if (input->ExpectTag(34)) goto parse_clientCmd;
+        _set_bit(8);
+        if (input->ExpectTag(106)) goto parse_transaction;
         break;
       }
       
-      // optional string clientCmd = 4;
-      case 4: {
+      // optional .MsgTransaction transaction = 13;
+      case 13: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           goto handle_uninterpreted;
         }
-       parse_clientCmd:
+       parse_transaction:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+             input, mutable_transaction()));
+        if (input->ExpectTag(112)) goto parse_limit;
+        break;
+      }
+      
+      // optional int32 limit = 14;
+      case 14: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_limit:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &limit_));
+        _set_bit(10);
+        if (input->ExpectTag(120)) goto parse_role;
+        break;
+      }
+      
+      // optional int32 role = 15;
+      case 15: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_role:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &role_));
+        _set_bit(11);
+        if (input->ExpectTag(128)) goto parse_attackScore;
+        break;
+      }
+      
+      // optional int32 attackScore = 16;
+      case 16: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_attackScore:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &attackscore_));
+        _set_bit(12);
+        if (input->ExpectTag(136)) goto parse_warScore;
+        break;
+      }
+      
+      // optional int32 warScore = 17;
+      case 17: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_warScore:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &warscore_));
+        _set_bit(13);
+        if (input->ExpectTag(146)) goto parse_playerId;
+        break;
+      }
+      
+      // optional string playerId = 18;
+      case 18: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_playerId:
         DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-              input, this->mutable_clientcmd()));
+              input, this->mutable_playerid()));
         ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-          this->clientcmd().data(), this->clientcmd().length(),
+          this->playerid().data(), this->playerid().length(),
           ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(154)) goto parse_adminId;
+        break;
+      }
+      
+      // optional string adminId = 19;
+      case 19: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_adminId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_adminid()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->adminid().data(), this->adminid().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(162)) goto parse_memberId;
+        break;
+      }
+      
+      // optional string memberId = 20;
+      case 20: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_memberId:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_memberid()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->memberid().data(), this->memberid().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(168)) goto parse_count;
+        break;
+      }
+      
+      // optional int32 count = 21;
+      case 21: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_count:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &count_));
+        _set_bit(17);
+        if (input->ExpectTag(176)) goto parse_from;
+        break;
+      }
+      
+      // optional int32 from = 22;
+      case 22: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_from:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &from_));
+        _set_bit(18);
+        if (input->ExpectTag(186)) goto parse_searchKey;
+        break;
+      }
+      
+      // optional string searchKey = 23;
+      case 23: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+          goto handle_uninterpreted;
+        }
+       parse_searchKey:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+              input, this->mutable_searchkey()));
+        ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+          this->searchkey().data(), this->searchkey().length(),
+          ::google::protobuf::internal::WireFormat::PARSE);
+        if (input->ExpectTag(192)) goto parse_userPage;
+        break;
+      }
+      
+      // optional bool userPage = 24;
+      case 24: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_userPage:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
+              input, &userpage_));
+        _set_bit(20);
+        if (input->ExpectTag(200)) goto parse_startIndex;
+        break;
+      }
+      
+      // optional int32 startIndex = 25;
+      case 25: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_startIndex:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &startindex_));
+        _set_bit(21);
+        if (input->ExpectTag(208)) goto parse_includemembers;
+        break;
+      }
+      
+      // optional bool includemembers = 26;
+      case 26: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_includemembers:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadBool(
+              input, &includemembers_));
+        _set_bit(22);
+        if (input->ExpectTag(216)) goto parse_reward;
+        break;
+      }
+      
+      // optional int32 reward = 27;
+      case 27: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_reward:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &reward_));
+        _set_bit(23);
+        if (input->ExpectTag(224)) goto parse_alliancesbattleswon;
+        break;
+      }
+      
+      // optional int32 alliancesbattleswon = 28;
+      case 28: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_alliancesbattleswon:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &alliancesbattleswon_));
+        _set_bit(24);
+        if (input->ExpectTag(232)) goto parse_warpoints;
+        break;
+      }
+      
+      // optional int32 warpoints = 29;
+      case 29: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_warpoints:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &warpoints_));
+        _set_bit(25);
+        if (input->ExpectTag(240)) goto parse_fromIndex;
+        break;
+      }
+      
+      // optional int32 fromIndex = 30;
+      case 30: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) !=
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          goto handle_uninterpreted;
+        }
+       parse_fromIndex:
+        DO_(::google::protobuf::internal::WireFormatLite::ReadInt32(
+              input, &fromindex_));
+        _set_bit(26);
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -260,32 +766,176 @@ void RceUpdateAlliances::SerializeWithCachedSizes(
     return;
   }
   
-  // optional bool paramsOk = 1;
+  // optional string logo = 1;
   if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->paramsok(), output);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->logo().data(), this->logo().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->logo(), output);
   }
   
-  // optional string action = 2;
+  // optional string name = 2;
   if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      2, this->name(), output);
+  }
+  
+  // optional string description = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->description().data(), this->description().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      3, this->description(), output);
+  }
+  
+  // optional int32 publicRecruit = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->publicrecruit(), output);
+  }
+  
+  // optional string guid = 8;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->guid().data(), this->guid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      8, this->guid(), output);
+  }
+  
+  // optional int32 allianceId = 9;
+  if (_has_bit(5)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->allianceid(), output);
+  }
+  
+  // optional int32 level = 10;
+  if (_has_bit(6)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(10, this->level(), output);
+  }
+  
+  // optional string action = 11;
+  if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->action().data(), this->action().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->action(), output);
+      11, this->action(), output);
   }
   
-  // optional int32 planetId = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->planetid(), output);
+  // optional int32 planetId = 12;
+  if (_has_bit(8)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(12, this->planetid(), output);
   }
   
-  // optional string clientCmd = 4;
-  if (_has_bit(3)) {
+  // optional .MsgTransaction transaction = 13;
+  if (_has_bit(9)) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageNoVirtual(
+      13, this->transaction(), output);
+  }
+  
+  // optional int32 limit = 14;
+  if (_has_bit(10)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(14, this->limit(), output);
+  }
+  
+  // optional int32 role = 15;
+  if (_has_bit(11)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(15, this->role(), output);
+  }
+  
+  // optional int32 attackScore = 16;
+  if (_has_bit(12)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(16, this->attackscore(), output);
+  }
+  
+  // optional int32 warScore = 17;
+  if (_has_bit(13)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(17, this->warscore(), output);
+  }
+  
+  // optional string playerId = 18;
+  if (_has_bit(14)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->clientcmd().data(), this->clientcmd().length(),
+      this->playerid().data(), this->playerid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      4, this->clientcmd(), output);
+      18, this->playerid(), output);
+  }
+  
+  // optional string adminId = 19;
+  if (_has_bit(15)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->adminid().data(), this->adminid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      19, this->adminid(), output);
+  }
+  
+  // optional string memberId = 20;
+  if (_has_bit(16)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->memberid().data(), this->memberid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      20, this->memberid(), output);
+  }
+  
+  // optional int32 count = 21;
+  if (_has_bit(17)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(21, this->count(), output);
+  }
+  
+  // optional int32 from = 22;
+  if (_has_bit(18)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(22, this->from(), output);
+  }
+  
+  // optional string searchKey = 23;
+  if (_has_bit(19)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->searchkey().data(), this->searchkey().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      23, this->searchkey(), output);
+  }
+  
+  // optional bool userPage = 24;
+  if (_has_bit(20)) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(24, this->userpage(), output);
+  }
+  
+  // optional int32 startIndex = 25;
+  if (_has_bit(21)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(25, this->startindex(), output);
+  }
+  
+  // optional bool includemembers = 26;
+  if (_has_bit(22)) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(26, this->includemembers(), output);
+  }
+  
+  // optional int32 reward = 27;
+  if (_has_bit(23)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(27, this->reward(), output);
+  }
+  
+  // optional int32 alliancesbattleswon = 28;
+  if (_has_bit(24)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(28, this->alliancesbattleswon(), output);
+  }
+  
+  // optional int32 warpoints = 29;
+  if (_has_bit(25)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(29, this->warpoints(), output);
+  }
+  
+  // optional int32 fromIndex = 30;
+  if (_has_bit(26)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(30, this->fromindex(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -296,34 +946,186 @@ void RceUpdateAlliances::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* RceUpdateAlliances::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional bool paramsOk = 1;
+  // optional string logo = 1;
   if (_has_bit(0)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->paramsok(), target);
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->logo().data(), this->logo().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->logo(), target);
   }
   
-  // optional string action = 2;
+  // optional string name = 2;
   if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->name().data(), this->name().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->name(), target);
+  }
+  
+  // optional string description = 3;
+  if (_has_bit(2)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->description().data(), this->description().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->description(), target);
+  }
+  
+  // optional int32 publicRecruit = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->publicrecruit(), target);
+  }
+  
+  // optional string guid = 8;
+  if (_has_bit(4)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->guid().data(), this->guid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        8, this->guid(), target);
+  }
+  
+  // optional int32 allianceId = 9;
+  if (_has_bit(5)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->allianceid(), target);
+  }
+  
+  // optional int32 level = 10;
+  if (_has_bit(6)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(10, this->level(), target);
+  }
+  
+  // optional string action = 11;
+  if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->action().data(), this->action().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->action(), target);
+        11, this->action(), target);
   }
   
-  // optional int32 planetId = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->planetid(), target);
+  // optional int32 planetId = 12;
+  if (_has_bit(8)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(12, this->planetid(), target);
   }
   
-  // optional string clientCmd = 4;
-  if (_has_bit(3)) {
+  // optional .MsgTransaction transaction = 13;
+  if (_has_bit(9)) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        13, this->transaction(), target);
+  }
+  
+  // optional int32 limit = 14;
+  if (_has_bit(10)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(14, this->limit(), target);
+  }
+  
+  // optional int32 role = 15;
+  if (_has_bit(11)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(15, this->role(), target);
+  }
+  
+  // optional int32 attackScore = 16;
+  if (_has_bit(12)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(16, this->attackscore(), target);
+  }
+  
+  // optional int32 warScore = 17;
+  if (_has_bit(13)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(17, this->warscore(), target);
+  }
+  
+  // optional string playerId = 18;
+  if (_has_bit(14)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->clientcmd().data(), this->clientcmd().length(),
+      this->playerid().data(), this->playerid().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->clientcmd(), target);
+        18, this->playerid(), target);
+  }
+  
+  // optional string adminId = 19;
+  if (_has_bit(15)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->adminid().data(), this->adminid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        19, this->adminid(), target);
+  }
+  
+  // optional string memberId = 20;
+  if (_has_bit(16)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->memberid().data(), this->memberid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        20, this->memberid(), target);
+  }
+  
+  // optional int32 count = 21;
+  if (_has_bit(17)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(21, this->count(), target);
+  }
+  
+  // optional int32 from = 22;
+  if (_has_bit(18)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(22, this->from(), target);
+  }
+  
+  // optional string searchKey = 23;
+  if (_has_bit(19)) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->searchkey().data(), this->searchkey().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        23, this->searchkey(), target);
+  }
+  
+  // optional bool userPage = 24;
+  if (_has_bit(20)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(24, this->userpage(), target);
+  }
+  
+  // optional int32 startIndex = 25;
+  if (_has_bit(21)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(25, this->startindex(), target);
+  }
+  
+  // optional bool includemembers = 26;
+  if (_has_bit(22)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(26, this->includemembers(), target);
+  }
+  
+  // optional int32 reward = 27;
+  if (_has_bit(23)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(27, this->reward(), target);
+  }
+  
+  // optional int32 alliancesbattleswon = 28;
+  if (_has_bit(24)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(28, this->alliancesbattleswon(), target);
+  }
+  
+  // optional int32 warpoints = 29;
+  if (_has_bit(25)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(29, this->warpoints(), target);
+  }
+  
+  // optional int32 fromIndex = 30;
+  if (_has_bit(26)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(30, this->fromindex(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -337,30 +1139,195 @@ int RceUpdateAlliances::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional bool paramsOk = 1;
-    if (has_paramsok()) {
-      total_size += 1 + 1;
+    // optional string logo = 1;
+    if (has_logo()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->logo());
     }
     
-    // optional string action = 2;
+    // optional string name = 2;
+    if (has_name()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->name());
+    }
+    
+    // optional string description = 3;
+    if (has_description()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->description());
+    }
+    
+    // optional int32 publicRecruit = 4;
+    if (has_publicrecruit()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->publicrecruit());
+    }
+    
+    // optional string guid = 8;
+    if (has_guid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->guid());
+    }
+    
+    // optional int32 allianceId = 9;
+    if (has_allianceid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->allianceid());
+    }
+    
+    // optional int32 level = 10;
+    if (has_level()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->level());
+    }
+    
+    // optional string action = 11;
     if (has_action()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->action());
     }
     
-    // optional int32 planetId = 3;
+  }
+  if (_has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    // optional int32 planetId = 12;
     if (has_planetid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->planetid());
     }
     
-    // optional string clientCmd = 4;
-    if (has_clientcmd()) {
+    // optional .MsgTransaction transaction = 13;
+    if (has_transaction()) {
       total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->transaction());
+    }
+    
+    // optional int32 limit = 14;
+    if (has_limit()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->limit());
+    }
+    
+    // optional int32 role = 15;
+    if (has_role()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->role());
+    }
+    
+    // optional int32 attackScore = 16;
+    if (has_attackscore()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->attackscore());
+    }
+    
+    // optional int32 warScore = 17;
+    if (has_warscore()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->warscore());
+    }
+    
+    // optional string playerId = 18;
+    if (has_playerid()) {
+      total_size += 2 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->clientcmd());
+          this->playerid());
+    }
+    
+    // optional string adminId = 19;
+    if (has_adminid()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->adminid());
+    }
+    
+  }
+  if (_has_bits_[16 / 32] & (0xffu << (16 % 32))) {
+    // optional string memberId = 20;
+    if (has_memberid()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->memberid());
+    }
+    
+    // optional int32 count = 21;
+    if (has_count()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->count());
+    }
+    
+    // optional int32 from = 22;
+    if (has_from()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->from());
+    }
+    
+    // optional string searchKey = 23;
+    if (has_searchkey()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->searchkey());
+    }
+    
+    // optional bool userPage = 24;
+    if (has_userpage()) {
+      total_size += 2 + 1;
+    }
+    
+    // optional int32 startIndex = 25;
+    if (has_startindex()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->startindex());
+    }
+    
+    // optional bool includemembers = 26;
+    if (has_includemembers()) {
+      total_size += 2 + 1;
+    }
+    
+    // optional int32 reward = 27;
+    if (has_reward()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->reward());
+    }
+    
+  }
+  if (_has_bits_[24 / 32] & (0xffu << (24 % 32))) {
+    // optional int32 alliancesbattleswon = 28;
+    if (has_alliancesbattleswon()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->alliancesbattleswon());
+    }
+    
+    // optional int32 warpoints = 29;
+    if (has_warpoints()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->warpoints());
+    }
+    
+    // optional int32 fromIndex = 30;
+    if (has_fromindex()) {
+      total_size += 2 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->fromindex());
     }
     
   }
@@ -389,16 +1356,91 @@ void RceUpdateAlliances::MergeFrom(const RceUpdateAlliances& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from._has_bit(0)) {
-      set_paramsok(from.paramsok());
+      set_logo(from.logo());
     }
     if (from._has_bit(1)) {
-      set_action(from.action());
+      set_name(from.name());
     }
     if (from._has_bit(2)) {
-      set_planetid(from.planetid());
+      set_description(from.description());
     }
     if (from._has_bit(3)) {
-      set_clientcmd(from.clientcmd());
+      set_publicrecruit(from.publicrecruit());
+    }
+    if (from._has_bit(4)) {
+      set_guid(from.guid());
+    }
+    if (from._has_bit(5)) {
+      set_allianceid(from.allianceid());
+    }
+    if (from._has_bit(6)) {
+      set_level(from.level());
+    }
+    if (from._has_bit(7)) {
+      set_action(from.action());
+    }
+  }
+  if (from._has_bits_[8 / 32] & (0xffu << (8 % 32))) {
+    if (from._has_bit(8)) {
+      set_planetid(from.planetid());
+    }
+    if (from._has_bit(9)) {
+      mutable_transaction()->::MsgTransaction::MergeFrom(from.transaction());
+    }
+    if (from._has_bit(10)) {
+      set_limit(from.limit());
+    }
+    if (from._has_bit(11)) {
+      set_role(from.role());
+    }
+    if (from._has_bit(12)) {
+      set_attackscore(from.attackscore());
+    }
+    if (from._has_bit(13)) {
+      set_warscore(from.warscore());
+    }
+    if (from._has_bit(14)) {
+      set_playerid(from.playerid());
+    }
+    if (from._has_bit(15)) {
+      set_adminid(from.adminid());
+    }
+  }
+  if (from._has_bits_[16 / 32] & (0xffu << (16 % 32))) {
+    if (from._has_bit(16)) {
+      set_memberid(from.memberid());
+    }
+    if (from._has_bit(17)) {
+      set_count(from.count());
+    }
+    if (from._has_bit(18)) {
+      set_from(from.from());
+    }
+    if (from._has_bit(19)) {
+      set_searchkey(from.searchkey());
+    }
+    if (from._has_bit(20)) {
+      set_userpage(from.userpage());
+    }
+    if (from._has_bit(21)) {
+      set_startindex(from.startindex());
+    }
+    if (from._has_bit(22)) {
+      set_includemembers(from.includemembers());
+    }
+    if (from._has_bit(23)) {
+      set_reward(from.reward());
+    }
+  }
+  if (from._has_bits_[24 / 32] & (0xffu << (24 % 32))) {
+    if (from._has_bit(24)) {
+      set_alliancesbattleswon(from.alliancesbattleswon());
+    }
+    if (from._has_bit(25)) {
+      set_warpoints(from.warpoints());
+    }
+    if (from._has_bit(26)) {
+      set_fromindex(from.fromindex());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -423,10 +1465,33 @@ bool RceUpdateAlliances::IsInitialized() const {
 
 void RceUpdateAlliances::Swap(RceUpdateAlliances* other) {
   if (other != this) {
-    std::swap(paramsok_, other->paramsok_);
+    std::swap(logo_, other->logo_);
+    std::swap(name_, other->name_);
+    std::swap(description_, other->description_);
+    std::swap(publicrecruit_, other->publicrecruit_);
+    std::swap(guid_, other->guid_);
+    std::swap(allianceid_, other->allianceid_);
+    std::swap(level_, other->level_);
     std::swap(action_, other->action_);
     std::swap(planetid_, other->planetid_);
-    std::swap(clientcmd_, other->clientcmd_);
+    std::swap(transaction_, other->transaction_);
+    std::swap(limit_, other->limit_);
+    std::swap(role_, other->role_);
+    std::swap(attackscore_, other->attackscore_);
+    std::swap(warscore_, other->warscore_);
+    std::swap(playerid_, other->playerid_);
+    std::swap(adminid_, other->adminid_);
+    std::swap(memberid_, other->memberid_);
+    std::swap(count_, other->count_);
+    std::swap(from_, other->from_);
+    std::swap(searchkey_, other->searchkey_);
+    std::swap(userpage_, other->userpage_);
+    std::swap(startindex_, other->startindex_);
+    std::swap(includemembers_, other->includemembers_);
+    std::swap(reward_, other->reward_);
+    std::swap(alliancesbattleswon_, other->alliancesbattleswon_);
+    std::swap(warpoints_, other->warpoints_);
+    std::swap(fromindex_, other->fromindex_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

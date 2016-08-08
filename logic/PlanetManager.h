@@ -27,6 +27,7 @@ public:
 	DB_Item* CreateItem(CFG_InitItem *pItem);
 	bool DestroyItem(int nItemId);
 	DB_Item* GetItem(int nItemId);
+	DB_Item* GetItemBySid(int sid);
 	bool SetHQlevel(int nLvl);
 	int	GetHQLevel();
 
@@ -55,6 +56,7 @@ public:
 	DB_Item* CreateItem(int nPlanetId, CFG_InitItem *pCfgItem);
 	bool DestroyItem(int nPlanetId, int nItemId);
 	DB_Item* GetItem(int nPlanetId, int nItemId);
+	DB_Item* GetItemBySid(int nPlanetId, int sid);
 
 
 private:

@@ -11,7 +11,7 @@
 #include "GameHttpHandler.h"
 #include "../net/NetCache.h"
 #include "../event/EventQueue.h"
-//#include "event/DealAdminEvent.h"
+#include "event/DealAdminEvent.h"
 
 using namespace std;
 
@@ -59,7 +59,6 @@ void AdminHandler::invalid()
 
 void AdminHandler::handle(int64 uid, string &req)
 {
-#if 0
 	if (req[0]==(char)255) // process telnet commands
 	{
 		if (req[1]==(char)0xfb && req[2]==(char)0x22) // WILL LINEMODE
@@ -86,21 +85,21 @@ void AdminHandler::handle(int64 uid, string &req)
 			print(false, "bye");
 			nh->closeConnection(fd);
 		}
-		else if (checkCmd(cmd, "addcredit", tokens, 2))
+		else if (checkCmd(cmd, "addcash", tokens, 2))
 		{
 			int64 puid;
 			int credit;
 			if (safe_atoll(tokens[0].c_str(), puid) &&
 				safe_atoi(tokens[1].c_str(), credit))
 			{
-				DealAdminEvent::AddEvent_AddCredit(nh->eq, nid_, fd, puid, credit);
+				DealAdminEvent::AddEvent_AddCash(nh->eq, nid_, fd, puid, credit);
 			}
 			else
 			{
 				invalid();
 			}
 		}
-		
+#if 0
 		else if (checkCmd(cmd, "addhonor", tokens, 2))
 		{
 			int64 puid;
@@ -2257,6 +2256,7 @@ void AdminHandler::handle(int64 uid, string &req)
                 invalid();
             }
         }
+#endif
 		else
 		{
 			bPart_2 = false;
@@ -2266,5 +2266,4 @@ void AdminHandler::handle(int64 uid, string &req)
 			invalid();
 		}
 	}
-#endif
 }

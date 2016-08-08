@@ -10,6 +10,7 @@
 #include "../logic/InitItemTbl.h"
 #include "PlanetManager.h"
 #include "BattleManager.h"
+#include "SocialItemManager.h"
 
 using namespace std;
 
@@ -22,7 +23,7 @@ class Player
 public:
 	friend class User;
 
-	void		InitDB(DB_Player* pDBPlaper);
+	void		InitDB(DB_Player* pDBPlayer);
 	void		InitNewUserFromCfg();
 
 private:
@@ -51,6 +52,14 @@ public:
 	bool CheckDroids(DB_Planet *pPlanet, int workingCnt);
 	bool CostSocialItem(string sku, int cnt);
 	bool AddSocialItem(string sku, int cnt);
+	bool AddSocialItem(string sku, int cnt, int currentcount, int timeLeft);
+	bool AddItemToWishList(string sku);
+	bool RemoveItemFromWishList(string sku);
+	bool AddDroid(int nPlanetId);
+	bool SetLevel(int level);
+	bool SetFlag(string key ,int val);
+
+
 	DB_SocialItem* GetSocialItem(string sku);
 
 	int CreateBuilding(int nPlanetId, CFG_InitItem *pCfgItem);
@@ -65,7 +74,8 @@ public:
 	void RemoveSocialItem(string sku);
 	bool updateCoinsLimit(int slot);
 	bool updateMineralsLimit(int slot);
-
+	bool repairingStart(int nPlanetId, int sid, int ntime, int id);
+	bool repairingCompleted(int nPlanetId, int sid, int id);
 	DB_Planet* GetPlanet(int nPlanetId);
 	Planet* GetRealPlanet(int nPlanetId);
 	bool AddStarBookmark(int nStarId, int nStarType, int nStarName, int x, int y);
@@ -104,6 +114,8 @@ public:
 	void FillBattleLogAttackerInfo(GWG_BattleInfo *pBattleInfo);
 	void CopyUniverse();
 	void SetBattleType(int nType);
+	bool IsAttacked();
+	bool IsAttacking();
 
 private:
 	DB_Player*           m_pdbPlayer;
@@ -114,6 +126,7 @@ private:
 	BattleManager*		m_pBattleManager;
 	//variable
 	int					m_nCurrentPlanetId;
+	SocialItemManager*  m_pSocialManager;
 };
 
 inline User* Player::GetParent() const

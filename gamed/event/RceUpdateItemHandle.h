@@ -24,6 +24,8 @@ enum
 	RseUpdateItemRet_CancelBuildFailure = 7,
 	RseUpdateItemRet_CancelUpgradeFailure = 8,
 	RseUpdateItemRet_UpdateNewStateFailure = 9,
+	RseUpdateItemRet_RepairingStartFailure = 10,
+	RseUpdateItemRet_RepairingCompletedFailure = 11,
 };
 
 private:

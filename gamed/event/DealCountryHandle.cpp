@@ -21,6 +21,7 @@ void DealCountryHandle::createInstance(GameEventHandler* eh)
 	instance_->eh_ = eh;
 	eh->getEventHandler()->registHandler(EVENT_COUNTRY_LITE, (ProcessRoutine) DealCountryHandle::handle_);
 	eh->getEventHandler()->registHandler(C2S_RceQueryStarInfo, (ProcessRoutine) DealCountryHandle::handle_);
+	eh->getEventHandler()->registHandler(C2S_RceUpdateAlliances,(ProcessRoutine) DealCountryHandle::handle_);
 }
 
 void DealCountryHandle::handle(Event* e)
@@ -35,6 +36,11 @@ void DealCountryHandle::handle(Event* e)
 	case C2S_RceQueryStarInfo:
 		{
 			HandleQueyrStarInfo(e);
+		}
+		break;
+	case C2S_RceUpdateAlliances:
+		{
+			HandleUpdateAlliances(e);
 		}
 		break;
 	default:
@@ -65,6 +71,26 @@ void DealCountryHandle::HandleCountryLite(Event* e)
 		}
 	}
 #endif
+}
+
+void DealCountryHandle::HandleUpdateAlliances(Event *e)
+{
+	int64 uid = e->uid();
+	GameDataHandler* pUserManager = eh_->getDataHandler();
+	if(!pUserManager)
+	{
+		return;
+	}
+	User *pUser = pUserManager->getUser(uid);
+	if ( !pUser)
+	{
+		return;
+	}
+
+	RseQueryStarInfo rsp;
+	string text;
+	rsp.SerializeToString(&text);
+	eh_->sendDataToUser(pUser->fd(), S2C_RseUpdateAlliances,text);
 }
 
 void DealCountryHandle::HandleQueyrStarInfo(Event *e)

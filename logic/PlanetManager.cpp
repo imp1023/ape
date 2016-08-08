@@ -43,6 +43,11 @@ DB_Item* Planet::GetItem(int nItemId)
 	return m_pItemManager->GetItem(nItemId);
 }
 
+DB_Item* Planet::GetItemBySid(int sid)
+{
+	return m_pItemManager->GetItemBySid(sid);
+}
+
 bool Planet::SetHQlevel(int nLvl)
 {
 	if(nLvl < 0 || nLvl > MAX_HQ_LEVEL){
@@ -243,3 +248,12 @@ DB_Item* PlanetManager::GetItem(int nPlanetId, int nItemId)
 	return pPlanet->GetItem(nItemId);
 }
 
+DB_Item* PlanetManager::GetItemBySid(int nPlanetId, int sid)
+{
+	map<int, Planet*>::iterator iter = m_mPlanets.find(nPlanetId);
+	if(iter == m_mPlanets.end() || !iter->second){
+		return NULL;
+	}
+	Planet *pPlanet = iter->second;
+	return pPlanet->GetItemBySid(sid);
+}

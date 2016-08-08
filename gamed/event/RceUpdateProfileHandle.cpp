@@ -84,7 +84,8 @@ void RceUpdateProfileHandle::handle(Event* e)
 			}
 		}
 		
-		planet->set_droids(planet->droids() + 1 );
+		if(!pPlayer->AddDroid(planetId))
+			SendRet2User(pUser,RseUpdateProfileRet_Success,rse);
 		eh_->getDataHandler()->markUserDirty(pUser);
 		SendRet2User(pUser,RseUpdateProfileRet_Success,rse);
 	}
@@ -94,25 +95,13 @@ void RceUpdateProfileHandle::handle(Event* e)
 	}
 	else if(strAction == "levelUp")
 	{
-		DB_Model* model = pPlayer->GetDBPlayer()->mutable_model();
-		model->set_level(req->level());
+		pPlayer->SetLevel(req->level());
 		eh_->getDataHandler()->markUserDirty(pUser);
 		SendRet2User(pUser,RseUpdateProfileRet_Success,rse);
 	}
 	else if(strAction == "setFlag")
 	{
-		string key = req->key();
-		DB_Flag* pDBFlag = pPlayer->GetDBPlayer()->mutable_flag();
-		if("quality" == req->key())
-			pDBFlag->set_quality(req->value());
-		else if("music" == req->key())
-			pDBFlag->set_music(req->value());
-		else if("sound" == req->key())
-			pDBFlag->set_effect(req->value());
-		else
-		{
-
-		}
+		pPlayer->SetFlag(req->key(),req->value());
 		eh_->getDataHandler()->markUserDirty(pUser);
 		SendRet2User(pUser,RseUpdateProfileRet_Success,rse);
 		

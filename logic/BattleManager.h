@@ -53,15 +53,19 @@ struct TransactionBattle
 class Battle
 {
 public:
-	Battle(DB_BattleReplay *pbr);
+	Battle();
 	~Battle();
 
 	enum{
 		BATTLE_TYPE_UNKNOWN,
-		BATTLE_TYPE_PVP,
-		BATTLE_TYPE_PVE,
+		BATTLE_TYPE_PVP_ATTACK,
+		BATTLE_TYPE_PVP_DEFENSE,
+		BATTLE_TYPE_PVE_ATTACK,
+		BATTLE_TYPE_PVE_DEFENSE,
 		BATTLE_TYPE_NPC,
-		BATTLE_TYPE_ALLIANCE,
+		BATTLE_TYPE_ALLIANCE_ATTACK,
+		BATTLE_TYPE_ALLIANCE_DEFENSE,
+		BATTLE_TYPE_FINISHED,
 		BATTLE_TYPE_MAX
 	};
 
@@ -165,6 +169,7 @@ public:
 	Battle* GetBattle(){return m_pBattle;}
 	void CopyUniverse();
 	void SetBattleType(int nType);
+	int GetBattleType();
 
 private:
 	Player *m_pPlayer;

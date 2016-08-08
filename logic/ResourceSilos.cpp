@@ -85,25 +85,27 @@ CFG_ResourceSilos* ResourceSilosTbl::GetInfo(int nIndex)
 
 int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 {
-	if(HQlevel > 7)
-		HQlevel = 7;
+	if(HQlevel < INIT_PLAYER_HQLEVEL || HQlevel > MAX_HQ_LEVEL)
+		return 0;
 
 	if(sku >= SKU_d_001_013 && sku <= SKU_d_001_010)
 	{
 		return 4;//允许装饰品最大数量为4 后期补define
 	}
 
-	int lv = 1;
 	switch(sku)
 	{
 	case SKU_hangar_001_001:
 		{
-			CFG_Hangar* tbl =  HangarTblInst::instance().GetInfo(lv);
+			CFG_Hangar* tbl =  HangarTblInst::instance().GetInfo(MAX_NUM_COMMON_ID);
 			vector<string> vec;
 			static string delims = ",";
-			tokenize(tbl->maxNumPerHQLevel, vec, delims);
+			string maxNumPerHQLevel = tbl->maxNumPerHQLevel;
+			maxNumPerHQLevel.erase(0,1);
+			maxNumPerHQLevel.erase(maxNumPerHQLevel.size() - 1, 1);
+			tokenize(maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel], nlv);
+			safe_atoi(vec[HQlevel-1], nlv);
 			return nlv;
 		}
 	case SKU_labs_observatory:
@@ -112,46 +114,59 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 	case SKU_bunker_001_002:
 	case SKU_bunker_001_001:
 		{
-			CFG_Laboratory* tbl =  LaboratoryTblInst::instance().GetInfo(lv);
+			CFG_Laboratory* tbl =  LaboratoryTblInst::instance().GetInfo(MAX_NUM_COMMON_ID);
 			vector<string> vec;
 			static string delims = ",";
-			tokenize(tbl->maxNumPerHQLevel, vec, delims);
+			string maxNumPerHQLevel = tbl->maxNumPerHQLevel;
+			maxNumPerHQLevel.erase(0,1);
+			maxNumPerHQLevel.erase(maxNumPerHQLevel.size() - 1, 1);
+			tokenize(maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel], nlv);
+			safe_atoi(vec[HQlevel-1], nlv);
 			return nlv;
 		}
 	case SKU_rc_001_001:
 	case SKU_rm_001_001:
 		{
-			CFG_Resource* tbl =  ResourceTblInst::instance().GetInfo(lv);
+			CFG_Resource* tbl =  ResourceTblInst::instance().GetInfo(MAX_NUM_COMMON_ID);
 			vector<string> vec;
 			static string delims = ",";
-			tokenize(tbl->maxNumPerHQLevel, vec, delims);
+			string maxNumPerHQLevel = tbl->maxNumPerHQLevel;
+			maxNumPerHQLevel.erase(0,1);
+			maxNumPerHQLevel.erase(maxNumPerHQLevel.size() - 1, 1);
+
+			tokenize(maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel], nlv);
+			safe_atoi(vec[HQlevel-1], nlv);
 			return nlv;
 		}
 	case SKU_rs_001_001:
 	case SKU_rs_002_001:
 		{
-			CFG_ResourceSilos* tbl =  ResourceSilosTblInst::instance().GetInfo(lv);
+			CFG_ResourceSilos* tbl =  ResourceSilosTblInst::instance().GetInfo(MAX_NUM_COMMON_ID);
 			vector<string> vec;
 			static string delims = ",";
-			tokenize(tbl->maxNumPerHQLevel, vec, delims);
+			string maxNumPerHQLevel = tbl->maxNumPerHQLevel;
+			maxNumPerHQLevel.erase(0,1);
+			maxNumPerHQLevel.erase(maxNumPerHQLevel.size() - 1, 1);
+			tokenize(maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel], nlv);
+			safe_atoi(vec[HQlevel-1], nlv);
 			return nlv;
 		}
 	case SKU_barracks_001_001:
 	case SKU_mechas_001_001:
 	case SKU_shipyards_001_001:
 		{
-			CFG_Shipyard* tbl =  ShipyardTblInst::instance().GetInfo(lv);
+			CFG_Shipyard* tbl =  ShipyardTblInst::instance().GetInfo(MAX_NUM_COMMON_ID);
 			vector<string> vec;
 			static string delims = ",";
-			tokenize(tbl->maxNumPerHQLevel, vec, delims);
+			string maxNumPerHQLevel = tbl->maxNumPerHQLevel;
+			maxNumPerHQLevel.erase(0,1);
+			maxNumPerHQLevel.erase(maxNumPerHQLevel.size() - 1, 1);
+			tokenize(maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel], nlv);
+			safe_atoi(vec[HQlevel-1], nlv);
 			return nlv;
 		}
 	case SKU_df_001_004:
@@ -165,17 +180,21 @@ int ResourceSilosTbl::GetMaxNum(int sku, int HQlevel)
 	case SKU_df_001_008:
 	case SKU_df_001_009:
 		{
-			CFG_Defense* tbl =  DefenseTblInst::instance().GetInfo(lv);
+			CFG_Defense* tbl =  DefenseTblInst::instance().GetInfo(MAX_NUM_COMMON_ID);
 			vector<string> vec;
 			static string delims = ",";
-			tokenize(tbl->maxNumPerHQLevel, vec, delims);
+			string maxNumPerHQLevel = tbl->maxNumPerHQLevel;
+			maxNumPerHQLevel.erase(0,1);
+			maxNumPerHQLevel.erase(maxNumPerHQLevel.size() - 1, 1);
+			tokenize(maxNumPerHQLevel, vec, delims);
 			int nlv = 0;
-			safe_atoi(vec[HQlevel], nlv);
+			safe_atoi(vec[HQlevel-1], nlv);
 			return nlv;
 		}
 	}
 	return 0;
 }
+
 int ResourceSilosTbl::GetEnergy(int sku, int lv)
 {
 	int energy = 0;

@@ -207,20 +207,27 @@ class RseQueryPvE : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 ret() const;
   inline void set_ret(::google::protobuf::int32 value);
   
-  // repeated .MsgKeyValue pve = 2;
+  // optional int32 type = 2;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 2;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // repeated .MsgKeyValue pve = 3;
   inline int pve_size() const;
   inline void clear_pve();
-  static const int kPveFieldNumber = 2;
+  static const int kPveFieldNumber = 3;
   inline const ::google::protobuf::RepeatedPtrField< ::MsgKeyValue >& pve() const;
   inline ::google::protobuf::RepeatedPtrField< ::MsgKeyValue >* mutable_pve();
   inline const ::MsgKeyValue& pve(int index) const;
   inline ::MsgKeyValue* mutable_pve(int index);
   inline ::MsgKeyValue* add_pve();
   
-  // optional .MsgNpcJson npc = 3;
+  // optional .MsgNpcJson npc = 4;
   inline bool has_npc() const;
   inline void clear_npc();
-  static const int kNpcFieldNumber = 3;
+  static const int kNpcFieldNumber = 4;
   inline const ::MsgNpcJson& npc() const;
   inline ::MsgNpcJson* mutable_npc();
   
@@ -229,13 +236,14 @@ class RseQueryPvE : public ::google::protobuf::Message {
   mutable int _cached_size_;
   
   ::google::protobuf::int32 ret_;
+  ::google::protobuf::int32 type_;
   ::google::protobuf::RepeatedPtrField< ::MsgKeyValue > pve_;
   ::MsgNpcJson* npc_;
   friend void  protobuf_AddDesc_RseQueryPvE_2eproto();
   friend void protobuf_AssignDesc_RseQueryPvE_2eproto();
   friend void protobuf_ShutdownFile_RseQueryPvE_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -356,7 +364,23 @@ inline void RseQueryPvE::set_ret(::google::protobuf::int32 value) {
   ret_ = value;
 }
 
-// repeated .MsgKeyValue pve = 2;
+// optional int32 type = 2;
+inline bool RseQueryPvE::has_type() const {
+  return _has_bit(1);
+}
+inline void RseQueryPvE::clear_type() {
+  type_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 RseQueryPvE::type() const {
+  return type_;
+}
+inline void RseQueryPvE::set_type(::google::protobuf::int32 value) {
+  _set_bit(1);
+  type_ = value;
+}
+
+// repeated .MsgKeyValue pve = 3;
 inline int RseQueryPvE::pve_size() const {
   return pve_.size();
 }
@@ -381,19 +405,19 @@ inline ::MsgKeyValue* RseQueryPvE::add_pve() {
   return pve_.Add();
 }
 
-// optional .MsgNpcJson npc = 3;
+// optional .MsgNpcJson npc = 4;
 inline bool RseQueryPvE::has_npc() const {
-  return _has_bit(2);
+  return _has_bit(3);
 }
 inline void RseQueryPvE::clear_npc() {
   if (npc_ != NULL) npc_->::MsgNpcJson::Clear();
-  _clear_bit(2);
+  _clear_bit(3);
 }
 inline const ::MsgNpcJson& RseQueryPvE::npc() const {
   return npc_ != NULL ? *npc_ : *default_instance_->npc_;
 }
 inline ::MsgNpcJson* RseQueryPvE::mutable_npc() {
-  _set_bit(2);
+  _set_bit(3);
   if (npc_ == NULL) npc_ = new ::MsgNpcJson;
   return npc_;
 }

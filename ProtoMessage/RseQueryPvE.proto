@@ -12,8 +12,9 @@ message MsgNpcJson
 
 message RseQueryPvE
 {
-	optional int32 ret = 1; //1：找不到对应关卡 2：找不到对应npc 
-	repeated MsgKeyValue pve = 2;
-	optional MsgNpcJson npc = 3;
+	optional int32 ret = 1; //1：找不到对应关卡 2：找不到对应npc
+	optional int32 type = 2; 
+	repeated MsgKeyValue pve = 3;
+	optional MsgNpcJson npc = 4;
 }
 

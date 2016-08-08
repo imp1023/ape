@@ -31,18 +31,6 @@ public:
 	void sendEventToAllPlat(Event* e);
 	void sendEventToCountry(Event* e,int nRegion);
 	void sendEventToAllCountry(Event* e);
-// 	void sendEventToFight(Event *e,int nFightID);
-// 	void sendEventToAllFight(Event* e);
-// 	void sendEventToStar(Event* e,int nStarID);
-// 	void sendEventToAllStar(Event* e);
-// 	void sendEventToRegion(Event* e,int nRegion);
-// 	void sendEventToAllRegion(Event* e);
-// 	void sendEventToRank(Event* e,int nRegion);
-// 	void sendEventToAllRank(Event* e);
-// 	void sendEventToStat(Event* e,int nRegion);
-// 	void sendEventToAllStat(Event* e);
-
-	bool sendInfoToMonitor(int64 uid,const string& info);
 
 	void SendUserInfo(User* pUser);
     bool sendDataToUser(int fd, int type, const string &text,bool bUseRc4=true);
@@ -59,6 +47,10 @@ public:
 	int	 GetFightSrvID(int64 uid);
 
 	void SendCountryNumQuery();	//向国家服务器发送请求，获得国家人数
+
+	//battle
+	void PushEventAttackFalse(User* pUser);
+
 public:
 
     inline EventHandler* getEventHandler()

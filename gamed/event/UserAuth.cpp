@@ -70,7 +70,7 @@ void UserAuth::handle_CG_Req(Event* e)
 		eh_->getNetHandler()->SetRc4Keys(fd,user->GetRc4Send(),user->GetRc4Receive());
 	}
 
-	bool pass3 = true;//!(user->GetPlayer()->IsAttacked());
+	bool pass3 = !(user->GetPlayer()->IsAttacked());
 
 	DB_BanLogin* login = user->GetDBBanLogin();
 	int64 delay = time(NULL) - login->time();
@@ -97,9 +97,8 @@ void UserAuth::handle_CG_Req(Event* e)
         type = 5;
     }
 
+	if(!pass3){//被攻击中，再判断一次
 #if 0
-	if(!pass3)
-	{//被攻击中，再判断一次
 		BattleManager* pBtlMgr = user->GetBattleManager();
 		if(pBtlMgr)
 		{	
@@ -113,9 +112,9 @@ void UserAuth::handle_CG_Req(Event* e)
 				eh_->PushEventCheckAttack(nAtkID,user->GetUid());
 			}
 		}
+#endif
 		type = 3;
 	}
-#endif
 
 	bool pass = pass1 && pass2 && pass3;
 

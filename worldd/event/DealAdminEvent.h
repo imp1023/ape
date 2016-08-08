@@ -21,7 +21,7 @@ public:
 			((ProcessRoutine)DealAdminEvent::handle_));
 		eh->getEventHandler()->registHandler(EVENT_ADMIN_CANATTACK,
 			((ProcessRoutine)DealAdminEvent::handle_));
-		eh->getEventHandler()->registHandler(EVENT_ADMIN_ADDCREDIT,
+		eh->getEventHandler()->registHandler(EVENT_ADMIN_ADDCASH,
 			((ProcessRoutine)DealAdminEvent::handle_));
 		eh->getEventHandler()->registHandler(EVENT_ADMIN_OPT,
 			((ProcessRoutine)DealAdminEvent::handle_));

@@ -112,15 +112,10 @@ void UserLogin::HandleUserLogout(Event* e)
             {
                 return;
             }
-// 			if(!pUser->GetPlayer()->HasSendInfo2Star())
-// 			{
-// 				eh_->SendUserInfo2Star(pUser);
-// 			}
-
-
             WG_UserLeave* pUserLeave = e->mutable_wg_userleave();
             if (pUserLeave->fd() != pUser->fd())
                 return;
+
             pUser->setOnline(false);
 //			pUser->OnUserOnOffLine();
 			dh->PopOnlineUserID(pUser->GetUid());
@@ -129,19 +124,9 @@ void UserLogin::HandleUserLogout(Event* e)
 			//pUser->SetFriendCache(pUser->GetPlattype(), dh);
 //			pUser->SetGameStarCache(pUser->GetPlattype(),dh,true);
 			
-// 			BattleManager* pBtlMgr = pUser->GetBattleManager();
-// 			if(pBtlMgr)
-// 			{
-// 				if(pBtlMgr->IsAttacking())
-// 				{//正在攻击别人
-// 					eh_->PushEventAttackFalse(pUser,pBtlMgr->GetAtkBtlType());
-// 				}
-// 
-// 				if(pBtlMgr->BtlIsDefenseNpc())
-// 				{
-// 					eh_->PushEventDefenseNpcFalse(pUser);
-// 				}
-// 			}
+			if(pUser->GetPlayer()->IsAttacking()){
+				eh_->PushEventAttackFalse(pUser);
+			}
 
 			pUser->setFd(0);
            

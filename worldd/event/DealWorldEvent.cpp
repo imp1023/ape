@@ -25,6 +25,7 @@ void DealWorldEvent::registHandler()
 	eh_->getEventHandler()->registHandler(EVENT_GWG_FRIEND_REQUEST, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(EVETN_GWG_GAMESTAR_REQUEST, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(EVENT_UPDATE_FRIEND_CACHE, ((ProcessRoutine) DealWorldEvent::handle_));
+	eh_->getEventHandler()->registHandler(EVENT_ADMIN_ADDCASH, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(C2S_RceObtainUniverse, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(C2S_RceFinished, ((ProcessRoutine) DealWorldEvent::handle_));
 	eh_->getEventHandler()->registHandler(C2S_RceBattleDamagesPack, ((ProcessRoutine) DealWorldEvent::handle_));

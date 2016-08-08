@@ -17,4 +17,5 @@ private:
 	void HandleNewPlayerLogin(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
 	void HandleQueryStarInfo(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
 	void HandleQueryGalaxyWindow(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
+	void HandleUpdateAlliances(Event* e, CountryRgnDatHandler *pRDH, int nGameID);
 };

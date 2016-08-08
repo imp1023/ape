@@ -69,6 +69,18 @@ void RceFinishedHandle::handle_selfload(Event* e)
 		return;
 	}
 
+	pBattle->SetBattleType(Battle::BATTLE_TYPE_FINISHED);
+
+	if(pBattle->GetBattleType() == Battle::BATTLE_TYPE_PVE_ATTACK ||
+		pBattle->GetBattleType() == Battle::BATTLE_TYPE_PVE_DEFENSE ||
+		pBattle->GetBattleType() == Battle::BATTLE_TYPE_NPC){
+		RseFinished rsp;
+		string text;
+		rsp.SerializeToString(&text);
+		eh_->sendDataToUser(pUser->fd(), S2C_RseFinished, text);
+		return;
+	}
+
 	LoadStatus state = LOAD_INVALID;
 	int64 TID = pBattle->GetTargetUId();
 	User *pTUser = pUserManager->getUser(TID, &state, true);
@@ -88,6 +100,7 @@ void RceFinishedHandle::handle_selfload(Event* e)
 	}
 	else
 	{
+		pTUser->GetPlayer()->SetBattleType(Battle::BATTLE_TYPE_FINISHED);
 		RseFinished rsp;
 		string text;
 		rsp.SerializeToString(&text);
@@ -115,6 +128,7 @@ void RceFinishedHandle::handle_romateload(Event* e)
 		return;
 	}
 
+	pTUser->GetPlayer()->SetBattleType(Battle::BATTLE_TYPE_FINISHED);
 	e->set_state(Status_Normal_Back_World);
 	eh_->sendEventToWorld(e);
 }

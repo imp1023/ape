@@ -42,11 +42,12 @@ void RceQueryPvEHandle::handle(Event* e)
 	if(!e->has_ce_rcequerypve()){
 		return;
 	}
-	RceQueryPvE *pReq = e->mutable_ce_rcequerypve();
+	RceQueryPvE *req = e->mutable_ce_rcequerypve();
 	RseQueryPvE rsp;
 	rsp.set_ret(0);
+	rsp.set_type(req->type());
 
-	switch (pReq->type())
+	switch (req->type())
 	{
 	case QUERY_PVE_LITE:
 		{
@@ -55,7 +56,7 @@ void RceQueryPvEHandle::handle(Event* e)
 		break;
 	case QUERY_PVE_NPC:
 		{
-			const NPCPveBattleTbl *pPvECfg = NPCInfoCfg::Instance().GetNPCPveBattleTbl(pReq->pass());
+			const NPCPveBattleTbl *pPvECfg = NPCInfoCfg::Instance().GetNPCPveBattleTbl(req->pass());
 			if(!pPvECfg){
 				rsp.set_ret(QUERY_PVE_ERR_CANT_FIND_PASS);
 				break;
@@ -99,6 +100,7 @@ void RceQueryPvEHandle::handle(Event* e)
 		break;
 	}
 
+	rsp.set_type(req->type());
 	string text;
 	rsp.SerializeToString(&text);
 	eh_->sendDataToUser(pUser->fd(), S2C_RseQueryPvE, text);

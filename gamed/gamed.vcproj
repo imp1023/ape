@@ -385,6 +385,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\logic\SocialItemManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\logic\SocialItemManager.h"
+					>
+				</File>
+				<File
 					RelativePath="..\logic\User.cpp"
 					>
 				</File>
@@ -570,6 +578,14 @@
 				</File>
 				<File
 					RelativePath=".\event\BaseEvent.h"
+					>
+				</File>
+				<File
+					RelativePath=".\event\DealAdminEvent.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\event\DealAdminEvent.h"
 					>
 				</File>
 				<File

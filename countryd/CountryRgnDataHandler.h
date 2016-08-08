@@ -15,6 +15,7 @@
 #include "../common/Rand.h"
 #include "countryDB.pb.h"
 #include "../event/RseQueryStarInfo.pb.h"
+#include "../event/RseUpdateAlliances.pb.h"
 
 using namespace std;
 #ifndef WIN32
@@ -49,6 +50,15 @@ namespace __gnu_cxx
 #include <hash_map>
 using namespace stdext;
 #endif
+
+typedef struct{
+	string id;
+	string pictureUrl;
+	string name;
+	int score;
+	string role;
+	int currentWarScore;
+}Members;
 
 class CUser
 {
@@ -169,11 +179,42 @@ public:
 	int			GetCityKey(int nCityID){return (m_nRegion*MAX_CITY_ID + nCityID);}
 	CUser*		GetUser(int uid);
 
+public://ÁªÃËÏà¹Ø  hansoul
+	DB_C_Alliance* GetAlliance(int aid);
+	DB_C_Alliance* GetAllianceByPlayer(int64 playerId);
+	int CreateAlliance(string name, string logo, string description, int publicRecruit, string guid, Members* mb);
+	bool editAlliance(int allianceId, string logo, string description,RseUpdateAlliances* rseUpdateAlliances);
+	bool updatePublic(int allianceId, int publicRecruit,RseUpdateAlliances* rseUpdateAlliances);
+	bool getMyAlliance(int allianceId, int attackScore, int warScore, int role, int64 playerId, RseUpdateAlliances* rseUpdateAlliances);
+	bool joinAlliance(int allianceId, int64 guid, int level,string name, string pictureUrl, int score,RseUpdateAlliances* rseUpdateAlliances);
+	bool refuseJoinAlliance(int allianceId, int64 playerId, int64 guid, RseUpdateAlliances* rseUpdateAlliances);
+	bool agreeJoinAlliance(int allianceId, int64 playerId ,int64 guid ,RseUpdateAlliances* rseUpdateAlliances);
+	bool leaveAlliance(int allianceId,int64 guid ,RseUpdateAlliances* rseUpdateAlliances);
+	bool kickMember(int64 adminId, int64 memberId, RseUpdateAlliances* rseUpdateAlliances);
+	bool warHistory(int allianceId, int count, int startIndex, RseUpdateAlliances*  rseUpdateAlliances);
+	bool declareWar(int64 guid, int enemyAllianceId, RseUpdateAlliances*  rseUpdateAlliances);
+	bool sendMessage(RseUpdateAlliances*  rseUpdateAlliances);
+	bool getNews(int64 guid, int count, int fromIndex, RseUpdateAlliances*  rseUpdateAlliances);
+	bool getReward(int64 guid, int alliancesBattlesWon,int warPoints, RseUpdateAlliances*  rseUpdateAlliances);
+	bool getSuggestedAlliances(int count,RseUpdateAlliances* rseUpdateAlliances);
+	bool getAlliances(int64 guid, int count, int from, bool userPage, string searchKey, RseUpdateAlliances* rseUpdateAlliances);
+	bool getAlliance(int allianceId, int64 guid, bool includeMembers, RseUpdateAlliances* rseUpdateAlliances);
+	bool grantMember(int64 memberId, int role, RseUpdateAlliances* rseUpdateAlliances);
+	bool getAlliancesNotInWar(int64 guid, int count, int from, bool userPage, string searchKey, RseUpdateAlliances* rseUpdateAlliances);
+	bool CheckAlnName(string name);
+	void FillinAln(int alnId, RseUpdateAlliances* rse, bool includeMembers = true);
+	DB_C_AliMember*	GetAllianceMember(int allianceId, int64 playerId);
+	void DisMissAlliance(int allianceId);
+	void RemoveMember(int allianceId, int64 playerId);
+	bool CheckAlnInWar(int allianceId);
+	void FillNews(DB_C_AllianceNews* pNews, RseUpdateAlliances*  rseUpdateAlliances);
 private:
 	CountryDataHandler* m_pDH;
 	CCountry*			m_pCountry;
 	int					m_nRegion;
 	map<int, CCity*>	m_mapCitys;
 	map<int, CUser*>    m_mapUsers;
+	map<int, DB_C_Alliance*> m_mapAlliances;
+	vector<DB_C_Alliance*> m_allianceByRank;
 	int m_MaxCityID;
 };

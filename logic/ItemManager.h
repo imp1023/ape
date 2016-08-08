@@ -20,6 +20,7 @@ public:
 	void Clear();
 
 	DB_Item* GetItem(int nItemId);
+	DB_Item* GetItemBySid(int sid);
 	DB_Item* CreateItem(MsgBuildingItem *pItem);
 	DB_Item* CreateItem(CFG_InitItem *pCfgItem);
 	bool	 DestroyItem(int nItemId);
@@ -27,6 +28,7 @@ public:
 
 private:
 	map<int, DB_Item*> m_mDBItems;
+	map<int, DB_Item*> m_mDBItemsSid;
 	DB_Planet* m_pDBPlanet;
 	int	m_nMaxItemId;
 };

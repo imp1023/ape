@@ -167,6 +167,11 @@ int User::GetUserExp(void) const
 {
 	return m_dbUser.player().model().exp();
 }
+int User::GetUserScore(void) const
+{
+	return m_dbUser.player().model().score();
+}
+
 
 int User::GetUserTotalExp(void) const
 {
@@ -329,6 +334,18 @@ void User::Logon(GameDataHandler* dh)
 		m_pPlayer->GetPlanet(1)->set_minerallimit(9999999999);
 	}
 	//m_UpdateSaveTime = 0;
+}
+
+string User::GetName(PLAT_TYPE nPlatType) const 
+{
+	if (nPlatType >= 0 && nPlatType < PLAT_TYPE_MAX)
+	{
+		return m_dbUser.name(nPlatType);
+	}
+	else
+	{
+		return m_dbUser.name(0);
+	}
 }
 
 void User::AddOnlineTime(time_t ltNow)

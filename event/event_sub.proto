@@ -230,3 +230,36 @@ message GWG_BattleInfo
     optional int32 planetId = 6;
     repeated GWG_GameUnit gameUnits = 7;
 }
+
+//Admin
+message Admin_AddCash_Req {
+		required int64 uid =1;
+		optional string platid = 2;
+		required int32 cash = 3;
+		required int32 gid = 4 [default = 0];
+		required int32 adminfd = 5;
+		required int32   type = 6[default = 0];	//0：管理员加勋章，1：web购买勋章	,31:web购买Q点或金券
+		optional string sid = 7 ;
+		optional bool   fromweb = 9 [default = false];
+		optional bool   istxcross = 10 [default = false];
+		optional int32 nChannel = 11 [default = 0];			//渠道,0为默认q点，1：yeepay渠道
+		optional string orderid = 12;
+		optional int32 nPrepayFlag = 13[default = 0];		//预付标记 0为非预付渠道，1为预付 2为付款成功
+}
+
+message Admin_AddCash_Rsp {
+		required int64 uid =1;
+		optional string platid = 2;		
+		required int64 oldcash = 3;
+		required int64 newcash = 4;
+		required int32 gid = 5;
+		required int32 adminfd = 6;
+		required int32 type = 7[default = 0];	//0：管理员加勋章，1：web购买勋章	
+		optional string  sid = 8;
+		optional bool fromweb = 9 [default = false];
+		optional bool istxcross = 10 [default = false];
+		optional int32 nChannel = 11 [default = 0];			//渠道,0为默认q点，1：yeepay渠道
+		optional string orderid = 12;
+		optional int32 nPrepayFlag = 13[default = 0];		//预付标记 0为非预付渠道，1为预付 2为付款成功
+		optional bool bSuc = 14[default = false];
+}

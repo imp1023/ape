@@ -9,7 +9,7 @@ message RceUpdateItem
 	optional int32 sid = 1;
 	optional int32 time = 2;
 	optional MsgTransaction transaction = 3;
-	optional MsgBuildingItem item = 4;
+	repeated MsgBuildingItem item = 4;
 	optional int32 oldState = 5;
 	optional int32 id = 6;
 	optional int32 planetId = 7;

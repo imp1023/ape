@@ -110,9 +110,10 @@ void RceObtainUniverseHandle::handle_selfload(Event* e)
 		return;
 	}
 
+	Player *pTPlayer = pTUser->GetPlayer();
 	int nPlanetId = pReq->planetid();
 	RseObtainUniverse rse;
-	pTUser->GetPlayer()->FillinUniverse(&rse, nPlanetId);
+	pTPlayer->FillinUniverse(&rse, nPlanetId);
 	string text;
 	rse.SerializeToString(&text);
 	eh_->sendDataToUser(pUser->fd(), S2C_RseObtainUniverse,text);
@@ -124,12 +125,13 @@ void RceObtainUniverseHandle::handle_selfload(Event* e)
 	if(pReq->attack()){
 		time_t nTime = time(NULL);
 		pPlayer->BeginBattle(uid, pPlayer->GetCurPlanetId(), TID, nPlanetId, nTime);
-		pPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP);
-		pTUser->GetPlayer()->BeginBattle(uid, pPlayer->GetCurPlanetId(), TID, nPlanetId, nTime);
+		pPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP_ATTACK);
 		GWG_BattleInfo info;
 		pPlayer->GetGWGBattleInfo(&info);
-		pTUser->GetPlayer()->FillBattleLogAttackerInfo(&info);
-		pTUser->GetPlayer()->CopyUniverse();
+		pTPlayer->BeginBattle(uid, pPlayer->GetCurPlanetId(), TID, nPlanetId, nTime);
+		pTPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP_DEFENSE);
+		pTPlayer->FillBattleLogAttackerInfo(&info);
+		pTPlayer->CopyUniverse();
 		pUserManager->markUserDirty(pTUser);
 	}
 }
@@ -165,7 +167,7 @@ void RceObtainUniverseHandle::handle_romateload(Event* e)
 	if(pReq->attack()){
 		GWG_BattleInfo *pInf = e->mutable_battleinfo();
 		pTPlayer->BeginBattle(pInf->accountid(), pInf->planetid(), TID, pReq->planetid(), pInf->time());
-		pTPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP);
+		pTPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP_DEFENSE);
 		pTPlayer->FillBattleLogAttackerInfo(pInf);
 		pTPlayer->CopyUniverse();
 		pUserManager->markUserDirty(pTUser);
@@ -206,6 +208,6 @@ void RceObtainUniverseHandle::handle_romatereturn(Event* e)
 		int64 TID = 0;
 		safe_atoll(targetAccountId, TID);
 		pPlayer->BeginBattle(uid, pPlayer->GetCurPlanetId(), TID, pReq->planetid(), e->mutable_battleinfo()->time());
-		pPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP);
+		pPlayer->SetBattleType(Battle::BATTLE_TYPE_PVP_ATTACK);
 	}
 }

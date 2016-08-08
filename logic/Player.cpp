@@ -39,6 +39,7 @@ Player::Player(User* pParent)//:m_rPVEFightManager(this),m_rCountryArenaMgr(),m_
 	m_nCurrentPlanetId = ID_CAPITAL_PLANET;
 	m_pPlanetManager = new PlanetManager(this);
 	m_pBattleManager = new BattleManager(this);
+	m_pSocialManager = new SocialItemManager();
 
 #if 0
 	m_bHasSendInfoToStar = false;
@@ -84,10 +85,11 @@ void Player::SetEventHandler(GameEventHandler* eh)
     eh_ = eh;
 }
 
-void Player::InitDB(DB_Player* pDBPlaper)
+void Player::InitDB(DB_Player* pDBPlayer)
 {
-	m_pdbPlayer = pDBPlaper;
-	m_pPlanetManager->InitDB(pDBPlaper);
+	m_pdbPlayer = pDBPlayer;
+	m_pPlanetManager->InitDB(pDBPlayer);
+	m_pSocialManager->InitDB(pDBPlayer);
 
 #if 0
 	//判断合服
@@ -227,7 +229,7 @@ void Player::InitPlayerModel()
 
 void Player::InitPlayerState()
 {
-	m_pdbPlayer->mutable_state()->set_tutorialcompleted(1);
+	m_pdbPlayer->mutable_state()->set_tutorialcompleted(0);
 	m_pdbPlayer->mutable_state()->set_dmgprotectiontimeleft(time(NULL));
 	m_pdbPlayer->mutable_state()->set_dmgprotectiontimetotal(INIT_PLAYER_DMGPROTECTIONTIMETOTAL);
 }
@@ -513,19 +515,7 @@ int Player::GetRes(UserSource emType)
 
 void Player::RemoveSocialItem(string sku)
 {
-	for(int i = 0;i<m_pdbPlayer->socialitems_size();i++)
-	{
-		DB_SocialItem* pDBTmp= m_pdbPlayer->mutable_socialitems(i);
-		if(pDBTmp->sku() == sku)
-		{
-			DB_SocialItem* pDBWI_last = m_pdbPlayer->mutable_socialitems(m_pdbPlayer->socialitems_size() - 1);
-			if(pDBWI_last && pDBWI_last != pDBTmp)
-			{
-				pDBWI_last->Swap(pDBTmp);
-			}
-			m_pdbPlayer->mutable_socialitems()->RemoveLast();
-		}
-	}
+	m_pSocialManager->RemoveSocialItem(sku);
 	eh_->getDataHandler()->markUserDirty(m_pUser);
 }
 
@@ -562,49 +552,54 @@ bool Player::CheckDroids(DB_Planet *pPlanet, int workingCnt)
 
 bool Player::CostSocialItem(string sku, int cnt)
 {
-	DB_SocialItem *pDbSocialItem = NULL;
-	for (int i = 0; i < m_pdbPlayer->socialitems_size(); i++){
-		DB_SocialItem *pTmp = m_pdbPlayer->mutable_socialitems(i);
-		if(pTmp && pTmp->sku() == sku){
-			pDbSocialItem = pTmp;
-			break;
-		}
-	}
-	if(!pDbSocialItem || pDbSocialItem->amount() < cnt){
-		return false;
-	}
-	pDbSocialItem->set_amount(pDbSocialItem->amount() - cnt);
-	return true;
+	return m_pSocialManager->CostSocialItem(sku, cnt);
 }
 
 bool Player::AddSocialItem(string sku, int cnt)
 {
-	DB_SocialItem *pDbSocialItem = NULL;
-	for (int i = 0; i < m_pdbPlayer->socialitems_size(); i++){
-		DB_SocialItem *pTmp = m_pdbPlayer->mutable_socialitems(i);
-		if(pTmp && pTmp->sku() == sku){
-			pDbSocialItem = pTmp;
-			break;
+	return m_pSocialManager->AddSocialItem(sku, cnt);
+}
+
+bool Player::AddSocialItem(string sku, int cnt, int currentcount, int timeLeft)
+{
+	return m_pSocialManager->AddSocialItem(sku, cnt, currentcount, timeLeft);
+}
+
+bool Player::AddItemToWishList(string sku)
+{
+	DB_WishItemList* pDBWIL = m_pdbPlayer->mutable_wishitemlist();
+	DB_WishItem* pDBWI = NULL;
+	for(int i = 0;i<pDBWIL->wishitem_size();i++)
+	{
+		DB_WishItem* pDBTmp= pDBWIL->mutable_wishitem(i);
+		if(pDBTmp->sku() == "")
+			pDBWI = pDBTmp;
+	}
+	if(!pDBWI)
+	{
+		pDBWI = pDBWIL->add_wishitem();
+	}
+	pDBWI->set_sku(sku);
+	return true;
+}
+
+bool Player::RemoveItemFromWishList(string sku)
+{
+	DB_WishItemList* pDBWIL = m_pdbPlayer->mutable_wishitemlist();
+	for(int i = 0;i<pDBWIL->wishitem_size();i++)
+	{
+		DB_WishItem* pDBTmp= pDBWIL->mutable_wishitem(i);
+		if(pDBTmp->sku() == sku)
+		{
+			pDBTmp->set_sku("");
 		}
 	}
-	if(!pDbSocialItem){
-		pDbSocialItem = m_pdbPlayer->add_socialitems();
-		pDbSocialItem->set_sku(sku);
-	}
-	pDbSocialItem->set_amount(pDbSocialItem->amount() + cnt);
 	return true;
 }
 
 DB_SocialItem* Player::GetSocialItem(string sku)
 {
-	DB_SocialItem *pDbSocialItem = NULL;
-	for (int i = 0; i < m_pdbPlayer->socialitems_size(); i++){
-		DB_SocialItem *pTmp = m_pdbPlayer->mutable_socialitems(i);
-		if(pTmp && pTmp->sku() == sku){
-			return pTmp;
-		}
-	}
-	return NULL;
+	return m_pSocialManager->GetSocialItem(sku);
 }
 
 DB_Item * Player::CreateBuilding(int nPlanetId, MsgBuildingItem *pItem)
@@ -709,7 +704,9 @@ bool Player::DestroyBuilding(int nPlanetId, int id, int sid)
 	}
 	DB_Item *pItem = m_pPlanetManager->GetItem(nPlanetId, id);
 	if(!pItem){
-		return false;
+		pItem = m_pPlanetManager->GetItemBySid(nPlanetId, sid);
+		if(!pItem)
+			return false;
 	}
 	int nType = pItem->type();
 	string sku = pItem->sku();
@@ -933,15 +930,9 @@ bool Player::updateNewState(int nPlanetId,int newState, int oldState,int id, int
 	DB_Item *pDBItem = pPlanet->GetItem(id);
 	if(!pDBItem)
 	{
-		for(int i = 0; i< pDBPlanet->items_size();i++)
-		{
-			DB_Item* pDBItem_sid= pDBPlanet->mutable_items(i);
-			if(pDBItem_sid->sid() == sid)
-			{
-				pDBItem = pDBItem_sid;
-			}
-		}
-		
+		pDBItem = pPlanet->GetItemBySid(sid);
+		if(!pDBItem)
+			return false;
 	}
 	if(!pDBItem)
 		return false;
@@ -1183,7 +1174,7 @@ void Player::FillinItem(RseObtainUniverse *rse, int nPlanetId)
 			pMsgItem->set_x(pDBItem->x());
 			pMsgItem->set_state(pDBItem->state());
 			pMsgItem->set_energy(pDBItem->energy());
-			pMsgItem->set_energypercent(pDBItem->energypercent());
+			pMsgItem->set_energypercent(0);
 			pMsgItem->set_sku(pDBItem->sku());
 			pMsgItem->set_incometorestore(pDBItem->incometorestore());
 			pMsgItem->set_repairing(pDBItem->repairing());
@@ -1208,6 +1199,31 @@ void Player::FillinItem(RseObtainUniverse *rse, int nPlanetId)
 				if(ntime < 0)
 					ntime = 0;
 				pMsgItem->set_time(ntime);
+			}
+			if(pDBItem->repairing() == 1)
+			{
+				int ntime = pDBItem->time() - (time(NULL) - pDBItem->repairstart()) * 1000;
+				int oldEnergy = pDBItem->energy();
+				int sku = SkuIDTblInst::instance().GetSku(pDBItem->sku());
+				int maxEnergy = ResourceSilosTblInst::instance().GetEnergy(sku, pDBItem->upgradeid() + 1);
+				double tmp = (time(NULL) - pDBItem->repairstart()) * 1000.0 / (1.0 * pDBItem->time());
+				double energy = (maxEnergy - oldEnergy) * tmp + oldEnergy * 1.0;
+				pMsgItem->set_energy((int)energy);
+				if(ntime < 0)
+				{
+					ntime = 0;
+					repairingCompleted(nPlanetId, pDBItem->sid(), pDBItem->id());
+					pMsgItem->set_energy(pDBItem->energy());
+					pMsgItem->set_energypercent(pDBItem->energypercent());
+					pMsgItem->set_repairing(0);
+					pMsgItem->set_time(pDBItem->time());
+
+				}
+				else
+				{	
+					pMsgItem->set_time(ntime);
+				}
+				
 			}
 				
 			pMsgItem->set_updatedat(pDBItem->updateat());
@@ -1391,7 +1407,7 @@ void Player::FillinUniverse(RseObtainUniverse *rse, int nPlanetID)
 	rse->set_damageprotectiontimetotal(m_pdbPlayer->state().dmgprotectiontimetotal());
 	rse->set_tutorialcompleted(m_pdbPlayer->state().tutorialcompleted());
 	char flag[128];
-	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", m_pdbPlayer->flag().quality(), m_pdbPlayer->flag().music(), m_pdbPlayer->flag().effect(), m_pdbPlayer->flag().alliancewelcome());
+	sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", m_pdbPlayer->flag().quality(), m_pdbPlayer->flag().music(), m_pdbPlayer->flag().effect(), -1);//m_pdbPlayer->flag().alliancewelcome()
 	//sprintf(flag, "quality:%d,music:%d,sound:%d,alliancesWelcomeId:%d,", 1, 0, 0, 0);
 	rse->set_flags(flag);
 	FillInMissoin(rse);
@@ -1537,6 +1553,44 @@ void Player::FillBattleLogAttackerInfo(GWG_BattleInfo *pBattleInfo)
 	}
 }
 
+bool Player::AddDroid(int nPlanetId)
+{
+	DB_Planet *pPlanet = GetPlanet(nPlanetId);
+	if(!pPlanet)
+		return false;
+
+	pPlanet->set_droids(pPlanet->droids() + 1 );
+	return true;
+}
+
+bool Player::SetLevel(int level)
+{
+	DB_Model* pModel = m_pdbPlayer->mutable_model();
+	if(!pModel)
+		return false;
+
+	pModel->set_level(pModel->level() + level);
+	return true;
+}
+
+bool Player::SetFlag(string key ,int val)
+{
+	DB_Flag* pDBFlag = m_pdbPlayer->mutable_flag();
+	if(!pDBFlag)
+		return false;
+	if("quality" == key)
+		pDBFlag->set_quality(val);
+	else if("music" == key)
+		pDBFlag->set_music(val);
+	else if("sound" == key)
+		pDBFlag->set_effect(val);
+	else if("alliancesId" == key)
+	{
+		pDBFlag->set_alliancewelcome(0);
+	}
+	return true;
+}
+
 void Player::FillinPvELite(RseQueryPvE* rsp)
 {
 	if(!CanUse() || !rsp){
@@ -1564,4 +1618,84 @@ void Player::CopyUniverse()
 void Player::SetBattleType(int nType)
 {
 	m_pBattleManager->SetBattleType(nType);
+}
+
+bool Player::IsAttacked()
+{
+	int nType = m_pBattleManager->GetBattleType();
+	if(nType == Battle::BATTLE_TYPE_PVP_DEFENSE || nType == Battle::BATTLE_TYPE_ALLIANCE_DEFENSE){
+		return true;
+	}
+	return false;
+}
+
+bool Player::IsAttacking()
+{
+	int nType = m_pBattleManager->GetBattleType();
+	if(nType == Battle::BATTLE_TYPE_PVP_ATTACK || 
+		nType == Battle::BATTLE_TYPE_ALLIANCE_DEFENSE || 
+		nType == Battle::BATTLE_TYPE_NPC){
+		return true;
+	}
+	return false;
+}
+
+bool Player::repairingStart(int nPlanetId, int sid, int ntime, int id)
+{
+	DB_Item *pItem = NULL;
+	if(sid == 0)
+	{
+		pItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	}
+	else
+	{
+		pItem = m_pPlanetManager->GetItemBySid(nPlanetId, sid);
+	}
+	if(!pItem)
+		return false;
+	pItem->set_upgradetime(pItem->time());
+	pItem->set_time(ntime);
+	pItem->set_repairing(1);
+	pItem->set_repairstart(time(NULL));
+	return true;
+}
+
+bool Player::repairingCompleted(int nPlanetId, int sid, int id)
+{	
+	int energy = 0;
+	DB_Item *pItem = NULL;
+	if(sid == 0)
+	{
+		pItem = m_pPlanetManager->GetItem(nPlanetId, id);
+	}
+	else
+	{
+		pItem = m_pPlanetManager->GetItemBySid(nPlanetId, sid);
+	}
+	if(!pItem)
+		return false;
+	if(energy == 0)
+	{
+		
+		int sku = SkuIDTblInst::instance().GetSku(pItem->sku());
+		energy = ResourceSilosTblInst::instance().GetEnergy(sku, pItem->upgradeid() + 1);
+	}
+	pItem->set_repairing(0);
+	pItem->set_repairstart(0);
+	pItem->set_energy(energy);
+	pItem->set_energypercent(100);
+
+	if(pItem->state() == 0 || pItem->state() == 2)//升级或者建造中
+	{
+		int num = 1;
+		if(pItem->state() == 2)
+			num = 2;
+		pItem->set_time(pItem->upgradetime());
+	}
+	else
+	{
+		//资源不用处理，登陆时候处理过有collcettime
+		pItem->set_time(0);
+	}
+	return true;
 }

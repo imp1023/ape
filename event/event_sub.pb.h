@@ -52,6 +52,8 @@ class NewStar_Req;
 class NewStar_Rsp;
 class GWG_GameUnit;
 class GWG_BattleInfo;
+class Admin_AddCash_Req;
+class Admin_AddCash_Rsp;
 
 // ===================================================================
 
@@ -3181,6 +3183,396 @@ class GWG_BattleInfo : public ::google::protobuf::Message {
   
   void InitAsDefaultInstance();
   static GWG_BattleInfo* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class Admin_AddCash_Req : public ::google::protobuf::Message {
+ public:
+  Admin_AddCash_Req();
+  virtual ~Admin_AddCash_Req();
+  
+  Admin_AddCash_Req(const Admin_AddCash_Req& from);
+  
+  inline Admin_AddCash_Req& operator=(const Admin_AddCash_Req& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Admin_AddCash_Req& default_instance();
+  void Swap(Admin_AddCash_Req* other);
+  
+  // implements Message ----------------------------------------------
+  
+  Admin_AddCash_Req* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Admin_AddCash_Req& from);
+  void MergeFrom(const Admin_AddCash_Req& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required int64 uid = 1;
+  inline bool has_uid() const;
+  inline void clear_uid();
+  static const int kUidFieldNumber = 1;
+  inline ::google::protobuf::int64 uid() const;
+  inline void set_uid(::google::protobuf::int64 value);
+  
+  // optional string platid = 2;
+  inline bool has_platid() const;
+  inline void clear_platid();
+  static const int kPlatidFieldNumber = 2;
+  inline const ::std::string& platid() const;
+  inline void set_platid(const ::std::string& value);
+  inline void set_platid(const char* value);
+  inline void set_platid(const char* value, size_t size);
+  inline ::std::string* mutable_platid();
+  
+  // required int32 cash = 3;
+  inline bool has_cash() const;
+  inline void clear_cash();
+  static const int kCashFieldNumber = 3;
+  inline ::google::protobuf::int32 cash() const;
+  inline void set_cash(::google::protobuf::int32 value);
+  
+  // required int32 gid = 4 [default = 0];
+  inline bool has_gid() const;
+  inline void clear_gid();
+  static const int kGidFieldNumber = 4;
+  inline ::google::protobuf::int32 gid() const;
+  inline void set_gid(::google::protobuf::int32 value);
+  
+  // required int32 adminfd = 5;
+  inline bool has_adminfd() const;
+  inline void clear_adminfd();
+  static const int kAdminfdFieldNumber = 5;
+  inline ::google::protobuf::int32 adminfd() const;
+  inline void set_adminfd(::google::protobuf::int32 value);
+  
+  // required int32 type = 6 [default = 0];
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 6;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional string sid = 7;
+  inline bool has_sid() const;
+  inline void clear_sid();
+  static const int kSidFieldNumber = 7;
+  inline const ::std::string& sid() const;
+  inline void set_sid(const ::std::string& value);
+  inline void set_sid(const char* value);
+  inline void set_sid(const char* value, size_t size);
+  inline ::std::string* mutable_sid();
+  
+  // optional bool fromweb = 9 [default = false];
+  inline bool has_fromweb() const;
+  inline void clear_fromweb();
+  static const int kFromwebFieldNumber = 9;
+  inline bool fromweb() const;
+  inline void set_fromweb(bool value);
+  
+  // optional bool istxcross = 10 [default = false];
+  inline bool has_istxcross() const;
+  inline void clear_istxcross();
+  static const int kIstxcrossFieldNumber = 10;
+  inline bool istxcross() const;
+  inline void set_istxcross(bool value);
+  
+  // optional int32 nChannel = 11 [default = 0];
+  inline bool has_nchannel() const;
+  inline void clear_nchannel();
+  static const int kNChannelFieldNumber = 11;
+  inline ::google::protobuf::int32 nchannel() const;
+  inline void set_nchannel(::google::protobuf::int32 value);
+  
+  // optional string orderid = 12;
+  inline bool has_orderid() const;
+  inline void clear_orderid();
+  static const int kOrderidFieldNumber = 12;
+  inline const ::std::string& orderid() const;
+  inline void set_orderid(const ::std::string& value);
+  inline void set_orderid(const char* value);
+  inline void set_orderid(const char* value, size_t size);
+  inline ::std::string* mutable_orderid();
+  
+  // optional int32 nPrepayFlag = 13 [default = 0];
+  inline bool has_nprepayflag() const;
+  inline void clear_nprepayflag();
+  static const int kNPrepayFlagFieldNumber = 13;
+  inline ::google::protobuf::int32 nprepayflag() const;
+  inline void set_nprepayflag(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int64 uid_;
+  ::std::string* platid_;
+  static const ::std::string _default_platid_;
+  ::google::protobuf::int32 cash_;
+  ::google::protobuf::int32 gid_;
+  ::google::protobuf::int32 adminfd_;
+  ::google::protobuf::int32 type_;
+  ::std::string* sid_;
+  static const ::std::string _default_sid_;
+  bool fromweb_;
+  bool istxcross_;
+  ::google::protobuf::int32 nchannel_;
+  ::std::string* orderid_;
+  static const ::std::string _default_orderid_;
+  ::google::protobuf::int32 nprepayflag_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(12 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static Admin_AddCash_Req* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class Admin_AddCash_Rsp : public ::google::protobuf::Message {
+ public:
+  Admin_AddCash_Rsp();
+  virtual ~Admin_AddCash_Rsp();
+  
+  Admin_AddCash_Rsp(const Admin_AddCash_Rsp& from);
+  
+  inline Admin_AddCash_Rsp& operator=(const Admin_AddCash_Rsp& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Admin_AddCash_Rsp& default_instance();
+  void Swap(Admin_AddCash_Rsp* other);
+  
+  // implements Message ----------------------------------------------
+  
+  Admin_AddCash_Rsp* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Admin_AddCash_Rsp& from);
+  void MergeFrom(const Admin_AddCash_Rsp& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required int64 uid = 1;
+  inline bool has_uid() const;
+  inline void clear_uid();
+  static const int kUidFieldNumber = 1;
+  inline ::google::protobuf::int64 uid() const;
+  inline void set_uid(::google::protobuf::int64 value);
+  
+  // optional string platid = 2;
+  inline bool has_platid() const;
+  inline void clear_platid();
+  static const int kPlatidFieldNumber = 2;
+  inline const ::std::string& platid() const;
+  inline void set_platid(const ::std::string& value);
+  inline void set_platid(const char* value);
+  inline void set_platid(const char* value, size_t size);
+  inline ::std::string* mutable_platid();
+  
+  // required int64 oldcash = 3;
+  inline bool has_oldcash() const;
+  inline void clear_oldcash();
+  static const int kOldcashFieldNumber = 3;
+  inline ::google::protobuf::int64 oldcash() const;
+  inline void set_oldcash(::google::protobuf::int64 value);
+  
+  // required int64 newcash = 4;
+  inline bool has_newcash() const;
+  inline void clear_newcash();
+  static const int kNewcashFieldNumber = 4;
+  inline ::google::protobuf::int64 newcash() const;
+  inline void set_newcash(::google::protobuf::int64 value);
+  
+  // required int32 gid = 5;
+  inline bool has_gid() const;
+  inline void clear_gid();
+  static const int kGidFieldNumber = 5;
+  inline ::google::protobuf::int32 gid() const;
+  inline void set_gid(::google::protobuf::int32 value);
+  
+  // required int32 adminfd = 6;
+  inline bool has_adminfd() const;
+  inline void clear_adminfd();
+  static const int kAdminfdFieldNumber = 6;
+  inline ::google::protobuf::int32 adminfd() const;
+  inline void set_adminfd(::google::protobuf::int32 value);
+  
+  // required int32 type = 7 [default = 0];
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 7;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional string sid = 8;
+  inline bool has_sid() const;
+  inline void clear_sid();
+  static const int kSidFieldNumber = 8;
+  inline const ::std::string& sid() const;
+  inline void set_sid(const ::std::string& value);
+  inline void set_sid(const char* value);
+  inline void set_sid(const char* value, size_t size);
+  inline ::std::string* mutable_sid();
+  
+  // optional bool fromweb = 9 [default = false];
+  inline bool has_fromweb() const;
+  inline void clear_fromweb();
+  static const int kFromwebFieldNumber = 9;
+  inline bool fromweb() const;
+  inline void set_fromweb(bool value);
+  
+  // optional bool istxcross = 10 [default = false];
+  inline bool has_istxcross() const;
+  inline void clear_istxcross();
+  static const int kIstxcrossFieldNumber = 10;
+  inline bool istxcross() const;
+  inline void set_istxcross(bool value);
+  
+  // optional int32 nChannel = 11 [default = 0];
+  inline bool has_nchannel() const;
+  inline void clear_nchannel();
+  static const int kNChannelFieldNumber = 11;
+  inline ::google::protobuf::int32 nchannel() const;
+  inline void set_nchannel(::google::protobuf::int32 value);
+  
+  // optional string orderid = 12;
+  inline bool has_orderid() const;
+  inline void clear_orderid();
+  static const int kOrderidFieldNumber = 12;
+  inline const ::std::string& orderid() const;
+  inline void set_orderid(const ::std::string& value);
+  inline void set_orderid(const char* value);
+  inline void set_orderid(const char* value, size_t size);
+  inline ::std::string* mutable_orderid();
+  
+  // optional int32 nPrepayFlag = 13 [default = 0];
+  inline bool has_nprepayflag() const;
+  inline void clear_nprepayflag();
+  static const int kNPrepayFlagFieldNumber = 13;
+  inline ::google::protobuf::int32 nprepayflag() const;
+  inline void set_nprepayflag(::google::protobuf::int32 value);
+  
+  // optional bool bSuc = 14 [default = false];
+  inline bool has_bsuc() const;
+  inline void clear_bsuc();
+  static const int kBSucFieldNumber = 14;
+  inline bool bsuc() const;
+  inline void set_bsuc(bool value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int64 uid_;
+  ::std::string* platid_;
+  static const ::std::string _default_platid_;
+  ::google::protobuf::int64 oldcash_;
+  ::google::protobuf::int64 newcash_;
+  ::google::protobuf::int32 gid_;
+  ::google::protobuf::int32 adminfd_;
+  ::google::protobuf::int32 type_;
+  ::std::string* sid_;
+  static const ::std::string _default_sid_;
+  bool fromweb_;
+  bool istxcross_;
+  ::google::protobuf::int32 nchannel_;
+  ::std::string* orderid_;
+  static const ::std::string _default_orderid_;
+  ::google::protobuf::int32 nprepayflag_;
+  bool bsuc_;
+  friend void  protobuf_AddDesc_event_5fsub_2eproto();
+  friend void protobuf_AssignDesc_event_5fsub_2eproto();
+  friend void protobuf_ShutdownFile_event_5fsub_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(14 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static Admin_AddCash_Rsp* default_instance_;
 };
 // ===================================================================
 
@@ -6508,6 +6900,586 @@ inline ::GWG_GameUnit* GWG_BattleInfo::mutable_gameunits(int index) {
 }
 inline ::GWG_GameUnit* GWG_BattleInfo::add_gameunits() {
   return gameunits_.Add();
+}
+
+// -------------------------------------------------------------------
+
+// Admin_AddCash_Req
+
+// required int64 uid = 1;
+inline bool Admin_AddCash_Req::has_uid() const {
+  return _has_bit(0);
+}
+inline void Admin_AddCash_Req::clear_uid() {
+  uid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(0);
+}
+inline ::google::protobuf::int64 Admin_AddCash_Req::uid() const {
+  return uid_;
+}
+inline void Admin_AddCash_Req::set_uid(::google::protobuf::int64 value) {
+  _set_bit(0);
+  uid_ = value;
+}
+
+// optional string platid = 2;
+inline bool Admin_AddCash_Req::has_platid() const {
+  return _has_bit(1);
+}
+inline void Admin_AddCash_Req::clear_platid() {
+  if (platid_ != &_default_platid_) {
+    platid_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& Admin_AddCash_Req::platid() const {
+  return *platid_;
+}
+inline void Admin_AddCash_Req::set_platid(const ::std::string& value) {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  platid_->assign(value);
+}
+inline void Admin_AddCash_Req::set_platid(const char* value) {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  platid_->assign(value);
+}
+inline void Admin_AddCash_Req::set_platid(const char* value, size_t size) {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  platid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Admin_AddCash_Req::mutable_platid() {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  return platid_;
+}
+
+// required int32 cash = 3;
+inline bool Admin_AddCash_Req::has_cash() const {
+  return _has_bit(2);
+}
+inline void Admin_AddCash_Req::clear_cash() {
+  cash_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Req::cash() const {
+  return cash_;
+}
+inline void Admin_AddCash_Req::set_cash(::google::protobuf::int32 value) {
+  _set_bit(2);
+  cash_ = value;
+}
+
+// required int32 gid = 4 [default = 0];
+inline bool Admin_AddCash_Req::has_gid() const {
+  return _has_bit(3);
+}
+inline void Admin_AddCash_Req::clear_gid() {
+  gid_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Req::gid() const {
+  return gid_;
+}
+inline void Admin_AddCash_Req::set_gid(::google::protobuf::int32 value) {
+  _set_bit(3);
+  gid_ = value;
+}
+
+// required int32 adminfd = 5;
+inline bool Admin_AddCash_Req::has_adminfd() const {
+  return _has_bit(4);
+}
+inline void Admin_AddCash_Req::clear_adminfd() {
+  adminfd_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Req::adminfd() const {
+  return adminfd_;
+}
+inline void Admin_AddCash_Req::set_adminfd(::google::protobuf::int32 value) {
+  _set_bit(4);
+  adminfd_ = value;
+}
+
+// required int32 type = 6 [default = 0];
+inline bool Admin_AddCash_Req::has_type() const {
+  return _has_bit(5);
+}
+inline void Admin_AddCash_Req::clear_type() {
+  type_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Req::type() const {
+  return type_;
+}
+inline void Admin_AddCash_Req::set_type(::google::protobuf::int32 value) {
+  _set_bit(5);
+  type_ = value;
+}
+
+// optional string sid = 7;
+inline bool Admin_AddCash_Req::has_sid() const {
+  return _has_bit(6);
+}
+inline void Admin_AddCash_Req::clear_sid() {
+  if (sid_ != &_default_sid_) {
+    sid_->clear();
+  }
+  _clear_bit(6);
+}
+inline const ::std::string& Admin_AddCash_Req::sid() const {
+  return *sid_;
+}
+inline void Admin_AddCash_Req::set_sid(const ::std::string& value) {
+  _set_bit(6);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  sid_->assign(value);
+}
+inline void Admin_AddCash_Req::set_sid(const char* value) {
+  _set_bit(6);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  sid_->assign(value);
+}
+inline void Admin_AddCash_Req::set_sid(const char* value, size_t size) {
+  _set_bit(6);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  sid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Admin_AddCash_Req::mutable_sid() {
+  _set_bit(6);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  return sid_;
+}
+
+// optional bool fromweb = 9 [default = false];
+inline bool Admin_AddCash_Req::has_fromweb() const {
+  return _has_bit(7);
+}
+inline void Admin_AddCash_Req::clear_fromweb() {
+  fromweb_ = false;
+  _clear_bit(7);
+}
+inline bool Admin_AddCash_Req::fromweb() const {
+  return fromweb_;
+}
+inline void Admin_AddCash_Req::set_fromweb(bool value) {
+  _set_bit(7);
+  fromweb_ = value;
+}
+
+// optional bool istxcross = 10 [default = false];
+inline bool Admin_AddCash_Req::has_istxcross() const {
+  return _has_bit(8);
+}
+inline void Admin_AddCash_Req::clear_istxcross() {
+  istxcross_ = false;
+  _clear_bit(8);
+}
+inline bool Admin_AddCash_Req::istxcross() const {
+  return istxcross_;
+}
+inline void Admin_AddCash_Req::set_istxcross(bool value) {
+  _set_bit(8);
+  istxcross_ = value;
+}
+
+// optional int32 nChannel = 11 [default = 0];
+inline bool Admin_AddCash_Req::has_nchannel() const {
+  return _has_bit(9);
+}
+inline void Admin_AddCash_Req::clear_nchannel() {
+  nchannel_ = 0;
+  _clear_bit(9);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Req::nchannel() const {
+  return nchannel_;
+}
+inline void Admin_AddCash_Req::set_nchannel(::google::protobuf::int32 value) {
+  _set_bit(9);
+  nchannel_ = value;
+}
+
+// optional string orderid = 12;
+inline bool Admin_AddCash_Req::has_orderid() const {
+  return _has_bit(10);
+}
+inline void Admin_AddCash_Req::clear_orderid() {
+  if (orderid_ != &_default_orderid_) {
+    orderid_->clear();
+  }
+  _clear_bit(10);
+}
+inline const ::std::string& Admin_AddCash_Req::orderid() const {
+  return *orderid_;
+}
+inline void Admin_AddCash_Req::set_orderid(const ::std::string& value) {
+  _set_bit(10);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  orderid_->assign(value);
+}
+inline void Admin_AddCash_Req::set_orderid(const char* value) {
+  _set_bit(10);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  orderid_->assign(value);
+}
+inline void Admin_AddCash_Req::set_orderid(const char* value, size_t size) {
+  _set_bit(10);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  orderid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Admin_AddCash_Req::mutable_orderid() {
+  _set_bit(10);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  return orderid_;
+}
+
+// optional int32 nPrepayFlag = 13 [default = 0];
+inline bool Admin_AddCash_Req::has_nprepayflag() const {
+  return _has_bit(11);
+}
+inline void Admin_AddCash_Req::clear_nprepayflag() {
+  nprepayflag_ = 0;
+  _clear_bit(11);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Req::nprepayflag() const {
+  return nprepayflag_;
+}
+inline void Admin_AddCash_Req::set_nprepayflag(::google::protobuf::int32 value) {
+  _set_bit(11);
+  nprepayflag_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// Admin_AddCash_Rsp
+
+// required int64 uid = 1;
+inline bool Admin_AddCash_Rsp::has_uid() const {
+  return _has_bit(0);
+}
+inline void Admin_AddCash_Rsp::clear_uid() {
+  uid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(0);
+}
+inline ::google::protobuf::int64 Admin_AddCash_Rsp::uid() const {
+  return uid_;
+}
+inline void Admin_AddCash_Rsp::set_uid(::google::protobuf::int64 value) {
+  _set_bit(0);
+  uid_ = value;
+}
+
+// optional string platid = 2;
+inline bool Admin_AddCash_Rsp::has_platid() const {
+  return _has_bit(1);
+}
+inline void Admin_AddCash_Rsp::clear_platid() {
+  if (platid_ != &_default_platid_) {
+    platid_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& Admin_AddCash_Rsp::platid() const {
+  return *platid_;
+}
+inline void Admin_AddCash_Rsp::set_platid(const ::std::string& value) {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  platid_->assign(value);
+}
+inline void Admin_AddCash_Rsp::set_platid(const char* value) {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  platid_->assign(value);
+}
+inline void Admin_AddCash_Rsp::set_platid(const char* value, size_t size) {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  platid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Admin_AddCash_Rsp::mutable_platid() {
+  _set_bit(1);
+  if (platid_ == &_default_platid_) {
+    platid_ = new ::std::string;
+  }
+  return platid_;
+}
+
+// required int64 oldcash = 3;
+inline bool Admin_AddCash_Rsp::has_oldcash() const {
+  return _has_bit(2);
+}
+inline void Admin_AddCash_Rsp::clear_oldcash() {
+  oldcash_ = GOOGLE_LONGLONG(0);
+  _clear_bit(2);
+}
+inline ::google::protobuf::int64 Admin_AddCash_Rsp::oldcash() const {
+  return oldcash_;
+}
+inline void Admin_AddCash_Rsp::set_oldcash(::google::protobuf::int64 value) {
+  _set_bit(2);
+  oldcash_ = value;
+}
+
+// required int64 newcash = 4;
+inline bool Admin_AddCash_Rsp::has_newcash() const {
+  return _has_bit(3);
+}
+inline void Admin_AddCash_Rsp::clear_newcash() {
+  newcash_ = GOOGLE_LONGLONG(0);
+  _clear_bit(3);
+}
+inline ::google::protobuf::int64 Admin_AddCash_Rsp::newcash() const {
+  return newcash_;
+}
+inline void Admin_AddCash_Rsp::set_newcash(::google::protobuf::int64 value) {
+  _set_bit(3);
+  newcash_ = value;
+}
+
+// required int32 gid = 5;
+inline bool Admin_AddCash_Rsp::has_gid() const {
+  return _has_bit(4);
+}
+inline void Admin_AddCash_Rsp::clear_gid() {
+  gid_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Rsp::gid() const {
+  return gid_;
+}
+inline void Admin_AddCash_Rsp::set_gid(::google::protobuf::int32 value) {
+  _set_bit(4);
+  gid_ = value;
+}
+
+// required int32 adminfd = 6;
+inline bool Admin_AddCash_Rsp::has_adminfd() const {
+  return _has_bit(5);
+}
+inline void Admin_AddCash_Rsp::clear_adminfd() {
+  adminfd_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Rsp::adminfd() const {
+  return adminfd_;
+}
+inline void Admin_AddCash_Rsp::set_adminfd(::google::protobuf::int32 value) {
+  _set_bit(5);
+  adminfd_ = value;
+}
+
+// required int32 type = 7 [default = 0];
+inline bool Admin_AddCash_Rsp::has_type() const {
+  return _has_bit(6);
+}
+inline void Admin_AddCash_Rsp::clear_type() {
+  type_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Rsp::type() const {
+  return type_;
+}
+inline void Admin_AddCash_Rsp::set_type(::google::protobuf::int32 value) {
+  _set_bit(6);
+  type_ = value;
+}
+
+// optional string sid = 8;
+inline bool Admin_AddCash_Rsp::has_sid() const {
+  return _has_bit(7);
+}
+inline void Admin_AddCash_Rsp::clear_sid() {
+  if (sid_ != &_default_sid_) {
+    sid_->clear();
+  }
+  _clear_bit(7);
+}
+inline const ::std::string& Admin_AddCash_Rsp::sid() const {
+  return *sid_;
+}
+inline void Admin_AddCash_Rsp::set_sid(const ::std::string& value) {
+  _set_bit(7);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  sid_->assign(value);
+}
+inline void Admin_AddCash_Rsp::set_sid(const char* value) {
+  _set_bit(7);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  sid_->assign(value);
+}
+inline void Admin_AddCash_Rsp::set_sid(const char* value, size_t size) {
+  _set_bit(7);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  sid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Admin_AddCash_Rsp::mutable_sid() {
+  _set_bit(7);
+  if (sid_ == &_default_sid_) {
+    sid_ = new ::std::string;
+  }
+  return sid_;
+}
+
+// optional bool fromweb = 9 [default = false];
+inline bool Admin_AddCash_Rsp::has_fromweb() const {
+  return _has_bit(8);
+}
+inline void Admin_AddCash_Rsp::clear_fromweb() {
+  fromweb_ = false;
+  _clear_bit(8);
+}
+inline bool Admin_AddCash_Rsp::fromweb() const {
+  return fromweb_;
+}
+inline void Admin_AddCash_Rsp::set_fromweb(bool value) {
+  _set_bit(8);
+  fromweb_ = value;
+}
+
+// optional bool istxcross = 10 [default = false];
+inline bool Admin_AddCash_Rsp::has_istxcross() const {
+  return _has_bit(9);
+}
+inline void Admin_AddCash_Rsp::clear_istxcross() {
+  istxcross_ = false;
+  _clear_bit(9);
+}
+inline bool Admin_AddCash_Rsp::istxcross() const {
+  return istxcross_;
+}
+inline void Admin_AddCash_Rsp::set_istxcross(bool value) {
+  _set_bit(9);
+  istxcross_ = value;
+}
+
+// optional int32 nChannel = 11 [default = 0];
+inline bool Admin_AddCash_Rsp::has_nchannel() const {
+  return _has_bit(10);
+}
+inline void Admin_AddCash_Rsp::clear_nchannel() {
+  nchannel_ = 0;
+  _clear_bit(10);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Rsp::nchannel() const {
+  return nchannel_;
+}
+inline void Admin_AddCash_Rsp::set_nchannel(::google::protobuf::int32 value) {
+  _set_bit(10);
+  nchannel_ = value;
+}
+
+// optional string orderid = 12;
+inline bool Admin_AddCash_Rsp::has_orderid() const {
+  return _has_bit(11);
+}
+inline void Admin_AddCash_Rsp::clear_orderid() {
+  if (orderid_ != &_default_orderid_) {
+    orderid_->clear();
+  }
+  _clear_bit(11);
+}
+inline const ::std::string& Admin_AddCash_Rsp::orderid() const {
+  return *orderid_;
+}
+inline void Admin_AddCash_Rsp::set_orderid(const ::std::string& value) {
+  _set_bit(11);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  orderid_->assign(value);
+}
+inline void Admin_AddCash_Rsp::set_orderid(const char* value) {
+  _set_bit(11);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  orderid_->assign(value);
+}
+inline void Admin_AddCash_Rsp::set_orderid(const char* value, size_t size) {
+  _set_bit(11);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  orderid_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Admin_AddCash_Rsp::mutable_orderid() {
+  _set_bit(11);
+  if (orderid_ == &_default_orderid_) {
+    orderid_ = new ::std::string;
+  }
+  return orderid_;
+}
+
+// optional int32 nPrepayFlag = 13 [default = 0];
+inline bool Admin_AddCash_Rsp::has_nprepayflag() const {
+  return _has_bit(12);
+}
+inline void Admin_AddCash_Rsp::clear_nprepayflag() {
+  nprepayflag_ = 0;
+  _clear_bit(12);
+}
+inline ::google::protobuf::int32 Admin_AddCash_Rsp::nprepayflag() const {
+  return nprepayflag_;
+}
+inline void Admin_AddCash_Rsp::set_nprepayflag(::google::protobuf::int32 value) {
+  _set_bit(12);
+  nprepayflag_ = value;
+}
+
+// optional bool bSuc = 14 [default = false];
+inline bool Admin_AddCash_Rsp::has_bsuc() const {
+  return _has_bit(13);
+}
+inline void Admin_AddCash_Rsp::clear_bsuc() {
+  bsuc_ = false;
+  _clear_bit(13);
+}
+inline bool Admin_AddCash_Rsp::bsuc() const {
+  return bsuc_;
+}
+inline void Admin_AddCash_Rsp::set_bsuc(bool value) {
+  _set_bit(13);
+  bsuc_ = value;
 }
 
 

@@ -6,11 +6,12 @@ enum S2C_EVENT
 {
 	S2C_EVENT_BASE = 511,
 	S2C_RseAuthState,		//^s^RseAuthState#
+	S2C_RseBattleDamagesPack,		//^s^RseBattleDamagesPack#
 	S2C_RseCustomizedActivity,		//^s^RseCustomizedActivity#
-	S2C_RseDeployUnits,		//^s^RseDeployUnits#
 	S2C_RseError,		//^s^RseError#
+	S2C_RseFinished,		//^s^RseFinished#
 	S2C_RseHeartbeat,		//^s^RseHeartbeat#
-	S2C_RseItemDamaged,		//^s^RseItemDamaged#
+	S2C_RseItemMineExploded,		//^s^RseItemMineExploded#
 	S2C_RseLogin,		//^s^RseLogin#
 	S2C_RseObtainAskForHelp,		//^s^RseObtainAskForHelp#
 	S2C_RseObtainAttackerList,		//^s^RseObtainAttackerList#
@@ -28,13 +29,13 @@ enum S2C_EVENT
 	S2C_RseObtainVisitHelps,		//^s^RseObtainVisitHelps#
 	S2C_RseQueryCheckAndLockAccountIfPossible,		//^s^RseQueryCheckAndLockAccountIfPossible#
 	S2C_RseQueryGalaxyWindow,		//^s^RseQueryGalaxyWindow#
+	S2C_RseQueryPvE,		//^s^RseQueryPvE#
 	S2C_RseQueryReceiveWishItem,		//^s^RseQueryReceiveWishItem#
 	S2C_RseQueryRefuseReceiveWishItem,		//^s^RseQueryRefuseReceiveWishItem#
 	S2C_RseQuerySendWishItem,		//^s^RseQuerySendWishItem#
 	S2C_RseQueryStarInfo,		//^s^RseQueryStarInfo#
 	S2C_RseQueryStarsBookmarks,		//^s^RseQueryStarsBookmarks#
 	S2C_RseQueryVisitHelpsGiftUnitsOnBunker,		//^s^RseQueryVisitHelpsGiftUnitsOnBunker#
-	S2C_RseUnitDamaged,		//^s^RseUnitDamaged#
 	S2C_RseUpdateAlliances,		//^s^RseUpdateAlliances#
 	S2C_RseUpdateGameUnits,		//^s^RseUpdateGameUnits#
 	S2C_RseUpdateItem,		//^s^RseUpdateItem#
@@ -45,10 +46,6 @@ enum S2C_EVENT
 	S2C_RseUpdateSocialItem,		//^s^RseUpdateSocialItem#
 	S2C_RseUpdateStarsBookmarks,		//^s^RseUpdateStarsBookmarks#
 	S2C_RseUpdateTargets,		//^s^RseUpdateTargets#
-	S2C_RseBattleDamagesPack,		//^s^RseBattleDamagesPack#
-	S2C_RseItemMineExploded,		//^s^RseItemMineExploded#
-	S2C_RseFinished,		//^s^RseFinished#
-	S2C_RseQueryPvE,		//^s^RseQueryPvE#
 };
 enum C2S_EVENT
 {
@@ -77,6 +74,7 @@ enum C2S_EVENT
 	C2S_RceOnlineReward,		//^c^RceOnlineReward#
 	C2S_RceQueryCheckAndLockAccountIfPossible,		//^c^RceQueryCheckAndLockAccountIfPossible#
 	C2S_RceQueryGalaxyWindow,		//^c^RceQueryGalaxyWindow#
+	C2S_RceQueryPvE,		//^c^RceQueryPvE#
 	C2S_RceQueryReceiveWishItem,		//^c^RceQueryReceiveWishItem#
 	C2S_RceQueryRefuseReceiveWishItem,		//^c^RceQueryRefuseReceiveWishItem#
 	C2S_RceQuerySendWishItem,		//^c^RceQuerySendWishItem#
@@ -94,7 +92,6 @@ enum C2S_EVENT
 	C2S_RceUpdateStarsBookmarks,		//^c^RceUpdateStarsBookmarks#
 	C2S_RceUpdateTargets,		//^c^RceUpdateTargets#
 	C2S_RceUpdateVisitHelp,		//^c^RceUpdateVisitHelp#
-	C2S_RceQueryPvE,		//^c^RceQueryPvE#
 	C2S_EVENT_MAX,
 };
 #endif

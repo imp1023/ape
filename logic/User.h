@@ -198,6 +198,7 @@ public:
 	int					GetUserLevel(void) const;
 	int					GetUserExp(void) const;
 	int					GetUserTotalExp(void) const;
+	int					GetUserScore(void) const;
 
 	DB_User&            GetDbUser(void);
 	const DB_User&      GetDbUser(void) const;
@@ -211,7 +212,9 @@ public:
 	void				SetProfileLink(const string &profile_link, enum PLAT_TYPE nPlatType);
 	string				GetProfileLink(PLAT_TYPE nPlatType) const;
 	string				GetProfileLinkAnyWay(PLAT_TYPE nPlatType) const;
+
 	inline PLAT_TYPE	GetPlatType(){return plat_type_;}
+	string				GetName(PLAT_TYPE nPlatType) const ;
 
 	void				SetFd(int fd);
 	Player*				GetPlayer(void);

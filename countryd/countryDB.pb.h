@@ -31,6 +31,11 @@ void protobuf_ShutdownFile_countryDB_2eproto();
 class DB_C_UserLite;
 class DB_C_PlanetLite;
 class DB_C_City;
+class DB_C_AliMember;
+class DB_C_AllianceNews;
+class DB_C_AllianceWar;
+class DB_C_Alliance;
+class DB_C_AllianceList;
 class DB_C_Country;
 
 // ===================================================================
@@ -455,6 +460,861 @@ class DB_C_City : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class DB_C_AliMember : public ::google::protobuf::Message {
+ public:
+  DB_C_AliMember();
+  virtual ~DB_C_AliMember();
+  
+  DB_C_AliMember(const DB_C_AliMember& from);
+  
+  inline DB_C_AliMember& operator=(const DB_C_AliMember& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_AliMember& default_instance();
+  void Swap(DB_C_AliMember* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_AliMember* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_AliMember& from);
+  void MergeFrom(const DB_C_AliMember& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int64 id = 1;
+  inline bool has_id() const;
+  inline void clear_id();
+  static const int kIdFieldNumber = 1;
+  inline ::google::protobuf::int64 id() const;
+  inline void set_id(::google::protobuf::int64 value);
+  
+  // optional string pictureUrl = 2;
+  inline bool has_pictureurl() const;
+  inline void clear_pictureurl();
+  static const int kPictureUrlFieldNumber = 2;
+  inline const ::std::string& pictureurl() const;
+  inline void set_pictureurl(const ::std::string& value);
+  inline void set_pictureurl(const char* value);
+  inline void set_pictureurl(const char* value, size_t size);
+  inline ::std::string* mutable_pictureurl();
+  
+  // optional string name = 3;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 3;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional int32 score = 4;
+  inline bool has_score() const;
+  inline void clear_score();
+  static const int kScoreFieldNumber = 4;
+  inline ::google::protobuf::int32 score() const;
+  inline void set_score(::google::protobuf::int32 value);
+  
+  // optional int32 role = 5;
+  inline bool has_role() const;
+  inline void clear_role();
+  static const int kRoleFieldNumber = 5;
+  inline ::google::protobuf::int32 role() const;
+  inline void set_role(::google::protobuf::int32 value);
+  
+  // optional int32 currentWarScore = 6;
+  inline bool has_currentwarscore() const;
+  inline void clear_currentwarscore();
+  static const int kCurrentWarScoreFieldNumber = 6;
+  inline ::google::protobuf::int32 currentwarscore() const;
+  inline void set_currentwarscore(::google::protobuf::int32 value);
+  
+  // optional int32 totalWarScore = 7;
+  inline bool has_totalwarscore() const;
+  inline void clear_totalwarscore();
+  static const int kTotalWarScoreFieldNumber = 7;
+  inline ::google::protobuf::int32 totalwarscore() const;
+  inline void set_totalwarscore(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int64 id_;
+  ::std::string* pictureurl_;
+  static const ::std::string _default_pictureurl_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::google::protobuf::int32 score_;
+  ::google::protobuf::int32 role_;
+  ::google::protobuf::int32 currentwarscore_;
+  ::google::protobuf::int32 totalwarscore_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_AliMember* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_C_AllianceNews : public ::google::protobuf::Message {
+ public:
+  DB_C_AllianceNews();
+  virtual ~DB_C_AllianceNews();
+  
+  DB_C_AllianceNews(const DB_C_AllianceNews& from);
+  
+  inline DB_C_AllianceNews& operator=(const DB_C_AllianceNews& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_AllianceNews& default_instance();
+  void Swap(DB_C_AllianceNews* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_AllianceNews* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_AllianceNews& from);
+  void MergeFrom(const DB_C_AllianceNews& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 allianceId = 1;
+  inline bool has_allianceid() const;
+  inline void clear_allianceid();
+  static const int kAllianceIdFieldNumber = 1;
+  inline ::google::protobuf::int32 allianceid() const;
+  inline void set_allianceid(::google::protobuf::int32 value);
+  
+  // optional int64 guid = 2;
+  inline bool has_guid() const;
+  inline void clear_guid();
+  static const int kGuidFieldNumber = 2;
+  inline ::google::protobuf::int64 guid() const;
+  inline void set_guid(::google::protobuf::int64 value);
+  
+  // optional int32 level = 3;
+  inline bool has_level() const;
+  inline void clear_level();
+  static const int kLevelFieldNumber = 3;
+  inline ::google::protobuf::int32 level() const;
+  inline void set_level(::google::protobuf::int32 value);
+  
+  // optional int32 type = 4;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 4;
+  inline ::google::protobuf::int32 type() const;
+  inline void set_type(::google::protobuf::int32 value);
+  
+  // optional int32 subtype = 5;
+  inline bool has_subtype() const;
+  inline void clear_subtype();
+  static const int kSubtypeFieldNumber = 5;
+  inline ::google::protobuf::int32 subtype() const;
+  inline void set_subtype(::google::protobuf::int32 value);
+  
+  // optional string name = 6;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 6;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string content = 7;
+  inline bool has_content() const;
+  inline void clear_content();
+  static const int kContentFieldNumber = 7;
+  inline const ::std::string& content() const;
+  inline void set_content(const ::std::string& value);
+  inline void set_content(const char* value);
+  inline void set_content(const char* value, size_t size);
+  inline ::std::string* mutable_content();
+  
+  // optional int64 timestamp = 8;
+  inline bool has_timestamp() const;
+  inline void clear_timestamp();
+  static const int kTimestampFieldNumber = 8;
+  inline ::google::protobuf::int64 timestamp() const;
+  inline void set_timestamp(::google::protobuf::int64 value);
+  
+  // optional string pictureUrl = 9;
+  inline bool has_pictureurl() const;
+  inline void clear_pictureurl();
+  static const int kPictureUrlFieldNumber = 9;
+  inline const ::std::string& pictureurl() const;
+  inline void set_pictureurl(const ::std::string& value);
+  inline void set_pictureurl(const char* value);
+  inline void set_pictureurl(const char* value, size_t size);
+  inline ::std::string* mutable_pictureurl();
+  
+  // optional int32 score = 10;
+  inline bool has_score() const;
+  inline void clear_score();
+  static const int kScoreFieldNumber = 10;
+  inline ::google::protobuf::int32 score() const;
+  inline void set_score(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 allianceid_;
+  ::google::protobuf::int64 guid_;
+  ::google::protobuf::int32 level_;
+  ::google::protobuf::int32 type_;
+  ::google::protobuf::int32 subtype_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* content_;
+  static const ::std::string _default_content_;
+  ::google::protobuf::int64 timestamp_;
+  ::std::string* pictureurl_;
+  static const ::std::string _default_pictureurl_;
+  ::google::protobuf::int32 score_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_AllianceNews* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_C_AllianceWar : public ::google::protobuf::Message {
+ public:
+  DB_C_AllianceWar();
+  virtual ~DB_C_AllianceWar();
+  
+  DB_C_AllianceWar(const DB_C_AllianceWar& from);
+  
+  inline DB_C_AllianceWar& operator=(const DB_C_AllianceWar& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_AllianceWar& default_instance();
+  void Swap(DB_C_AllianceWar* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_AllianceWar* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_AllianceWar& from);
+  void MergeFrom(const DB_C_AllianceWar& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 allianceId = 1;
+  inline bool has_allianceid() const;
+  inline void clear_allianceid();
+  static const int kAllianceIdFieldNumber = 1;
+  inline ::google::protobuf::int32 allianceid() const;
+  inline void set_allianceid(::google::protobuf::int32 value);
+  
+  // optional int32 enemyallianceid = 2;
+  inline bool has_enemyallianceid() const;
+  inline void clear_enemyallianceid();
+  static const int kEnemyallianceidFieldNumber = 2;
+  inline ::google::protobuf::int32 enemyallianceid() const;
+  inline void set_enemyallianceid(::google::protobuf::int32 value);
+  
+  // optional string enemyalliancelogo = 3;
+  inline bool has_enemyalliancelogo() const;
+  inline void clear_enemyalliancelogo();
+  static const int kEnemyalliancelogoFieldNumber = 3;
+  inline const ::std::string& enemyalliancelogo() const;
+  inline void set_enemyalliancelogo(const ::std::string& value);
+  inline void set_enemyalliancelogo(const char* value);
+  inline void set_enemyalliancelogo(const char* value, size_t size);
+  inline ::std::string* mutable_enemyalliancelogo();
+  
+  // optional string enemyalliancename = 4;
+  inline bool has_enemyalliancename() const;
+  inline void clear_enemyalliancename();
+  static const int kEnemyalliancenameFieldNumber = 4;
+  inline const ::std::string& enemyalliancename() const;
+  inline void set_enemyalliancename(const ::std::string& value);
+  inline void set_enemyalliancename(const char* value);
+  inline void set_enemyalliancename(const char* value, size_t size);
+  inline ::std::string* mutable_enemyalliancename();
+  
+  // optional int32 enemyalliancewarscore = 5;
+  inline bool has_enemyalliancewarscore() const;
+  inline void clear_enemyalliancewarscore();
+  static const int kEnemyalliancewarscoreFieldNumber = 5;
+  inline ::google::protobuf::int32 enemyalliancewarscore() const;
+  inline void set_enemyalliancewarscore(::google::protobuf::int32 value);
+  
+  // optional int32 myalliancewarscore = 6;
+  inline bool has_myalliancewarscore() const;
+  inline void clear_myalliancewarscore();
+  static const int kMyalliancewarscoreFieldNumber = 6;
+  inline ::google::protobuf::int32 myalliancewarscore() const;
+  inline void set_myalliancewarscore(::google::protobuf::int32 value);
+  
+  // optional int32 onknockout = 7;
+  inline bool has_onknockout() const;
+  inline void clear_onknockout();
+  static const int kOnknockoutFieldNumber = 7;
+  inline ::google::protobuf::int32 onknockout() const;
+  inline void set_onknockout(::google::protobuf::int32 value);
+  
+  // optional int32 warstarttime = 8;
+  inline bool has_warstarttime() const;
+  inline void clear_warstarttime();
+  static const int kWarstarttimeFieldNumber = 8;
+  inline ::google::protobuf::int32 warstarttime() const;
+  inline void set_warstarttime(::google::protobuf::int32 value);
+  
+  // optional int32 warendtime = 9;
+  inline bool has_warendtime() const;
+  inline void clear_warendtime();
+  static const int kWarendtimeFieldNumber = 9;
+  inline ::google::protobuf::int32 warendtime() const;
+  inline void set_warendtime(::google::protobuf::int32 value);
+  
+  // optional int32 winnerid = 10;
+  inline bool has_winnerid() const;
+  inline void clear_winnerid();
+  static const int kWinneridFieldNumber = 10;
+  inline ::google::protobuf::int32 winnerid() const;
+  inline void set_winnerid(::google::protobuf::int32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 allianceid_;
+  ::google::protobuf::int32 enemyallianceid_;
+  ::std::string* enemyalliancelogo_;
+  static const ::std::string _default_enemyalliancelogo_;
+  ::std::string* enemyalliancename_;
+  static const ::std::string _default_enemyalliancename_;
+  ::google::protobuf::int32 enemyalliancewarscore_;
+  ::google::protobuf::int32 myalliancewarscore_;
+  ::google::protobuf::int32 onknockout_;
+  ::google::protobuf::int32 warstarttime_;
+  ::google::protobuf::int32 warendtime_;
+  ::google::protobuf::int32 winnerid_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_AllianceWar* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_C_Alliance : public ::google::protobuf::Message {
+ public:
+  DB_C_Alliance();
+  virtual ~DB_C_Alliance();
+  
+  DB_C_Alliance(const DB_C_Alliance& from);
+  
+  inline DB_C_Alliance& operator=(const DB_C_Alliance& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_Alliance& default_instance();
+  void Swap(DB_C_Alliance* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_Alliance* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_Alliance& from);
+  void MergeFrom(const DB_C_Alliance& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string logo = 1;
+  inline bool has_logo() const;
+  inline void clear_logo();
+  static const int kLogoFieldNumber = 1;
+  inline const ::std::string& logo() const;
+  inline void set_logo(const ::std::string& value);
+  inline void set_logo(const char* value);
+  inline void set_logo(const char* value, size_t size);
+  inline ::std::string* mutable_logo();
+  
+  // optional string name = 2;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 2;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional string description = 3;
+  inline bool has_description() const;
+  inline void clear_description();
+  static const int kDescriptionFieldNumber = 3;
+  inline const ::std::string& description() const;
+  inline void set_description(const ::std::string& value);
+  inline void set_description(const char* value);
+  inline void set_description(const char* value, size_t size);
+  inline ::std::string* mutable_description();
+  
+  // optional int32 createAt = 4;
+  inline bool has_createat() const;
+  inline void clear_createat();
+  static const int kCreateAtFieldNumber = 4;
+  inline ::google::protobuf::int32 createat() const;
+  inline void set_createat(::google::protobuf::int32 value);
+  
+  // optional int32 rank = 5;
+  inline bool has_rank() const;
+  inline void clear_rank();
+  static const int kRankFieldNumber = 5;
+  inline ::google::protobuf::int32 rank() const;
+  inline void set_rank(::google::protobuf::int32 value);
+  
+  // optional int32 publicRecruit = 6;
+  inline bool has_publicrecruit() const;
+  inline void clear_publicrecruit();
+  static const int kPublicRecruitFieldNumber = 6;
+  inline ::google::protobuf::int32 publicrecruit() const;
+  inline void set_publicrecruit(::google::protobuf::int32 value);
+  
+  // optional int32 warsWon = 7;
+  inline bool has_warswon() const;
+  inline void clear_warswon();
+  static const int kWarsWonFieldNumber = 7;
+  inline ::google::protobuf::int32 warswon() const;
+  inline void set_warswon(::google::protobuf::int32 value);
+  
+  // optional int32 warsLost = 8;
+  inline bool has_warslost() const;
+  inline void clear_warslost();
+  static const int kWarsLostFieldNumber = 8;
+  inline ::google::protobuf::int32 warslost() const;
+  inline void set_warslost(::google::protobuf::int32 value);
+  
+  // optional int32 totalWarScore = 9;
+  inline bool has_totalwarscore() const;
+  inline void clear_totalwarscore();
+  static const int kTotalWarScoreFieldNumber = 9;
+  inline ::google::protobuf::int32 totalwarscore() const;
+  inline void set_totalwarscore(::google::protobuf::int32 value);
+  
+  // optional int32 TotalMembers = 10;
+  inline bool has_totalmembers() const;
+  inline void clear_totalmembers();
+  static const int kTotalMembersFieldNumber = 10;
+  inline ::google::protobuf::int32 totalmembers() const;
+  inline void set_totalmembers(::google::protobuf::int32 value);
+  
+  // optional int32 postWarShield = 11;
+  inline bool has_postwarshield() const;
+  inline void clear_postwarshield();
+  static const int kPostWarShieldFieldNumber = 11;
+  inline ::google::protobuf::int32 postwarshield() const;
+  inline void set_postwarshield(::google::protobuf::int32 value);
+  
+  // optional int32 enemyAllianceId = 12;
+  inline bool has_enemyallianceid() const;
+  inline void clear_enemyallianceid();
+  static const int kEnemyAllianceIdFieldNumber = 12;
+  inline ::google::protobuf::int32 enemyallianceid() const;
+  inline void set_enemyallianceid(::google::protobuf::int32 value);
+  
+  // optional int32 currentWarScore = 13;
+  inline bool has_currentwarscore() const;
+  inline void clear_currentwarscore();
+  static const int kCurrentWarScoreFieldNumber = 13;
+  inline ::google::protobuf::int32 currentwarscore() const;
+  inline void set_currentwarscore(::google::protobuf::int32 value);
+  
+  // optional int32 warStartTime = 14;
+  inline bool has_warstarttime() const;
+  inline void clear_warstarttime();
+  static const int kWarStartTimeFieldNumber = 14;
+  inline ::google::protobuf::int32 warstarttime() const;
+  inline void set_warstarttime(::google::protobuf::int32 value);
+  
+  // optional string pictureUrl = 15;
+  inline bool has_pictureurl() const;
+  inline void clear_pictureurl();
+  static const int kPictureUrlFieldNumber = 15;
+  inline const ::std::string& pictureurl() const;
+  inline void set_pictureurl(const ::std::string& value);
+  inline void set_pictureurl(const char* value);
+  inline void set_pictureurl(const char* value, size_t size);
+  inline ::std::string* mutable_pictureurl();
+  
+  // optional string Role = 16;
+  inline bool has_role() const;
+  inline void clear_role();
+  static const int kRoleFieldNumber = 16;
+  inline const ::std::string& role() const;
+  inline void set_role(const ::std::string& value);
+  inline void set_role(const char* value);
+  inline void set_role(const char* value, size_t size);
+  inline ::std::string* mutable_role();
+  
+  // repeated .DB_C_AliMember members = 17;
+  inline int members_size() const;
+  inline void clear_members();
+  static const int kMembersFieldNumber = 17;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_C_AliMember >& members() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_C_AliMember >* mutable_members();
+  inline const ::DB_C_AliMember& members(int index) const;
+  inline ::DB_C_AliMember* mutable_members(int index);
+  inline ::DB_C_AliMember* add_members();
+  
+  // optional int32 allianceId = 18;
+  inline bool has_allianceid() const;
+  inline void clear_allianceid();
+  static const int kAllianceIdFieldNumber = 18;
+  inline ::google::protobuf::int32 allianceid() const;
+  inline void set_allianceid(::google::protobuf::int32 value);
+  
+  // optional int64 guid = 19;
+  inline bool has_guid() const;
+  inline void clear_guid();
+  static const int kGuidFieldNumber = 19;
+  inline ::google::protobuf::int64 guid() const;
+  inline void set_guid(::google::protobuf::int64 value);
+  
+  // optional int32 warEndTime = 20;
+  inline bool has_warendtime() const;
+  inline void clear_warendtime();
+  static const int kWarEndTimeFieldNumber = 20;
+  inline ::google::protobuf::int32 warendtime() const;
+  inline void set_warendtime(::google::protobuf::int32 value);
+  
+  // repeated .DB_C_AllianceNews alliancesNews = 21;
+  inline int alliancesnews_size() const;
+  inline void clear_alliancesnews();
+  static const int kAlliancesNewsFieldNumber = 21;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceNews >& alliancesnews() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceNews >* mutable_alliancesnews();
+  inline const ::DB_C_AllianceNews& alliancesnews(int index) const;
+  inline ::DB_C_AllianceNews* mutable_alliancesnews(int index);
+  inline ::DB_C_AllianceNews* add_alliancesnews();
+  
+  // repeated .DB_C_AllianceWar alliancesWar = 22;
+  inline int allianceswar_size() const;
+  inline void clear_allianceswar();
+  static const int kAlliancesWarFieldNumber = 22;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceWar >& allianceswar() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceWar >* mutable_allianceswar();
+  inline const ::DB_C_AllianceWar& allianceswar(int index) const;
+  inline ::DB_C_AllianceWar* mutable_allianceswar(int index);
+  inline ::DB_C_AllianceWar* add_allianceswar();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* logo_;
+  static const ::std::string _default_logo_;
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::std::string* description_;
+  static const ::std::string _default_description_;
+  ::google::protobuf::int32 createat_;
+  ::google::protobuf::int32 rank_;
+  ::google::protobuf::int32 publicrecruit_;
+  ::google::protobuf::int32 warswon_;
+  ::google::protobuf::int32 warslost_;
+  ::google::protobuf::int32 totalwarscore_;
+  ::google::protobuf::int32 totalmembers_;
+  ::google::protobuf::int32 postwarshield_;
+  ::google::protobuf::int32 enemyallianceid_;
+  ::google::protobuf::int32 currentwarscore_;
+  ::google::protobuf::int32 warstarttime_;
+  ::std::string* pictureurl_;
+  static const ::std::string _default_pictureurl_;
+  ::std::string* role_;
+  static const ::std::string _default_role_;
+  ::google::protobuf::RepeatedPtrField< ::DB_C_AliMember > members_;
+  ::google::protobuf::int32 allianceid_;
+  ::google::protobuf::int64 guid_;
+  ::google::protobuf::int32 warendtime_;
+  ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceNews > alliancesnews_;
+  ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceWar > allianceswar_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(22 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_Alliance* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class DB_C_AllianceList : public ::google::protobuf::Message {
+ public:
+  DB_C_AllianceList();
+  virtual ~DB_C_AllianceList();
+  
+  DB_C_AllianceList(const DB_C_AllianceList& from);
+  
+  inline DB_C_AllianceList& operator=(const DB_C_AllianceList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const DB_C_AllianceList& default_instance();
+  void Swap(DB_C_AllianceList* other);
+  
+  // implements Message ----------------------------------------------
+  
+  DB_C_AllianceList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const DB_C_AllianceList& from);
+  void MergeFrom(const DB_C_AllianceList& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // repeated .DB_C_Alliance alliance = 1;
+  inline int alliance_size() const;
+  inline void clear_alliance();
+  static const int kAllianceFieldNumber = 1;
+  inline const ::google::protobuf::RepeatedPtrField< ::DB_C_Alliance >& alliance() const;
+  inline ::google::protobuf::RepeatedPtrField< ::DB_C_Alliance >* mutable_alliance();
+  inline const ::DB_C_Alliance& alliance(int index) const;
+  inline ::DB_C_Alliance* mutable_alliance(int index);
+  inline ::DB_C_Alliance* add_alliance();
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::RepeatedPtrField< ::DB_C_Alliance > alliance_;
+  friend void  protobuf_AddDesc_countryDB_2eproto();
+  friend void protobuf_AssignDesc_countryDB_2eproto();
+  friend void protobuf_ShutdownFile_countryDB_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static DB_C_AllianceList* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class DB_C_Country : public ::google::protobuf::Message {
  public:
   DB_C_Country();
@@ -542,6 +1402,13 @@ class DB_C_Country : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 ltsaverevision() const;
   inline void set_ltsaverevision(::google::protobuf::int64 value);
   
+  // optional .DB_C_AllianceList allianceList = 5;
+  inline bool has_alliancelist() const;
+  inline void clear_alliancelist();
+  static const int kAllianceListFieldNumber = 5;
+  inline const ::DB_C_AllianceList& alliancelist() const;
+  inline ::DB_C_AllianceList* mutable_alliancelist();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -550,11 +1417,12 @@ class DB_C_Country : public ::google::protobuf::Message {
   ::google::protobuf::RepeatedPtrField< ::DB_C_City > city_;
   ::google::protobuf::RepeatedPtrField< ::DB_C_UserLite > users_;
   ::google::protobuf::int64 ltsaverevision_;
+  ::DB_C_AllianceList* alliancelist_;
   friend void  protobuf_AddDesc_countryDB_2eproto();
   friend void protobuf_AssignDesc_countryDB_2eproto();
   friend void protobuf_ShutdownFile_countryDB_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -1013,6 +1881,1174 @@ inline ::DB_C_PlanetLite* DB_C_City::add_planets() {
 
 // -------------------------------------------------------------------
 
+// DB_C_AliMember
+
+// optional int64 id = 1;
+inline bool DB_C_AliMember::has_id() const {
+  return _has_bit(0);
+}
+inline void DB_C_AliMember::clear_id() {
+  id_ = GOOGLE_LONGLONG(0);
+  _clear_bit(0);
+}
+inline ::google::protobuf::int64 DB_C_AliMember::id() const {
+  return id_;
+}
+inline void DB_C_AliMember::set_id(::google::protobuf::int64 value) {
+  _set_bit(0);
+  id_ = value;
+}
+
+// optional string pictureUrl = 2;
+inline bool DB_C_AliMember::has_pictureurl() const {
+  return _has_bit(1);
+}
+inline void DB_C_AliMember::clear_pictureurl() {
+  if (pictureurl_ != &_default_pictureurl_) {
+    pictureurl_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& DB_C_AliMember::pictureurl() const {
+  return *pictureurl_;
+}
+inline void DB_C_AliMember::set_pictureurl(const ::std::string& value) {
+  _set_bit(1);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(value);
+}
+inline void DB_C_AliMember::set_pictureurl(const char* value) {
+  _set_bit(1);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(value);
+}
+inline void DB_C_AliMember::set_pictureurl(const char* value, size_t size) {
+  _set_bit(1);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AliMember::mutable_pictureurl() {
+  _set_bit(1);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  return pictureurl_;
+}
+
+// optional string name = 3;
+inline bool DB_C_AliMember::has_name() const {
+  return _has_bit(2);
+}
+inline void DB_C_AliMember::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(2);
+}
+inline const ::std::string& DB_C_AliMember::name() const {
+  return *name_;
+}
+inline void DB_C_AliMember::set_name(const ::std::string& value) {
+  _set_bit(2);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_AliMember::set_name(const char* value) {
+  _set_bit(2);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_AliMember::set_name(const char* value, size_t size) {
+  _set_bit(2);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AliMember::mutable_name() {
+  _set_bit(2);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional int32 score = 4;
+inline bool DB_C_AliMember::has_score() const {
+  return _has_bit(3);
+}
+inline void DB_C_AliMember::clear_score() {
+  score_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_C_AliMember::score() const {
+  return score_;
+}
+inline void DB_C_AliMember::set_score(::google::protobuf::int32 value) {
+  _set_bit(3);
+  score_ = value;
+}
+
+// optional int32 role = 5;
+inline bool DB_C_AliMember::has_role() const {
+  return _has_bit(4);
+}
+inline void DB_C_AliMember::clear_role() {
+  role_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_AliMember::role() const {
+  return role_;
+}
+inline void DB_C_AliMember::set_role(::google::protobuf::int32 value) {
+  _set_bit(4);
+  role_ = value;
+}
+
+// optional int32 currentWarScore = 6;
+inline bool DB_C_AliMember::has_currentwarscore() const {
+  return _has_bit(5);
+}
+inline void DB_C_AliMember::clear_currentwarscore() {
+  currentwarscore_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 DB_C_AliMember::currentwarscore() const {
+  return currentwarscore_;
+}
+inline void DB_C_AliMember::set_currentwarscore(::google::protobuf::int32 value) {
+  _set_bit(5);
+  currentwarscore_ = value;
+}
+
+// optional int32 totalWarScore = 7;
+inline bool DB_C_AliMember::has_totalwarscore() const {
+  return _has_bit(6);
+}
+inline void DB_C_AliMember::clear_totalwarscore() {
+  totalwarscore_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 DB_C_AliMember::totalwarscore() const {
+  return totalwarscore_;
+}
+inline void DB_C_AliMember::set_totalwarscore(::google::protobuf::int32 value) {
+  _set_bit(6);
+  totalwarscore_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DB_C_AllianceNews
+
+// optional int32 allianceId = 1;
+inline bool DB_C_AllianceNews::has_allianceid() const {
+  return _has_bit(0);
+}
+inline void DB_C_AllianceNews::clear_allianceid() {
+  allianceid_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 DB_C_AllianceNews::allianceid() const {
+  return allianceid_;
+}
+inline void DB_C_AllianceNews::set_allianceid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  allianceid_ = value;
+}
+
+// optional int64 guid = 2;
+inline bool DB_C_AllianceNews::has_guid() const {
+  return _has_bit(1);
+}
+inline void DB_C_AllianceNews::clear_guid() {
+  guid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(1);
+}
+inline ::google::protobuf::int64 DB_C_AllianceNews::guid() const {
+  return guid_;
+}
+inline void DB_C_AllianceNews::set_guid(::google::protobuf::int64 value) {
+  _set_bit(1);
+  guid_ = value;
+}
+
+// optional int32 level = 3;
+inline bool DB_C_AllianceNews::has_level() const {
+  return _has_bit(2);
+}
+inline void DB_C_AllianceNews::clear_level() {
+  level_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 DB_C_AllianceNews::level() const {
+  return level_;
+}
+inline void DB_C_AllianceNews::set_level(::google::protobuf::int32 value) {
+  _set_bit(2);
+  level_ = value;
+}
+
+// optional int32 type = 4;
+inline bool DB_C_AllianceNews::has_type() const {
+  return _has_bit(3);
+}
+inline void DB_C_AllianceNews::clear_type() {
+  type_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_C_AllianceNews::type() const {
+  return type_;
+}
+inline void DB_C_AllianceNews::set_type(::google::protobuf::int32 value) {
+  _set_bit(3);
+  type_ = value;
+}
+
+// optional int32 subtype = 5;
+inline bool DB_C_AllianceNews::has_subtype() const {
+  return _has_bit(4);
+}
+inline void DB_C_AllianceNews::clear_subtype() {
+  subtype_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_AllianceNews::subtype() const {
+  return subtype_;
+}
+inline void DB_C_AllianceNews::set_subtype(::google::protobuf::int32 value) {
+  _set_bit(4);
+  subtype_ = value;
+}
+
+// optional string name = 6;
+inline bool DB_C_AllianceNews::has_name() const {
+  return _has_bit(5);
+}
+inline void DB_C_AllianceNews::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(5);
+}
+inline const ::std::string& DB_C_AllianceNews::name() const {
+  return *name_;
+}
+inline void DB_C_AllianceNews::set_name(const ::std::string& value) {
+  _set_bit(5);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_AllianceNews::set_name(const char* value) {
+  _set_bit(5);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_AllianceNews::set_name(const char* value, size_t size) {
+  _set_bit(5);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AllianceNews::mutable_name() {
+  _set_bit(5);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string content = 7;
+inline bool DB_C_AllianceNews::has_content() const {
+  return _has_bit(6);
+}
+inline void DB_C_AllianceNews::clear_content() {
+  if (content_ != &_default_content_) {
+    content_->clear();
+  }
+  _clear_bit(6);
+}
+inline const ::std::string& DB_C_AllianceNews::content() const {
+  return *content_;
+}
+inline void DB_C_AllianceNews::set_content(const ::std::string& value) {
+  _set_bit(6);
+  if (content_ == &_default_content_) {
+    content_ = new ::std::string;
+  }
+  content_->assign(value);
+}
+inline void DB_C_AllianceNews::set_content(const char* value) {
+  _set_bit(6);
+  if (content_ == &_default_content_) {
+    content_ = new ::std::string;
+  }
+  content_->assign(value);
+}
+inline void DB_C_AllianceNews::set_content(const char* value, size_t size) {
+  _set_bit(6);
+  if (content_ == &_default_content_) {
+    content_ = new ::std::string;
+  }
+  content_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AllianceNews::mutable_content() {
+  _set_bit(6);
+  if (content_ == &_default_content_) {
+    content_ = new ::std::string;
+  }
+  return content_;
+}
+
+// optional int64 timestamp = 8;
+inline bool DB_C_AllianceNews::has_timestamp() const {
+  return _has_bit(7);
+}
+inline void DB_C_AllianceNews::clear_timestamp() {
+  timestamp_ = GOOGLE_LONGLONG(0);
+  _clear_bit(7);
+}
+inline ::google::protobuf::int64 DB_C_AllianceNews::timestamp() const {
+  return timestamp_;
+}
+inline void DB_C_AllianceNews::set_timestamp(::google::protobuf::int64 value) {
+  _set_bit(7);
+  timestamp_ = value;
+}
+
+// optional string pictureUrl = 9;
+inline bool DB_C_AllianceNews::has_pictureurl() const {
+  return _has_bit(8);
+}
+inline void DB_C_AllianceNews::clear_pictureurl() {
+  if (pictureurl_ != &_default_pictureurl_) {
+    pictureurl_->clear();
+  }
+  _clear_bit(8);
+}
+inline const ::std::string& DB_C_AllianceNews::pictureurl() const {
+  return *pictureurl_;
+}
+inline void DB_C_AllianceNews::set_pictureurl(const ::std::string& value) {
+  _set_bit(8);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(value);
+}
+inline void DB_C_AllianceNews::set_pictureurl(const char* value) {
+  _set_bit(8);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(value);
+}
+inline void DB_C_AllianceNews::set_pictureurl(const char* value, size_t size) {
+  _set_bit(8);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AllianceNews::mutable_pictureurl() {
+  _set_bit(8);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  return pictureurl_;
+}
+
+// optional int32 score = 10;
+inline bool DB_C_AllianceNews::has_score() const {
+  return _has_bit(9);
+}
+inline void DB_C_AllianceNews::clear_score() {
+  score_ = 0;
+  _clear_bit(9);
+}
+inline ::google::protobuf::int32 DB_C_AllianceNews::score() const {
+  return score_;
+}
+inline void DB_C_AllianceNews::set_score(::google::protobuf::int32 value) {
+  _set_bit(9);
+  score_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DB_C_AllianceWar
+
+// optional int32 allianceId = 1;
+inline bool DB_C_AllianceWar::has_allianceid() const {
+  return _has_bit(0);
+}
+inline void DB_C_AllianceWar::clear_allianceid() {
+  allianceid_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::allianceid() const {
+  return allianceid_;
+}
+inline void DB_C_AllianceWar::set_allianceid(::google::protobuf::int32 value) {
+  _set_bit(0);
+  allianceid_ = value;
+}
+
+// optional int32 enemyallianceid = 2;
+inline bool DB_C_AllianceWar::has_enemyallianceid() const {
+  return _has_bit(1);
+}
+inline void DB_C_AllianceWar::clear_enemyallianceid() {
+  enemyallianceid_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::enemyallianceid() const {
+  return enemyallianceid_;
+}
+inline void DB_C_AllianceWar::set_enemyallianceid(::google::protobuf::int32 value) {
+  _set_bit(1);
+  enemyallianceid_ = value;
+}
+
+// optional string enemyalliancelogo = 3;
+inline bool DB_C_AllianceWar::has_enemyalliancelogo() const {
+  return _has_bit(2);
+}
+inline void DB_C_AllianceWar::clear_enemyalliancelogo() {
+  if (enemyalliancelogo_ != &_default_enemyalliancelogo_) {
+    enemyalliancelogo_->clear();
+  }
+  _clear_bit(2);
+}
+inline const ::std::string& DB_C_AllianceWar::enemyalliancelogo() const {
+  return *enemyalliancelogo_;
+}
+inline void DB_C_AllianceWar::set_enemyalliancelogo(const ::std::string& value) {
+  _set_bit(2);
+  if (enemyalliancelogo_ == &_default_enemyalliancelogo_) {
+    enemyalliancelogo_ = new ::std::string;
+  }
+  enemyalliancelogo_->assign(value);
+}
+inline void DB_C_AllianceWar::set_enemyalliancelogo(const char* value) {
+  _set_bit(2);
+  if (enemyalliancelogo_ == &_default_enemyalliancelogo_) {
+    enemyalliancelogo_ = new ::std::string;
+  }
+  enemyalliancelogo_->assign(value);
+}
+inline void DB_C_AllianceWar::set_enemyalliancelogo(const char* value, size_t size) {
+  _set_bit(2);
+  if (enemyalliancelogo_ == &_default_enemyalliancelogo_) {
+    enemyalliancelogo_ = new ::std::string;
+  }
+  enemyalliancelogo_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AllianceWar::mutable_enemyalliancelogo() {
+  _set_bit(2);
+  if (enemyalliancelogo_ == &_default_enemyalliancelogo_) {
+    enemyalliancelogo_ = new ::std::string;
+  }
+  return enemyalliancelogo_;
+}
+
+// optional string enemyalliancename = 4;
+inline bool DB_C_AllianceWar::has_enemyalliancename() const {
+  return _has_bit(3);
+}
+inline void DB_C_AllianceWar::clear_enemyalliancename() {
+  if (enemyalliancename_ != &_default_enemyalliancename_) {
+    enemyalliancename_->clear();
+  }
+  _clear_bit(3);
+}
+inline const ::std::string& DB_C_AllianceWar::enemyalliancename() const {
+  return *enemyalliancename_;
+}
+inline void DB_C_AllianceWar::set_enemyalliancename(const ::std::string& value) {
+  _set_bit(3);
+  if (enemyalliancename_ == &_default_enemyalliancename_) {
+    enemyalliancename_ = new ::std::string;
+  }
+  enemyalliancename_->assign(value);
+}
+inline void DB_C_AllianceWar::set_enemyalliancename(const char* value) {
+  _set_bit(3);
+  if (enemyalliancename_ == &_default_enemyalliancename_) {
+    enemyalliancename_ = new ::std::string;
+  }
+  enemyalliancename_->assign(value);
+}
+inline void DB_C_AllianceWar::set_enemyalliancename(const char* value, size_t size) {
+  _set_bit(3);
+  if (enemyalliancename_ == &_default_enemyalliancename_) {
+    enemyalliancename_ = new ::std::string;
+  }
+  enemyalliancename_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_AllianceWar::mutable_enemyalliancename() {
+  _set_bit(3);
+  if (enemyalliancename_ == &_default_enemyalliancename_) {
+    enemyalliancename_ = new ::std::string;
+  }
+  return enemyalliancename_;
+}
+
+// optional int32 enemyalliancewarscore = 5;
+inline bool DB_C_AllianceWar::has_enemyalliancewarscore() const {
+  return _has_bit(4);
+}
+inline void DB_C_AllianceWar::clear_enemyalliancewarscore() {
+  enemyalliancewarscore_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::enemyalliancewarscore() const {
+  return enemyalliancewarscore_;
+}
+inline void DB_C_AllianceWar::set_enemyalliancewarscore(::google::protobuf::int32 value) {
+  _set_bit(4);
+  enemyalliancewarscore_ = value;
+}
+
+// optional int32 myalliancewarscore = 6;
+inline bool DB_C_AllianceWar::has_myalliancewarscore() const {
+  return _has_bit(5);
+}
+inline void DB_C_AllianceWar::clear_myalliancewarscore() {
+  myalliancewarscore_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::myalliancewarscore() const {
+  return myalliancewarscore_;
+}
+inline void DB_C_AllianceWar::set_myalliancewarscore(::google::protobuf::int32 value) {
+  _set_bit(5);
+  myalliancewarscore_ = value;
+}
+
+// optional int32 onknockout = 7;
+inline bool DB_C_AllianceWar::has_onknockout() const {
+  return _has_bit(6);
+}
+inline void DB_C_AllianceWar::clear_onknockout() {
+  onknockout_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::onknockout() const {
+  return onknockout_;
+}
+inline void DB_C_AllianceWar::set_onknockout(::google::protobuf::int32 value) {
+  _set_bit(6);
+  onknockout_ = value;
+}
+
+// optional int32 warstarttime = 8;
+inline bool DB_C_AllianceWar::has_warstarttime() const {
+  return _has_bit(7);
+}
+inline void DB_C_AllianceWar::clear_warstarttime() {
+  warstarttime_ = 0;
+  _clear_bit(7);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::warstarttime() const {
+  return warstarttime_;
+}
+inline void DB_C_AllianceWar::set_warstarttime(::google::protobuf::int32 value) {
+  _set_bit(7);
+  warstarttime_ = value;
+}
+
+// optional int32 warendtime = 9;
+inline bool DB_C_AllianceWar::has_warendtime() const {
+  return _has_bit(8);
+}
+inline void DB_C_AllianceWar::clear_warendtime() {
+  warendtime_ = 0;
+  _clear_bit(8);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::warendtime() const {
+  return warendtime_;
+}
+inline void DB_C_AllianceWar::set_warendtime(::google::protobuf::int32 value) {
+  _set_bit(8);
+  warendtime_ = value;
+}
+
+// optional int32 winnerid = 10;
+inline bool DB_C_AllianceWar::has_winnerid() const {
+  return _has_bit(9);
+}
+inline void DB_C_AllianceWar::clear_winnerid() {
+  winnerid_ = 0;
+  _clear_bit(9);
+}
+inline ::google::protobuf::int32 DB_C_AllianceWar::winnerid() const {
+  return winnerid_;
+}
+inline void DB_C_AllianceWar::set_winnerid(::google::protobuf::int32 value) {
+  _set_bit(9);
+  winnerid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// DB_C_Alliance
+
+// optional string logo = 1;
+inline bool DB_C_Alliance::has_logo() const {
+  return _has_bit(0);
+}
+inline void DB_C_Alliance::clear_logo() {
+  if (logo_ != &_default_logo_) {
+    logo_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& DB_C_Alliance::logo() const {
+  return *logo_;
+}
+inline void DB_C_Alliance::set_logo(const ::std::string& value) {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  logo_->assign(value);
+}
+inline void DB_C_Alliance::set_logo(const char* value) {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  logo_->assign(value);
+}
+inline void DB_C_Alliance::set_logo(const char* value, size_t size) {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  logo_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_Alliance::mutable_logo() {
+  _set_bit(0);
+  if (logo_ == &_default_logo_) {
+    logo_ = new ::std::string;
+  }
+  return logo_;
+}
+
+// optional string name = 2;
+inline bool DB_C_Alliance::has_name() const {
+  return _has_bit(1);
+}
+inline void DB_C_Alliance::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& DB_C_Alliance::name() const {
+  return *name_;
+}
+inline void DB_C_Alliance::set_name(const ::std::string& value) {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_Alliance::set_name(const char* value) {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void DB_C_Alliance::set_name(const char* value, size_t size) {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_Alliance::mutable_name() {
+  _set_bit(1);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional string description = 3;
+inline bool DB_C_Alliance::has_description() const {
+  return _has_bit(2);
+}
+inline void DB_C_Alliance::clear_description() {
+  if (description_ != &_default_description_) {
+    description_->clear();
+  }
+  _clear_bit(2);
+}
+inline const ::std::string& DB_C_Alliance::description() const {
+  return *description_;
+}
+inline void DB_C_Alliance::set_description(const ::std::string& value) {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void DB_C_Alliance::set_description(const char* value) {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(value);
+}
+inline void DB_C_Alliance::set_description(const char* value, size_t size) {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  description_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_Alliance::mutable_description() {
+  _set_bit(2);
+  if (description_ == &_default_description_) {
+    description_ = new ::std::string;
+  }
+  return description_;
+}
+
+// optional int32 createAt = 4;
+inline bool DB_C_Alliance::has_createat() const {
+  return _has_bit(3);
+}
+inline void DB_C_Alliance::clear_createat() {
+  createat_ = 0;
+  _clear_bit(3);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::createat() const {
+  return createat_;
+}
+inline void DB_C_Alliance::set_createat(::google::protobuf::int32 value) {
+  _set_bit(3);
+  createat_ = value;
+}
+
+// optional int32 rank = 5;
+inline bool DB_C_Alliance::has_rank() const {
+  return _has_bit(4);
+}
+inline void DB_C_Alliance::clear_rank() {
+  rank_ = 0;
+  _clear_bit(4);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::rank() const {
+  return rank_;
+}
+inline void DB_C_Alliance::set_rank(::google::protobuf::int32 value) {
+  _set_bit(4);
+  rank_ = value;
+}
+
+// optional int32 publicRecruit = 6;
+inline bool DB_C_Alliance::has_publicrecruit() const {
+  return _has_bit(5);
+}
+inline void DB_C_Alliance::clear_publicrecruit() {
+  publicrecruit_ = 0;
+  _clear_bit(5);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::publicrecruit() const {
+  return publicrecruit_;
+}
+inline void DB_C_Alliance::set_publicrecruit(::google::protobuf::int32 value) {
+  _set_bit(5);
+  publicrecruit_ = value;
+}
+
+// optional int32 warsWon = 7;
+inline bool DB_C_Alliance::has_warswon() const {
+  return _has_bit(6);
+}
+inline void DB_C_Alliance::clear_warswon() {
+  warswon_ = 0;
+  _clear_bit(6);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::warswon() const {
+  return warswon_;
+}
+inline void DB_C_Alliance::set_warswon(::google::protobuf::int32 value) {
+  _set_bit(6);
+  warswon_ = value;
+}
+
+// optional int32 warsLost = 8;
+inline bool DB_C_Alliance::has_warslost() const {
+  return _has_bit(7);
+}
+inline void DB_C_Alliance::clear_warslost() {
+  warslost_ = 0;
+  _clear_bit(7);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::warslost() const {
+  return warslost_;
+}
+inline void DB_C_Alliance::set_warslost(::google::protobuf::int32 value) {
+  _set_bit(7);
+  warslost_ = value;
+}
+
+// optional int32 totalWarScore = 9;
+inline bool DB_C_Alliance::has_totalwarscore() const {
+  return _has_bit(8);
+}
+inline void DB_C_Alliance::clear_totalwarscore() {
+  totalwarscore_ = 0;
+  _clear_bit(8);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::totalwarscore() const {
+  return totalwarscore_;
+}
+inline void DB_C_Alliance::set_totalwarscore(::google::protobuf::int32 value) {
+  _set_bit(8);
+  totalwarscore_ = value;
+}
+
+// optional int32 TotalMembers = 10;
+inline bool DB_C_Alliance::has_totalmembers() const {
+  return _has_bit(9);
+}
+inline void DB_C_Alliance::clear_totalmembers() {
+  totalmembers_ = 0;
+  _clear_bit(9);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::totalmembers() const {
+  return totalmembers_;
+}
+inline void DB_C_Alliance::set_totalmembers(::google::protobuf::int32 value) {
+  _set_bit(9);
+  totalmembers_ = value;
+}
+
+// optional int32 postWarShield = 11;
+inline bool DB_C_Alliance::has_postwarshield() const {
+  return _has_bit(10);
+}
+inline void DB_C_Alliance::clear_postwarshield() {
+  postwarshield_ = 0;
+  _clear_bit(10);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::postwarshield() const {
+  return postwarshield_;
+}
+inline void DB_C_Alliance::set_postwarshield(::google::protobuf::int32 value) {
+  _set_bit(10);
+  postwarshield_ = value;
+}
+
+// optional int32 enemyAllianceId = 12;
+inline bool DB_C_Alliance::has_enemyallianceid() const {
+  return _has_bit(11);
+}
+inline void DB_C_Alliance::clear_enemyallianceid() {
+  enemyallianceid_ = 0;
+  _clear_bit(11);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::enemyallianceid() const {
+  return enemyallianceid_;
+}
+inline void DB_C_Alliance::set_enemyallianceid(::google::protobuf::int32 value) {
+  _set_bit(11);
+  enemyallianceid_ = value;
+}
+
+// optional int32 currentWarScore = 13;
+inline bool DB_C_Alliance::has_currentwarscore() const {
+  return _has_bit(12);
+}
+inline void DB_C_Alliance::clear_currentwarscore() {
+  currentwarscore_ = 0;
+  _clear_bit(12);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::currentwarscore() const {
+  return currentwarscore_;
+}
+inline void DB_C_Alliance::set_currentwarscore(::google::protobuf::int32 value) {
+  _set_bit(12);
+  currentwarscore_ = value;
+}
+
+// optional int32 warStartTime = 14;
+inline bool DB_C_Alliance::has_warstarttime() const {
+  return _has_bit(13);
+}
+inline void DB_C_Alliance::clear_warstarttime() {
+  warstarttime_ = 0;
+  _clear_bit(13);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::warstarttime() const {
+  return warstarttime_;
+}
+inline void DB_C_Alliance::set_warstarttime(::google::protobuf::int32 value) {
+  _set_bit(13);
+  warstarttime_ = value;
+}
+
+// optional string pictureUrl = 15;
+inline bool DB_C_Alliance::has_pictureurl() const {
+  return _has_bit(14);
+}
+inline void DB_C_Alliance::clear_pictureurl() {
+  if (pictureurl_ != &_default_pictureurl_) {
+    pictureurl_->clear();
+  }
+  _clear_bit(14);
+}
+inline const ::std::string& DB_C_Alliance::pictureurl() const {
+  return *pictureurl_;
+}
+inline void DB_C_Alliance::set_pictureurl(const ::std::string& value) {
+  _set_bit(14);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(value);
+}
+inline void DB_C_Alliance::set_pictureurl(const char* value) {
+  _set_bit(14);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(value);
+}
+inline void DB_C_Alliance::set_pictureurl(const char* value, size_t size) {
+  _set_bit(14);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  pictureurl_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_Alliance::mutable_pictureurl() {
+  _set_bit(14);
+  if (pictureurl_ == &_default_pictureurl_) {
+    pictureurl_ = new ::std::string;
+  }
+  return pictureurl_;
+}
+
+// optional string Role = 16;
+inline bool DB_C_Alliance::has_role() const {
+  return _has_bit(15);
+}
+inline void DB_C_Alliance::clear_role() {
+  if (role_ != &_default_role_) {
+    role_->clear();
+  }
+  _clear_bit(15);
+}
+inline const ::std::string& DB_C_Alliance::role() const {
+  return *role_;
+}
+inline void DB_C_Alliance::set_role(const ::std::string& value) {
+  _set_bit(15);
+  if (role_ == &_default_role_) {
+    role_ = new ::std::string;
+  }
+  role_->assign(value);
+}
+inline void DB_C_Alliance::set_role(const char* value) {
+  _set_bit(15);
+  if (role_ == &_default_role_) {
+    role_ = new ::std::string;
+  }
+  role_->assign(value);
+}
+inline void DB_C_Alliance::set_role(const char* value, size_t size) {
+  _set_bit(15);
+  if (role_ == &_default_role_) {
+    role_ = new ::std::string;
+  }
+  role_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* DB_C_Alliance::mutable_role() {
+  _set_bit(15);
+  if (role_ == &_default_role_) {
+    role_ = new ::std::string;
+  }
+  return role_;
+}
+
+// repeated .DB_C_AliMember members = 17;
+inline int DB_C_Alliance::members_size() const {
+  return members_.size();
+}
+inline void DB_C_Alliance::clear_members() {
+  members_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_C_AliMember >&
+DB_C_Alliance::members() const {
+  return members_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_C_AliMember >*
+DB_C_Alliance::mutable_members() {
+  return &members_;
+}
+inline const ::DB_C_AliMember& DB_C_Alliance::members(int index) const {
+  return members_.Get(index);
+}
+inline ::DB_C_AliMember* DB_C_Alliance::mutable_members(int index) {
+  return members_.Mutable(index);
+}
+inline ::DB_C_AliMember* DB_C_Alliance::add_members() {
+  return members_.Add();
+}
+
+// optional int32 allianceId = 18;
+inline bool DB_C_Alliance::has_allianceid() const {
+  return _has_bit(17);
+}
+inline void DB_C_Alliance::clear_allianceid() {
+  allianceid_ = 0;
+  _clear_bit(17);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::allianceid() const {
+  return allianceid_;
+}
+inline void DB_C_Alliance::set_allianceid(::google::protobuf::int32 value) {
+  _set_bit(17);
+  allianceid_ = value;
+}
+
+// optional int64 guid = 19;
+inline bool DB_C_Alliance::has_guid() const {
+  return _has_bit(18);
+}
+inline void DB_C_Alliance::clear_guid() {
+  guid_ = GOOGLE_LONGLONG(0);
+  _clear_bit(18);
+}
+inline ::google::protobuf::int64 DB_C_Alliance::guid() const {
+  return guid_;
+}
+inline void DB_C_Alliance::set_guid(::google::protobuf::int64 value) {
+  _set_bit(18);
+  guid_ = value;
+}
+
+// optional int32 warEndTime = 20;
+inline bool DB_C_Alliance::has_warendtime() const {
+  return _has_bit(19);
+}
+inline void DB_C_Alliance::clear_warendtime() {
+  warendtime_ = 0;
+  _clear_bit(19);
+}
+inline ::google::protobuf::int32 DB_C_Alliance::warendtime() const {
+  return warendtime_;
+}
+inline void DB_C_Alliance::set_warendtime(::google::protobuf::int32 value) {
+  _set_bit(19);
+  warendtime_ = value;
+}
+
+// repeated .DB_C_AllianceNews alliancesNews = 21;
+inline int DB_C_Alliance::alliancesnews_size() const {
+  return alliancesnews_.size();
+}
+inline void DB_C_Alliance::clear_alliancesnews() {
+  alliancesnews_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceNews >&
+DB_C_Alliance::alliancesnews() const {
+  return alliancesnews_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceNews >*
+DB_C_Alliance::mutable_alliancesnews() {
+  return &alliancesnews_;
+}
+inline const ::DB_C_AllianceNews& DB_C_Alliance::alliancesnews(int index) const {
+  return alliancesnews_.Get(index);
+}
+inline ::DB_C_AllianceNews* DB_C_Alliance::mutable_alliancesnews(int index) {
+  return alliancesnews_.Mutable(index);
+}
+inline ::DB_C_AllianceNews* DB_C_Alliance::add_alliancesnews() {
+  return alliancesnews_.Add();
+}
+
+// repeated .DB_C_AllianceWar alliancesWar = 22;
+inline int DB_C_Alliance::allianceswar_size() const {
+  return allianceswar_.size();
+}
+inline void DB_C_Alliance::clear_allianceswar() {
+  allianceswar_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceWar >&
+DB_C_Alliance::allianceswar() const {
+  return allianceswar_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_C_AllianceWar >*
+DB_C_Alliance::mutable_allianceswar() {
+  return &allianceswar_;
+}
+inline const ::DB_C_AllianceWar& DB_C_Alliance::allianceswar(int index) const {
+  return allianceswar_.Get(index);
+}
+inline ::DB_C_AllianceWar* DB_C_Alliance::mutable_allianceswar(int index) {
+  return allianceswar_.Mutable(index);
+}
+inline ::DB_C_AllianceWar* DB_C_Alliance::add_allianceswar() {
+  return allianceswar_.Add();
+}
+
+// -------------------------------------------------------------------
+
+// DB_C_AllianceList
+
+// repeated .DB_C_Alliance alliance = 1;
+inline int DB_C_AllianceList::alliance_size() const {
+  return alliance_.size();
+}
+inline void DB_C_AllianceList::clear_alliance() {
+  alliance_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::DB_C_Alliance >&
+DB_C_AllianceList::alliance() const {
+  return alliance_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::DB_C_Alliance >*
+DB_C_AllianceList::mutable_alliance() {
+  return &alliance_;
+}
+inline const ::DB_C_Alliance& DB_C_AllianceList::alliance(int index) const {
+  return alliance_.Get(index);
+}
+inline ::DB_C_Alliance* DB_C_AllianceList::mutable_alliance(int index) {
+  return alliance_.Mutable(index);
+}
+inline ::DB_C_Alliance* DB_C_AllianceList::add_alliance() {
+  return alliance_.Add();
+}
+
+// -------------------------------------------------------------------
+
 // DB_C_Country
 
 // required int32 region = 1;
@@ -1095,6 +3131,23 @@ inline ::google::protobuf::int64 DB_C_Country::ltsaverevision() const {
 inline void DB_C_Country::set_ltsaverevision(::google::protobuf::int64 value) {
   _set_bit(3);
   ltsaverevision_ = value;
+}
+
+// optional .DB_C_AllianceList allianceList = 5;
+inline bool DB_C_Country::has_alliancelist() const {
+  return _has_bit(4);
+}
+inline void DB_C_Country::clear_alliancelist() {
+  if (alliancelist_ != NULL) alliancelist_->::DB_C_AllianceList::Clear();
+  _clear_bit(4);
+}
+inline const ::DB_C_AllianceList& DB_C_Country::alliancelist() const {
+  return alliancelist_ != NULL ? *alliancelist_ : *default_instance_->alliancelist_;
+}
+inline ::DB_C_AllianceList* DB_C_Country::mutable_alliancelist() {
+  _set_bit(4);
+  if (alliancelist_ == NULL) alliancelist_ = new ::DB_C_AllianceList;
+  return alliancelist_;
 }
 
 

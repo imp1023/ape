@@ -35,10 +35,81 @@ message DB_C_City
 	repeated DB_C_PlanetLite	planets = 6;
 }
 
+message DB_C_AliMember
+{
+	optional int64 id = 1;
+	optional string pictureUrl = 2;
+	optional string name = 3;
+	optional int32 score = 4;
+	optional int32 role = 5;
+	optional int32 currentWarScore = 6;
+	optional int32 totalWarScore = 7;
+}
+
+message DB_C_AllianceNews
+{
+	optional int32 allianceId = 1;
+	optional int64 guid = 2;
+	optional int32 level = 3;
+	optional int32 type = 4;
+	optional int32 subtype = 5;
+	optional string name = 6;
+	optional string content = 7;
+	optional int64 timestamp = 8;
+	optional string pictureUrl = 9;
+	optional int32 score = 10;
+}
+
+message DB_C_AllianceWar
+{
+	optional int32 allianceId = 1;
+	optional int32 enemyallianceid = 2;
+	optional string enemyalliancelogo = 3;
+	optional string enemyalliancename = 4;
+	optional int32 enemyalliancewarscore = 5;
+	optional int32 myalliancewarscore = 6;
+	optional int32 onknockout = 7;
+	optional int32 warstarttime = 8;
+	optional int32 warendtime = 9;
+	optional int32 winnerid = 10;	
+}
+
+message DB_C_Alliance
+{
+	optional string logo = 1;
+	optional string name = 2;
+	optional string description = 3;
+	optional int32 createAt = 4;
+	optional int32 rank = 5;
+	optional int32 publicRecruit = 6;
+	optional int32 warsWon = 7;
+	optional int32 warsLost = 8;
+	optional int32 totalWarScore = 9;
+	optional int32 TotalMembers = 10;
+	optional int32 postWarShield = 11;
+	optional int32 enemyAllianceId = 12;
+	optional int32 currentWarScore = 13;
+	optional int32 warStartTime = 14;
+	optional string pictureUrl = 15;
+	optional string Role = 16;
+	repeated DB_C_AliMember members = 17;
+	optional int32 allianceId = 18;
+	optional int64 guid = 19;
+	optional int32 warEndTime = 20;
+	repeated DB_C_AllianceNews alliancesNews = 21;
+	repeated DB_C_AllianceWar alliancesWar = 22;
+}
+
+message DB_C_AllianceList
+{
+	repeated DB_C_Alliance alliance = 1;
+}
+
 message DB_C_Country
 {
 	required int32  region				= 1;
 	repeated DB_C_City city 			= 2;
 	repeated DB_C_UserLite users   = 3; 
 	optional int64	ltSaveRevision		= 4[default = 0];
+	optional DB_C_AllianceList allianceList = 5;
 }

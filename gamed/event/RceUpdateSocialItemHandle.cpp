@@ -55,9 +55,9 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 	}
 
 	RseUpdateSocialItem rse;
-	rse.set_ret(0);
+	rse.set_ret(RseUpdateSocialItemRet_Success);
 	
-	int nPlanetId = req->planetid();
+	int planetId = req->planetid();
 	string strAction = req->action();
 	MsgTransaction* MT = req->mutable_transaction();
 	if(MT)
@@ -65,12 +65,13 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 		for(int i = 0;i<MT->socialitems_size();i++)
 		{
 			MsgSocialItems* MSI = MT->mutable_socialitems(i);
-			DB_SocialItem* pDBSI = pPlayer->GetSocialItem(MSI->sku());
-			pDBSI->set_amount(pDBSI->amount() - MSI->amount());
-			if(pDBSI->amount() == 0)
-				pPlayer->RemoveSocialItem(MSI->sku());
+			if(!pPlayer->CostSocialItem(MSI->sku(), 1))
+			{
+				SendRet2User(pUser,RseUpdateSocialItemRet_SocialItemNotEnough,rse);
+			}
 		}
 	}
+
 	if(strAction == "nextStep")
 	{
 		int quantity = 0;
@@ -88,35 +89,12 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 				quantity = 1;
 			}
 		}
-		DB_SocialItem* pDBSI = pPlayer->GetSocialItem(req->sku());
-		if(!pDBSI)
+		if(!pPlayer->AddSocialItem(req->sku(),quantity,req->currentquantity(),tm))
 		{
-			pDBSI = pPlayer->GetDBPlayer()->add_socialitems();
-			pDBSI->set_sku(req->sku());
-			pDBSI->set_counter(req->currentcount());
-			pDBSI->set_amount(quantity);
-			if(tm == 0)
-			{
-				pDBSI->set_timeleft(0);
-				pDBSI->set_timeover(0);
-			}
-			else
-			{
-				pDBSI->set_timeleft(tm);
-				pDBSI->set_timeover(time(NULL));
-			}
+			SendRet2User(pUser,RseUpdateSocialItemRet_AddSocialItemFailed,rse);
+			return;
 		}
-		else
-		{
-			if(pDBSI->timeleft() == 0 || tm <= time(NULL) - pDBSI->timeover())
-			{
-				pDBSI->set_amount(pDBSI->amount() + quantity);
-				pDBSI->set_timeleft(tm);
-				pDBSI->set_counter(req->currentcount());
-				pDBSI->set_timeover(time(NULL));
-			}
-		}
-		SendRet2User(pUser,0,rse);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 		eh_->getDataHandler()->markUserDirty(pUser);
 	}
 	else if(strAction == "addItem")
@@ -127,12 +105,12 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 			MSI = MT->mutable_socialitems(i);
 			if(!pPlayer->AddSocialItem(MSI->sku(),req->currentquantity()))
 			{
-				SendRet2User(pUser,1,rse);
+				SendRet2User(pUser,RseUpdateSocialItemRet_AddSocialItemFailed,rse);
 				return ;
 			}
 		}
 		eh_->getDataHandler()->markUserDirty(pUser);
-		SendRet2User(pUser,0,rse);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "useItem")
 	{
@@ -143,21 +121,28 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 		DB_SocialItem* pDBSI = pPlayer->GetSocialItem(req->sku());
 		if(!pDBSI || !model)
 		{
-			SendRet2User(pUser,1,rse);
+			SendRet2User(pUser,RseUpdateSocialItemRet_SocialItemNotEnough,rse);
 			return;
 		}
-		if(Sku == 33)//雇佣工人
+
+		if(Sku == SocialItem_worker_freeWorker)//雇佣工人
 		{
-			DB_Planet* pPlanet = pPlayer->GetPlanet(1);
-			pPlanet->set_droids(pPlanet->droids() + 1);
+			if(!pPlayer->AddDroid(planetId))
+			{
+				SendRet2User(pUser,RseUpdateSocialItemRet_AddDroidFailed,rse);
+				return;
+			}
+			SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
+			return;
 		}
-		if(Sku >= 5000 && Sku <= 5006)
+
+		if(Sku >= SocialItem_coins && Sku <= 5006)
 		{
 			switch (Sku) {
-			case 5000:// 金币×1000
+			case SocialItem_coins:// 金币×1000
 				pPlayer->CostRes(RC_Coin,1000);
 				break;
-			case 5002:// 矿石×1000
+			case SocialItem_minerals:// 矿石×1000
 				pPlayer->CostRes(RC_Mineral,1000);;
 				break;
 			case 5003:// 金币×10000
@@ -175,7 +160,13 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 			default:
 				break;
 			}
-			pDBSI->set_amount(pDBSI->amount() - 1);
+			if(!pPlayer->CostSocialItem(req->sku(), 1))
+			{
+				SendRet2User(pUser,RseUpdateSocialItemRet_SocialItemNotEnough,rse);
+				return;
+			}
+			SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
+			return;
 		}
 		else
 		{
@@ -199,7 +190,7 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 					if (addCoins < 1000) {
 						addCoins = 1000;
 					}
-					model->set_coins(model->coins() + addCoins);
+					pPlayer->CostRes(RC_Coin,model->coins() + addCoins);
 				}
 				else if(seed == 2)
 				{
@@ -207,44 +198,40 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 					if (addMinerals < 1000) {
 						addMinerals = 1000;
 					}
-					model->set_minerals(model->minerals() + addMinerals);
+					pPlayer->CostRes(RC_Mineral,model->minerals() + addMinerals);
 				}
 			}
 			else
 			{
-				DB_SocialItem* pDBReward = pPlayer->GetSocialItem(randomSku);//req->num()空缺
-				if(!pDBReward)
+				if(!pPlayer->AddSocialItem(randomSku, 1, 0,0))
 				{
-					pDBReward = pPlayer->GetDBPlayer()->add_socialitems();
-					pDBReward->set_sku(randomSku);
-					pDBReward->set_counter(0);
-					pDBReward->set_timeleft(0);
-					pDBReward->set_timeover(0);
-					pDBReward->set_amount(1);
+					SendRet2User(pUser,RseUpdateSocialItemRet_AddSocialItemFailed,rse);
+					return;
 				}
-				else
-					pDBReward->set_amount(pDBReward->amount() + 1);
 			}
 			pDBSI->set_counter(nextCounter);
-			pDBSI->set_amount(pDBSI->amount() - 1);
-
+			if(!pPlayer->CostSocialItem(req->sku(), 1))
+			{
+				SendRet2User(pUser,RseUpdateSocialItemRet_AddSocialItemFailed,rse);
+				return;
+			}
+			SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 		}
 		eh_->getDataHandler()->markUserDirty(pUser);
-		SendRet2User(pUser,0,rse);
 	}
 	else if(strAction == "buyItem")
 	{
-		SendRet2User(pUser,0,rse);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "removeItem")
 	{
-		DB_SocialItem* pDBSI = pPlayer->GetSocialItem(req->sku());
-		if(!pDBSI)
+		if(!pPlayer->CostSocialItem(req->sku(), 1))
 		{
-			SendRet2User(pUser,1,rse);
+			SendRet2User(pUser,RseUpdateSocialItemRet_AddSocialItemFailed,rse);
 			return;
 		}
-		pDBSI->set_amount(pDBSI->amount() - 1);
+		eh_->getDataHandler()->markUserDirty(pUser);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "applyCrafting")// 制作炸弹和落石
 	{
@@ -253,22 +240,13 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 			sku = "7000";
 		else
 			sku = "7001";
-		DB_SocialItem* pDBSI = pPlayer->GetSocialItem(sku);
-		if(!pDBSI)
+		if(!pPlayer->AddSocialItem(sku, 1))
 		{
-			pDBSI = pPlayer->GetDBPlayer()->add_socialitems();
-			pDBSI->set_sku(sku);
-			pDBSI->set_amount(1);
-			pDBSI->set_counter(0);
-			pDBSI->set_timeleft(0);
-			pDBSI->set_timeover(0);
-		}
-		else
-		{
-			pDBSI->set_amount(pDBSI->amount() + 1);
+			SendRet2User(pUser,RseUpdateSocialItemRet_ApplyCraftingFailed,rse);
+			return;
 		}
 		eh_->getDataHandler()->markUserDirty(pUser);
-		SendRet2User(pUser,0,rse);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "applyCollectable")// 收藏里兑换物品
 	{
@@ -280,70 +258,40 @@ void RceUpdateSocialItemHandle::handle(Event* e)
 		for(int i = 0;i<SkuList.size();i++)
 		{
 			string Sku = SkuList[i];
-			DB_SocialItem* pDBSIS = pPlayer->GetSocialItem(Sku);
-			if(!pDBSIS)
+			if(!pPlayer->CostSocialItem(Sku, 1))
 			{
-				SendRet2User(pUser,1,rse);
+				SendRet2User(pUser,RseUpdateSocialItemRet_SocialItemNotEnough,rse);
 				return;
 			}
-			pDBSIS->set_amount(pDBSIS->amount() - 1);
 		}
-
-		DB_SocialItem* pDBSI = pPlayer->GetSocialItem(Tbl->reward);
-		if(!pDBSI)
+		
+		if(!pPlayer->AddSocialItem(Tbl->reward, 1))
 		{
-			pDBSI = pPlayer->GetDBPlayer()->add_socialitems();
-			pDBSI->set_sku(Tbl->reward);
-			pDBSI->set_amount(1);
-			pDBSI->set_counter(0);
-			pDBSI->set_timeleft(0);
-			pDBSI->set_timeover(0);
+			SendRet2User(pUser,RseUpdateSocialItemRet_AddSocialItemFailed,rse);
+			return;
 		}
-		else
-		{
-			pDBSI->set_amount(pDBSI->amount() + 1);
-		}
-		SendRet2User(pUser,0,rse);
+		eh_->getDataHandler()->markUserDirty(pUser);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "addItemToWishList")
 	{
-		string sku = req->sku();
-		DB_WishItemList* pDBWIL = pPlayer->GetDBPlayer()->mutable_wishitemlist();
-		DB_WishItem* pDBWI = NULL;
-		for(int i = 0;i<pDBWIL->wishitem_size();i++)
+		if(!pPlayer->AddItemToWishList(req->sku()))
 		{
-			DB_WishItem* pDBTmp= pDBWIL->mutable_wishitem(i);
-			if(pDBTmp->sku() == "")
-				pDBWI = pDBTmp;
+			SendRet2User(pUser,RseUpdateSocialItemRet_AddToWishListFailed,rse);
+			return;
 		}
-		if(!pDBWI)
-		{
-			pDBWI = pDBWIL->add_wishitem();
-		}
-		pDBWI->set_sku(sku);
 		eh_->getDataHandler()->markUserDirty(pUser);
-		SendRet2User(pUser,0,rse);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "removeItemFromWishList")
 	{
-		string sku = req->sku();
-		DB_WishItemList* pDBWIL = pPlayer->GetDBPlayer()->mutable_wishitemlist();
-		for(int i = 0;i<pDBWIL->wishitem_size();i++)
+		if(!pPlayer->RemoveItemFromWishList(req->sku()))
 		{
-			DB_WishItem* pDBTmp= pDBWIL->mutable_wishitem(i);
-			if(pDBTmp->sku() == sku)
-			{
-				/*DB_WishItem* pDBWI_last = pDBWIL->mutable_wishitem(pDBWIL->wishitem_size() - 1);
-				if(pDBWI_last && pDBWI_last != pDBTmp)
-				{
-					pDBWI_last->Swap(pDBTmp);
-				}
-				pDBWIL->mutable_wishitem()->RemoveLast();*/
-				pDBTmp->set_sku("");
-			}
+			SendRet2User(pUser,RseUpdateSocialItemRet_RemoveItemFromWishListFailed,rse);
+			return;
 		}
 		eh_->getDataHandler()->markUserDirty(pUser);
-		SendRet2User(pUser,0,rse);
+		SendRet2User(pUser,RseUpdateSocialItemRet_Success,rse);
 	}
 	else if(strAction == "sendItemToNeighborWishList")
 	{
